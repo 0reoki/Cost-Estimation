@@ -30,11 +30,11 @@ namespace WindowsFormsApp1
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.chbUC_Length_Bx = new System.Windows.Forms.TextBox();
-            this.chbUC_Height_Bx = new System.Windows.Forms.TextBox();
-            this.chbUC_Length_Lbl = new System.Windows.Forms.Label();
             this.chbUC_Height_Lbl = new System.Windows.Forms.Label();
+            this.chbUC_Length_Lbl = new System.Windows.Forms.Label();
+            this.chbUC_Height_Bx = new System.Windows.Forms.TextBox();
+            this.chbUC_Length_Bx = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +60,46 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel1.Size = new System.Drawing.Size(331, 77);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
+            // chbUC_Height_Lbl
+            // 
+            this.chbUC_Height_Lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbUC_Height_Lbl.Location = new System.Drawing.Point(62, 0);
+            this.chbUC_Height_Lbl.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.chbUC_Height_Lbl.Name = "chbUC_Height_Lbl";
+            this.chbUC_Height_Lbl.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.chbUC_Height_Lbl.Size = new System.Drawing.Size(184, 31);
+            this.chbUC_Height_Lbl.TabIndex = 29;
+            this.chbUC_Height_Lbl.Text = "Height of Window 999:";
+            this.chbUC_Height_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // chbUC_Length_Lbl
+            // 
+            this.chbUC_Length_Lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbUC_Length_Lbl.Location = new System.Drawing.Point(62, 38);
+            this.chbUC_Length_Lbl.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.chbUC_Length_Lbl.Name = "chbUC_Length_Lbl";
+            this.chbUC_Length_Lbl.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.chbUC_Length_Lbl.Size = new System.Drawing.Size(184, 31);
+            this.chbUC_Length_Lbl.TabIndex = 28;
+            this.chbUC_Length_Lbl.Text = "Length of Window 999:";
+            this.chbUC_Length_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // chbUC_Height_Bx
+            // 
+            this.chbUC_Height_Bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chbUC_Height_Bx.Location = new System.Drawing.Point(252, 3);
+            this.chbUC_Height_Bx.Name = "chbUC_Height_Bx";
+            this.chbUC_Height_Bx.Size = new System.Drawing.Size(76, 26);
+            this.chbUC_Height_Bx.TabIndex = 27;
+            // 
+            // chbUC_Length_Bx
+            // 
+            this.chbUC_Length_Bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chbUC_Length_Bx.Location = new System.Drawing.Point(252, 41);
+            this.chbUC_Length_Bx.Name = "chbUC_Length_Bx";
+            this.chbUC_Length_Bx.Size = new System.Drawing.Size(76, 26);
+            this.chbUC_Length_Bx.TabIndex = 26;
+            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -74,46 +114,6 @@ namespace WindowsFormsApp1
             this.button1.Text = "X";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // chbUC_Length_Bx
-            // 
-            this.chbUC_Length_Bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chbUC_Length_Bx.Location = new System.Drawing.Point(252, 41);
-            this.chbUC_Length_Bx.Name = "chbUC_Length_Bx";
-            this.chbUC_Length_Bx.Size = new System.Drawing.Size(76, 26);
-            this.chbUC_Length_Bx.TabIndex = 26;
-            // 
-            // chbUC_Height_Bx
-            // 
-            this.chbUC_Height_Bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chbUC_Height_Bx.Location = new System.Drawing.Point(252, 3);
-            this.chbUC_Height_Bx.Name = "chbUC_Height_Bx";
-            this.chbUC_Height_Bx.Size = new System.Drawing.Size(76, 26);
-            this.chbUC_Height_Bx.TabIndex = 27;
-            // 
-            // chbUC_Length_Lbl
-            // 
-            this.chbUC_Length_Lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbUC_Length_Lbl.Location = new System.Drawing.Point(62, 38);
-            this.chbUC_Length_Lbl.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.chbUC_Length_Lbl.Name = "chbUC_Length_Lbl";
-            this.chbUC_Length_Lbl.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.chbUC_Length_Lbl.Size = new System.Drawing.Size(184, 31);
-            this.chbUC_Length_Lbl.TabIndex = 28;
-            this.chbUC_Length_Lbl.Text = "Length of Window 999:";
-            this.chbUC_Length_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // chbUC_Height_Lbl
-            // 
-            this.chbUC_Height_Lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbUC_Height_Lbl.Location = new System.Drawing.Point(62, 0);
-            this.chbUC_Height_Lbl.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.chbUC_Height_Lbl.Name = "chbUC_Height_Lbl";
-            this.chbUC_Height_Lbl.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.chbUC_Height_Lbl.Size = new System.Drawing.Size(184, 31);
-            this.chbUC_Height_Lbl.TabIndex = 29;
-            this.chbUC_Height_Lbl.Text = "Height of Window 999:";
-            this.chbUC_Height_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CHBUserControl
             // 

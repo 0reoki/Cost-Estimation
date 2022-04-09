@@ -12,9 +12,37 @@ namespace WindowsFormsApp1
 {
     public partial class LSLBarsUserControl : UserControl
     {
-        public LSLBarsUserControl()
+        ParametersForm parametersForm;
+        public string barType;
+
+        public LSLBarsUserControl(ParametersForm parametersForm)
         {
             InitializeComponent();
+            this.parametersForm = parametersForm;
+        }
+
+        public string lslUC_Label
+        {
+            set
+            {
+                lslUC_lbl.Text = value;
+            }
+            get
+            {
+                return lslUC_lbl.Text;
+            }
+        }
+
+        public string lslUC_Value
+        {
+            set
+            {
+                lslUC_bx.Text = value;
+            }
+            get
+            {
+                return lslUC_bx.Text;
+            }
         }
     }
 }

@@ -30,8 +30,8 @@ namespace WindowsFormsApp1
         private void InitializeComponent()
         {
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.conc_CC_SG_bx = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.lslUC_bx = new System.Windows.Forms.TextBox();
+            this.lslUC_lbl = new System.Windows.Forms.Label();
             this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,8 +40,8 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Controls.Add(this.conc_CC_SG_bx, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.label16, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.lslUC_bx, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.lslUC_lbl, 0, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
@@ -50,25 +50,25 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel3.Size = new System.Drawing.Size(164, 69);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
-            // conc_CC_SG_bx
+            // lslUC_bx
             // 
-            this.conc_CC_SG_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.conc_CC_SG_bx.Location = new System.Drawing.Point(3, 37);
-            this.conc_CC_SG_bx.Name = "conc_CC_SG_bx";
-            this.conc_CC_SG_bx.Size = new System.Drawing.Size(158, 26);
-            this.conc_CC_SG_bx.TabIndex = 17;
+            this.lslUC_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lslUC_bx.Location = new System.Drawing.Point(3, 37);
+            this.lslUC_bx.Name = "lslUC_bx";
+            this.lslUC_bx.Size = new System.Drawing.Size(158, 26);
+            this.lslUC_bx.TabIndex = 17;
             // 
-            // label16
+            // lslUC_lbl
             // 
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(1, 0);
-            this.label16.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label16.Name = "label16";
-            this.label16.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label16.Size = new System.Drawing.Size(160, 30);
-            this.label16.TabIndex = 14;
-            this.label16.Text = "LS99 ƒ\'c (MPa):";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lslUC_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lslUC_lbl.Location = new System.Drawing.Point(1, 0);
+            this.lslUC_lbl.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.lslUC_lbl.Name = "lslUC_lbl";
+            this.lslUC_lbl.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.lslUC_lbl.Size = new System.Drawing.Size(160, 30);
+            this.lslUC_lbl.TabIndex = 14;
+            this.lslUC_lbl.Text = "LS99 ƒ\'c (MPa):";
+            this.lslUC_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LSLBarsUserControl
             // 
@@ -85,7 +85,7 @@ namespace WindowsFormsApp1
 
         #endregion
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox conc_CC_SG_bx;
+        private System.Windows.Forms.Label lslUC_lbl;
+        private System.Windows.Forms.TextBox lslUC_bx;
     }
 }

@@ -229,20 +229,91 @@ namespace WindowsFormsApp1
 
             //Concrete
             stringParam += "\nConcrete|\n" +
-            parameters.cmIsSelected[0] + "|" + parameters.conc_CM_F_CG + "|" + parameters.conc_CM_F_GT + "|" + parameters.conc_CM_F_RM + "|" +
-            parameters.cmIsSelected[1] + "|" + parameters.conc_CM_C_CG + "|" + parameters.conc_CM_C_GT + "|" + parameters.conc_CM_C_RM + "|" +
-            parameters.cmIsSelected[2] + "|" + parameters.conc_CM_B_CG + "|" + parameters.conc_CM_B_GT + "|" + parameters.conc_CM_B_RM + "|" +
-            parameters.cmIsSelected[3] + "|" + parameters.conc_CM_S_CG + "|" + parameters.conc_CM_S_GT + "|" + parameters.conc_CM_S_RM + "|" +
+            parameters.conc_cmIsSelected[0] + "|" + parameters.conc_CM_F_CG + "|" + parameters.conc_CM_F_GT + "|" + parameters.conc_CM_F_RM + "|" +
+            parameters.conc_cmIsSelected[1] + "|" + parameters.conc_CM_C_CG + "|" + parameters.conc_CM_C_GT + "|" + parameters.conc_CM_C_RM + "|" +
+            parameters.conc_cmIsSelected[2] + "|" + parameters.conc_CM_B_CG + "|" + parameters.conc_CM_B_GT + "|" + parameters.conc_CM_B_RM + "|" +
+            parameters.conc_cmIsSelected[3] + "|" + parameters.conc_CM_S_CG + "|" + parameters.conc_CM_S_GT + "|" + parameters.conc_CM_S_RM + "|" +
 
             parameters.conc_CM_W_MEW_CM + "|" + parameters.conc_CM_W_MIW_CM + "|" + parameters.conc_CM_W_P_CM + "|" + parameters.conc_CM_W_P_PT + "|" +
 
-            parameters.cmIsSelected[4] + "|" + parameters.conc_CM_ST_CG + "|" + parameters.conc_CM_ST_GT + "|" + parameters.conc_CM_ST_RM + "|" +
+            parameters.conc_cmIsSelected[4] + "|" + parameters.conc_CM_ST_CG + "|" + parameters.conc_CM_ST_GT + "|" + parameters.conc_CM_ST_RM + "|" +
 
             parameters.conc_CC_F + "|" + parameters.conc_CC_SS + "|" + parameters.conc_CC_SG + "|" + parameters.conc_CC_BEE + "|" +
             parameters.conc_CC_BEW + "|" + parameters.conc_CC_CEE + "|" + parameters.conc_CC_CEW + "|" ;
 
-            //Reinforcement
-            //stringParam += "\nReinforcement|\n";
+            //Reinforcement 
+            stringParam += "\nReinforcement|\n";
+            stringParam += "Tension_Bars|";
+            int j = 1;
+            foreach (DataRow dtRow in parameters.rein_LSL_TB_dt.Rows)
+            {
+                stringParam += "Row-" + j + "|";
+                foreach (DataColumn dc in parameters.rein_LSL_TB_dt.Columns)
+                {
+                    stringParam += dtRow[dc].ToString() + "|";
+                }
+                j++;
+            }
+            j = 1;
+            for(int i = 0; i < parameters.rein_LSL_TB_fc_list.Count; i++)
+            {
+                stringParam += "FCPrime-" + j + "|" + parameters.rein_LSL_TB_fc_list[i] + "|";
+                j++;
+            }
+            stringParam += "Compression_Bars|"; j = 1;
+            foreach (DataRow dtRow in parameters.rein_LSL_CB_dt.Rows)
+            {
+                stringParam += "Row-" + j + "|";
+                foreach (DataColumn dc in parameters.rein_LSL_CB_dt.Columns)
+                {
+                    stringParam += dtRow[dc].ToString() + "|";
+                }
+                j++;
+            }
+            j = 1;
+            for (int i = 0; i < parameters.rein_LSL_CB_fc_list.Count; i++)
+            {
+                stringParam += "FCPrime-" + j + "|" + parameters.rein_LSL_CB_fc_list[i] + "|";
+                j++;
+            }
+            stringParam += "Main_Bars|"; j = 1;
+            foreach (DataRow dtRow in parameters.rein_BEH_MB_dt.Rows)
+            {
+                stringParam += "Row-" + j + "|";
+                foreach (DataColumn dc in parameters.rein_BEH_MB_dt.Columns)
+                {
+                    stringParam += dtRow[dc].ToString() + "|";
+                }
+                j++;
+            }
+            stringParam += "Stirrups_and_Ties|"; j = 1;
+            foreach (DataRow dtRow in parameters.rein_BEH_ST_dt.Rows)
+            {
+                stringParam += "Row-" + j + "|";
+                foreach (DataColumn dc in parameters.rein_BEH_ST_dt.Columns)
+                {
+                    stringParam += dtRow[dc].ToString() + "|";
+                }
+                j++;
+            }
+            stringParam += "Weight|"; j = 1;
+            foreach (DataRow dtRow in parameters.rein_W_dt.Rows)
+            {
+                stringParam += "Row-" + j + "|";
+                foreach (DataColumn dc in parameters.rein_W_dt.Columns)
+                {
+                    stringParam += dtRow[dc].ToString() + "|";
+                }
+                j++;
+            }
+            stringParam += parameters.rein_S_C_SL + "|" + parameters.rein_S_C_SZ + "|" + parameters.rein_S_C_AP + "|" + parameters.rein_S_C_MVDAB + "|" +
+                      parameters.rein_S_B_T_SL + "|" + parameters.rein_S_B_T_SZ + "|" + parameters.rein_S_B_T_AP + "|" + parameters.rein_S_B_B_SL + "|" + parameters.rein_S_B_B_SZ + "|" + parameters.rein_S_B_B_AP + "|" + parameters.rein_S_B_MHDAB + "|" +
+                      parameters.rein_S_S_T_SL + "|" + parameters.rein_S_S_B_SL + "|" +
+                      parameters.rein_RG_C + "|" + parameters.rein_RG_F + "|" + parameters.rein_RG_B + "|" + parameters.rein_RG_ST + "|" + parameters.rein_RG_W + "|" + parameters.rein_RG_SL + "|";
+
+            for (int col = 0; col < parameters.rein_mfIsSelected.GetLength(0); col++)
+                for (int row = 0; row < parameters.rein_mfIsSelected.GetLength(1); row++)
+                    stringParam += parameters.rein_mfIsSelected[col, row] + "|";
 
             //Paint
             stringParam += "\nPaint|\n" + parameters.paint_SCL + "|";
@@ -408,19 +479,19 @@ namespace WindowsFormsApp1
 
             //Concrete
             i++;
-            parameters.cmIsSelected[0] = bool.Parse(tokens[i]); i++;
+            parameters.conc_cmIsSelected[0] = bool.Parse(tokens[i]); i++;
             parameters.conc_CM_F_CG = tokens[i]; i++;
             parameters.conc_CM_F_GT = tokens[i]; i++;
             parameters.conc_CM_F_RM = tokens[i]; i++;
-            parameters.cmIsSelected[1] = bool.Parse(tokens[i]); i++;
+            parameters.conc_cmIsSelected[1] = bool.Parse(tokens[i]); i++;
             parameters.conc_CM_C_CG = tokens[i]; i++;
             parameters.conc_CM_C_GT = tokens[i]; i++;
             parameters.conc_CM_C_RM = tokens[i]; i++;
-            parameters.cmIsSelected[2] = bool.Parse(tokens[i]); i++;
+            parameters.conc_cmIsSelected[2] = bool.Parse(tokens[i]); i++;
             parameters.conc_CM_B_CG = tokens[i]; i++;
             parameters.conc_CM_B_GT = tokens[i]; i++;
             parameters.conc_CM_B_RM = tokens[i]; i++;
-            parameters.cmIsSelected[3] = bool.Parse(tokens[i]); i++;
+            parameters.conc_cmIsSelected[3] = bool.Parse(tokens[i]); i++;
             parameters.conc_CM_S_CG = tokens[i]; i++;
             parameters.conc_CM_S_GT = tokens[i]; i++;
             parameters.conc_CM_S_RM = tokens[i]; i++;
@@ -430,7 +501,7 @@ namespace WindowsFormsApp1
             parameters.conc_CM_W_P_CM = tokens[i]; i++;
             parameters.conc_CM_W_P_PT = tokens[i]; i++;
 
-            parameters.cmIsSelected[4] = bool.Parse(tokens[i]); i++;
+            parameters.conc_cmIsSelected[4] = bool.Parse(tokens[i]); i++;
             parameters.conc_CM_ST_CG = tokens[i]; i++;
             parameters.conc_CM_ST_GT = tokens[i]; i++;
             parameters.conc_CM_ST_RM = tokens[i]; i++;
@@ -443,6 +514,21 @@ namespace WindowsFormsApp1
             parameters.conc_CC_CEE = tokens[i]; i++;
             parameters.conc_CC_CEW = tokens[i]; i++;
 
+            //Reinforcements TODO savetoprogram
+            i++;
+            j = 0;
+            i++;
+            while(!tokens[i].Equals("FCPrime-1") && !tokens[i].Equals("Compression_Bars"))
+            {
+                j++;
+                if(tokens[i].Equals("Row-" + j))
+                {
+                    while(tokens[i].Equals("Row-" + (j + 1)))
+                    {
+
+                    }
+                }
+            }
 
             //Paint
             i++;

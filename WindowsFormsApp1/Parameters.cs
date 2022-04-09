@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,9 +10,9 @@ namespace WindowsFormsApp1
     {
         //Parameters for Earthworks
         public string earth_CF_FA, earth_CF_TH, earth_CF_TY, earth_CF_CF,
-                       earth_WF_FA, earth_WF_TH, earth_WF_TY, earth_WF_CF,
-                       earth_WTB_FA, earth_WTB_TH, earth_WTB_TY, earth_WTB_CF,
-                       earth_SG_AS, earth_SG_TS, earth_SG_TH, earth_SG_TY, earth_SG_CF;
+                      earth_WF_FA, earth_WF_TH, earth_WF_TY, earth_WF_CF,
+                      earth_WTB_FA, earth_WTB_TH, earth_WTB_TY, earth_WTB_CF,
+                      earth_SG_AS, earth_SG_TS, earth_SG_TH, earth_SG_TY, earth_SG_CF;
 
         public List<string[]> earth_elevations = new List<string[]>();
 
@@ -23,8 +24,8 @@ namespace WindowsFormsApp1
                       form_SM_ST_FL, form_SM_ST_VS,
                       form_F_T, form_F_NU, form_F_N;
 
-        //*Parameters for Concrete
-        public bool[] cmIsSelected = { true, true, true, true, true };
+        //Parameters for Concrete
+        public bool[] conc_cmIsSelected = { true, true, true, true, true };
         public string conc_CM_F_CG, conc_CM_F_GT, conc_CM_F_RM,
                       conc_CM_C_CG, conc_CM_C_GT, conc_CM_C_RM,
                       conc_CM_B_CG, conc_CM_B_GT, conc_CM_B_RM,
@@ -33,6 +34,28 @@ namespace WindowsFormsApp1
                       conc_CM_ST_CG, conc_CM_ST_GT, conc_CM_ST_RM,
                       conc_CC_F, conc_CC_SS, conc_CC_SG, conc_CC_BEE, conc_CC_BEW,
                       conc_CC_CEE, conc_CC_CEW;
+
+        //Parameters for Reinforcements
+        public DataTable rein_LSL_TB_dt = new DataTable();
+        public List<string> rein_LSL_TB_fc_list = new List<string>();
+        public DataTable rein_LSL_CB_dt = new DataTable();
+        public List<string> rein_LSL_CB_fc_list = new List<string>();
+        public DataTable rein_BEH_MB_dt = new DataTable();
+        public DataTable rein_BEH_ST_dt = new DataTable();
+        public DataTable rein_W_dt = new DataTable();
+        public string rein_S_C_SL, rein_S_C_SZ, rein_S_C_AP, rein_S_C_MVDAB,
+                      rein_S_B_T_SL, rein_S_B_T_SZ, rein_S_B_T_AP, rein_S_B_B_SL, rein_S_B_B_SZ, rein_S_B_B_AP, rein_S_B_MHDAB,
+                      rein_S_S_T_SL, rein_S_S_B_SL,
+                      rein_RG_C, rein_RG_F, rein_RG_B, rein_RG_ST, rein_RG_W, rein_RG_SL;
+        public bool[,] rein_mfIsSelected = new bool[,]  {
+                                                            { true, true, true, true, true, true, true },
+                                                            { true, true, true, true, true, true, true },
+                                                            { true, true, true, true, true, true, true },
+                                                            { true, true, true, true, true, true, true },
+                                                            { true, true, true, true, true, true, true },
+                                                            { true, true, true, true, true, true, true },
+                                                            { true, true, true, true, true, true, true },
+                                                        };
 
         //Parameters for Paint 
         public string paint_SCL;
@@ -52,7 +75,6 @@ namespace WindowsFormsApp1
         public List<string[]> mason_interiorDoor = new List<string[]>();
         public string mason_RTW_VS, mason_RTW_HSL, mason_RTW_RG, mason_RTW_BD, mason_RTW_RL, mason_RTW_LTW;
 
-
         //Parameters for Labor and Equipment
         public string labor_RD;
         public List<string[]> labor_MP = new List<string[]>();
@@ -60,7 +82,6 @@ namespace WindowsFormsApp1
 
         //Parameters for Misc
         public List<string[]> misc_CustomItems = new List<string[]>();
-
 
         public void setEarthworkParameters
             (string earth_CF_FA, string earth_CF_TH, string earth_CF_TY, string earth_CF_CF,
@@ -111,7 +132,7 @@ namespace WindowsFormsApp1
             this.form_F_T = form_F_T;
             this.form_F_NU = form_F_NU;
             this.form_F_N = form_F_N;
-    }
+        }
 
         public void setConcreteParameters
             (bool[] cmIsSelected, string conc_CM_F_CG, string conc_CM_F_GT, string conc_CM_F_RM,
@@ -123,7 +144,7 @@ namespace WindowsFormsApp1
              string conc_CC_F, string conc_CC_SS, string conc_CC_SG, string conc_CC_BEE,
              string conc_CC_BEW, string conc_CC_CEE, string conc_CC_CEW)
         {
-            this.cmIsSelected = cmIsSelected;
+            this.conc_cmIsSelected = cmIsSelected;
             this.conc_CM_F_CG = conc_CM_F_CG; 
             this.conc_CM_F_GT = conc_CM_F_GT; 
             this.conc_CM_F_RM = conc_CM_F_RM;
@@ -150,6 +171,50 @@ namespace WindowsFormsApp1
             this.conc_CC_BEW = conc_CC_BEW;
             this.conc_CC_CEE = conc_CC_CEE; 
             this.conc_CC_CEW = conc_CC_CEW;
+        }
+
+        public void setReinforcementsParameters
+            (DataTable rein_LSL_TB_dt, DataTable rein_LSL_CB_dt, DataTable rein_BEH_MB_dt, DataTable rein_BEH_ST_dt,
+             DataTable rein_W_dt, List<string> rein_LSL_TB_fc_list, List<string> rein_LSL_CB_fc_list,
+             string rein_S_C_SL, string rein_S_C_SZ, string rein_S_C_AP, string rein_S_C_MVDAB,
+             string rein_S_B_T_SL, string rein_S_B_T_SZ, string rein_S_B_T_AP, string rein_S_B_B_SL, string rein_S_B_B_SZ, string rein_S_B_B_AP, string rein_S_B_MHDAB,
+             string rein_S_S_T_SL, string rein_S_S_B_SL,
+             string rein_RG_C, string rein_RG_F, string rein_RG_B, string rein_RG_ST, string rein_RG_W, string rein_RG_SL,
+             bool[,] rein_mfIsSelected)
+        {
+            this.rein_LSL_TB_dt = rein_LSL_TB_dt;
+            this.rein_LSL_CB_dt = rein_LSL_CB_dt;
+            this.rein_BEH_MB_dt = rein_BEH_MB_dt;
+            this.rein_BEH_ST_dt = rein_BEH_ST_dt;
+            this.rein_W_dt = rein_W_dt;
+
+            this.rein_LSL_TB_fc_list = rein_LSL_TB_fc_list;
+            this.rein_LSL_CB_fc_list = rein_LSL_CB_fc_list;
+
+            this.rein_S_C_SL = rein_S_C_SL;
+            this.rein_S_C_SZ = rein_S_C_SZ;
+            this.rein_S_C_AP = rein_S_C_AP;
+            this.rein_S_C_MVDAB = rein_S_C_MVDAB;
+
+            this.rein_S_B_T_SL = rein_S_B_T_SL;
+            this.rein_S_B_T_SZ = rein_S_B_T_SZ;
+            this.rein_S_B_T_AP = rein_S_B_T_AP;
+            this.rein_S_B_B_SL = rein_S_B_B_SL;
+            this.rein_S_B_B_SZ = rein_S_B_B_SZ;
+            this.rein_S_B_B_AP = rein_S_B_B_AP;
+            this.rein_S_B_MHDAB = rein_S_B_MHDAB;
+
+            this.rein_S_S_T_SL = rein_S_S_T_SL;
+            this.rein_S_S_B_SL = rein_S_S_B_SL;
+
+            this.rein_RG_C = rein_RG_C;
+            this.rein_RG_F = rein_RG_F;
+            this.rein_RG_B = rein_RG_B;
+            this.rein_RG_ST = rein_RG_ST;
+            this.rein_RG_W = rein_RG_W;
+            this.rein_RG_SL = rein_RG_SL;
+
+            this.rein_mfIsSelected = rein_mfIsSelected;
         }
 
         public void setPaintParameters

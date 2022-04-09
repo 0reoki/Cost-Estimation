@@ -19,15 +19,26 @@ namespace WindowsFormsApp1
         CostEstimationForm costEstimationForm;
 
         //Local Variables
+        private List<LSLBarsUserControl> lslUC;
         private List<PaintAreaUserControl> paUC;
         private List<TileAreaUserControl> taUC;
         private List<CHBUserControl> chbUC;
         private List<ManPowerUserControl> mpUC;
         private List<EquipmentUserControl> eqUC;
         private List<CustomItemsUserControl> ciUC;
-        private Size form, tabs, panel;
+        DataTable rein_LSL_TB_dt;
+        BindingSource rein_LSL_TB_bs;
+        DataTable rein_LSL_CB_dt;
+        BindingSource rein_LSL_CB_bs;
+        DataTable rein_BEH_MB_dt;
+        BindingSource rein_BEH_MB_bs;
+        DataTable rein_BEH_ST_dt;
+        BindingSource rein_BEH_ST_bs;
+        DataTable rein_W_dt;
+        BindingSource rein_W_bs;
 
         //Passed Variables / Getters and Setters
+        public List<LSLBarsUserControl> LslUC { get => lslUC; set => lslUC = value; }
         public List<PaintAreaUserControl> PaUC { get => paUC; set => paUC = value; }
         public List<TileAreaUserControl> TaUC { get => taUC; set => taUC = value; }
         public List<CHBUserControl> ChbUC { get => chbUC; set => chbUC = value; }
@@ -44,6 +55,7 @@ namespace WindowsFormsApp1
             this.parameters = parameters;
 
             //Initialize User Controls
+            lslUC = new List<LSLBarsUserControl>();
             mef = new ManageElevForm();
             PaUC = new List<PaintAreaUserControl>();
             TaUC = new List<TileAreaUserControl>();
@@ -51,6 +63,72 @@ namespace WindowsFormsApp1
             MpUC = new List<ManPowerUserControl>();
             EqUC = new List<EquipmentUserControl>();
             CiUC = new List<CustomItemsUserControl>();
+
+            //Init datagridview for Reinforcements
+            rein_LSL_TB_dt = new DataTable();
+            rein_LSL_TB_bs = new BindingSource();
+            rein_LSL_CB_dt = new DataTable();
+            rein_LSL_CB_bs = new BindingSource();
+            rein_BEH_MB_dt = new DataTable();
+            rein_BEH_MB_bs = new BindingSource();
+            rein_BEH_ST_dt = new DataTable();
+            rein_BEH_ST_bs = new BindingSource();
+            rein_W_dt = new DataTable();
+            rein_W_bs = new BindingSource();
+
+            rein_LSL_TB_bs.DataSource = rein_LSL_TB_dt;
+            rein_LSL_CB_bs.DataSource = rein_LSL_CB_dt;
+            rein_BEH_MB_bs.DataSource = rein_BEH_MB_dt;
+            rein_BEH_ST_bs.DataSource = rein_BEH_ST_dt;
+            rein_W_bs.DataSource = rein_W_dt;
+
+            rein_LSL_TB_dt.Columns.Add("Bar Sizes");
+            rein_LSL_TB_dg.DataSource = rein_LSL_TB_dt;
+            rein_LSL_TB_dg.Columns[0].Width = 45;
+
+            rein_LSL_CB_dt.Columns.Add("Bar Sizes");
+            rein_LSL_CB_dg.DataSource = rein_LSL_CB_dt;
+            rein_LSL_CB_dg.Columns[0].Width = 45;
+
+            rein_BEH_MB_dt.Columns.Add("Bar Size (mm)");
+            rein_BEH_MB_dt.Columns.Add("L(mm) 90º");
+            rein_BEH_MB_dt.Columns.Add("L(mm) 135º");
+            rein_BEH_MB_dt.Columns.Add("L(mm) 180º");
+            rein_BEH_MB_dg.DataSource = rein_BEH_MB_dt;
+            rein_BEH_MB_dg.Columns[0].Width = 45;
+            rein_BEH_MB_dg.Columns[1].Width = 90;
+            rein_BEH_MB_dg.Columns[2].Width = 90;
+            rein_BEH_MB_dg.Columns[3].Width = 90;
+            rein_BEH_ST_dt.Columns.Add("Bar Size (mm)");
+            rein_BEH_ST_dt.Columns.Add("L(mm) 90º");
+            rein_BEH_ST_dt.Columns.Add("L(mm) 135º");
+            rein_BEH_ST_dt.Columns.Add("L(mm) 180º");
+            rein_BEH_ST_dg.DataSource = rein_BEH_ST_dt;
+            rein_BEH_ST_dg.Columns[0].Width = 45;
+            rein_BEH_ST_dg.Columns[1].Width = 90;
+            rein_BEH_ST_dg.Columns[2].Width = 90;
+            rein_BEH_ST_dg.Columns[3].Width = 90;
+
+            rein_W_dt.Columns.Add("Bar Size (Diameter)");
+            rein_W_dt.Columns.Add("kg/m");
+            rein_W_dg.DataSource = rein_W_dt;
+            rein_W_dg.Columns[0].Width = 45;
+            rein_W_dg.Columns[1].Width = 90;
+            rein_W_dt.Rows.Add("6mm", "");
+            rein_W_dt.Rows.Add("8mm", "");
+            rein_W_dt.Rows.Add("10mm", "");
+            rein_W_dt.Rows.Add("12mm", "");
+            rein_W_dt.Rows.Add("16mm", "");
+            rein_W_dt.Rows.Add("20mm", "");
+            rein_W_dt.Rows.Add("25mm", "");
+            rein_W_dt.Rows.Add("28mm", "");
+            rein_W_dt.Rows.Add("32mm", "");
+            rein_W_dt.Rows.Add("36mm", "");
+            rein_W_dt.Rows.Add("40mm", "");
+            rein_W_dt.Rows.Add("44mm", "");
+            rein_W_dt.Rows.Add("50mm", "");
+            rein_W_dt.Rows.Add("56mm", "");
+            rein_W_dg.DataSource = rein_W_dt;
 
             //Save file?
             if (costEstimationForm.saveFileExists)
@@ -68,18 +146,6 @@ namespace WindowsFormsApp1
             conc_CM_B_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_B_RM_cbx);
             conc_CM_S_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_S_RM_cbx);
             conc_CM_ST_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_ST_RM_cbx);
-
-            //Init datagridview for Reinforcements
-            /*
-            var deleteButton = new DataGridViewButtonColumn();
-            deleteButton.Name = "dataGridViewDeleteButton";
-            deleteButton.HeaderText = "Delete";
-            deleteButton.Text = "Delete";
-            deleteButton.UseColumnTextForButtonValue = true;
-            this.rein_LSL_TB_dg.Columns.Add(deleteButton);
-            */
-            //For Compression Bars
-
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -295,32 +361,276 @@ namespace WindowsFormsApp1
         }
         //Concrete Functions -- END
 
-        //Reinforcement Functions -- START
+        //Reinforcements Functions -- START
 
         private void rein_LSL_TB_addBtn_Click(object sender, EventArgs e)
         {
             if(rein_LSL_tabControl.SelectedIndex == 0)
             {
                 //Tension Bars
-                //TODO: combobox if delete or add
-                //if delete, remove last row
-
-                //add
-                //TODO: combobox if column or row
-                //if column
-
-                //if row
-                this.rein_LSL_TB_dg.Columns.Add("Tension Bars", "Bar Sizes");
-                this.rein_LSL_TB_dg.Columns.Add("Tension Bars", "Lapped Splice 1");
-                rein_LSL_TB_dg.Columns[1].Width = 90;
-                LSLBarsUserControl lol = new LSLBarsUserControl();
-                rein_LSL_TB_fc_Panel.Controls.Add(lol);
-                this.rein_LSL_TB_dg.Rows.Add(" ", " ");
+                List<string> list = new List<string>() { "Add New Row/Column", "Delete Last Row/Column" };
+                string dlgName = "Tension Bars - Add/Delete";
+                DialogRadioBox dlg = new DialogRadioBox(dlgName, list);
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    if (dlg.selectedString.Equals("Add New Row/Column"))
+                    {
+                        List<string> list2 = new List<string>() { "Add Column", "Add Row" };
+                        string dlgName2 = "Tension Bars - Add";
+                        DialogRadioBox dlg2 = new DialogRadioBox(dlgName2, list2);
+                        if (dlg2.ShowDialog() == DialogResult.OK)
+                        {
+                            if (dlg2.selectedString.Equals("Add Column"))
+                            {
+                                rein_LSL_TB_dt.Columns.Add("Lapped Splice " + rein_LSL_TB_dt.Columns.Count);
+                                rein_LSL_TB_dg.DataSource = rein_LSL_TB_dt;
+                                rein_LSL_TB_dg.Columns[rein_LSL_TB_dt.Columns.Count - 1].Width = 90;
+                                LSLBarsUserControl content = new LSLBarsUserControl(this);
+                                content.lslUC_Label = "LS" + (rein_LSL_TB_dt.Columns.Count - 1) + " ƒ'c (MPa):";
+                                content.lslUC_Value = "";
+                                content.barType = "Tension Bars";
+                                LslUC.Add(content);
+                                rein_LSL_TB_fc_Panel.Controls.Add(content);
+                            }
+                            else //Add row
+                            {
+                                rein_LSL_TB_dt.Rows.Add("");
+                                rein_LSL_TB_dg.DataSource = rein_LSL_TB_dt;
+                            }
+                        }
+                    } 
+                    else //delete row/column
+                    {
+                        List<string> list2 = new List<string>() { "Delete Last Column", "Delete Last Row" };
+                        string dlgName2 = "Tension Bars - Delete";
+                        DialogRadioBox dlg2 = new DialogRadioBox(dlgName2, list2);
+                        if (dlg2.ShowDialog() == DialogResult.OK)
+                        {
+                            if (dlg2.selectedString.Equals("Delete Last Column"))
+                            {
+                                try
+                                {
+                                    if (rein_LSL_TB_dt.Columns.Count == 1)
+                                    {
+                                        MessageBox.Show("No columns to delete!");
+                                        return;
+                                    } else
+                                    {
+                                        rein_LSL_TB_dt.Columns.RemoveAt(rein_LSL_TB_dt.Columns.Count - 1);
+                                        rein_LSL_TB_dg.DataSource = rein_LSL_TB_dt;
+                                        int index = 0;
+                                        for (int i = 0; i < LslUC.Count; i++)
+                                        {
+                                            if (LslUC[i].barType.Equals("Tension Bars"))
+                                            {
+                                                index++;
+                                            }
+                                        }
+                                        rein_LSL_TB_fc_Panel.Controls.RemoveAt(index - 1);
+                                        LslUC.RemoveAt(index - 1);
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("No columns to delete!");
+                                }
+                            }
+                            else //Delete Last Row
+                            {
+                                try
+                                {
+                                    rein_LSL_TB_dt.Rows.RemoveAt(rein_LSL_TB_dt.Rows.Count - 1);
+                                    rein_LSL_TB_dg.DataSource = rein_LSL_TB_dt;
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("No rows to delete!");
+                                }
+                            }
+                        }
+                    }
+                }
             }
             else
             {
                 //Compression Bars
-                
+                List<string> list = new List<string>() { "Add New Row/Column", "Delete Last Row/Column" };
+                string dlgName = "Compression Bars - Add/Delete";
+                DialogRadioBox dlg = new DialogRadioBox(dlgName, list);
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    if (dlg.selectedString.Equals("Add New Row/Column"))
+                    {
+                        List<string> list2 = new List<string>() { "Add Column", "Add Row" };
+                        string dlgName2 = "Compression Bars - Add";
+                        DialogRadioBox dlg2 = new DialogRadioBox(dlgName2, list2);
+                        if (dlg2.ShowDialog() == DialogResult.OK)
+                        {
+                            if (dlg2.selectedString.Equals("Add Column"))
+                            {
+                                rein_LSL_CB_dt.Columns.Add("Lapped Splice " + rein_LSL_CB_dt.Columns.Count);
+                                rein_LSL_CB_dg.DataSource = rein_LSL_CB_dt;
+                                rein_LSL_CB_dg.Columns[rein_LSL_CB_dt.Columns.Count - 1].Width = 90;
+                                LSLBarsUserControl content = new LSLBarsUserControl(this);
+                                content.lslUC_Label = "LS" + (rein_LSL_CB_dt.Columns.Count - 1) + " ƒ'c (MPa):";
+                                content.lslUC_Value = "";
+                                content.barType = "Compression Bars";
+                                LslUC.Add(content);
+                                rein_LSL_CB_fc_Panel.Controls.Add(content);
+                            }
+                            else //Add row 
+                            {
+                                rein_LSL_CB_dt.Rows.Add("");
+                                rein_LSL_CB_dg.DataSource = rein_LSL_CB_dt;
+                            }
+                        }
+                    }
+                    else //delete row/column
+                    {
+                        List<string> list2 = new List<string>() { "Delete Last Column", "Delete Last Row" };
+                        string dlgName2 = "Compression Bars - Delete";
+                        DialogRadioBox dlg2 = new DialogRadioBox(dlgName2, list2);
+                        if (dlg2.ShowDialog() == DialogResult.OK)
+                        {
+                            if (dlg2.selectedString.Equals("Delete Last Column"))
+                            {
+                                try
+                                {
+                                    if (rein_LSL_CB_dg.Columns.Count == 1)
+                                    {
+                                        MessageBox.Show("No columns to delete!");
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        rein_LSL_CB_dt.Columns.RemoveAt(rein_LSL_CB_dt.Columns.Count - 1);
+                                        rein_LSL_CB_dg.DataSource = rein_LSL_CB_dt;
+                                        int index = 0;
+                                        for (int i = 0; i < LslUC.Count; i++)
+                                        {
+                                            if (LslUC[i].barType.Equals("Compression Bars"))
+                                            {
+                                                index++;
+                                            }
+                                        }
+                                        rein_LSL_CB_fc_Panel.Controls.RemoveAt(index - 1);
+                                        LslUC.RemoveAt(index - 1);
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("No columns to delete!");
+                                }
+                            }
+                            else //Delete Last Row
+                            {
+                                try
+                                {
+                                    rein_LSL_CB_dt.Rows.RemoveAt(rein_LSL_CB_dt.Rows.Count);
+                                    rein_LSL_CB_dg.DataSource = rein_LSL_CB_dt;
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("No rows to delete!");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        private void rein_BEH_addBtn_Click(object sender, EventArgs e)
+        {
+            if (rein_BEH_tabControl.SelectedIndex == 0)
+            {
+                //Main Bars
+                List<string> list = new List<string>() { "Add New Row", "Delete Last Row" };
+                string dlgName = "Bar End Hooks";
+                DialogRadioBox dlg = new DialogRadioBox(dlgName, list);
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    if (dlg.selectedString.Equals("Add New Row"))
+                    {
+                        rein_BEH_MB_dt.Rows.Add("", "");
+                        rein_BEH_MB_dg.DataSource = rein_BEH_MB_dt;
+                    } 
+                    else
+                    {
+                        try
+                        {
+                            rein_BEH_MB_dt.Rows.RemoveAt(rein_BEH_MB_dt.Rows.Count - 1);
+                            rein_BEH_MB_dg.DataSource = rein_BEH_MB_dt;
+                        } catch (Exception ex)
+                        {
+                            MessageBox.Show("No rows to delete!");
+                        }
+                    }
+                } 
+            }
+            else
+            {
+                //Stirrups and Ties
+                List<string> list = new List<string>() { "Add New Row", "Delete Last Row" };
+                string dlgName = "Bar End Hooks";
+                DialogRadioBox dlg = new DialogRadioBox(dlgName, list);
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    if (dlg.selectedString.Equals("Add New Row"))
+                    {
+                        rein_BEH_ST_dt.Rows.Add("", "");
+                        rein_BEH_MB_dg.DataSource = rein_BEH_MB_dt;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            rein_BEH_ST_dt.Rows.RemoveAt(rein_BEH_ST_dt.Rows.Count - 1);
+                            rein_BEH_MB_dg.DataSource = rein_BEH_MB_dt;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("No rows to delete!");
+                        }
+                    }
+                }
+            }
+        }
+
+        private void rein_SaveBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void rein_ResetBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to RESET every parameter in this panel?", "RESET Parameters", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                LslUC.Clear();
+                rein_LSL_TB_fc_Panel.Controls.Clear();
+                rein_LSL_CB_fc_Panel.Controls.Clear();
+
+                rein_LSL_TB_dt.Rows.Clear();
+                rein_LSL_TB_dt.Columns.Clear();
+                rein_LSL_CB_dt.Rows.Clear();
+                rein_LSL_CB_dt.Columns.Clear();
+
+                rein_LSL_TB_dt.Columns.Add("Bar Sizes");
+                rein_LSL_TB_dg.DataSource = rein_LSL_TB_dt;
+                rein_LSL_TB_dg.Columns[0].Width = 45;
+                rein_LSL_CB_dt.Columns.Add("Bar Sizes");
+                rein_LSL_CB_dg.Columns[0].Width = 45;
+                rein_LSL_CB_dg.DataSource = rein_LSL_CB_dt;
+
+                rein_BEH_MB_dt.Rows.Clear();
+                rein_BEH_MB_dg.DataSource = rein_BEH_MB_dt;
+                rein_BEH_ST_dt.Rows.Clear();
+                rein_BEH_ST_dg.DataSource = rein_BEH_ST_dt;
+                setReinforcementsDefaultValues();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //Do nothing
             }
         }
 
@@ -328,9 +638,8 @@ namespace WindowsFormsApp1
         {
             if (e.RowIndex == rein_LSL_TB_dg.NewRowIndex || e.RowIndex < 0)
                 return;
-
         }
-        //Rreinforcement Functions -- END
+        //Reinforcements Functions -- END
 
         //Paint Functions -- START
         private void paint_PA_AddBtn_Click(object sender, EventArgs e)
@@ -769,6 +1078,9 @@ namespace WindowsFormsApp1
             //Concrete
             setConcreteDefaultValues();
 
+            //Reinforcements 
+            setReinforcementsDefaultValues();
+
             //Paint
             setPaintDefaultValues();
 
@@ -841,23 +1153,23 @@ namespace WindowsFormsApp1
             conc_CM_F_CG_cbx.Text = parameters.conc_CM_F_CG;
             conc_CM_F_GT_cbx.Text = parameters.conc_CM_F_GT;
             conc_CM_F_RM_cbx.Text = parameters.conc_CM_F_RM;
-            if(parameters.cmIsSelected[0]) { conc_CM_F_CG_rb.Select(); } else { conc_CM_F_RM_rb.Select(); }
+            if(parameters.conc_cmIsSelected[0]) { conc_CM_F_CG_rb.Select(); } else { conc_CM_F_RM_rb.Select(); }
 
 
             conc_CM_C_CG_cbx.Text = parameters.conc_CM_C_CG;
             conc_CM_C_GT_cbx.Text = parameters.conc_CM_C_GT;
             conc_CM_C_RM_cbx.Text = parameters.conc_CM_C_RM;
-            if (parameters.cmIsSelected[1]) { conc_CM_C_CG_rb.Select(); } else { conc_CM_C_RM_rb.Select(); }
+            if (parameters.conc_cmIsSelected[1]) { conc_CM_C_CG_rb.Select(); } else { conc_CM_C_RM_rb.Select(); }
 
             conc_CM_B_CG_cbx.Text = parameters.conc_CM_B_CG;
             conc_CM_B_GT_cbx.Text = parameters.conc_CM_B_GT;
             conc_CM_B_RM_cbx.Text = parameters.conc_CM_B_RM;
-            if (parameters.cmIsSelected[2]) { conc_CM_B_CG_rb.Select(); } else { conc_CM_B_RM_rb.Select(); }
+            if (parameters.conc_cmIsSelected[2]) { conc_CM_B_CG_rb.Select(); } else { conc_CM_B_RM_rb.Select(); }
 
             conc_CM_S_CG_cbx.Text = parameters.conc_CM_S_CG;
             conc_CM_S_GT_cbx.Text = parameters.conc_CM_S_GT;
             conc_CM_S_RM_cbx.Text = parameters.conc_CM_S_RM;
-            if (parameters.cmIsSelected[3]) { conc_CM_S_CG_rb.Select(); } else { conc_CM_S_RM_rb.Select(); }
+            if (parameters.conc_cmIsSelected[3]) { conc_CM_S_CG_rb.Select(); } else { conc_CM_S_RM_rb.Select(); }
 
             conc_CM_W_MEW_CM_cbx.Text = parameters.conc_CM_W_MEW_CM;
             conc_CM_W_MIW_CM_cbx.Text = parameters.conc_CM_W_MIW_CM;
@@ -867,7 +1179,7 @@ namespace WindowsFormsApp1
             conc_CM_ST_CG_cbx.Text = parameters.conc_CM_ST_CG;
             conc_CM_ST_GT_cbx.Text = parameters.conc_CM_ST_GT;
             conc_CM_ST_RM_cbx.Text = parameters.conc_CM_ST_RM;
-            if (parameters.cmIsSelected[4]) { conc_CM_ST_CG_rb.Select(); } else { conc_CM_ST_RM_rb.Select(); }
+            if (parameters.conc_cmIsSelected[4]) { conc_CM_ST_CG_rb.Select(); } else { conc_CM_ST_RM_rb.Select(); }
 
             conc_CC_F_bx.Text = parameters.conc_CC_F;
             conc_CC_SS_bx.Text = parameters.conc_CC_SS;
@@ -876,6 +1188,8 @@ namespace WindowsFormsApp1
             conc_CC_BEW_bx.Text = parameters.conc_CC_BEW;
             conc_CC_CEE_bx.Text = parameters.conc_CC_CEE;
             conc_CC_CEW_bx.Text = parameters.conc_CC_CEW;
+
+            //Reinforcements TODO setdefaultvaluesfromfile
 
             //Paint
             paint_SCL_bx.Text = parameters.paint_SCL;
@@ -910,7 +1224,7 @@ namespace WindowsFormsApp1
                 refreshTiles();
             }
 
-            //Masonry TODO: SetDefaultValuesFromFile
+            //Masonry
             mason_CHB_EW_cbx.Text = parameters.mason_CHB_EW;
             mason_CHB_IW_cbx.Text = parameters.mason_CHB_IW;
             //for loop
@@ -1136,6 +1450,104 @@ namespace WindowsFormsApp1
             conc_CC_CEW_bx.Text = "40";
         }
 
+        private void setReinforcementsDefaultValues()
+        {
+            rein_W_dt.Rows[0][1] = "0.222";
+            rein_W_dt.Rows[1][1] = "0.395";
+            rein_W_dt.Rows[2][1] = "0.616";
+            rein_W_dt.Rows[3][1] = "0.888";
+            rein_W_dt.Rows[4][1] = "1.597";
+            rein_W_dt.Rows[5][1] = "2.466";
+            rein_W_dt.Rows[6][1] = "3.854";
+            rein_W_dt.Rows[7][1] = "4.833";
+            rein_W_dt.Rows[8][1] = "6.313";
+            rein_W_dt.Rows[9][1] = "7.991";
+            rein_W_dt.Rows[10][1] = "9.864";
+            rein_W_dt.Rows[11][1] = "11.926";
+            rein_W_dt.Rows[12][1] = "15.413";
+            rein_W_dt.Rows[13][1] = "19.318";
+            rein_W_dg.DataSource = rein_W_dt;
+
+            rein_S_C_SL_bx.Text = "0.5";
+            rein_S_C_SZ_bx.Text = "0.5";
+            rein_S_C_AP_bx.Text = "50";
+            rein_S_C_MVDAB_bx.Text = "600";
+
+            rein_S_B_T_SL_bx.Text = "0.5";
+            rein_S_B_T_SZ_bx.Text = "0.5";
+            rein_S_B_T_AP_bx.Text = "50";
+            rein_S_B_B_SL_bx.Text = "0.165";
+            rein_S_B_B_SZ_bx.Text = "0.1";
+            rein_S_B_B_AP_bx.Text = "50";
+            rein_S_B_MHDAB_bx.Text = "600";
+
+            rein_S_S_T_SL_bx.Text = "0.5";
+            rein_S_S_B_SL_bx.Text = "0.2";
+
+            rein_RG_C_cbx.SelectedIndex = 0;
+            rein_RG_F_cbx.SelectedIndex = 0;
+            rein_RG_B_cbx.SelectedIndex = 0;
+            rein_RG_ST_cbx.SelectedIndex = 0;
+            rein_RG_W_cbx.SelectedIndex = 0;
+            rein_RG_SL_cbx.SelectedIndex = 0;
+
+            rein_ML_CF_6_chk.Checked = true;
+            rein_ML_CF_75_chk.Checked = true;
+            rein_ML_CF_9_chk.Checked = true;
+            rein_ML_CF_105_chk.Checked = true;
+            rein_ML_CF_12_chk.Checked = true;
+            rein_ML_CF_135_chk.Checked = true;
+            rein_ML_CF_15_chk.Checked = true;
+
+            rein_ML_FT_6_chk.Checked = true;
+            rein_ML_FT_75_chk.Checked = true;
+            rein_ML_FT_9_chk.Checked = true;
+            rein_ML_FT_105_chk.Checked = true;
+            rein_ML_FT_12_chk.Checked = true;
+            rein_ML_FT_135_chk.Checked = true;
+            rein_ML_FT_15_chk.Checked = true;
+
+            rein_ML_WF_6_chk.Checked = true;
+            rein_ML_WF_75_chk.Checked = true;
+            rein_ML_WF_9_chk.Checked = true;
+            rein_ML_WF_105_chk.Checked = true;
+            rein_ML_WF_12_chk.Checked = true;
+            rein_ML_WF_135_chk.Checked = true;
+            rein_ML_WF_15_chk.Checked = true;
+
+            rein_ML_C_6_chk.Checked = true;
+            rein_ML_C_75_chk.Checked = true;
+            rein_ML_C_9_chk.Checked = true;
+            rein_ML_C_105_chk.Checked = true;
+            rein_ML_C_12_chk.Checked = true;
+            rein_ML_C_135_chk.Checked = true;
+            rein_ML_C_15_chk.Checked = true;
+
+            rein_ML_B_6_chk.Checked = true;
+            rein_ML_B_75_chk.Checked = true;
+            rein_ML_B_9_chk.Checked = true;
+            rein_ML_B_105_chk.Checked = true;
+            rein_ML_B_12_chk.Checked = true;
+            rein_ML_B_135_chk.Checked = true;
+            rein_ML_B_15_chk.Checked = true;
+
+            rein_ML_SG_6_chk.Checked = true;
+            rein_ML_SG_75_chk.Checked = true;
+            rein_ML_SG_9_chk.Checked = true;
+            rein_ML_SG_105_chk.Checked = true;
+            rein_ML_SG_12_chk.Checked = true;
+            rein_ML_SG_135_chk.Checked = true;
+            rein_ML_SG_15_chk.Checked = true;
+
+            rein_ML_SS_6_chk.Checked = true;
+            rein_ML_SS_75_chk.Checked = true;
+            rein_ML_SS_9_chk.Checked = true;
+            rein_ML_SS_105_chk.Checked = true;
+            rein_ML_SS_12_chk.Checked = true;
+            rein_ML_SS_135_chk.Checked = true;
+            rein_ML_SS_15_chk.Checked = true;
+        }
+
         private void setPaintDefaultValues()
         {
             paint_SCL_bx.Text = "2";
@@ -1298,6 +1710,39 @@ namespace WindowsFormsApp1
                 conc_CC_CEW_bx.Text
             );
 
+            //Reinforcements 
+            List<string> rein_LSL_TB_fc_list = new List<string>();
+            List<string> rein_LSL_CB_fc_list = new List<string>();
+            for (int i = 0; i < LslUC.Count; i++)
+            {
+                if (LslUC[i].barType.Equals("Tension Bars"))
+                {
+                    rein_LSL_TB_fc_list.Add(LslUC[i].lslUC_Value);
+                } 
+                else
+                {
+                    rein_LSL_CB_fc_list.Add(LslUC[i].lslUC_Value);
+                }
+            }
+            bool[,] rein_mfIsSelected = new bool[,] {
+                                                        { rein_ML_CF_6_chk.Checked, rein_ML_CF_75_chk.Checked, rein_ML_CF_9_chk.Checked, rein_ML_CF_105_chk.Checked, rein_ML_CF_12_chk.Checked, rein_ML_CF_135_chk.Checked, rein_ML_CF_15_chk.Checked },
+                                                        { rein_ML_FT_6_chk.Checked, rein_ML_FT_75_chk.Checked, rein_ML_FT_9_chk.Checked, rein_ML_FT_105_chk.Checked, rein_ML_FT_12_chk.Checked, rein_ML_FT_135_chk.Checked, rein_ML_FT_15_chk.Checked },
+                                                        { rein_ML_WF_6_chk.Checked, rein_ML_WF_75_chk.Checked, rein_ML_WF_9_chk.Checked, rein_ML_WF_105_chk.Checked, rein_ML_WF_12_chk.Checked, rein_ML_WF_135_chk.Checked, rein_ML_WF_15_chk.Checked },
+                                                        { rein_ML_C_6_chk.Checked, rein_ML_C_75_chk.Checked, rein_ML_C_9_chk.Checked, rein_ML_C_105_chk.Checked, rein_ML_C_12_chk.Checked, rein_ML_C_135_chk.Checked, rein_ML_C_15_chk.Checked },
+                                                        { rein_ML_B_6_chk.Checked, rein_ML_B_75_chk.Checked, rein_ML_B_9_chk.Checked, rein_ML_B_105_chk.Checked, rein_ML_B_12_chk.Checked, rein_ML_B_135_chk.Checked, rein_ML_B_15_chk.Checked },
+                                                        { rein_ML_SG_6_chk.Checked, rein_ML_SG_75_chk.Checked, rein_ML_SG_9_chk.Checked, rein_ML_SG_105_chk.Checked, rein_ML_SG_12_chk.Checked, rein_ML_SG_135_chk.Checked, rein_ML_SG_15_chk.Checked },
+                                                        { rein_ML_SS_6_chk.Checked, rein_ML_SS_75_chk.Checked, rein_ML_SS_9_chk.Checked, rein_ML_SS_105_chk.Checked, rein_ML_SS_12_chk.Checked, rein_ML_SS_135_chk.Checked, rein_ML_SS_15_chk.Checked },
+                                                    };
+            parameters.setReinforcementsParameters(
+                rein_LSL_TB_dt, rein_LSL_CB_dt, rein_BEH_MB_dt, rein_BEH_ST_dt,
+                rein_W_dt, rein_LSL_TB_fc_list, rein_LSL_CB_fc_list,
+                rein_S_C_SL_bx.Text,  rein_S_C_SZ_bx.Text,  rein_S_C_AP_bx.Text,  rein_S_C_MVDAB_bx.Text,
+                rein_S_B_T_SL_bx.Text, rein_S_B_T_SZ_bx.Text, rein_S_B_T_AP_bx.Text, rein_S_B_B_SL_bx.Text, rein_S_B_B_SZ_bx.Text, rein_S_B_B_AP_bx.Text, rein_S_B_MHDAB_bx.Text,
+                rein_S_S_T_SL_bx.Text, rein_S_S_B_SL_bx.Text,
+                rein_RG_C_cbx.Text, rein_RG_F_cbx.Text, rein_RG_B_cbx.Text, rein_RG_ST_cbx.Text, rein_RG_W_cbx.Text, rein_RG_SL_cbx.Text,
+                rein_mfIsSelected
+            );
+                
             //Paint
             List<string[]> paint_Area = new List<string[]>();
             for (int i = 0; i < paUC.Count; i++)
