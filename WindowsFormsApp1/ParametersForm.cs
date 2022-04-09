@@ -155,6 +155,75 @@ namespace WindowsFormsApp1
         
         private void ParametersForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            for (int i = 0; i < LslUC.Count; i++)
+            {
+                if (LslUC[i].lslUC_Value.Equals(""))
+                {
+                    MessageBox.Show("1Please fill all the fields or delete empty fields on Reinforcements.");
+                    e.Cancel = (e.CloseReason == CloseReason.UserClosing);
+                    return;
+                }
+            }
+            foreach (DataGridViewRow rw in this.rein_LSL_TB_dg.Rows)
+            {
+                for (int i = 0; i < rw.Cells.Count; i++)
+                {
+                    if (rw.Cells[i].Value == null || rw.Cells[i].Value == DBNull.Value || String.IsNullOrWhiteSpace(rw.Cells[i].Value.ToString()))
+                    {
+                        MessageBox.Show("2Please fill all the fields or delete empty fields on Reinforcements.");
+                        e.Cancel = (e.CloseReason == CloseReason.UserClosing);
+                        return;
+                    }
+                }
+            }
+            foreach (DataGridViewRow rw in this.rein_LSL_CB_dg.Rows)
+            {
+                for (int i = 0; i < rw.Cells.Count; i++)
+                {
+                    if (rw.Cells[i].Value == null || rw.Cells[i].Value == DBNull.Value || String.IsNullOrWhiteSpace(rw.Cells[i].Value.ToString()))
+                    {
+                        MessageBox.Show("3Please fill all the fields or delete empty fields on Reinforcements.");
+                        e.Cancel = (e.CloseReason == CloseReason.UserClosing);
+                        return;
+                    }
+                }
+            }
+            foreach (DataGridViewRow rw in this.rein_BEH_MB_dg.Rows)
+            {
+                for (int i = 0; i < rw.Cells.Count; i++)
+                {
+                    if (rw.Cells[i].Value == null || rw.Cells[i].Value == DBNull.Value || String.IsNullOrWhiteSpace(rw.Cells[i].Value.ToString()))
+                    {
+                        MessageBox.Show("4Please fill all the fields or delete empty fields on Reinforcements.");
+                        e.Cancel = (e.CloseReason == CloseReason.UserClosing);
+                        return;
+                    }
+                }
+            }
+            foreach (DataGridViewRow rw in this.rein_BEH_ST_dg.Rows)
+            {
+                for (int i = 0; i < rw.Cells.Count; i++)
+                {
+                    if (rw.Cells[i].Value == null || rw.Cells[i].Value == DBNull.Value || String.IsNullOrWhiteSpace(rw.Cells[i].Value.ToString()))
+                    {
+                        MessageBox.Show("5Please fill all the fields or delete empty fields on Reinforcements.");
+                        e.Cancel = (e.CloseReason == CloseReason.UserClosing);
+                        return;
+                    }
+                }
+            }
+            foreach (DataGridViewRow rw in this.rein_W_dg.Rows)
+            {
+                for (int i = 0; i < rw.Cells.Count; i++)
+                {
+                    if (rw.Cells[i].Value == null || rw.Cells[i].Value == DBNull.Value || String.IsNullOrWhiteSpace(rw.Cells[i].Value.ToString()))
+                    {
+                        MessageBox.Show("6Please fill all the fields or delete empty fields on Reinforcements.");
+                        e.Cancel = (e.CloseReason == CloseReason.UserClosing);
+                        return;
+                    }
+                }
+            }
             for (int i = 0; i < PaUC.Count; i++)
             {
                 if (PaUC[i].set_paUC_Area_bx.Equals(""))
@@ -636,8 +705,7 @@ namespace WindowsFormsApp1
 
         private void rein_LSL_TB_dg_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == rein_LSL_TB_dg.NewRowIndex || e.RowIndex < 0)
-                return;
+
         }
         //Reinforcements Functions -- END
 
@@ -1189,7 +1257,119 @@ namespace WindowsFormsApp1
             conc_CC_CEE_bx.Text = parameters.conc_CC_CEE;
             conc_CC_CEW_bx.Text = parameters.conc_CC_CEW;
 
-            //Reinforcements TODO setdefaultvaluesfromfile
+            //Reinforcements
+            rein_LSL_TB_dg.DataSource = parameters.rein_LSL_TB_dt;
+            rein_LSL_TB_fc_Panel.Controls.Clear();
+            for (int i = 0; i < parameters.rein_LSL_TB_fc_list.Count; i++)
+            {
+                LSLBarsUserControl content = new LSLBarsUserControl(this);
+                content.lslUC_Label = "LS" + (i - 1) + " ƒ'c (MPa):";
+                content.lslUC_Value = parameters.rein_LSL_TB_fc_list[i];
+                content.barType = "Tension Bars";
+                LslUC.Add(content);
+                rein_LSL_TB_fc_Panel.Controls.Add(content);
+            }
+            rein_LSL_CB_dg.DataSource = parameters.rein_LSL_CB_dt;
+            rein_LSL_CB_fc_Panel.Controls.Clear();
+            for (int i = 0; i < parameters.rein_LSL_CB_fc_list.Count; i++)
+            {
+                LSLBarsUserControl content = new LSLBarsUserControl(this);
+                content.lslUC_Label = "LS" + (i - 1) + " ƒ'c (MPa):";
+                content.lslUC_Value = parameters.rein_LSL_CB_fc_list[i];
+                content.barType = "Compression Bars";
+                LslUC.Add(content);
+                rein_LSL_CB_fc_Panel.Controls.Add(content);
+            }
+            rein_BEH_MB_dg.DataSource = parameters.rein_BEH_MB_dt;
+            rein_BEH_ST_dg.DataSource = parameters.rein_BEH_ST_dt;
+            rein_W_dg.DataSource = parameters.rein_W_dt;
+            rein_S_C_SL_bx.Text = parameters.rein_S_C_SL;
+            rein_S_C_SZ_bx.Text = parameters.rein_S_C_SZ;
+            rein_S_C_AP_bx.Text = parameters.rein_S_C_AP;
+            rein_S_C_MVDAB_bx.Text = parameters.rein_S_C_MVDAB;
+
+            rein_S_B_T_SL_bx.Text = parameters.rein_S_B_T_SL;
+            rein_S_B_T_SZ_bx.Text = parameters.rein_S_B_T_SZ;
+            rein_S_B_T_AP_bx.Text = parameters.rein_S_B_T_AP;
+            rein_S_B_B_SL_bx.Text = parameters.rein_S_B_B_SL;
+            rein_S_B_B_SZ_bx.Text = parameters.rein_S_B_B_SZ;
+            rein_S_B_B_AP_bx.Text = parameters.rein_S_B_B_AP;
+            rein_S_B_MHDAB_bx.Text = parameters.rein_S_B_MHDAB;
+
+            rein_S_S_T_SL_bx.Text = parameters.rein_S_S_T_SL;
+            rein_S_S_B_SL_bx.Text = parameters.rein_S_S_B_SL;
+
+            rein_RG_C_cbx.Text = parameters.rein_RG_C;
+            rein_RG_F_cbx.Text = parameters.rein_RG_F;
+            rein_RG_B_cbx.Text = parameters.rein_RG_B;
+            rein_RG_ST_cbx.Text = parameters.rein_RG_ST;
+            rein_RG_W_cbx.Text = parameters.rein_RG_W;
+            rein_RG_SL_cbx.Text = parameters.rein_RG_SL;
+
+            rein_ML_CF_6_chk.Checked = parameters.rein_mfIsSelected[0, 0];
+            rein_ML_CF_75_chk.Checked = parameters.rein_mfIsSelected[0, 1];
+            rein_ML_CF_9_chk.Checked = parameters.rein_mfIsSelected[0, 2];
+            rein_ML_CF_105_chk.Checked = parameters.rein_mfIsSelected[0, 3];
+            rein_ML_CF_12_chk.Checked = parameters.rein_mfIsSelected[0, 4];
+            rein_ML_CF_135_chk.Checked = parameters.rein_mfIsSelected[0, 5];
+            rein_ML_CF_15_chk.Checked = parameters.rein_mfIsSelected[0, 6];
+            
+            rein_ML_FT_6_chk.Checked = parameters.rein_mfIsSelected[1, 0];
+            rein_ML_FT_75_chk.Checked = parameters.rein_mfIsSelected[1, 1];
+            rein_ML_FT_9_chk.Checked = parameters.rein_mfIsSelected[1, 2];
+            rein_ML_FT_105_chk.Checked = parameters.rein_mfIsSelected[1, 3];
+            rein_ML_FT_12_chk.Checked = parameters.rein_mfIsSelected[1, 4];
+            rein_ML_FT_135_chk.Checked = parameters.rein_mfIsSelected[1, 5];
+            rein_ML_FT_15_chk.Checked = parameters.rein_mfIsSelected[1, 6];
+
+            rein_ML_WF_6_chk.Checked = parameters.rein_mfIsSelected[2, 0];
+            rein_ML_WF_75_chk.Checked = parameters.rein_mfIsSelected[2, 1];
+            rein_ML_WF_9_chk.Checked = parameters.rein_mfIsSelected[2, 2];
+            rein_ML_WF_105_chk.Checked = parameters.rein_mfIsSelected[2, 3];
+            rein_ML_WF_12_chk.Checked = parameters.rein_mfIsSelected[2, 4];
+            rein_ML_WF_135_chk.Checked = parameters.rein_mfIsSelected[2, 5];
+            rein_ML_WF_15_chk.Checked = parameters.rein_mfIsSelected[2, 6];
+
+            rein_ML_C_6_chk.Checked = parameters.rein_mfIsSelected[3, 0];
+            rein_ML_C_75_chk.Checked = parameters.rein_mfIsSelected[3, 1];
+            rein_ML_C_9_chk.Checked = parameters.rein_mfIsSelected[3, 2];
+            rein_ML_C_105_chk.Checked = parameters.rein_mfIsSelected[3, 3];
+            rein_ML_C_12_chk.Checked = parameters.rein_mfIsSelected[3, 4];
+            rein_ML_C_135_chk.Checked = parameters.rein_mfIsSelected[3, 5];
+            rein_ML_C_15_chk.Checked = parameters.rein_mfIsSelected[3, 6];
+
+            rein_ML_B_6_chk.Checked = parameters.rein_mfIsSelected[4, 0];
+            rein_ML_B_75_chk.Checked = parameters.rein_mfIsSelected[4, 1];
+            rein_ML_B_9_chk.Checked = parameters.rein_mfIsSelected[4, 2];
+            rein_ML_B_105_chk.Checked = parameters.rein_mfIsSelected[4, 3];
+            rein_ML_B_12_chk.Checked = parameters.rein_mfIsSelected[4, 4];
+            rein_ML_B_135_chk.Checked = parameters.rein_mfIsSelected[4, 5];
+            rein_ML_B_15_chk.Checked = parameters.rein_mfIsSelected[4, 6];
+
+            rein_ML_SG_6_chk.Checked = parameters.rein_mfIsSelected[5, 0];
+            rein_ML_SG_75_chk.Checked = parameters.rein_mfIsSelected[5, 1];
+            rein_ML_SG_9_chk.Checked = parameters.rein_mfIsSelected[5, 2];
+            rein_ML_SG_105_chk.Checked = parameters.rein_mfIsSelected[5, 3];
+            rein_ML_SG_12_chk.Checked = parameters.rein_mfIsSelected[5, 4];
+            rein_ML_SG_135_chk.Checked = parameters.rein_mfIsSelected[5, 5];
+            rein_ML_SG_15_chk.Checked = parameters.rein_mfIsSelected[5, 6];
+
+            rein_ML_SS_6_chk.Checked = parameters.rein_mfIsSelected[6, 0];
+            rein_ML_SS_75_chk.Checked = parameters.rein_mfIsSelected[6, 1];
+            rein_ML_SS_9_chk.Checked = parameters.rein_mfIsSelected[6, 2];
+            rein_ML_SS_105_chk.Checked = parameters.rein_mfIsSelected[6, 3];
+            rein_ML_SS_12_chk.Checked = parameters.rein_mfIsSelected[6, 4];
+            rein_ML_SS_135_chk.Checked = parameters.rein_mfIsSelected[6, 5];
+            rein_ML_SS_15_chk.Checked = parameters.rein_mfIsSelected[6, 6];
+            
+            //for check
+            foreach (DataRow dataRow in rein_LSL_TB_dt.Rows)
+            {
+                foreach (var item in dataRow.ItemArray)
+                {
+                    Console.WriteLine(item);
+                }
+            }
 
             //Paint
             paint_SCL_bx.Text = parameters.paint_SCL;

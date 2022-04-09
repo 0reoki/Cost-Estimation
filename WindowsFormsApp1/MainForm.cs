@@ -514,21 +514,192 @@ namespace WindowsFormsApp1
             parameters.conc_CC_CEE = tokens[i]; i++;
             parameters.conc_CC_CEW = tokens[i]; i++;
 
-            //Reinforcements TODO savetoprogram
-            i++;
-            j = 0;
-            i++;
-            while(!tokens[i].Equals("FCPrime-1") && !tokens[i].Equals("Compression_Bars"))
+            //Reinforcements 
+            i++; j = 0; i++;
+            parameters.rein_LSL_TB_dt.Rows.Clear();
+            while (!tokens[i].Equals("FCPrime-1") && !tokens[i].Equals("Compression_Bars"))
             {
-                j++;
-                if(tokens[i].Equals("Row-" + j))
+                j++; 
+                if (tokens[i].Equals("Compression_Bars"))
                 {
-                    while(tokens[i].Equals("Row-" + (j + 1)))
+                    break;
+                }
+                else if (tokens[i].Equals("Row-1"))
+                {
+                    parameters.rein_LSL_TB_dt.Columns.Clear();
+                    int headerCount, temp;
+                    temp = i; 
+                    while (!tokens[temp].Equals("Row-" + (j + 1)) && !tokens[temp].Equals("FCPrime-1"))
                     {
-
+                        temp++;
+                    }
+                    headerCount = temp - i;
+                    for (int k = 1; k < headerCount; k++)
+                    {
+                        if (k == 0)
+                        {
+                            parameters.rein_LSL_TB_dt.Columns.Add("Bar Sizes");
+                        }
+                        else
+                        {
+                            parameters.rein_LSL_TB_dt.Columns.Add("LS" + k + " ƒ'c (MPa):");
+                        }
                     }
                 }
+
+                List<string> tempList = new List<string>();
+                if (tokens[i].Equals("Row-" + j) && !tokens[i].Equals("FCPrime-1"))
+                {
+                    i++;
+                    while(!tokens[i].Equals("Row-" + (j + 1)) && !tokens[i].Equals("FCPrime-1"))
+                    {
+                        tempList.Add(tokens[i]);
+                        i++;
+                    }          
+                    parameters.rein_LSL_TB_dt.Rows.Add(tempList.ToArray());
+                }
             }
+            j = 0;
+            while (!tokens[i].Equals("Compression_Bars"))
+            {
+                j++;
+                if (tokens[i].Equals("FCPrime-" + j))
+                {
+                    i++;
+                    parameters.rein_LSL_TB_fc_list.Add(tokens[i]);
+                }
+                i++;
+            }
+            
+            j = 0; i++;
+            parameters.rein_LSL_CB_dt.Rows.Clear();
+            while (!tokens[i].Equals("FCPrime-1") && !tokens[i].Equals("Main_Bars"))
+            {
+                j++;
+                if (tokens[i].Equals("Main_Bars"))
+                {
+                    break;
+                }
+                else if (tokens[i].Equals("Row-1"))
+                {
+                    parameters.rein_LSL_CB_dt.Columns.Clear();
+                    int headerCount, temp;
+                    temp = i;
+                    while (!tokens[temp].Equals("Row-" + (j + 1)) && !tokens[temp].Equals("FCPrime-1"))
+                    {
+                        temp++;
+                    }
+                    headerCount = temp - i;
+                    for (int k = 1; k < headerCount; k++)
+                    {
+                        if (k == 0)
+                        {
+                            parameters.rein_LSL_CB_dt.Columns.Add("Bar Sizes");
+                        }
+                        else
+                        {
+                            parameters.rein_LSL_CB_dt.Columns.Add("LS" + k + " ƒ'c (MPa):");
+                        }
+                    }
+                }
+
+                List<string> tempList = new List<string>();
+                if (tokens[i].Equals("Row-" + j) && !tokens[i].Equals("FCPrime-1"))
+                {
+                    i++;
+                    while (!tokens[i].Equals("Row-" + (j + 1)) && !tokens[i].Equals("FCPrime-1"))
+                    {
+                        tempList.Add(tokens[i]);
+                        i++;
+                    }
+                    parameters.rein_LSL_CB_dt.Rows.Add(tempList.ToArray());
+                }
+            }
+            j = 0;
+            while (!tokens[i].Equals("Main_Bars"))
+            {
+                j++;
+                if (tokens[i].Equals("FCPrime-" + j))
+                {
+                    i++;
+                    parameters.rein_LSL_CB_fc_list.Add(tokens[i]);
+                }
+                i++;
+            }
+            j = 0; i++; parameters.rein_BEH_MB_dt.Rows.Clear();
+            while (!tokens[i].Equals("Stirrups_and_Ties"))
+            {
+                j++;
+                List<string> tempList = new List<string>();
+                if (tokens[i].Equals("Row-" + j))
+                {
+                    i++;
+                    while (!tokens[i].Equals("Row-" + (j + 1)) && !tokens[i].Equals("Stirrups_and_Ties"))
+                    {
+                        tempList.Add(tokens[i]);
+                        i++;
+                    }
+                    parameters.rein_BEH_MB_dt.Rows.Add(tempList.ToArray());
+                }
+            }
+            j = 0; i++; parameters.rein_BEH_ST_dt.Rows.Clear();
+            while (!tokens[i].Equals("Weight"))
+            {
+                j++;
+                List<string> tempList = new List<string>();
+                if (tokens[i].Equals("Row-" + j))
+                {
+                    i++;
+                    while (!tokens[i].Equals("Row-" + (j + 1)) && !tokens[i].Equals("Weight"))
+                    {
+                        tempList.Add(tokens[i]);
+                        i++;
+                    }
+                    parameters.rein_BEH_ST_dt.Rows.Add(tempList.ToArray());
+                }
+            }
+            i += 3;
+            parameters.rein_W_dt.Rows[0][1] = tokens[i]; i += 3;
+            parameters.rein_W_dt.Rows[1][1] = tokens[i]; i += 3;
+            parameters.rein_W_dt.Rows[2][1] = tokens[i];i += 3;
+            parameters.rein_W_dt.Rows[3][1] = tokens[i]; i += 3;
+            parameters.rein_W_dt.Rows[4][1] = tokens[i]; i += 3;
+            parameters.rein_W_dt.Rows[5][1] = tokens[i]; i += 3;
+            parameters.rein_W_dt.Rows[6][1] = tokens[i]; i += 3;
+            parameters.rein_W_dt.Rows[7][1] = tokens[i]; i += 3;
+            parameters.rein_W_dt.Rows[8][1] = tokens[i]; i += 3;
+            parameters.rein_W_dt.Rows[9][1] = tokens[i]; i += 3;
+            parameters.rein_W_dt.Rows[10][1] = tokens[i]; i += 3;
+            parameters.rein_W_dt.Rows[11][1] = tokens[i]; i += 3;
+            parameters.rein_W_dt.Rows[12][1] = tokens[i]; i += 3;
+            parameters.rein_W_dt.Rows[13][1] = tokens[i]; i++;
+
+            parameters.rein_S_C_SL = tokens[i]; i++;
+            parameters.rein_S_C_SZ = tokens[i]; i++;
+            parameters.rein_S_C_AP = tokens[i]; i++;
+            parameters.rein_S_C_MVDAB = tokens[i]; i++;
+
+            parameters.rein_S_B_T_SL = tokens[i]; i++;
+            parameters.rein_S_B_T_SZ = tokens[i]; i++;
+            parameters.rein_S_B_T_AP = tokens[i]; i++;
+            parameters.rein_S_B_B_SL = tokens[i]; i++;
+            parameters.rein_S_B_B_SZ = tokens[i]; i++;
+            parameters.rein_S_B_B_AP = tokens[i]; i++;
+            parameters.rein_S_B_MHDAB = tokens[i]; i++;
+
+            parameters.rein_S_S_T_SL = tokens[i]; i++;
+            parameters.rein_S_S_B_SL = tokens[i]; i++;
+
+            parameters.rein_RG_C = tokens[i]; i++;
+            parameters.rein_RG_F = tokens[i]; i++;
+            parameters.rein_RG_B = tokens[i]; i++;
+            parameters.rein_RG_ST = tokens[i]; i++;
+            parameters.rein_RG_W = tokens[i]; i++;
+            parameters.rein_RG_SL = tokens[i]; i++;
+
+            for (int col = 0; col < parameters.rein_mfIsSelected.GetLength(0); col++)
+                for (int row = 0; row < parameters.rein_mfIsSelected.GetLength(1); row++)
+                    { parameters.rein_mfIsSelected[col, row] = bool.Parse(tokens[i]); i++; }
 
             //Paint
             i++;
@@ -700,7 +871,7 @@ namespace WindowsFormsApp1
             //Save to Parameters -- END
 
             //Save to Computations -- START
-
+            //*/
             MessageBox.Show(tokens[i]);
             
             //Save to Computations -- END

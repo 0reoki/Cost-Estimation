@@ -82,6 +82,35 @@ namespace WindowsFormsApp1
 
         //Parameters for Misc
         public List<string[]> misc_CustomItems = new List<string[]>();
+        public Parameters()
+        {
+            rein_LSL_TB_dt.Columns.Add("Bar Sizes");
+            rein_LSL_CB_dt.Columns.Add("Bar Sizes");
+            rein_BEH_MB_dt.Columns.Add("Bar Size (mm)");
+            rein_BEH_MB_dt.Columns.Add("L(mm) 90º");
+            rein_BEH_MB_dt.Columns.Add("L(mm) 135º");
+            rein_BEH_MB_dt.Columns.Add("L(mm) 180º");
+            rein_BEH_ST_dt.Columns.Add("Bar Size (mm)");
+            rein_BEH_ST_dt.Columns.Add("L(mm) 90º");
+            rein_BEH_ST_dt.Columns.Add("L(mm) 135º");
+            rein_BEH_ST_dt.Columns.Add("L(mm) 180º");
+            rein_W_dt.Columns.Add("Bar Size (Diameter)");
+            rein_W_dt.Columns.Add("kg/m");
+            rein_W_dt.Rows.Add("6mm", "");
+            rein_W_dt.Rows.Add("8mm", "");
+            rein_W_dt.Rows.Add("10mm", "");
+            rein_W_dt.Rows.Add("12mm", "");
+            rein_W_dt.Rows.Add("16mm", "");
+            rein_W_dt.Rows.Add("20mm", "");
+            rein_W_dt.Rows.Add("25mm", "");
+            rein_W_dt.Rows.Add("28mm", "");
+            rein_W_dt.Rows.Add("32mm", "");
+            rein_W_dt.Rows.Add("36mm", "");
+            rein_W_dt.Rows.Add("40mm", "");
+            rein_W_dt.Rows.Add("44mm", "");
+            rein_W_dt.Rows.Add("50mm", "");
+            rein_W_dt.Rows.Add("56mm", "");
+        }
 
         public void setEarthworkParameters
             (string earth_CF_FA, string earth_CF_TH, string earth_CF_TY, string earth_CF_CF,
