@@ -22,8 +22,7 @@ namespace WindowsFormsApp1
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         extern static IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, IntPtr lParam);
         private int floorCount;
-        private List<TreeNode> nodes;
-
+        public List<TreeNode> nodes;
 
         public string setLabel
         {
@@ -64,7 +63,7 @@ namespace WindowsFormsApp1
             AdjustTreeViewHeight(floorTreeView);
         }
 
-        public Floor(CostEstimationForm costEstimationForm)
+        public Floor(CostEstimationForm costEstimationForm, bool fromFile)
         {
             InitializeComponent();
 
@@ -82,73 +81,62 @@ namespace WindowsFormsApp1
             TreeNode tn6 = new TreeNode("ROOF");
             tn6.Name = "roofParent";
 
+            //Init variables
             this.costEstimationForm = costEstimationForm;
             floorCount = costEstimationForm.Floors.Count;
 
-            if (costEstimationForm.saveFileExists)
+            //SaveFile?
+            if(fromFile)
             {
-                //Example - start
-                TreeNode newChild = new TreeNode("F-1");
-                newChild.Name = "newChild1";
-                TreeNode newChild2 = new TreeNode("B-1");
-                newChild2.Name = "newChild2";
-                TreeNode newChild3 = new TreeNode("C-1");
-                newChild3.Name = "newChild3";
-                TreeNode newChild4 = new TreeNode("SL-1");
-                newChild4.Name = "newChild4";
-                TreeNode newChild5 = new TreeNode("ST-1");
-                newChild5.Name = "newChild5";
-                TreeNode newChild6 = new TreeNode("R-1");
-                newChild6.Name = "newChild6";
 
-                TreeNode[] nodesF = { newChild };
-                TreeNode[] nodesB = { newChild2 };
-                TreeNode[] nodesC = { newChild3 };
-                TreeNode[] nodesSL = { newChild4 };
-                TreeNode[] nodesST = { newChild5 };
-                TreeNode[] nodesR = { newChild6 };
-
-                tn1.Nodes.AddRange(nodesF);
-                tn2.Nodes.AddRange(nodesB);
-                tn3.Nodes.AddRange(nodesC);
-                tn4.Nodes.AddRange(nodesSL);
-                tn5.Nodes.AddRange(nodesST);
-                tn6.Nodes.AddRange(nodesR);
-                //Example - end
-
-                nodes = new List<TreeNode>() { tn1, tn2, tn3, tn4, tn5, tn6 };
-
-                Console.WriteLine(string.Join(", ", nodes));
-
-                setValues("1", "Groundfloor", nodes);
-                string print = getValues()[1];
-                Console.WriteLine(print);
             }
-            else
+            else //Add Parent nodes and set tree
             {
-                nodes = new List<TreeNode>() { tn1, tn2, tn3, tn4, tn5, tn6 };
-                setTree(nodes);
                 if (floorCount == 0)
                 {
                     floorUCDeleteBtn.Enabled = false;
                     floorLbl.Text = "GROUND FLOOR";
+                    nodes = new List<TreeNode>() { tn1, tn2, tn3, tn4, tn5, tn6 };
+                    setTree(nodes);
                 }
                 else
                 {
                     floorLbl.Text = AddOrdinal(floorCount) + " FLOOR";
+                    nodes = new List<TreeNode>() { tn2, tn3, tn4, tn5, tn6 };
+                    setTree(nodes);
                 }
             }
         }
 
         private void addStrMemBtn_Click(object sender, EventArgs e)
         {
-            //Add node to tree, parent specific - template for later use
+            /*Add node to tree, parent specific - template for later use
             TreeNode[] found = floorTreeView.Nodes.Find("footingParent", true);
             TreeNode newChild = new TreeNode("CF-1");
             newChild.Name = "newChild";
 
             found[0].Nodes.Add(newChild);
-            AdjustTreeViewHeight(floorTreeView);            
+            AdjustTreeViewHeight(floorTreeView);     
+            */
+
+            AddStructForm asForm = new AddStructForm(floorCount, nodes);
+            if (asForm.ShowDialog() == DialogResult.OK)
+            {
+                //TODO add other structural members
+                if (asForm.structuralMemberType.Equals("Footing (Column)"))
+                {
+                    TreeNode[] found = floorTreeView.Nodes.Find("footingParent", true);
+                    TreeNode newChild = new TreeNode("F-" + (found[0].Nodes.Count + 1)); //check if ilan na children   
+                    newChild.Name = "newChild";
+
+                    found[0].Nodes.Add(newChild);
+                    AdjustTreeViewHeight(floorTreeView);
+                }
+                else if (asForm.structuralMemberType.Equals("Footing (Wall)"))
+                {
+
+                }
+            }
         }
 
         void AdjustTreeViewHeight(TreeView treeView)
@@ -245,3 +233,34 @@ namespace WindowsFormsApp1
         }
     }
 }
+
+//How to add child
+/*Example - start
+TreeNode newChild = new TreeNode("F-1");
+newChild.Name = "newChild1";
+TreeNode newChild2 = new TreeNode("B-1");
+newChild2.Name = "newChild2";
+TreeNode newChild3 = new TreeNode("C-1");
+newChild3.Name = "newChild3";
+TreeNode newChild4 = new TreeNode("SL-1");
+newChild4.Name = "newChild4";
+TreeNode newChild5 = new TreeNode("ST-1");
+newChild5.Name = "newChild5";
+TreeNode newChild6 = new TreeNode("R-1");
+newChild6.Name = "newChild6";
+
+TreeNode[] nodesF = { newChild };
+TreeNode[] nodesB = { newChild2 };
+TreeNode[] nodesC = { newChild3 };
+TreeNode[] nodesSL = { newChild4 };
+TreeNode[] nodesST = { newChild5 };
+TreeNode[] nodesR = { newChild6 };
+
+tn1.Nodes.AddRange(nodesF);
+tn2.Nodes.AddRange(nodesB);
+tn3.Nodes.AddRange(nodesC);
+tn4.Nodes.AddRange(nodesSL);
+tn5.Nodes.AddRange(nodesST);
+tn6.Nodes.AddRange(nodesR);
+//Example - end
+*/

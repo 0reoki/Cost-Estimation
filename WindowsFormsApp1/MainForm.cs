@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
         //Forms
         ParametersForm pf;
         Parameters parameters;
+        StructuralMembers structuralMembers;
         private List<Floor> floors = new List<Floor>();
 
         //Passed Variables
@@ -24,6 +25,11 @@ namespace WindowsFormsApp1
         public bool saveFileExists;
         private int floorCount;
         String fileName;
+
+        //Volume Totality Variables (Volume Totality is for pricing computation)
+        //Earthwork Variables
+        public double excavation_Total, backfillingAndCompaction_Total, gradingAndCompaction_Total,
+                      gravelBedding_Total, soilPoisoning_Total;
 
         //Getters and Setters
         public List<Floor> Floors { get => floors; set => floors = value; }
@@ -34,14 +40,15 @@ namespace WindowsFormsApp1
             InitializeComponent();
             InitializeAsync();
 
-            //Initialize Forms that are single throughout the whole app
+            //Initialize Forms that are single throughout the whole program
             parameters = new Parameters();
             pf = new ParametersForm(parameters, this);
+            structuralMembers = new StructuralMembers();
             saveFileExists = false;
 
             //Set a ground floor
             floorCount = floors.Count;
-            Floor floor = new Floor(this);
+            Floor floor = new Floor(this, false);
             floors.Add(floor);
             estimationPanel.Controls.Add(floor);
 
@@ -165,7 +172,7 @@ namespace WindowsFormsApp1
         private void addFloorBtn_Click(object sender, EventArgs e)
         {
             floorCount = floors.Count;
-            Floor floor = new Floor(this);
+            Floor floor = new Floor(this, false);
             floors.Add(floor);
             estimationPanel.Controls.Add(floor);
         }
@@ -186,7 +193,15 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    Floors[i].setLabel = AddOrdinal(i) + " FLOOR";
+                    string label = Floors[i].getValues()[1];
+                    if (label.Equals(AddOrdinal(i + 1) + " FLOOR"))
+                    {
+                        Floors[i].setLabel = AddOrdinal(i) + " FLOOR";
+                    }
+                    else
+                    {
+                        Floors[i].setLabel = label;
+                    }
                 }
             }
         }

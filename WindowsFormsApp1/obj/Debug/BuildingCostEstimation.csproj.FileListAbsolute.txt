@@ -64,3 +64,4 @@ C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\obj\Debug\Buil
 C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\obj\Debug\BuildingCostEstimation.csproj.CopyComplete
 C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.AddStructForm.resources
