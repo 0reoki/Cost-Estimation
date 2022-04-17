@@ -119,15 +119,15 @@ namespace WindowsFormsApp1
             AdjustTreeViewHeight(floorTreeView);     
             */
 
-            AddStructForm asForm = new AddStructForm(floorCount, nodes);
+            AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, nodes, true, -1, "NEW");
             if (asForm.ShowDialog() == DialogResult.OK)
             {
                 //TODO add other structural members
                 if (asForm.structuralMemberType.Equals("Footing (Column)"))
                 {
                     TreeNode[] found = floorTreeView.Nodes.Find("footingParent", true);
-                    TreeNode newChild = new TreeNode("F-" + (found[0].Nodes.Count + 1)); //check if ilan na children   
-                    newChild.Name = "newChild";
+                    TreeNode newChild = new TreeNode(asForm.structMemName); //check if ilan na children   
+                    newChild.Name = "F-" + (found[0].Nodes.Count + 1);
 
                     found[0].Nodes.Add(newChild);
                     AdjustTreeViewHeight(floorTreeView);
@@ -222,7 +222,41 @@ namespace WindowsFormsApp1
                 {
                     if (Array.IndexOf(parents, info.Node.Text) < 0)
                     {
-                        MessageBox.Show(info.Node.Text);
+                        if(floorTreeView.SelectedNode.Parent.Text.Equals("FOOTINGS"))
+                        {//TODO: SELECT AND OPEN ADD STRUCT FORM
+                            int index = 0;
+                            foreach(string member in costEstimationForm.structuralMembers.footingColumnNames)
+                            {
+                                if (member.Equals(info.Node.Text))//Nahanap yung member name inside
+                                {
+                                    MessageBox.Show("index of found shit: " + index + " eto floor niya: " + floorCount);
+                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, nodes, false, index, "FOOTINGS");
+                                    if (asForm.ShowDialog() == DialogResult.OK)
+                                    {
+                                        //TODO add other structural members
+                                        if (asForm.structuralMemberType.Equals("Footing (Column)"))
+                                        {
+                                            TreeNode[] found = floorTreeView.Nodes.Find("footingParent", true);
+                                            int i = found[0].Nodes.IndexOf(info.Node);
+
+                                            TreeNode newChild = new TreeNode(asForm.structMemName); //check if ilan na children   
+                                            newChild.Name = (info.Node.Name);
+
+                                            found[0].Nodes.RemoveAt(index);
+                                            found[0].Nodes.Insert(index, newChild);
+
+                                            AdjustTreeViewHeight(floorTreeView);
+                                        }
+                                        else if (asForm.structuralMemberType.Equals("Footing (Wall)"))
+                                        {
+
+                                        }
+                                    }
+                                    return;
+                                }
+                                index++;
+                            }
+                        }
                     }
                 }
             } 

@@ -72,6 +72,7 @@
     <Compile Include="CHBUserControl.Designer.cs">
       <DependentUpon>CHBUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Compute.cs" />
     <Compile Include="CustomItemsUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

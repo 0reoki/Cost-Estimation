@@ -159,7 +159,7 @@ namespace WindowsFormsApp1
             {
                 if (LslUC[i].lslUC_Value.Equals(""))
                 {
-                    MessageBox.Show("1Please fill all the fields or delete empty fields on Reinforcements.");
+                    MessageBox.Show("Please fill all the fields or delete empty fields on Reinforcements.");
                     e.Cancel = (e.CloseReason == CloseReason.UserClosing);
                     return;
                 }
@@ -170,7 +170,7 @@ namespace WindowsFormsApp1
                 {
                     if (rw.Cells[i].Value == null || rw.Cells[i].Value == DBNull.Value || String.IsNullOrWhiteSpace(rw.Cells[i].Value.ToString()))
                     {
-                        MessageBox.Show("2Please fill all the fields or delete empty fields on Reinforcements.");
+                        MessageBox.Show("Please fill all the fields or delete empty fields on Reinforcements.");
                         e.Cancel = (e.CloseReason == CloseReason.UserClosing);
                         return;
                     }
@@ -182,7 +182,7 @@ namespace WindowsFormsApp1
                 {
                     if (rw.Cells[i].Value == null || rw.Cells[i].Value == DBNull.Value || String.IsNullOrWhiteSpace(rw.Cells[i].Value.ToString()))
                     {
-                        MessageBox.Show("3Please fill all the fields or delete empty fields on Reinforcements.");
+                        MessageBox.Show("Please fill all the fields or delete empty fields on Reinforcements.");
                         e.Cancel = (e.CloseReason == CloseReason.UserClosing);
                         return;
                     }
@@ -194,7 +194,7 @@ namespace WindowsFormsApp1
                 {
                     if (rw.Cells[i].Value == null || rw.Cells[i].Value == DBNull.Value || String.IsNullOrWhiteSpace(rw.Cells[i].Value.ToString()))
                     {
-                        MessageBox.Show("4Please fill all the fields or delete empty fields on Reinforcements.");
+                        MessageBox.Show("Please fill all the fields or delete empty fields on Reinforcements.");
                         e.Cancel = (e.CloseReason == CloseReason.UserClosing);
                         return;
                     }
@@ -206,7 +206,7 @@ namespace WindowsFormsApp1
                 {
                     if (rw.Cells[i].Value == null || rw.Cells[i].Value == DBNull.Value || String.IsNullOrWhiteSpace(rw.Cells[i].Value.ToString()))
                     {
-                        MessageBox.Show("5Please fill all the fields or delete empty fields on Reinforcements.");
+                        MessageBox.Show("Please fill all the fields or delete empty fields on Reinforcements.");
                         e.Cancel = (e.CloseReason == CloseReason.UserClosing);
                         return;
                     }
@@ -218,7 +218,7 @@ namespace WindowsFormsApp1
                 {
                     if (rw.Cells[i].Value == null || rw.Cells[i].Value == DBNull.Value || String.IsNullOrWhiteSpace(rw.Cells[i].Value.ToString()))
                     {
-                        MessageBox.Show("6Please fill all the fields or delete empty fields on Reinforcements.");
+                        MessageBox.Show("Please fill all the fields or delete empty fields on Reinforcements.");
                         e.Cancel = (e.CloseReason == CloseReason.UserClosing);
                         return;
                     }
@@ -251,6 +251,8 @@ namespace WindowsFormsApp1
                     return;
                 }
             }
+            saveEveryParameters();
+            /* TODO: ADD THIS IF MAY CANCEL NA - QoL
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to save these parameters?", "Save Parameters", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -260,6 +262,7 @@ namespace WindowsFormsApp1
             {
                 e.Cancel = (e.CloseReason == CloseReason.UserClosing);
             }
+            */
         }
         //Parameters General function -- END
 

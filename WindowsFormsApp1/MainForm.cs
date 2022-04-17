@@ -14,9 +14,9 @@ namespace WindowsFormsApp1
     public partial class CostEstimationForm : Form
     {
         //Forms
-        ParametersForm pf;
-        Parameters parameters;
-        StructuralMembers structuralMembers;
+        public ParametersForm pf;
+        public Parameters parameters;
+        public StructuralMembers structuralMembers;
         private List<Floor> floors = new List<Floor>();
 
         //Passed Variables
@@ -46,14 +46,15 @@ namespace WindowsFormsApp1
             structuralMembers = new StructuralMembers();
             saveFileExists = false;
 
-            //Set a ground floor
-            floorCount = floors.Count;
-            Floor floor = new Floor(this, false);
-            floors.Add(floor);
-            estimationPanel.Controls.Add(floor);
+            addFloor();
 
             //Initialize Local Variables
             fileName = null;
+            excavation_Total = 0; 
+            backfillingAndCompaction_Total = 0; 
+            gradingAndCompaction_Total = 0;
+            gravelBedding_Total = 0; 
+            soilPoisoning_Total = 0;
         }
         //General Functions -- END
 
@@ -171,10 +172,19 @@ namespace WindowsFormsApp1
 
         private void addFloorBtn_Click(object sender, EventArgs e)
         {
+            addFloor();
+        }
+
+        private void addFloor()
+        {
+            //Set a ground floor
             floorCount = floors.Count;
             Floor floor = new Floor(this, false);
             floors.Add(floor);
             estimationPanel.Controls.Add(floor);
+            //Initialize variables in AddStructForm for every floor created
+            List<List<string>> newList = new List<List<string>>();
+            structuralMembers.footingColumn.Add(newList);
         }
 
         public void refreshFloors()
