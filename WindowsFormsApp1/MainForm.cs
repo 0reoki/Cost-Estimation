@@ -184,7 +184,7 @@ namespace WindowsFormsApp1
             estimationPanel.Controls.Add(floor);
             //Initialize variables in AddStructForm for every floor created
             List<List<string>> newList = new List<List<string>>();
-            structuralMembers.footingColumn.Add(newList);
+            structuralMembers.footingColumnIsolated.Add(newList);
         }
 
         public void refreshFloors()

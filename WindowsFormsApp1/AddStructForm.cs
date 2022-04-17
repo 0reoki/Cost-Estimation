@@ -86,7 +86,7 @@ namespace WindowsFormsApp1
             structMemName = addstruct_Name_bx.Text;
             if (addstruct_cbx.Text.Equals("Footing (Column)"))
             {
-                if (foot_FT_cbx.SelectedIndex == 0)
+                if (foot_FT_cbx.SelectedIndex == 0) //Isolated Footing
                 {
                     if (isNew)
                     {
@@ -113,7 +113,7 @@ namespace WindowsFormsApp1
 
                             members.Add(foot_FT_cbx.Text); //isolated or combined
 
-                            costEstimationForm.structuralMembers.footingColumn[floorCount].Add(members);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount].Add(members);
                             costEstimationForm.structuralMembers.footingColumnNames.Add(structMemName);
 
                             compute.Excavation(costEstimationForm, nodes[0].Nodes.Count);
@@ -131,11 +131,23 @@ namespace WindowsFormsApp1
                         {
                             if (structMemName.Equals(oldStructMemName))
                             {
-                                //
+                                //Do nothing
                             }
                             else
-                            {
-                                //TODO find if may dalawa 
+                            { 
+                                int found = 0;
+                                for(int i = 0; i < costEstimationForm.structuralMembers.footingColumnNames.Count; i++)
+                                {
+                                    if (costEstimationForm.structuralMembers.footingColumnNames[i].Equals(structMemName))
+                                    {
+                                        found++;
+                                    }
+                                }
+                                if(found > 1)
+                                {   //Duplicate found
+                                    MessageBox.Show("Name already exists!");
+                                    return;
+                                }
                             }
                         }
                         
@@ -143,30 +155,117 @@ namespace WindowsFormsApp1
                         {
                             costEstimationForm.structuralMembers.footingColumnNames.Insert(memberCount, addstruct_Name_bx.Text);
                             
-                            costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount].Insert(0, foot_IF_D_L_bx.Text);
-                            costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount].Insert(1, foot_IF_D_W_bx.Text);
-                            costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount].Insert(2, foot_IF_D_T_bx.Text);
-                            costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount].Insert(3, foot_IF_D_Q_bx.Text);
-                            costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount].Insert(4, foot_IF_D_D_bx.Text);
-                            costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount].Insert(5, foot_IF_LR_D_bx.Text);
-                            costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount].Insert(6, foot_IF_LR_Q_bx.Text);
-                            costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount].Insert(7, foot_IF_LR_HT_cbx.Text);
-                            costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount].Insert(8, foot_IF_TR_D_bx.Text);
-                            costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount].Insert(9, foot_IF_TR_Q_bx.Text);
-                            costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount].Insert(10, foot_IF_TR_HT_cbx.Text);
-                            costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount].Insert(11, foot_FT_cbx.Text);
+                            //TODO PALITAN NG COMBINED
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(0, foot_IF_D_L_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(1, foot_IF_D_W_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(2, foot_IF_D_T_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(3, foot_IF_D_Q_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(4, foot_IF_D_D_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(5, foot_IF_LR_D_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(6, foot_IF_LR_Q_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(7, foot_IF_LR_HT_cbx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(8, foot_IF_TR_D_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(9, foot_IF_TR_Q_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(10, foot_IF_TR_HT_cbx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(11, foot_FT_cbx.Text);
                             
                             this.DialogResult = DialogResult.OK;
                         }
                         catch (Exception ex)
                         {
-
+                            MessageBox.Show("Do not leave any blank spaces!");
                         }
                     }
                 }
-                else
+                else //Combined Footing
                 {
+                    if (isNew)
+                    {
+                        if (costEstimationForm.structuralMembers.footingColumnNames.Contains(structMemName))
+                        {
+                            MessageBox.Show("Name already exists!");
+                            return;
+                        }
 
+                        try
+                        {
+                            List<string> members = new List<string>();
+                            members.Add(foot_IF_D_L_bx.Text);
+                            members.Add(foot_IF_D_W_bx.Text);
+                            members.Add(foot_IF_D_T_bx.Text);
+                            members.Add(foot_IF_D_Q_bx.Text);
+                            members.Add(foot_IF_D_D_bx.Text);
+                            members.Add(foot_IF_LR_D_bx.Text);
+                            members.Add(foot_IF_LR_Q_bx.Text);
+                            members.Add(foot_IF_LR_HT_cbx.Text);
+                            members.Add(foot_IF_TR_D_bx.Text);
+                            members.Add(foot_IF_TR_Q_bx.Text);
+                            members.Add(foot_IF_TR_HT_cbx.Text);
+
+                            members.Add(foot_FT_cbx.Text); //isolated or combined
+
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount].Add(members);
+                            costEstimationForm.structuralMembers.footingColumnNames.Add(structMemName);
+
+                            compute.Excavation(costEstimationForm, nodes[0].Nodes.Count);
+                            MessageBox.Show("eto ang sagot sa tanong: " + costEstimationForm.excavation_Total);
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Do not leave any blank spaces!");
+                        }
+                    }
+                    else
+                    {
+                        if (costEstimationForm.structuralMembers.footingColumnNames.Contains(structMemName))
+                        {
+                            if (structMemName.Equals(oldStructMemName))
+                            {
+                                //Do nothing
+                            }
+                            else
+                            {
+                                int found = 0;
+                                for (int i = 0; i < costEstimationForm.structuralMembers.footingColumnNames.Count; i++)
+                                {
+                                    if (costEstimationForm.structuralMembers.footingColumnNames[i].Equals(structMemName))
+                                    {
+                                        found++;
+                                    }
+                                }
+                                if (found > 1)
+                                {   //Duplicate found
+                                    MessageBox.Show("Name already exists!");
+                                    return;
+                                }
+                            }
+                        }
+
+                        try
+                        {
+                            costEstimationForm.structuralMembers.footingColumnNames.Insert(memberCount, addstruct_Name_bx.Text);
+
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(0, foot_IF_D_L_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(1, foot_IF_D_W_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(2, foot_IF_D_T_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(3, foot_IF_D_Q_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(4, foot_IF_D_D_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(5, foot_IF_LR_D_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(6, foot_IF_LR_Q_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(7, foot_IF_LR_HT_cbx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(8, foot_IF_TR_D_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(9, foot_IF_TR_Q_bx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(10, foot_IF_TR_HT_cbx.Text);
+                            costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount].Insert(11, foot_FT_cbx.Text);
+
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Do not leave any blank spaces!");
+                        }
+                    }
                 }
             }
         }
@@ -201,22 +300,22 @@ namespace WindowsFormsApp1
         //TODO add other structural members from opened node
         private void setFootingValues()
         {
-            if (costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount][11].Equals("Isolated Footing"))
+            if (costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount][11].Equals("Isolated Footing"))
             {
                 foot_FT_cbx.SelectedIndex = 0;
                 oldStructMemName = costEstimationForm.structuralMembers.footingColumnNames[memberCount];
                 addstruct_Name_bx.Text = costEstimationForm.structuralMembers.footingColumnNames[memberCount];
-                foot_IF_D_L_bx.Text = costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount][0];
-                foot_IF_D_W_bx.Text = costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount][1];
-                foot_IF_D_T_bx.Text = costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount][2];
-                foot_IF_D_Q_bx.Text = costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount][3];
-                foot_IF_D_D_bx.Text = costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount][4];
-                foot_IF_LR_D_bx.Text = costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount][5];
-                foot_IF_LR_Q_bx.Text = costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount][6];
-                foot_IF_LR_HT_cbx.Text = costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount][7];
-                foot_IF_TR_D_bx.Text = costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount][8];
-                foot_IF_TR_Q_bx.Text = costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount][9];
-                foot_IF_TR_HT_cbx.Text = costEstimationForm.structuralMembers.footingColumn[floorCount][memberCount][10];
+                foot_IF_D_L_bx.Text = costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount][0];
+                foot_IF_D_W_bx.Text = costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount][1];
+                foot_IF_D_T_bx.Text = costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount][2];
+                foot_IF_D_Q_bx.Text = costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount][3];
+                foot_IF_D_D_bx.Text = costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount][4];
+                foot_IF_LR_D_bx.Text = costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount][5];
+                foot_IF_LR_Q_bx.Text = costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount][6];
+                foot_IF_LR_HT_cbx.Text = costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount][7];
+                foot_IF_TR_D_bx.Text = costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount][8];
+                foot_IF_TR_Q_bx.Text = costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount][9];
+                foot_IF_TR_HT_cbx.Text = costEstimationForm.structuralMembers.footingColumnIsolated[floorCount][memberCount][10];
             }
             else
             {

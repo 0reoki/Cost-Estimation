@@ -13,8 +13,8 @@ namespace WindowsFormsApp1
         //See AddStructForm for order of values
         //Isolated Footing
         public List<string> footingColumnNames = new List<string>();
-        public List<List<List<string>>> footingColumn = new List<List<List<string>>>();
-        
+        public List<List<List<string>>> footingColumnIsolated = new List<List<List<string>>>();
+        public List<List<List<string>>> footingColumnCombined = new List<List<List<string>>>();
 
         public StructuralMembers()
         {
