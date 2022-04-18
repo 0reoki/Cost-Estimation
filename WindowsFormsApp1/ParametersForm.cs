@@ -138,6 +138,7 @@ namespace WindowsFormsApp1
             else
             {
                 SetDefaultValues();
+                saveEveryParameters();
             }
 
             //Combo Box Initialize for better Item Viewing 

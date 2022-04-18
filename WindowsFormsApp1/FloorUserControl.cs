@@ -10,7 +10,6 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    //TODO: FILE HANDLING
     public partial class Floor : UserControl
     {
         //Forms
@@ -225,11 +224,11 @@ namespace WindowsFormsApp1
                         if(floorTreeView.SelectedNode.Parent.Text.Equals("FOOTINGS"))
                         {//TODO: SELECT AND OPEN ADD STRUCT FORM
                             int index = 0;
+                            Console.WriteLine("ETO NAHANAP: " + info.Node.Text);
                             foreach(string member in costEstimationForm.structuralMembers.footingColumnNames)
                             {
                                 if (member.Equals(info.Node.Text))//Nahanap yung member name inside
                                 {
-                                    MessageBox.Show("index of found shit: " + index + " eto floor niya: " + floorCount);
                                     AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, nodes, false, index, "FOOTINGS");
                                     if (asForm.ShowDialog() == DialogResult.OK)
                                     {
@@ -244,8 +243,6 @@ namespace WindowsFormsApp1
 
                                             found[0].Nodes.RemoveAt(index);
                                             found[0].Nodes.Insert(index, newChild);
-
-                                            AdjustTreeViewHeight(floorTreeView);
                                         }
                                         else if (asForm.structuralMemberType.Equals("Footing (Wall)"))
                                         {

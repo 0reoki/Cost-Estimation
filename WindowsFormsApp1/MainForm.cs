@@ -184,7 +184,7 @@ namespace WindowsFormsApp1
             estimationPanel.Controls.Add(floor);
             //Initialize variables in AddStructForm for every floor created
             List<List<string>> newList = new List<List<string>>();
-            structuralMembers.footingColumnIsolated.Add(newList);
+            structuralMembers.footingsColumn.Add(newList);
         }
 
         public void refreshFloors()
@@ -227,8 +227,35 @@ namespace WindowsFormsApp1
         {
             string stringParam = "";
 
+            //Floors -- START
+            stringParam += "Floors|\n";
+
+            int count = 1;
+            foreach(Floor floor in floors)
+            {
+                stringParam += "Floor-" + count + "|";
+                foreach (TreeNode parentNode in floor.nodes)
+                {
+                    stringParam += parentNode.Text + "|";
+                    if (parentNode.Nodes.Count == 0)
+                    {
+                        //Parent na walang laman
+                    }
+                    else
+                    {
+                        //Parent na may laman
+                        foreach(TreeNode childNode in parentNode.Nodes)
+                        {
+                            stringParam += childNode.Text + "|";
+                        }
+                    }
+                }
+                count++;
+            }
+            //Floors -- END
+
             //Parameters -- START
-            stringParam += "Parameters|\n";
+            stringParam += "\nParameters|\n";
 
             //Earthworks
             stringParam += "Earthworks|\n" +
@@ -434,7 +461,17 @@ namespace WindowsFormsApp1
             //Parameters -- END
 
             //Computations -- START
+
+            //Footings
             stringParam += "Computations|\n";
+            for(int i = 0; i < structuralMembers.footingColumnNames.Count; i++)
+            {
+                stringParam += "Column-Footing-" + (i + 1) + "|" + structuralMembers.footingColumnNames[i] + "|";
+                foreach(string value in structuralMembers.footingsColumn[0][i])
+                {
+                    stringParam += value + "|";
+                }
+            }
 
             //Computations -- END
 
@@ -449,8 +486,14 @@ namespace WindowsFormsApp1
             //Divide data, store into tokens
             string[] tokens = stringFile.Split('|');
 
-            //Save to Parameters -- START
+            //Save Floors -- START
             int i = 0;
+
+            //TODO: GET DATA FROM FILE AND PRINT FLOORS 
+
+            //Save Floors -- END
+
+            //Save to Parameters -- START
             i++;
 
             //Earthworks
@@ -896,6 +939,10 @@ namespace WindowsFormsApp1
             //Save to Parameters -- END
 
             //Save to Computations -- START
+            
+            //TODO: get data from text file and save to StructuralMembers
+
+            //Save to Computations -- END
             //*/
             MessageBox.Show(tokens[i]);
             
