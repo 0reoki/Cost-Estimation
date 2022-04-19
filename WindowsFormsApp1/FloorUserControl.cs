@@ -46,11 +46,18 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void setValues(string floorCount, string floorLabel, List<TreeNode> nodes)
+        public TreeView treeView
         {
-            floorDupeCountNUD.Value = int.Parse(floorCount);
+            get
+            {
+                return floorTreeView;
+            }
+        }
+
+        public void setValues(int floorCount, string floorLabel)
+        {
+            floorDupeCountNUD.Value = floorCount;
             floorLbl.Text = floorLabel;
-            setTree(nodes);
         }
 
         private void setTree(List<TreeNode> nodes)
@@ -138,7 +145,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        void AdjustTreeViewHeight(TreeView treeView)
+        public void AdjustTreeViewHeight(TreeView treeView)
         {
             treeView.Scrollable = false;
             var nodeHandle = SendMessage(treeView.Handle, TVM_GETNEXTITEM,
@@ -222,7 +229,7 @@ namespace WindowsFormsApp1
                     if (Array.IndexOf(parents, info.Node.Text) < 0)
                     {
                         if(floorTreeView.SelectedNode.Parent.Text.Equals("FOOTINGS"))
-                        {//TODO: SELECT AND OPEN ADD STRUCT FORM
+                        {
                             int index = 0;
                             Console.WriteLine("ETO NAHANAP: " + info.Node.Text);
                             foreach(string member in costEstimationForm.structuralMembers.footingColumnNames)

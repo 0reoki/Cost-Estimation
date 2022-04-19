@@ -23,7 +23,6 @@ namespace WindowsFormsApp1
 
         //Local Variables
         public bool saveFileExists;
-        private int floorCount;
         String fileName;
 
         //Volume Totality Variables (Volume Totality is for pricing computation)
@@ -178,7 +177,6 @@ namespace WindowsFormsApp1
         private void addFloor()
         {
             //Set a ground floor
-            floorCount = floors.Count;
             Floor floor = new Floor(this, false);
             floors.Add(floor);
             estimationPanel.Controls.Add(floor);
@@ -233,7 +231,9 @@ namespace WindowsFormsApp1
             int count = 1;
             foreach(Floor floor in floors)
             {
-                stringParam += "Floor-" + count + "|";
+                stringParam += "Floor-" + count + "|";      //Floor #
+                stringParam += floor.getValues()[0] + "|";  //Floor Count
+                stringParam += floor.getValues()[1] + "|";  //Floor Name
                 foreach (TreeNode parentNode in floor.nodes)
                 {
                     stringParam += parentNode.Text + "|";
@@ -461,10 +461,11 @@ namespace WindowsFormsApp1
             //Parameters -- END
 
             //Computations -- START
+            stringParam += "Computations|\n";
 
             //Footings
-            stringParam += "Computations|\n";
-            for(int i = 0; i < structuralMembers.footingColumnNames.Count; i++)
+            stringParam += "Footings|\n";
+            for (int i = 0; i < structuralMembers.footingColumnNames.Count; i++)
             {
                 stringParam += "Column-Footing-" + (i + 1) + "|" + structuralMembers.footingColumnNames[i] + "|";
                 foreach(string value in structuralMembers.footingsColumn[0][i])
@@ -473,6 +474,10 @@ namespace WindowsFormsApp1
                 }
             }
 
+            //Beams
+            stringParam += "\nBeams|\n";
+
+            stringParam += "END";
             //Computations -- END
 
             //Save to File
@@ -487,9 +492,124 @@ namespace WindowsFormsApp1
             string[] tokens = stringFile.Split('|');
 
             //Save Floors -- START
-            int i = 0;
+            int i = 1;
+            int j = 0;
 
-            //TODO: GET DATA FROM FILE AND PRINT FLOORS 
+            //Clear floor related variables
+            floors.Clear();
+            estimationPanel.Controls.Clear();
+
+            //Clear variables in AddStructForm
+            structuralMembers.footingsColumn.Clear();
+
+            //Init variables for StructuralMember
+            List<List<string>> newList = new List<List<string>>();
+            structuralMembers.footingsColumn.Add(newList);
+
+            j = 0;
+            while (!tokens[i].Equals("Parameters"))
+            {
+                //Set the floor
+                Floor floor = new Floor(this, false);
+                floors.Add(floor);
+                estimationPanel.Controls.Add(floor);
+
+                int floorMultiplier = 0;
+                string floorName = "";
+
+                j++;
+                if (tokens[i].Equals("Floor-" + j))
+                {
+                    i++;
+                    floorMultiplier = int.Parse(tokens[i]); i++;
+                    floorName = tokens[i]; i++;
+                }
+
+                while (!tokens[i].Equals("BEAMS")) //FOOTINGS
+                {
+                    i++;
+                    if (!tokens[i].Equals("BEAMS")){
+                        TreeNode[] found = floor.treeView.Nodes.Find("footingParent", true);
+                        TreeNode newChild = new TreeNode(tokens[i]); 
+                        newChild.Name = "F-" + (found[0].Nodes.Count + 1);
+
+                        found[0].Nodes.Add(newChild);
+                        floor.AdjustTreeViewHeight(floor.treeView);
+                    }
+                }
+
+                while (!tokens[i].Equals("COLUMNS")) //BEAMS
+                {
+                    i++;
+                    if (!tokens[i].Equals("COLUMNS"))
+                    {
+                        TreeNode[] found = floor.treeView.Nodes.Find("beamParent", true);
+                        TreeNode newChild = new TreeNode(tokens[i]);
+                        newChild.Name = "B-" + (found[0].Nodes.Count + 1);
+
+                        found[0].Nodes.Add(newChild);
+                        floor.AdjustTreeViewHeight(floor.treeView);
+                    }
+                }
+
+                while(!tokens[i].Equals("SLABS")) //COLUMNS
+                {
+                    i++;
+                    if(!tokens[i].Equals("SLABS"))
+                    {
+                        TreeNode[] found = floor.treeView.Nodes.Find("columnParent", true);
+                        TreeNode newChild = new TreeNode(tokens[i]);
+                        newChild.Name = "C-" + (found[0].Nodes.Count + 1);
+
+                        found[0].Nodes.Add(newChild);
+                        floor.AdjustTreeViewHeight(floor.treeView);
+                    }
+                }
+
+                while (!tokens[i].Equals("STAIRS")) //SLABS
+                {
+                    i++;
+                    if (!tokens[i].Equals("STAIRS"))
+                    {
+                        TreeNode[] found = floor.treeView.Nodes.Find("slabsParent", true);
+                        TreeNode newChild = new TreeNode(tokens[i]);
+                        newChild.Name = "SL-" + (found[0].Nodes.Count + 1);
+
+                        found[0].Nodes.Add(newChild);
+                        floor.AdjustTreeViewHeight(floor.treeView);
+                    }
+                }
+
+                while (!tokens[i].Equals("ROOF")) //STAIRS
+                {
+                    i++;
+                    if (!tokens[i].Equals("ROOF"))
+                    {
+                        TreeNode[] found = floor.treeView.Nodes.Find("stairsParent", true);
+                        TreeNode newChild = new TreeNode(tokens[i]);
+                        newChild.Name = "ST-" + (found[0].Nodes.Count + 1);
+
+                        found[0].Nodes.Add(newChild);
+                        floor.AdjustTreeViewHeight(floor.treeView);
+                    }
+                }
+
+                while (!tokens[i].Equals("Parameters") && !tokens[i].Equals("Floor-" + (j + 1))) //ROOF
+                {
+                    i++;
+                    if (!tokens[i].Equals("Parameters") && !tokens[i].Equals("Floor-" + (j + 1)))
+                    {
+                        TreeNode[] found = floor.treeView.Nodes.Find("roofParent", true);
+                        TreeNode newChild = new TreeNode(tokens[i]);
+                        newChild.Name = "R-" + (found[0].Nodes.Count + 1);
+
+                        found[0].Nodes.Add(newChild);
+                        floor.AdjustTreeViewHeight(floor.treeView);
+                    }
+                }
+
+                floor.setValues(floorMultiplier, floorName);
+            }
 
             //Save Floors -- END
 
@@ -515,7 +635,7 @@ namespace WindowsFormsApp1
             parameters.earth_SG_TH = tokens[i]; i++;
             parameters.earth_SG_TY = tokens[i]; i++;
             parameters.earth_SG_CF = tokens[i]; i++;
-            int j = 0;
+            j = 0;
             while (!tokens[i].Equals("Formworks"))
             {
                 j++;
@@ -939,8 +1059,28 @@ namespace WindowsFormsApp1
             //Save to Parameters -- END
 
             //Save to Computations -- START
-            
-            //TODO: get data from text file and save to StructuralMembers
+            i++;
+
+            //Footings
+            i++;
+
+            j = 0;
+            while (!tokens[i].Equals("Beams"))
+            {   
+                j++;
+                if (tokens[i].Equals("Column-Footing-" + j) && !tokens[i].Equals("Beams"))
+                {
+                    List<string> toAdd = new List<string>();
+                    i++; structuralMembers.footingColumnNames.Add(tokens[i]); i++;
+                
+                    while(!tokens[i].Equals("Column-Footing-" + (j + 1)) && !tokens[i].Equals("Beams"))
+                    {
+                        toAdd.Add(tokens[i]); i++;
+                    }
+
+                    structuralMembers.footingsColumn[0].Add(toAdd);
+                }
+            }
 
             //Save to Computations -- END
             //*/
