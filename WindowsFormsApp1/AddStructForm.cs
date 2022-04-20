@@ -21,10 +21,10 @@ namespace WindowsFormsApp1
         private CostEstimationForm costEstimationForm;
         private List<TreeNode> nodes;
         private int floorCount;
-        private int memberCount;
-        private bool isNew;
+        private int memberCount, footingCount, wallFootingCount;
+        private bool isNew, isFooting;
 
-        public AddStructForm(CostEstimationForm costEstimationForm, int floorCount, List<TreeNode> nodes, bool isNew, int index, string parentNode)
+        public AddStructForm(CostEstimationForm costEstimationForm, int floorCount, int footingCount, int wallFootingCount, List<TreeNode> nodes, bool isNew, int index, string parentNode, bool isFooting)
         {
             InitializeComponent();
 
@@ -33,18 +33,28 @@ namespace WindowsFormsApp1
             this.floorCount = floorCount;
             this.nodes = nodes;
             this.isNew = isNew;
+            this.isFooting = isFooting;
             this.memberCount = index;
+            this.footingCount = footingCount;
+            this.wallFootingCount = wallFootingCount;
             oldStructMemName = "";
 
             //Init components
+            addstruct_cbx.SelectedIndex = 0;
             if (floorCount != 0)
             {
                 addstruct_cbx.Items.Clear();
                 addstruct_cbx.Items.Add("Column");
                 addstruct_cbx.Items.Add("Beam");
+                addstruct_cbx.Items.Add("Slab");
+                addstruct_cbx.Items.Add("Stairs");
+                addstruct_cbx.Items.Add("Roofing (Gable)");
+                addstruct_cbx.SelectedIndex = 2;
             }
-            addstruct_cbx.SelectedIndex = foot_FT_cbx.SelectedIndex = foot_IF_LR_HT_cbx.SelectedIndex = foot_IF_TR_HT_cbx.SelectedIndex
-                = foot_CF_LR_HT_cbx.SelectedIndex = foot_CF_TR_HT_cbx.SelectedIndex = foot_CF_UR_HT_cbx.SelectedIndex = 0;
+            foot_FT_cbx.SelectedIndex = foot_IF_LR_HT_cbx.SelectedIndex = foot_IF_TR_HT_cbx.SelectedIndex
+                = foot_CF_LR_HT_cbx.SelectedIndex = foot_CF_TR_HT_cbx.SelectedIndex = foot_CF_UR_HT_cbx.SelectedIndex 
+                = footW_FT_cbx.SelectedIndex = footW_R_LR_HT_cbx.SelectedIndex = footW_R_TR_HT_cbx.SelectedIndex 
+                = footW_T_LR_HT_cbx.SelectedIndex = footW_T_TR_HT_cbx.SelectedIndex = 0;
             setDefaultStructMemName();
 
             //existing node?
@@ -53,7 +63,7 @@ namespace WindowsFormsApp1
                 //Disable Comboboxes
                 addstruct_cbx.Enabled = false;
                 foot_FT_cbx.Enabled = false;
-                
+
                 //Populate
                 if (parentNode.Equals("FOOTINGS"))
                 {
@@ -74,6 +84,13 @@ namespace WindowsFormsApp1
             footingTabControl.ItemSize = new Size(0, 1);
             footingTabControl.SizeMode = TabSizeMode.Fixed;
             foreach (TabPage tab in footingTabControl.TabPages)
+            {
+                tab.Text = "";
+            }
+            footingWTabControl.Appearance = TabAppearance.FlatButtons;
+            footingWTabControl.ItemSize = new Size(0, 1);
+            footingWTabControl.SizeMode = TabSizeMode.Fixed;
+            foreach (TabPage tab in footingWTabControl.TabPages)
             {
                 tab.Text = "";
             }
@@ -113,7 +130,7 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.footingsColumn[floorCount].Add(members);
                             costEstimationForm.structuralMembers.footingColumnNames.Add(structMemName);
 
-                            compute.Excavation(costEstimationForm, nodes[0].Nodes.Count);
+                            compute.AddEarthworks(costEstimationForm, nodes[0].Nodes.Count);
                             MessageBox.Show("eto ang sagot sa tanong: " + costEstimationForm.excavation_Total);
                             this.DialogResult = DialogResult.OK;
                         }
@@ -155,7 +172,7 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.footingsColumn[floorCount].Add(members);
                             costEstimationForm.structuralMembers.footingColumnNames.Add(structMemName);
 
-                            compute.Excavation(costEstimationForm, nodes[0].Nodes.Count);
+                            compute.AddEarthworks(costEstimationForm, nodes[0].Nodes.Count);
                             MessageBox.Show("eto ang sagot sa tanong: " + costEstimationForm.excavation_Total);
                             this.DialogResult = DialogResult.OK;
                         }
@@ -209,6 +226,8 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][10] = foot_IF_TR_Q_bx.Text;
                             costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][11] = foot_IF_TR_HT_cbx.Text;
 
+                            compute.ModifyEarthworks(costEstimationForm, memberCount);
+                            MessageBox.Show("eto ang sagot sa tanong2: " + costEstimationForm.excavation_Total);
                             this.DialogResult = DialogResult.OK;
                         }
                         catch (Exception ex)
@@ -264,6 +283,8 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][16] = foot_CF_UR_S_bx.Text;
                             costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][17] = foot_CF_UR_HT_cbx.Text;
 
+                            compute.ModifyEarthworks(costEstimationForm, memberCount);
+                            MessageBox.Show("eto ang sagot sa tanong2: " + costEstimationForm.excavation_Total);
                             this.DialogResult = DialogResult.OK;
                         }
                         catch (Exception ex)
@@ -271,6 +292,50 @@ namespace WindowsFormsApp1
                             MessageBox.Show("Do not leave any blank spaces!");
                         }
                     }
+                }
+            }
+            else if (addstruct_cbx.Text.Equals("Footing (Wall)"))
+            {
+                if (isNew)
+                {
+                    if (footW_FT_cbx.SelectedIndex == 0) //Rectangular
+                    {
+                        if (costEstimationForm.structuralMembers.footingWallNames.Contains(structMemName))
+                        {
+                            MessageBox.Show("Name already exists!");
+                            return;
+                        }
+
+                        try
+                        {
+                            //TODO: ADD TO STRUCT MEMBERS 
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Do not leave any blank spaces!");
+                        }
+                    }
+                    else //Trapezoidal
+                    {
+                        if (costEstimationForm.structuralMembers.footingWallNames.Contains(structMemName))
+                        {
+                            MessageBox.Show("Name already exists!");
+                            return;
+                        }
+
+                        try
+                        {
+                            //TODO: ADD TO STRUCT MEMBERS
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Do not leave any blank spaces!");
+                        }
+                    }
+                }
+                else //Opened from floors
+                {
+                    //TODO UPDATE STRUCT MEMBERS 
                 }
             }
         }
@@ -290,6 +355,34 @@ namespace WindowsFormsApp1
 
         private void addstruct_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (addstruct_cbx.Text.Equals("Footing (Column)"))
+            {
+                addstructTabControl.SelectedIndex = 0;
+            }
+            else if(addstruct_cbx.Text.Equals("Footing (Wall)"))
+            {
+                addstructTabControl.SelectedIndex = 1;
+            }
+            else if (addstruct_cbx.Text.Equals("Column"))
+            {
+                addstructTabControl.SelectedIndex = 2;
+            }
+            else if (addstruct_cbx.Text.Equals("Beam"))
+            {
+                addstructTabControl.SelectedIndex = 3;
+            }
+            else if (addstruct_cbx.Text.Equals("Slab"))
+            {
+                addstructTabControl.SelectedIndex = 4;
+            }
+            else if (addstruct_cbx.Text.Equals("Stairs"))
+            {
+                addstructTabControl.SelectedIndex = 5;
+            }
+            else if (addstruct_cbx.Text.Equals("Roofing (Gable)"))
+            {
+                addstructTabControl.SelectedIndex = 6;
+            }
             setDefaultStructMemName();
         }
 
@@ -298,59 +391,91 @@ namespace WindowsFormsApp1
         {
             if (addstruct_cbx.Text.Equals("Footing (Column)"))
             {
-                addstruct_Name_bx.Text = "F-" + (nodes[0].Nodes.Count + 1);
+                addstruct_Name_bx.Text = "F-" + (footingCount + 1);
+            }
+            else if (addstruct_cbx.Text.Equals("Footing (Wall)"))
+            {
+                addstruct_Name_bx.Text = "WF-" + (wallFootingCount + 1);
+            }
+            else if (addstruct_cbx.Text.Equals("Column"))
+            {
+                addstruct_Name_bx.Text = "C-" + (nodes[1].Nodes.Count + 1);
+            }
+            else if (addstruct_cbx.Text.Equals("Beam"))
+            {
+                addstruct_Name_bx.Text = "B-" + (nodes[2].Nodes.Count + 1);
+            }
+            else if (addstruct_cbx.Text.Equals("Slab"))
+            {
+                addstruct_Name_bx.Text = "S-" + (nodes[3].Nodes.Count + 1) + " (A)";
+            }
+            else if (addstruct_cbx.Text.Equals("Stairs"))
+            {
+                addstruct_Name_bx.Text = "ST-" + (nodes[4].Nodes.Count + 1);
+            }
+            else if (addstruct_cbx.Text.Equals("Roofing (Gable)"))
+            {
+                addstruct_Name_bx.Text = "R-" + (nodes[5].Nodes.Count + 1);
             }
         }
 
         //TODO add other structural members from opened node
         private void setFootingValues()
         {
-            MessageBox.Show("a: " + floorCount + " b: " + memberCount);
             foreach (string name in costEstimationForm.structuralMembers.footingColumnNames)
             {
                 Console.WriteLine(name);
             }
-            if (costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][0].Equals("Isolated Footing"))
+            if (isFooting)
             {
-                foot_FT_cbx.SelectedIndex = 0;
-                oldStructMemName = costEstimationForm.structuralMembers.footingColumnNames[memberCount];
-                addstruct_Name_bx.Text = costEstimationForm.structuralMembers.footingColumnNames[memberCount];
+                Console.WriteLine("lol " + memberCount);    
 
-                foot_IF_D_L_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][1];
-                foot_IF_D_W_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][2];
-                foot_IF_D_T_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][3];
-                foot_IF_D_Q_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][4];
-                foot_IF_D_D_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][5];
-                foot_IF_LR_D_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][6];
-                foot_IF_LR_Q_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][7];
-                foot_IF_LR_HT_cbx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][8];
-                foot_IF_TR_D_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][9];
-                foot_IF_TR_Q_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][10];
-                foot_IF_TR_HT_cbx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][11];
+                if (costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][0].Equals("Isolated Footing"))
+                {
+                    foot_FT_cbx.SelectedIndex = 0;
+                    oldStructMemName = costEstimationForm.structuralMembers.footingColumnNames[memberCount];
+                    addstruct_Name_bx.Text = costEstimationForm.structuralMembers.footingColumnNames[memberCount];
+
+                    foot_IF_D_L_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][1];
+                    foot_IF_D_W_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][2];
+                    foot_IF_D_T_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][3];
+                    foot_IF_D_Q_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][4];
+                    foot_IF_D_D_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][5];
+                    foot_IF_LR_D_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][6];
+                    foot_IF_LR_Q_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][7];
+                    foot_IF_LR_HT_cbx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][8];
+                    foot_IF_TR_D_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][9];
+                    foot_IF_TR_Q_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][10];
+                    foot_IF_TR_HT_cbx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][11];
+                }
+                else
+                {
+                    foot_FT_cbx.SelectedIndex = 1;
+                    oldStructMemName = costEstimationForm.structuralMembers.footingColumnNames[memberCount];
+                    addstruct_Name_bx.Text = costEstimationForm.structuralMembers.footingColumnNames[memberCount];
+
+                    foot_CF_D_L_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][1];
+                    foot_CF_D_W_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][2];
+                    foot_CF_D_T_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][3];
+                    foot_CF_D_Q_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][4];
+                    foot_CF_D_D_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][5];
+                    foot_CF_LR_D_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][6];
+                    foot_CF_LR_Q_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][7];
+                    foot_CF_LR_S_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][8];
+                    foot_CF_LR_HT_cbx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][9];
+                    foot_CF_TR_D_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][10];
+                    foot_CF_TR_Q_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][11];
+                    foot_CF_TR_S_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][12];
+                    foot_CF_TR_HT_cbx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][13];
+                    foot_CF_UR_D_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][14];
+                    foot_CF_UR_Q_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][15];
+                    foot_CF_UR_S_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][16];
+                    foot_CF_UR_HT_cbx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][17];
+                }
             }
-            else
+            else //Wall Footing
             {
-                foot_FT_cbx.SelectedIndex = 1;
-                oldStructMemName = costEstimationForm.structuralMembers.footingColumnNames[memberCount];
-                addstruct_Name_bx.Text = costEstimationForm.structuralMembers.footingColumnNames[memberCount];
 
-                foot_CF_D_L_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][1];
-                foot_CF_D_W_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][2];
-                foot_CF_D_T_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][3];
-                foot_CF_D_Q_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][4];
-                foot_CF_D_D_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][5];
-                foot_CF_LR_D_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][6];
-                foot_CF_LR_Q_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][7];
-                foot_CF_LR_S_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][8];
-                foot_CF_LR_HT_cbx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][9];
-                foot_CF_TR_D_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][10];
-                foot_CF_TR_Q_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][11];
-                foot_CF_TR_S_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][12];
-                foot_CF_TR_HT_cbx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][13];
-                foot_CF_UR_D_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][14];
-                foot_CF_UR_Q_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][15];
-                foot_CF_UR_S_bx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][16];
-                foot_CF_UR_HT_cbx.Text = costEstimationForm.structuralMembers.footingsColumn[floorCount][memberCount][17];
             }
         }
 
@@ -361,10 +486,12 @@ namespace WindowsFormsApp1
 
         private void foot_FT_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (foot_FT_cbx.SelectedIndex == 0)
-                footingTabControl.SelectedIndex = 0;
-            else
-                footingTabControl.SelectedIndex = 1;
+            footingTabControl.SelectedIndex = foot_FT_cbx.SelectedIndex;
+        }
+
+        private void footW_FT_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            footingWTabControl.SelectedIndex = footW_FT_cbx.SelectedIndex;
         }
     }
 }
