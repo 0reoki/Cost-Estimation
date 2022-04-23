@@ -53,6 +53,7 @@ namespace WindowsFormsApp1
 
             //Setup forms
             this.parameters = parameters;
+            this.costEstimationForm = costEstimationForm;
 
             //Initialize User Controls
             lslUC = new List<LSLBarsUserControl>();
@@ -252,7 +253,16 @@ namespace WindowsFormsApp1
                     return;
                 }
             }
+
             saveEveryParameters();
+
+            costEstimationForm.structuralMembers.reComputeEarthworks();
+
+            MessageBox.Show("ETO ANG TUNAY NA SAGOT1: " + costEstimationForm.excavation_Total);
+            MessageBox.Show("ETO ANG TUNAY NA SAGOT2: " + costEstimationForm.gradingAndCompaction_Total);
+            MessageBox.Show("ETO ANG TUNAY NA SAGOT3: " + costEstimationForm.gravelBedding_Total);
+            MessageBox.Show("ETO ANG TUNAY NA SAGOT4: " + costEstimationForm.soilPoisoning_Total);
+            MessageBox.Show("ETO ANG TUNAY NA SAGOT5: " + costEstimationForm.backfillingAndCompaction_Total);
             /* TODO: ADD THIS IF MAY CANCEL NA - QoL
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to save these parameters?", "Save Parameters", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -1366,7 +1376,7 @@ namespace WindowsFormsApp1
             rein_ML_SS_135_chk.Checked = parameters.rein_mfIsSelected[6, 5];
             rein_ML_SS_15_chk.Checked = parameters.rein_mfIsSelected[6, 6];
             
-            //for check
+            /*for check
             foreach (DataRow dataRow in rein_LSL_TB_dt.Rows)
             {
                 foreach (var item in dataRow.ItemArray)
@@ -1374,6 +1384,7 @@ namespace WindowsFormsApp1
                     Console.WriteLine(item);
                 }
             }
+            */
 
             //Paint
             paint_SCL_bx.Text = parameters.paint_SCL;

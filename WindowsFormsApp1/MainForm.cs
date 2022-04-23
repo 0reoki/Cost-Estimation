@@ -30,6 +30,11 @@ namespace WindowsFormsApp1
         //Earthwork Variables
         public double excavation_Total, backfillingAndCompaction_Total, gradingAndCompaction_Total,
                       gravelBedding_Total, soilPoisoning_Total;
+        //ConcreteWorks Variables (List by struct member [Footing, Concreting, Etc.])
+        public double[] cement_Total = new double[6];
+        public double[] gravel_Total = new double[6];
+        public double[] water_Total = new double[6];
+        //StairWorks Variables        
 
         //Getters and Setters
         public List<Floor> Floors { get => floors; set => floors = value; }
@@ -43,7 +48,7 @@ namespace WindowsFormsApp1
             //Initialize Forms that are single throughout the whole program
             parameters = new Parameters();
             pf = new ParametersForm(parameters, this);
-            structuralMembers = new StructuralMembers();
+            structuralMembers = new StructuralMembers(this);
             saveFileExists = false;
 
             addFloor();
@@ -55,6 +60,12 @@ namespace WindowsFormsApp1
             gradingAndCompaction_Total = 0;
             gravelBedding_Total = 0; 
             soilPoisoning_Total = 0;
+            for(int i = 0; i < cement_Total.Length; i++)
+            {
+                cement_Total[i] = 0;
+                gravel_Total[i] = 0;
+                water_Total[i] = 0;
+            }
         }
         //General Functions -- END
 
@@ -177,15 +188,30 @@ namespace WindowsFormsApp1
 
         private void addFloor()
         {
+            //Initialize variables in AddStructForm for every floor created
+            if (Floors.Count == 0)//Ground Floor
+            {
+                List<List<string>> newList = new List<List<string>>();
+                List<List<string>> newList2 = new List<List<string>>();
+                structuralMembers.footingsColumn.Add(newList);
+                structuralMembers.footingsWall.Add(newList2);
+                List<List<string>> newList3 = new List<List<string>>();
+                structuralMembers.stairs.Add(newList3);
+                List<string> newList4 = new List<string>();
+                structuralMembers.stairsNames.Add(newList4);
+            }
+            else //Upper Floors
+            {
+                List<List<string>> newList3 = new List<List<string>>();
+                structuralMembers.stairs.Add(newList3);
+                List<string> newList4 = new List<string>();
+                structuralMembers.stairsNames.Add(newList4);
+            }
+
             //Set a ground floor
             Floor floor = new Floor(this, false);
             floors.Add(floor);
             estimationPanel.Controls.Add(floor);
-
-            //Initialize variables in AddStructForm for every floor created
-            List<List<string>> newList = new List<List<string>>();
-            structuralMembers.footingsColumn.Add(newList);
-            structuralMembers.footingsWall.Add(newList);
         }
 
         public void refreshFloors()
@@ -249,7 +275,7 @@ namespace WindowsFormsApp1
                         //Parent na may laman
                         foreach(TreeNode childNode in parentNode.Nodes)
                         {
-                            stringParam += childNode.Text + "|";
+                            stringParam += childNode.Text + "|" + childNode.Name + "|";
                         }
                     }
                 }
@@ -272,6 +298,8 @@ namespace WindowsFormsApp1
                 stringParam += "Elevation-" + (i + 1) + "|";
                 stringParam += parameters.earth_elevations[i][0] + "|";
                 stringParam += parameters.earth_elevations[i][1] + "|";
+                stringParam += parameters.earth_elevations[i][2] + "|";
+                stringParam += parameters.earth_elevations[i][3] + "|";
             }
 
             //Formworks
@@ -467,11 +495,19 @@ namespace WindowsFormsApp1
             stringParam += "Computations|\n";
 
             //Footings
-            stringParam += "Footings|\n";
+            stringParam += "Footings|\n" + "Floor-1" + "|"; //Only Ground Floor exists
             for (int i = 0; i < structuralMembers.footingColumnNames.Count; i++)
             {
                 stringParam += "Column-Footing-" + (i + 1) + "|" + structuralMembers.footingColumnNames[i] + "|";
                 foreach(string value in structuralMembers.footingsColumn[0][i])
+                {
+                    stringParam += value + "|";
+                }
+            }
+            for (int i = 0; i < structuralMembers.footingWallNames.Count; i++)
+            {
+                stringParam += "Wall-Footing-" + (i + 1) + "|" + structuralMembers.footingWallNames[i] + "|";
+                foreach (string value in structuralMembers.footingsWall[0][i])
                 {
                     stringParam += value + "|";
                 }
@@ -504,12 +540,14 @@ namespace WindowsFormsApp1
 
             //Clear variables in AddStructForm
             structuralMembers.footingsColumn.Clear();
+            structuralMembers.footingsWall.Clear();
             structuralMembers.earthworkSolutions.Clear();
 
             //Init variables for StructuralMember
             List<List<string>> newList = new List<List<string>>();
+            List<List<string>> newList2 = new List<List<string>>();
             structuralMembers.footingsColumn.Add(newList);
-            structuralMembers.footingsWall.Add(newList);
+            structuralMembers.footingsWall.Add(newList2);
 
             j = 0;
             while (!tokens[i].Equals("Parameters"))
@@ -535,8 +573,8 @@ namespace WindowsFormsApp1
                     i++;
                     if (!tokens[i].Equals("COLUMNS")){
                         TreeNode[] found = floor.treeView.Nodes.Find("footingParent", true);
-                        TreeNode newChild = new TreeNode(tokens[i]); 
-                        newChild.Name = "F-" + (found[0].Nodes.Count + 1);
+                        TreeNode newChild = new TreeNode(tokens[i]); i++;
+                        newChild.Name = tokens[i];
 
                         found[0].Nodes.Add(newChild);
                         floor.AdjustTreeViewHeight(floor.treeView);
@@ -549,8 +587,8 @@ namespace WindowsFormsApp1
                     if (!tokens[i].Equals("BEAMS"))
                     {
                         TreeNode[] found = floor.treeView.Nodes.Find("columnParent", true);
-                        TreeNode newChild = new TreeNode(tokens[i]);
-                        newChild.Name = "C-" + (found[0].Nodes.Count + 1);
+                        TreeNode newChild = new TreeNode(tokens[i]); i++;
+                        newChild.Name = tokens[i];
 
                         found[0].Nodes.Add(newChild);
                         floor.AdjustTreeViewHeight(floor.treeView);
@@ -563,8 +601,8 @@ namespace WindowsFormsApp1
                     if(!tokens[i].Equals("SLABS"))
                     {
                         TreeNode[] found = floor.treeView.Nodes.Find("beamParent", true);
-                        TreeNode newChild = new TreeNode(tokens[i]);
-                        newChild.Name = "B-" + (found[0].Nodes.Count + 1);
+                        TreeNode newChild = new TreeNode(tokens[i]); i++;
+                        newChild.Name = tokens[i];
 
                         found[0].Nodes.Add(newChild);
                         floor.AdjustTreeViewHeight(floor.treeView);
@@ -577,8 +615,8 @@ namespace WindowsFormsApp1
                     if (!tokens[i].Equals("STAIRS"))
                     {
                         TreeNode[] found = floor.treeView.Nodes.Find("slabsParent", true);
-                        TreeNode newChild = new TreeNode(tokens[i]);
-                        newChild.Name = "SL-" + (found[0].Nodes.Count + 1);
+                        TreeNode newChild = new TreeNode(tokens[i]); i++;
+                        newChild.Name = tokens[i];
 
                         found[0].Nodes.Add(newChild);
                         floor.AdjustTreeViewHeight(floor.treeView);
@@ -591,8 +629,8 @@ namespace WindowsFormsApp1
                     if (!tokens[i].Equals("ROOF"))
                     {
                         TreeNode[] found = floor.treeView.Nodes.Find("stairsParent", true);
-                        TreeNode newChild = new TreeNode(tokens[i]);
-                        newChild.Name = "ST-" + (found[0].Nodes.Count + 1);
+                        TreeNode newChild = new TreeNode(tokens[i]); i++;
+                        newChild.Name = tokens[i];
 
                         found[0].Nodes.Add(newChild);
                         floor.AdjustTreeViewHeight(floor.treeView);
@@ -605,8 +643,8 @@ namespace WindowsFormsApp1
                     if (!tokens[i].Equals("Parameters") && !tokens[i].Equals("Floor-" + (j + 1)))
                     {
                         TreeNode[] found = floor.treeView.Nodes.Find("roofParent", true);
-                        TreeNode newChild = new TreeNode(tokens[i]);
-                        newChild.Name = "R-" + (found[0].Nodes.Count + 1);
+                        TreeNode newChild = new TreeNode(tokens[i]); i++;
+                        newChild.Name = tokens[i];
 
                         found[0].Nodes.Add(newChild);
                         floor.AdjustTreeViewHeight(floor.treeView);
@@ -641,16 +679,21 @@ namespace WindowsFormsApp1
             parameters.earth_SG_TY = tokens[i]; i++;
             parameters.earth_SG_CF = tokens[i]; i++;
             j = 0;
+            parameters.earth_elevations.Clear();
             while (!tokens[i].Equals("Formworks"))
             {
                 j++;
                 if(tokens[i].Equals("Elevation-" + j))
                 {
                     i++;
-                    string[] toAdd = { tokens[i], tokens[i + 1] };
+                    string[] toAdd = new string[4];
+                    int k = 0;
+                    while (!tokens[i].Equals("Elevation-" + (j + 1)) && !tokens[i].Equals("Formworks"))
+                    {
+                        toAdd[k] = (tokens[i]); i++; k++;
+                    }
                     parameters.earth_elevations.Add(toAdd);
                 }
-                i += 2;
             }
 
             //Formworks
@@ -1069,24 +1112,52 @@ namespace WindowsFormsApp1
             //Footings
             i++;
 
+            int floorIndex = 0;
+            int l = 0;
             j = 0;
+
+            i++; //Only Ground Floor
             while (!tokens[i].Equals("Columns"))
-            {   
-                j++;
-                if (tokens[i].Equals("Column-Footing-" + j) && !tokens[i].Equals("Columns"))
+            {
+                if (tokens[i].Equals("Column-Footing-" + (j + 1)) && !tokens[i].Equals("Columns"))
                 {
                     List<string> toAdd = new List<string>();
-                    i++; structuralMembers.footingColumnNames.Add(tokens[i]); i++;
-                
-                    while(!tokens[i].Equals("Column-Footing-" + (j + 1)) && !tokens[i].Equals("Columns"))
+                    i++; 
+
+                    structuralMembers.footingColumnNames.Add(tokens[i]); i++;
+
+                    while (!tokens[i].Equals("Column-Footing-" + (j + 2)) &&
+                        !tokens[i].Equals("Wall-Footing-" + (l + 1)) && !tokens[i].Equals("Columns"))
                     {
                         toAdd.Add(tokens[i]); i++;
                     }
                     structuralMembers.footingsColumn[0].Add(toAdd);
-                    compute.AddEarthworks(this, (j - 1));
+                    compute.AddFootingWorks(this, j, l, true);
+                    j++;
+                }
+                else if (tokens[i].Equals("Wall-Footing-" + (l + 1)) && !tokens[i].Equals("Columns"))
+                {
+                    List<string> toAdd = new List<string>();
+                    i++; 
+
+                    structuralMembers.footingWallNames.Add(tokens[i]); i++;
+
+                    while (!tokens[i].Equals("Wall-Footing-" + (l + 2)) && !tokens[i].Equals("Columns"))
+                    {
+                        toAdd.Add(tokens[i]); i++;
+                    }
+                    structuralMembers.footingsWall[0].Add(toAdd);
+                    compute.AddFootingWorks(this, j, l, false);
+                    l++;
                 }
             }
-            MessageBox.Show("ETO ANG TUNAY NA SAGOT: " + excavation_Total);
+
+            MessageBox.Show("ETO ANG TUNAY NA SAGOT1: " + excavation_Total);
+            MessageBox.Show("ETO ANG TUNAY NA SAGOT2: " + gradingAndCompaction_Total);
+            MessageBox.Show("ETO ANG TUNAY NA SAGOT3: " + gravelBedding_Total);
+            MessageBox.Show("ETO ANG TUNAY NA SAGOT4: " + soilPoisoning_Total);
+            MessageBox.Show("ETO ANG TUNAY NA SAGOT5: " + backfillingAndCompaction_Total);
+
             //Save to Computations -- END
             //*/
             MessageBox.Show(tokens[i]);

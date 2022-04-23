@@ -22,8 +22,7 @@ namespace WindowsFormsApp1
         extern static IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, IntPtr lParam);
         private int floorCount;
         public List<TreeNode> nodes;
-        public int footingCount;
-        public int wallFootingCount;
+        public int footingCount, wallFootingCount, stairsCount;
 
         public string setLabel
         {
@@ -92,7 +91,7 @@ namespace WindowsFormsApp1
             //Init variables
             this.costEstimationForm = costEstimationForm;
             floorCount = costEstimationForm.Floors.Count;
-            footingCount = wallFootingCount = 0;
+            footingCount = wallFootingCount = stairsCount = 0;
 
             //SaveFile?
             if (fromFile)
@@ -121,16 +120,7 @@ namespace WindowsFormsApp1
 
         private void addStrMemBtn_Click(object sender, EventArgs e)
         {
-            /*Add node to tree, parent specific - template for later use
-            TreeNode[] found = floorTreeView.Nodes.Find("footingParent", true);
-            TreeNode newChild = new TreeNode("CF-1");
-            newChild.Name = "newChild";
-
-            found[0].Nodes.Add(newChild);
-            AdjustTreeViewHeight(floorTreeView);     
-            */
-
-            AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, footingCount, wallFootingCount, nodes, true, -1, "NEW", false);
+            AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, footingCount, wallFootingCount, stairsCount, nodes, true, -1, "NEW", false);
             if (asForm.ShowDialog() == DialogResult.OK)
             {
                 //TODO add other structural members
@@ -138,7 +128,7 @@ namespace WindowsFormsApp1
                 {
                     footingCount++;
                     TreeNode[] found = floorTreeView.Nodes.Find("footingParent", true);
-                    TreeNode newChild = new TreeNode(asForm.structMemName); //check if ilan na children   
+                    TreeNode newChild = new TreeNode(asForm.structMemName); 
                     newChild.Name = "F-" + (footingCount);
 
                     found[0].Nodes.Add(newChild);
@@ -147,6 +137,22 @@ namespace WindowsFormsApp1
                 else if (asForm.structuralMemberType.Equals("Footing (Wall)"))
                 {
                     wallFootingCount++;
+                    TreeNode[] found = floorTreeView.Nodes.Find("footingParent", true);
+                    TreeNode newChild = new TreeNode(asForm.structMemName);    
+                    newChild.Name = "WF-" + (wallFootingCount);
+
+                    found[0].Nodes.Add(newChild);
+                    AdjustTreeViewHeight(floorTreeView);
+                }
+                else if (asForm.structuralMemberType.Equals("Stairs"))
+                {
+                    stairsCount++;
+                    TreeNode[] found = floorTreeView.Nodes.Find("stairsParent", true);
+                    TreeNode newChild = new TreeNode(asForm.structMemName);
+                    newChild.Name = "ST-" + (stairsCount);
+
+                    found[0].Nodes.Add(newChild);
+                    AdjustTreeViewHeight(floorTreeView);
                 }
             }
         }
@@ -236,65 +242,100 @@ namespace WindowsFormsApp1
                     {
                         if(floorTreeView.SelectedNode.Parent.Text.Equals("FOOTINGS"))
                         {
-                            int footingIndex = 0;
-                            int wallFootingIndex = 0;
-                            int index = 0;
-                            Console.WriteLine("ETO NAHANAP: " + info.Node.Text);
-                            foreach(string member in costEstimationForm.structuralMembers.footingColumnNames)
+                            int footingCount = 0;
+                            int wallFootingCount = 0;
+
+                            List<string> footingAndWallFootingNames = new List<string>();
+                            footingAndWallFootingNames.AddRange(costEstimationForm.structuralMembers.footingColumnNames);
+                            footingAndWallFootingNames.AddRange(costEstimationForm.structuralMembers.footingWallNames);
+
+                            foreach (TreeNode member in nodes[0].Nodes)
                             {
-                                if (member.Equals(info.Node.Text))//Nahanap yung member name inside
+                                TreeNode[] found = floorTreeView.Nodes.Find(member.Name, true);
+
+                                if (found[0].Name[0] == 'F') //Footing (Column)
                                 {
-                                    if (member[0] == 'F')
+                                    if (member.Text.Equals(info.Node.Text))
                                     {
-                                        AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, footingCount, wallFootingCount, nodes, false, footingIndex, "FOOTINGS", true);
+                                        AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, stairsCount, nodes, false, footingCount, "FOOTINGS", true);
                                         if (asForm.ShowDialog() == DialogResult.OK)
                                         {
-                                            //TODO add other structural members
                                             if (asForm.structuralMemberType.Equals("Footing (Column)"))
                                             {
-                                                TreeNode[] found = floorTreeView.Nodes.Find("footingParent", true);
-                                                int i = found[0].Nodes.IndexOf(info.Node);
+                                                TreeNode[] found2 = floorTreeView.Nodes.Find("footingParent", true);
+                                                int i = found2[0].Nodes.IndexOf(info.Node);
 
-                                                TreeNode newChild = new TreeNode(asForm.structMemName); //check if ilan na children   
+                                                TreeNode newChild = new TreeNode(asForm.structMemName);   
                                                 newChild.Name = (info.Node.Name);
 
-                                                found[0].Nodes.RemoveAt(index);
-                                                found[0].Nodes.Insert(index, newChild);
+                                                found2[0].Nodes.RemoveAt(i);
+                                                found2[0].Nodes.Insert(i, newChild);
                                             }
                                         }
                                         return;
                                     }
-                                    else
+                                    footingCount++;
+                                }
+                                else //Footing (Wall)
+                                {
+                                    if (member.Text.Equals(info.Node.Text))
                                     {
-                                        AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, footingCount, wallFootingCount, nodes, false, wallFootingIndex, "FOOTINGS", false);
+                                        AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, stairsCount, nodes, false, wallFootingCount, "FOOTINGS", false);
                                         if (asForm.ShowDialog() == DialogResult.OK)
                                         {
-                                            //TODO add other structural members
                                             if (asForm.structuralMemberType.Equals("Footing (Wall)"))
                                             {
-                                                TreeNode[] found = floorTreeView.Nodes.Find("footingParent", true);
-                                                int i = found[0].Nodes.IndexOf(info.Node);
+                                                TreeNode[] found2 = floorTreeView.Nodes.Find("footingParent", true);
+                                                int i = found2[0].Nodes.IndexOf(info.Node);
 
-                                                TreeNode newChild = new TreeNode(asForm.structMemName); //check if ilan na children   
+                                                TreeNode newChild = new TreeNode(asForm.structMemName);    
                                                 newChild.Name = (info.Node.Name);
 
-                                                found[0].Nodes.RemoveAt(index);
-                                                found[0].Nodes.Insert(index, newChild);
+                                                found2[0].Nodes.RemoveAt(i);
+                                                found2[0].Nodes.Insert(i, newChild);
                                             }
                                         }
                                         return;
                                     }
+                                    wallFootingCount++;
                                 }
+                            }
+                        }
+                        else if (floorTreeView.SelectedNode.Parent.Text.Equals("STAIRS"))
+                        {
+                            int stairsCount = 0, parentNodeIndex;
+                            if(floorCount == 0)
+                            {
+                                parentNodeIndex = 4;
+                            }
+                            else
+                            {
+                                parentNodeIndex = 3;
+                            }
+                            foreach (TreeNode member in nodes[parentNodeIndex].Nodes)
+                            {
+                                TreeNode[] found = floorTreeView.Nodes.Find(member.Name, true);
 
-                                if (member[0] == 'F')
+                                if (member.Text.Equals(info.Node.Text))
                                 {
-                                    footingIndex++;
+                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.stairsCount, nodes, false, stairsCount, "STAIRS", false);
+                                    if (asForm.ShowDialog() == DialogResult.OK)
+                                    {
+                                        if (asForm.structuralMemberType.Equals("Stairs"))
+                                        {
+                                            TreeNode[] found2 = floorTreeView.Nodes.Find("stairsParent", true);
+                                            int i = found2[0].Nodes.IndexOf(info.Node);
+
+                                            TreeNode newChild = new TreeNode(asForm.structMemName);   
+                                            newChild.Name = (info.Node.Name);
+
+                                            found2[0].Nodes.RemoveAt(i);
+                                            found2[0].Nodes.Insert(i, newChild);
+                                        }
+                                    }
+                                    return;
                                 }
-                                else
-                                {
-                                    wallFootingIndex++;
-                                }
-                                index++;
+                                stairsCount++;
                             }
                         }
                     }

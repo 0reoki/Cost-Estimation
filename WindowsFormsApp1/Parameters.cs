@@ -136,7 +136,31 @@ namespace WindowsFormsApp1
             this.earth_SG_TH = earth_SG_TH;
             this.earth_SG_TY = earth_SG_TY;
             this.earth_SG_CF = earth_SG_CF;
-            this.earth_elevations = earth_elevations;
+
+            int i = 0;
+            List<string[]> newEarthElev = new List<string[]>();
+            foreach(string[] elev in earth_elevations)
+            {
+                double slabTPlusGBT = double.Parse(earth_SG_TS, System.Globalization.CultureInfo.InvariantCulture)
+                    + double.Parse(earth_SG_TH, System.Globalization.CultureInfo.InvariantCulture);
+                double elevation = double.Parse(elev[0], System.Globalization.CultureInfo.InvariantCulture);
+                string cutOrFill = "";
+                double thickness = elevation - slabTPlusGBT;
+                thickness /= 1000;
+                thickness = Math.Abs(thickness);
+                if ((elevation - slabTPlusGBT) > 0)
+                {
+                    cutOrFill = "FILL";
+                }
+                else
+                {
+                    cutOrFill = "CUT";
+                }
+                string[] toAdd = { elev[0], elev[1], cutOrFill, thickness.ToString() };
+                newEarthElev.Add(toAdd);
+                i++;
+            }
+            this.earth_elevations = newEarthElev;
         }
 
         public void setFormworkParameters
