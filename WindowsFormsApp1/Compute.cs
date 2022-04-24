@@ -554,12 +554,12 @@ namespace WindowsFormsApp1
         {
             List<double> newList = new List<double>();
             cEF.structuralMembers.stairsSolutions.Add(newList);
-            stairsWorks(cEF, floorCount, stairsCount);
+            stairsWorks(cEF, floorCount, stairsCount, true);
         }
 
         public void ModifyStairsWorks(CostEstimationForm cEF, int floorCount, int structMemCount)
         {
-            stairsWorks(cEF, floorCount, structMemCount);
+            stairsWorks(cEF, floorCount, structMemCount, false);
         }
 
         //Add or Modify
@@ -568,15 +568,21 @@ namespace WindowsFormsApp1
             L-Stairs
             U-Stairs
          * */
-        public void stairsWorks(CostEstimationForm cEF, int floorCount, int structMemCount)
+        public void stairsWorks(CostEstimationForm cEF, int floorCount, int structMemCount, bool isNew)
         {
-            if (cEF.structuralMembers.stairs[floorCount][structMemCount][0].Equals("Straight Stairs"))
+            if (isNew)
             {
-                double length;
-                length = double.Parse(cEF.structuralMembers.stairs[floorCount][structMemCount][1], System.Globalization.CultureInfo.InvariantCulture);
-                cEF.cement_Total[4] += length;
+                if (cEF.structuralMembers.stairs[floorCount][structMemCount][0].Equals("Straight Stairs"))
+                {
+                    double length;
+                    length = double.Parse(cEF.structuralMembers.stairs[floorCount][structMemCount][1], System.Globalization.CultureInfo.InvariantCulture);
+                    cEF.cement_Total[4] += length;
+                }
             }
+            else
+            {
 
+            }
         }
         //Stairs Funcitons -- END
     }

@@ -118,7 +118,61 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="1x1 business atire" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1x1 business atire.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MAIN BAR 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stairs\MAIN BAR 2.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="U STAIRS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stairs\U STAIRS.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="COLUMN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Column\COLUMN.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MAIN BAR 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stairs\MAIN BAR 3.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MAIN BAR 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stairs\MAIN BAR 1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ISOLATED  FOOTING" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Footing\ISOLATED  FOOTING.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ST STAIRS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stairs\ST STAIRS.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="L STAIRS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stairs\L STAIRS.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="L  BARS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stairs\L  BARS.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WALL FOOTING" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Footing\WALL FOOTING.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DISTRIBUTION BARS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stairs\DISTRIBUTION BARS.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="COMB FOOTING" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Footing\COMB FOOTING.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LANDING REBAR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stairs\LANDING REBAR.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LT_CONFIG_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Column\LT CONFIG 1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LT_CONFIG_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Column\LT CONFIG 2.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LT_CONFIG_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Column\LT CONFIG 3.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LT_CONFIG_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Column\LT CONFIG 4.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LT_CONFIG_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Column\LT CONFIG 5.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LT_CONFIG_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Column\LT CONFIG 6.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

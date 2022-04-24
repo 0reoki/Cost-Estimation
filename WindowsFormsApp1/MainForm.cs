@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
 {
     public partial class CostEstimationForm : Form
     {
-        //Forms
+        //Formsadd
         public Compute compute = new Compute();
         public ParametersForm pf;
         public Parameters parameters;
@@ -191,14 +191,27 @@ namespace WindowsFormsApp1
             //Initialize variables in AddStructForm for every floor created
             if (Floors.Count == 0)//Ground Floor
             {
+                //Footings
                 List<List<string>> newList = new List<List<string>>();
                 List<List<string>> newList2 = new List<List<string>>();
                 structuralMembers.footingsColumn.Add(newList);
                 structuralMembers.footingsWall.Add(newList2);
-                List<List<string>> newList3 = new List<List<string>>();
-                structuralMembers.stairs.Add(newList3);
-                List<string> newList4 = new List<string>();
-                structuralMembers.stairsNames.Add(newList4);
+
+                //Columns
+                List<string> newList3 = new List<string>();
+                List<List<string>> newList4 = new List<List<string>>();
+                List<List<string>> newList5 = new List<List<string>>();
+                List<List<string>> newList6 = new List<List<string>>();
+                structuralMembers.columnNames.Add(newList3);
+                structuralMembers.column.Add(newList4);
+                structuralMembers.columnLateralTies.Add(newList5);
+                structuralMembers.columnSpacing.Add(newList6);
+
+                //Stairs
+                List<List<string>> newList7 = new List<List<string>>();
+                List<string> newList8 = new List<string>();
+                structuralMembers.stairs.Add(newList7);
+                structuralMembers.stairsNames.Add(newList8);
             }
             else //Upper Floors
             {
@@ -513,8 +526,37 @@ namespace WindowsFormsApp1
                 }
             }
 
-            //Beams
+            //Columns
             stringParam += "\nColumns|\n";
+
+            //Beams
+            stringParam += "\nBeams|\n";
+
+            //Slabs
+            stringParam += "\nSlabs|\n";
+
+            //Stairs
+            stringParam += "\nStairs|\n";
+            j = 0;
+            foreach (List<List<string>> floor in structuralMembers.stairs)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach(List<string> member in floor)
+                {
+                    stringParam += "Stair-" + (k + 1) + "|";
+                    stringParam += structuralMembers.stairsNames[j][k] + "|";
+                    foreach(string value in member)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
+
+            //Roof
+            stringParam += "\nRoof|\n";
 
             stringParam += "END";
             //Computations -- END
@@ -1157,6 +1199,51 @@ namespace WindowsFormsApp1
             MessageBox.Show("ETO ANG TUNAY NA SAGOT3: " + gravelBedding_Total);
             MessageBox.Show("ETO ANG TUNAY NA SAGOT4: " + soilPoisoning_Total);
             MessageBox.Show("ETO ANG TUNAY NA SAGOT5: " + backfillingAndCompaction_Total);
+
+            //Columns
+            i++;
+
+            //Beams
+            i++;
+
+            //Slabs
+            i++;
+
+            //Stairs
+            i++;
+            j = 0;
+            l = 0;
+
+            structuralMembers.stairsNames.Clear();
+            structuralMembers.stairs.Clear();
+            while (!tokens[i].Equals("Roof"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("Roof"))
+                {
+                    List<List<string>> floor = new List<List<string>>();
+                    List<string> name = new List<string>();
+                    i++;
+                    l = 0;
+                    while(tokens[i].Equals("Stair-" + (l + 1)))
+                    {
+                        i++;
+                        name.Add(tokens[i]); i++;
+                        List<string> member = new List<string>();
+                        while (!tokens[i].Equals("Stair-" + (l + 2)) && !tokens[i].Equals("Floor-" + (j + 2)) && !tokens[i].Equals("Roof"))
+                        {
+                            member.Add(tokens[i]); i++;
+                        }
+                        l++;
+                        floor.Add(member);
+                    }
+                    structuralMembers.stairs.Add(floor);
+                    structuralMembers.stairsNames.Add(name);
+                    j++;
+                }
+            }
+            //Roof
+            
+            //Computations -- END
 
             //Save to Computations -- END
             //*/

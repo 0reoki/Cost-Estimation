@@ -14,6 +14,10 @@ namespace WindowsFormsApp1
     {
         //Local Variables
         Compute compute = new Compute();
+        private List<ColumnLateralTiesUserControl> g_ltUC = new List<ColumnLateralTiesUserControl>();
+        private List<ColumnLateralTiesUserControl> u_ltUC = new List<ColumnLateralTiesUserControl>();
+        private List<ColumnSpacingUserControl> g_sUC = new List<ColumnSpacingUserControl>();
+        private List<ColumnSpacingUserControl> u_sUC = new List<ColumnSpacingUserControl>();
 
         //Passed Variables
         public string structMemName;
@@ -42,6 +46,7 @@ namespace WindowsFormsApp1
 
             //Init components
             addstruct_cbx.SelectedIndex = 0;
+            colTabControl.SelectedIndex = 0;
             if (floorCount != 0)
             {
                 addstruct_cbx.Items.Clear();
@@ -51,6 +56,7 @@ namespace WindowsFormsApp1
                 addstruct_cbx.Items.Add("Stairs");
                 addstruct_cbx.Items.Add("Roofing (Gable)");
                 addstruct_cbx.SelectedIndex = 0;
+                colTabControl.SelectedIndex = 1;
             }
             //Init Footings Combo Boxes
             foot_FT_cbx.SelectedIndex = foot_IF_LR_HT_cbx.SelectedIndex = foot_IF_TR_HT_cbx.SelectedIndex
@@ -113,6 +119,13 @@ namespace WindowsFormsApp1
             stairsTabControl.ItemSize = new Size(0, 1);
             stairsTabControl.SizeMode = TabSizeMode.Fixed;
             foreach (TabPage tab in stairsTabControl.TabPages)
+            {
+                tab.Text = "";
+            }
+            colTabControl.Appearance = TabAppearance.FlatButtons;
+            colTabControl.ItemSize = new Size(0, 1);
+            colTabControl.SizeMode = TabSizeMode.Fixed;
+            foreach (TabPage tab in colTabControl.TabPages)
             {
                 tab.Text = "";
             }
@@ -526,11 +539,105 @@ namespace WindowsFormsApp1
             {
                 if (isNew)
                 {
+                    //Name Validation
+                    if (costEstimationForm.structuralMembers.stairsNames[floorCount].Contains(structMemName))
+                    {
+                        MessageBox.Show("Name already exists!");
+                        return;
+                    }
 
+                    //Do whatever
+                    try
+                    {
+                        if(floorCount == 0) //Ground Floor
+                        {
+                            List<string> members = new List<string>();
+                            members.Add("Ground");
+                            members.Add(col_G_D_B_bx.Text);
+                            members.Add(col_G_D_D_bx.Text);
+                            members.Add(col_G_D_H_bx.Text);
+                            members.Add(col_G_D_Q_bx.Text);
+                            members.Add(col_G_D_CB_cbx.Text);
+
+                            members.Add(col_G_MR_D_bx.Text);
+                            members.Add(col_G_MR_Q_bx.Text);
+                            members.Add(col_G_SA_cbx.Text);
+                            members.Add(col_G_ST_cbx.Text);
+                            members.Add(col_G_JT_D_bx.Text);
+                            members.Add(col_G_JT_S_bx.Text);
+                            members.Add(col_G_CLT_D_bx.Text);
+
+                            members.Add(col_G_CLT_S_Rest_bx.Text);
+                            members.Add(col_G_CLT_S_Rest2_bx.Text);
+                            members.Add(col_G_CLT_S_Rest3_bx.Text);
+
+                            //Lateral Ties  
+                            members.Add(col_G_LT_D_bx.Text);
+
+                            List<string> ltMember = new List<string>();
+                            foreach (ColumnLateralTiesUserControl lt in g_ltUC)
+                            {
+                                ltMember.Add(lt.qty);
+                            }
+
+                            //Spacing
+                            members.Add(col_G_S_S_bx.Text);
+
+                            List<string> sMember = new List<string>();
+                            foreach (ColumnSpacingUserControl s in g_sUC)
+                            {
+                                sMember.Add(s.qty);
+                                sMember.Add(s.spacing);
+                            }
+
+                            costEstimationForm.structuralMembers.stairs[floorCount].Add(members);
+                            costEstimationForm.structuralMembers.stairsNames[floorCount].Add(structMemName);
+
+                            //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                            MessageBox.Show("eto ang sagot sa tanong: " +
+                                costEstimationForm.structuralMembers.stairs[floorCount][stairsCount][0]);
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else //Upper Floors
+                        {
+
+                        }
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Do not leave any blank spaces!");
+                        Console.WriteLine(ex.ToString());
+                    }
                 }
                 else //Clicked from floors
                 {
+                    //Name Validation
+                    if (costEstimationForm.structuralMembers.columnNames[floorCount].Contains(structMemName))
+                    {
+                        if (structMemName.Equals(oldStructMemName))
+                        {
+                            //Do nothing
+                        }
+                        else
+                        {
+                            int found = 0;
+                            for (int i = 0; i < costEstimationForm.structuralMembers.columnNames[floorCount].Count; i++)
+                            {
+                                if (costEstimationForm.structuralMembers.columnNames[floorCount][i].Equals(structMemName))
+                                {
+                                    found++;
+                                }
+                            }
+                            if (found > 1)
+                            {   //Duplicate found
+                                MessageBox.Show("Name already exists!");
+                                return;
+                            }
+                        }
+                    }
 
+                    //Do whatever
                 }
             }
             else if (addstruct_cbx.Text.Equals("Beam"))
@@ -559,6 +666,7 @@ namespace WindowsFormsApp1
             {
                 if (isNew)
                 {
+                    //Name Validation
                     if (costEstimationForm.structuralMembers.stairsNames[floorCount].Contains(structMemName))
                     {
                         MessageBox.Show("Name already exists!");
@@ -683,17 +791,136 @@ namespace WindowsFormsApp1
                 }
                 else //Update
                 {
+                    //Name Validation
+                    if (costEstimationForm.structuralMembers.stairsNames[floorCount].Contains(structMemName))
+                    {
+                        if (structMemName.Equals(oldStructMemName))
+                        {
+                            //Do nothing
+                        }
+                        else
+                        {
+                            int found = 0;
+                            for (int i = 0; i < costEstimationForm.structuralMembers.stairsNames[floorCount].Count; i++)
+                            {
+                                if (costEstimationForm.structuralMembers.stairsNames[floorCount][i].Equals(structMemName))
+                                {
+                                    found++;
+                                }
+                            }
+                            if (found > 1)
+                            {   //Duplicate found
+                                MessageBox.Show("Name already exists!");
+                                return;
+                            }
+                        }
+                    }
+
                     if (stairs_ST_cbx.SelectedIndex == 0) //Straight Stairs
                     {
+                        try
+                        {
+                            costEstimationForm.structuralMembers.stairsNames[floorCount][memberCount] = addstruct_Name_bx.Text;
+                                
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][1] = stairs_SS_D_Q_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][2] = stairs_SS_D_S_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][3] = stairs_SS_D_SL_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][4] = stairs_SS_D_RH_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][5] = stairs_SS_D_TW_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][6] = stairs_SS_D_WST_bx.Text;
 
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][7] = stairs_SS_WS_MB_cbx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][8] = stairs_SS_WS_MBS_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][9] = stairs_SS_WS_DB_cbx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][10] = stairs_SS_WS_DBS_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][11] = stairs_SS_S_MB_cbx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][12] = stairs_SS_S_MBS_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][13] = stairs_SS_S_NB_cbx.Text;
+
+                            //compute.ModifyStairsWorks(costEstimationForm, floorCount, stairsCount);
+                            MessageBox.Show("eto ang sagot sa tanong2: " +
+                                costEstimationForm.structuralMembers.stairs[floorCount][memberCount][0]);
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Do not leave any blank spaces!");
+                            Console.WriteLine(ex.ToString());
+                        }
                     }
                     else if (stairs_ST_cbx.SelectedIndex == 1) //U-Stairs
                     {
+                        try
+                        {
+                            costEstimationForm.structuralMembers.stairsNames[floorCount][memberCount] = addstruct_Name_bx.Text;
 
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][1] = stairs_US_D_Q_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][2] = stairs_US_D_SFF_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][3] = stairs_US_D_SSF_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][4] = stairs_US_D_SL_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][5] = stairs_US_D_RH_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][6] = stairs_US_D_TW_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][7] = stairs_US_D_WST_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][8] = stairs_US_D_LW_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][9] = stairs_US_D_G_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][10] = stairs_US_D_LT_bx.Text;
+
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][11] = stairs_US_WS_MB_cbx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][12] = stairs_US_WS_MBS_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][13] = stairs_US_WS_DB_cbx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][14] = stairs_US_WS_DBS_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][15] = stairs_US_L_MB_cbx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][16] = stairs_US_L_MBS_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][17] = stairs_US_S_MB_cbx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][18] = stairs_US_S_MBS_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][19] = stairs_US_S_NB_cbx.Text;
+
+                            //compute.ModifyStairsWorks(costEstimationForm, floorCount, stairsCount);
+                            MessageBox.Show("eto ang sagot sa tanong2: " +
+                                costEstimationForm.structuralMembers.stairs[floorCount][memberCount][0]);
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Do not leave any blank spaces!");
+                            Console.WriteLine(ex.ToString());
+                        }
                     }
                     else //L-Stairs
                     {
+                        try
+                        {
+                            costEstimationForm.structuralMembers.stairsNames[floorCount][memberCount] = addstruct_Name_bx.Text;
 
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][1] = stairs_LS_D_Q_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][2] = stairs_LS_D_SFF_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][3] = stairs_LS_D_SSF_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][4] = stairs_LS_D_SL_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][5] = stairs_LS_D_RH_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][6] = stairs_LS_D_TW_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][7] = stairs_LS_D_WST_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][8] = stairs_LS_D_LST_bx.Text;
+
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][9] = stairs_LS_WS_MB_cbx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][10] = stairs_LS_WS_MBS_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][11] = stairs_LS_WS_DB_cbx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][12] = stairs_LS_WS_DBS_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][13] = stairs_LS_L_MB_cbx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][14] = stairs_LS_L_MBS_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][15] = stairs_LS_S_MB_cbx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][16] = stairs_LS_S_MBS_bx.Text;
+                            costEstimationForm.structuralMembers.stairs[floorCount][memberCount][17] = stairs_LS_S_NB_cbx.Text;
+
+                            //compute.ModifyStairsWorks(costEstimationForm, floorCount, stairsCount);
+                            MessageBox.Show("eto ang sagot sa tanong2: " +
+                                costEstimationForm.structuralMembers.stairs[floorCount][memberCount][0]);
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Do not leave any blank spaces!");
+                            Console.WriteLine(ex.ToString());
+                        }
                     }
                 }
             }
@@ -1002,6 +1229,283 @@ namespace WindowsFormsApp1
 
         }
 
+        private void col_G_LT_LTC_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (col_G_LT_LTC_cbx.SelectedIndex == 0)
+            {
+                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_1); 
+                Image picture = (Image)bmp;
+                col_G_LT_pb.Image = picture;
+            }
+            else if (col_G_LT_LTC_cbx.SelectedIndex == 1)
+            {
+                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_2); 
+                Image picture = (Image)bmp;
+                col_G_LT_pb.Image = picture;
+            }
+            else if (col_G_LT_LTC_cbx.SelectedIndex == 2)
+            {
+                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_3); 
+                Image picture = (Image)bmp;
+                col_G_LT_pb.Image = picture;
+
+                //Add Lateral Ties Quantity
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5); 
+                Image picture2 = (Image)bmp2;
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                Image picture3 = (Image)bmp3;
+                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                Image picture4 = (Image)bmp4;
+                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                Image picture5 = (Image)bmp5;
+
+                g_ltUC.Clear();
+                col_G_LT_Panel.Controls.Clear();
+
+                ColumnLateralTiesUserControl ties = new ColumnLateralTiesUserControl(picture2);
+                g_ltUC.Add(ties);
+                col_G_LT_Panel.Controls.Add(ties);
+
+                ColumnLateralTiesUserControl ties2 = new ColumnLateralTiesUserControl(picture3);
+                g_ltUC.Add(ties2);
+                col_G_LT_Panel.Controls.Add(ties2);
+
+                ColumnLateralTiesUserControl ties3 = new ColumnLateralTiesUserControl(picture4);
+                g_ltUC.Add(ties3);
+                col_G_LT_Panel.Controls.Add(ties3);
+
+                ColumnLateralTiesUserControl ties4 = new ColumnLateralTiesUserControl(picture5);
+                g_ltUC.Add(ties4);
+                col_G_LT_Panel.Controls.Add(ties4);
+            }
+            else if (col_G_LT_LTC_cbx.SelectedIndex == 3)
+            {
+                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_4); 
+                Image picture = (Image)bmp;
+                col_G_LT_pb.Image = picture;
+
+                //Add Lateral Ties Quantity
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                Image picture2 = (Image)bmp2;
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                Image picture3 = (Image)bmp3;
+                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                Image picture4 = (Image)bmp4;
+                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                Image picture5 = (Image)bmp5;
+
+                g_ltUC.Clear();
+                col_G_LT_Panel.Controls.Clear();
+
+                ColumnLateralTiesUserControl ties = new ColumnLateralTiesUserControl(picture2);
+                g_ltUC.Add(ties);
+                col_G_LT_Panel.Controls.Add(ties);
+
+                ColumnLateralTiesUserControl ties2 = new ColumnLateralTiesUserControl(picture3);
+                g_ltUC.Add(ties2);
+                col_G_LT_Panel.Controls.Add(ties2);
+
+                ColumnLateralTiesUserControl ties3 = new ColumnLateralTiesUserControl(picture4);
+                g_ltUC.Add(ties3);
+                col_G_LT_Panel.Controls.Add(ties3);
+
+                ColumnLateralTiesUserControl ties4 = new ColumnLateralTiesUserControl(picture5);
+                g_ltUC.Add(ties4);
+                col_G_LT_Panel.Controls.Add(ties4);
+            }
+            else if (col_G_LT_LTC_cbx.SelectedIndex == 4)
+            {
+                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5); 
+                Image picture = (Image)bmp;
+                col_G_LT_pb.Image = picture;
+
+                //Add Lateral Ties Quantity
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                Image picture2 = (Image)bmp2;
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                Image picture3 = (Image)bmp3;
+
+                g_ltUC.Clear();
+                col_G_LT_Panel.Controls.Clear();
+
+                ColumnLateralTiesUserControl ties = new ColumnLateralTiesUserControl(picture2);
+                g_ltUC.Add(ties);
+                col_G_LT_Panel.Controls.Add(ties);
+
+                ColumnLateralTiesUserControl ties2 = new ColumnLateralTiesUserControl(picture3);
+                g_ltUC.Add(ties2);
+                col_G_LT_Panel.Controls.Add(ties2);
+            }
+            else
+            {
+                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6); 
+                Image picture = (Image)bmp;
+                col_G_LT_pb.Image = picture;
+
+                //Add Lateral Ties Quantity 
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                Image picture2 = (Image)bmp2;
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                Image picture3 = (Image)bmp3;
+
+                g_ltUC.Clear();
+                col_G_LT_Panel.Controls.Clear();
+
+                ColumnLateralTiesUserControl ties = new ColumnLateralTiesUserControl(picture2);
+                g_ltUC.Add(ties);
+                col_G_LT_Panel.Controls.Add(ties);
+
+                ColumnLateralTiesUserControl ties2 = new ColumnLateralTiesUserControl(picture3);
+                g_ltUC.Add(ties2);
+                col_G_LT_Panel.Controls.Add(ties2);
+            }
+        }
+
+        private void col_G_LT_Add_btn_Click(object sender, EventArgs e)
+        {
+            ColumnSpacingUserControl content = new ColumnSpacingUserControl();
+            g_sUC.Add(content);
+            col_G_S_Panel.Controls.Add(content);
+        }
+
+        private void col_U_LT_Add_btn_Click(object sender, EventArgs e)
+        {
+            ColumnSpacingUserControl content = new ColumnSpacingUserControl();
+            u_sUC.Add(content);
+            col_U_S_Panel.Controls.Add(content);
+        }
+
+        private void col_U_LT_LTC_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (col_U_LT_LTC_cbx.SelectedIndex == 0)
+            {
+                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_1);
+                Image picture = (Image)bmp;
+                col_U_LT_pb.Image = picture;
+            }
+            else if (col_U_LT_LTC_cbx.SelectedIndex == 1)
+            {
+                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_2);
+                Image picture = (Image)bmp;
+                col_U_LT_pb.Image = picture;
+            }
+            else if (col_U_LT_LTC_cbx.SelectedIndex == 2)
+            {
+                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_3);
+                Image picture = (Image)bmp;
+                col_U_LT_pb.Image = picture;
+
+                //Add Lateral Ties Quantity
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                Image picture2 = (Image)bmp2;
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                Image picture3 = (Image)bmp3;
+                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                Image picture4 = (Image)bmp4;
+                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                Image picture5 = (Image)bmp5;
+
+                u_ltUC.Clear();
+                col_U_LT_Panel.Controls.Clear();
+
+                ColumnLateralTiesUserControl ties = new ColumnLateralTiesUserControl(picture2);
+                u_ltUC.Add(ties);
+                col_U_LT_Panel.Controls.Add(ties);
+
+                ColumnLateralTiesUserControl ties2 = new ColumnLateralTiesUserControl(picture3);
+                u_ltUC.Add(ties2);
+                col_U_LT_Panel.Controls.Add(ties2);
+
+                ColumnLateralTiesUserControl ties3 = new ColumnLateralTiesUserControl(picture4);
+                u_ltUC.Add(ties3);
+                col_U_LT_Panel.Controls.Add(ties3);
+
+                ColumnLateralTiesUserControl ties4 = new ColumnLateralTiesUserControl(picture5);
+                u_ltUC.Add(ties4);
+                col_U_LT_Panel.Controls.Add(ties4);
+            }
+            else if (col_U_LT_LTC_cbx.SelectedIndex == 3)
+            {
+                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_4);
+                Image picture = (Image)bmp;
+                col_U_LT_pb.Image = picture;
+
+                //Add Lateral Ties Quantity
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                Image picture2 = (Image)bmp2;
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                Image picture3 = (Image)bmp3;
+                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                Image picture4 = (Image)bmp4;
+                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                Image picture5 = (Image)bmp5;
+
+                u_ltUC.Clear();
+                col_U_LT_Panel.Controls.Clear();
+
+                ColumnLateralTiesUserControl ties = new ColumnLateralTiesUserControl(picture2);
+                u_ltUC.Add(ties);
+                col_U_LT_Panel.Controls.Add(ties);
+
+                ColumnLateralTiesUserControl ties2 = new ColumnLateralTiesUserControl(picture3);
+                u_ltUC.Add(ties2);
+                col_U_LT_Panel.Controls.Add(ties2);
+
+                ColumnLateralTiesUserControl ties3 = new ColumnLateralTiesUserControl(picture4);
+                u_ltUC.Add(ties3);
+                col_U_LT_Panel.Controls.Add(ties3);
+
+                ColumnLateralTiesUserControl ties4 = new ColumnLateralTiesUserControl(picture5);
+                u_ltUC.Add(ties4);
+                col_U_LT_Panel.Controls.Add(ties4);
+            }
+            else if (col_U_LT_LTC_cbx.SelectedIndex == 4)
+            {
+                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                Image picture = (Image)bmp;
+                col_U_LT_pb.Image = picture;
+
+                //Add Lateral Ties Quantity
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                Image picture2 = (Image)bmp2;
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                Image picture3 = (Image)bmp3;
+
+                u_ltUC.Clear();
+                col_U_LT_Panel.Controls.Clear();
+
+                ColumnLateralTiesUserControl ties = new ColumnLateralTiesUserControl(picture2);
+                u_ltUC.Add(ties);
+                col_U_LT_Panel.Controls.Add(ties);
+
+                ColumnLateralTiesUserControl ties2 = new ColumnLateralTiesUserControl(picture3);
+                u_ltUC.Add(ties2);
+                col_U_LT_Panel.Controls.Add(ties2);
+            }
+            else
+            {
+                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                Image picture = (Image)bmp;
+                col_U_LT_pb.Image = picture;
+
+                //Add Lateral Ties Quantity 
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                Image picture2 = (Image)bmp2;
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                Image picture3 = (Image)bmp3;
+
+                u_ltUC.Clear();
+                col_U_LT_Panel.Controls.Clear();
+
+                ColumnLateralTiesUserControl ties = new ColumnLateralTiesUserControl(picture2);
+                u_ltUC.Add(ties);
+                col_U_LT_Panel.Controls.Add(ties);
+
+                ColumnLateralTiesUserControl ties2 = new ColumnLateralTiesUserControl(picture3);
+                u_ltUC.Add(ties2);
+                col_U_LT_Panel.Controls.Add(ties2);
+            }
+        }
 
         private void AddStructForm_FormClosing(object sender, FormClosingEventArgs e)
         {

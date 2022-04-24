@@ -299,57 +299,57 @@ namespace WindowsFormsApp1
             this.toolStripSeparator1,
             this.fileMenu5});
             this.fileMenu.Name = "contextMenuStrip1";
-            this.fileMenu.Size = new System.Drawing.Size(241, 241);
+            this.fileMenu.Size = new System.Drawing.Size(147, 208);
             // 
             // fileMenu1
             // 
             this.fileMenu1.Name = "fileMenu1";
-            this.fileMenu1.Size = new System.Drawing.Size(240, 32);
+            this.fileMenu1.Size = new System.Drawing.Size(146, 32);
             this.fileMenu1.Text = "New";
             this.fileMenu1.Click += new System.EventHandler(this.fileMenu1_Click);
             // 
             // fileMenu2
             // 
             this.fileMenu2.Name = "fileMenu2";
-            this.fileMenu2.Size = new System.Drawing.Size(240, 32);
+            this.fileMenu2.Size = new System.Drawing.Size(146, 32);
             this.fileMenu2.Text = "Open";
             this.fileMenu2.Click += new System.EventHandler(this.fileMenu2_Click);
             // 
             // fileMenu3
             // 
             this.fileMenu3.Name = "fileMenu3";
-            this.fileMenu3.Size = new System.Drawing.Size(240, 32);
+            this.fileMenu3.Size = new System.Drawing.Size(146, 32);
             this.fileMenu3.Text = "Save";
             this.fileMenu3.Click += new System.EventHandler(this.fileMenu3_Click);
             // 
             // fileMenu4
             // 
             this.fileMenu4.Name = "fileMenu4";
-            this.fileMenu4.Size = new System.Drawing.Size(240, 32);
+            this.fileMenu4.Size = new System.Drawing.Size(146, 32);
             this.fileMenu4.Text = "Save As";
             this.fileMenu4.Click += new System.EventHandler(this.fileMenu4_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(237, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
             // 
             // fileMenu6
             // 
             this.fileMenu6.Name = "fileMenu6";
-            this.fileMenu6.Size = new System.Drawing.Size(240, 32);
+            this.fileMenu6.Size = new System.Drawing.Size(146, 32);
             this.fileMenu6.Text = "Import";
             this.fileMenu6.Click += new System.EventHandler(this.fileMenu6_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(237, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
             // 
             // fileMenu5
             // 
             this.fileMenu5.Name = "fileMenu5";
-            this.fileMenu5.Size = new System.Drawing.Size(240, 32);
+            this.fileMenu5.Size = new System.Drawing.Size(146, 32);
             this.fileMenu5.Text = "Exit";
             this.fileMenu5.Click += new System.EventHandler(this.fileMenu5_Click);
             // 
