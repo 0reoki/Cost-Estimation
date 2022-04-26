@@ -22,7 +22,7 @@ namespace WindowsFormsApp1
         extern static IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, IntPtr lParam);
         private int floorCount;
         public List<TreeNode> nodes;
-        public int footingCount, wallFootingCount, stairsCount;
+        public int footingCount, wallFootingCount, columnCount, stairsCount;
 
         public string setLabel
         {
@@ -91,7 +91,7 @@ namespace WindowsFormsApp1
             //Init variables
             this.costEstimationForm = costEstimationForm;
             floorCount = costEstimationForm.Floors.Count;
-            footingCount = wallFootingCount = stairsCount = 0;
+            footingCount = wallFootingCount = columnCount = stairsCount = 0;
 
             //SaveFile?
             if (fromFile)
@@ -120,7 +120,7 @@ namespace WindowsFormsApp1
 
         private void addStrMemBtn_Click(object sender, EventArgs e)
         {
-            AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, footingCount, wallFootingCount, stairsCount, nodes, true, -1, "NEW", false);
+            AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, footingCount, wallFootingCount, columnCount, stairsCount, nodes, true, -1, "NEW", false);
             if (asForm.ShowDialog() == DialogResult.OK)
             {
                 //TODO add other structural members
@@ -140,6 +140,16 @@ namespace WindowsFormsApp1
                     TreeNode[] found = floorTreeView.Nodes.Find("footingParent", true);
                     TreeNode newChild = new TreeNode(asForm.structMemName);    
                     newChild.Name = "WF-" + (wallFootingCount);
+
+                    found[0].Nodes.Add(newChild);
+                    AdjustTreeViewHeight(floorTreeView);
+                }
+                else if (asForm.structuralMemberType.Equals("Column"))
+                {
+                    columnCount++;
+                    TreeNode[] found = floorTreeView.Nodes.Find("columnParent", true);
+                    TreeNode newChild = new TreeNode(asForm.structMemName);
+                    newChild.Name = "C-" + (columnCount);
 
                     found[0].Nodes.Add(newChild);
                     AdjustTreeViewHeight(floorTreeView);
@@ -257,7 +267,7 @@ namespace WindowsFormsApp1
                                 {
                                     if (member.Text.Equals(info.Node.Text))
                                     {
-                                        AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, stairsCount, nodes, false, footingCount, "FOOTINGS", true);
+                                        AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, columnCount, stairsCount, nodes, false, footingCount, "FOOTINGS", true);
                                         if (asForm.ShowDialog() == DialogResult.OK)
                                         {
                                             if (asForm.structuralMemberType.Equals("Footing (Column)"))
@@ -280,7 +290,7 @@ namespace WindowsFormsApp1
                                 {
                                     if (member.Text.Equals(info.Node.Text))
                                     {
-                                        AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, stairsCount, nodes, false, wallFootingCount, "FOOTINGS", false);
+                                        AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, stairsCount, nodes, false, wallFootingCount, "FOOTINGS", false);
                                         if (asForm.ShowDialog() == DialogResult.OK)
                                         {
                                             if (asForm.structuralMemberType.Equals("Footing (Wall)"))
@@ -301,6 +311,43 @@ namespace WindowsFormsApp1
                                 }
                             }
                         }
+                        else if (floorTreeView.SelectedNode.Parent.Text.Equals("COLUMNS"))
+                        {
+                            int columnCount = 0, parentNodeIndex;
+                            if (floorCount == 0)
+                            {
+                                parentNodeIndex = 1;
+                            }
+                            else
+                            {
+                                parentNodeIndex = 0;
+                            }
+                            foreach (TreeNode member in nodes[parentNodeIndex].Nodes)
+                            {
+                                TreeNode[] found = floorTreeView.Nodes.Find(member.Name, true);
+
+                                if (member.Text.Equals(info.Node.Text))
+                                {
+                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.columnCount, nodes, false, columnCount, "COLUMNS", false);
+                                    if (asForm.ShowDialog() == DialogResult.OK)
+                                    {
+                                        if (asForm.structuralMemberType.Equals("Column"))
+                                        {
+                                            TreeNode[] found2 = floorTreeView.Nodes.Find("columnParent", true);
+                                            int i = found2[0].Nodes.IndexOf(info.Node);
+
+                                            TreeNode newChild = new TreeNode(asForm.structMemName);
+                                            newChild.Name = (info.Node.Name);
+
+                                            found2[0].Nodes.RemoveAt(i);
+                                            found2[0].Nodes.Insert(i, newChild);
+                                        }
+                                    }
+                                    return;
+                                }
+                                columnCount++;
+                            }
+                        }
                         else if (floorTreeView.SelectedNode.Parent.Text.Equals("STAIRS"))
                         {
                             int stairsCount = 0, parentNodeIndex;
@@ -318,7 +365,7 @@ namespace WindowsFormsApp1
 
                                 if (member.Text.Equals(info.Node.Text))
                                 {
-                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.stairsCount, nodes, false, stairsCount, "STAIRS", false);
+                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.stairsCount, nodes, false, stairsCount, "STAIRS", false);
                                     if (asForm.ShowDialog() == DialogResult.OK)
                                     {
                                         if (asForm.structuralMemberType.Equals("Stairs"))

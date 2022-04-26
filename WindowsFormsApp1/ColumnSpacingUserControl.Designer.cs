@@ -30,10 +30,10 @@ namespace WindowsFormsApp1
         private void InitializeComponent()
         {
             this.tableLayoutPanel80 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label235 = new System.Windows.Forms.Label();
             this.label234 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel80.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +55,16 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel80.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel80.Size = new System.Drawing.Size(401, 38);
             this.tableLayoutPanel80.TabIndex = 31;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBox1.Location = new System.Drawing.Point(103, 3);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(90, 26);
+            this.textBox1.TabIndex = 37;
+            this.textBox1.Text = "0";
             // 
             // label235
             // 
@@ -91,16 +101,6 @@ namespace WindowsFormsApp1
             this.textBox2.Size = new System.Drawing.Size(90, 26);
             this.textBox2.TabIndex = 34;
             this.textBox2.Text = "0";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox1.Location = new System.Drawing.Point(103, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(90, 26);
-            this.textBox1.TabIndex = 37;
-            this.textBox1.Text = "0";
             // 
             // ColumnSpacingUserControl
             // 
