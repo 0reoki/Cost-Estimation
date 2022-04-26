@@ -588,9 +588,9 @@ namespace WindowsFormsApp1
 
                             //Lateral Ties  
                             members.Add(col_G_LT_D_bx.Text);
+                            members.Add(col_G_LT_LTC_cbx.Text);
 
                             List<string> ltMember = new List<string>();
-                            ltMember.Add("Ground");
                             foreach (ColumnLateralTiesUserControl lt in g_ltUC)
                             {
                                 ltMember.Add(lt.qty);
@@ -600,7 +600,6 @@ namespace WindowsFormsApp1
                             members.Add(col_G_S_S_bx.Text);
 
                             List<string> sMember = new List<string>();
-                            sMember.Add("Ground");
                             foreach (ColumnSpacingUserControl s in g_sUC)
                             {
                                 sMember.Add(s.qty);
@@ -636,9 +635,9 @@ namespace WindowsFormsApp1
 
                             //Lateral Ties  
                             members.Add(col_U_LT_D_bx.Text);
+                            members.Add(col_U_LT_LTC_cbx.Text);
 
                             List<string> ltMember = new List<string>();
-                            ltMember.Add("Upper");
                             foreach (ColumnLateralTiesUserControl lt in u_ltUC)
                             {
                                 ltMember.Add(lt.qty);
@@ -648,13 +647,11 @@ namespace WindowsFormsApp1
                             members.Add(col_U_S_S_bx.Text);
 
                             List<string> sMember = new List<string>();
-                            sMember.Add("Upper");
                             foreach (ColumnSpacingUserControl s in u_sUC)
                             {
                                 sMember.Add(s.qty);
                                 sMember.Add(s.spacing);
                             }
-
                             
                             costEstimationForm.structuralMembers.column[floorCount].Add(members);
                             costEstimationForm.structuralMembers.columnLateralTies[floorCount].Add(ltMember);
@@ -667,7 +664,6 @@ namespace WindowsFormsApp1
                             
                             this.DialogResult = DialogResult.OK;
                         }
-                        
                     }
                     catch (Exception ex)
                     {
@@ -703,6 +699,93 @@ namespace WindowsFormsApp1
                     }
 
                     //Do whatever
+                    try
+                    {
+                        if (floorCount == 0) // Ground Floor
+                        {
+                            costEstimationForm.structuralMembers.columnNames[floorCount][memberCount] = addstruct_Name_bx.Text;
+
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][1] = col_G_D_B_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][2] = col_G_D_D_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][3] = col_G_D_H_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][4] = col_G_D_Q_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][5] = col_G_D_CB_cbx.Text;
+
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][6] = col_G_MR_D_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][7] = col_G_MR_Q_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][8] = col_G_SA_cbx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][9] = col_G_ST_cbx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][10] = col_G_JT_D_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][11] = col_G_JT_S_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][12] = col_G_CLT_D_bx.Text;
+
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][13] = col_G_CLT_S_Rest_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][14] = col_G_CLT_S_Rest2_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][15] = col_G_CLT_S_Rest3_bx.Text;
+
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][16] = col_G_LT_D_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][17] = col_G_LT_LTC_cbx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][18] = col_G_S_S_bx.Text;
+
+                            List<string> ltMember = new List<string>();
+                            foreach (ColumnLateralTiesUserControl lt in g_ltUC)
+                            {
+                                ltMember.Add(lt.qty);
+                            }
+
+                            List<string> sMember = new List<string>();
+                            foreach (ColumnSpacingUserControl s in g_sUC)
+                            {
+                                sMember.Add(s.qty);
+                                sMember.Add(s.spacing);
+                            }
+
+                            costEstimationForm.structuralMembers.columnLateralTies[floorCount][memberCount] = ltMember;
+                            costEstimationForm.structuralMembers.columnSpacing[floorCount][memberCount] = sMember;
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else //Upper
+                        {
+                            costEstimationForm.structuralMembers.columnNames[floorCount][memberCount] = addstruct_Name_bx.Text;
+
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][1] = col_U_D_B_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][2] = col_U_D_D_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][3] = col_U_D_H_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][4] = col_U_D_Q_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][5] = col_U_D_CB_cbx.Text;
+
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][6] = col_U_MR_D_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][7] = col_U_MR_Q_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][8] = col_U_SA_cbx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][9] = col_U_ST_cbx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][10] = col_U_JT_D_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][11] = col_U_JT_S_bx.Text;
+
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][12] = col_U_LT_D_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][13] = col_U_LT_LTC_cbx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][14] = col_U_S_S_bx.Text;
+
+                            List<string> ltMember = new List<string>();
+                            foreach (ColumnLateralTiesUserControl lt in u_ltUC)
+                            {
+                                ltMember.Add(lt.qty);
+                            }
+                            List<string> sMember = new List<string>();
+                            foreach (ColumnSpacingUserControl s in u_sUC)
+                            {
+                                sMember.Add(s.qty);
+                                sMember.Add(s.spacing);
+                            }
+                            costEstimationForm.structuralMembers.columnLateralTies[floorCount][memberCount] = ltMember;
+                            costEstimationForm.structuralMembers.columnSpacing[floorCount][memberCount] = sMember;
+                            this.DialogResult = DialogResult.OK;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Do not leave any blank spaces!");
+                        Console.WriteLine(ex.ToString());
+                    }
                 }
             }
             else if (addstruct_cbx.Text.Equals("Beam"))
@@ -1201,25 +1284,138 @@ namespace WindowsFormsApp1
         {
             if (floorCount == 0)
             {
-                addstructTabControl.SelectedIndex = 2;
                 addstruct_cbx.SelectedIndex = 2;
             }
             else
             {
-                addstructTabControl.SelectedIndex = 0;
                 addstruct_cbx.SelectedIndex = 0;
+            }
+            if (costEstimationForm.structuralMembers.column[floorCount][memberCount][0].Equals("Ground"))
+            {
+                colTabControl.SelectedIndex = 0;
+                oldStructMemName = costEstimationForm.structuralMembers.columnNames[floorCount][memberCount];
+                addstruct_Name_bx.Text = costEstimationForm.structuralMembers.columnNames[floorCount][memberCount];
+
+                col_G_D_B_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][1];
+                col_G_D_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][2];
+                col_G_D_H_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][3];
+                col_G_D_Q_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][4];
+                col_G_D_CB_cbx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][5];
+
+                col_G_MR_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][6];
+                col_G_MR_Q_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][7];
+                col_G_SA_cbx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][8];
+                col_G_ST_cbx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][9];
+                col_G_JT_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][10];
+                col_G_JT_S_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][11];
+                col_G_CLT_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][12];
+
+                col_G_CLT_S_Rest_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][13];
+                col_G_CLT_S_Rest2_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][14];
+                col_G_CLT_S_Rest3_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][15];
+
+                col_G_LT_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][16];
+                col_G_LT_LTC_cbx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][17];
+                col_G_S_S_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][18];
+
+                int i = 0;
+                foreach(string value in costEstimationForm.structuralMembers.columnLateralTies[floorCount][memberCount])
+                {
+                    g_ltUC[i].qty = value;
+                    i++;
+                }
+                i = 0;
+                int j = 0;
+                foreach (string value in costEstimationForm.structuralMembers.columnSpacing[floorCount][memberCount])
+                {
+                    if (j == 0)
+                    {
+                        ColumnSpacingUserControl content2 = new ColumnSpacingUserControl();
+                        g_sUC.Add(content2);
+                        col_G_S_Panel.Controls.Add(content2);
+                    }
+                    if (j % 2 == 0)
+                    {
+                        g_sUC[i].qty = value;
+                        j++;
+                    }
+                    else
+                    {
+                        g_sUC[i].spacing = value;
+                        j++;
+                    }
+                    if (j == 2)
+                    {
+                        i++;
+                        j = 0;
+                    }
+                }
+            }
+            else //Upper
+            {
+                colTabControl.SelectedIndex = 1;
+                oldStructMemName = costEstimationForm.structuralMembers.columnNames[floorCount][memberCount];
+                addstruct_Name_bx.Text = costEstimationForm.structuralMembers.columnNames[floorCount][memberCount];
+                
+                col_U_D_B_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][1];
+                col_U_D_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][2];
+                col_U_D_H_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][3];
+                col_U_D_Q_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][4];
+                col_U_D_CB_cbx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][5];
+
+                col_U_MR_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][6];
+                col_U_MR_Q_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][7];
+                col_U_SA_cbx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][8];
+                col_U_ST_cbx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][9];
+                col_U_JT_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][10];
+                col_U_JT_S_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][11];
+
+                col_U_LT_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][12];
+                col_U_LT_LTC_cbx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][13];
+                col_U_S_S_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][14];
+
+                int i = 0;
+                foreach (string value in costEstimationForm.structuralMembers.columnLateralTies[floorCount][memberCount])
+                {
+                    u_ltUC[i].qty = value;
+                    i++;
+                }
+                i = 0;
+                int j = 0;
+                foreach (string value in costEstimationForm.structuralMembers.columnSpacing[floorCount][memberCount])
+                {
+                    if (j == 0)
+                    {
+                        ColumnSpacingUserControl content2 = new ColumnSpacingUserControl();
+                        u_sUC.Add(content2);
+                        col_U_S_Panel.Controls.Add(content2);
+                    }
+                    if (j % 2 == 0)
+                    {
+                        u_sUC[i].qty = value;
+                        j++;
+                    }
+                    else
+                    {
+                        u_sUC[i].spacing = value;
+                        j++;
+                    }
+                    if (j == 2)
+                    {
+                        i++;
+                        j = 0;
+                    }
+                }
             }
         }
         private void setStairsValues()
         {
             if(floorCount == 0)
             {
-                addstructTabControl.SelectedIndex = 5;
                 addstruct_cbx.SelectedIndex = 5;
             }
             else
             {
-                addstructTabControl.SelectedIndex = 3;
                 addstruct_cbx.SelectedIndex = 3;
             }
             if (costEstimationForm.structuralMembers.stairs[floorCount][memberCount][0].Equals("Straight Stairs"))

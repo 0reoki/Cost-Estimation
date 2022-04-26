@@ -65,3 +65,5 @@ C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\obj\Debug\Buil
 C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.AddStructForm.resources
+C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.ColumnLateralTiesUserControl.resources
+C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.ColumnSpacingUserControl.resources

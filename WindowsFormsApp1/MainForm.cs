@@ -539,6 +539,33 @@ namespace WindowsFormsApp1
 
             //Columns
             stringParam += "\nColumns|\n";
+            j = 0;
+            foreach (List<List<string>> floor in structuralMembers.column)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<string> member in floor)
+                {
+                    stringParam += "Column-" + (k + 1) + "|";
+                    stringParam += structuralMembers.columnNames[j][k] + "|";
+                    foreach (string value in member)
+                    {
+                        stringParam += value + "|";
+                    }
+                    stringParam += "Lateral-Ties" + "|";
+                    foreach (string value in structuralMembers.columnLateralTies[j][k])
+                    {
+                        stringParam += value + "|";
+                    }
+                    stringParam += "Spacing" + "|";
+                    foreach (string value in structuralMembers.columnSpacing[j][k])
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
 
             //Beams
             stringParam += "\nBeams|\n";
@@ -1211,8 +1238,116 @@ namespace WindowsFormsApp1
             MessageBox.Show("ETO ANG TUNAY NA SAGOT4: " + soilPoisoning_Total);
             MessageBox.Show("ETO ANG TUNAY NA SAGOT5: " + backfillingAndCompaction_Total);
 
-            //Columns
+            /*
+             //Columns
+            stringParam += "\nColumns|\n";
+            j = 0;
+            foreach (List<List<string>> floor in structuralMembers.column)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<string> member in floor)
+                {
+                    stringParam += "Column-" + (k + 1) + "|";
+                    stringParam += structuralMembers.columnNames[j][k] + "|";
+                    foreach (string value in member)
+                    {
+                        stringParam += value + "|";
+                    }
+                    stringParam += "Lateral-Ties" + "|";
+                    foreach (string value in structuralMembers.columnLateralTies[j][k])
+                    {
+                        stringParam += value + "|";
+                    }
+                    stringParam += "Spacing" + "|";
+                    foreach (string value in structuralMembers.columnSpacing[j][k])
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
+             */
+
+            //Columns TODO
             i++;
+            j = 0;
+            l = 0;
+
+            structuralMembers.columnNames.Clear();
+            structuralMembers.column.Clear();
+            structuralMembers.columnLateralTies.Clear();
+            structuralMembers.columnSpacing.Clear();
+            while (!tokens[i].Equals("Beams"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("Beams"))
+                {
+                    List<List<string>> floor = new List<List<string>>();
+                    List<List<string>> floor1 = new List<List<string>>();
+                    List<List<string>> floor2 = new List<List<string>>();
+                    List<string> name = new List<string>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("Column-" + (l + 1)))
+                    {
+                        i++;
+                        name.Add(tokens[i]); i++;
+                        List<string> member = new List<string>();
+                        List<string> ltMember = new List<string>();
+                        List<string> sMember = new List<string>();
+                        while (!tokens[i].Equals("Lateral-Ties") && !tokens[i].Equals("Spacing") && 
+                               !tokens[i].Equals("Column-" + (l + 2)) && !tokens[i].Equals("Floor-" + (j + 2)) && 
+                               !tokens[i].Equals("Beams"))
+                        {
+                            member.Add(tokens[i]); i++;
+                        }
+                        if (tokens[i].Equals("Lateral-Ties"))
+                        {
+                            i++;
+                            while (!tokens[i].Equals("Spacing") &&
+                                   !tokens[i].Equals("Column-" + (l + 2)) && !tokens[i].Equals("Floor-" + (j + 2)) &&
+                                   !tokens[i].Equals("Beams"))
+                            {
+                                ltMember.Add(tokens[i]); i++;
+                            }
+                        }
+                        if (tokens[i].Equals("Spacing"))
+                        {
+                            i++;
+                            while (!tokens[i].Equals("Column-" + (l + 2)) && !tokens[i].Equals("Floor-" + (j + 2)) &&
+                                   !tokens[i].Equals("Beams"))  
+                            {
+                                sMember.Add(tokens[i]); i++;
+                            }
+                        }
+                        l++;
+                        floor.Add(member);
+                        floor1.Add(ltMember);
+                        floor2.Add(sMember);
+
+                        foreach (var sublist in floor1)
+                        {
+                            foreach (var obj in sublist)
+                            {
+                                Console.WriteLine(obj);
+                            }
+                        }
+                        foreach (var sublist in floor2)
+                        {
+                            foreach (var obj in sublist)
+                            {
+                                Console.WriteLine(obj);
+                            }
+                        }
+                    }
+                    structuralMembers.column.Add(floor);
+                    structuralMembers.columnLateralTies.Add(floor1);
+                    structuralMembers.columnSpacing.Add(floor2);
+                    structuralMembers.columnNames.Add(name);
+                    j++;
+                }
+            }
 
             //Beams
             i++;

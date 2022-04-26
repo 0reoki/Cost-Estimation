@@ -1,4 +1,4 @@
-2022/04/25-23:10:57.499 74c Reusing MANIFEST C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\bin\Release\WindowsFormsApp1.exe.WebView2\EBWebView\Default\Session Storage/MANIFEST-000001
-2022/04/25-23:10:57.501 74c Recovering log #3
-2022/04/25-23:10:57.501 74c (ignoring error) C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\bin\Release\WindowsFormsApp1.exe.WebView2\EBWebView\Default\Session Storage/000003.log: dropping 83 bytes; Corruption: checksum mismatch
-2022/04/25-23:10:57.501 74c Reusing old log C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\bin\Release\WindowsFormsApp1.exe.WebView2\EBWebView\Default\Session Storage/000003.log 
+2022/04/27-03:09:51.598 2888 Reusing MANIFEST C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\bin\Release\WindowsFormsApp1.exe.WebView2\EBWebView\Default\Session Storage/MANIFEST-000001
+2022/04/27-03:09:51.599 2888 Recovering log #3
+2022/04/27-03:09:51.599 2888 (ignoring error) C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\bin\Release\WindowsFormsApp1.exe.WebView2\EBWebView\Default\Session Storage/000003.log: dropping 596 bytes; Corruption: checksum mismatch
+2022/04/27-03:09:51.599 2888 Reusing old log C:\Users\Joseph\Documents\GitHub\Cost-Estimation\WindowsFormsApp1\bin\Release\WindowsFormsApp1.exe.WebView2\EBWebView\Default\Session Storage/000003.log 
