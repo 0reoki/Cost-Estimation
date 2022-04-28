@@ -49,6 +49,8 @@ namespace WindowsFormsApp1
             u_ltUC = new List<ColumnLateralTiesUserControl>();
             u_sUC = new List<ColumnSpacingUserControl>();
             
+            //Init Components with Connection Below
+
 
             //Init components
             addstruct_cbx.SelectedIndex = 0;
@@ -83,6 +85,7 @@ namespace WindowsFormsApp1
             stairs_LS_L_MB_cbx.SelectedIndex = stairs_LS_S_MB_cbx.SelectedIndex = stairs_LS_S_NB_cbx.SelectedIndex = 0;
 
             setDefaultStructMemName();
+            populateColumnConnectionBelow();
 
             //existing node?
             if (!isNew)
@@ -1408,6 +1411,33 @@ namespace WindowsFormsApp1
                 }
             }
         }
+
+        public void populateColumnConnectionBelow()
+        {
+            if (floorCount == 0)
+            {
+                col_G_D_CB_cbx.Items.Clear();
+                foreach (string name in costEstimationForm.structuralMembers.footingColumnNames)
+                {
+                    col_G_D_CB_cbx.Items.Add(name);
+                }
+                if (col_G_D_CB_cbx.SelectedItem == null || col_G_D_CB_cbx.SelectedIndex == -1)
+                    col_G_D_CB_cbx.Items.Add("None");
+                col_G_D_CB_cbx.SelectedIndex = 0;
+            }
+            else
+            {
+                col_U_D_CB_cbx.Items.Clear();
+                foreach (string name in costEstimationForm.structuralMembers.columnNames[floorCount - 1])
+                {
+                    col_U_D_CB_cbx.Items.Add(name);
+                }
+                if (col_U_D_CB_cbx.SelectedItem == null || col_U_D_CB_cbx.SelectedIndex == -1)
+                    col_U_D_CB_cbx.Items.Add("None");
+                col_U_D_CB_cbx.SelectedIndex = 0;   
+            }
+        }
+
         private void setStairsValues()
         {
             if(floorCount == 0)

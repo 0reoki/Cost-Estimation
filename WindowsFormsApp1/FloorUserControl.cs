@@ -70,6 +70,39 @@ namespace WindowsFormsApp1
             AdjustTreeViewHeight(floorTreeView);
         }
 
+        public void setNodes()
+        {
+            if (floorCount == 0)
+            {
+                foreach (TreeNode node in nodes[0].Nodes)
+                {
+                    if (node.Name[0] == 'F')
+                        footingCount++;
+                    else
+                        wallFootingCount++;
+                }
+                foreach (TreeNode node in nodes[1].Nodes)
+                {
+                    columnCount++;
+                }
+                foreach (TreeNode node in nodes[4].Nodes)
+                {
+                    stairsCount++;
+                }
+            }
+            else
+            {
+                foreach (TreeNode node in nodes[0].Nodes)
+                {
+                    columnCount++;
+                }
+                foreach (TreeNode node in nodes[3].Nodes)
+                {
+                    stairsCount++;
+                }
+            }
+        }
+
         public Floor(CostEstimationForm costEstimationForm, bool fromFile)
         {
             InitializeComponent();
@@ -96,7 +129,7 @@ namespace WindowsFormsApp1
             //SaveFile?
             if (fromFile)
             {
-
+                
             }
             else //Add Parent nodes and set tree
             {

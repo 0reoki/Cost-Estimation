@@ -619,8 +619,18 @@ namespace WindowsFormsApp1
             estimationPanel.Controls.Clear();
 
             //Clear variables in AddStructForm
+            structuralMembers.footingColumnNames.Clear();
+            structuralMembers.footingWallNames.Clear();
             structuralMembers.footingsColumn.Clear();
             structuralMembers.footingsWall.Clear();
+
+            structuralMembers.columnNames.Clear();
+            structuralMembers.column.Clear();
+            structuralMembers.columnLateralTies.Clear();
+            structuralMembers.columnSpacing.Clear();
+
+            structuralMembers.stairsNames.Clear();
+            structuralMembers.stairs.Clear();
             structuralMembers.earthworkSolutions.Clear();
 
             //Init variables for StructuralMember
@@ -658,10 +668,15 @@ namespace WindowsFormsApp1
 
                         found[0].Nodes.Add(newChild);
                         floor.AdjustTreeViewHeight(floor.treeView);
+
+                        if (newChild.Name[0] == 'F')
+                            floor.footingCount++;
+                        else
+                            floor.wallFootingCount++;
                     }
                 }
 
-                while (!tokens[i].Equals("BEAMS")) //BEAMS
+                while (!tokens[i].Equals("BEAMS")) //COLUMNS
                 {
                     i++;
                     if (!tokens[i].Equals("BEAMS"))
@@ -672,10 +687,11 @@ namespace WindowsFormsApp1
 
                         found[0].Nodes.Add(newChild);
                         floor.AdjustTreeViewHeight(floor.treeView);
+                        floor.columnCount++;
                     }
                 }
 
-                while(!tokens[i].Equals("SLABS")) //COLUMNS
+                while(!tokens[i].Equals("SLABS")) //BEAMS
                 {
                     i++;
                     if(!tokens[i].Equals("SLABS"))
@@ -714,6 +730,7 @@ namespace WindowsFormsApp1
 
                         found[0].Nodes.Add(newChild);
                         floor.AdjustTreeViewHeight(floor.treeView);
+                        floor.stairsCount++;
                     }
                 }
 
@@ -1275,10 +1292,6 @@ namespace WindowsFormsApp1
             j = 0;
             l = 0;
 
-            structuralMembers.columnNames.Clear();
-            structuralMembers.column.Clear();
-            structuralMembers.columnLateralTies.Clear();
-            structuralMembers.columnSpacing.Clear();
             while (!tokens[i].Equals("Beams"))
             {
                 if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("Beams"))
@@ -1360,8 +1373,6 @@ namespace WindowsFormsApp1
             j = 0;
             l = 0;
 
-            structuralMembers.stairsNames.Clear();
-            structuralMembers.stairs.Clear();
             while (!tokens[i].Equals("Roof"))
             {
                 if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("Roof"))
