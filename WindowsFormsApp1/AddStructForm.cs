@@ -25,10 +25,10 @@ namespace WindowsFormsApp1
         private CostEstimationForm costEstimationForm;
         private List<TreeNode> nodes;
         private int floorCount;
-        private int memberCount, footingCount, wallFootingCount, columnCount, stairsCount;
+        private int memberCount, footingCount, wallFootingCount, columnCount, stairsCount, roofCount;
         private bool isNew, isFooting;
 
-        public AddStructForm(CostEstimationForm costEstimationForm, int floorCount, int footingCount, int wallFootingCount, int columnCount, int stairsCount, List<TreeNode> nodes, bool isNew, int index, string parentNode, bool isFooting)
+        public AddStructForm(CostEstimationForm costEstimationForm, int floorCount, int footingCount, int wallFootingCount, int columnCount, int stairsCount, int roofCount, List<TreeNode> nodes, bool isNew, int index, string parentNode, bool isFooting)
         {
             InitializeComponent();
 
@@ -43,14 +43,13 @@ namespace WindowsFormsApp1
             this.wallFootingCount = wallFootingCount;
             this.columnCount = columnCount;
             this.stairsCount = stairsCount;
+            this.roofCount = roofCount;
+
             oldStructMemName = "";
             g_ltUC = new List<ColumnLateralTiesUserControl>();
             g_sUC = new List<ColumnSpacingUserControl>();
             u_ltUC = new List<ColumnLateralTiesUserControl>();
             u_sUC = new List<ColumnSpacingUserControl>();
-            
-            //Init Components with Connection Below
-
 
             //Init components
             addstruct_cbx.SelectedIndex = 0;
@@ -83,6 +82,14 @@ namespace WindowsFormsApp1
             stairs_US_WS_DB_cbx.SelectedIndex = stairs_US_L_MB_cbx.SelectedIndex = stairs_US_S_MB_cbx.SelectedIndex =
             stairs_US_S_NB_cbx.SelectedIndex = stairs_LS_WS_MB_cbx.SelectedIndex = stairs_LS_WS_DB_cbx.SelectedIndex =
             stairs_LS_L_MB_cbx.SelectedIndex = stairs_LS_S_MB_cbx.SelectedIndex = stairs_LS_S_NB_cbx.SelectedIndex = 0;
+
+            //Init Roof Combo Boxes and Radio Buttons
+            roof_RP_ST_D_CLTSR_cbx.SelectedIndex = roof_RP_ST_D_CLTSP_cbx.SelectedIndex =
+            roof_RP_SCP_D_CLCPR_cbx.SelectedIndex = roof_RP_SCP_D_CLCPP_cbx.SelectedIndex =
+            roof_GI_D_EC_cbx.SelectedIndex = roof_GI_M_SP_cbx.SelectedIndex = roof_PGR_cbx.SelectedIndex = 0;
+            
+            roof_RP_W_rb.Checked = true;
+            roof_GI_M_CGIS_rb.Checked = true;
 
             setDefaultStructMemName();
             populateColumnConnectionBelow();
@@ -133,17 +140,31 @@ namespace WindowsFormsApp1
             {
                 tab.Text = "";
             }
-            stairsTabControl.Appearance = TabAppearance.FlatButtons;
-            stairsTabControl.ItemSize = new Size(0, 1);
-            stairsTabControl.SizeMode = TabSizeMode.Fixed;
-            foreach (TabPage tab in stairsTabControl.TabPages)
-            {
-                tab.Text = "";
-            }
             colTabControl.Appearance = TabAppearance.FlatButtons;
             colTabControl.ItemSize = new Size(0, 1);
             colTabControl.SizeMode = TabSizeMode.Fixed;
             foreach (TabPage tab in colTabControl.TabPages)
+            {
+                tab.Text = "";
+            }
+            stairsTabControl.Appearance = TabAppearance.FlatButtons;
+            stairsTabControl.ItemSize = new Size(0, 1);
+            stairsTabControl.SizeMode = TabSizeMode.Fixed; 
+            foreach (TabPage tab in stairsTabControl.TabPages)
+            {
+                tab.Text = "";
+            }
+            roofTabControl.Appearance = TabAppearance.FlatButtons;
+            roofTabControl.ItemSize = new Size(0, 1);
+            roofTabControl.SizeMode = TabSizeMode.Fixed;
+            foreach (TabPage tab in roofTabControl.TabPages)
+            {
+                tab.Text = "";
+            }
+            roof_RP_D_TabControl.Appearance = TabAppearance.FlatButtons;
+            roof_RP_D_TabControl.ItemSize = new Size(0, 1);
+            roof_RP_D_TabControl.SizeMode = TabSizeMode.Fixed;
+            foreach (TabPage tab in roof_RP_D_TabControl.TabPages)
             {
                 tab.Text = "";
             }
@@ -567,7 +588,7 @@ namespace WindowsFormsApp1
                     //Do whatever
                     try
                     {
-                        if(floorCount == 0) //Ground Floor
+                        if (floorCount == 0) //Ground Floor
                         {
                             List<string> members = new List<string>();
                             members.Add("Ground");
@@ -655,7 +676,7 @@ namespace WindowsFormsApp1
                                 sMember.Add(s.qty);
                                 sMember.Add(s.spacing);
                             }
-                            
+
                             costEstimationForm.structuralMembers.column[floorCount].Add(members);
                             costEstimationForm.structuralMembers.columnLateralTies[floorCount].Add(ltMember);
                             costEstimationForm.structuralMembers.columnSpacing[floorCount].Add(sMember);
@@ -664,7 +685,7 @@ namespace WindowsFormsApp1
                             //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
                             MessageBox.Show("eto ang sagot sa tanong: " +
                                 costEstimationForm.structuralMembers.column[floorCount][columnCount][0]);
-                            
+
                             this.DialogResult = DialogResult.OK;
                         }
                     }
@@ -849,7 +870,7 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.stairsNames[floorCount].Add(structMemName);
 
                             //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
-                            MessageBox.Show("eto ang sagot sa tanong: " + 
+                            MessageBox.Show("eto ang sagot sa tanong: " +
                                 costEstimationForm.structuralMembers.stairs[floorCount][stairsCount][0]);
                             this.DialogResult = DialogResult.OK;
                         }
@@ -890,7 +911,7 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.stairsNames[floorCount].Add(structMemName);
 
                             //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
-                            MessageBox.Show("eto ang sagot sa tanong: " + 
+                            MessageBox.Show("eto ang sagot sa tanong: " +
                                 costEstimationForm.structuralMembers.stairs[floorCount][stairsCount][0]);
                             this.DialogResult = DialogResult.OK;
                         }
@@ -972,7 +993,7 @@ namespace WindowsFormsApp1
                         try
                         {
                             costEstimationForm.structuralMembers.stairsNames[floorCount][memberCount] = addstruct_Name_bx.Text;
-                                
+
                             costEstimationForm.structuralMembers.stairs[floorCount][memberCount][1] = stairs_SS_D_Q_bx.Text;
                             costEstimationForm.structuralMembers.stairs[floorCount][memberCount][2] = stairs_SS_D_S_bx.Text;
                             costEstimationForm.structuralMembers.stairs[floorCount][memberCount][3] = stairs_SS_D_SL_bx.Text;
@@ -1077,7 +1098,64 @@ namespace WindowsFormsApp1
             }
             else //Roofing
             {
+                if (isNew)
+                {
+                    //Name Validation
+                    if (costEstimationForm.structuralMembers.roofNames[floorCount].Contains(structMemName))
+                    {
+                        MessageBox.Show("Name already exists!");
+                        return;
+                    }
 
+                    //TODO Do Whatever
+                    if (roof_PGR_cbx.SelectedIndex == 0) //Rafters and Purlins
+                    {
+                        try
+                        {
+                            List<string> members = new List<string>();
+                            members.Add(stairs_ST_cbx.Text);
+                            members.Add(stairs_SS_D_Q_bx.Text);
+                            members.Add(stairs_SS_D_S_bx.Text);
+                            members.Add(stairs_SS_D_SL_bx.Text);
+                            members.Add(stairs_SS_D_RH_bx.Text);
+                            members.Add(stairs_SS_D_TW_bx.Text);
+                            members.Add(stairs_SS_D_WST_bx.Text);
+
+                            members.Add(stairs_SS_WS_MB_cbx.Text);
+                            members.Add(stairs_SS_WS_MBS_bx.Text);
+                            members.Add(stairs_SS_WS_DB_cbx.Text);
+                            members.Add(stairs_SS_WS_DBS_bx.Text);
+                            members.Add(stairs_SS_S_MB_cbx.Text);
+                            members.Add(stairs_SS_S_MBS_bx.Text);
+                            members.Add(stairs_SS_S_NB_cbx.Text);
+
+                            costEstimationForm.structuralMembers.stairs[floorCount].Add(members);
+                            costEstimationForm.structuralMembers.stairsNames[floorCount].Add(structMemName);
+
+                            //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                            MessageBox.Show("eto ang sagot sa tanong: " +
+                                costEstimationForm.structuralMembers.stairs[floorCount][stairsCount][0]);
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Do not leave any blank spaces!");
+                            Console.WriteLine(ex.ToString());
+                        }
+                    }
+                    else if (roof_PGR_cbx.SelectedIndex == 1) //G.I Roof and Its Accessories
+                    {
+
+                    }
+                    else //Roof Accessories (Tinswork)
+                    {
+
+                    }
+                }
+                else //Update
+                {
+
+                }
             }
         }
 
@@ -1683,6 +1761,42 @@ namespace WindowsFormsApp1
             ColumnSpacingUserControl content = new ColumnSpacingUserControl();
             u_sUC.Add(content);
             col_U_S_Panel.Controls.Add(content);
+        }
+
+        private void roof_RP_W_rb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (roof_RP_W_rb.Checked)
+            {
+                roof_RP_D_TabControl.SelectedIndex = 0;
+            }
+            else if (roof_RP_ST_rb.Checked)
+            {
+                roof_RP_D_TabControl.SelectedIndex = 1;
+            }
+            else if (roof_RP_SCP_rb.Checked)
+            {
+                roof_RP_D_TabControl.SelectedIndex = 2;
+            }
+        }
+
+        private void roof_PGR_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            roofTabControl.SelectedIndex = roof_PGR_cbx.SelectedIndex;
+        }
+
+        private void roof_GI_M_PGIS_rb_CheckedChanged(object sender, EventArgs e)
+        {
+            roof_GI_M_SP_cbx.Enabled = true;
+        }
+
+        private void roof_GI_M_CGIS_rb_CheckedChanged(object sender, EventArgs e)
+        {
+            roof_GI_M_SP_cbx.Enabled = false;
+        }
+
+        private void roof_RP_W_D_SR_bx_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void col_U_LT_LTC_cbx_SelectedIndexChanged(object sender, EventArgs e)

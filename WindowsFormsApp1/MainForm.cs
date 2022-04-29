@@ -212,6 +212,12 @@ namespace WindowsFormsApp1
                 List<string> newList8 = new List<string>();
                 structuralMembers.stairs.Add(newList7);
                 structuralMembers.stairsNames.Add(newList8);
+
+                //Roof
+                List<List<string>> newList9 = new List<List<string>>();
+                List<string> newList10 = new List<string>();
+                structuralMembers.roof.Add(newList9);
+                structuralMembers.roofNames.Add(newList10);
             }
             else //Upper Floors
             {
@@ -228,8 +234,14 @@ namespace WindowsFormsApp1
                 //Stairs
                 List<List<string>> newList7 = new List<List<string>>();
                 List<string> newList8 = new List<string>();
-                structuralMembers.stairs.Add(newList7);
-                structuralMembers.stairsNames.Add(newList8);
+                structuralMembers.roof.Add(newList7);
+                structuralMembers.roofNames.Add(newList8);
+
+                //Roof
+                List<List<string>> newList9 = new List<List<string>>();
+                List<string> newList10 = new List<string>();
+                structuralMembers.roof.Add(newList9);
+                structuralMembers.roofNames.Add(newList10);
             }
 
             //Set a ground floor

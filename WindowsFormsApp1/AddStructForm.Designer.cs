@@ -30,10 +30,10 @@ namespace WindowsFormsApp1
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddStructForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -437,9 +437,43 @@ namespace WindowsFormsApp1
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage13 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel99 = new System.Windows.Forms.TableLayoutPanel();
+            this.label111 = new System.Windows.Forms.Label();
+            this.comboBox8 = new System.Windows.Forms.ComboBox();
+            this.comboBox13 = new System.Windows.Forms.ComboBox();
+            this.label124 = new System.Windows.Forms.Label();
+            this.label125 = new System.Windows.Forms.Label();
+            this.textBox54 = new System.Windows.Forms.TextBox();
+            this.label129 = new System.Windows.Forms.Label();
+            this.label130 = new System.Windows.Forms.Label();
+            this.label126 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel25 = new System.Windows.Forms.TableLayoutPanel();
+            this.label106 = new System.Windows.Forms.Label();
+            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.textBox35 = new System.Windows.Forms.TextBox();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel56 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox31 = new System.Windows.Forms.TextBox();
+            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.textBox34 = new System.Windows.Forms.TextBox();
+            this.label120 = new System.Windows.Forms.Label();
+            this.label121 = new System.Windows.Forms.Label();
+            this.label122 = new System.Windows.Forms.Label();
+            this.label123 = new System.Windows.Forms.Label();
             this.tableLayoutPanel55 = new System.Windows.Forms.TableLayoutPanel();
+            this.comboBox12 = new System.Windows.Forms.ComboBox();
+            this.comboBox11 = new System.Windows.Forms.ComboBox();
+            this.label119 = new System.Windows.Forms.Label();
+            this.textBox30 = new System.Windows.Forms.TextBox();
+            this.textBox29 = new System.Windows.Forms.TextBox();
+            this.label118 = new System.Windows.Forms.Label();
+            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.label117 = new System.Windows.Forms.Label();
+            this.label116 = new System.Windows.Forms.Label();
             this.textBox27 = new System.Windows.Forms.TextBox();
             this.label114 = new System.Windows.Forms.Label();
+            this.label115 = new System.Windows.Forms.Label();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel27 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox24 = new System.Windows.Forms.TextBox();
@@ -558,12 +592,12 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel67 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel71 = new System.Windows.Forms.TableLayoutPanel();
-            this.label225 = new System.Windows.Forms.Label();
             this.label206 = new System.Windows.Forms.Label();
             this.stairs_LS_WS_MB_cbx = new System.Windows.Forms.ComboBox();
             this.stairs_LS_WS_MBS_bx = new System.Windows.Forms.TextBox();
             this.label207 = new System.Windows.Forms.Label();
             this.label218 = new System.Windows.Forms.Label();
+            this.label225 = new System.Windows.Forms.Label();
             this.tableLayoutPanel68 = new System.Windows.Forms.TableLayoutPanel();
             this.stairs_LS_S_MBS_bx = new System.Windows.Forms.TextBox();
             this.label187 = new System.Windows.Forms.Label();
@@ -593,77 +627,50 @@ namespace WindowsFormsApp1
             this.label204 = new System.Windows.Forms.Label();
             this.label205 = new System.Windows.Forms.Label();
             this.tableLayoutPanel72 = new System.Windows.Forms.TableLayoutPanel();
-            this.label221 = new System.Windows.Forms.Label();
             this.stairs_LS_WS_DB_cbx = new System.Windows.Forms.ComboBox();
             this.stairs_LS_WS_DBS_bx = new System.Windows.Forms.TextBox();
             this.label219 = new System.Windows.Forms.Label();
             this.label220 = new System.Windows.Forms.Label();
+            this.label221 = new System.Windows.Forms.Label();
             this.tableLayoutPanel75 = new System.Windows.Forms.TableLayoutPanel();
-            this.label224 = new System.Windows.Forms.Label();
             this.stairs_LS_L_MB_cbx = new System.Windows.Forms.ComboBox();
             this.stairs_LS_L_MBS_bx = new System.Windows.Forms.TextBox();
             this.label222 = new System.Windows.Forms.Label();
             this.label223 = new System.Windows.Forms.Label();
+            this.label224 = new System.Windows.Forms.Label();
             this.tableLayoutPanel76 = new System.Windows.Forms.TableLayoutPanel();
             this.roofingTabPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel91 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel92 = new System.Windows.Forms.TableLayoutPanel();
             this.label244 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.roof_PGR_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel93 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.roofTabControl = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel94 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel95 = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label245 = new System.Windows.Forms.Label();
-            this.label246 = new System.Windows.Forms.Label();
-            this.label247 = new System.Windows.Forms.Label();
-            this.label249 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel96 = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label250 = new System.Windows.Forms.Label();
-            this.label258 = new System.Windows.Forms.Label();
-            this.label259 = new System.Windows.Forms.Label();
-            this.label260 = new System.Windows.Forms.Label();
             this.tableLayoutPanel97 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.label261 = new System.Windows.Forms.Label();
-            this.label262 = new System.Windows.Forms.Label();
-            this.label263 = new System.Windows.Forms.Label();
-            this.label264 = new System.Windows.Forms.Label();
-            this.label265 = new System.Windows.Forms.Label();
-            this.label266 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel98 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel100 = new System.Windows.Forms.TableLayoutPanel();
             this.label268 = new System.Windows.Forms.Label();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.roof_GI_M_SP_cbx = new System.Windows.Forms.ComboBox();
             this.label273 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.roof_GI_M_CGIS_rb = new System.Windows.Forms.RadioButton();
+            this.roof_GI_M_GIRN_rb = new System.Windows.Forms.RadioButton();
+            this.roof_GI_M_GIR_rb = new System.Windows.Forms.RadioButton();
+            this.roof_GI_M_GIW_rb = new System.Windows.Forms.RadioButton();
+            this.roof_GI_M_LW_rb = new System.Windows.Forms.RadioButton();
+            this.roof_GI_M_PGIS_rb = new System.Windows.Forms.RadioButton();
+            this.roof_GI_M_UN_rb = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel102 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.roof_GI_D_HRS_bx = new System.Windows.Forms.TextBox();
             this.label267 = new System.Windows.Forms.Label();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.textBox32 = new System.Windows.Forms.TextBox();
+            this.roof_GI_D_EC_cbx = new System.Windows.Forms.ComboBox();
+            this.roof_GI_D_LP_bx = new System.Windows.Forms.TextBox();
             this.label282 = new System.Windows.Forms.Label();
             this.label283 = new System.Windows.Forms.Label();
             this.label284 = new System.Windows.Forms.Label();
@@ -671,37 +678,37 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel103 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel106 = new System.Windows.Forms.TableLayoutPanel();
             this.label305 = new System.Windows.Forms.Label();
-            this.textBox48 = new System.Windows.Forms.TextBox();
-            this.textBox49 = new System.Windows.Forms.TextBox();
-            this.textBox50 = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_HR_TL_bx = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_HR_EL_bx = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_HR_TW_bx = new System.Windows.Forms.TextBox();
             this.label306 = new System.Windows.Forms.Label();
             this.label307 = new System.Windows.Forms.Label();
             this.label308 = new System.Windows.Forms.Label();
             this.label301 = new System.Windows.Forms.Label();
-            this.textBox45 = new System.Windows.Forms.TextBox();
-            this.textBox46 = new System.Windows.Forms.TextBox();
-            this.textBox47 = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_VR_TL_bx = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_VR_EL_bx = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_VR_TW_bx = new System.Windows.Forms.TextBox();
             this.label302 = new System.Windows.Forms.Label();
             this.label303 = new System.Windows.Forms.Label();
             this.label304 = new System.Windows.Forms.Label();
             this.label293 = new System.Windows.Forms.Label();
-            this.textBox39 = new System.Windows.Forms.TextBox();
-            this.textBox40 = new System.Windows.Forms.TextBox();
-            this.textBox42 = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_RR_TW_bx = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_RR_TL_bx = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_RR_EL_bx = new System.Windows.Forms.TextBox();
             this.label294 = new System.Windows.Forms.Label();
             this.label295 = new System.Windows.Forms.Label();
             this.label300 = new System.Windows.Forms.Label();
             this.label289 = new System.Windows.Forms.Label();
-            this.textBox36 = new System.Windows.Forms.TextBox();
-            this.textBox37 = new System.Windows.Forms.TextBox();
-            this.textBox38 = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_F_TL_bx = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_F_EL_bx = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_F_TW_bx = new System.Windows.Forms.TextBox();
             this.label290 = new System.Windows.Forms.Label();
             this.label291 = new System.Windows.Forms.Label();
             this.label292 = new System.Windows.Forms.Label();
             this.label288 = new System.Windows.Forms.Label();
-            this.textBox41 = new System.Windows.Forms.TextBox();
-            this.textBox43 = new System.Windows.Forms.TextBox();
-            this.textBox44 = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_G_TL_bx = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_G_TW_bx = new System.Windows.Forms.TextBox();
+            this.roof_RA_D_G_EL_bx = new System.Windows.Forms.TextBox();
             this.label296 = new System.Windows.Forms.Label();
             this.label297 = new System.Windows.Forms.Label();
             this.label298 = new System.Windows.Forms.Label();
@@ -736,40 +743,55 @@ namespace WindowsFormsApp1
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label115 = new System.Windows.Forms.Label();
-            this.label116 = new System.Windows.Forms.Label();
-            this.label117 = new System.Windows.Forms.Label();
-            this.textBox28 = new System.Windows.Forms.TextBox();
-            this.label118 = new System.Windows.Forms.Label();
-            this.textBox29 = new System.Windows.Forms.TextBox();
-            this.textBox30 = new System.Windows.Forms.TextBox();
-            this.label119 = new System.Windows.Forms.Label();
-            this.comboBox11 = new System.Windows.Forms.ComboBox();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel56 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox31 = new System.Windows.Forms.TextBox();
-            this.textBox33 = new System.Windows.Forms.TextBox();
-            this.textBox34 = new System.Windows.Forms.TextBox();
-            this.label120 = new System.Windows.Forms.Label();
-            this.label121 = new System.Windows.Forms.Label();
-            this.label122 = new System.Windows.Forms.Label();
-            this.label123 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel25 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox23 = new System.Windows.Forms.TextBox();
-            this.textBox35 = new System.Windows.Forms.TextBox();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.label106 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel99 = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
-            this.comboBox13 = new System.Windows.Forms.ComboBox();
-            this.label124 = new System.Windows.Forms.Label();
-            this.label125 = new System.Windows.Forms.Label();
-            this.label126 = new System.Windows.Forms.Label();
-            this.textBox54 = new System.Windows.Forms.TextBox();
-            this.label129 = new System.Windows.Forms.Label();
-            this.label130 = new System.Windows.Forms.Label();
-            this.label111 = new System.Windows.Forms.Label();
+            this.roof_RP_W_rb = new System.Windows.Forms.RadioButton();
+            this.roof_RP_ST_rb = new System.Windows.Forms.RadioButton();
+            this.roof_RP_SCP_rb = new System.Windows.Forms.RadioButton();
+            this.roof_RP_D_TabControl = new System.Windows.Forms.TabControl();
+            this.tabPage15 = new System.Windows.Forms.TabPage();
+            this.tabPage16 = new System.Windows.Forms.TabPage();
+            this.tabPage17 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel95 = new System.Windows.Forms.TableLayoutPanel();
+            this.roof_RP_SCP_D_SP_bx = new System.Windows.Forms.TextBox();
+            this.roof_RP_SCP_D_LRSW_bx = new System.Windows.Forms.TextBox();
+            this.roof_RP_SCP_D_SR_bx = new System.Windows.Forms.TextBox();
+            this.roof_RP_SCP_D_LP_bx = new System.Windows.Forms.TextBox();
+            this.roof_RP_SCP_D_LR_bx = new System.Windows.Forms.TextBox();
+            this.label249 = new System.Windows.Forms.Label();
+            this.label250 = new System.Windows.Forms.Label();
+            this.label258 = new System.Windows.Forms.Label();
+            this.label259 = new System.Windows.Forms.Label();
+            this.label260 = new System.Windows.Forms.Label();
+            this.label262 = new System.Windows.Forms.Label();
+            this.label263 = new System.Windows.Forms.Label();
+            this.roof_RP_SCP_D_CLCPR_cbx = new System.Windows.Forms.ComboBox();
+            this.roof_RP_SCP_D_CLCPP_cbx = new System.Windows.Forms.ComboBox();
+            this.label264 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel96 = new System.Windows.Forms.TableLayoutPanel();
+            this.label265 = new System.Windows.Forms.Label();
+            this.roof_RP_ST_D_CLTSP_cbx = new System.Windows.Forms.ComboBox();
+            this.label266 = new System.Windows.Forms.Label();
+            this.roof_RP_ST_D_SP_bx = new System.Windows.Forms.TextBox();
+            this.roof_RP_ST_D_LRSW_bx = new System.Windows.Forms.TextBox();
+            this.roof_RP_ST_D_SR_bx = new System.Windows.Forms.TextBox();
+            this.roof_RP_ST_D_LP_bx = new System.Windows.Forms.TextBox();
+            this.roof_RP_ST_D_LR_bx = new System.Windows.Forms.TextBox();
+            this.label269 = new System.Windows.Forms.Label();
+            this.label270 = new System.Windows.Forms.Label();
+            this.label271 = new System.Windows.Forms.Label();
+            this.label272 = new System.Windows.Forms.Label();
+            this.label274 = new System.Windows.Forms.Label();
+            this.label275 = new System.Windows.Forms.Label();
+            this.roof_RP_ST_D_CLTSR_cbx = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanel50 = new System.Windows.Forms.TableLayoutPanel();
+            this.roof_RP_W_D_LR_bx = new System.Windows.Forms.TextBox();
+            this.roof_RP_W_D_LP_bx = new System.Windows.Forms.TextBox();
+            this.label131 = new System.Windows.Forms.Label();
+            this.label246 = new System.Windows.Forms.Label();
+            this.label247 = new System.Windows.Forms.Label();
+            this.label276 = new System.Windows.Forms.Label();
+            this.label245 = new System.Windows.Forms.Label();
+            this.roof_RP_W_D_SR_bx = new System.Windows.Forms.TextBox();
+            this.roof_RP_W_D_SP_bx = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel9.SuspendLayout();
             this.addstructTabControl.SuspendLayout();
             this.footingTabPage.SuspendLayout();
@@ -867,6 +889,9 @@ namespace WindowsFormsApp1
             this.tabControl2.SuspendLayout();
             this.tabPage13.SuspendLayout();
             this.tableLayoutPanel24.SuspendLayout();
+            this.tableLayoutPanel99.SuspendLayout();
+            this.tableLayoutPanel25.SuspendLayout();
+            this.tableLayoutPanel56.SuspendLayout();
             this.tableLayoutPanel55.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             this.tableLayoutPanel27.SuspendLayout();
@@ -905,11 +930,9 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel91.SuspendLayout();
             this.tableLayoutPanel92.SuspendLayout();
             this.tableLayoutPanel93.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.roofTabControl.SuspendLayout();
             this.tabPage10.SuspendLayout();
             this.tableLayoutPanel94.SuspendLayout();
-            this.tableLayoutPanel95.SuspendLayout();
-            this.tableLayoutPanel96.SuspendLayout();
             this.tableLayoutPanel97.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.tabPage11.SuspendLayout();
@@ -922,9 +945,13 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel106.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tableLayoutPanel56.SuspendLayout();
-            this.tableLayoutPanel25.SuspendLayout();
-            this.tableLayoutPanel99.SuspendLayout();
+            this.roof_RP_D_TabControl.SuspendLayout();
+            this.tabPage15.SuspendLayout();
+            this.tabPage16.SuspendLayout();
+            this.tabPage17.SuspendLayout();
+            this.tableLayoutPanel95.SuspendLayout();
+            this.tableLayoutPanel96.SuspendLayout();
+            this.tableLayoutPanel50.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel9
@@ -5124,14 +5151,14 @@ namespace WindowsFormsApp1
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_W_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_W_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle53.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle53.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle53.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle53.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle53.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle53.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_W_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle53;
             this.rein_W_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_W_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_W_dg.Location = new System.Drawing.Point(396, 51);
@@ -5189,26 +5216,26 @@ namespace WindowsFormsApp1
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_BEH_MB_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_MB_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle54.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle54.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle54.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle54.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle54.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle54.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_MB_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle54;
             this.rein_BEH_MB_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_BEH_MB_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_BEH_MB_dg.Location = new System.Drawing.Point(6, 6);
             this.rein_BEH_MB_dg.Name = "rein_BEH_MB_dg";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_MB_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle55.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle55.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle55.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle55.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle55.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle55.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_MB_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle55;
             this.rein_BEH_MB_dg.RowHeadersVisible = false;
             this.rein_BEH_MB_dg.RowHeadersWidth = 62;
             this.rein_BEH_MB_dg.RowTemplate.Height = 28;
@@ -5234,14 +5261,14 @@ namespace WindowsFormsApp1
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_BEH_ST_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_ST_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle56.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle56.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle56.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle56.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle56.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle56.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_ST_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle56;
             this.rein_BEH_ST_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_BEH_ST_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_BEH_ST_dg.Location = new System.Drawing.Point(6, 6);
@@ -6147,7 +6174,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel24.Controls.Add(this.tableLayoutPanel25, 1, 2);
             this.tableLayoutPanel24.Controls.Add(this.tableLayoutPanel56, 0, 2);
             this.tableLayoutPanel24.Controls.Add(this.tableLayoutPanel55, 0, 1);
-            this.tableLayoutPanel24.Controls.Add(this.pictureBox15, 0, 0);
+            this.tableLayoutPanel24.Controls.Add(this.pictureBox15, 1, 0);
             this.tableLayoutPanel24.Controls.Add(this.tableLayoutPanel27, 0, 0);
             this.tableLayoutPanel24.Location = new System.Drawing.Point(6, 7);
             this.tableLayoutPanel24.Name = "tableLayoutPanel24";
@@ -6164,6 +6191,341 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel24.Size = new System.Drawing.Size(737, 825);
             this.tableLayoutPanel24.TabIndex = 4;
+            // 
+            // tableLayoutPanel99
+            // 
+            this.tableLayoutPanel99.ColumnCount = 7;
+            this.tableLayoutPanel24.SetColumnSpan(this.tableLayoutPanel99, 2);
+            this.tableLayoutPanel99.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel99.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel99.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel99.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel99.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel99.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel99.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel99.Controls.Add(this.label111, 3, 1);
+            this.tableLayoutPanel99.Controls.Add(this.comboBox8, 4, 1);
+            this.tableLayoutPanel99.Controls.Add(this.comboBox13, 2, 1);
+            this.tableLayoutPanel99.Controls.Add(this.label124, 0, 4);
+            this.tableLayoutPanel99.Controls.Add(this.label125, 5, 1);
+            this.tableLayoutPanel99.Controls.Add(this.textBox54, 76, 1);
+            this.tableLayoutPanel99.Controls.Add(this.label129, 0, 0);
+            this.tableLayoutPanel99.Controls.Add(this.label130, 1, 1);
+            this.tableLayoutPanel99.Controls.Add(this.label126, 0, 1);
+            this.tableLayoutPanel99.Location = new System.Drawing.Point(3, 569);
+            this.tableLayoutPanel99.Name = "tableLayoutPanel99";
+            this.tableLayoutPanel99.RowCount = 6;
+            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel99.Size = new System.Drawing.Size(731, 249);
+            this.tableLayoutPanel99.TabIndex = 36;
+            // 
+            // label111
+            // 
+            this.label111.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label111.Location = new System.Drawing.Point(313, 31);
+            this.label111.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label111.Name = "label111";
+            this.label111.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label111.Size = new System.Drawing.Size(100, 31);
+            this.label111.TabIndex = 30;
+            this.label111.Text = "@Beam Grid";
+            this.label111.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // comboBox8
+            // 
+            this.comboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox8.FormattingEnabled = true;
+            this.comboBox8.Items.AddRange(new object[] {
+            "Rafter and Purlins",
+            "G.I Roof and Its Accessories",
+            "Roof Accessories (Tinswork)"});
+            this.comboBox8.Location = new System.Drawing.Point(419, 34);
+            this.comboBox8.Name = "comboBox8";
+            this.comboBox8.Size = new System.Drawing.Size(98, 28);
+            this.comboBox8.TabIndex = 29;
+            // 
+            // comboBox13
+            // 
+            this.comboBox13.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox13.FormattingEnabled = true;
+            this.comboBox13.Items.AddRange(new object[] {
+            "Rafter and Purlins",
+            "G.I Roof and Its Accessories",
+            "Roof Accessories (Tinswork)"});
+            this.comboBox13.Location = new System.Drawing.Point(211, 34);
+            this.comboBox13.Name = "comboBox13";
+            this.comboBox13.Size = new System.Drawing.Size(98, 28);
+            this.comboBox13.TabIndex = 28;
+            // 
+            // label124
+            // 
+            this.label124.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label124.Location = new System.Drawing.Point(1, 65);
+            this.label124.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label124.Name = "label124";
+            this.label124.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label124.Size = new System.Drawing.Size(100, 31);
+            this.label124.TabIndex = 27;
+            this.label124.Text = "Splice Type:";
+            this.label124.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label125
+            // 
+            this.label125.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label125.Location = new System.Drawing.Point(521, 31);
+            this.label125.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label125.Name = "label125";
+            this.label125.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label125.Size = new System.Drawing.Size(100, 31);
+            this.label125.TabIndex = 24;
+            this.label125.Text = "Custom Length:";
+            this.label125.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox54
+            // 
+            this.textBox54.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox54.Location = new System.Drawing.Point(627, 34);
+            this.textBox54.Name = "textBox54";
+            this.textBox54.Size = new System.Drawing.Size(101, 26);
+            this.textBox54.TabIndex = 20;
+            this.textBox54.Text = "0";
+            // 
+            // label129
+            // 
+            this.tableLayoutPanel99.SetColumnSpan(this.label129, 2);
+            this.label129.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label129.Location = new System.Drawing.Point(1, 0);
+            this.label129.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label129.Name = "label129";
+            this.label129.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label129.Size = new System.Drawing.Size(204, 31);
+            this.label129.TabIndex = 9;
+            this.label129.Text = "Slab Border";
+            this.label129.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label130
+            // 
+            this.label130.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label130.Location = new System.Drawing.Point(105, 31);
+            this.label130.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label130.Name = "label130";
+            this.label130.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label130.Size = new System.Drawing.Size(100, 31);
+            this.label130.TabIndex = 10;
+            this.label130.Text = "Beam Grid";
+            this.label130.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label126
+            // 
+            this.label126.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label126.Location = new System.Drawing.Point(1, 31);
+            this.label126.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label126.Name = "label126";
+            this.label126.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label126.Size = new System.Drawing.Size(100, 31);
+            this.label126.TabIndex = 22;
+            this.label126.Text = "Top:";
+            this.label126.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel25
+            // 
+            this.tableLayoutPanel25.ColumnCount = 2;
+            this.tableLayoutPanel25.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel25.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel25.Controls.Add(this.label106, 0, 2);
+            this.tableLayoutPanel25.Controls.Add(this.textBox23, 1, 1);
+            this.tableLayoutPanel25.Controls.Add(this.textBox35, 1, 2);
+            this.tableLayoutPanel25.Controls.Add(this.label56, 0, 0);
+            this.tableLayoutPanel25.Controls.Add(this.label57, 0, 1);
+            this.tableLayoutPanel25.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel25.Location = new System.Drawing.Point(371, 395);
+            this.tableLayoutPanel25.Name = "tableLayoutPanel25";
+            this.tableLayoutPanel25.RowCount = 13;
+            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel25.Size = new System.Drawing.Size(363, 168);
+            this.tableLayoutPanel25.TabIndex = 35;
+            // 
+            // label106
+            // 
+            this.label106.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label106.Location = new System.Drawing.Point(1, 63);
+            this.label106.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label106.Name = "label106";
+            this.label106.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label106.Size = new System.Drawing.Size(177, 31);
+            this.label106.TabIndex = 21;
+            this.label106.Text = "Spacing O.C.:";
+            this.label106.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBox23
+            // 
+            this.textBox23.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox23.Location = new System.Drawing.Point(184, 34);
+            this.textBox23.Name = "textBox23";
+            this.textBox23.Size = new System.Drawing.Size(176, 26);
+            this.textBox23.TabIndex = 20;
+            this.textBox23.Text = "0";
+            // 
+            // textBox35
+            // 
+            this.textBox35.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox35.Location = new System.Drawing.Point(184, 66);
+            this.textBox35.Name = "textBox35";
+            this.textBox35.Size = new System.Drawing.Size(176, 26);
+            this.textBox35.TabIndex = 16;
+            this.textBox35.Text = "0";
+            // 
+            // label56
+            // 
+            this.tableLayoutPanel25.SetColumnSpan(this.label56, 2);
+            this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(1, 0);
+            this.label56.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label56.Name = "label56";
+            this.label56.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label56.Size = new System.Drawing.Size(359, 31);
+            this.label56.TabIndex = 9;
+            this.label56.Text = "Steel Chair Spacer:";
+            this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label57
+            // 
+            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Location = new System.Drawing.Point(1, 31);
+            this.label57.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label57.Name = "label57";
+            this.label57.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label57.Size = new System.Drawing.Size(177, 31);
+            this.label57.TabIndex = 10;
+            this.label57.Text = "Diameter:";
+            this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tableLayoutPanel56
+            // 
+            this.tableLayoutPanel56.ColumnCount = 2;
+            this.tableLayoutPanel56.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel56.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel56.Controls.Add(this.textBox31, 1, 1);
+            this.tableLayoutPanel56.Controls.Add(this.textBox33, 1, 3);
+            this.tableLayoutPanel56.Controls.Add(this.textBox34, 1, 2);
+            this.tableLayoutPanel56.Controls.Add(this.label120, 0, 0);
+            this.tableLayoutPanel56.Controls.Add(this.label121, 0, 1);
+            this.tableLayoutPanel56.Controls.Add(this.label122, 0, 2);
+            this.tableLayoutPanel56.Controls.Add(this.label123, 0, 3);
+            this.tableLayoutPanel56.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel56.Location = new System.Drawing.Point(3, 395);
+            this.tableLayoutPanel56.Name = "tableLayoutPanel56";
+            this.tableLayoutPanel56.RowCount = 13;
+            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel56.Size = new System.Drawing.Size(362, 168);
+            this.tableLayoutPanel56.TabIndex = 34;
+            // 
+            // textBox31
+            // 
+            this.textBox31.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox31.Location = new System.Drawing.Point(184, 34);
+            this.textBox31.Name = "textBox31";
+            this.textBox31.Size = new System.Drawing.Size(175, 26);
+            this.textBox31.TabIndex = 20;
+            this.textBox31.Text = "0";
+            // 
+            // textBox33
+            // 
+            this.textBox33.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox33.Location = new System.Drawing.Point(184, 98);
+            this.textBox33.Name = "textBox33";
+            this.textBox33.Size = new System.Drawing.Size(175, 26);
+            this.textBox33.TabIndex = 16;
+            this.textBox33.Text = "0";
+            // 
+            // textBox34
+            // 
+            this.textBox34.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox34.Location = new System.Drawing.Point(184, 66);
+            this.textBox34.Name = "textBox34";
+            this.textBox34.Size = new System.Drawing.Size(175, 26);
+            this.textBox34.TabIndex = 15;
+            this.textBox34.Text = "0";
+            // 
+            // label120
+            // 
+            this.tableLayoutPanel56.SetColumnSpan(this.label120, 2);
+            this.label120.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label120.Location = new System.Drawing.Point(1, 0);
+            this.label120.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label120.Name = "label120";
+            this.label120.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label120.Size = new System.Drawing.Size(177, 31);
+            this.label120.TabIndex = 9;
+            this.label120.Text = "Slab Opening:";
+            this.label120.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label121
+            // 
+            this.label121.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label121.Location = new System.Drawing.Point(1, 31);
+            this.label121.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label121.Name = "label121";
+            this.label121.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label121.Size = new System.Drawing.Size(177, 31);
+            this.label121.TabIndex = 10;
+            this.label121.Text = "Horizontal Length:";
+            this.label121.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label122
+            // 
+            this.label122.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label122.Location = new System.Drawing.Point(1, 63);
+            this.label122.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label122.Name = "label122";
+            this.label122.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label122.Size = new System.Drawing.Size(177, 29);
+            this.label122.TabIndex = 11;
+            this.label122.Text = "Vertical Length:";
+            this.label122.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label123
+            // 
+            this.label123.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label123.Location = new System.Drawing.Point(1, 95);
+            this.label123.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label123.Name = "label123";
+            this.label123.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label123.Size = new System.Drawing.Size(177, 29);
+            this.label123.TabIndex = 12;
+            this.label123.Text = "Concrete Cover:";
+            this.label123.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel55
             // 
@@ -6183,7 +6545,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel55.Controls.Add(this.textBox27, 1, 2);
             this.tableLayoutPanel55.Controls.Add(this.label114, 0, 0);
             this.tableLayoutPanel55.Controls.Add(this.label115, 1, 1);
-            this.tableLayoutPanel55.Location = new System.Drawing.Point(371, 184);
+            this.tableLayoutPanel55.Location = new System.Drawing.Point(3, 184);
             this.tableLayoutPanel55.Name = "tableLayoutPanel55";
             this.tableLayoutPanel55.RowCount = 6;
             this.tableLayoutPanel55.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -6201,6 +6563,107 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel55.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel55.Size = new System.Drawing.Size(362, 205);
             this.tableLayoutPanel55.TabIndex = 33;
+            // 
+            // comboBox12
+            // 
+            this.comboBox12.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox12.FormattingEnabled = true;
+            this.comboBox12.Items.AddRange(new object[] {
+            "Rafter and Purlins",
+            "G.I Roof and Its Accessories",
+            "Roof Accessories (Tinswork)"});
+            this.comboBox12.Location = new System.Drawing.Point(243, 129);
+            this.comboBox12.Name = "comboBox12";
+            this.comboBox12.Size = new System.Drawing.Size(114, 28);
+            this.comboBox12.TabIndex = 29;
+            // 
+            // comboBox11
+            // 
+            this.comboBox11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox11.FormattingEnabled = true;
+            this.comboBox11.Items.AddRange(new object[] {
+            "Rafter and Purlins",
+            "G.I Roof and Its Accessories",
+            "Roof Accessories (Tinswork)"});
+            this.comboBox11.Location = new System.Drawing.Point(123, 129);
+            this.comboBox11.Name = "comboBox11";
+            this.comboBox11.Size = new System.Drawing.Size(114, 28);
+            this.comboBox11.TabIndex = 28;
+            // 
+            // label119
+            // 
+            this.label119.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label119.Location = new System.Drawing.Point(1, 126);
+            this.label119.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label119.Name = "label119";
+            this.label119.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label119.Size = new System.Drawing.Size(116, 31);
+            this.label119.TabIndex = 27;
+            this.label119.Text = "Splice Type:";
+            this.label119.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox30
+            // 
+            this.textBox30.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox30.Location = new System.Drawing.Point(243, 97);
+            this.textBox30.Name = "textBox30";
+            this.textBox30.Size = new System.Drawing.Size(116, 26);
+            this.textBox30.TabIndex = 26;
+            this.textBox30.Text = "0";
+            // 
+            // textBox29
+            // 
+            this.textBox29.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox29.Location = new System.Drawing.Point(123, 97);
+            this.textBox29.Name = "textBox29";
+            this.textBox29.Size = new System.Drawing.Size(114, 26);
+            this.textBox29.TabIndex = 25;
+            this.textBox29.Text = "0";
+            // 
+            // label118
+            // 
+            this.label118.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label118.Location = new System.Drawing.Point(1, 94);
+            this.label118.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label118.Name = "label118";
+            this.label118.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label118.Size = new System.Drawing.Size(116, 31);
+            this.label118.TabIndex = 24;
+            this.label118.Text = "Spacing:";
+            this.label118.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox28
+            // 
+            this.textBox28.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox28.Location = new System.Drawing.Point(243, 65);
+            this.textBox28.Name = "textBox28";
+            this.textBox28.Size = new System.Drawing.Size(116, 26);
+            this.textBox28.TabIndex = 23;
+            this.textBox28.Text = "0";
+            // 
+            // label117
+            // 
+            this.label117.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label117.Location = new System.Drawing.Point(1, 62);
+            this.label117.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label117.Name = "label117";
+            this.label117.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label117.Size = new System.Drawing.Size(116, 31);
+            this.label117.TabIndex = 22;
+            this.label117.Text = "Diameter:";
+            this.label117.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label116
+            // 
+            this.label116.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label116.Location = new System.Drawing.Point(241, 31);
+            this.label116.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label116.Name = "label116";
+            this.label116.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label116.Size = new System.Drawing.Size(116, 31);
+            this.label116.TabIndex = 21;
+            this.label116.Text = "Transverse:";
+            this.label116.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBox27
             // 
@@ -6224,12 +6687,24 @@ namespace WindowsFormsApp1
             this.label114.Text = "Reinforcements";
             this.label114.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label115
+            // 
+            this.label115.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label115.Location = new System.Drawing.Point(121, 31);
+            this.label115.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label115.Name = "label115";
+            this.label115.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label115.Size = new System.Drawing.Size(116, 31);
+            this.label115.TabIndex = 10;
+            this.label115.Text = "Longitudinal:";
+            this.label115.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // pictureBox15
             // 
             this.pictureBox15.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox15.Image = global::WindowsFormsApp1.Properties.Resources.L_STAIRS;
-            this.pictureBox15.Location = new System.Drawing.Point(59, 113);
+            this.pictureBox15.Location = new System.Drawing.Point(428, 113);
             this.pictureBox15.MaximumSize = new System.Drawing.Size(360, 240);
             this.pictureBox15.Name = "pictureBox15";
             this.tableLayoutPanel24.SetRowSpan(this.pictureBox15, 2);
@@ -6251,7 +6726,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel27.Controls.Add(this.label109, 0, 2);
             this.tableLayoutPanel27.Controls.Add(this.label110, 0, 3);
             this.tableLayoutPanel27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel27.Location = new System.Drawing.Point(371, 3);
+            this.tableLayoutPanel27.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel27.Name = "tableLayoutPanel27";
             this.tableLayoutPanel27.RowCount = 13;
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -6267,7 +6742,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel27.Size = new System.Drawing.Size(363, 175);
+            this.tableLayoutPanel27.Size = new System.Drawing.Size(362, 175);
             this.tableLayoutPanel27.TabIndex = 23;
             // 
             // textBox24
@@ -6275,7 +6750,7 @@ namespace WindowsFormsApp1
             this.textBox24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox24.Location = new System.Drawing.Point(184, 34);
             this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(176, 26);
+            this.textBox24.Size = new System.Drawing.Size(175, 26);
             this.textBox24.TabIndex = 20;
             this.textBox24.Text = "0";
             // 
@@ -6284,7 +6759,7 @@ namespace WindowsFormsApp1
             this.textBox25.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox25.Location = new System.Drawing.Point(184, 98);
             this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(176, 26);
+            this.textBox25.Size = new System.Drawing.Size(175, 26);
             this.textBox25.TabIndex = 16;
             this.textBox25.Text = "0";
             // 
@@ -6293,7 +6768,7 @@ namespace WindowsFormsApp1
             this.textBox26.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox26.Location = new System.Drawing.Point(184, 66);
             this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(176, 26);
+            this.textBox26.Size = new System.Drawing.Size(175, 26);
             this.textBox26.TabIndex = 15;
             this.textBox26.Text = "0";
             // 
@@ -7854,19 +8329,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel71.Size = new System.Drawing.Size(363, 165);
             this.tableLayoutPanel71.TabIndex = 31;
             // 
-            // label225
-            // 
-            this.tableLayoutPanel71.SetColumnSpan(this.label225, 2);
-            this.label225.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label225.Location = new System.Drawing.Point(1, 0);
-            this.label225.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label225.Name = "label225";
-            this.label225.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label225.Size = new System.Drawing.Size(359, 31);
-            this.label225.TabIndex = 9;
-            this.label225.Text = "Reinforcement Steel:";
-            this.label225.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // label206
             // 
             this.tableLayoutPanel71.SetColumnSpan(this.label206, 2);
@@ -7925,6 +8387,19 @@ namespace WindowsFormsApp1
             this.label218.TabIndex = 11;
             this.label218.Text = "Spacing:";
             this.label218.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label225
+            // 
+            this.tableLayoutPanel71.SetColumnSpan(this.label225, 2);
+            this.label225.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label225.Location = new System.Drawing.Point(1, 0);
+            this.label225.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label225.Name = "label225";
+            this.label225.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label225.Size = new System.Drawing.Size(359, 31);
+            this.label225.TabIndex = 9;
+            this.label225.Text = "Reinforcement Steel:";
+            this.label225.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel68
             // 
@@ -8317,18 +8792,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel72.Size = new System.Drawing.Size(363, 165);
             this.tableLayoutPanel72.TabIndex = 25;
             // 
-            // label221
-            // 
-            this.tableLayoutPanel72.SetColumnSpan(this.label221, 2);
-            this.label221.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label221.Location = new System.Drawing.Point(1, 0);
-            this.label221.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label221.Name = "label221";
-            this.label221.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label221.Size = new System.Drawing.Size(359, 62);
-            this.label221.TabIndex = 9;
-            this.label221.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // stairs_LS_WS_DB_cbx
             // 
             this.stairs_LS_WS_DB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -8375,6 +8838,18 @@ namespace WindowsFormsApp1
             this.label220.Text = "Spacing:";
             this.label220.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label221
+            // 
+            this.tableLayoutPanel72.SetColumnSpan(this.label221, 2);
+            this.label221.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label221.Location = new System.Drawing.Point(1, 0);
+            this.label221.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label221.Name = "label221";
+            this.label221.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label221.Size = new System.Drawing.Size(359, 62);
+            this.label221.TabIndex = 9;
+            this.label221.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // tableLayoutPanel75
             // 
             this.tableLayoutPanel75.ColumnCount = 2;
@@ -8399,19 +8874,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel75.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel75.Size = new System.Drawing.Size(363, 160);
             this.tableLayoutPanel75.TabIndex = 26;
-            // 
-            // label224
-            // 
-            this.tableLayoutPanel75.SetColumnSpan(this.label224, 2);
-            this.label224.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label224.Location = new System.Drawing.Point(1, 0);
-            this.label224.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label224.Name = "label224";
-            this.label224.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label224.Size = new System.Drawing.Size(359, 31);
-            this.label224.TabIndex = 9;
-            this.label224.Text = "Landing:";
-            this.label224.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // stairs_LS_L_MB_cbx
             // 
@@ -8459,6 +8921,19 @@ namespace WindowsFormsApp1
             this.label223.Text = "Spacing:";
             this.label223.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label224
+            // 
+            this.tableLayoutPanel75.SetColumnSpan(this.label224, 2);
+            this.label224.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label224.Location = new System.Drawing.Point(1, 0);
+            this.label224.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label224.Name = "label224";
+            this.label224.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label224.Size = new System.Drawing.Size(359, 31);
+            this.label224.TabIndex = 9;
+            this.label224.Text = "Landing:";
+            this.label224.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // tableLayoutPanel76
             // 
             this.tableLayoutPanel76.ColumnCount = 2;
@@ -8497,7 +8972,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel91.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel91.Controls.Add(this.tableLayoutPanel92, 0, 0);
             this.tableLayoutPanel91.Controls.Add(this.tableLayoutPanel93, 1, 3);
-            this.tableLayoutPanel91.Controls.Add(this.tabControl1, 0, 1);
+            this.tableLayoutPanel91.Controls.Add(this.roofTabControl, 0, 1);
             this.tableLayoutPanel91.Location = new System.Drawing.Point(6, 4);
             this.tableLayoutPanel91.Name = "tableLayoutPanel91";
             this.tableLayoutPanel91.RowCount = 4;
@@ -8518,7 +8993,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel92.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 448F));
             this.tableLayoutPanel92.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel92.Controls.Add(this.label244, 0, 0);
-            this.tableLayoutPanel92.Controls.Add(this.comboBox1, 1, 0);
+            this.tableLayoutPanel92.Controls.Add(this.roof_PGR_cbx, 1, 0);
             this.tableLayoutPanel92.Location = new System.Drawing.Point(8, 3);
             this.tableLayoutPanel92.Name = "tableLayoutPanel92";
             this.tableLayoutPanel92.RowCount = 1;
@@ -8538,18 +9013,19 @@ namespace WindowsFormsApp1
             this.label244.Text = "Properties of Gable Roofing:";
             this.label244.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBox1
+            // roof_PGR_cbx
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.roof_PGR_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roof_PGR_cbx.FormattingEnabled = true;
+            this.roof_PGR_cbx.Items.AddRange(new object[] {
             "Rafter and Purlins",
             "G.I Roof and Its Accessories",
             "Roof Accessories (Tinswork)"});
-            this.comboBox1.Location = new System.Drawing.Point(339, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(276, 28);
-            this.comboBox1.TabIndex = 1;
+            this.roof_PGR_cbx.Location = new System.Drawing.Point(339, 3);
+            this.roof_PGR_cbx.Name = "roof_PGR_cbx";
+            this.roof_PGR_cbx.Size = new System.Drawing.Size(276, 28);
+            this.roof_PGR_cbx.TabIndex = 1;
+            this.roof_PGR_cbx.SelectedIndexChanged += new System.EventHandler(this.roof_PGR_cbx_SelectedIndexChanged);
             // 
             // tableLayoutPanel93
             // 
@@ -8586,23 +9062,23 @@ namespace WindowsFormsApp1
             this.button2.Text = "Reset";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // tabControl1
+            // roofTabControl
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.roofTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel91.SetColumnSpan(this.tabControl1, 2);
-            this.tabControl1.Controls.Add(this.tabPage10);
-            this.tabControl1.Controls.Add(this.tabPage11);
-            this.tabControl1.Controls.Add(this.tabPage12);
-            this.tabControl1.ItemSize = new System.Drawing.Size(60, 25);
-            this.tabControl1.Location = new System.Drawing.Point(3, 64);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.Padding = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel91.SetRowSpan(this.tabControl1, 2);
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(789, 484);
-            this.tabControl1.TabIndex = 33;
+            this.tableLayoutPanel91.SetColumnSpan(this.roofTabControl, 2);
+            this.roofTabControl.Controls.Add(this.tabPage10);
+            this.roofTabControl.Controls.Add(this.tabPage11);
+            this.roofTabControl.Controls.Add(this.tabPage12);
+            this.roofTabControl.ItemSize = new System.Drawing.Size(60, 25);
+            this.roofTabControl.Location = new System.Drawing.Point(3, 64);
+            this.roofTabControl.Name = "roofTabControl";
+            this.roofTabControl.Padding = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel91.SetRowSpan(this.roofTabControl, 2);
+            this.roofTabControl.SelectedIndex = 0;
+            this.roofTabControl.Size = new System.Drawing.Size(789, 484);
+            this.roofTabControl.TabIndex = 33;
             // 
             // tabPage10
             // 
@@ -8619,251 +9095,29 @@ namespace WindowsFormsApp1
             // tableLayoutPanel94
             // 
             this.tableLayoutPanel94.ColumnCount = 2;
-            this.tableLayoutPanel94.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel94.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel94.Controls.Add(this.tableLayoutPanel95, 0, 1);
-            this.tableLayoutPanel94.Controls.Add(this.tableLayoutPanel96, 0, 1);
+            this.tableLayoutPanel94.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.35957F));
+            this.tableLayoutPanel94.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.64043F));
+            this.tableLayoutPanel94.Controls.Add(this.roof_RP_D_TabControl, 0, 1);
             this.tableLayoutPanel94.Controls.Add(this.tableLayoutPanel97, 0, 0);
-            this.tableLayoutPanel94.Controls.Add(this.pictureBox11, 1, 0);
+            this.tableLayoutPanel94.Controls.Add(this.pictureBox11, 1, 1);
             this.tableLayoutPanel94.Location = new System.Drawing.Point(6, 4);
             this.tableLayoutPanel94.Name = "tableLayoutPanel94";
             this.tableLayoutPanel94.RowCount = 2;
-            this.tableLayoutPanel94.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 57.44186F));
-            this.tableLayoutPanel94.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.55814F));
-            this.tableLayoutPanel94.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel94.Size = new System.Drawing.Size(768, 430);
+            this.tableLayoutPanel94.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel94.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.tableLayoutPanel94.Size = new System.Drawing.Size(737, 487);
             this.tableLayoutPanel94.TabIndex = 0;
-            // 
-            // tableLayoutPanel95
-            // 
-            this.tableLayoutPanel95.ColumnCount = 2;
-            this.tableLayoutPanel95.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.3531F));
-            this.tableLayoutPanel95.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.6469F));
-            this.tableLayoutPanel95.Controls.Add(this.comboBox2, 1, 3);
-            this.tableLayoutPanel95.Controls.Add(this.textBox1, 1, 1);
-            this.tableLayoutPanel95.Controls.Add(this.textBox3, 1, 2);
-            this.tableLayoutPanel95.Controls.Add(this.label245, 0, 0);
-            this.tableLayoutPanel95.Controls.Add(this.label246, 0, 1);
-            this.tableLayoutPanel95.Controls.Add(this.label247, 0, 2);
-            this.tableLayoutPanel95.Controls.Add(this.label249, 0, 3);
-            this.tableLayoutPanel95.Location = new System.Drawing.Point(3, 249);
-            this.tableLayoutPanel95.Name = "tableLayoutPanel95";
-            this.tableLayoutPanel95.RowCount = 8;
-            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel95.Size = new System.Drawing.Size(371, 178);
-            this.tableLayoutPanel95.TabIndex = 25;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
-            this.comboBox2.Location = new System.Drawing.Point(149, 98);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(219, 28);
-            this.comboBox2.TabIndex = 24;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(149, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(219, 26);
-            this.textBox1.TabIndex = 16;
-            this.textBox1.Text = "0";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(149, 66);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(219, 26);
-            this.textBox3.TabIndex = 15;
-            this.textBox3.Text = "0";
-            // 
-            // label245
-            // 
-            this.tableLayoutPanel95.SetColumnSpan(this.label245, 2);
-            this.label245.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label245.Location = new System.Drawing.Point(1, 0);
-            this.label245.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label245.Name = "label245";
-            this.label245.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label245.Size = new System.Drawing.Size(367, 31);
-            this.label245.TabIndex = 9;
-            this.label245.Text = "Longitudinal Reinforcement";
-            this.label245.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label246
-            // 
-            this.label246.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label246.Location = new System.Drawing.Point(1, 31);
-            this.label246.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label246.Name = "label246";
-            this.label246.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label246.Size = new System.Drawing.Size(142, 31);
-            this.label246.TabIndex = 10;
-            this.label246.Text = "Diameter:";
-            this.label246.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label247
-            // 
-            this.label247.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label247.Location = new System.Drawing.Point(1, 63);
-            this.label247.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label247.Name = "label247";
-            this.label247.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label247.Size = new System.Drawing.Size(142, 31);
-            this.label247.TabIndex = 11;
-            this.label247.Text = "Quantity:";
-            this.label247.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label249
-            // 
-            this.label249.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label249.Location = new System.Drawing.Point(1, 95);
-            this.label249.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label249.Name = "label249";
-            this.label249.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label249.Size = new System.Drawing.Size(142, 31);
-            this.label249.TabIndex = 12;
-            this.label249.Text = "Hook Type:";
-            this.label249.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tableLayoutPanel96
-            // 
-            this.tableLayoutPanel96.ColumnCount = 2;
-            this.tableLayoutPanel96.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.3531F));
-            this.tableLayoutPanel96.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.6469F));
-            this.tableLayoutPanel96.Controls.Add(this.comboBox3, 1, 3);
-            this.tableLayoutPanel96.Controls.Add(this.textBox4, 1, 1);
-            this.tableLayoutPanel96.Controls.Add(this.textBox5, 1, 2);
-            this.tableLayoutPanel96.Controls.Add(this.label250, 0, 1);
-            this.tableLayoutPanel96.Controls.Add(this.label258, 0, 2);
-            this.tableLayoutPanel96.Controls.Add(this.label259, 0, 3);
-            this.tableLayoutPanel96.Controls.Add(this.label260, 1, 0);
-            this.tableLayoutPanel96.Location = new System.Drawing.Point(387, 249);
-            this.tableLayoutPanel96.Name = "tableLayoutPanel96";
-            this.tableLayoutPanel96.RowCount = 8;
-            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel96.Size = new System.Drawing.Size(371, 178);
-            this.tableLayoutPanel96.TabIndex = 24;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
-            this.comboBox3.Location = new System.Drawing.Point(149, 98);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(219, 28);
-            this.comboBox3.TabIndex = 24;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox4.Location = new System.Drawing.Point(149, 34);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(219, 26);
-            this.textBox4.TabIndex = 16;
-            this.textBox4.Text = "0";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox5.Location = new System.Drawing.Point(149, 66);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(219, 26);
-            this.textBox5.TabIndex = 15;
-            this.textBox5.Text = "0";
-            // 
-            // label250
-            // 
-            this.label250.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label250.Location = new System.Drawing.Point(1, 31);
-            this.label250.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label250.Name = "label250";
-            this.label250.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label250.Size = new System.Drawing.Size(142, 31);
-            this.label250.TabIndex = 10;
-            this.label250.Text = "Diameter:";
-            this.label250.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label258
-            // 
-            this.label258.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label258.Location = new System.Drawing.Point(1, 63);
-            this.label258.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label258.Name = "label258";
-            this.label258.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label258.Size = new System.Drawing.Size(142, 31);
-            this.label258.TabIndex = 11;
-            this.label258.Text = "Quantity:";
-            this.label258.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label259
-            // 
-            this.label259.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label259.Location = new System.Drawing.Point(1, 95);
-            this.label259.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label259.Name = "label259";
-            this.label259.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label259.Size = new System.Drawing.Size(142, 31);
-            this.label259.TabIndex = 12;
-            this.label259.Text = "Hook Type:";
-            this.label259.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label260
-            // 
-            this.tableLayoutPanel96.SetColumnSpan(this.label260, 2);
-            this.label260.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label260.Location = new System.Drawing.Point(1, 0);
-            this.label260.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label260.Name = "label260";
-            this.label260.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label260.Size = new System.Drawing.Size(367, 31);
-            this.label260.TabIndex = 9;
-            this.label260.Text = "Transverse Reinforcement";
-            this.label260.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel97
             // 
-            this.tableLayoutPanel97.ColumnCount = 2;
-            this.tableLayoutPanel97.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.3531F));
-            this.tableLayoutPanel97.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.6469F));
-            this.tableLayoutPanel97.Controls.Add(this.textBox16, 1, 5);
-            this.tableLayoutPanel97.Controls.Add(this.textBox18, 1, 1);
-            this.tableLayoutPanel97.Controls.Add(this.textBox19, 1, 4);
-            this.tableLayoutPanel97.Controls.Add(this.textBox20, 1, 3);
-            this.tableLayoutPanel97.Controls.Add(this.textBox21, 1, 2);
-            this.tableLayoutPanel97.Controls.Add(this.label261, 0, 0);
-            this.tableLayoutPanel97.Controls.Add(this.label262, 0, 1);
-            this.tableLayoutPanel97.Controls.Add(this.label263, 0, 2);
-            this.tableLayoutPanel97.Controls.Add(this.label264, 0, 3);
-            this.tableLayoutPanel97.Controls.Add(this.label265, 0, 5);
-            this.tableLayoutPanel97.Controls.Add(this.label266, 0, 4);
+            this.tableLayoutPanel97.ColumnCount = 3;
+            this.tableLayoutPanel94.SetColumnSpan(this.tableLayoutPanel97, 2);
+            this.tableLayoutPanel97.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.5853F));
+            this.tableLayoutPanel97.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.01575F));
+            this.tableLayoutPanel97.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.39895F));
+            this.tableLayoutPanel97.Controls.Add(this.roof_RP_W_rb, 0, 5);
+            this.tableLayoutPanel97.Controls.Add(this.roof_RP_ST_rb, 1, 5);
+            this.tableLayoutPanel97.Controls.Add(this.roof_RP_SCP_rb, 2, 5);
             this.tableLayoutPanel97.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel97.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel97.Name = "tableLayoutPanel97";
@@ -8874,138 +9128,15 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel97.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel97.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel97.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel97.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel97.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel97.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel97.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel97.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel97.Size = new System.Drawing.Size(378, 240);
+            this.tableLayoutPanel97.Size = new System.Drawing.Size(731, 42);
             this.tableLayoutPanel97.TabIndex = 23;
-            // 
-            // textBox16
-            // 
-            this.textBox16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox16.Location = new System.Drawing.Point(151, 162);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(224, 26);
-            this.textBox16.TabIndex = 21;
-            this.textBox16.Text = "0";
-            // 
-            // textBox18
-            // 
-            this.textBox18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox18.Location = new System.Drawing.Point(151, 34);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(224, 26);
-            this.textBox18.TabIndex = 20;
-            this.textBox18.Text = "0";
-            // 
-            // textBox19
-            // 
-            this.textBox19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox19.Location = new System.Drawing.Point(151, 130);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(224, 26);
-            this.textBox19.TabIndex = 19;
-            this.textBox19.Text = "0";
-            // 
-            // textBox20
-            // 
-            this.textBox20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox20.Location = new System.Drawing.Point(151, 98);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(224, 26);
-            this.textBox20.TabIndex = 16;
-            this.textBox20.Text = "0";
-            // 
-            // textBox21
-            // 
-            this.textBox21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox21.Location = new System.Drawing.Point(151, 66);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(224, 26);
-            this.textBox21.TabIndex = 15;
-            this.textBox21.Text = "0";
-            // 
-            // label261
-            // 
-            this.tableLayoutPanel97.SetColumnSpan(this.label261, 2);
-            this.label261.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label261.Location = new System.Drawing.Point(1, 0);
-            this.label261.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label261.Name = "label261";
-            this.label261.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label261.Size = new System.Drawing.Size(302, 31);
-            this.label261.TabIndex = 9;
-            this.label261.Text = "Dimensions";
-            this.label261.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label262
-            // 
-            this.label262.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label262.Location = new System.Drawing.Point(1, 31);
-            this.label262.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label262.Name = "label262";
-            this.label262.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label262.Size = new System.Drawing.Size(142, 31);
-            this.label262.TabIndex = 10;
-            this.label262.Text = "Length:";
-            this.label262.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label263
-            // 
-            this.label263.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label263.Location = new System.Drawing.Point(1, 63);
-            this.label263.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label263.Name = "label263";
-            this.label263.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label263.Size = new System.Drawing.Size(142, 31);
-            this.label263.TabIndex = 11;
-            this.label263.Text = "Width:";
-            this.label263.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label264
-            // 
-            this.label264.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label264.Location = new System.Drawing.Point(1, 95);
-            this.label264.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label264.Name = "label264";
-            this.label264.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label264.Size = new System.Drawing.Size(142, 31);
-            this.label264.TabIndex = 12;
-            this.label264.Text = "Thickness:";
-            this.label264.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label265
-            // 
-            this.label265.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label265.Location = new System.Drawing.Point(1, 159);
-            this.label265.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label265.Name = "label265";
-            this.label265.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label265.Size = new System.Drawing.Size(142, 31);
-            this.label265.TabIndex = 18;
-            this.label265.Text = "Depth:";
-            this.label265.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label266
-            // 
-            this.label266.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label266.Location = new System.Drawing.Point(1, 127);
-            this.label266.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label266.Name = "label266";
-            this.label266.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label266.Size = new System.Drawing.Size(142, 31);
-            this.label266.TabIndex = 17;
-            this.label266.Text = "Quantity:";
-            this.label266.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox11
             // 
             this.pictureBox11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox11.Image = global::WindowsFormsApp1.Properties.Resources.ISOLATED__FOOTING;
-            this.pictureBox11.Location = new System.Drawing.Point(456, 23);
+            this.pictureBox11.Location = new System.Drawing.Point(452, 167);
             this.pictureBox11.MaximumSize = new System.Drawing.Size(240, 240);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(240, 200);
@@ -9064,15 +9195,15 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel100.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel100.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel100.Controls.Add(this.label268, 0, 8);
-            this.tableLayoutPanel100.Controls.Add(this.comboBox7, 1, 8);
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_SP_cbx, 1, 8);
             this.tableLayoutPanel100.Controls.Add(this.label273, 0, 0);
-            this.tableLayoutPanel100.Controls.Add(this.radioButton1, 0, 1);
-            this.tableLayoutPanel100.Controls.Add(this.radioButton2, 1, 2);
-            this.tableLayoutPanel100.Controls.Add(this.radioButton3, 0, 3);
-            this.tableLayoutPanel100.Controls.Add(this.radioButton4, 1, 4);
-            this.tableLayoutPanel100.Controls.Add(this.radioButton5, 0, 5);
-            this.tableLayoutPanel100.Controls.Add(this.radioButton7, 0, 7);
-            this.tableLayoutPanel100.Controls.Add(this.radioButton6, 1, 6);
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_CGIS_rb, 0, 1);
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_GIRN_rb, 1, 2);
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_GIR_rb, 0, 3);
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_GIW_rb, 1, 4);
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_LW_rb, 0, 5);
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_PGIS_rb, 0, 7);
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_UN_rb, 1, 6);
             this.tableLayoutPanel100.Location = new System.Drawing.Point(3, 245);
             this.tableLayoutPanel100.Name = "tableLayoutPanel100";
             this.tableLayoutPanel100.RowCount = 9;
@@ -9101,18 +9232,18 @@ namespace WindowsFormsApp1
             this.label268.Text = "Size of Purlins:";
             this.label268.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBox7
+            // roof_GI_M_SP_cbx
             // 
-            this.comboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Items.AddRange(new object[] {
+            this.roof_GI_M_SP_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roof_GI_M_SP_cbx.FormattingEnabled = true;
+            this.roof_GI_M_SP_cbx.Items.AddRange(new object[] {
             "90",
             "135",
             "180"});
-            this.comboBox7.Location = new System.Drawing.Point(185, 260);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(177, 28);
-            this.comboBox7.TabIndex = 24;
+            this.roof_GI_M_SP_cbx.Location = new System.Drawing.Point(185, 260);
+            this.roof_GI_M_SP_cbx.Name = "roof_GI_M_SP_cbx";
+            this.roof_GI_M_SP_cbx.Size = new System.Drawing.Size(177, 28);
+            this.roof_GI_M_SP_cbx.TabIndex = 24;
             // 
             // label273
             // 
@@ -9127,99 +9258,106 @@ namespace WindowsFormsApp1
             this.label273.Text = "Materials:";
             this.label273.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // radioButton1
+            // roof_GI_M_CGIS_rb
             // 
-            this.radioButton1.AutoSize = true;
-            this.tableLayoutPanel100.SetColumnSpan(this.radioButton1, 2);
-            this.radioButton1.Location = new System.Drawing.Point(3, 50);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(187, 24);
-            this.radioButton1.TabIndex = 29;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Corrugated G.I Sheet";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.roof_GI_M_CGIS_rb.AutoSize = true;
+            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_CGIS_rb, 2);
+            this.roof_GI_M_CGIS_rb.Location = new System.Drawing.Point(3, 50);
+            this.roof_GI_M_CGIS_rb.Name = "roof_GI_M_CGIS_rb";
+            this.roof_GI_M_CGIS_rb.Size = new System.Drawing.Size(187, 24);
+            this.roof_GI_M_CGIS_rb.TabIndex = 29;
+            this.roof_GI_M_CGIS_rb.TabStop = true;
+            this.roof_GI_M_CGIS_rb.Text = "Corrugated G.I Sheet";
+            this.roof_GI_M_CGIS_rb.UseVisualStyleBackColor = true;
+            this.roof_GI_M_CGIS_rb.CheckedChanged += new System.EventHandler(this.roof_GI_M_CGIS_rb_CheckedChanged);
             // 
-            // radioButton2
+            // roof_GI_M_GIRN_rb
             // 
-            this.radioButton2.AutoSize = true;
-            this.tableLayoutPanel100.SetColumnSpan(this.radioButton2, 2);
-            this.radioButton2.Location = new System.Drawing.Point(3, 80);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(133, 24);
-            this.radioButton2.TabIndex = 30;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "G.I Roof Nails";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.roof_GI_M_GIRN_rb.AutoSize = true;
+            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_GIRN_rb, 2);
+            this.roof_GI_M_GIRN_rb.Location = new System.Drawing.Point(3, 80);
+            this.roof_GI_M_GIRN_rb.Name = "roof_GI_M_GIRN_rb";
+            this.roof_GI_M_GIRN_rb.Size = new System.Drawing.Size(133, 24);
+            this.roof_GI_M_GIRN_rb.TabIndex = 30;
+            this.roof_GI_M_GIRN_rb.TabStop = true;
+            this.roof_GI_M_GIRN_rb.Text = "G.I Roof Nails";
+            this.roof_GI_M_GIRN_rb.UseVisualStyleBackColor = true;
+            this.roof_GI_M_GIRN_rb.CheckedChanged += new System.EventHandler(this.roof_GI_M_CGIS_rb_CheckedChanged);
             // 
-            // radioButton3
+            // roof_GI_M_GIR_rb
             // 
-            this.radioButton3.AutoSize = true;
-            this.tableLayoutPanel100.SetColumnSpan(this.radioButton3, 2);
-            this.radioButton3.Location = new System.Drawing.Point(3, 110);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(104, 24);
-            this.radioButton3.TabIndex = 31;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "G.I Rivets";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.roof_GI_M_GIR_rb.AutoSize = true;
+            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_GIR_rb, 2);
+            this.roof_GI_M_GIR_rb.Location = new System.Drawing.Point(3, 110);
+            this.roof_GI_M_GIR_rb.Name = "roof_GI_M_GIR_rb";
+            this.roof_GI_M_GIR_rb.Size = new System.Drawing.Size(104, 24);
+            this.roof_GI_M_GIR_rb.TabIndex = 31;
+            this.roof_GI_M_GIR_rb.TabStop = true;
+            this.roof_GI_M_GIR_rb.Text = "G.I Rivets";
+            this.roof_GI_M_GIR_rb.UseVisualStyleBackColor = true;
+            this.roof_GI_M_GIR_rb.CheckedChanged += new System.EventHandler(this.roof_GI_M_CGIS_rb_CheckedChanged);
             // 
-            // radioButton4
+            // roof_GI_M_GIW_rb
             // 
-            this.radioButton4.AutoSize = true;
-            this.tableLayoutPanel100.SetColumnSpan(this.radioButton4, 2);
-            this.radioButton4.Location = new System.Drawing.Point(3, 140);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(123, 24);
-            this.radioButton4.TabIndex = 32;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "G.I Washers";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.roof_GI_M_GIW_rb.AutoSize = true;
+            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_GIW_rb, 2);
+            this.roof_GI_M_GIW_rb.Location = new System.Drawing.Point(3, 140);
+            this.roof_GI_M_GIW_rb.Name = "roof_GI_M_GIW_rb";
+            this.roof_GI_M_GIW_rb.Size = new System.Drawing.Size(123, 24);
+            this.roof_GI_M_GIW_rb.TabIndex = 32;
+            this.roof_GI_M_GIW_rb.TabStop = true;
+            this.roof_GI_M_GIW_rb.Text = "G.I Washers";
+            this.roof_GI_M_GIW_rb.UseVisualStyleBackColor = true;
+            this.roof_GI_M_GIW_rb.CheckedChanged += new System.EventHandler(this.roof_GI_M_CGIS_rb_CheckedChanged);
             // 
-            // radioButton5
+            // roof_GI_M_LW_rb
             // 
-            this.radioButton5.AutoSize = true;
-            this.tableLayoutPanel100.SetColumnSpan(this.radioButton5, 2);
-            this.radioButton5.Location = new System.Drawing.Point(3, 170);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(137, 24);
-            this.radioButton5.TabIndex = 33;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Lead Washers";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.roof_GI_M_LW_rb.AutoSize = true;
+            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_LW_rb, 2);
+            this.roof_GI_M_LW_rb.Location = new System.Drawing.Point(3, 170);
+            this.roof_GI_M_LW_rb.Name = "roof_GI_M_LW_rb";
+            this.roof_GI_M_LW_rb.Size = new System.Drawing.Size(137, 24);
+            this.roof_GI_M_LW_rb.TabIndex = 33;
+            this.roof_GI_M_LW_rb.TabStop = true;
+            this.roof_GI_M_LW_rb.Text = "Lead Washers";
+            this.roof_GI_M_LW_rb.UseVisualStyleBackColor = true;
+            this.roof_GI_M_LW_rb.CheckedChanged += new System.EventHandler(this.roof_GI_M_CGIS_rb_CheckedChanged);
             // 
-            // radioButton7
+            // roof_GI_M_PGIS_rb
             // 
-            this.radioButton7.AutoSize = true;
-            this.tableLayoutPanel100.SetColumnSpan(this.radioButton7, 2);
-            this.radioButton7.Location = new System.Drawing.Point(3, 230);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(137, 24);
-            this.radioButton7.TabIndex = 35;
-            this.radioButton7.TabStop = true;
-            this.radioButton7.Text = "Plain G.I Strap";
-            this.radioButton7.UseVisualStyleBackColor = true;
+            this.roof_GI_M_PGIS_rb.AutoSize = true;
+            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_PGIS_rb, 2);
+            this.roof_GI_M_PGIS_rb.Location = new System.Drawing.Point(3, 230);
+            this.roof_GI_M_PGIS_rb.Name = "roof_GI_M_PGIS_rb";
+            this.roof_GI_M_PGIS_rb.Size = new System.Drawing.Size(137, 24);
+            this.roof_GI_M_PGIS_rb.TabIndex = 35;
+            this.roof_GI_M_PGIS_rb.TabStop = true;
+            this.roof_GI_M_PGIS_rb.Text = "Plain G.I Strap";
+            this.roof_GI_M_PGIS_rb.UseVisualStyleBackColor = true;
+            this.roof_GI_M_PGIS_rb.CheckedChanged += new System.EventHandler(this.roof_GI_M_PGIS_rb_CheckedChanged);
             // 
-            // radioButton6
+            // roof_GI_M_UN_rb
             // 
-            this.radioButton6.AutoSize = true;
-            this.tableLayoutPanel100.SetColumnSpan(this.radioButton6, 2);
-            this.radioButton6.Location = new System.Drawing.Point(3, 200);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(135, 24);
-            this.radioButton6.TabIndex = 34;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Umbrella Nails";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.roof_GI_M_UN_rb.AutoSize = true;
+            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_UN_rb, 2);
+            this.roof_GI_M_UN_rb.Location = new System.Drawing.Point(3, 200);
+            this.roof_GI_M_UN_rb.Name = "roof_GI_M_UN_rb";
+            this.roof_GI_M_UN_rb.Size = new System.Drawing.Size(135, 24);
+            this.roof_GI_M_UN_rb.TabIndex = 34;
+            this.roof_GI_M_UN_rb.TabStop = true;
+            this.roof_GI_M_UN_rb.Text = "Umbrella Nails";
+            this.roof_GI_M_UN_rb.UseVisualStyleBackColor = true;
+            this.roof_GI_M_UN_rb.CheckedChanged += new System.EventHandler(this.roof_GI_M_CGIS_rb_CheckedChanged);
             // 
             // tableLayoutPanel102
             // 
             this.tableLayoutPanel102.ColumnCount = 2;
             this.tableLayoutPanel102.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel102.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel102.Controls.Add(this.textBox22, 1, 3);
+            this.tableLayoutPanel102.Controls.Add(this.roof_GI_D_HRS_bx, 1, 3);
             this.tableLayoutPanel102.Controls.Add(this.label267, 0, 3);
-            this.tableLayoutPanel102.Controls.Add(this.comboBox6, 1, 2);
-            this.tableLayoutPanel102.Controls.Add(this.textBox32, 1, 1);
+            this.tableLayoutPanel102.Controls.Add(this.roof_GI_D_EC_cbx, 1, 2);
+            this.tableLayoutPanel102.Controls.Add(this.roof_GI_D_LP_bx, 1, 1);
             this.tableLayoutPanel102.Controls.Add(this.label282, 0, 0);
             this.tableLayoutPanel102.Controls.Add(this.label283, 0, 1);
             this.tableLayoutPanel102.Controls.Add(this.label284, 0, 2);
@@ -9234,14 +9372,14 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel102.Size = new System.Drawing.Size(365, 236);
             this.tableLayoutPanel102.TabIndex = 23;
             // 
-            // textBox22
+            // roof_GI_D_HRS_bx
             // 
-            this.textBox22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox22.Location = new System.Drawing.Point(222, 163);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(140, 26);
-            this.textBox22.TabIndex = 24;
-            this.textBox22.Text = "0";
+            this.roof_GI_D_HRS_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_GI_D_HRS_bx.Location = new System.Drawing.Point(222, 163);
+            this.roof_GI_D_HRS_bx.Name = "roof_GI_D_HRS_bx";
+            this.roof_GI_D_HRS_bx.Size = new System.Drawing.Size(140, 26);
+            this.roof_GI_D_HRS_bx.TabIndex = 24;
+            this.roof_GI_D_HRS_bx.Text = "0";
             // 
             // label267
             // 
@@ -9255,26 +9393,26 @@ namespace WindowsFormsApp1
             this.label267.Text = "Height of Roof Sheet:";
             this.label267.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBox6
+            // roof_GI_D_EC_cbx
             // 
-            this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Items.AddRange(new object[] {
+            this.roof_GI_D_EC_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roof_GI_D_EC_cbx.FormattingEnabled = true;
+            this.roof_GI_D_EC_cbx.Items.AddRange(new object[] {
             "0.6",
             "0.7"});
-            this.comboBox6.Location = new System.Drawing.Point(222, 100);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(140, 28);
-            this.comboBox6.TabIndex = 22;
+            this.roof_GI_D_EC_cbx.Location = new System.Drawing.Point(222, 100);
+            this.roof_GI_D_EC_cbx.Name = "roof_GI_D_EC_cbx";
+            this.roof_GI_D_EC_cbx.Size = new System.Drawing.Size(140, 28);
+            this.roof_GI_D_EC_cbx.TabIndex = 22;
             // 
-            // textBox32
+            // roof_GI_D_LP_bx
             // 
-            this.textBox32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox32.Location = new System.Drawing.Point(222, 34);
-            this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new System.Drawing.Size(140, 26);
-            this.textBox32.TabIndex = 20;
-            this.textBox32.Text = "0";
+            this.roof_GI_D_LP_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_GI_D_LP_bx.Location = new System.Drawing.Point(222, 34);
+            this.roof_GI_D_LP_bx.Name = "roof_GI_D_LP_bx";
+            this.roof_GI_D_LP_bx.Size = new System.Drawing.Size(140, 26);
+            this.roof_GI_D_LP_bx.TabIndex = 20;
+            this.roof_GI_D_LP_bx.Text = "0";
             // 
             // label282
             // 
@@ -9332,7 +9470,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel103.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel103.Controls.Add(this.tableLayoutPanel106, 0, 0);
             this.tableLayoutPanel103.Controls.Add(this.pictureBox14, 1, 0);
-            this.tableLayoutPanel103.Location = new System.Drawing.Point(6, 10);
+            this.tableLayoutPanel103.Location = new System.Drawing.Point(6, 4);
             this.tableLayoutPanel103.Name = "tableLayoutPanel103";
             this.tableLayoutPanel103.RowCount = 1;
             this.tableLayoutPanel103.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -9346,37 +9484,37 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel106.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel106.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel106.Controls.Add(this.label305, 0, 17);
-            this.tableLayoutPanel106.Controls.Add(this.textBox48, 1, 18);
-            this.tableLayoutPanel106.Controls.Add(this.textBox49, 1, 19);
-            this.tableLayoutPanel106.Controls.Add(this.textBox50, 1, 20);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_HR_TL_bx, 1, 18);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_HR_EL_bx, 1, 19);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_HR_TW_bx, 1, 20);
             this.tableLayoutPanel106.Controls.Add(this.label306, 0, 19);
             this.tableLayoutPanel106.Controls.Add(this.label307, 0, 18);
             this.tableLayoutPanel106.Controls.Add(this.label308, 0, 20);
             this.tableLayoutPanel106.Controls.Add(this.label301, 0, 13);
-            this.tableLayoutPanel106.Controls.Add(this.textBox45, 1, 14);
-            this.tableLayoutPanel106.Controls.Add(this.textBox46, 1, 15);
-            this.tableLayoutPanel106.Controls.Add(this.textBox47, 1, 16);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_VR_TL_bx, 1, 14);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_VR_EL_bx, 1, 15);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_VR_TW_bx, 1, 16);
             this.tableLayoutPanel106.Controls.Add(this.label302, 0, 15);
             this.tableLayoutPanel106.Controls.Add(this.label303, 0, 14);
             this.tableLayoutPanel106.Controls.Add(this.label304, 0, 16);
             this.tableLayoutPanel106.Controls.Add(this.label293, 0, 9);
-            this.tableLayoutPanel106.Controls.Add(this.textBox39, 1, 12);
-            this.tableLayoutPanel106.Controls.Add(this.textBox40, 1, 10);
-            this.tableLayoutPanel106.Controls.Add(this.textBox42, 1, 11);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_RR_TW_bx, 1, 12);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_RR_TL_bx, 1, 10);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_RR_EL_bx, 1, 11);
             this.tableLayoutPanel106.Controls.Add(this.label294, 0, 11);
             this.tableLayoutPanel106.Controls.Add(this.label295, 0, 10);
             this.tableLayoutPanel106.Controls.Add(this.label300, 0, 12);
             this.tableLayoutPanel106.Controls.Add(this.label289, 0, 5);
-            this.tableLayoutPanel106.Controls.Add(this.textBox36, 1, 6);
-            this.tableLayoutPanel106.Controls.Add(this.textBox37, 1, 7);
-            this.tableLayoutPanel106.Controls.Add(this.textBox38, 1, 8);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_F_TL_bx, 1, 6);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_F_EL_bx, 1, 7);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_F_TW_bx, 1, 8);
             this.tableLayoutPanel106.Controls.Add(this.label290, 0, 7);
             this.tableLayoutPanel106.Controls.Add(this.label291, 0, 6);
             this.tableLayoutPanel106.Controls.Add(this.label292, 0, 8);
             this.tableLayoutPanel106.Controls.Add(this.label288, 0, 1);
-            this.tableLayoutPanel106.Controls.Add(this.textBox41, 1, 2);
-            this.tableLayoutPanel106.Controls.Add(this.textBox43, 1, 4);
-            this.tableLayoutPanel106.Controls.Add(this.textBox44, 1, 3);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_G_TL_bx, 1, 2);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_G_TW_bx, 1, 4);
+            this.tableLayoutPanel106.Controls.Add(this.roof_RA_D_G_EL_bx, 1, 3);
             this.tableLayoutPanel106.Controls.Add(this.label296, 0, 0);
             this.tableLayoutPanel106.Controls.Add(this.label297, 0, 3);
             this.tableLayoutPanel106.Controls.Add(this.label298, 0, 2);
@@ -9423,32 +9561,32 @@ namespace WindowsFormsApp1
             this.label305.Text = "Hipped Roll:";
             this.label305.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox48
+            // roof_RA_D_HR_TL_bx
             // 
-            this.textBox48.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox48.Location = new System.Drawing.Point(185, 588);
-            this.textBox48.Name = "textBox48";
-            this.textBox48.Size = new System.Drawing.Size(176, 26);
-            this.textBox48.TabIndex = 53;
-            this.textBox48.Text = "0";
+            this.roof_RA_D_HR_TL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_HR_TL_bx.Location = new System.Drawing.Point(185, 588);
+            this.roof_RA_D_HR_TL_bx.Name = "roof_RA_D_HR_TL_bx";
+            this.roof_RA_D_HR_TL_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_HR_TL_bx.TabIndex = 53;
+            this.roof_RA_D_HR_TL_bx.Text = "0";
             // 
-            // textBox49
+            // roof_RA_D_HR_EL_bx
             // 
-            this.textBox49.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox49.Location = new System.Drawing.Point(185, 620);
-            this.textBox49.Name = "textBox49";
-            this.textBox49.Size = new System.Drawing.Size(176, 26);
-            this.textBox49.TabIndex = 52;
-            this.textBox49.Text = "0";
+            this.roof_RA_D_HR_EL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_HR_EL_bx.Location = new System.Drawing.Point(185, 620);
+            this.roof_RA_D_HR_EL_bx.Name = "roof_RA_D_HR_EL_bx";
+            this.roof_RA_D_HR_EL_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_HR_EL_bx.TabIndex = 52;
+            this.roof_RA_D_HR_EL_bx.Text = "0";
             // 
-            // textBox50
+            // roof_RA_D_HR_TW_bx
             // 
-            this.textBox50.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox50.Location = new System.Drawing.Point(185, 652);
-            this.textBox50.Name = "textBox50";
-            this.textBox50.Size = new System.Drawing.Size(176, 26);
-            this.textBox50.TabIndex = 51;
-            this.textBox50.Text = "0";
+            this.roof_RA_D_HR_TW_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_HR_TW_bx.Location = new System.Drawing.Point(185, 652);
+            this.roof_RA_D_HR_TW_bx.Name = "roof_RA_D_HR_TW_bx";
+            this.roof_RA_D_HR_TW_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_HR_TW_bx.TabIndex = 51;
+            this.roof_RA_D_HR_TW_bx.Text = "0";
             // 
             // label306
             // 
@@ -9499,32 +9637,32 @@ namespace WindowsFormsApp1
             this.label301.Text = "Valley Roll:";
             this.label301.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox45
+            // roof_RA_D_VR_TL_bx
             // 
-            this.textBox45.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox45.Location = new System.Drawing.Point(185, 458);
-            this.textBox45.Name = "textBox45";
-            this.textBox45.Size = new System.Drawing.Size(176, 26);
-            this.textBox45.TabIndex = 46;
-            this.textBox45.Text = "0";
+            this.roof_RA_D_VR_TL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_VR_TL_bx.Location = new System.Drawing.Point(185, 458);
+            this.roof_RA_D_VR_TL_bx.Name = "roof_RA_D_VR_TL_bx";
+            this.roof_RA_D_VR_TL_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_VR_TL_bx.TabIndex = 46;
+            this.roof_RA_D_VR_TL_bx.Text = "0";
             // 
-            // textBox46
+            // roof_RA_D_VR_EL_bx
             // 
-            this.textBox46.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox46.Location = new System.Drawing.Point(185, 490);
-            this.textBox46.Name = "textBox46";
-            this.textBox46.Size = new System.Drawing.Size(176, 26);
-            this.textBox46.TabIndex = 45;
-            this.textBox46.Text = "0";
+            this.roof_RA_D_VR_EL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_VR_EL_bx.Location = new System.Drawing.Point(185, 490);
+            this.roof_RA_D_VR_EL_bx.Name = "roof_RA_D_VR_EL_bx";
+            this.roof_RA_D_VR_EL_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_VR_EL_bx.TabIndex = 45;
+            this.roof_RA_D_VR_EL_bx.Text = "0";
             // 
-            // textBox47
+            // roof_RA_D_VR_TW_bx
             // 
-            this.textBox47.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox47.Location = new System.Drawing.Point(185, 522);
-            this.textBox47.Name = "textBox47";
-            this.textBox47.Size = new System.Drawing.Size(176, 26);
-            this.textBox47.TabIndex = 44;
-            this.textBox47.Text = "0";
+            this.roof_RA_D_VR_TW_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_VR_TW_bx.Location = new System.Drawing.Point(185, 522);
+            this.roof_RA_D_VR_TW_bx.Name = "roof_RA_D_VR_TW_bx";
+            this.roof_RA_D_VR_TW_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_VR_TW_bx.TabIndex = 44;
+            this.roof_RA_D_VR_TW_bx.Text = "0";
             // 
             // label302
             // 
@@ -9575,32 +9713,32 @@ namespace WindowsFormsApp1
             this.label293.Text = "Ridge Roll:";
             this.label293.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox39
+            // roof_RA_D_RR_TW_bx
             // 
-            this.textBox39.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox39.Location = new System.Drawing.Point(185, 392);
-            this.textBox39.Name = "textBox39";
-            this.textBox39.Size = new System.Drawing.Size(176, 26);
-            this.textBox39.TabIndex = 39;
-            this.textBox39.Text = "0";
+            this.roof_RA_D_RR_TW_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_RR_TW_bx.Location = new System.Drawing.Point(185, 392);
+            this.roof_RA_D_RR_TW_bx.Name = "roof_RA_D_RR_TW_bx";
+            this.roof_RA_D_RR_TW_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_RR_TW_bx.TabIndex = 39;
+            this.roof_RA_D_RR_TW_bx.Text = "0";
             // 
-            // textBox40
+            // roof_RA_D_RR_TL_bx
             // 
-            this.textBox40.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox40.Location = new System.Drawing.Point(185, 328);
-            this.textBox40.Name = "textBox40";
-            this.textBox40.Size = new System.Drawing.Size(176, 26);
-            this.textBox40.TabIndex = 38;
-            this.textBox40.Text = "0";
+            this.roof_RA_D_RR_TL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_RR_TL_bx.Location = new System.Drawing.Point(185, 328);
+            this.roof_RA_D_RR_TL_bx.Name = "roof_RA_D_RR_TL_bx";
+            this.roof_RA_D_RR_TL_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_RR_TL_bx.TabIndex = 38;
+            this.roof_RA_D_RR_TL_bx.Text = "0";
             // 
-            // textBox42
+            // roof_RA_D_RR_EL_bx
             // 
-            this.textBox42.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox42.Location = new System.Drawing.Point(185, 360);
-            this.textBox42.Name = "textBox42";
-            this.textBox42.Size = new System.Drawing.Size(176, 26);
-            this.textBox42.TabIndex = 37;
-            this.textBox42.Text = "0";
+            this.roof_RA_D_RR_EL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_RR_EL_bx.Location = new System.Drawing.Point(185, 360);
+            this.roof_RA_D_RR_EL_bx.Name = "roof_RA_D_RR_EL_bx";
+            this.roof_RA_D_RR_EL_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_RR_EL_bx.TabIndex = 37;
+            this.roof_RA_D_RR_EL_bx.Text = "0";
             // 
             // label294
             // 
@@ -9651,32 +9789,32 @@ namespace WindowsFormsApp1
             this.label289.Text = "Flashing:";
             this.label289.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox36
+            // roof_RA_D_F_TL_bx
             // 
-            this.textBox36.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox36.Location = new System.Drawing.Point(185, 198);
-            this.textBox36.Name = "textBox36";
-            this.textBox36.Size = new System.Drawing.Size(176, 26);
-            this.textBox36.TabIndex = 32;
-            this.textBox36.Text = "0";
+            this.roof_RA_D_F_TL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_F_TL_bx.Location = new System.Drawing.Point(185, 198);
+            this.roof_RA_D_F_TL_bx.Name = "roof_RA_D_F_TL_bx";
+            this.roof_RA_D_F_TL_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_F_TL_bx.TabIndex = 32;
+            this.roof_RA_D_F_TL_bx.Text = "0";
             // 
-            // textBox37
+            // roof_RA_D_F_EL_bx
             // 
-            this.textBox37.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox37.Location = new System.Drawing.Point(185, 230);
-            this.textBox37.Name = "textBox37";
-            this.textBox37.Size = new System.Drawing.Size(176, 26);
-            this.textBox37.TabIndex = 31;
-            this.textBox37.Text = "0";
+            this.roof_RA_D_F_EL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_F_EL_bx.Location = new System.Drawing.Point(185, 230);
+            this.roof_RA_D_F_EL_bx.Name = "roof_RA_D_F_EL_bx";
+            this.roof_RA_D_F_EL_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_F_EL_bx.TabIndex = 31;
+            this.roof_RA_D_F_EL_bx.Text = "0";
             // 
-            // textBox38
+            // roof_RA_D_F_TW_bx
             // 
-            this.textBox38.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox38.Location = new System.Drawing.Point(185, 262);
-            this.textBox38.Name = "textBox38";
-            this.textBox38.Size = new System.Drawing.Size(176, 26);
-            this.textBox38.TabIndex = 30;
-            this.textBox38.Text = "0";
+            this.roof_RA_D_F_TW_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_F_TW_bx.Location = new System.Drawing.Point(185, 262);
+            this.roof_RA_D_F_TW_bx.Name = "roof_RA_D_F_TW_bx";
+            this.roof_RA_D_F_TW_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_F_TW_bx.TabIndex = 30;
+            this.roof_RA_D_F_TW_bx.Text = "0";
             // 
             // label290
             // 
@@ -9727,32 +9865,32 @@ namespace WindowsFormsApp1
             this.label288.Text = "Gutter:";
             this.label288.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox41
+            // roof_RA_D_G_TL_bx
             // 
-            this.textBox41.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox41.Location = new System.Drawing.Point(185, 68);
-            this.textBox41.Name = "textBox41";
-            this.textBox41.Size = new System.Drawing.Size(176, 26);
-            this.textBox41.TabIndex = 20;
-            this.textBox41.Text = "0";
+            this.roof_RA_D_G_TL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_G_TL_bx.Location = new System.Drawing.Point(185, 68);
+            this.roof_RA_D_G_TL_bx.Name = "roof_RA_D_G_TL_bx";
+            this.roof_RA_D_G_TL_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_G_TL_bx.TabIndex = 20;
+            this.roof_RA_D_G_TL_bx.Text = "0";
             // 
-            // textBox43
+            // roof_RA_D_G_TW_bx
             // 
-            this.textBox43.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox43.Location = new System.Drawing.Point(185, 132);
-            this.textBox43.Name = "textBox43";
-            this.textBox43.Size = new System.Drawing.Size(176, 26);
-            this.textBox43.TabIndex = 16;
-            this.textBox43.Text = "0";
+            this.roof_RA_D_G_TW_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_G_TW_bx.Location = new System.Drawing.Point(185, 132);
+            this.roof_RA_D_G_TW_bx.Name = "roof_RA_D_G_TW_bx";
+            this.roof_RA_D_G_TW_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_G_TW_bx.TabIndex = 16;
+            this.roof_RA_D_G_TW_bx.Text = "0";
             // 
-            // textBox44
+            // roof_RA_D_G_EL_bx
             // 
-            this.textBox44.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox44.Location = new System.Drawing.Point(185, 100);
-            this.textBox44.Name = "textBox44";
-            this.textBox44.Size = new System.Drawing.Size(176, 26);
-            this.textBox44.TabIndex = 15;
-            this.textBox44.Text = "0";
+            this.roof_RA_D_G_EL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RA_D_G_EL_bx.Location = new System.Drawing.Point(185, 100);
+            this.roof_RA_D_G_EL_bx.Name = "roof_RA_D_G_EL_bx";
+            this.roof_RA_D_G_EL_bx.Size = new System.Drawing.Size(176, 26);
+            this.roof_RA_D_G_EL_bx.TabIndex = 15;
+            this.roof_RA_D_G_EL_bx.Text = "0";
             // 
             // label296
             // 
@@ -10159,453 +10297,656 @@ namespace WindowsFormsApp1
             this.pictureBox1.TabIndex = 31;
             this.pictureBox1.TabStop = false;
             // 
-            // label115
-            // 
-            this.label115.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label115.Location = new System.Drawing.Point(121, 31);
-            this.label115.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label115.Name = "label115";
-            this.label115.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label115.Size = new System.Drawing.Size(116, 31);
-            this.label115.TabIndex = 10;
-            this.label115.Text = "Longitudinal:";
-            this.label115.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label116
-            // 
-            this.label116.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label116.Location = new System.Drawing.Point(241, 31);
-            this.label116.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label116.Name = "label116";
-            this.label116.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label116.Size = new System.Drawing.Size(116, 31);
-            this.label116.TabIndex = 21;
-            this.label116.Text = "Transverse:";
-            this.label116.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label117
-            // 
-            this.label117.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label117.Location = new System.Drawing.Point(1, 62);
-            this.label117.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label117.Name = "label117";
-            this.label117.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label117.Size = new System.Drawing.Size(116, 31);
-            this.label117.TabIndex = 22;
-            this.label117.Text = "Diameter:";
-            this.label117.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox28
-            // 
-            this.textBox28.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox28.Location = new System.Drawing.Point(243, 65);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(116, 26);
-            this.textBox28.TabIndex = 23;
-            this.textBox28.Text = "0";
-            // 
-            // label118
-            // 
-            this.label118.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label118.Location = new System.Drawing.Point(1, 94);
-            this.label118.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label118.Name = "label118";
-            this.label118.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label118.Size = new System.Drawing.Size(116, 31);
-            this.label118.TabIndex = 24;
-            this.label118.Text = "Spacing:";
-            this.label118.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox29
-            // 
-            this.textBox29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox29.Location = new System.Drawing.Point(123, 97);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new System.Drawing.Size(114, 26);
-            this.textBox29.TabIndex = 25;
-            this.textBox29.Text = "0";
-            // 
-            // textBox30
-            // 
-            this.textBox30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox30.Location = new System.Drawing.Point(243, 97);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.Size = new System.Drawing.Size(116, 26);
-            this.textBox30.TabIndex = 26;
-            this.textBox30.Text = "0";
-            // 
-            // label119
-            // 
-            this.label119.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label119.Location = new System.Drawing.Point(1, 126);
-            this.label119.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label119.Name = "label119";
-            this.label119.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label119.Size = new System.Drawing.Size(116, 31);
-            this.label119.TabIndex = 27;
-            this.label119.Text = "Splice Type:";
-            this.label119.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // comboBox11
-            // 
-            this.comboBox11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Items.AddRange(new object[] {
-            "Rafter and Purlins",
-            "G.I Roof and Its Accessories",
-            "Roof Accessories (Tinswork)"});
-            this.comboBox11.Location = new System.Drawing.Point(123, 129);
-            this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(114, 28);
-            this.comboBox11.TabIndex = 28;
-            // 
-            // comboBox12
-            // 
-            this.comboBox12.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Items.AddRange(new object[] {
-            "Rafter and Purlins",
-            "G.I Roof and Its Accessories",
-            "Roof Accessories (Tinswork)"});
-            this.comboBox12.Location = new System.Drawing.Point(243, 129);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(114, 28);
-            this.comboBox12.TabIndex = 29;
-            // 
-            // tableLayoutPanel56
-            // 
-            this.tableLayoutPanel56.ColumnCount = 2;
-            this.tableLayoutPanel56.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel56.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel56.Controls.Add(this.textBox31, 1, 1);
-            this.tableLayoutPanel56.Controls.Add(this.textBox33, 1, 3);
-            this.tableLayoutPanel56.Controls.Add(this.textBox34, 1, 2);
-            this.tableLayoutPanel56.Controls.Add(this.label120, 0, 0);
-            this.tableLayoutPanel56.Controls.Add(this.label121, 0, 1);
-            this.tableLayoutPanel56.Controls.Add(this.label122, 0, 2);
-            this.tableLayoutPanel56.Controls.Add(this.label123, 0, 3);
-            this.tableLayoutPanel56.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel56.Location = new System.Drawing.Point(3, 395);
-            this.tableLayoutPanel56.Name = "tableLayoutPanel56";
-            this.tableLayoutPanel56.RowCount = 13;
-            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel56.Size = new System.Drawing.Size(362, 168);
-            this.tableLayoutPanel56.TabIndex = 34;
-            // 
-            // textBox31
-            // 
-            this.textBox31.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox31.Location = new System.Drawing.Point(184, 34);
-            this.textBox31.Name = "textBox31";
-            this.textBox31.Size = new System.Drawing.Size(175, 26);
-            this.textBox31.TabIndex = 20;
-            this.textBox31.Text = "0";
-            // 
-            // textBox33
-            // 
-            this.textBox33.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox33.Location = new System.Drawing.Point(184, 98);
-            this.textBox33.Name = "textBox33";
-            this.textBox33.Size = new System.Drawing.Size(175, 26);
-            this.textBox33.TabIndex = 16;
-            this.textBox33.Text = "0";
-            // 
-            // textBox34
-            // 
-            this.textBox34.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox34.Location = new System.Drawing.Point(184, 66);
-            this.textBox34.Name = "textBox34";
-            this.textBox34.Size = new System.Drawing.Size(175, 26);
-            this.textBox34.TabIndex = 15;
-            this.textBox34.Text = "0";
-            // 
-            // label120
-            // 
-            this.tableLayoutPanel56.SetColumnSpan(this.label120, 2);
-            this.label120.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label120.Location = new System.Drawing.Point(1, 0);
-            this.label120.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label120.Name = "label120";
-            this.label120.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label120.Size = new System.Drawing.Size(177, 31);
-            this.label120.TabIndex = 9;
-            this.label120.Text = "Slab Opening:";
-            this.label120.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label121
-            // 
-            this.label121.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label121.Location = new System.Drawing.Point(1, 31);
-            this.label121.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label121.Name = "label121";
-            this.label121.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label121.Size = new System.Drawing.Size(177, 31);
-            this.label121.TabIndex = 10;
-            this.label121.Text = "Horizontal Length:";
-            this.label121.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label122
-            // 
-            this.label122.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label122.Location = new System.Drawing.Point(1, 63);
-            this.label122.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label122.Name = "label122";
-            this.label122.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label122.Size = new System.Drawing.Size(177, 29);
-            this.label122.TabIndex = 11;
-            this.label122.Text = "Vertical Length:";
-            this.label122.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label123
-            // 
-            this.label123.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label123.Location = new System.Drawing.Point(1, 95);
-            this.label123.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label123.Name = "label123";
-            this.label123.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label123.Size = new System.Drawing.Size(177, 29);
-            this.label123.TabIndex = 12;
-            this.label123.Text = "Concrete Cover:";
-            this.label123.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tableLayoutPanel25
-            // 
-            this.tableLayoutPanel25.ColumnCount = 2;
-            this.tableLayoutPanel25.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel25.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel25.Controls.Add(this.label106, 0, 2);
-            this.tableLayoutPanel25.Controls.Add(this.textBox23, 1, 1);
-            this.tableLayoutPanel25.Controls.Add(this.textBox35, 1, 2);
-            this.tableLayoutPanel25.Controls.Add(this.label56, 0, 0);
-            this.tableLayoutPanel25.Controls.Add(this.label57, 0, 1);
-            this.tableLayoutPanel25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel25.Location = new System.Drawing.Point(371, 395);
-            this.tableLayoutPanel25.Name = "tableLayoutPanel25";
-            this.tableLayoutPanel25.RowCount = 13;
-            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel25.Size = new System.Drawing.Size(363, 168);
-            this.tableLayoutPanel25.TabIndex = 35;
-            // 
-            // textBox23
-            // 
-            this.textBox23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox23.Location = new System.Drawing.Point(184, 34);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(176, 26);
-            this.textBox23.TabIndex = 20;
-            this.textBox23.Text = "0";
-            // 
-            // textBox35
-            // 
-            this.textBox35.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox35.Location = new System.Drawing.Point(184, 66);
-            this.textBox35.Name = "textBox35";
-            this.textBox35.Size = new System.Drawing.Size(176, 26);
-            this.textBox35.TabIndex = 16;
-            this.textBox35.Text = "0";
-            // 
-            // label57
-            // 
-            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label57.Location = new System.Drawing.Point(1, 31);
-            this.label57.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label57.Name = "label57";
-            this.label57.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label57.Size = new System.Drawing.Size(177, 31);
-            this.label57.TabIndex = 10;
-            this.label57.Text = "Diameter:";
-            this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label56
-            // 
-            this.tableLayoutPanel25.SetColumnSpan(this.label56, 2);
-            this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label56.Location = new System.Drawing.Point(1, 0);
-            this.label56.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label56.Name = "label56";
-            this.label56.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label56.Size = new System.Drawing.Size(359, 31);
-            this.label56.TabIndex = 9;
-            this.label56.Text = "Steel Chair Spacer:";
-            this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label106
-            // 
-            this.label106.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label106.Location = new System.Drawing.Point(1, 63);
-            this.label106.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label106.Name = "label106";
-            this.label106.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label106.Size = new System.Drawing.Size(177, 31);
-            this.label106.TabIndex = 21;
-            this.label106.Text = "Spacing O.C.:";
-            this.label106.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tableLayoutPanel99
-            // 
-            this.tableLayoutPanel99.ColumnCount = 7;
-            this.tableLayoutPanel24.SetColumnSpan(this.tableLayoutPanel99, 2);
-            this.tableLayoutPanel99.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel99.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel99.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel99.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel99.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel99.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel99.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel99.Controls.Add(this.label111, 3, 1);
-            this.tableLayoutPanel99.Controls.Add(this.comboBox8, 4, 1);
-            this.tableLayoutPanel99.Controls.Add(this.comboBox13, 2, 1);
-            this.tableLayoutPanel99.Controls.Add(this.label124, 0, 4);
-            this.tableLayoutPanel99.Controls.Add(this.label125, 5, 1);
-            this.tableLayoutPanel99.Controls.Add(this.textBox54, 76, 1);
-            this.tableLayoutPanel99.Controls.Add(this.label129, 0, 0);
-            this.tableLayoutPanel99.Controls.Add(this.label130, 1, 1);
-            this.tableLayoutPanel99.Controls.Add(this.label126, 0, 1);
-            this.tableLayoutPanel99.Location = new System.Drawing.Point(3, 569);
-            this.tableLayoutPanel99.Name = "tableLayoutPanel99";
-            this.tableLayoutPanel99.RowCount = 6;
-            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel99.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel99.Size = new System.Drawing.Size(731, 249);
-            this.tableLayoutPanel99.TabIndex = 36;
-            // 
-            // comboBox8
-            // 
-            this.comboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Items.AddRange(new object[] {
-            "Rafter and Purlins",
-            "G.I Roof and Its Accessories",
-            "Roof Accessories (Tinswork)"});
-            this.comboBox8.Location = new System.Drawing.Point(419, 34);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(98, 28);
-            this.comboBox8.TabIndex = 29;
-            // 
-            // comboBox13
-            // 
-            this.comboBox13.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox13.FormattingEnabled = true;
-            this.comboBox13.Items.AddRange(new object[] {
-            "Rafter and Purlins",
-            "G.I Roof and Its Accessories",
-            "Roof Accessories (Tinswork)"});
-            this.comboBox13.Location = new System.Drawing.Point(211, 34);
-            this.comboBox13.Name = "comboBox13";
-            this.comboBox13.Size = new System.Drawing.Size(98, 28);
-            this.comboBox13.TabIndex = 28;
-            // 
-            // label124
-            // 
-            this.label124.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label124.Location = new System.Drawing.Point(1, 65);
-            this.label124.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label124.Name = "label124";
-            this.label124.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label124.Size = new System.Drawing.Size(100, 31);
-            this.label124.TabIndex = 27;
-            this.label124.Text = "Splice Type:";
-            this.label124.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label125
-            // 
-            this.label125.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label125.Location = new System.Drawing.Point(521, 31);
-            this.label125.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label125.Name = "label125";
-            this.label125.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label125.Size = new System.Drawing.Size(100, 31);
-            this.label125.TabIndex = 24;
-            this.label125.Text = "Custom Length:";
-            this.label125.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label126
-            // 
-            this.label126.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label126.Location = new System.Drawing.Point(1, 31);
-            this.label126.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label126.Name = "label126";
-            this.label126.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label126.Size = new System.Drawing.Size(100, 31);
-            this.label126.TabIndex = 22;
-            this.label126.Text = "Top:";
-            this.label126.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox54
-            // 
-            this.textBox54.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox54.Location = new System.Drawing.Point(627, 34);
-            this.textBox54.Name = "textBox54";
-            this.textBox54.Size = new System.Drawing.Size(101, 26);
-            this.textBox54.TabIndex = 20;
-            this.textBox54.Text = "0";
-            // 
-            // label129
-            // 
-            this.tableLayoutPanel99.SetColumnSpan(this.label129, 2);
-            this.label129.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label129.Location = new System.Drawing.Point(1, 0);
-            this.label129.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label129.Name = "label129";
-            this.label129.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label129.Size = new System.Drawing.Size(204, 31);
-            this.label129.TabIndex = 9;
-            this.label129.Text = "Slab Border";
-            this.label129.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label130
-            // 
-            this.label130.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label130.Location = new System.Drawing.Point(105, 31);
-            this.label130.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label130.Name = "label130";
-            this.label130.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label130.Size = new System.Drawing.Size(100, 31);
-            this.label130.TabIndex = 10;
-            this.label130.Text = "Beam Grid";
-            this.label130.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label111
-            // 
-            this.label111.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label111.Location = new System.Drawing.Point(313, 31);
-            this.label111.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label111.Name = "label111";
-            this.label111.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label111.Size = new System.Drawing.Size(100, 31);
-            this.label111.TabIndex = 30;
-            this.label111.Text = "@Beam Grid";
-            this.label111.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // roof_RP_W_rb
+            // 
+            this.roof_RP_W_rb.AutoSize = true;
+            this.roof_RP_W_rb.Location = new System.Drawing.Point(3, 3);
+            this.roof_RP_W_rb.Name = "roof_RP_W_rb";
+            this.roof_RP_W_rb.Size = new System.Drawing.Size(76, 24);
+            this.roof_RP_W_rb.TabIndex = 10;
+            this.roof_RP_W_rb.TabStop = true;
+            this.roof_RP_W_rb.Text = "Wood";
+            this.roof_RP_W_rb.UseVisualStyleBackColor = true;
+            this.roof_RP_W_rb.CheckedChanged += new System.EventHandler(this.roof_RP_W_rb_CheckedChanged);
+            // 
+            // roof_RP_ST_rb
+            // 
+            this.roof_RP_ST_rb.AutoSize = true;
+            this.roof_RP_ST_rb.Location = new System.Drawing.Point(131, 3);
+            this.roof_RP_ST_rb.Name = "roof_RP_ST_rb";
+            this.roof_RP_ST_rb.Size = new System.Drawing.Size(137, 24);
+            this.roof_RP_ST_rb.TabIndex = 11;
+            this.roof_RP_ST_rb.TabStop = true;
+            this.roof_RP_ST_rb.Text = "Steel - Tubular";
+            this.roof_RP_ST_rb.UseVisualStyleBackColor = true;
+            this.roof_RP_ST_rb.CheckedChanged += new System.EventHandler(this.roof_RP_W_rb_CheckedChanged);
+            // 
+            // roof_RP_SCP_rb
+            // 
+            this.roof_RP_SCP_rb.AutoSize = true;
+            this.roof_RP_SCP_rb.Location = new System.Drawing.Point(306, 3);
+            this.roof_RP_SCP_rb.Name = "roof_RP_SCP_rb";
+            this.roof_RP_SCP_rb.Size = new System.Drawing.Size(164, 24);
+            this.roof_RP_SCP_rb.TabIndex = 12;
+            this.roof_RP_SCP_rb.TabStop = true;
+            this.roof_RP_SCP_rb.Text = "Steel - Cee Purlins";
+            this.roof_RP_SCP_rb.UseVisualStyleBackColor = true;
+            this.roof_RP_SCP_rb.CheckedChanged += new System.EventHandler(this.roof_RP_W_rb_CheckedChanged);
+            // 
+            // roof_RP_D_TabControl
+            // 
+            this.roof_RP_D_TabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.roof_RP_D_TabControl.Controls.Add(this.tabPage15);
+            this.roof_RP_D_TabControl.Controls.Add(this.tabPage16);
+            this.roof_RP_D_TabControl.Controls.Add(this.tabPage17);
+            this.roof_RP_D_TabControl.ItemSize = new System.Drawing.Size(60, 25);
+            this.roof_RP_D_TabControl.Location = new System.Drawing.Point(3, 51);
+            this.roof_RP_D_TabControl.Name = "roof_RP_D_TabControl";
+            this.roof_RP_D_TabControl.Padding = new System.Drawing.Point(3, 3);
+            this.roof_RP_D_TabControl.SelectedIndex = 0;
+            this.roof_RP_D_TabControl.Size = new System.Drawing.Size(402, 433);
+            this.roof_RP_D_TabControl.TabIndex = 34;
+            // 
+            // tabPage15
+            // 
+            this.tabPage15.Controls.Add(this.tableLayoutPanel50);
+            this.tabPage15.Location = new System.Drawing.Point(4, 29);
+            this.tabPage15.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage15.Name = "tabPage15";
+            this.tabPage15.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage15.Size = new System.Drawing.Size(394, 400);
+            this.tabPage15.TabIndex = 0;
+            this.tabPage15.Text = "Wood";
+            this.tabPage15.UseVisualStyleBackColor = true;
+            // 
+            // tabPage16
+            // 
+            this.tabPage16.AutoScroll = true;
+            this.tabPage16.Controls.Add(this.tableLayoutPanel96);
+            this.tabPage16.Location = new System.Drawing.Point(4, 29);
+            this.tabPage16.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage16.Name = "tabPage16";
+            this.tabPage16.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage16.Size = new System.Drawing.Size(394, 400);
+            this.tabPage16.TabIndex = 1;
+            this.tabPage16.Text = "Steel - T";
+            this.tabPage16.UseVisualStyleBackColor = true;
+            // 
+            // tabPage17
+            // 
+            this.tabPage17.AutoScroll = true;
+            this.tabPage17.Controls.Add(this.tableLayoutPanel95);
+            this.tabPage17.Location = new System.Drawing.Point(4, 29);
+            this.tabPage17.Name = "tabPage17";
+            this.tabPage17.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage17.Size = new System.Drawing.Size(394, 400);
+            this.tabPage17.TabIndex = 2;
+            this.tabPage17.Text = "Steel - C";
+            this.tabPage17.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel95
+            // 
+            this.tableLayoutPanel95.ColumnCount = 2;
+            this.tableLayoutPanel95.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.82429F));
+            this.tableLayoutPanel95.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.17571F));
+            this.tableLayoutPanel95.Controls.Add(this.label264, 0, 7);
+            this.tableLayoutPanel95.Controls.Add(this.roof_RP_SCP_D_CLCPP_cbx, 1, 7);
+            this.tableLayoutPanel95.Controls.Add(this.label263, 0, 6);
+            this.tableLayoutPanel95.Controls.Add(this.roof_RP_SCP_D_SP_bx, 1, 5);
+            this.tableLayoutPanel95.Controls.Add(this.roof_RP_SCP_D_LRSW_bx, 1, 1);
+            this.tableLayoutPanel95.Controls.Add(this.roof_RP_SCP_D_SR_bx, 1, 4);
+            this.tableLayoutPanel95.Controls.Add(this.roof_RP_SCP_D_LP_bx, 1, 3);
+            this.tableLayoutPanel95.Controls.Add(this.roof_RP_SCP_D_LR_bx, 1, 2);
+            this.tableLayoutPanel95.Controls.Add(this.label249, 0, 0);
+            this.tableLayoutPanel95.Controls.Add(this.label250, 0, 1);
+            this.tableLayoutPanel95.Controls.Add(this.label258, 0, 2);
+            this.tableLayoutPanel95.Controls.Add(this.label259, 0, 3);
+            this.tableLayoutPanel95.Controls.Add(this.label260, 0, 5);
+            this.tableLayoutPanel95.Controls.Add(this.label262, 0, 4);
+            this.tableLayoutPanel95.Controls.Add(this.roof_RP_SCP_D_CLCPR_cbx, 1, 6);
+            this.tableLayoutPanel95.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel95.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel95.Name = "tableLayoutPanel95";
+            this.tableLayoutPanel95.RowCount = 8;
+            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel95.Size = new System.Drawing.Size(388, 394);
+            this.tableLayoutPanel95.TabIndex = 25;
+            // 
+            // roof_RP_SCP_D_SP_bx
+            // 
+            this.roof_RP_SCP_D_SP_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_SCP_D_SP_bx.Location = new System.Drawing.Point(250, 162);
+            this.roof_RP_SCP_D_SP_bx.Name = "roof_RP_SCP_D_SP_bx";
+            this.roof_RP_SCP_D_SP_bx.Size = new System.Drawing.Size(135, 26);
+            this.roof_RP_SCP_D_SP_bx.TabIndex = 21;
+            this.roof_RP_SCP_D_SP_bx.Text = "0.6";
+            // 
+            // roof_RP_SCP_D_LRSW_bx
+            // 
+            this.roof_RP_SCP_D_LRSW_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_SCP_D_LRSW_bx.Location = new System.Drawing.Point(250, 34);
+            this.roof_RP_SCP_D_LRSW_bx.Name = "roof_RP_SCP_D_LRSW_bx";
+            this.roof_RP_SCP_D_LRSW_bx.Size = new System.Drawing.Size(135, 26);
+            this.roof_RP_SCP_D_LRSW_bx.TabIndex = 20;
+            this.roof_RP_SCP_D_LRSW_bx.Text = "0";
+            // 
+            // roof_RP_SCP_D_SR_bx
+            // 
+            this.roof_RP_SCP_D_SR_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_SCP_D_SR_bx.Location = new System.Drawing.Point(250, 130);
+            this.roof_RP_SCP_D_SR_bx.Name = "roof_RP_SCP_D_SR_bx";
+            this.roof_RP_SCP_D_SR_bx.Size = new System.Drawing.Size(135, 26);
+            this.roof_RP_SCP_D_SR_bx.TabIndex = 19;
+            this.roof_RP_SCP_D_SR_bx.Text = "1.0";
+            // 
+            // roof_RP_SCP_D_LP_bx
+            // 
+            this.roof_RP_SCP_D_LP_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_SCP_D_LP_bx.Location = new System.Drawing.Point(250, 98);
+            this.roof_RP_SCP_D_LP_bx.Name = "roof_RP_SCP_D_LP_bx";
+            this.roof_RP_SCP_D_LP_bx.Size = new System.Drawing.Size(135, 26);
+            this.roof_RP_SCP_D_LP_bx.TabIndex = 16;
+            this.roof_RP_SCP_D_LP_bx.Text = "0";
+            // 
+            // roof_RP_SCP_D_LR_bx
+            // 
+            this.roof_RP_SCP_D_LR_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_SCP_D_LR_bx.Location = new System.Drawing.Point(250, 66);
+            this.roof_RP_SCP_D_LR_bx.Name = "roof_RP_SCP_D_LR_bx";
+            this.roof_RP_SCP_D_LR_bx.Size = new System.Drawing.Size(135, 26);
+            this.roof_RP_SCP_D_LR_bx.TabIndex = 15;
+            this.roof_RP_SCP_D_LR_bx.Text = "0";
+            // 
+            // label249
+            // 
+            this.tableLayoutPanel95.SetColumnSpan(this.label249, 2);
+            this.label249.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label249.Location = new System.Drawing.Point(1, 0);
+            this.label249.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label249.Name = "label249";
+            this.label249.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label249.Size = new System.Drawing.Size(302, 31);
+            this.label249.TabIndex = 9;
+            this.label249.Text = "Dimensions";
+            this.label249.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label250
+            // 
+            this.label250.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label250.Location = new System.Drawing.Point(1, 31);
+            this.label250.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label250.Name = "label250";
+            this.label250.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label250.Size = new System.Drawing.Size(243, 31);
+            this.label250.TabIndex = 10;
+            this.label250.Text = "Length of Rafter (Side Wall):";
+            this.label250.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label258
+            // 
+            this.label258.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label258.Location = new System.Drawing.Point(1, 63);
+            this.label258.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label258.Name = "label258";
+            this.label258.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label258.Size = new System.Drawing.Size(243, 31);
+            this.label258.TabIndex = 11;
+            this.label258.Text = "Length of Rafter:";
+            this.label258.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label259
+            // 
+            this.label259.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label259.Location = new System.Drawing.Point(1, 95);
+            this.label259.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label259.Name = "label259";
+            this.label259.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label259.Size = new System.Drawing.Size(243, 31);
+            this.label259.TabIndex = 12;
+            this.label259.Text = "Length of Purlins";
+            this.label259.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label260
+            // 
+            this.label260.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label260.Location = new System.Drawing.Point(1, 159);
+            this.label260.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label260.Name = "label260";
+            this.label260.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label260.Size = new System.Drawing.Size(243, 31);
+            this.label260.TabIndex = 18;
+            this.label260.Text = "Spacing of Purlins:";
+            this.label260.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label262
+            // 
+            this.label262.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label262.Location = new System.Drawing.Point(1, 127);
+            this.label262.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label262.Name = "label262";
+            this.label262.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label262.Size = new System.Drawing.Size(243, 31);
+            this.label262.TabIndex = 17;
+            this.label262.Text = "Spacing of Rafter:";
+            this.label262.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label263
+            // 
+            this.label263.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label263.Location = new System.Drawing.Point(1, 191);
+            this.label263.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label263.Name = "label263";
+            this.label263.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label263.Size = new System.Drawing.Size(243, 60);
+            this.label263.TabIndex = 22;
+            this.label263.Text = "Commercial Length of Cee Purlins (Rafter):";
+            this.label263.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // roof_RP_SCP_D_CLCPR_cbx
+            // 
+            this.roof_RP_SCP_D_CLCPR_cbx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_SCP_D_CLCPR_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roof_RP_SCP_D_CLCPR_cbx.FormattingEnabled = true;
+            this.roof_RP_SCP_D_CLCPR_cbx.Items.AddRange(new object[] {
+            "75mm x 50mm x 0.7mm thick",
+            "100mm x 50mm x 0.7mm thick",
+            "150mm x 50mm x 0.9mm thick",
+            "75mm x 50mm x 1.0mm thick",
+            "100mm x 50mm x 1.0mm thick",
+            "150mm x 50mm x 1.0mm thick",
+            "75mm x 50mm x 1.2mm thick",
+            "100mm x 50mm x 1.2mm thick",
+            "150mm x 50mm x 1.2mm thick"});
+            this.roof_RP_SCP_D_CLCPR_cbx.Location = new System.Drawing.Point(250, 194);
+            this.roof_RP_SCP_D_CLCPR_cbx.Name = "roof_RP_SCP_D_CLCPR_cbx";
+            this.roof_RP_SCP_D_CLCPR_cbx.Size = new System.Drawing.Size(135, 28);
+            this.roof_RP_SCP_D_CLCPR_cbx.TabIndex = 26;
+            // 
+            // roof_RP_SCP_D_CLCPP_cbx
+            // 
+            this.roof_RP_SCP_D_CLCPP_cbx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_SCP_D_CLCPP_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roof_RP_SCP_D_CLCPP_cbx.FormattingEnabled = true;
+            this.roof_RP_SCP_D_CLCPP_cbx.Items.AddRange(new object[] {
+            "75mm x 50mm x 0.7mm thick",
+            "100mm x 50mm x 0.7mm thick",
+            "150mm x 50mm x 0.9mm thick",
+            "75mm x 50mm x 1.0mm thick",
+            "100mm x 50mm x 1.0mm thick",
+            "150mm x 50mm x 1.0mm thick",
+            "75mm x 50mm x 1.2mm thick",
+            "100mm x 50mm x 1.2mm thick",
+            "150mm x 50mm x 1.2mm thick"});
+            this.roof_RP_SCP_D_CLCPP_cbx.Location = new System.Drawing.Point(250, 254);
+            this.roof_RP_SCP_D_CLCPP_cbx.Name = "roof_RP_SCP_D_CLCPP_cbx";
+            this.roof_RP_SCP_D_CLCPP_cbx.Size = new System.Drawing.Size(135, 28);
+            this.roof_RP_SCP_D_CLCPP_cbx.TabIndex = 27;
+            // 
+            // label264
+            // 
+            this.label264.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label264.Location = new System.Drawing.Point(1, 251);
+            this.label264.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label264.Name = "label264";
+            this.label264.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label264.Size = new System.Drawing.Size(243, 60);
+            this.label264.TabIndex = 28;
+            this.label264.Text = "Commercial Length of Cee Purlins (Purlins):";
+            this.label264.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tableLayoutPanel96
+            // 
+            this.tableLayoutPanel96.ColumnCount = 2;
+            this.tableLayoutPanel96.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.82429F));
+            this.tableLayoutPanel96.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.17571F));
+            this.tableLayoutPanel96.Controls.Add(this.label265, 0, 7);
+            this.tableLayoutPanel96.Controls.Add(this.roof_RP_ST_D_CLTSP_cbx, 1, 7);
+            this.tableLayoutPanel96.Controls.Add(this.label266, 0, 6);
+            this.tableLayoutPanel96.Controls.Add(this.roof_RP_ST_D_SP_bx, 1, 5);
+            this.tableLayoutPanel96.Controls.Add(this.roof_RP_ST_D_LRSW_bx, 1, 1);
+            this.tableLayoutPanel96.Controls.Add(this.roof_RP_ST_D_SR_bx, 1, 4);
+            this.tableLayoutPanel96.Controls.Add(this.roof_RP_ST_D_LP_bx, 1, 3);
+            this.tableLayoutPanel96.Controls.Add(this.roof_RP_ST_D_LR_bx, 1, 2);
+            this.tableLayoutPanel96.Controls.Add(this.label269, 0, 0);
+            this.tableLayoutPanel96.Controls.Add(this.label270, 0, 1);
+            this.tableLayoutPanel96.Controls.Add(this.label271, 0, 2);
+            this.tableLayoutPanel96.Controls.Add(this.label272, 0, 3);
+            this.tableLayoutPanel96.Controls.Add(this.label274, 0, 5);
+            this.tableLayoutPanel96.Controls.Add(this.label275, 0, 4);
+            this.tableLayoutPanel96.Controls.Add(this.roof_RP_ST_D_CLTSR_cbx, 1, 6);
+            this.tableLayoutPanel96.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel96.Location = new System.Drawing.Point(3, 4);
+            this.tableLayoutPanel96.Name = "tableLayoutPanel96";
+            this.tableLayoutPanel96.RowCount = 8;
+            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel96.Size = new System.Drawing.Size(388, 392);
+            this.tableLayoutPanel96.TabIndex = 26;
+            // 
+            // label265
+            // 
+            this.label265.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label265.Location = new System.Drawing.Point(1, 251);
+            this.label265.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label265.Name = "label265";
+            this.label265.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label265.Size = new System.Drawing.Size(243, 60);
+            this.label265.TabIndex = 28;
+            this.label265.Text = "Commercial Length of Tubular Steel (Purlins):";
+            this.label265.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // roof_RP_ST_D_CLTSP_cbx
+            // 
+            this.roof_RP_ST_D_CLTSP_cbx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_ST_D_CLTSP_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roof_RP_ST_D_CLTSP_cbx.FormattingEnabled = true;
+            this.roof_RP_ST_D_CLTSP_cbx.Items.AddRange(new object[] {
+            "75mm x 50mm x 0.7mm thick",
+            "100mm x 50mm x 0.7mm thick",
+            "150mm x 50mm x 0.9mm thick",
+            "75mm x 50mm x 1.0mm thick",
+            "100mm x 50mm x 1.0mm thick",
+            "150mm x 50mm x 1.0mm thick",
+            "75mm x 50mm x 1.2mm thick",
+            "100mm x 50mm x 1.2mm thick",
+            "150mm x 50mm x 1.2mm thick"});
+            this.roof_RP_ST_D_CLTSP_cbx.Location = new System.Drawing.Point(250, 254);
+            this.roof_RP_ST_D_CLTSP_cbx.Name = "roof_RP_ST_D_CLTSP_cbx";
+            this.roof_RP_ST_D_CLTSP_cbx.Size = new System.Drawing.Size(135, 28);
+            this.roof_RP_ST_D_CLTSP_cbx.TabIndex = 27;
+            // 
+            // label266
+            // 
+            this.label266.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label266.Location = new System.Drawing.Point(1, 191);
+            this.label266.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label266.Name = "label266";
+            this.label266.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label266.Size = new System.Drawing.Size(243, 60);
+            this.label266.TabIndex = 22;
+            this.label266.Text = "Commercial Length of Tubular Steel (Rafter):";
+            this.label266.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // roof_RP_ST_D_SP_bx
+            // 
+            this.roof_RP_ST_D_SP_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_ST_D_SP_bx.Location = new System.Drawing.Point(250, 162);
+            this.roof_RP_ST_D_SP_bx.Name = "roof_RP_ST_D_SP_bx";
+            this.roof_RP_ST_D_SP_bx.Size = new System.Drawing.Size(135, 26);
+            this.roof_RP_ST_D_SP_bx.TabIndex = 21;
+            this.roof_RP_ST_D_SP_bx.Text = "0.6";
+            // 
+            // roof_RP_ST_D_LRSW_bx
+            // 
+            this.roof_RP_ST_D_LRSW_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_ST_D_LRSW_bx.Location = new System.Drawing.Point(250, 34);
+            this.roof_RP_ST_D_LRSW_bx.Name = "roof_RP_ST_D_LRSW_bx";
+            this.roof_RP_ST_D_LRSW_bx.Size = new System.Drawing.Size(135, 26);
+            this.roof_RP_ST_D_LRSW_bx.TabIndex = 20;
+            this.roof_RP_ST_D_LRSW_bx.Text = "0";
+            // 
+            // roof_RP_ST_D_SR_bx
+            // 
+            this.roof_RP_ST_D_SR_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_ST_D_SR_bx.Location = new System.Drawing.Point(250, 130);
+            this.roof_RP_ST_D_SR_bx.Name = "roof_RP_ST_D_SR_bx";
+            this.roof_RP_ST_D_SR_bx.Size = new System.Drawing.Size(135, 26);
+            this.roof_RP_ST_D_SR_bx.TabIndex = 19;
+            this.roof_RP_ST_D_SR_bx.Text = "1.0";
+            // 
+            // roof_RP_ST_D_LP_bx
+            // 
+            this.roof_RP_ST_D_LP_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_ST_D_LP_bx.Location = new System.Drawing.Point(250, 98);
+            this.roof_RP_ST_D_LP_bx.Name = "roof_RP_ST_D_LP_bx";
+            this.roof_RP_ST_D_LP_bx.Size = new System.Drawing.Size(135, 26);
+            this.roof_RP_ST_D_LP_bx.TabIndex = 16;
+            this.roof_RP_ST_D_LP_bx.Text = "0";
+            // 
+            // roof_RP_ST_D_LR_bx
+            // 
+            this.roof_RP_ST_D_LR_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_ST_D_LR_bx.Location = new System.Drawing.Point(250, 66);
+            this.roof_RP_ST_D_LR_bx.Name = "roof_RP_ST_D_LR_bx";
+            this.roof_RP_ST_D_LR_bx.Size = new System.Drawing.Size(135, 26);
+            this.roof_RP_ST_D_LR_bx.TabIndex = 15;
+            this.roof_RP_ST_D_LR_bx.Text = "0";
+            // 
+            // label269
+            // 
+            this.tableLayoutPanel96.SetColumnSpan(this.label269, 2);
+            this.label269.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label269.Location = new System.Drawing.Point(1, 0);
+            this.label269.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label269.Name = "label269";
+            this.label269.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label269.Size = new System.Drawing.Size(302, 31);
+            this.label269.TabIndex = 9;
+            this.label269.Text = "Dimensions";
+            this.label269.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label270
+            // 
+            this.label270.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label270.Location = new System.Drawing.Point(1, 31);
+            this.label270.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label270.Name = "label270";
+            this.label270.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label270.Size = new System.Drawing.Size(243, 31);
+            this.label270.TabIndex = 10;
+            this.label270.Text = "Length of Rafter (Side Wall):";
+            this.label270.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label271
+            // 
+            this.label271.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label271.Location = new System.Drawing.Point(1, 63);
+            this.label271.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label271.Name = "label271";
+            this.label271.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label271.Size = new System.Drawing.Size(243, 31);
+            this.label271.TabIndex = 11;
+            this.label271.Text = "Length of Rafter:";
+            this.label271.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label272
+            // 
+            this.label272.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label272.Location = new System.Drawing.Point(1, 95);
+            this.label272.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label272.Name = "label272";
+            this.label272.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label272.Size = new System.Drawing.Size(243, 31);
+            this.label272.TabIndex = 12;
+            this.label272.Text = "Length of Purlins";
+            this.label272.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label274
+            // 
+            this.label274.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label274.Location = new System.Drawing.Point(1, 159);
+            this.label274.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label274.Name = "label274";
+            this.label274.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label274.Size = new System.Drawing.Size(243, 31);
+            this.label274.TabIndex = 18;
+            this.label274.Text = "Spacing of Purlins:";
+            this.label274.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label275
+            // 
+            this.label275.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label275.Location = new System.Drawing.Point(1, 127);
+            this.label275.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label275.Name = "label275";
+            this.label275.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label275.Size = new System.Drawing.Size(243, 31);
+            this.label275.TabIndex = 17;
+            this.label275.Text = "Spacing of Rafter:";
+            this.label275.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // roof_RP_ST_D_CLTSR_cbx
+            // 
+            this.roof_RP_ST_D_CLTSR_cbx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_ST_D_CLTSR_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roof_RP_ST_D_CLTSR_cbx.FormattingEnabled = true;
+            this.roof_RP_ST_D_CLTSR_cbx.Items.AddRange(new object[] {
+            "75mm x 50mm x 0.7mm thick",
+            "100mm x 50mm x 0.7mm thick",
+            "150mm x 50mm x 0.9mm thick",
+            "75mm x 50mm x 1.0mm thick",
+            "100mm x 50mm x 1.0mm thick",
+            "150mm x 50mm x 1.0mm thick",
+            "75mm x 50mm x 1.2mm thick",
+            "100mm x 50mm x 1.2mm thick",
+            "150mm x 50mm x 1.2mm thick"});
+            this.roof_RP_ST_D_CLTSR_cbx.Location = new System.Drawing.Point(250, 194);
+            this.roof_RP_ST_D_CLTSR_cbx.Name = "roof_RP_ST_D_CLTSR_cbx";
+            this.roof_RP_ST_D_CLTSR_cbx.Size = new System.Drawing.Size(135, 28);
+            this.roof_RP_ST_D_CLTSR_cbx.TabIndex = 26;
+            // 
+            // tableLayoutPanel50
+            // 
+            this.tableLayoutPanel50.ColumnCount = 2;
+            this.tableLayoutPanel50.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.82429F));
+            this.tableLayoutPanel50.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.17571F));
+            this.tableLayoutPanel50.Controls.Add(this.roof_RP_W_D_SP_bx, 0, 4);
+            this.tableLayoutPanel50.Controls.Add(this.roof_RP_W_D_SR_bx, 1, 3);
+            this.tableLayoutPanel50.Controls.Add(this.roof_RP_W_D_LR_bx, 1, 1);
+            this.tableLayoutPanel50.Controls.Add(this.roof_RP_W_D_LP_bx, 1, 2);
+            this.tableLayoutPanel50.Controls.Add(this.label131, 0, 0);
+            this.tableLayoutPanel50.Controls.Add(this.label245, 0, 1);
+            this.tableLayoutPanel50.Controls.Add(this.label246, 0, 2);
+            this.tableLayoutPanel50.Controls.Add(this.label247, 0, 3);
+            this.tableLayoutPanel50.Controls.Add(this.label276, 0, 4);
+            this.tableLayoutPanel50.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel50.Location = new System.Drawing.Point(3, 4);
+            this.tableLayoutPanel50.Name = "tableLayoutPanel50";
+            this.tableLayoutPanel50.RowCount = 8;
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel50.Size = new System.Drawing.Size(388, 392);
+            this.tableLayoutPanel50.TabIndex = 27;
+            // 
+            // roof_RP_W_D_LR_bx
+            // 
+            this.roof_RP_W_D_LR_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_W_D_LR_bx.Location = new System.Drawing.Point(250, 34);
+            this.roof_RP_W_D_LR_bx.Name = "roof_RP_W_D_LR_bx";
+            this.roof_RP_W_D_LR_bx.Size = new System.Drawing.Size(135, 26);
+            this.roof_RP_W_D_LR_bx.TabIndex = 20;
+            this.roof_RP_W_D_LR_bx.Text = "0";
+            // 
+            // roof_RP_W_D_LP_bx
+            // 
+            this.roof_RP_W_D_LP_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_W_D_LP_bx.Location = new System.Drawing.Point(250, 66);
+            this.roof_RP_W_D_LP_bx.Name = "roof_RP_W_D_LP_bx";
+            this.roof_RP_W_D_LP_bx.Size = new System.Drawing.Size(135, 26);
+            this.roof_RP_W_D_LP_bx.TabIndex = 15;
+            this.roof_RP_W_D_LP_bx.Text = "0";
+            // 
+            // label131
+            // 
+            this.tableLayoutPanel50.SetColumnSpan(this.label131, 2);
+            this.label131.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label131.Location = new System.Drawing.Point(1, 0);
+            this.label131.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label131.Name = "label131";
+            this.label131.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label131.Size = new System.Drawing.Size(302, 31);
+            this.label131.TabIndex = 9;
+            this.label131.Text = "Dimensions";
+            this.label131.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label246
+            // 
+            this.label246.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label246.Location = new System.Drawing.Point(1, 63);
+            this.label246.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label246.Name = "label246";
+            this.label246.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label246.Size = new System.Drawing.Size(243, 31);
+            this.label246.TabIndex = 11;
+            this.label246.Text = "Length of Purlins:";
+            this.label246.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label247
+            // 
+            this.label247.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label247.Location = new System.Drawing.Point(1, 95);
+            this.label247.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label247.Name = "label247";
+            this.label247.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label247.Size = new System.Drawing.Size(243, 31);
+            this.label247.TabIndex = 12;
+            this.label247.Text = "Spacing of Rafter";
+            this.label247.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label276
+            // 
+            this.label276.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label276.Location = new System.Drawing.Point(1, 127);
+            this.label276.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label276.Name = "label276";
+            this.label276.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label276.Size = new System.Drawing.Size(243, 31);
+            this.label276.TabIndex = 18;
+            this.label276.Text = "Spacing of Purlins:";
+            this.label276.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label245
+            // 
+            this.label245.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label245.Location = new System.Drawing.Point(1, 31);
+            this.label245.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label245.Name = "label245";
+            this.label245.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label245.Size = new System.Drawing.Size(243, 31);
+            this.label245.TabIndex = 10;
+            this.label245.Text = "Length of Rafter:";
+            this.label245.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // roof_RP_W_D_SR_bx
+            // 
+            this.roof_RP_W_D_SR_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_W_D_SR_bx.Location = new System.Drawing.Point(250, 98);
+            this.roof_RP_W_D_SR_bx.Name = "roof_RP_W_D_SR_bx";
+            this.roof_RP_W_D_SR_bx.Size = new System.Drawing.Size(135, 26);
+            this.roof_RP_W_D_SR_bx.TabIndex = 29;
+            this.roof_RP_W_D_SR_bx.Text = "0.8";
+            this.roof_RP_W_D_SR_bx.TextChanged += new System.EventHandler(this.roof_RP_W_D_SR_bx_TextChanged);
+            // 
+            // roof_RP_W_D_SP_bx
+            // 
+            this.roof_RP_W_D_SP_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roof_RP_W_D_SP_bx.Location = new System.Drawing.Point(250, 130);
+            this.roof_RP_W_D_SP_bx.Name = "roof_RP_W_D_SP_bx";
+            this.roof_RP_W_D_SP_bx.Size = new System.Drawing.Size(135, 26);
+            this.roof_RP_W_D_SP_bx.TabIndex = 30;
+            this.roof_RP_W_D_SP_bx.Text = "0.6";
             // 
             // AddStructForm
             // 
@@ -10743,6 +11084,12 @@ namespace WindowsFormsApp1
             this.tabControl2.ResumeLayout(false);
             this.tabPage13.ResumeLayout(false);
             this.tableLayoutPanel24.ResumeLayout(false);
+            this.tableLayoutPanel99.ResumeLayout(false);
+            this.tableLayoutPanel99.PerformLayout();
+            this.tableLayoutPanel25.ResumeLayout(false);
+            this.tableLayoutPanel25.PerformLayout();
+            this.tableLayoutPanel56.ResumeLayout(false);
+            this.tableLayoutPanel56.PerformLayout();
             this.tableLayoutPanel55.ResumeLayout(false);
             this.tableLayoutPanel55.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
@@ -10797,13 +11144,9 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel91.ResumeLayout(false);
             this.tableLayoutPanel92.ResumeLayout(false);
             this.tableLayoutPanel93.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
+            this.roofTabControl.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
             this.tableLayoutPanel94.ResumeLayout(false);
-            this.tableLayoutPanel95.ResumeLayout(false);
-            this.tableLayoutPanel95.PerformLayout();
-            this.tableLayoutPanel96.ResumeLayout(false);
-            this.tableLayoutPanel96.PerformLayout();
             this.tableLayoutPanel97.ResumeLayout(false);
             this.tableLayoutPanel97.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
@@ -10820,12 +11163,16 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel106.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tableLayoutPanel56.ResumeLayout(false);
-            this.tableLayoutPanel56.PerformLayout();
-            this.tableLayoutPanel25.ResumeLayout(false);
-            this.tableLayoutPanel25.PerformLayout();
-            this.tableLayoutPanel99.ResumeLayout(false);
-            this.tableLayoutPanel99.PerformLayout();
+            this.roof_RP_D_TabControl.ResumeLayout(false);
+            this.tabPage15.ResumeLayout(false);
+            this.tabPage16.ResumeLayout(false);
+            this.tabPage17.ResumeLayout(false);
+            this.tableLayoutPanel95.ResumeLayout(false);
+            this.tableLayoutPanel95.PerformLayout();
+            this.tableLayoutPanel96.ResumeLayout(false);
+            this.tableLayoutPanel96.PerformLayout();
+            this.tableLayoutPanel50.ResumeLayout(false);
+            this.tableLayoutPanel50.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -11383,59 +11730,32 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel91;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel92;
         private System.Windows.Forms.Label label244;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox roof_PGR_cbx;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel93;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl roofTabControl;
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel94;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel95;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label245;
-        private System.Windows.Forms.Label label246;
-        private System.Windows.Forms.Label label247;
-        private System.Windows.Forms.Label label249;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel96;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label250;
-        private System.Windows.Forms.Label label258;
-        private System.Windows.Forms.Label label259;
-        private System.Windows.Forms.Label label260;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel97;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.TextBox textBox21;
-        private System.Windows.Forms.Label label261;
-        private System.Windows.Forms.Label label262;
-        private System.Windows.Forms.Label label263;
-        private System.Windows.Forms.Label label264;
-        private System.Windows.Forms.Label label265;
-        private System.Windows.Forms.Label label266;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.TabPage tabPage11;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel98;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel100;
-        private System.Windows.Forms.ComboBox comboBox7;
+        private System.Windows.Forms.ComboBox roof_GI_M_SP_cbx;
         private System.Windows.Forms.Label label273;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel102;
-        private System.Windows.Forms.TextBox textBox32;
+        private System.Windows.Forms.TextBox roof_GI_D_LP_bx;
         private System.Windows.Forms.Label label282;
         private System.Windows.Forms.Label label283;
         private System.Windows.Forms.Label label284;
         private System.Windows.Forms.TabPage tabPage12;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel103;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel106;
-        private System.Windows.Forms.TextBox textBox41;
-        private System.Windows.Forms.TextBox textBox43;
-        private System.Windows.Forms.TextBox textBox44;
+        private System.Windows.Forms.TextBox roof_RA_D_G_TL_bx;
+        private System.Windows.Forms.TextBox roof_RA_D_G_TW_bx;
+        private System.Windows.Forms.TextBox roof_RA_D_G_EL_bx;
         private System.Windows.Forms.Label label296;
         private System.Windows.Forms.Label label297;
         private System.Windows.Forms.Label label298;
@@ -11443,44 +11763,44 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.PictureBox pictureBox14;
         private System.Windows.Forms.Label label288;
         private System.Windows.Forms.Label label293;
-        private System.Windows.Forms.TextBox textBox39;
-        private System.Windows.Forms.TextBox textBox40;
-        private System.Windows.Forms.TextBox textBox42;
+        private System.Windows.Forms.TextBox roof_RA_D_RR_TW_bx;
+        private System.Windows.Forms.TextBox roof_RA_D_RR_TL_bx;
+        private System.Windows.Forms.TextBox roof_RA_D_RR_EL_bx;
         private System.Windows.Forms.Label label294;
         private System.Windows.Forms.Label label295;
         private System.Windows.Forms.Label label300;
         private System.Windows.Forms.Label label289;
-        private System.Windows.Forms.TextBox textBox36;
-        private System.Windows.Forms.TextBox textBox37;
-        private System.Windows.Forms.TextBox textBox38;
+        private System.Windows.Forms.TextBox roof_RA_D_F_TL_bx;
+        private System.Windows.Forms.TextBox roof_RA_D_F_EL_bx;
+        private System.Windows.Forms.TextBox roof_RA_D_F_TW_bx;
         private System.Windows.Forms.Label label290;
         private System.Windows.Forms.Label label291;
         private System.Windows.Forms.Label label292;
         private System.Windows.Forms.Label label305;
-        private System.Windows.Forms.TextBox textBox48;
-        private System.Windows.Forms.TextBox textBox49;
-        private System.Windows.Forms.TextBox textBox50;
+        private System.Windows.Forms.TextBox roof_RA_D_HR_TL_bx;
+        private System.Windows.Forms.TextBox roof_RA_D_HR_EL_bx;
+        private System.Windows.Forms.TextBox roof_RA_D_HR_TW_bx;
         private System.Windows.Forms.Label label306;
         private System.Windows.Forms.Label label307;
         private System.Windows.Forms.Label label308;
         private System.Windows.Forms.Label label301;
-        private System.Windows.Forms.TextBox textBox45;
-        private System.Windows.Forms.TextBox textBox46;
-        private System.Windows.Forms.TextBox textBox47;
+        private System.Windows.Forms.TextBox roof_RA_D_VR_TL_bx;
+        private System.Windows.Forms.TextBox roof_RA_D_VR_EL_bx;
+        private System.Windows.Forms.TextBox roof_RA_D_VR_TW_bx;
         private System.Windows.Forms.Label label302;
         private System.Windows.Forms.Label label303;
         private System.Windows.Forms.Label label304;
         private System.Windows.Forms.Label label268;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton7;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.TextBox textBox22;
+        private System.Windows.Forms.RadioButton roof_GI_M_CGIS_rb;
+        private System.Windows.Forms.RadioButton roof_GI_M_GIRN_rb;
+        private System.Windows.Forms.RadioButton roof_GI_M_GIR_rb;
+        private System.Windows.Forms.RadioButton roof_GI_M_GIW_rb;
+        private System.Windows.Forms.RadioButton roof_GI_M_LW_rb;
+        private System.Windows.Forms.RadioButton roof_GI_M_PGIS_rb;
+        private System.Windows.Forms.RadioButton roof_GI_M_UN_rb;
+        private System.Windows.Forms.TextBox roof_GI_D_HRS_bx;
         private System.Windows.Forms.Label label267;
-        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox roof_GI_D_EC_cbx;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel52;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel53;
         private System.Windows.Forms.Label label113;
@@ -11568,5 +11888,54 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label122;
         private System.Windows.Forms.Label label123;
         private System.Windows.Forms.Label label111;
+        private System.Windows.Forms.TabControl roof_RP_D_TabControl;
+        private System.Windows.Forms.TabPage tabPage15;
+        private System.Windows.Forms.TabPage tabPage16;
+        private System.Windows.Forms.TabPage tabPage17;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel95;
+        private System.Windows.Forms.Label label263;
+        private System.Windows.Forms.TextBox roof_RP_SCP_D_SP_bx;
+        private System.Windows.Forms.TextBox roof_RP_SCP_D_LRSW_bx;
+        private System.Windows.Forms.TextBox roof_RP_SCP_D_SR_bx;
+        private System.Windows.Forms.TextBox roof_RP_SCP_D_LP_bx;
+        private System.Windows.Forms.TextBox roof_RP_SCP_D_LR_bx;
+        private System.Windows.Forms.Label label249;
+        private System.Windows.Forms.Label label250;
+        private System.Windows.Forms.Label label258;
+        private System.Windows.Forms.Label label259;
+        private System.Windows.Forms.Label label260;
+        private System.Windows.Forms.Label label262;
+        private System.Windows.Forms.RadioButton roof_RP_W_rb;
+        private System.Windows.Forms.RadioButton roof_RP_ST_rb;
+        private System.Windows.Forms.RadioButton roof_RP_SCP_rb;
+        private System.Windows.Forms.Label label264;
+        private System.Windows.Forms.ComboBox roof_RP_SCP_D_CLCPP_cbx;
+        private System.Windows.Forms.ComboBox roof_RP_SCP_D_CLCPR_cbx;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel96;
+        private System.Windows.Forms.Label label265;
+        private System.Windows.Forms.ComboBox roof_RP_ST_D_CLTSP_cbx;
+        private System.Windows.Forms.Label label266;
+        private System.Windows.Forms.TextBox roof_RP_ST_D_SP_bx;
+        private System.Windows.Forms.TextBox roof_RP_ST_D_LRSW_bx;
+        private System.Windows.Forms.TextBox roof_RP_ST_D_SR_bx;
+        private System.Windows.Forms.TextBox roof_RP_ST_D_LP_bx;
+        private System.Windows.Forms.TextBox roof_RP_ST_D_LR_bx;
+        private System.Windows.Forms.Label label269;
+        private System.Windows.Forms.Label label270;
+        private System.Windows.Forms.Label label271;
+        private System.Windows.Forms.Label label272;
+        private System.Windows.Forms.Label label274;
+        private System.Windows.Forms.Label label275;
+        private System.Windows.Forms.ComboBox roof_RP_ST_D_CLTSR_cbx;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel50;
+        private System.Windows.Forms.TextBox roof_RP_W_D_SP_bx;
+        private System.Windows.Forms.TextBox roof_RP_W_D_SR_bx;
+        private System.Windows.Forms.TextBox roof_RP_W_D_LR_bx;
+        private System.Windows.Forms.TextBox roof_RP_W_D_LP_bx;
+        private System.Windows.Forms.Label label131;
+        private System.Windows.Forms.Label label245;
+        private System.Windows.Forms.Label label246;
+        private System.Windows.Forms.Label label247;
+        private System.Windows.Forms.Label label276;
     }
 }

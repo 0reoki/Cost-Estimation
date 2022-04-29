@@ -30,6 +30,10 @@ namespace WindowsFormsApp1
         public List<List<string>> stairsNames = new List<List<string>>();
         public List<List<List<string>>> stairs = new List<List<List<string>>>();
 
+        //Roof Variables
+        public List<List<string>> roofNames = new List<List<string>>();
+        public List<List<List<string>>> roof = new List<List<List<string>>>();
+
         //Solution variables
         public List<List<double>> earthworkSolutions = new List<List<double>>();
         public List<List<double>> stairsSolutions = new List<List<double>>();
