@@ -18,6 +18,7 @@ namespace WindowsFormsApp1
         private List<ColumnLateralTiesUserControl> u_ltUC;
         private List<ColumnSpacingUserControl> g_sUC;
         private List<ColumnSpacingUserControl> u_sUC;
+        private List<RoofHRSUserControl> rHSR_UC;
 
         //Passed Variables
         public string structMemName;
@@ -50,6 +51,7 @@ namespace WindowsFormsApp1
             g_sUC = new List<ColumnSpacingUserControl>();
             u_ltUC = new List<ColumnLateralTiesUserControl>();
             u_sUC = new List<ColumnSpacingUserControl>();
+            rHSR_UC = new List<RoofHRSUserControl>();
 
             //Init components
             addstruct_cbx.SelectedIndex = 0;
@@ -115,6 +117,10 @@ namespace WindowsFormsApp1
                 else if(parentNode.Equals("STAIRS"))
                 {
                     setStairsValues();
+                }
+                else if (parentNode.Equals("ROOF"))
+                {
+                    setRoofValues();
                 }
             }
 
@@ -1107,34 +1113,56 @@ namespace WindowsFormsApp1
                         return;
                     }
 
-                    //TODO Do Whatever
+                    //Do Whatever
                     if (roof_PGR_cbx.SelectedIndex == 0) //Rafters and Purlins
                     {
                         try
                         {
                             List<string> members = new List<string>();
-                            members.Add(stairs_ST_cbx.Text);
-                            members.Add(stairs_SS_D_Q_bx.Text);
-                            members.Add(stairs_SS_D_S_bx.Text);
-                            members.Add(stairs_SS_D_SL_bx.Text);
-                            members.Add(stairs_SS_D_RH_bx.Text);
-                            members.Add(stairs_SS_D_TW_bx.Text);
-                            members.Add(stairs_SS_D_WST_bx.Text);
+                            members.Add(roof_PGR_cbx.Text);
 
-                            members.Add(stairs_SS_WS_MB_cbx.Text);
-                            members.Add(stairs_SS_WS_MBS_bx.Text);
-                            members.Add(stairs_SS_WS_DB_cbx.Text);
-                            members.Add(stairs_SS_WS_DBS_bx.Text);
-                            members.Add(stairs_SS_S_MB_cbx.Text);
-                            members.Add(stairs_SS_S_MBS_bx.Text);
-                            members.Add(stairs_SS_S_NB_cbx.Text);
+                            if (roof_RP_W_rb.Checked == true) //Wood
+                            {
+                                members.Add(roof_RP_W_rb.Text);
 
-                            costEstimationForm.structuralMembers.stairs[floorCount].Add(members);
-                            costEstimationForm.structuralMembers.stairsNames[floorCount].Add(structMemName);
+                                members.Add(roof_RP_W_D_LR_bx.Text);
+                                members.Add(roof_RP_W_D_LP_bx.Text);
+                                members.Add(roof_RP_W_D_SR_bx.Text);
+                                members.Add(roof_RP_W_D_SP_bx.Text);
+                            }
+                            else if (roof_RP_ST_rb.Checked == true) //Steel - Tubular
+                            {
+                                members.Add(roof_RP_ST_rb.Text);
+
+                                members.Add(roof_RP_ST_D_LRSW_bx.Text);
+                                members.Add(roof_RP_ST_D_LR_bx.Text);
+                                members.Add(roof_RP_ST_D_LP_bx.Text); 
+                                members.Add(roof_RP_ST_D_SR_bx.Text);
+                                members.Add(roof_RP_ST_D_SP_bx.Text);
+                                members.Add(roof_RP_ST_D_CLTSR_cbx.Text);
+                                members.Add(roof_RP_ST_D_CLTSP_cbx.Text);
+                            }
+                            else if (roof_RP_SCP_rb.Checked == true) //Steel - Cee Purlins
+                            {
+                                members.Add(roof_RP_SCP_rb.Text);
+
+                                members.Add(roof_RP_SCP_D_LRSW_bx.Text);
+                                members.Add(roof_RP_SCP_D_LR_bx.Text);
+                                members.Add(roof_RP_SCP_D_LP_bx.Text);
+                                members.Add(roof_RP_SCP_D_SR_bx.Text);
+                                members.Add(roof_RP_SCP_D_SP_bx.Text);
+                                members.Add(roof_RP_SCP_D_CLCPR_cbx.Text);
+                                members.Add(roof_RP_SCP_D_CLCPP_cbx.Text);
+                            }
+
+                            List<string> hrsMember = new List<string>();
+                            costEstimationForm.structuralMembers.roof[floorCount].Add(members);
+                            costEstimationForm.structuralMembers.roofHRS[floorCount].Add(hrsMember);
+                            costEstimationForm.structuralMembers.roofNames[floorCount].Add(structMemName);
 
                             //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
                             MessageBox.Show("eto ang sagot sa tanong: " +
-                                costEstimationForm.structuralMembers.stairs[floorCount][stairsCount][0]);
+                                costEstimationForm.structuralMembers.roof[floorCount][roofCount][0]);
                             this.DialogResult = DialogResult.OK;
                         }
                         catch (Exception ex)
@@ -1145,16 +1173,231 @@ namespace WindowsFormsApp1
                     }
                     else if (roof_PGR_cbx.SelectedIndex == 1) //G.I Roof and Its Accessories
                     {
+                        try
+                        {
+                            List<string> members = new List<string>();
+                            members.Add(roof_PGR_cbx.Text);
 
+                            members.Add(roof_GI_D_LP_bx.Text);
+                            members.Add(roof_GI_D_EC_cbx.Text);
+                            List<string> hrsMember = new List<string>();
+                            foreach (RoofHRSUserControl rHRS in rHSR_UC)
+                            {
+                                hrsMember.Add(rHRS.value);
+                            }
+
+                            if (roof_GI_M_CGIS_rb.Checked == true)
+                                members.Add(roof_GI_M_CGIS_rb.Text);
+                            else if (roof_GI_M_GIRN_rb.Checked == true)
+                                members.Add(roof_GI_M_GIRN_rb.Text);
+                            else if (roof_GI_M_GIR_rb.Checked == true)
+                                members.Add(roof_GI_M_GIR_rb.Text);
+                            else if (roof_GI_M_GIW_rb.Checked == true)
+                                members.Add(roof_GI_M_GIW_rb.Text);
+                            else if (roof_GI_M_LW_rb.Checked == true)
+                                members.Add(roof_GI_M_LW_rb.Text);
+                            else if (roof_GI_M_UN_rb.Checked == true)
+                                members.Add(roof_GI_M_UN_rb.Text);
+                            else if (roof_GI_M_PGIS_rb.Checked == true)
+                            {
+                                members.Add(roof_GI_M_PGIS_rb.Text); 
+                                members.Add(roof_GI_M_SP_cbx.Text);
+                            }
+
+                            costEstimationForm.structuralMembers.roof[floorCount].Add(members);
+                            costEstimationForm.structuralMembers.roofHRS[floorCount].Add(hrsMember);
+                            costEstimationForm.structuralMembers.roofNames[floorCount].Add(structMemName);
+
+                            //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                            MessageBox.Show("eto ang sagot sa tanong: " +
+                                costEstimationForm.structuralMembers.roof[floorCount][roofCount][0]);
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Do not leave any blank spaces!");
+                            Console.WriteLine(ex.ToString());
+                        }
                     }
                     else //Roof Accessories (Tinswork)
                     {
+                        try
+                        {
+                            List<string> members = new List<string>();
+                            members.Add(roof_PGR_cbx.Text);
 
+                            members.Add(roof_RA_D_G_TL_bx.Text);
+                            members.Add(roof_RA_D_G_EL_bx.Text);
+                            members.Add(roof_RA_D_G_TW_bx.Text);
+
+                            members.Add(roof_RA_D_F_TL_bx.Text);
+                            members.Add(roof_RA_D_F_EL_bx.Text);
+                            members.Add(roof_RA_D_F_TW_bx.Text);
+
+                            members.Add(roof_RA_D_RR_TL_bx.Text);
+                            members.Add(roof_RA_D_RR_EL_bx.Text);
+                            members.Add(roof_RA_D_RR_TW_bx.Text);
+
+                            members.Add(roof_RA_D_VR_TL_bx.Text);
+                            members.Add(roof_RA_D_VR_EL_bx.Text);
+                            members.Add(roof_RA_D_VR_TW_bx.Text);
+
+                            members.Add(roof_RA_D_HR_TL_bx.Text);
+                            members.Add(roof_RA_D_HR_EL_bx.Text);
+                            members.Add(roof_RA_D_HR_TW_bx.Text);
+
+                            List<string> hrsMember = new List<string>();
+                            costEstimationForm.structuralMembers.roof[floorCount].Add(members);
+                            costEstimationForm.structuralMembers.roofHRS[floorCount].Add(hrsMember);
+                            costEstimationForm.structuralMembers.roofNames[floorCount].Add(structMemName);
+
+                            //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                            MessageBox.Show("eto ang sagot sa tanong: " +
+                                costEstimationForm.structuralMembers.roof[floorCount][roofCount][0]);
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Do not leave any blank spaces!");
+                            Console.WriteLine(ex.ToString());
+                        }
                     }
                 }
                 else //Update
                 {
+                    //Name Validation
+                    if (costEstimationForm.structuralMembers.roofNames[floorCount].Contains(structMemName))
+                    {
+                        if (structMemName.Equals(oldStructMemName))
+                        {
+                            //Do nothing
+                        }
+                        else
+                        {
+                            int found = 0;
+                            for (int i = 0; i < costEstimationForm.structuralMembers.roofNames[floorCount].Count; i++)
+                            {
+                                if (costEstimationForm.structuralMembers.roofNames[floorCount][i].Equals(structMemName))
+                                {
+                                    found++;
+                                }
+                            }
+                            if (found > 1)
+                            {   //Duplicate found
+                                MessageBox.Show("Name already exists!");
+                                return;
+                            }
+                        }
+                    }
 
+                    if (roof_PGR_cbx.SelectedIndex == 0) //Rafter and Purlins
+                    {
+                        costEstimationForm.structuralMembers.roofNames[floorCount][memberCount] = addstruct_Name_bx.Text;
+                        
+                        if (roof_RP_W_rb.Checked == true) //Wood
+                        {
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][1] = "Wood";
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][2] = roof_RP_W_D_LR_bx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = roof_RP_W_D_LP_bx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][4] = roof_RP_W_D_SR_bx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][5] = roof_RP_W_D_SP_bx.Text;
+                        }
+                        else if (roof_RP_ST_rb.Checked == true)
+                        {
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][1] = "Steel - Tubular";
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][2] = roof_RP_ST_D_LRSW_bx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = roof_RP_ST_D_LR_bx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][4] = roof_RP_ST_D_LP_bx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][5] = roof_RP_ST_D_SR_bx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][6] = roof_RP_ST_D_SP_bx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][7] = roof_RP_ST_D_CLTSR_cbx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][8] = roof_RP_ST_D_CLTSP_cbx.Text;
+                        }
+                        else
+                        {
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][1] = "Steel - Cee Purlins";
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][2] = roof_RP_SCP_D_LRSW_bx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = roof_RP_SCP_D_LR_bx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][4] = roof_RP_SCP_D_LP_bx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][5] = roof_RP_SCP_D_SR_bx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][6] = roof_RP_SCP_D_SP_bx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][7] = roof_RP_SCP_D_CLCPR_cbx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][8] = roof_RP_SCP_D_CLCPP_cbx.Text;
+                        }
+
+                        //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                        MessageBox.Show("eto ang sagot sa tanong: " +
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][2]);
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else if (roof_PGR_cbx.SelectedIndex == 1) //G.I Roof and Its Accessories
+                    {
+                        costEstimationForm.structuralMembers.roofNames[floorCount][memberCount] = addstruct_Name_bx.Text;
+
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][1] = roof_GI_D_LP_bx.Text;
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][2] = roof_GI_D_EC_cbx.Text;
+
+                        if (roof_GI_M_CGIS_rb.Checked == true)
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = "Corrugated G.I Sheet";
+                        else if (roof_GI_M_GIRN_rb.Checked == true)
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = "G.I Roof Nails";
+                        else if (roof_GI_M_GIR_rb.Checked == true)
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = "G.I Rivets";   
+                        else if (roof_GI_M_GIW_rb.Checked == true)
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = "G.I Washers";
+                        else if (roof_GI_M_LW_rb.Checked == true)
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = "Lead Washers";
+                        else if (roof_GI_M_UN_rb.Checked == true)
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = "Umbrella Nails";
+                        else if (roof_GI_M_PGIS_rb.Checked == true)
+                        {
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = "Plain G.I Strap";
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][4] = roof_GI_M_SP_cbx.Text;
+                        }
+
+                        List<string> hrsMember = new List<string>();
+                        foreach (RoofHRSUserControl rHRS in rHSR_UC)
+                        {
+                            hrsMember.Add(rHRS.value);
+                        }
+
+                        costEstimationForm.structuralMembers.roofHRS[floorCount][memberCount] = hrsMember;
+                        
+                        //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                        MessageBox.Show("eto ang sagot sa tanong: " +
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][2]);
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else //Roof Accessories(Tinswork)
+                    {
+                        costEstimationForm.structuralMembers.roofNames[floorCount][memberCount] = addstruct_Name_bx.Text;
+
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][1] = roof_RA_D_G_TL_bx.Text;
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][2] = roof_RA_D_G_EL_bx.Text;
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = roof_RA_D_G_TW_bx.Text;
+
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][4] = roof_RA_D_F_TL_bx.Text;
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][5] = roof_RA_D_F_EL_bx.Text;
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][6] = roof_RA_D_F_TW_bx.Text;
+
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][7] = roof_RA_D_RR_TL_bx.Text;
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][8] = roof_RA_D_RR_EL_bx.Text;
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][9] = roof_RA_D_RR_TW_bx.Text;
+
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][10] = roof_RA_D_VR_TL_bx.Text;
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][11] = roof_RA_D_VR_EL_bx.Text;
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][12] = roof_RA_D_VR_TW_bx.Text;
+
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][13] = roof_RA_D_HR_TL_bx.Text;
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][14] = roof_RA_D_HR_EL_bx.Text;
+                        costEstimationForm.structuralMembers.roof[floorCount][memberCount][15] = roof_RA_D_HR_TW_bx.Text;
+                        
+                        //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                        MessageBox.Show("eto ang sagot sa tanong: " +
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][2]);
+                        this.DialogResult = DialogResult.OK;
+
+                    }
                 }
             }
         }
@@ -1600,6 +1843,119 @@ namespace WindowsFormsApp1
                 stairs_LS_S_NB_cbx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][17];
             }
         }
+        
+        private void setRoofValues()
+        {
+            if (floorCount == 0)
+            {
+                addstruct_cbx.SelectedIndex = 6;
+            }
+            else
+            {
+                addstruct_cbx.SelectedIndex = 4;
+            }
+            if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][0].Equals("Rafter and Purlins"))
+            {
+                roof_PGR_cbx.SelectedIndex = 0;
+                oldStructMemName = costEstimationForm.structuralMembers.roofNames[floorCount][memberCount];
+                addstruct_Name_bx.Text = costEstimationForm.structuralMembers.roofNames[floorCount][memberCount];
+
+                if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][1].Equals("Wood")) //Wood
+                {
+                    roof_RP_W_rb.Checked = true;
+                    roof_RP_W_D_LR_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][2];
+                    roof_RP_W_D_LP_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][3];
+                    roof_RP_W_D_SR_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][4];
+                    roof_RP_W_D_SP_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][5];
+                }
+                else if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][1].Equals("Steel - Tubular"))
+                {
+                    roof_RP_ST_rb.Checked = true;
+                    roof_RP_ST_D_LRSW_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][2];
+                    roof_RP_ST_D_LR_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][3];
+                    roof_RP_ST_D_LP_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][4];
+                    roof_RP_ST_D_SR_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][5];
+                    roof_RP_ST_D_SP_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][6];
+                    roof_RP_ST_D_CLTSR_cbx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][7];
+                    roof_RP_ST_D_CLTSP_cbx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][8];
+                }
+                else
+                {
+                    roof_RP_SCP_rb.Checked = true;
+                    roof_RP_SCP_D_LRSW_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][2];
+                    roof_RP_SCP_D_LR_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][3];
+                    roof_RP_SCP_D_LP_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][4];
+                    roof_RP_SCP_D_SR_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][5];
+                    roof_RP_SCP_D_SP_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][6];
+                    roof_RP_SCP_D_CLCPR_cbx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][7];
+                    roof_RP_SCP_D_CLCPP_cbx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][8];
+                }
+                roof_RP_W_rb.Enabled = false;
+                roof_RP_ST_rb.Enabled = false;
+                roof_RP_SCP_rb.Enabled = false;
+            }
+            else if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][0].Equals("G.I Roof and Its Accessories"))
+            {
+                roof_PGR_cbx.SelectedIndex = 1;
+                oldStructMemName = costEstimationForm.structuralMembers.roofNames[floorCount][memberCount];
+                addstruct_Name_bx.Text = costEstimationForm.structuralMembers.roofNames[floorCount][memberCount];
+
+                roof_GI_D_LP_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][1];
+                roof_GI_D_EC_cbx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][2];
+
+                if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][3].Equals("Corrugated G.I Sheet"))
+                    roof_GI_M_CGIS_rb.Checked = true;
+                else if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][3].Equals("G.I Roof Nails"))
+                    roof_GI_M_GIRN_rb.Checked = true;
+                else if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][3].Equals("G.I Rivets"))
+                    roof_GI_M_GIR_rb.Checked = true;
+                else if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][3].Equals("G.I Washers"))
+                    roof_GI_M_GIW_rb.Checked = true;
+                else if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][3].Equals("Lead Washers"))
+                    roof_GI_M_LW_rb.Checked = true;
+                else if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][3].Equals("Umbrella Nails"))
+                    roof_GI_M_UN_rb.Checked = true;
+                else if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][3].Equals("Plain G.I Strap"))
+                {
+                    roof_GI_M_PGIS_rb.Checked = true;
+                    roof_GI_M_SP_cbx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][4];
+                }
+
+                foreach (string value in costEstimationForm.structuralMembers.roofHRS[floorCount][memberCount])
+                {
+                    RoofHRSUserControl content2 = new RoofHRSUserControl();
+                    content2.value = value;
+                    rHSR_UC.Add(content2);
+                    roof_GI_D_HRS_Panel.Controls.Add(content2);
+                }
+            }
+            else
+            {
+                roof_PGR_cbx.SelectedIndex = 2;
+                oldStructMemName = costEstimationForm.structuralMembers.roofNames[floorCount][memberCount];
+                addstruct_Name_bx.Text = costEstimationForm.structuralMembers.roofNames[floorCount][memberCount];
+
+                roof_RA_D_G_TL_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][1];
+                roof_RA_D_G_EL_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][2];
+                roof_RA_D_G_TW_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][3];
+                
+                roof_RA_D_F_TL_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][4];
+                roof_RA_D_F_EL_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][5];
+                roof_RA_D_F_TW_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][6];
+                
+                roof_RA_D_RR_TL_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][7];
+                roof_RA_D_RR_EL_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][8];
+                roof_RA_D_RR_TW_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][9];
+                
+                roof_RA_D_VR_TL_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][10];
+                roof_RA_D_VR_EL_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][11];
+                roof_RA_D_VR_TW_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][12];
+
+                roof_RA_D_HR_TL_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][13];
+                roof_RA_D_HR_EL_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][14];
+                roof_RA_D_HR_TW_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][15];
+            }
+        }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -1792,6 +2148,13 @@ namespace WindowsFormsApp1
         private void roof_GI_M_CGIS_rb_CheckedChanged(object sender, EventArgs e)
         {
             roof_GI_M_SP_cbx.Enabled = false;
+        }
+
+        private void roof_GI_D_HRS_AddBtn_Click(object sender, EventArgs e)
+        {
+            RoofHRSUserControl content = new RoofHRSUserControl();
+            rHSR_UC.Add(content);
+            roof_GI_D_HRS_Panel.Controls.Add(content);
         }
 
         private void roof_RP_W_D_SR_bx_TextChanged(object sender, EventArgs e)

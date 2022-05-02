@@ -33,6 +33,7 @@ namespace WindowsFormsApp1
         //Roof Variables
         public List<List<string>> roofNames = new List<List<string>>();
         public List<List<List<string>>> roof = new List<List<List<string>>>();
+        public List<List<List<string>>> roofHRS = new List<List<List<string>>>();
 
         //Solution variables
         public List<List<double>> earthworkSolutions = new List<List<double>>();

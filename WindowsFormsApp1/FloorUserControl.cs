@@ -436,6 +436,43 @@ namespace WindowsFormsApp1
                                 stairsCount++;
                             }
                         }
+                        else if (floorTreeView.SelectedNode.Parent.Text.Equals("ROOF"))
+                        {
+                            int roofCount = 0, parentNodeIndex;
+                            if (floorCount == 0)
+                            {
+                                parentNodeIndex = 5;
+                            }
+                            else
+                            {
+                                parentNodeIndex = 4;
+                            }
+                            foreach (TreeNode member in nodes[parentNodeIndex].Nodes)
+                            {
+                                TreeNode[] found = floorTreeView.Nodes.Find(member.Name, true);
+
+                                if (member.Text.Equals(info.Node.Text))
+                                {
+                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.stairsCount, this.roofCount, nodes, false, roofCount, "ROOF", false);
+                                    if (asForm.ShowDialog() == DialogResult.OK)
+                                    {
+                                        if (asForm.structuralMemberType.Equals("Roofing (Gable)"))
+                                        {
+                                            TreeNode[] found2 = floorTreeView.Nodes.Find("roofParent", true);
+                                            int i = found2[0].Nodes.IndexOf(info.Node);
+
+                                            TreeNode newChild = new TreeNode(asForm.structMemName);
+                                            newChild.Name = (info.Node.Name);
+
+                                            found2[0].Nodes.RemoveAt(i);
+                                            found2[0].Nodes.Insert(i, newChild);
+                                        }
+                                    }
+                                    return;
+                                }
+                                roofCount++;
+                            }
+                        }
                     }
                 }
             } 
