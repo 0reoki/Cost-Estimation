@@ -236,8 +236,8 @@ namespace WindowsFormsApp1
                 //Stairs
                 List<List<string>> newList7 = new List<List<string>>();
                 List<string> newList8 = new List<string>();
-                structuralMembers.roof.Add(newList7);
-                structuralMembers.roofNames.Add(newList8);
+                structuralMembers.stairs.Add(newList7);
+                structuralMembers.stairsNames.Add(newList8);
 
                 //Roof
                 List<List<string>> newList9 = new List<List<string>>();
@@ -611,8 +611,31 @@ namespace WindowsFormsApp1
 
             //Roof
             stringParam += "\nRoof|\n";
+            j = 0;
+            foreach (List<List<string>> floor in structuralMembers.roof)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<string> member in floor)
+                {
+                    stringParam += "Roof-" + (k + 1) + "|";
+                    stringParam += structuralMembers.roofNames[j][k] + "|";
+                    foreach (string value in member)
+                    {
+                        stringParam += value + "|";
+                    }
+                    stringParam += "Roof-Sheet" + "|";
+                    foreach (string value in structuralMembers.roofHRS[j][k])
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
 
-            stringParam += "END";
+
+            stringParam += "\nEND";
             //Computations -- END
 
             //Save to File
@@ -633,6 +656,46 @@ namespace WindowsFormsApp1
             //Clear floor related variables
             floors.Clear();
             estimationPanel.Controls.Clear();
+            /*
+            foreach (Floor floor in floors)
+            {
+                foreach (TreeNode parentNode in floor.nodes)
+                {
+                    if (parentNode.Nodes.Count == 0)
+                    {
+                        //Parent na walang laman
+                    }
+                    else
+                    {
+                        //Parent na may laman
+                        parentNode.Nodes.Clear();
+                    }
+                }
+            }
+            */
+
+            //Clear variables in Parameters
+            parameters.earth_elevations.Clear();
+
+            parameters.rein_LSL_TB_fc_list.Clear();
+            parameters.rein_LSL_CB_fc_list.Clear();
+            parameters.rein_LSL_TB_fc_list.Clear();
+
+            parameters.paint_Area.Clear();
+
+            parameters.tiles_Area.Clear();
+
+            parameters.mason_exteriorWall.Clear();
+            parameters.mason_exteriorWindow.Clear();
+            parameters.mason_exteriorDoor.Clear();
+            parameters.mason_interiorWall.Clear();
+            parameters.mason_interiorWindow.Clear();
+            parameters.mason_interiorDoor.Clear();
+
+            parameters.labor_MP.Clear();
+            parameters.labor_EQP.Clear();
+
+            parameters.misc_CustomItems.Clear();
 
             //Clear variables in AddStructForm
             structuralMembers.footingColumnNames.Clear();
@@ -647,6 +710,11 @@ namespace WindowsFormsApp1
 
             structuralMembers.stairsNames.Clear();
             structuralMembers.stairs.Clear();
+
+            structuralMembers.roofNames.Clear();
+            structuralMembers.roof.Clear();
+            structuralMembers.roofHRS.Clear();
+
             structuralMembers.earthworkSolutions.Clear();
 
             //Init variables for StructuralMember
@@ -710,7 +778,7 @@ namespace WindowsFormsApp1
                 while(!tokens[i].Equals("SLABS")) //BEAMS
                 {
                     i++;
-                    if(!tokens[i].Equals("SLABS"))
+                    if (!tokens[i].Equals("SLABS"))
                     {
                         TreeNode[] found = floor.treeView.Nodes.Find("beamParent", true);
                         TreeNode newChild = new TreeNode(tokens[i]); i++;
@@ -761,6 +829,7 @@ namespace WindowsFormsApp1
 
                         found[0].Nodes.Add(newChild);
                         floor.AdjustTreeViewHeight(floor.treeView);
+                        floor.roofCount++;
                     }
                 }
 
@@ -792,7 +861,6 @@ namespace WindowsFormsApp1
             parameters.earth_SG_TY = tokens[i]; i++;
             parameters.earth_SG_CF = tokens[i]; i++;
             j = 0;
-            parameters.earth_elevations.Clear();
             while (!tokens[i].Equals("Formworks"))
             {
                 j++;
@@ -1271,39 +1339,7 @@ namespace WindowsFormsApp1
             MessageBox.Show("ETO ANG TUNAY NA SAGOT4: " + soilPoisoning_Total);
             MessageBox.Show("ETO ANG TUNAY NA SAGOT5: " + backfillingAndCompaction_Total);
 
-            /*
-             //Columns
-            stringParam += "\nColumns|\n";
-            j = 0;
-            foreach (List<List<string>> floor in structuralMembers.column)
-            {
-                stringParam += "Floor-" + (j + 1) + "|";
-                int k = 0;
-                foreach (List<string> member in floor)
-                {
-                    stringParam += "Column-" + (k + 1) + "|";
-                    stringParam += structuralMembers.columnNames[j][k] + "|";
-                    foreach (string value in member)
-                    {
-                        stringParam += value + "|";
-                    }
-                    stringParam += "Lateral-Ties" + "|";
-                    foreach (string value in structuralMembers.columnLateralTies[j][k])
-                    {
-                        stringParam += value + "|";
-                    }
-                    stringParam += "Spacing" + "|";
-                    foreach (string value in structuralMembers.columnSpacing[j][k])
-                    {
-                        stringParam += value + "|";
-                    }
-                    k++;
-                }
-                j++;
-            }
-             */
-
-            //Columns TODO
+            //Columns 
             i++;
             j = 0;
             l = 0;
@@ -1415,7 +1451,44 @@ namespace WindowsFormsApp1
                 }
             }
             //Roof
-            
+            i++;
+            j = 0;
+            l = 0;
+            while (!tokens[i].Equals("END"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("END"))
+                {
+                    List<List<string>> floor = new List<List<string>>();
+                    List<List<string>> floor2 = new List<List<string>>();
+                    List<string> name = new List<string>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("Roof-" + (l + 1)))
+                    {
+                        i++;
+                        name.Add(tokens[i]); i++;
+                        List<string> member = new List<string>();
+                        List<string> hrsMember = new List<string>();
+                        while (!tokens[i].Equals("Roof-Sheet"))
+                        {
+                            member.Add(tokens[i]); i++;
+                        }
+                        i++;
+                        while (!tokens[i].Equals("Roof-" + (l + 2)) && !tokens[i].Equals("Floor-" + (j + 2)) && !tokens[i].Equals("END"))
+                        {
+                            hrsMember.Add(tokens[i]); i++;
+                        }
+                        l++;
+                        floor.Add(member);
+                        floor2.Add(hrsMember);
+                    }
+                    structuralMembers.roof.Add(floor);
+                    structuralMembers.roofHRS.Add(floor2);
+                    structuralMembers.roofNames.Add(name);
+                    j++;
+                }
+            }
+                
             //Computations -- END
 
             //Save to Computations -- END

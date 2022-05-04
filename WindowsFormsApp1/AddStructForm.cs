@@ -585,7 +585,7 @@ namespace WindowsFormsApp1
                 if (isNew)
                 {
                     //Name Validation
-                    if (costEstimationForm.structuralMembers.stairsNames[floorCount].Contains(structMemName))
+                    if (costEstimationForm.structuralMembers.columnNames[floorCount].Contains(structMemName))
                     {
                         MessageBox.Show("Name already exists!");
                         return;
@@ -1467,7 +1467,7 @@ namespace WindowsFormsApp1
                 }
                 else if (addstruct_cbx.Text.Equals("Beam"))
                 {
-                    addstruct_Name_bx.Text = "B-" + (nodes[2].Nodes.Count + 1);
+                    addstruct_Name_bx.Text = "BR-" + (nodes[2].Nodes.Count + 1);
                 }
                 else if (addstruct_cbx.Text.Equals("Slab"))
                 {
@@ -1490,7 +1490,7 @@ namespace WindowsFormsApp1
                 }
                 else if (addstruct_cbx.Text.Equals("Beam"))
                 {
-                    addstruct_Name_bx.Text = "B-" + (nodes[1].Nodes.Count + 1);
+                    addstruct_Name_bx.Text = "BR-" + (nodes[1].Nodes.Count + 1);
                 }
                 else if (addstruct_cbx.Text.Equals("Slab"))
                 {
