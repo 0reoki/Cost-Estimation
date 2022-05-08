@@ -105,3 +105,5 @@ C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Debug\Build
 C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.RoofHRSUserControl.resources
+C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.BeamRowUserControl.resources
+C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.BeamScheduleUserControl.resources

@@ -44,7 +44,6 @@ namespace WindowsFormsApp1
             this.foot_FT_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.foot_SaveBtn = new System.Windows.Forms.Button();
-            this.foot_ResetBtn = new System.Windows.Forms.Button();
             this.footingTabControl = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
@@ -129,7 +128,6 @@ namespace WindowsFormsApp1
             this.footW_FT_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel30 = new System.Windows.Forms.TableLayoutPanel();
             this.footW_SaveBtn = new System.Windows.Forms.Button();
-            this.footW_ResetBtn = new System.Windows.Forms.Button();
             this.footingWTabControl = new System.Windows.Forms.TabControl();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel31 = new System.Windows.Forms.TableLayoutPanel();
@@ -170,6 +168,7 @@ namespace WindowsFormsApp1
             this.label76 = new System.Windows.Forms.Label();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel35 = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel36 = new System.Windows.Forms.TableLayoutPanel();
             this.footW_T_TR_S_bx = new System.Windows.Forms.TextBox();
             this.label85 = new System.Windows.Forms.Label();
@@ -210,7 +209,6 @@ namespace WindowsFormsApp1
             this.formworksPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.col_SaveBtn = new System.Windows.Forms.Button();
-            this.col_ResetBtn = new System.Windows.Forms.Button();
             this.colTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -330,52 +328,80 @@ namespace WindowsFormsApp1
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.beamTabPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel43 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel109 = new System.Windows.Forms.TableLayoutPanel();
+            this.label281 = new System.Windows.Forms.Label();
+            this.pictureBox19 = new System.Windows.Forms.PictureBox();
+            this.label285 = new System.Windows.Forms.Label();
+            this.pictureBox20 = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel107 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel108 = new System.Windows.Forms.TableLayoutPanel();
+            this.beam_BS_lbl = new System.Windows.Forms.Label();
+            this.beam_BS_AddBtn = new System.Windows.Forms.Button();
+            this.beam_BS_Panel = new System.Windows.Forms.FlowLayoutPanel();
+            this.tableLayoutPanel112 = new System.Windows.Forms.TableLayoutPanel();
+            this.label280 = new System.Windows.Forms.Label();
+            this.label279 = new System.Windows.Forms.Label();
+            this.label278 = new System.Windows.Forms.Label();
+            this.label277 = new System.Windows.Forms.Label();
+            this.label316 = new System.Windows.Forms.Label();
+            this.label317 = new System.Windows.Forms.Label();
+            this.label318 = new System.Windows.Forms.Label();
+            this.label319 = new System.Windows.Forms.Label();
+            this.label320 = new System.Windows.Forms.Label();
             this.tableLayoutPanel47 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel51 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox21 = new System.Windows.Forms.TextBox();
+            this.beam_BRMSD_BD_bx = new System.Windows.Forms.TextBox();
             this.label146 = new System.Windows.Forms.Label();
             this.label145 = new System.Windows.Forms.Label();
             this.tableLayoutPanel49 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.beam_BR_CL_bx = new System.Windows.Forms.TextBox();
             this.label144 = new System.Windows.Forms.Label();
             this.label143 = new System.Windows.Forms.Label();
             this.tableLayoutPanel48 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.beam_TR_CL_bx = new System.Windows.Forms.TextBox();
             this.label141 = new System.Windows.Forms.Label();
             this.label142 = new System.Windows.Forms.Label();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel44 = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.beam_ST_B_cbx = new System.Windows.Forms.ComboBox();
+            this.beam_ST_T_cbx = new System.Windows.Forms.ComboBox();
             this.label140 = new System.Windows.Forms.Label();
             this.label139 = new System.Windows.Forms.Label();
             this.label138 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.beam_SA_cbx = new System.Windows.Forms.ComboBox();
             this.label137 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.beam_SHT_cbx = new System.Windows.Forms.ComboBox();
             this.label136 = new System.Windows.Forms.Label();
             this.tableLayoutPanel46 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox18 = new System.Windows.Forms.TextBox();
             this.label135 = new System.Windows.Forms.Label();
             this.tableLayoutPanel45 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox16 = new System.Windows.Forms.TextBox();
             this.label134 = new System.Windows.Forms.Label();
             this.label133 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.beam_SRBS_S_bx = new System.Windows.Forms.TextBox();
+            this.beam_SRBS_D_bx = new System.Windows.Forms.TextBox();
             this.label105 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.beam_D_bx = new System.Windows.Forms.TextBox();
+            this.beam_QTY_bx = new System.Windows.Forms.TextBox();
+            this.beam_BT_cbx = new System.Windows.Forms.ComboBox();
             this.label104 = new System.Windows.Forms.Label();
             this.label112 = new System.Windows.Forms.Label();
             this.label127 = new System.Windows.Forms.Label();
             this.label128 = new System.Windows.Forms.Label();
             this.label132 = new System.Windows.Forms.Label();
             this.tableLayoutPanel57 = new System.Windows.Forms.TableLayoutPanel();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.beam_SaveBtn = new System.Windows.Forms.Button();
             this.pictureBox18 = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel104 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel105 = new System.Windows.Forms.TableLayoutPanel();
+            this.label261 = new System.Windows.Forms.Label();
+            this.beam_BR_AddBtn = new System.Windows.Forms.Button();
+            this.beam_BR_Panel = new System.Windows.Forms.FlowLayoutPanel();
+            this.tableLayoutPanel111 = new System.Windows.Forms.TableLayoutPanel();
+            this.label311 = new System.Windows.Forms.Label();
+            this.label312 = new System.Windows.Forms.Label();
+            this.label313 = new System.Windows.Forms.Label();
+            this.label314 = new System.Windows.Forms.Label();
+            this.label315 = new System.Windows.Forms.Label();
             this.slabTabPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel52 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel53 = new System.Windows.Forms.TableLayoutPanel();
@@ -383,7 +409,6 @@ namespace WindowsFormsApp1
             this.comboBox10 = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel54 = new System.Windows.Forms.TableLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage13 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
@@ -441,7 +466,6 @@ namespace WindowsFormsApp1
             this.stairs_ST_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel39 = new System.Windows.Forms.TableLayoutPanel();
             this.stairsSaveBtn = new System.Windows.Forms.Button();
-            this.stairsResetBtn = new System.Windows.Forms.Button();
             this.stairsTabControl = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel40 = new System.Windows.Forms.TableLayoutPanel();
@@ -596,7 +620,6 @@ namespace WindowsFormsApp1
             this.roof_PGR_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel93 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.roofTabControl = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel94 = new System.Windows.Forms.TableLayoutPanel();
@@ -743,9 +766,8 @@ namespace WindowsFormsApp1
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel104 = new System.Windows.Forms.TableLayoutPanel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.beam_MBHT_T_cbx = new System.Windows.Forms.ComboBox();
+            this.beam_MBHT_B_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel9.SuspendLayout();
             this.addstructTabControl.SuspendLayout();
             this.footingTabPage.SuspendLayout();
@@ -779,6 +801,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel34.SuspendLayout();
             this.tabPage9.SuspendLayout();
             this.tableLayoutPanel35.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
             this.tableLayoutPanel36.SuspendLayout();
             this.tableLayoutPanel37.SuspendLayout();
             this.tableLayoutPanel38.SuspendLayout();
@@ -818,6 +841,13 @@ namespace WindowsFormsApp1
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             this.beamTabPage.SuspendLayout();
             this.tableLayoutPanel43.SuspendLayout();
+            this.tableLayoutPanel109.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
+            this.tableLayoutPanel107.SuspendLayout();
+            this.tableLayoutPanel108.SuspendLayout();
+            this.beam_BS_Panel.SuspendLayout();
+            this.tableLayoutPanel112.SuspendLayout();
             this.tableLayoutPanel47.SuspendLayout();
             this.tableLayoutPanel51.SuspendLayout();
             this.tableLayoutPanel49.SuspendLayout();
@@ -828,6 +858,10 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel45.SuspendLayout();
             this.tableLayoutPanel57.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
+            this.tableLayoutPanel104.SuspendLayout();
+            this.tableLayoutPanel105.SuspendLayout();
+            this.beam_BR_Panel.SuspendLayout();
+            this.tableLayoutPanel111.SuspendLayout();
             this.slabTabPage.SuspendLayout();
             this.tableLayoutPanel52.SuspendLayout();
             this.tableLayoutPanel53.SuspendLayout();
@@ -899,7 +933,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel106.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tableLayoutPanel104.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel9
@@ -1085,7 +1118,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.20216F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79784F));
             this.tableLayoutPanel4.Controls.Add(this.foot_SaveBtn, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.foot_ResetBtn, 0, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(410, 554);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
@@ -1103,16 +1135,6 @@ namespace WindowsFormsApp1
             this.foot_SaveBtn.Text = "Save";
             this.foot_SaveBtn.UseVisualStyleBackColor = true;
             this.foot_SaveBtn.Click += new System.EventHandler(this.earth_SaveBtn_Click);
-            // 
-            // foot_ResetBtn
-            // 
-            this.foot_ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.foot_ResetBtn.Location = new System.Drawing.Point(188, 3);
-            this.foot_ResetBtn.Name = "foot_ResetBtn";
-            this.foot_ResetBtn.Size = new System.Drawing.Size(88, 36);
-            this.foot_ResetBtn.TabIndex = 27;
-            this.foot_ResetBtn.Text = "Reset";
-            this.foot_ResetBtn.UseVisualStyleBackColor = true;
             // 
             // footingTabControl
             // 
@@ -2201,7 +2223,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel30.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.20216F));
             this.tableLayoutPanel30.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79784F));
             this.tableLayoutPanel30.Controls.Add(this.footW_SaveBtn, 1, 0);
-            this.tableLayoutPanel30.Controls.Add(this.footW_ResetBtn, 0, 0);
             this.tableLayoutPanel30.Location = new System.Drawing.Point(410, 554);
             this.tableLayoutPanel30.Name = "tableLayoutPanel30";
             this.tableLayoutPanel30.RowCount = 1;
@@ -2219,16 +2240,6 @@ namespace WindowsFormsApp1
             this.footW_SaveBtn.Text = "Save";
             this.footW_SaveBtn.UseVisualStyleBackColor = true;
             this.footW_SaveBtn.Click += new System.EventHandler(this.earth_SaveBtn_Click);
-            // 
-            // footW_ResetBtn
-            // 
-            this.footW_ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.footW_ResetBtn.Location = new System.Drawing.Point(188, 3);
-            this.footW_ResetBtn.Name = "footW_ResetBtn";
-            this.footW_ResetBtn.Size = new System.Drawing.Size(88, 36);
-            this.footW_ResetBtn.TabIndex = 27;
-            this.footW_ResetBtn.Text = "Reset";
-            this.footW_ResetBtn.UseVisualStyleBackColor = true;
             // 
             // footingWTabControl
             // 
@@ -2739,6 +2750,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel35.ColumnCount = 2;
             this.tableLayoutPanel35.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel35.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel35.Controls.Add(this.pictureBox17, 0, 0);
             this.tableLayoutPanel35.Controls.Add(this.tableLayoutPanel36, 1, 1);
             this.tableLayoutPanel35.Controls.Add(this.tableLayoutPanel37, 0, 1);
             this.tableLayoutPanel35.Controls.Add(this.tableLayoutPanel38, 0, 0);
@@ -2750,6 +2762,19 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel35.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel35.Size = new System.Drawing.Size(742, 528);
             this.tableLayoutPanel35.TabIndex = 1;
+            // 
+            // pictureBox17
+            // 
+            this.pictureBox17.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox17.Image = global::WindowsFormsApp1.Properties.Resources.TRAPEZOIDAL__WALL_FOOTING;
+            this.pictureBox17.Location = new System.Drawing.Point(436, 51);
+            this.pictureBox17.MaximumSize = new System.Drawing.Size(240, 240);
+            this.pictureBox17.Name = "pictureBox17";
+            this.pictureBox17.Size = new System.Drawing.Size(240, 200);
+            this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox17.TabIndex = 31;
+            this.pictureBox17.TabStop = false;
             // 
             // tableLayoutPanel36
             // 
@@ -3240,7 +3265,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.20216F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79784F));
             this.tableLayoutPanel11.Controls.Add(this.col_SaveBtn, 1, 0);
-            this.tableLayoutPanel11.Controls.Add(this.col_ResetBtn, 0, 0);
             this.tableLayoutPanel11.Location = new System.Drawing.Point(410, 554);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
@@ -3258,16 +3282,6 @@ namespace WindowsFormsApp1
             this.col_SaveBtn.Text = "Save";
             this.col_SaveBtn.UseVisualStyleBackColor = true;
             this.col_SaveBtn.Click += new System.EventHandler(this.earth_SaveBtn_Click);
-            // 
-            // col_ResetBtn
-            // 
-            this.col_ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.col_ResetBtn.Location = new System.Drawing.Point(188, 3);
-            this.col_ResetBtn.Name = "col_ResetBtn";
-            this.col_ResetBtn.Size = new System.Drawing.Size(88, 36);
-            this.col_ResetBtn.TabIndex = 27;
-            this.col_ResetBtn.Text = "Reset";
-            this.col_ResetBtn.UseVisualStyleBackColor = true;
             // 
             // colTabControl
             // 
@@ -4132,7 +4146,6 @@ namespace WindowsFormsApp1
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 34;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // tabPage2
             // 
@@ -4848,6 +4861,8 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel43.ColumnCount = 2;
             this.tableLayoutPanel43.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel43.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel43.Controls.Add(this.tableLayoutPanel109, 0, 4);
+            this.tableLayoutPanel43.Controls.Add(this.tableLayoutPanel107, 0, 3);
             this.tableLayoutPanel43.Controls.Add(this.tableLayoutPanel47, 0, 1);
             this.tableLayoutPanel43.Controls.Add(this.pictureBox16, 1, 1);
             this.tableLayoutPanel43.Controls.Add(this.tableLayoutPanel44, 0, 0);
@@ -4857,13 +4872,284 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel43.Location = new System.Drawing.Point(6, 4);
             this.tableLayoutPanel43.Name = "tableLayoutPanel43";
             this.tableLayoutPanel43.RowCount = 5;
-            this.tableLayoutPanel43.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.60994F));
-            this.tableLayoutPanel43.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.17208F));
-            this.tableLayoutPanel43.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.56214F));
-            this.tableLayoutPanel43.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.824092F));
-            this.tableLayoutPanel43.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.214149F));
-            this.tableLayoutPanel43.Size = new System.Drawing.Size(759, 1046);
+            this.tableLayoutPanel43.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.92848F));
+            this.tableLayoutPanel43.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.98467F));
+            this.tableLayoutPanel43.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.56194F));
+            this.tableLayoutPanel43.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.18263F));
+            this.tableLayoutPanel43.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.29716F));
+            this.tableLayoutPanel43.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel43.Size = new System.Drawing.Size(759, 1566);
             this.tableLayoutPanel43.TabIndex = 1;
+            // 
+            // tableLayoutPanel109
+            // 
+            this.tableLayoutPanel109.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tableLayoutPanel109.ColumnCount = 4;
+            this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel109.Controls.Add(this.label281, 0, 0);
+            this.tableLayoutPanel109.Controls.Add(this.pictureBox19, 1, 0);
+            this.tableLayoutPanel109.Controls.Add(this.label285, 2, 0);
+            this.tableLayoutPanel109.Controls.Add(this.pictureBox20, 3, 0);
+            this.tableLayoutPanel109.Location = new System.Drawing.Point(3, 1501);
+            this.tableLayoutPanel109.Name = "tableLayoutPanel109";
+            this.tableLayoutPanel109.RowCount = 1;
+            this.tableLayoutPanel109.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel109.Size = new System.Drawing.Size(449, 48);
+            this.tableLayoutPanel109.TabIndex = 43;
+            // 
+            // label281
+            // 
+            this.label281.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label281.Location = new System.Drawing.Point(1, 0);
+            this.label281.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label281.Name = "label281";
+            this.label281.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label281.Size = new System.Drawing.Size(153, 48);
+            this.label281.TabIndex = 43;
+            this.label281.Text = "Property No. 1";
+            this.label281.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox19
+            // 
+            this.pictureBox19.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox19.Image = global::WindowsFormsApp1.Properties.Resources.BEAM_PROP_1;
+            this.pictureBox19.Location = new System.Drawing.Point(160, 3);
+            this.pictureBox19.Name = "pictureBox19";
+            this.pictureBox19.Size = new System.Drawing.Size(61, 42);
+            this.pictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox19.TabIndex = 40;
+            this.pictureBox19.TabStop = false;
+            // 
+            // label285
+            // 
+            this.label285.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label285.Location = new System.Drawing.Point(225, 0);
+            this.label285.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label285.Name = "label285";
+            this.label285.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label285.Size = new System.Drawing.Size(153, 48);
+            this.label285.TabIndex = 44;
+            this.label285.Text = "Property No. 2";
+            this.label285.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox20
+            // 
+            this.pictureBox20.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox20.Image = global::WindowsFormsApp1.Properties.Resources.BEAM_PROP_2;
+            this.pictureBox20.Location = new System.Drawing.Point(384, 3);
+            this.pictureBox20.Name = "pictureBox20";
+            this.pictureBox20.Size = new System.Drawing.Size(62, 42);
+            this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox20.TabIndex = 45;
+            this.pictureBox20.TabStop = false;
+            // 
+            // tableLayoutPanel107
+            // 
+            this.tableLayoutPanel107.ColumnCount = 1;
+            this.tableLayoutPanel43.SetColumnSpan(this.tableLayoutPanel107, 2);
+            this.tableLayoutPanel107.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel107.Controls.Add(this.tableLayoutPanel108, 0, 0);
+            this.tableLayoutPanel107.Controls.Add(this.beam_BS_Panel, 0, 1);
+            this.tableLayoutPanel107.Location = new System.Drawing.Point(3, 1044);
+            this.tableLayoutPanel107.Name = "tableLayoutPanel107";
+            this.tableLayoutPanel107.RowCount = 2;
+            this.tableLayoutPanel107.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.36255F));
+            this.tableLayoutPanel107.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.63745F));
+            this.tableLayoutPanel107.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel107.Size = new System.Drawing.Size(753, 451);
+            this.tableLayoutPanel107.TabIndex = 42;
+            // 
+            // tableLayoutPanel108
+            // 
+            this.tableLayoutPanel108.ColumnCount = 2;
+            this.tableLayoutPanel108.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.61625F));
+            this.tableLayoutPanel108.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.38375F));
+            this.tableLayoutPanel108.Controls.Add(this.beam_BS_lbl, 0, 0);
+            this.tableLayoutPanel108.Controls.Add(this.beam_BS_AddBtn, 1, 0);
+            this.tableLayoutPanel108.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel108.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel108.Name = "tableLayoutPanel108";
+            this.tableLayoutPanel108.RowCount = 1;
+            this.tableLayoutPanel108.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel108.Size = new System.Drawing.Size(747, 36);
+            this.tableLayoutPanel108.TabIndex = 38;
+            // 
+            // beam_BS_lbl
+            // 
+            this.beam_BS_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.beam_BS_lbl.Location = new System.Drawing.Point(1, 0);
+            this.beam_BS_lbl.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.beam_BS_lbl.Name = "beam_BS_lbl";
+            this.beam_BS_lbl.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.beam_BS_lbl.Size = new System.Drawing.Size(665, 34);
+            this.beam_BS_lbl.TabIndex = 33;
+            this.beam_BS_lbl.Text = "Something Beam Schedule";
+            this.beam_BS_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // beam_BS_AddBtn
+            // 
+            this.beam_BS_AddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.beam_BS_AddBtn.Location = new System.Drawing.Point(707, 3);
+            this.beam_BS_AddBtn.Name = "beam_BS_AddBtn";
+            this.beam_BS_AddBtn.Size = new System.Drawing.Size(37, 30);
+            this.beam_BS_AddBtn.TabIndex = 28;
+            this.beam_BS_AddBtn.Text = "+";
+            this.beam_BS_AddBtn.UseVisualStyleBackColor = true;
+            this.beam_BS_AddBtn.Click += new System.EventHandler(this.beam_BS_AddBtn_Click);
+            // 
+            // beam_BS_Panel
+            // 
+            this.beam_BS_Panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.beam_BS_Panel.AutoScroll = true;
+            this.beam_BS_Panel.Controls.Add(this.tableLayoutPanel112);
+            this.beam_BS_Panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.beam_BS_Panel.Location = new System.Drawing.Point(3, 44);
+            this.beam_BS_Panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.beam_BS_Panel.Name = "beam_BS_Panel";
+            this.beam_BS_Panel.Size = new System.Drawing.Size(747, 405);
+            this.beam_BS_Panel.TabIndex = 32;
+            this.beam_BS_Panel.WrapContents = false;
+            // 
+            // tableLayoutPanel112
+            // 
+            this.tableLayoutPanel112.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel112.ColumnCount = 9;
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 305F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 202F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 202F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 202F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 202F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel112.Controls.Add(this.label280, 8, 0);
+            this.tableLayoutPanel112.Controls.Add(this.label279, 7, 0);
+            this.tableLayoutPanel112.Controls.Add(this.label278, 6, 0);
+            this.tableLayoutPanel112.Controls.Add(this.label277, 5, 0);
+            this.tableLayoutPanel112.Controls.Add(this.label316, 4, 0);
+            this.tableLayoutPanel112.Controls.Add(this.label317, 3, 0);
+            this.tableLayoutPanel112.Controls.Add(this.label318, 2, 0);
+            this.tableLayoutPanel112.Controls.Add(this.label319, 1, 0);
+            this.tableLayoutPanel112.Controls.Add(this.label320, 0, 0);
+            this.tableLayoutPanel112.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel112.Name = "tableLayoutPanel112";
+            this.tableLayoutPanel112.RowCount = 1;
+            this.tableLayoutPanel112.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel112.Size = new System.Drawing.Size(1528, 35);
+            this.tableLayoutPanel112.TabIndex = 41;
+            // 
+            // label280
+            // 
+            this.label280.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label280.Location = new System.Drawing.Point(1423, 1);
+            this.label280.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label280.Name = "label280";
+            this.label280.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label280.Size = new System.Drawing.Size(96, 31);
+            this.label280.TabIndex = 48;
+            this.label280.Text = "Web Bars";
+            this.label280.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label279
+            // 
+            this.label279.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label279.Location = new System.Drawing.Point(1220, 1);
+            this.label279.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label279.Name = "label279";
+            this.label279.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label279.Size = new System.Drawing.Size(196, 31);
+            this.label279.TabIndex = 47;
+            this.label279.Text = "Stirrups";
+            this.label279.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label278
+            // 
+            this.label278.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label278.Location = new System.Drawing.Point(1017, 1);
+            this.label278.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label278.Name = "label278";
+            this.label278.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label278.Size = new System.Drawing.Size(196, 31);
+            this.label278.TabIndex = 46;
+            this.label278.Text = "Int. Support";
+            this.label278.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label277
+            // 
+            this.label277.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label277.Location = new System.Drawing.Point(814, 1);
+            this.label277.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label277.Name = "label277";
+            this.label277.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label277.Size = new System.Drawing.Size(196, 31);
+            this.label277.TabIndex = 45;
+            this.label277.Text = "Midspan";
+            this.label277.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label316
+            // 
+            this.label316.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label316.Location = new System.Drawing.Point(611, 1);
+            this.label316.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label316.Name = "label316";
+            this.label316.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label316.Size = new System.Drawing.Size(196, 31);
+            this.label316.TabIndex = 44;
+            this.label316.Text = "Ext. Support";
+            this.label316.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label317
+            // 
+            this.label317.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label317.Location = new System.Drawing.Point(305, 1);
+            this.label317.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label317.Name = "label317";
+            this.label317.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label317.Size = new System.Drawing.Size(296, 31);
+            this.label317.TabIndex = 43;
+            this.label317.Text = "Properties";
+            this.label317.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label318
+            // 
+            this.label318.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label318.Location = new System.Drawing.Point(204, 1);
+            this.label318.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label318.Name = "label318";
+            this.label318.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label318.Size = new System.Drawing.Size(96, 31);
+            this.label318.TabIndex = 42;
+            this.label318.Text = "D";
+            this.label318.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label319
+            // 
+            this.label319.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label319.Location = new System.Drawing.Point(103, 1);
+            this.label319.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label319.Name = "label319";
+            this.label319.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label319.Size = new System.Drawing.Size(83, 31);
+            this.label319.TabIndex = 41;
+            this.label319.Text = "B";
+            this.label319.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label320
+            // 
+            this.label320.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label320.Location = new System.Drawing.Point(2, 1);
+            this.label320.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label320.Name = "label320";
+            this.label320.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label320.Size = new System.Drawing.Size(96, 31);
+            this.label320.TabIndex = 40;
+            this.label320.Text = "Name";
+            this.label320.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel47
             // 
@@ -4877,7 +5163,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel47.Controls.Add(this.tableLayoutPanel48, 0, 1);
             this.tableLayoutPanel47.Controls.Add(this.label142, 0, 0);
             this.tableLayoutPanel47.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel47.Location = new System.Drawing.Point(3, 499);
+            this.tableLayoutPanel47.Location = new System.Drawing.Point(3, 503);
             this.tableLayoutPanel47.Name = "tableLayoutPanel47";
             this.tableLayoutPanel47.RowCount = 4;
             this.tableLayoutPanel47.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -4887,7 +5173,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel47.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel47.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel47.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel47.Size = new System.Drawing.Size(449, 204);
+            this.tableLayoutPanel47.Size = new System.Drawing.Size(449, 213);
             this.tableLayoutPanel47.TabIndex = 40;
             // 
             // tableLayoutPanel51
@@ -4896,7 +5182,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel51.ColumnCount = 2;
             this.tableLayoutPanel51.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel51.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel51.Controls.Add(this.textBox21, 1, 0);
+            this.tableLayoutPanel51.Controls.Add(this.beam_BRMSD_BD_bx, 1, 0);
             this.tableLayoutPanel51.Controls.Add(this.label146, 0, 0);
             this.tableLayoutPanel51.Location = new System.Drawing.Point(233, 81);
             this.tableLayoutPanel51.Name = "tableLayoutPanel51";
@@ -4905,15 +5191,15 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel51.Size = new System.Drawing.Size(213, 38);
             this.tableLayoutPanel51.TabIndex = 38;
             // 
-            // textBox21
+            // beam_BRMSD_BD_bx
             // 
-            this.textBox21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.beam_BRMSD_BD_bx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox21.Location = new System.Drawing.Point(162, 3);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(48, 26);
-            this.textBox21.TabIndex = 34;
-            this.textBox21.Text = "0";
+            this.beam_BRMSD_BD_bx.Location = new System.Drawing.Point(162, 3);
+            this.beam_BRMSD_BD_bx.Name = "beam_BRMSD_BD_bx";
+            this.beam_BRMSD_BD_bx.Size = new System.Drawing.Size(48, 26);
+            this.beam_BRMSD_BD_bx.TabIndex = 34;
+            this.beam_BRMSD_BD_bx.Text = "0";
             // 
             // label146
             // 
@@ -4947,7 +5233,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel49.ColumnCount = 2;
             this.tableLayoutPanel49.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel49.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel49.Controls.Add(this.textBox20, 1, 0);
+            this.tableLayoutPanel49.Controls.Add(this.beam_BR_CL_bx, 1, 0);
             this.tableLayoutPanel49.Controls.Add(this.label144, 0, 0);
             this.tableLayoutPanel49.Location = new System.Drawing.Point(8, 125);
             this.tableLayoutPanel49.Name = "tableLayoutPanel49";
@@ -4956,15 +5242,15 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel49.Size = new System.Drawing.Size(213, 38);
             this.tableLayoutPanel49.TabIndex = 36;
             // 
-            // textBox20
+            // beam_BR_CL_bx
             // 
-            this.textBox20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.beam_BR_CL_bx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox20.Location = new System.Drawing.Point(162, 3);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(48, 26);
-            this.textBox20.TabIndex = 34;
-            this.textBox20.Text = "0";
+            this.beam_BR_CL_bx.Location = new System.Drawing.Point(162, 3);
+            this.beam_BR_CL_bx.Name = "beam_BR_CL_bx";
+            this.beam_BR_CL_bx.Size = new System.Drawing.Size(48, 26);
+            this.beam_BR_CL_bx.TabIndex = 34;
+            this.beam_BR_CL_bx.Text = "0";
             // 
             // label144
             // 
@@ -4997,7 +5283,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel48.ColumnCount = 2;
             this.tableLayoutPanel48.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel48.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel48.Controls.Add(this.textBox19, 1, 0);
+            this.tableLayoutPanel48.Controls.Add(this.beam_TR_CL_bx, 1, 0);
             this.tableLayoutPanel48.Controls.Add(this.label141, 0, 0);
             this.tableLayoutPanel48.Location = new System.Drawing.Point(8, 37);
             this.tableLayoutPanel48.Name = "tableLayoutPanel48";
@@ -5006,15 +5292,15 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel48.Size = new System.Drawing.Size(213, 38);
             this.tableLayoutPanel48.TabIndex = 34;
             // 
-            // textBox19
+            // beam_TR_CL_bx
             // 
-            this.textBox19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.beam_TR_CL_bx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox19.Location = new System.Drawing.Point(162, 3);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(48, 26);
-            this.textBox19.TabIndex = 34;
-            this.textBox19.Text = "0";
+            this.beam_TR_CL_bx.Location = new System.Drawing.Point(162, 3);
+            this.beam_TR_CL_bx.Name = "beam_TR_CL_bx";
+            this.beam_TR_CL_bx.Size = new System.Drawing.Size(48, 26);
+            this.beam_TR_CL_bx.TabIndex = 34;
+            this.beam_TR_CL_bx.Text = "0";
             // 
             // label141
             // 
@@ -5044,8 +5330,8 @@ namespace WindowsFormsApp1
             // pictureBox16
             // 
             this.pictureBox16.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox16.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox16.Image")));
-            this.pictureBox16.Location = new System.Drawing.Point(495, 548);
+            this.pictureBox16.Image = global::WindowsFormsApp1.Properties.Resources.BEAM_DETAILS;
+            this.pictureBox16.Location = new System.Drawing.Point(495, 556);
             this.pictureBox16.Name = "pictureBox16";
             this.pictureBox16.Size = new System.Drawing.Size(224, 106);
             this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -5057,24 +5343,24 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel44.ColumnCount = 2;
             this.tableLayoutPanel44.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel44.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel44.Controls.Add(this.comboBox7, 1, 12);
-            this.tableLayoutPanel44.Controls.Add(this.comboBox6, 1, 11);
+            this.tableLayoutPanel44.Controls.Add(this.beam_ST_B_cbx, 1, 12);
+            this.tableLayoutPanel44.Controls.Add(this.beam_ST_T_cbx, 1, 11);
             this.tableLayoutPanel44.Controls.Add(this.label140, 0, 11);
             this.tableLayoutPanel44.Controls.Add(this.label139, 0, 12);
             this.tableLayoutPanel44.Controls.Add(this.label138, 0, 10);
-            this.tableLayoutPanel44.Controls.Add(this.comboBox3, 1, 9);
+            this.tableLayoutPanel44.Controls.Add(this.beam_SA_cbx, 1, 9);
             this.tableLayoutPanel44.Controls.Add(this.label137, 0, 9);
-            this.tableLayoutPanel44.Controls.Add(this.comboBox2, 1, 7);
+            this.tableLayoutPanel44.Controls.Add(this.beam_SHT_cbx, 1, 7);
             this.tableLayoutPanel44.Controls.Add(this.label136, 1, 6);
             this.tableLayoutPanel44.Controls.Add(this.tableLayoutPanel46, 0, 8);
             this.tableLayoutPanel44.Controls.Add(this.tableLayoutPanel45, 0, 7);
             this.tableLayoutPanel44.Controls.Add(this.label133, 0, 6);
-            this.tableLayoutPanel44.Controls.Add(this.textBox5, 1, 5);
-            this.tableLayoutPanel44.Controls.Add(this.textBox4, 1, 4);
+            this.tableLayoutPanel44.Controls.Add(this.beam_SRBS_S_bx, 1, 5);
+            this.tableLayoutPanel44.Controls.Add(this.beam_SRBS_D_bx, 1, 4);
             this.tableLayoutPanel44.Controls.Add(this.label105, 0, 3);
-            this.tableLayoutPanel44.Controls.Add(this.textBox3, 1, 1);
-            this.tableLayoutPanel44.Controls.Add(this.textBox1, 1, 2);
-            this.tableLayoutPanel44.Controls.Add(this.comboBox1, 1, 0);
+            this.tableLayoutPanel44.Controls.Add(this.beam_D_bx, 1, 1);
+            this.tableLayoutPanel44.Controls.Add(this.beam_QTY_bx, 1, 2);
+            this.tableLayoutPanel44.Controls.Add(this.beam_BT_cbx, 1, 0);
             this.tableLayoutPanel44.Controls.Add(this.label104, 0, 5);
             this.tableLayoutPanel44.Controls.Add(this.label112, 0, 0);
             this.tableLayoutPanel44.Controls.Add(this.label127, 0, 2);
@@ -5097,34 +5383,36 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel44.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel44.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel44.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel44.Size = new System.Drawing.Size(449, 490);
+            this.tableLayoutPanel44.Size = new System.Drawing.Size(449, 494);
             this.tableLayoutPanel44.TabIndex = 38;
             // 
-            // comboBox7
+            // beam_ST_B_cbx
             // 
-            this.comboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
-            this.comboBox7.Location = new System.Drawing.Point(227, 422);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(219, 28);
-            this.comboBox7.TabIndex = 42;
+            this.beam_ST_B_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.beam_ST_B_cbx.FormattingEnabled = true;
+            this.beam_ST_B_cbx.Items.AddRange(new object[] {
+            "Lapped Splice",
+            "Welded Splice (Butt)",
+            "Welded Splice (Lap)",
+            "Mechanical"});
+            this.beam_ST_B_cbx.Location = new System.Drawing.Point(227, 422);
+            this.beam_ST_B_cbx.Name = "beam_ST_B_cbx";
+            this.beam_ST_B_cbx.Size = new System.Drawing.Size(219, 28);
+            this.beam_ST_B_cbx.TabIndex = 42;
             // 
-            // comboBox6
+            // beam_ST_T_cbx
             // 
-            this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
-            this.comboBox6.Location = new System.Drawing.Point(227, 388);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(219, 28);
-            this.comboBox6.TabIndex = 41;
+            this.beam_ST_T_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.beam_ST_T_cbx.FormattingEnabled = true;
+            this.beam_ST_T_cbx.Items.AddRange(new object[] {
+            "Lapped Splice",
+            "Welded Splice (Butt)",
+            "Welded Splice (Lap)",
+            "Mechanical"});
+            this.beam_ST_T_cbx.Location = new System.Drawing.Point(227, 388);
+            this.beam_ST_T_cbx.Name = "beam_ST_T_cbx";
+            this.beam_ST_T_cbx.Size = new System.Drawing.Size(219, 28);
+            this.beam_ST_T_cbx.TabIndex = 41;
             // 
             // label140
             // 
@@ -5163,18 +5451,17 @@ namespace WindowsFormsApp1
             this.label138.Text = "Splice Type:";
             this.label138.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBox3
+            // beam_SA_cbx
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
-            this.comboBox3.Location = new System.Drawing.Point(227, 320);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(219, 28);
-            this.comboBox3.TabIndex = 37;
+            this.beam_SA_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.beam_SA_cbx.FormattingEnabled = true;
+            this.beam_SA_cbx.Items.AddRange(new object[] {
+            "Enable",
+            "Disable"});
+            this.beam_SA_cbx.Location = new System.Drawing.Point(227, 320);
+            this.beam_SA_cbx.Name = "beam_SA_cbx";
+            this.beam_SA_cbx.Size = new System.Drawing.Size(219, 28);
+            this.beam_SA_cbx.TabIndex = 37;
             // 
             // label137
             // 
@@ -5188,21 +5475,21 @@ namespace WindowsFormsApp1
             this.label137.Text = "Splice Alternating:";
             this.label137.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBox2
+            // beam_SHT_cbx
             // 
-            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.beam_SHT_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.beam_SHT_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.beam_SHT_cbx.FormattingEnabled = true;
+            this.beam_SHT_cbx.Items.AddRange(new object[] {
             "90",
             "135",
             "180"});
-            this.comboBox2.Location = new System.Drawing.Point(274, 233);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(50, 3, 50, 3);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(125, 28);
-            this.comboBox2.TabIndex = 35;
+            this.beam_SHT_cbx.Location = new System.Drawing.Point(274, 233);
+            this.beam_SHT_cbx.Margin = new System.Windows.Forms.Padding(50, 3, 50, 3);
+            this.beam_SHT_cbx.Name = "beam_SHT_cbx";
+            this.beam_SHT_cbx.Size = new System.Drawing.Size(125, 28);
+            this.beam_SHT_cbx.TabIndex = 35;
             // 
             // label136
             // 
@@ -5222,7 +5509,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel46.ColumnCount = 2;
             this.tableLayoutPanel46.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel46.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel46.Controls.Add(this.textBox18, 1, 0);
+            this.tableLayoutPanel46.Controls.Add(this.beam_MBHT_B_cbx, 0, 0);
             this.tableLayoutPanel46.Controls.Add(this.label135, 0, 0);
             this.tableLayoutPanel46.Location = new System.Drawing.Point(8, 276);
             this.tableLayoutPanel46.Name = "tableLayoutPanel46";
@@ -5230,16 +5517,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel46.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel46.Size = new System.Drawing.Size(213, 38);
             this.tableLayoutPanel46.TabIndex = 33;
-            // 
-            // textBox18
-            // 
-            this.textBox18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox18.Location = new System.Drawing.Point(109, 3);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(101, 26);
-            this.textBox18.TabIndex = 34;
-            this.textBox18.Text = "0";
             // 
             // label135
             // 
@@ -5260,7 +5537,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel45.ColumnCount = 2;
             this.tableLayoutPanel45.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel45.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel45.Controls.Add(this.textBox16, 1, 0);
+            this.tableLayoutPanel45.Controls.Add(this.beam_MBHT_T_cbx, 0, 0);
             this.tableLayoutPanel45.Controls.Add(this.label134, 0, 0);
             this.tableLayoutPanel45.Location = new System.Drawing.Point(8, 233);
             this.tableLayoutPanel45.Name = "tableLayoutPanel45";
@@ -5268,16 +5545,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel45.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel45.Size = new System.Drawing.Size(213, 37);
             this.tableLayoutPanel45.TabIndex = 32;
-            // 
-            // textBox16
-            // 
-            this.textBox16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox16.Location = new System.Drawing.Point(109, 3);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(101, 26);
-            this.textBox16.TabIndex = 34;
-            this.textBox16.Text = "0";
             // 
             // label134
             // 
@@ -5304,23 +5571,23 @@ namespace WindowsFormsApp1
             this.label133.Text = "Main Bars Hook Type:";
             this.label133.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox5
+            // beam_SRBS_S_bx
             // 
-            this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox5.Location = new System.Drawing.Point(227, 167);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(219, 26);
-            this.textBox5.TabIndex = 30;
-            this.textBox5.Text = "0";
+            this.beam_SRBS_S_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.beam_SRBS_S_bx.Location = new System.Drawing.Point(227, 167);
+            this.beam_SRBS_S_bx.Name = "beam_SRBS_S_bx";
+            this.beam_SRBS_S_bx.Size = new System.Drawing.Size(219, 26);
+            this.beam_SRBS_S_bx.TabIndex = 30;
+            this.beam_SRBS_S_bx.Text = "0";
             // 
-            // textBox4
+            // beam_SRBS_D_bx
             // 
-            this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox4.Location = new System.Drawing.Point(227, 135);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(219, 26);
-            this.textBox4.TabIndex = 29;
-            this.textBox4.Text = "0";
+            this.beam_SRBS_D_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.beam_SRBS_D_bx.Location = new System.Drawing.Point(227, 135);
+            this.beam_SRBS_D_bx.Name = "beam_SRBS_D_bx";
+            this.beam_SRBS_D_bx.Size = new System.Drawing.Size(219, 26);
+            this.beam_SRBS_D_bx.TabIndex = 29;
+            this.beam_SRBS_D_bx.Text = "0";
             // 
             // label105
             // 
@@ -5335,36 +5602,37 @@ namespace WindowsFormsApp1
             this.label105.Text = "Steel Reinforcements Bars Spacer";
             this.label105.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox3
+            // beam_D_bx
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(227, 37);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(219, 26);
-            this.textBox3.TabIndex = 27;
-            this.textBox3.Text = "0";
+            this.beam_D_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.beam_D_bx.Location = new System.Drawing.Point(227, 37);
+            this.beam_D_bx.Name = "beam_D_bx";
+            this.beam_D_bx.Size = new System.Drawing.Size(219, 26);
+            this.beam_D_bx.TabIndex = 27;
+            this.beam_D_bx.Text = "0";
             // 
-            // textBox1
+            // beam_QTY_bx
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(227, 69);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(219, 26);
-            this.textBox1.TabIndex = 26;
-            this.textBox1.Text = "0";
+            this.beam_QTY_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.beam_QTY_bx.Location = new System.Drawing.Point(227, 69);
+            this.beam_QTY_bx.Name = "beam_QTY_bx";
+            this.beam_QTY_bx.Size = new System.Drawing.Size(219, 26);
+            this.beam_QTY_bx.TabIndex = 26;
+            this.beam_QTY_bx.Text = "0";
             // 
-            // comboBox1
+            // beam_BT_cbx
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
-            this.comboBox1.Location = new System.Drawing.Point(227, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(219, 28);
-            this.comboBox1.TabIndex = 25;
+            this.beam_BT_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.beam_BT_cbx.FormattingEnabled = true;
+            this.beam_BT_cbx.Items.AddRange(new object[] {
+            "Footing Tie Beam",
+            "Grade Beam",
+            "Roof Beam"});
+            this.beam_BT_cbx.Location = new System.Drawing.Point(227, 3);
+            this.beam_BT_cbx.Name = "beam_BT_cbx";
+            this.beam_BT_cbx.Size = new System.Drawing.Size(219, 28);
+            this.beam_BT_cbx.TabIndex = 25;
+            this.beam_BT_cbx.SelectedIndexChanged += new System.EventHandler(this.beam_BT_cbx_SelectedIndexChanged);
             // 
             // label104
             // 
@@ -5432,45 +5700,183 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel57.ColumnCount = 2;
             this.tableLayoutPanel57.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.20216F));
             this.tableLayoutPanel57.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79784F));
-            this.tableLayoutPanel57.Controls.Add(this.button6, 1, 0);
-            this.tableLayoutPanel57.Controls.Add(this.button7, 0, 0);
-            this.tableLayoutPanel57.Location = new System.Drawing.Point(458, 983);
+            this.tableLayoutPanel57.Controls.Add(this.beam_SaveBtn, 1, 0);
+            this.tableLayoutPanel57.Location = new System.Drawing.Point(458, 1501);
             this.tableLayoutPanel57.Name = "tableLayoutPanel57";
             this.tableLayoutPanel57.RowCount = 1;
             this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel57.Size = new System.Drawing.Size(298, 60);
+            this.tableLayoutPanel57.Size = new System.Drawing.Size(298, 48);
             this.tableLayoutPanel57.TabIndex = 37;
             // 
-            // button6
+            // beam_SaveBtn
             // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(227, 3);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(68, 43);
-            this.button6.TabIndex = 28;
-            this.button6.Text = "Save";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.Location = new System.Drawing.Point(133, 3);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(88, 43);
-            this.button7.TabIndex = 27;
-            this.button7.Text = "Reset";
-            this.button7.UseVisualStyleBackColor = true;
+            this.beam_SaveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.beam_SaveBtn.Location = new System.Drawing.Point(227, 3);
+            this.beam_SaveBtn.Name = "beam_SaveBtn";
+            this.beam_SaveBtn.Size = new System.Drawing.Size(68, 42);
+            this.beam_SaveBtn.TabIndex = 28;
+            this.beam_SaveBtn.Text = "Save";
+            this.beam_SaveBtn.UseVisualStyleBackColor = true;
+            this.beam_SaveBtn.Click += new System.EventHandler(this.earth_SaveBtn_Click);
             // 
             // pictureBox18
             // 
             this.pictureBox18.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox18.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox18.Image")));
-            this.pictureBox18.Location = new System.Drawing.Point(500, 137);
+            this.pictureBox18.Image = global::WindowsFormsApp1.Properties.Resources.BEAM;
+            this.pictureBox18.Location = new System.Drawing.Point(477, 178);
             this.pictureBox18.Name = "pictureBox18";
-            this.pictureBox18.Size = new System.Drawing.Size(213, 222);
+            this.pictureBox18.Size = new System.Drawing.Size(259, 144);
             this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox18.TabIndex = 36;
             this.pictureBox18.TabStop = false;
+            // 
+            // tableLayoutPanel104
+            // 
+            this.tableLayoutPanel104.ColumnCount = 1;
+            this.tableLayoutPanel43.SetColumnSpan(this.tableLayoutPanel104, 2);
+            this.tableLayoutPanel104.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel104.Controls.Add(this.tableLayoutPanel105, 0, 0);
+            this.tableLayoutPanel104.Controls.Add(this.beam_BR_Panel, 0, 1);
+            this.tableLayoutPanel104.Location = new System.Drawing.Point(3, 722);
+            this.tableLayoutPanel104.Name = "tableLayoutPanel104";
+            this.tableLayoutPanel104.RowCount = 2;
+            this.tableLayoutPanel104.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel104.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
+            this.tableLayoutPanel104.Size = new System.Drawing.Size(753, 316);
+            this.tableLayoutPanel104.TabIndex = 41;
+            // 
+            // tableLayoutPanel105
+            // 
+            this.tableLayoutPanel105.ColumnCount = 2;
+            this.tableLayoutPanel105.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.61625F));
+            this.tableLayoutPanel105.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.38375F));
+            this.tableLayoutPanel105.Controls.Add(this.label261, 0, 0);
+            this.tableLayoutPanel105.Controls.Add(this.beam_BR_AddBtn, 1, 0);
+            this.tableLayoutPanel105.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel105.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel105.Name = "tableLayoutPanel105";
+            this.tableLayoutPanel105.RowCount = 1;
+            this.tableLayoutPanel105.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel105.Size = new System.Drawing.Size(747, 41);
+            this.tableLayoutPanel105.TabIndex = 38;
+            // 
+            // label261
+            // 
+            this.label261.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label261.Location = new System.Drawing.Point(1, 0);
+            this.label261.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label261.Name = "label261";
+            this.label261.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label261.Size = new System.Drawing.Size(395, 34);
+            this.label261.TabIndex = 33;
+            this.label261.Text = "Beam Row";
+            this.label261.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // beam_BR_AddBtn
+            // 
+            this.beam_BR_AddBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.beam_BR_AddBtn.Location = new System.Drawing.Point(707, 3);
+            this.beam_BR_AddBtn.Name = "beam_BR_AddBtn";
+            this.beam_BR_AddBtn.Size = new System.Drawing.Size(37, 33);
+            this.beam_BR_AddBtn.TabIndex = 28;
+            this.beam_BR_AddBtn.Text = "+";
+            this.beam_BR_AddBtn.UseVisualStyleBackColor = true;
+            this.beam_BR_AddBtn.Click += new System.EventHandler(this.beam_BR_AddBtn_Click);
+            // 
+            // beam_BR_Panel
+            // 
+            this.beam_BR_Panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.beam_BR_Panel.AutoScroll = true;
+            this.beam_BR_Panel.Controls.Add(this.tableLayoutPanel111);
+            this.beam_BR_Panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.beam_BR_Panel.Location = new System.Drawing.Point(3, 49);
+            this.beam_BR_Panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.beam_BR_Panel.Name = "beam_BR_Panel";
+            this.beam_BR_Panel.Size = new System.Drawing.Size(747, 265);
+            this.beam_BR_Panel.TabIndex = 32;
+            this.beam_BR_Panel.WrapContents = false;
+            // 
+            // tableLayoutPanel111
+            // 
+            this.tableLayoutPanel111.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel111.ColumnCount = 5;
+            this.tableLayoutPanel111.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.64706F));
+            this.tableLayoutPanel111.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.76471F));
+            this.tableLayoutPanel111.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.76471F));
+            this.tableLayoutPanel111.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.41176F));
+            this.tableLayoutPanel111.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.41176F));
+            this.tableLayoutPanel111.Controls.Add(this.label311, 4, 0);
+            this.tableLayoutPanel111.Controls.Add(this.label312, 3, 0);
+            this.tableLayoutPanel111.Controls.Add(this.label313, 2, 0);
+            this.tableLayoutPanel111.Controls.Add(this.label314, 1, 0);
+            this.tableLayoutPanel111.Controls.Add(this.label315, 0, 0);
+            this.tableLayoutPanel111.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel111.Name = "tableLayoutPanel111";
+            this.tableLayoutPanel111.RowCount = 1;
+            this.tableLayoutPanel111.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel111.Size = new System.Drawing.Size(747, 35);
+            this.tableLayoutPanel111.TabIndex = 40;
+            // 
+            // label311
+            // 
+            this.label311.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label311.Location = new System.Drawing.Point(527, 1);
+            this.label311.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label311.Name = "label311";
+            this.label311.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label311.Size = new System.Drawing.Size(215, 31);
+            this.label311.TabIndex = 44;
+            this.label311.Text = "End Support (Right/Bot)";
+            this.label311.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label312
+            // 
+            this.label312.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label312.Location = new System.Drawing.Point(309, 1);
+            this.label312.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label312.Name = "label312";
+            this.label312.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label312.Size = new System.Drawing.Size(213, 31);
+            this.label312.TabIndex = 43;
+            this.label312.Text = "End Support (Left/Top) ";
+            this.label312.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label313
+            // 
+            this.label313.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label313.Location = new System.Drawing.Point(221, 1);
+            this.label313.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label313.Name = "label313";
+            this.label313.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label313.Size = new System.Drawing.Size(83, 31);
+            this.label313.TabIndex = 42;
+            this.label313.Text = "Qty";
+            this.label313.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label314
+            // 
+            this.label314.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label314.Location = new System.Drawing.Point(133, 1);
+            this.label314.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label314.Name = "label314";
+            this.label314.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label314.Size = new System.Drawing.Size(83, 31);
+            this.label314.TabIndex = 41;
+            this.label314.Text = "Length";
+            this.label314.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label315
+            // 
+            this.label315.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label315.Location = new System.Drawing.Point(2, 1);
+            this.label315.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label315.Name = "label315";
+            this.label315.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label315.Size = new System.Drawing.Size(126, 31);
+            this.label315.TabIndex = 40;
+            this.label315.Text = "Beam Name";
+            this.label315.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // slabTabPage
             // 
@@ -5551,7 +5957,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel54.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.20216F));
             this.tableLayoutPanel54.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79784F));
             this.tableLayoutPanel54.Controls.Add(this.button3, 1, 0);
-            this.tableLayoutPanel54.Controls.Add(this.button4, 0, 0);
             this.tableLayoutPanel54.Location = new System.Drawing.Point(410, 554);
             this.tableLayoutPanel54.Name = "tableLayoutPanel54";
             this.tableLayoutPanel54.RowCount = 1;
@@ -5568,16 +5973,6 @@ namespace WindowsFormsApp1
             this.button3.TabIndex = 28;
             this.button3.Text = "Save";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(188, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(88, 36);
-            this.button4.TabIndex = 27;
-            this.button4.Text = "Reset";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // tabControl2
             // 
@@ -6357,7 +6752,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel39.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.20216F));
             this.tableLayoutPanel39.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79784F));
             this.tableLayoutPanel39.Controls.Add(this.stairsSaveBtn, 1, 0);
-            this.tableLayoutPanel39.Controls.Add(this.stairsResetBtn, 0, 0);
             this.tableLayoutPanel39.Location = new System.Drawing.Point(410, 554);
             this.tableLayoutPanel39.Name = "tableLayoutPanel39";
             this.tableLayoutPanel39.RowCount = 1;
@@ -6375,16 +6769,6 @@ namespace WindowsFormsApp1
             this.stairsSaveBtn.Text = "Save";
             this.stairsSaveBtn.UseVisualStyleBackColor = true;
             this.stairsSaveBtn.Click += new System.EventHandler(this.earth_SaveBtn_Click);
-            // 
-            // stairsResetBtn
-            // 
-            this.stairsResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.stairsResetBtn.Location = new System.Drawing.Point(188, 3);
-            this.stairsResetBtn.Name = "stairsResetBtn";
-            this.stairsResetBtn.Size = new System.Drawing.Size(88, 36);
-            this.stairsResetBtn.TabIndex = 27;
-            this.stairsResetBtn.Text = "Reset";
-            this.stairsResetBtn.UseVisualStyleBackColor = true;
             // 
             // stairsTabControl
             // 
@@ -7483,7 +7867,6 @@ namespace WindowsFormsApp1
             this.label174.TabIndex = 12;
             this.label174.Text = "Steps (2nd Flight):";
             this.label174.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label174.Click += new System.EventHandler(this.label174_Click);
             // 
             // label175
             // 
@@ -8478,7 +8861,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel93.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.20216F));
             this.tableLayoutPanel93.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79784F));
             this.tableLayoutPanel93.Controls.Add(this.button1, 1, 0);
-            this.tableLayoutPanel93.Controls.Add(this.button2, 0, 0);
             this.tableLayoutPanel93.Location = new System.Drawing.Point(410, 554);
             this.tableLayoutPanel93.Name = "tableLayoutPanel93";
             this.tableLayoutPanel93.RowCount = 1;
@@ -8496,16 +8878,6 @@ namespace WindowsFormsApp1
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.earth_SaveBtn_Click);
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(188, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 36);
-            this.button2.TabIndex = 27;
-            this.button2.Text = "Reset";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // roofTabControl
             // 
@@ -8628,7 +9000,6 @@ namespace WindowsFormsApp1
             this.roof_RP_W_D_SR_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_W_D_SR_bx.TabIndex = 29;
             this.roof_RP_W_D_SR_bx.Text = "0.8";
-            this.roof_RP_W_D_SR_bx.TextChanged += new System.EventHandler(this.roof_RP_W_D_SR_bx_TextChanged);
             // 
             // roof_RP_W_D_LR_bx
             // 
@@ -9251,7 +9622,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox11.Image = global::WindowsFormsApp1.Properties.Resources.ISOLATED__FOOTING;
+            this.pictureBox11.Image = global::WindowsFormsApp1.Properties.Resources.Rafters_and_Purlins;
             this.pictureBox11.Location = new System.Drawing.Point(452, 167);
             this.pictureBox11.MaximumSize = new System.Drawing.Size(240, 240);
             this.pictureBox11.Name = "pictureBox11";
@@ -9336,7 +9707,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox13.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox13.Image = global::WindowsFormsApp1.Properties.Resources.COMB_FOOTING;
+            this.pictureBox13.Image = global::WindowsFormsApp1.Properties.Resources.G_I_Roof_and_Its_Accessories;
             this.pictureBox13.Location = new System.Drawing.Point(436, 304);
             this.pictureBox13.MaximumSize = new System.Drawing.Size(240, 240);
             this.pictureBox13.Name = "pictureBox13";
@@ -10079,11 +10450,11 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox14.Image = global::WindowsFormsApp1.Properties.Resources.ISOLATED__FOOTING;
+            this.pictureBox14.Image = global::WindowsFormsApp1.Properties.Resources.Roof_Accesories__Tinsworks_;
             this.pictureBox14.Location = new System.Drawing.Point(435, 3);
             this.pictureBox14.MaximumSize = new System.Drawing.Size(240, 240);
             this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(240, 200);
+            this.pictureBox14.Size = new System.Drawing.Size(240, 240);
             this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox14.TabIndex = 26;
             this.pictureBox14.TabStop = false;
@@ -10431,43 +10802,31 @@ namespace WindowsFormsApp1
             this.pictureBox1.TabIndex = 31;
             this.pictureBox1.TabStop = false;
             // 
-            // tableLayoutPanel104
+            // beam_MBHT_T_cbx
             // 
-            this.tableLayoutPanel104.ColumnCount = 1;
-            this.tableLayoutPanel104.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel104.Controls.Add(this.button5, 0, 0);
-            this.tableLayoutPanel104.Controls.Add(this.flowLayoutPanel1, 0, 1);
-            this.tableLayoutPanel104.Location = new System.Drawing.Point(3, 709);
-            this.tableLayoutPanel104.Name = "tableLayoutPanel104";
-            this.tableLayoutPanel104.RowCount = 2;
-            this.tableLayoutPanel104.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel104.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel104.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel104.Size = new System.Drawing.Size(449, 228);
-            this.tableLayoutPanel104.TabIndex = 41;
+            this.beam_MBHT_T_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.beam_MBHT_T_cbx.FormattingEnabled = true;
+            this.beam_MBHT_T_cbx.Items.AddRange(new object[] {
+            "90",
+            "135",
+            "180"});
+            this.beam_MBHT_T_cbx.Location = new System.Drawing.Point(109, 3);
+            this.beam_MBHT_T_cbx.Name = "beam_MBHT_T_cbx";
+            this.beam_MBHT_T_cbx.Size = new System.Drawing.Size(101, 28);
+            this.beam_MBHT_T_cbx.TabIndex = 38;
             // 
-            // button5
+            // beam_MBHT_B_cbx
             // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(360, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(86, 36);
-            this.button5.TabIndex = 38;
-            this.button5.Text = "Add";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 47);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(359, 179);
-            this.flowLayoutPanel1.TabIndex = 32;
-            this.flowLayoutPanel1.WrapContents = false;
+            this.beam_MBHT_B_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.beam_MBHT_B_cbx.FormattingEnabled = true;
+            this.beam_MBHT_B_cbx.Items.AddRange(new object[] {
+            "90",
+            "135",
+            "180"});
+            this.beam_MBHT_B_cbx.Location = new System.Drawing.Point(109, 3);
+            this.beam_MBHT_B_cbx.Name = "beam_MBHT_B_cbx";
+            this.beam_MBHT_B_cbx.Size = new System.Drawing.Size(101, 28);
+            this.beam_MBHT_B_cbx.TabIndex = 38;
             // 
             // AddStructForm
             // 
@@ -10527,6 +10886,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel34.PerformLayout();
             this.tabPage9.ResumeLayout(false);
             this.tableLayoutPanel35.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
             this.tableLayoutPanel36.ResumeLayout(false);
             this.tableLayoutPanel36.PerformLayout();
             this.tableLayoutPanel37.ResumeLayout(false);
@@ -10580,6 +10940,13 @@ namespace WindowsFormsApp1
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             this.beamTabPage.ResumeLayout(false);
             this.tableLayoutPanel43.ResumeLayout(false);
+            this.tableLayoutPanel109.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
+            this.tableLayoutPanel107.ResumeLayout(false);
+            this.tableLayoutPanel108.ResumeLayout(false);
+            this.beam_BS_Panel.ResumeLayout(false);
+            this.tableLayoutPanel112.ResumeLayout(false);
             this.tableLayoutPanel47.ResumeLayout(false);
             this.tableLayoutPanel51.ResumeLayout(false);
             this.tableLayoutPanel51.PerformLayout();
@@ -10591,11 +10958,13 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel44.ResumeLayout(false);
             this.tableLayoutPanel44.PerformLayout();
             this.tableLayoutPanel46.ResumeLayout(false);
-            this.tableLayoutPanel46.PerformLayout();
             this.tableLayoutPanel45.ResumeLayout(false);
-            this.tableLayoutPanel45.PerformLayout();
             this.tableLayoutPanel57.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
+            this.tableLayoutPanel104.ResumeLayout(false);
+            this.tableLayoutPanel105.ResumeLayout(false);
+            this.beam_BR_Panel.ResumeLayout(false);
+            this.tableLayoutPanel111.ResumeLayout(false);
             this.slabTabPage.ResumeLayout(false);
             this.tableLayoutPanel52.ResumeLayout(false);
             this.tableLayoutPanel53.ResumeLayout(false);
@@ -10693,7 +11062,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel106.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tableLayoutPanel104.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -10708,13 +11076,11 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.TableLayoutPanel earthworksPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button foot_SaveBtn;
-        private System.Windows.Forms.Button foot_ResetBtn;
         private System.Windows.Forms.TabPage footingWTabPage;
         private System.Windows.Forms.TabPage columnTabPage;
         private System.Windows.Forms.TableLayoutPanel formworksPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
         private System.Windows.Forms.Button col_SaveBtn;
-        private System.Windows.Forms.Button col_ResetBtn;
         private System.Windows.Forms.TabPage beamTabPage;
         private System.Windows.Forms.TabPage slabTabPage;
         private System.Windows.Forms.Label label49;
@@ -10833,7 +11199,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ComboBox footW_FT_cbx;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel30;
         private System.Windows.Forms.Button footW_SaveBtn;
-        private System.Windows.Forms.Button footW_ResetBtn;
         private System.Windows.Forms.TabControl footingWTabControl;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel31;
@@ -10949,7 +11314,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ComboBox stairs_ST_cbx;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel39;
         private System.Windows.Forms.Button stairsSaveBtn;
-        private System.Windows.Forms.Button stairsResetBtn;
         private System.Windows.Forms.TabControl stairsTabControl;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel40;
@@ -11161,7 +11525,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ComboBox roof_PGR_cbx;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel93;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TabControl roofTabControl;
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel94;
@@ -11233,7 +11596,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ComboBox comboBox10;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel54;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage13;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel24;
@@ -11368,53 +11730,81 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.FlowLayoutPanel roof_GI_D_HRS_Panel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel43;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel57;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button beam_SaveBtn;
         private System.Windows.Forms.PictureBox pictureBox18;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel44;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox beam_SRBS_S_bx;
+        private System.Windows.Forms.TextBox beam_SRBS_D_bx;
         private System.Windows.Forms.Label label105;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox beam_D_bx;
+        private System.Windows.Forms.TextBox beam_QTY_bx;
+        private System.Windows.Forms.ComboBox beam_BT_cbx;
         private System.Windows.Forms.Label label104;
         private System.Windows.Forms.Label label112;
         private System.Windows.Forms.Label label127;
         private System.Windows.Forms.Label label128;
         private System.Windows.Forms.Label label132;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox beam_SHT_cbx;
         private System.Windows.Forms.Label label136;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel46;
-        private System.Windows.Forms.TextBox textBox18;
         private System.Windows.Forms.Label label135;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel45;
-        private System.Windows.Forms.TextBox textBox16;
         private System.Windows.Forms.Label label134;
         private System.Windows.Forms.Label label133;
         private System.Windows.Forms.PictureBox pictureBox16;
-        private System.Windows.Forms.ComboBox comboBox7;
-        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox beam_ST_B_cbx;
+        private System.Windows.Forms.ComboBox beam_ST_T_cbx;
         private System.Windows.Forms.Label label140;
         private System.Windows.Forms.Label label139;
         private System.Windows.Forms.Label label138;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox beam_SA_cbx;
         private System.Windows.Forms.Label label137;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel47;
         private System.Windows.Forms.Label label143;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel48;
-        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.TextBox beam_TR_CL_bx;
         private System.Windows.Forms.Label label141;
         private System.Windows.Forms.Label label142;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel49;
-        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.TextBox beam_BR_CL_bx;
         private System.Windows.Forms.Label label144;
         private System.Windows.Forms.Label label145;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel51;
-        private System.Windows.Forms.TextBox textBox21;
+        private System.Windows.Forms.TextBox beam_BRMSD_BD_bx;
         private System.Windows.Forms.Label label146;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel104;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel beam_BR_Panel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel105;
+        private System.Windows.Forms.Label label261;
+        private System.Windows.Forms.Button beam_BR_AddBtn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel107;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel108;
+        private System.Windows.Forms.Label beam_BS_lbl;
+        private System.Windows.Forms.Button beam_BS_AddBtn;
+        private System.Windows.Forms.FlowLayoutPanel beam_BS_Panel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel112;
+        private System.Windows.Forms.Label label316;
+        private System.Windows.Forms.Label label317;
+        private System.Windows.Forms.Label label318;
+        private System.Windows.Forms.Label label319;
+        private System.Windows.Forms.Label label320;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel111;
+        private System.Windows.Forms.Label label311;
+        private System.Windows.Forms.Label label312;
+        private System.Windows.Forms.Label label313;
+        private System.Windows.Forms.Label label314;
+        private System.Windows.Forms.Label label315;
+        private System.Windows.Forms.Label label280;
+        private System.Windows.Forms.Label label279;
+        private System.Windows.Forms.Label label278;
+        private System.Windows.Forms.Label label277;
+        private System.Windows.Forms.PictureBox pictureBox17;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel109;
+        private System.Windows.Forms.Label label281;
+        private System.Windows.Forms.PictureBox pictureBox19;
+        private System.Windows.Forms.Label label285;
+        private System.Windows.Forms.PictureBox pictureBox20;
+        private System.Windows.Forms.ComboBox beam_MBHT_B_cbx;
+        private System.Windows.Forms.ComboBox beam_MBHT_T_cbx;
     }
 }

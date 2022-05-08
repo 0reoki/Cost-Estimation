@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
+    //TODO: populate combobox ng beam row according kung anong existing + new schedules 
+
     public partial class AddStructForm : Form
     {
         //Local Variables
@@ -18,6 +20,8 @@ namespace WindowsFormsApp1
         private List<ColumnLateralTiesUserControl> u_ltUC;
         private List<ColumnSpacingUserControl> g_sUC;
         private List<ColumnSpacingUserControl> u_sUC;
+        private List<BeamRowUserControl> br_UC;
+        private List<BeamScheduleUserControl> bs_UC;
         private List<RoofHRSUserControl> rHSR_UC;
 
         //Passed Variables
@@ -26,10 +30,10 @@ namespace WindowsFormsApp1
         private CostEstimationForm costEstimationForm;
         private List<TreeNode> nodes;
         private int floorCount;
-        private int memberCount, footingCount, wallFootingCount, columnCount, stairsCount, roofCount;
+        private int memberCount, footingCount, wallFootingCount, columnCount, beamCount, stairsCount, roofCount;
         private bool isNew, isFooting;
 
-        public AddStructForm(CostEstimationForm costEstimationForm, int floorCount, int footingCount, int wallFootingCount, int columnCount, int stairsCount, int roofCount, List<TreeNode> nodes, bool isNew, int index, string parentNode, bool isFooting)
+        public AddStructForm(CostEstimationForm costEstimationForm, int floorCount, int footingCount, int wallFootingCount, int columnCount, int beamCount, int stairsCount, int roofCount, List<TreeNode> nodes, bool isNew, int index, string parentNode, bool isFooting)
         {
             InitializeComponent();
 
@@ -43,6 +47,7 @@ namespace WindowsFormsApp1
             this.footingCount = footingCount;
             this.wallFootingCount = wallFootingCount;
             this.columnCount = columnCount;
+            this.beamCount = beamCount;
             this.stairsCount = stairsCount;
             this.roofCount = roofCount;
 
@@ -51,11 +56,14 @@ namespace WindowsFormsApp1
             g_sUC = new List<ColumnSpacingUserControl>();
             u_ltUC = new List<ColumnLateralTiesUserControl>();
             u_sUC = new List<ColumnSpacingUserControl>();
+            br_UC = new List<BeamRowUserControl>();
+            bs_UC = new List<BeamScheduleUserControl>();
             rHSR_UC = new List<RoofHRSUserControl>();
 
             //Init components
             addstruct_cbx.SelectedIndex = 0;
             colTabControl.SelectedIndex = 0;
+            beam_BT_cbx.SelectedIndex = 0;
             if (floorCount != 0)
             {
                 addstruct_cbx.Items.Clear();
@@ -64,8 +72,13 @@ namespace WindowsFormsApp1
                 addstruct_cbx.Items.Add("Slab");
                 addstruct_cbx.Items.Add("Stairs");
                 addstruct_cbx.Items.Add("Roofing (Gable)");
+                beam_BT_cbx.Items.Clear();
+                beam_BT_cbx.Items.Add("Suspended Beam");
+                beam_BT_cbx.Items.Add("Roof Beam");
+
                 addstruct_cbx.SelectedIndex = 0;
                 colTabControl.SelectedIndex = 1;
+                beam_BT_cbx.SelectedIndex = 0;
             }
             //Init Footings Combo Boxes
             foot_FT_cbx.SelectedIndex = foot_IF_LR_HT_cbx.SelectedIndex = foot_IF_TR_HT_cbx.SelectedIndex = 
@@ -77,6 +90,10 @@ namespace WindowsFormsApp1
             col_G_D_CB_cbx.SelectedIndex = col_U_D_CB_cbx.SelectedIndex = col_G_LT_LTC_cbx.SelectedIndex =
                 col_U_LT_LTC_cbx.SelectedIndex = col_G_SA_cbx.SelectedIndex = col_U_SA_cbx.SelectedIndex =
                 col_G_ST_cbx.SelectedIndex = col_U_ST_cbx.SelectedIndex = 0;
+
+            //Init Beam Combo Boxes
+            beam_MBHT_T_cbx.SelectedIndex = beam_MBHT_B_cbx.SelectedIndex = beam_SHT_cbx.SelectedIndex =
+            beam_SA_cbx.SelectedIndex = beam_ST_T_cbx.SelectedIndex = beam_ST_B_cbx.SelectedIndex = 0;
 
             //Init Stairs Combo Boxes
             stairs_ST_cbx.SelectedIndex = stairs_SS_WS_MB_cbx.SelectedIndex = stairs_SS_WS_DB_cbx.SelectedIndex =
@@ -114,6 +131,10 @@ namespace WindowsFormsApp1
                 {
                     setColumnValues();
                 }
+                if (parentNode.Equals("BEAMS"))
+                {
+                    setBeamValues();
+                }
                 else if(parentNode.Equals("STAIRS"))
                 {
                     setStairsValues();
@@ -121,6 +142,54 @@ namespace WindowsFormsApp1
                 else if (parentNode.Equals("ROOF"))
                 {
                     setRoofValues();
+                }
+            } 
+            else
+            {
+                //Populate Beam Schedule according to type
+                foreach (List<string> schedule in costEstimationForm.structuralMembers.beamSchedule[floorCount])
+                {
+                    if (floorCount == 0) // Ground Floor
+                    {
+                        if (beam_BT_cbx.SelectedIndex == 0) // Footing Tie Beam
+                        {
+                            if (schedule[0].Equals("Footing Tie Beam"))
+                            {
+                                insertSchedule(schedule);
+                            }
+                        }
+                        else if (beam_BT_cbx.SelectedIndex == 1) // Grade Beam
+                        {
+                            if (schedule[0].Equals("Grade Beam"))
+                            {
+                                insertSchedule(schedule);
+                            }
+                        }
+                        else // Roof Beam
+                        {
+                            if (schedule[0].Equals("Roof Beam"))
+                            {
+                                insertSchedule(schedule);
+                            }
+                        }
+                    }
+                    else // Upper Floors
+                    {
+                        if (beam_BT_cbx.SelectedIndex == 0) // Suspended Beam
+                        {
+                            if (schedule[0].Equals("Suspended Beam"))
+                            {
+                                insertSchedule(schedule);
+                            }
+                        }
+                        else // Roof Beam
+                        {
+                            if (schedule[0].Equals("Roof Beam"))
+                            {
+                                insertSchedule(schedule);
+                            }
+                        }
+                    }
                 }
             }
 
@@ -822,11 +891,246 @@ namespace WindowsFormsApp1
             {
                 if (isNew)
                 {
+                    //Name Validation
+                    if (costEstimationForm.structuralMembers.beamNames[floorCount].Contains(structMemName))
+                    {
+                        MessageBox.Show("Name already exists!");
+                        return;
+                    }
+                    foreach (BeamScheduleUserControl bs in bs_UC)
+                    {
+                        foreach(List<string> schedule in costEstimationForm.structuralMembers.beamSchedule[floorCount])
+                        {
+                            if (schedule[1].Equals(bs.name))
+                            {
+                                MessageBox.Show("Name for schedule already exsits!");
+                                return;
+                            }
+                        }
+                    }
 
+                    //Do Whatever
+                    try
+                    {
+                        List<string> members = new List<string>();
+                        members.Add(beam_BT_cbx.Text);
+                        members.Add(beam_D_bx.Text);
+                        members.Add(beam_QTY_bx.Text);
+                        members.Add(beam_SRBS_D_bx.Text);
+                        members.Add(beam_SRBS_S_bx.Text);
+                        members.Add(beam_MBHT_T_cbx.Text);
+                        members.Add(beam_MBHT_B_cbx.Text);
+                        members.Add(beam_SHT_cbx.Text);
+
+
+                        members.Add(beam_SA_cbx.Text);
+                        members.Add(beam_ST_T_cbx.Text);
+                        members.Add(beam_ST_B_cbx.Text);
+                        members.Add(beam_TR_CL_bx.Text);
+                        members.Add(beam_BR_CL_bx.Text);
+                        members.Add(beam_BRMSD_BD_bx.Text);
+
+                        List<List<string>> brMember = new List<List<string>>();
+                        foreach (BeamRowUserControl br in br_UC)
+                        {
+                            List<string> brValues = new List<string>();
+                            brValues.Add(br.beamName);
+                            brValues.Add(br.length);
+                            brValues.Add(br.qty);
+                            brValues.Add(br.endSupportLT);
+                            brValues.Add(br.endSupportRB);
+                            brMember.Add(brValues);
+                        }
+
+                        foreach(BeamScheduleUserControl bs in bs_UC)
+                        {
+                            List<string> bsMember = new List<string>();
+                            bsMember.Add(bs.type);
+                            bsMember.Add(bs.name);
+                            bsMember.Add(bs.b);
+                            bsMember.Add(bs.d);
+
+                            bsMember.Add(bs.property);
+                            bsMember.Add(bs.propertieDiameter1);
+                            bsMember.Add(bs.propertieDiameter2);
+
+                            bsMember.Add(bs.extSupport_qty1);
+                            bsMember.Add(bs.extSupport_qty2);
+                            bsMember.Add(bs.extSupport_qty3);
+                            bsMember.Add(bs.extSupport_qty4);
+                            
+                            bsMember.Add(bs.midspan_qty1);
+                            bsMember.Add(bs.midspan_qty2);
+                            bsMember.Add(bs.midspan_qty3);
+                            bsMember.Add(bs.midspan_qty4);
+
+                            bsMember.Add(bs.intSupport_qty1);
+                            bsMember.Add(bs.intSupport_qty2);
+                            bsMember.Add(bs.intSupport_qty3);
+                            bsMember.Add(bs.intSupport_qty4);
+
+                            bsMember.Add(bs.stirrupDiameter);
+                            bsMember.Add(bs.stirrupsValue1);
+                            bsMember.Add(bs.stirrupsValueAt1);
+                            bsMember.Add(bs.stirrupsValue2);
+                            bsMember.Add(bs.stirrupsValueAt2);
+                            bsMember.Add(bs.stirrupsRest);
+                            
+                            bsMember.Add(bs.webBarsDiameter);
+                            bsMember.Add(bs.webBarsQty);
+
+                            foreach (List<string> schedule in costEstimationForm.structuralMembers.beamSchedule[floorCount])
+                            {
+                                if (schedule[1].Equals(bs.name))
+                                {
+                                    MessageBox.Show("Duplicate names inside schedule are not allowed!");
+                                    costEstimationForm.structuralMembers.beamSchedule[floorCount].Clear();
+                                    return;
+                                }
+                            }
+                            costEstimationForm.structuralMembers.beamSchedule[floorCount].Add(bsMember);
+                        }
+
+                        costEstimationForm.structuralMembers.beam[floorCount].Add(members);
+                        costEstimationForm.structuralMembers.beamNames[floorCount].Add(structMemName);
+                        costEstimationForm.structuralMembers.beamRow[floorCount].Add(brMember);
+
+                        //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                        MessageBox.Show("eto ang sagot sa tanong: " +
+                            costEstimationForm.structuralMembers.beam[floorCount][beamCount][0]);
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Do not leave any blank spaces!");
+                        Console.WriteLine(ex.ToString());
+                    }
                 }
                 else //Clicked from floors
                 {
+                    //Name Validation
+                    if (costEstimationForm.structuralMembers.beamNames[floorCount].Contains(structMemName))
+                    {
+                        if (structMemName.Equals(oldStructMemName))
+                        {
+                            //Do nothing
+                        }
+                        else
+                        {
+                            int found = 0;
+                            for (int i = 0; i < costEstimationForm.structuralMembers.beamNames[floorCount].Count; i++)
+                            {
+                                if (costEstimationForm.structuralMembers.beamNames[floorCount][i].Equals(structMemName))
+                                {
+                                    found++;
+                                }
+                            }
+                            if (found > 1)
+                            {   //Duplicate found
+                                MessageBox.Show("Name already exists!");
+                                return;
+                            }
+                        }
+                    }
+                    int found2 = 0;
+                    foreach (BeamScheduleUserControl bs in bs_UC)
+                    {
+                        foreach (List<string> schedule in costEstimationForm.structuralMembers.beamSchedule[floorCount])
+                        {
+                            if (schedule[1].Equals(bs.name))
+                            {
+                                found2++;
+                            }
+                        }
+                        if (found2 > 1)
+                        {
+                            MessageBox.Show("Duplicate names inside schedule are not allowed!");
+                            return;
+                        } 
+                        else
+                        {
+                            found2 = 0;
+                        }
+                    }
 
+                    //Do Whatever
+                    costEstimationForm.structuralMembers.beamNames[floorCount][memberCount] = addstruct_Name_bx.Text;
+                    
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][0] = beam_BT_cbx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][1] = beam_D_bx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][2] = beam_QTY_bx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][3] = beam_SRBS_D_bx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][4] = beam_SRBS_S_bx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][5] = beam_MBHT_T_cbx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][6] = beam_MBHT_B_cbx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][7] = beam_SHT_cbx.Text;
+
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][8] = beam_SA_cbx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][9] = beam_ST_T_cbx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][10] = beam_ST_B_cbx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][11] = beam_TR_CL_bx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][12] = beam_BR_CL_bx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][13] = beam_BRMSD_BD_bx.Text;
+
+                    List<List<string>> brMember = new List<List<string>>();
+                    foreach (BeamRowUserControl br in br_UC)
+                    {
+                        List<string> brValues = new List<string>();
+                        brValues.Add(br.beamName);
+                        brValues.Add(br.length);
+                        brValues.Add(br.qty);
+                        brValues.Add(br.endSupportLT);
+                        brValues.Add(br.endSupportRB);
+                        brMember.Add(brValues);
+                    }
+
+                    int j = 0;
+                    foreach(List<string> schedule in costEstimationForm.structuralMembers.beamSchedule[floorCount])
+                    {
+                        if (floorCount == 0) // Ground Floor
+                        {
+                            if (beam_BT_cbx.SelectedIndex == 0) // Footing Tie Beam
+                            {
+                                if (schedule[0].Equals("Footing Tie Beam"))
+                                {
+                                    updateSchedule(schedule, j); j++;
+                                }
+                            }
+                            else if (beam_BT_cbx.SelectedIndex == 1) // Grade Beam
+                            {
+                                if (schedule[0].Equals("Grade Beam"))
+                                {
+                                    updateSchedule(schedule, j); j++;
+                                }
+                            }
+                            else // Roof Beam
+                            {
+                                if (schedule[0].Equals("Roof Beam"))
+                                {
+                                    updateSchedule(schedule, j); j++;
+                                }
+                            }
+                        }
+                        else // Upper Floors
+                        {
+                            if (beam_BT_cbx.SelectedIndex == 0) // Suspended Beam
+                            {
+                                if (schedule[0].Equals("Suspended Beam"))
+                                {
+                                    updateSchedule(schedule, j); j++;
+                                }
+                            }
+                            else // Roof Beam
+                            {
+                                if (schedule[0].Equals("Roof Beam"))
+                                {
+                                    updateSchedule(schedule, j); j++;
+                                }
+                            }
+                        }
+                    }
+                    costEstimationForm.structuralMembers.beamRow[floorCount][memberCount] = brMember;
+                    this.DialogResult = DialogResult.OK;
                 }
             }
             else if (addstruct_cbx.Text.Equals("Slab"))
@@ -1759,6 +2063,173 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void setBeamValues()
+        {
+            if (floorCount == 0)
+            {
+                addstruct_cbx.SelectedIndex = 3;
+            }
+            else
+            {
+                addstruct_cbx.SelectedIndex = 1;
+            }
+
+            oldStructMemName = costEstimationForm.structuralMembers.beamNames[floorCount][memberCount];
+            addstruct_Name_bx.Text = costEstimationForm.structuralMembers.beamNames[floorCount][memberCount];
+
+            beam_BT_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][0];
+            beam_D_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][1];
+            beam_QTY_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][2];
+            beam_SRBS_D_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][3];
+            beam_SRBS_S_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][4];
+            beam_MBHT_T_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][5];
+            beam_MBHT_B_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][6];
+            beam_SHT_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][7];
+
+            beam_SA_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][8];
+            beam_ST_T_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][9];
+            beam_ST_B_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][10];
+            beam_TR_CL_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][11];
+            beam_BR_CL_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][12];
+            beam_BRMSD_BD_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][13];
+
+            foreach (List<string> br in costEstimationForm.structuralMembers.beamRow[floorCount][memberCount])
+            {
+                BeamRowUserControl content2 = new BeamRowUserControl(costEstimationForm.structuralMembers);
+                content2.beamName = br[0];
+                content2.length = br[1];
+                content2.qty = br[2];
+                content2.endSupportLT = br[3];
+                content2.endSupportRB = br[4];
+                br_UC.Add(content2);
+                beam_BR_Panel.Controls.Add(content2);
+            }
+
+            foreach (List<string> schedule in costEstimationForm.structuralMembers.beamSchedule[floorCount])
+            {
+                if (floorCount == 0) // Ground Floor
+                {
+                    if (beam_BT_cbx.SelectedIndex == 0) // Footing Tie Beam
+                    {
+                        if (schedule[0].Equals("Footing Tie Beam"))
+                        {
+                            insertSchedule(schedule);
+                        }
+                    }
+                    else if (beam_BT_cbx.SelectedIndex == 1) // Grade Beam
+                    {
+                        if (schedule[0].Equals("Grade Beam"))
+                        {
+                            insertSchedule(schedule);
+                        }
+                    }
+                    else // Roof Beam
+                    {
+                        if (schedule[0].Equals("Roof Beam"))
+                        {
+                            insertSchedule(schedule);
+                        }
+                    }
+                }
+                else // Upper Floors
+                {
+                    if (beam_BT_cbx.SelectedIndex == 0) // Suspended Beam
+                    {
+                        if (schedule[0].Equals("Suspended Beam"))
+                        {
+                            insertSchedule(schedule);
+                        }
+                    }
+                    else // Roof Beam
+                    {
+                        if (schedule[0].Equals("Roof Beam"))
+                        {
+                            insertSchedule(schedule);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void insertSchedule(List<string> schedule)
+        {
+            BeamScheduleUserControl content2 = new BeamScheduleUserControl(schedule[0]);
+            content2.name = schedule[1];
+            content2.b = schedule[2];
+            content2.d = schedule[3];
+
+            content2.property = schedule[4];
+            content2.propertieDiameter1 = schedule[5];
+            content2.propertieDiameter2 = schedule[6];
+
+            content2.extSupport_qty1 = schedule[7];
+            content2.extSupport_qty2 = schedule[8];
+            content2.extSupport_qty3 = schedule[9];
+            content2.extSupport_qty4 = schedule[10];
+
+            content2.midspan_qty1 = schedule[11];
+            content2.midspan_qty2 = schedule[12];
+            content2.midspan_qty3 = schedule[13];
+            content2.midspan_qty4 = schedule[14];
+
+            content2.intSupport_qty1 = schedule[15];
+            content2.intSupport_qty2 = schedule[16];
+            content2.intSupport_qty3 = schedule[17];
+            content2.intSupport_qty4 = schedule[18];
+
+            content2.stirrupDiameter = schedule[19];
+            content2.stirrupsValue1 = schedule[20];
+            content2.stirrupsValueAt1 = schedule[21];
+            content2.stirrupsValue2 = schedule[22];
+            content2.stirrupsValueAt2 = schedule[23];
+            content2.stirrupsRest = schedule[24];
+
+            content2.webBarsDiameter = schedule[25];
+            content2.webBarsQty = schedule[26];
+
+            bs_UC.Add(content2);
+            beam_BS_Panel.Controls.Add(content2);
+        }
+
+        private void updateSchedule(List<string> schedule, int key)
+        {
+            schedule[0] = bs_UC[key].type;
+            schedule[1] = bs_UC[key].name;
+            schedule[2] = bs_UC[key].b;
+            schedule[3] = bs_UC[key].d;
+
+            schedule[4] = bs_UC[key].property;
+            schedule[5] = bs_UC[key].propertieDiameter1;
+            /*
+            bs_UC[key].propertieDiameter2 = schedule[6];
+
+            bs_UC[key].extSupport_qty1 = schedule[7];
+            bs_UC[key].extSupport_qty2 = schedule[8];
+            bs_UC[key].extSupport_qty3 = schedule[9];
+            bs_UC[key].extSupport_qty4 = schedule[10];
+
+            bs_UC[key].midspan_qty1 = schedule[11];
+            bs_UC[key].midspan_qty2 = schedule[12];
+            bs_UC[key].midspan_qty3 = schedule[13];
+            bs_UC[key].midspan_qty4 = schedule[14];
+
+            bs_UC[key].intSupport_qty1 = schedule[15];
+            bs_UC[key].intSupport_qty2 = schedule[16];
+            bs_UC[key].intSupport_qty3 = schedule[17];
+            bs_UC[key].intSupport_qty4 = schedule[18];
+
+            bs_UC[key].stirrupDiameter = schedule[19];
+            bs_UC[key].stirrupsValue1 = schedule[20];
+            bs_UC[key].stirrupsValueAt1 = schedule[21];
+            bs_UC[key].stirrupsValue2 = schedule[22];
+            bs_UC[key].stirrupsValueAt2 = schedule[23];
+            bs_UC[key].stirrupsRest = schedule[24];
+
+            bs_UC[key].webBarsDiameter = schedule[25];
+            bs_UC[key].webBarsQty = schedule[26];
+            */
+        }
+
         private void setStairsValues()
         {
             if(floorCount == 0)
@@ -1957,16 +2428,6 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label174_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void col_G_LT_LTC_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (col_G_LT_LTC_cbx.SelectedIndex == 0)
@@ -1994,13 +2455,13 @@ namespace WindowsFormsApp1
                 col_G_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5); 
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
-                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.INDIGO);
                 Image picture4 = (Image)bmp4;
-                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.ORANGE);
                 Image picture5 = (Image)bmp5;
 
                 g_ltUC.Clear();
@@ -2029,13 +2490,13 @@ namespace WindowsFormsApp1
                 col_G_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
-                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.INDIGO);
                 Image picture4 = (Image)bmp4;
-                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.ORANGE);
                 Image picture5 = (Image)bmp5;
 
                 g_ltUC.Clear();
@@ -2064,9 +2525,9 @@ namespace WindowsFormsApp1
                 col_G_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
 
                 g_ltUC.Clear();
@@ -2086,10 +2547,10 @@ namespace WindowsFormsApp1
                 Image picture = (Image)bmp;
                 col_G_LT_pb.Image = picture;
 
-                //Add Lateral Ties Quantity 
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                //Add Lateral Ties Quantity
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
 
                 g_ltUC.Clear();
@@ -2117,6 +2578,55 @@ namespace WindowsFormsApp1
             ColumnSpacingUserControl content = new ColumnSpacingUserControl();
             u_sUC.Add(content);
             col_U_S_Panel.Controls.Add(content);
+        }
+
+
+        private void beam_BR_AddBtn_Click(object sender, EventArgs e)
+        {
+            BeamRowUserControl content = new BeamRowUserControl(costEstimationForm.structuralMembers);
+            br_UC.Add(content);
+            beam_BR_Panel.Controls.Add(content);
+        }
+
+        private void beam_BS_AddBtn_Click(object sender, EventArgs e)
+        {
+            if(floorCount == 0) // Ground Floor
+            {
+                if(beam_BT_cbx.SelectedIndex == 0) // Footing Tie Beam
+                {
+                    BeamScheduleUserControl content = new BeamScheduleUserControl("Footing Tie Beam");
+                    bs_UC.Add(content);
+                    beam_BS_Panel.Controls.Add(content);
+                }
+                else if (beam_BT_cbx.SelectedIndex == 1) // Grade Beam
+                {
+                    BeamScheduleUserControl content = new BeamScheduleUserControl("Grade Beam");
+                    bs_UC.Add(content);
+                    beam_BS_Panel.Controls.Add(content);
+                }
+                else // Roof Beam
+                {
+                    BeamScheduleUserControl content = new BeamScheduleUserControl("Roof Beam");
+                    bs_UC.Add(content);
+                    beam_BS_Panel.Controls.Add(content);
+                }
+            }
+            else // Upper Floors
+            {
+                if (beam_BT_cbx.SelectedIndex == 0) // Suspended Beam
+                {
+                    BeamScheduleUserControl content = new BeamScheduleUserControl("Suspended Beam");
+                    bs_UC.Add(content);
+                    beam_BS_Panel.Controls.Add(content);
+                }
+                else // Roof Beam
+                {
+                    BeamScheduleUserControl content = new BeamScheduleUserControl("Roof Beam");
+                    bs_UC.Add(content);
+                    beam_BS_Panel.Controls.Add(content);
+                }
+            }
+            
         }
 
         private void roof_RP_W_rb_CheckedChanged(object sender, EventArgs e)
@@ -2150,16 +2660,46 @@ namespace WindowsFormsApp1
             roof_GI_M_SP_cbx.Enabled = false;
         }
 
+        private void beam_BT_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (floorCount == 0) // Ground Floor
+            {
+                if (beam_BT_cbx.SelectedIndex == 0) // Footing Tie Beam
+                {
+                    beam_D_bx.Enabled = true;
+                    beam_BS_lbl.Text = "Footing Tie Beams Schedule";
+                }
+                else if (beam_BT_cbx.SelectedIndex == 1) // Grade Beam
+                {
+                    beam_D_bx.Enabled = true;
+                    beam_BS_lbl.Text = "Grade Beam Schedule";
+                }
+                else // Roof Beam
+                {
+                    beam_D_bx.Enabled = false;
+                    beam_BS_lbl.Text = "Roof Beam Schedule";
+                }
+            }
+            else // Upper Floors
+            {
+                if (beam_BT_cbx.SelectedIndex == 0) // Suspended Beam
+                {
+                    beam_D_bx.Enabled = false;
+                    beam_BS_lbl.Text = "Suspended Beam Schedule";
+                }
+                else // Roof Beam
+                {
+                    beam_D_bx.Enabled = false;
+                    beam_BS_lbl.Text = "Roof Beam Schedule";
+                }
+            }
+        }
+
         private void roof_GI_D_HRS_AddBtn_Click(object sender, EventArgs e)
         {
             RoofHRSUserControl content = new RoofHRSUserControl();
             rHSR_UC.Add(content);
             roof_GI_D_HRS_Panel.Controls.Add(content);
-        }
-
-        private void roof_RP_W_D_SR_bx_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void col_U_LT_LTC_cbx_SelectedIndexChanged(object sender, EventArgs e)
@@ -2189,13 +2729,13 @@ namespace WindowsFormsApp1
                 col_U_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
-                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.INDIGO);
                 Image picture4 = (Image)bmp4;
-                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.ORANGE);
                 Image picture5 = (Image)bmp5;
 
                 u_ltUC.Clear();
@@ -2224,13 +2764,13 @@ namespace WindowsFormsApp1
                 col_U_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
-                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.INDIGO);
                 Image picture4 = (Image)bmp4;
-                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.ORANGE);
                 Image picture5 = (Image)bmp5;
 
                 u_ltUC.Clear();
@@ -2259,9 +2799,9 @@ namespace WindowsFormsApp1
                 col_U_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
 
                 u_ltUC.Clear();
@@ -2281,10 +2821,10 @@ namespace WindowsFormsApp1
                 Image picture = (Image)bmp;
                 col_U_LT_pb.Image = picture;
 
-                //Add Lateral Ties Quantity 
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                //Add Lateral Ties Quantity
+                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
 
                 u_ltUC.Clear();
@@ -2302,7 +2842,7 @@ namespace WindowsFormsApp1
 
         private void AddStructForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            //
         }
 
         private void foot_FT_cbx_SelectedIndexChanged(object sender, EventArgs e)

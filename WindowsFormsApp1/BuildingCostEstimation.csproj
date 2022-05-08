@@ -66,6 +66,18 @@
     <Compile Include="AddStructForm.Designer.cs">
       <DependentUpon>AddStructForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BeamRowUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BeamRowUserControl.Designer.cs">
+      <DependentUpon>BeamRowUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BeamScheduleUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BeamScheduleUserControl.Designer.cs">
+      <DependentUpon>BeamScheduleUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CHBUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -175,6 +187,12 @@
     <EmbeddedResource Include="AddStructForm.resx">
       <DependentUpon>AddStructForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BeamRowUserControl.resx">
+      <DependentUpon>BeamRowUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BeamScheduleUserControl.resx">
+      <DependentUpon>BeamScheduleUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CHBUserControl.resx">
       <DependentUpon>CHBUserControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -282,6 +300,12 @@
     <None Include="Resources\Column\COLUMN.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Beam\BEAM DETAILS.PNG" />
+    <Content Include="Resources\Beam\BEAM PROP 1.PNG" />
+    <Content Include="Resources\Beam\BEAM PROP 2.PNG" />
+    <Content Include="Resources\Beam\BEAM.PNG" />
+    <Content Include="Resources\Column\GREEN.PNG" />
+    <Content Include="Resources\Column\INDIGO.PNG" />
     <Content Include="Resources\Column\LT CONFIG 1.PNG">
       <CustomToolNamespace>LT_CONFIG_1</CustomToolNamespace>
     </Content>
@@ -290,6 +314,15 @@
     <Content Include="Resources\Column\LT CONFIG 4.PNG" />
     <Content Include="Resources\Column\LT CONFIG 5.PNG" />
     <Content Include="Resources\Column\LT CONFIG 6.PNG" />
+    <Content Include="Resources\Column\ORANGE.PNG" />
+    <Content Include="Resources\Column\RED.PNG" />
+    <Content Include="Resources\Footing\TRAPEZOIDAL  WALL FOOTING.PNG" />
+    <Content Include="Resources\Roofings\G.I.Roof and Its Accessories.png" />
+    <Content Include="Resources\Roofings\Rafters and Purlins.png" />
+    <Content Include="Resources\Roofings\Roof Accesories %28Tinsworks%29.png" />
+    <Content Include="Resources\Slab\SLAB DETAIL.PNG" />
+    <Content Include="Resources\Slab\SLAB.PNG" />
+    <Content Include="Resources\Stairs\L STAIRS REBARS.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.1150.38\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.1150.38\build\Microsoft.Web.WebView2.targets')" />
