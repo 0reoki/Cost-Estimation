@@ -177,6 +177,24 @@
     <Compile Include="RoofHRSUserControl.Designer.cs">
       <DependentUpon>RoofHRSUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="SlabDetail1UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SlabDetail1UserControl.Designer.cs">
+      <DependentUpon>SlabDetail1UserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SlabDetail2UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SlabDetail2UserControl.Designer.cs">
+      <DependentUpon>SlabDetail2UserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SlabScheduleUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SlabScheduleUserControl.Designer.cs">
+      <DependentUpon>SlabScheduleUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="StructuralMembers.cs" />
     <Compile Include="TileAreaUserControl.cs">
       <SubType>UserControl</SubType>
@@ -242,6 +260,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RoofHRSUserControl.resx">
       <DependentUpon>RoofHRSUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SlabDetail1UserControl.resx">
+      <DependentUpon>SlabDetail1UserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SlabDetail2UserControl.resx">
+      <DependentUpon>SlabDetail2UserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SlabScheduleUserControl.resx">
+      <DependentUpon>SlabScheduleUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TileAreaUserControl.resx">
       <DependentUpon>TileAreaUserControl.cs</DependentUpon>
