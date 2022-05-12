@@ -347,6 +347,9 @@
     <Content Include="Resources\Roofings\G.I.Roof and Its Accessories.png" />
     <Content Include="Resources\Roofings\Rafters and Purlins.png" />
     <Content Include="Resources\Roofings\Roof Accesories %28Tinsworks%29.png" />
+    <Content Include="Resources\Slab\CORNER SLAB REINFORCEMENT.PNG" />
+    <Content Include="Resources\Slab\DIAGONAL.PNG" />
+    <Content Include="Resources\Slab\SLAB DETAIL 2.PNG" />
     <Content Include="Resources\Slab\SLAB DETAIL.PNG" />
     <Content Include="Resources\Slab\SLAB.PNG" />
     <Content Include="Resources\Stairs\L STAIRS REBARS.PNG" />

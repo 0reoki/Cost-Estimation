@@ -123,6 +123,36 @@ namespace WindowsFormsApp1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CORNER_SLAB_REINFORCEMENT {
+            get {
+                object obj = ResourceManager.GetObject("CORNER_SLAB_REINFORCEMENT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DIAGONAL {
+            get {
+                object obj = ResourceManager.GetObject("DIAGONAL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DIAGONAL1 {
+            get {
+                object obj = ResourceManager.GetObject("DIAGONAL1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DISTRIBUTION_BARS {
             get {
                 object obj = ResourceManager.GetObject("DISTRIBUTION BARS", resourceCulture);
@@ -356,6 +386,16 @@ namespace WindowsFormsApp1.Properties {
         internal static System.Drawing.Bitmap SLAB_DETAIL {
             get {
                 object obj = ResourceManager.GetObject("SLAB_DETAIL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SLAB_DETAIL_2 {
+            get {
+                object obj = ResourceManager.GetObject("SLAB_DETAIL_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

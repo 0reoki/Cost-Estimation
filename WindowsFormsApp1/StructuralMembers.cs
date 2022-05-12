@@ -27,11 +27,15 @@ namespace WindowsFormsApp1
         public List<List<List<string>>> columnSpacing = new List<List<List<string>>>();
 
         //Beam Variables
-        //Roof Variables
         public List<List<string>> beamNames = new List<List<string>>();
         public List<List<List<string>>> beam = new List<List<List<string>>>();
         public List<List<List<List<string>>>> beamRow = new List<List<List<List<string>>>>();
         public List<List<List<string>>> beamSchedule = new List<List<List<string>>>();
+
+        //Beam Variables
+        public List<List<string>> slabNames = new List<List<string>>();
+        public List<List<List<string>>> slab = new List<List<List<string>>>();
+        public List<List<List<string>>> slabSchedule = new List<List<List<string>>>();
 
         //Stairs Variables
         public List<List<string>> stairsNames = new List<List<string>>();

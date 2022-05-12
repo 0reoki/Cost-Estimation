@@ -16,5 +16,40 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
+
+        public string SD2UC_LA
+        {
+            get
+            {
+                return SD2UC_LA_bx.Text;
+            }
+            set
+            {
+                SD2UC_LA_bx.Text = value;
+            }
+        }
+        public string SD2UC_LB
+        {
+            get
+            {
+                return SD2UC_LB_bx.Text;
+            }
+            set
+            {
+                SD2UC_LB_bx.Text = value;
+            }
+        }
+
+        public string SD2UC_BG
+        {
+            get
+            {
+                return SD2UC_BG_bx.Text;
+            }
+            set
+            {
+                SD2UC_BG_bx.Text = value;
+            }
+        }
     }
 }

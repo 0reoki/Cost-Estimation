@@ -31,10 +31,10 @@
             this.tableLayoutPanel116 = new System.Windows.Forms.TableLayoutPanel();
             this.label348 = new System.Windows.Forms.Label();
             this.label347 = new System.Windows.Forms.Label();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.textBox23 = new System.Windows.Forms.TextBox();
-            this.textBox24 = new System.Windows.Forms.TextBox();
-            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.SD1UC_LD_bx = new System.Windows.Forms.TextBox();
+            this.SD1UC_LC_bx = new System.Windows.Forms.TextBox();
+            this.SD1UC_LA_bx = new System.Windows.Forms.TextBox();
+            this.SD1UC_LB_bx = new System.Windows.Forms.TextBox();
             this.label349 = new System.Windows.Forms.Label();
             this.label350 = new System.Windows.Forms.Label();
             this.tableLayoutPanel116.SuspendLayout();
@@ -49,10 +49,10 @@
             this.tableLayoutPanel116.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.99812F));
             this.tableLayoutPanel116.Controls.Add(this.label348, 2, 1);
             this.tableLayoutPanel116.Controls.Add(this.label347, 2, 0);
-            this.tableLayoutPanel116.Controls.Add(this.textBox22, 3, 1);
-            this.tableLayoutPanel116.Controls.Add(this.textBox23, 3, 0);
-            this.tableLayoutPanel116.Controls.Add(this.textBox24, 1, 0);
-            this.tableLayoutPanel116.Controls.Add(this.textBox25, 1, 1);
+            this.tableLayoutPanel116.Controls.Add(this.SD1UC_LD_bx, 3, 1);
+            this.tableLayoutPanel116.Controls.Add(this.SD1UC_LC_bx, 3, 0);
+            this.tableLayoutPanel116.Controls.Add(this.SD1UC_LA_bx, 1, 0);
+            this.tableLayoutPanel116.Controls.Add(this.SD1UC_LB_bx, 1, 1);
             this.tableLayoutPanel116.Controls.Add(this.label349, 0, 0);
             this.tableLayoutPanel116.Controls.Add(this.label350, 0, 1);
             this.tableLayoutPanel116.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -90,41 +90,41 @@
             this.label347.Text = "Lᶜ:";
             this.label347.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox22
+            // SD1UC_LD_bx
             // 
-            this.textBox22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox22.Location = new System.Drawing.Point(270, 35);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(86, 26);
-            this.textBox22.TabIndex = 27;
-            this.textBox22.Text = "0";
+            this.SD1UC_LD_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SD1UC_LD_bx.Location = new System.Drawing.Point(270, 35);
+            this.SD1UC_LD_bx.Name = "SD1UC_LD_bx";
+            this.SD1UC_LD_bx.Size = new System.Drawing.Size(86, 26);
+            this.SD1UC_LD_bx.TabIndex = 27;
+            this.SD1UC_LD_bx.Text = "0";
             // 
-            // textBox23
+            // SD1UC_LC_bx
             // 
-            this.textBox23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox23.Location = new System.Drawing.Point(270, 3);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(86, 26);
-            this.textBox23.TabIndex = 26;
-            this.textBox23.Text = "0";
+            this.SD1UC_LC_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SD1UC_LC_bx.Location = new System.Drawing.Point(270, 3);
+            this.SD1UC_LC_bx.Name = "SD1UC_LC_bx";
+            this.SD1UC_LC_bx.Size = new System.Drawing.Size(86, 26);
+            this.SD1UC_LC_bx.TabIndex = 26;
+            this.SD1UC_LC_bx.Text = "0";
             // 
-            // textBox24
+            // SD1UC_LA_bx
             // 
-            this.textBox24.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox24.Location = new System.Drawing.Point(92, 3);
-            this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(83, 26);
-            this.textBox24.TabIndex = 16;
-            this.textBox24.Text = "0";
+            this.SD1UC_LA_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SD1UC_LA_bx.Location = new System.Drawing.Point(92, 3);
+            this.SD1UC_LA_bx.Name = "SD1UC_LA_bx";
+            this.SD1UC_LA_bx.Size = new System.Drawing.Size(83, 26);
+            this.SD1UC_LA_bx.TabIndex = 16;
+            this.SD1UC_LA_bx.Text = "0";
             // 
-            // textBox25
+            // SD1UC_LB_bx
             // 
-            this.textBox25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox25.Location = new System.Drawing.Point(92, 35);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(83, 26);
-            this.textBox25.TabIndex = 15;
-            this.textBox25.Text = "0";
+            this.SD1UC_LB_bx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SD1UC_LB_bx.Location = new System.Drawing.Point(92, 35);
+            this.SD1UC_LB_bx.Name = "SD1UC_LB_bx";
+            this.SD1UC_LB_bx.Size = new System.Drawing.Size(83, 26);
+            this.SD1UC_LB_bx.TabIndex = 15;
+            this.SD1UC_LB_bx.Text = "0";
             // 
             // label349
             // 
@@ -168,10 +168,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel116;
         private System.Windows.Forms.Label label348;
         private System.Windows.Forms.Label label347;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.TextBox textBox23;
-        private System.Windows.Forms.TextBox textBox24;
-        private System.Windows.Forms.TextBox textBox25;
+        private System.Windows.Forms.TextBox SD1UC_LD_bx;
+        private System.Windows.Forms.TextBox SD1UC_LC_bx;
+        private System.Windows.Forms.TextBox SD1UC_LA_bx;
+        private System.Windows.Forms.TextBox SD1UC_LB_bx;
         private System.Windows.Forms.Label label349;
         private System.Windows.Forms.Label label350;
     }

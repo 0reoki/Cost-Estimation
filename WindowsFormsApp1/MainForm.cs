@@ -216,21 +216,26 @@ namespace WindowsFormsApp1
                 structuralMembers.beam.Add(newList8);
                 structuralMembers.beamRow.Add(newList9);
                 structuralMembers.beamSchedule.Add(newList10);
-                
+
+                //Slabs
+                List<string> newList11 = new List<string>();
+                List<List<string>> newList12 = new List<List<string>>();
+                structuralMembers.slabNames.Add(newList11);
+                structuralMembers.slab.Add(newList12);
 
                 //Stairs
-                List<List<string>> newList11 = new List<List<string>>();
-                List<string> newList12 = new List<string>();
-                structuralMembers.stairs.Add(newList11);
-                structuralMembers.stairsNames.Add(newList12);
-
-                //Roof
-                List<List<string>> newList13 = new List<List<string>>();
                 List<List<string>> newList14 = new List<List<string>>();
                 List<string> newList15 = new List<string>();
-                structuralMembers.roof.Add(newList13);
-                structuralMembers.roofHRS.Add(newList14);
-                structuralMembers.roofNames.Add(newList15);
+                structuralMembers.stairs.Add(newList14);
+                structuralMembers.stairsNames.Add(newList15);
+
+                //Roof
+                List<List<string>> newList16 = new List<List<string>>();
+                List<List<string>> newList17 = new List<List<string>>();
+                List<string> newList18 = new List<string>();
+                structuralMembers.roof.Add(newList16);
+                structuralMembers.roofHRS.Add(newList17);
+                structuralMembers.roofNames.Add(newList18);
             }
             else //Upper Floors
             {
@@ -254,19 +259,27 @@ namespace WindowsFormsApp1
                 structuralMembers.beamRow.Add(newList9);
                 structuralMembers.beamSchedule.Add(newList10);
 
-                //Stairs
-                List<List<string>> newList11 = new List<List<string>>();
-                List<string> newList12 = new List<string>();
-                structuralMembers.stairs.Add(newList11);
-                structuralMembers.stairsNames.Add(newList12);
-
-                //Roof
+                //Slabs
+                List<string> newList11 = new List<string>();
+                List<List<string>> newList12 = new List<List<string>>();
                 List<List<string>> newList13 = new List<List<string>>();
+                structuralMembers.slabNames.Add(newList11);
+                structuralMembers.slab.Add(newList12);
+                structuralMembers.slabSchedule.Add(newList13);
+
+                //Stairs
                 List<List<string>> newList14 = new List<List<string>>();
                 List<string> newList15 = new List<string>();
-                structuralMembers.roof.Add(newList13);
-                structuralMembers.roofHRS.Add(newList14);
-                structuralMembers.roofNames.Add(newList15);
+                structuralMembers.stairs.Add(newList14);
+                structuralMembers.stairsNames.Add(newList15);
+
+                //Roof
+                List<List<string>> newList16 = new List<List<string>>();
+                List<List<string>> newList17 = new List<List<string>>();
+                List<string> newList18 = new List<string>();
+                structuralMembers.roof.Add(newList16);
+                structuralMembers.roofHRS.Add(newList17);
+                structuralMembers.roofNames.Add(newList18);
             }
 
             //Set a ground floor
@@ -636,9 +649,33 @@ namespace WindowsFormsApp1
                         stringParam += value + "|";
                 j++;
             }
-
+            
             //Slabs
             stringParam += "\nSlabs|\n";
+            j = 0;
+            foreach (List<List<string>> floor in structuralMembers.slab)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<string> member in floor)
+                {
+                    stringParam += "Slab-" + (k + 1) + "|";
+                    stringParam += structuralMembers.slabNames[j][k] + "|";
+                    foreach (string value in member)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                if(j > 0)
+                {
+                    stringParam += "Slab-Schedules" + "|";
+                    foreach (List<string> schedule in structuralMembers.slabSchedule[j - 1])
+                        foreach (string value in schedule)
+                            stringParam += value + "|";
+                }
+                j++;
+            }
 
             //Stairs
             stringParam += "\nStairs|\n";
@@ -763,6 +800,10 @@ namespace WindowsFormsApp1
             structuralMembers.beam.Clear();
             structuralMembers.beamRow.Clear();
             structuralMembers.beamSchedule.Clear();
+
+            structuralMembers.slabNames.Clear();
+            structuralMembers.slab.Clear();
+            structuralMembers.slabSchedule.Clear();
 
             structuralMembers.stairsNames.Clear();
             structuralMembers.stairs.Clear();
@@ -1454,40 +1495,7 @@ namespace WindowsFormsApp1
                     j++;
                 }
             }
-            /*
-             //Beams
-                stringParam += "\nBeams|\n";
-                j = 0;
-                foreach (List<List<string>> floor in structuralMembers.beam)
-                {
-                    stringParam += "Floor-" + (j + 1) + "|";
-                    int k = 0;
-                    foreach (List<string> member in floor)
-                    {
-                        stringParam += "Beam-" + (k + 1) + "|";
-                        stringParam += structuralMembers.beamNames[j][k] + "|";
-                        foreach (string value in member)
-                        {
-                            stringParam += value + "|";
-                        }
-                        stringParam += "Beam-Rows" + "|";
-                        foreach (List<string> row in structuralMembers.beamRow[j][k])
-                        {
-                            stringParam += row[0] + "|";
-                            stringParam += row[1] + "|";
-                            stringParam += row[2] + "|";
-                            stringParam += row[3] + "|";
-                            stringParam += row[4] + "|";
-                        }
-                        k++;
-                    }
-                    stringParam += "Beam-Schedules" + "|";
-                    foreach (List<string> schedule in structuralMembers.beamSchedule[j])
-                        foreach(string value in schedule) 
-                            stringParam += value + "|";
-                    j++;
-                }
-             */
+            
             //Beams 
             i++;
             j = 0;
@@ -1579,10 +1587,104 @@ namespace WindowsFormsApp1
                     j++;
                 }
             }
-
+            /*
+             //Slabs
+            stringParam += "\nSlabs|\n";
+            j = 0;
+            foreach (List<List<string>> floor in structuralMembers.slab)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<string> member in floor)
+                {
+                    stringParam += "Slab-" + (k + 1) + "|";
+                    stringParam += structuralMembers.slabNames[j][k] + "|";
+                    foreach (string value in member)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                if(j > 0)
+                {
+                    stringParam += "Slab-Schedules" + "|";
+                    foreach (List<string> schedule in structuralMembers.slabSchedule[j - 1])
+                        foreach (string value in schedule)
+                            stringParam += value + "|";
+                }
+                j++;
+            }
+             */
 
             //Slabs
             i++;
+            j = 0;
+            l = 0;
+
+            while (!tokens[i].Equals("Stairs"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("Stairs"))
+                {
+                    List<List<string>> floor = new List<List<string>>();
+                    List<List<string>> floor2 = new List<List<string>>();
+                    List<string> name = new List<string>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("Slab-" + (l + 1)))
+                    {
+                        i++;
+                        name.Add(tokens[i]); i++;
+                        List<string> member = new List<string>();
+                        while (!tokens[i].Equals("Slab-Schedules") &&
+                               !tokens[i].Equals("Slab-" + (l + 2)) && !tokens[i].Equals("Floor-" + (j + 2)) &&
+                               !tokens[i].Equals("Stairs"))
+                        {
+                            member.Add(tokens[i]); i++;
+                        }
+                        l++;
+                        floor.Add(member);
+                    }
+                    
+                    if (j > 0)
+                    {
+                        if (tokens[i].Equals("Slab-Schedules"))
+                        {
+                            i++;
+                            while (!tokens[i].Equals("Slab-" + (l + 2)) && !tokens[i].Equals("Floor-" + (j + 2)) &&
+                                   !tokens[i].Equals("Stairs"))
+                            {
+                                List<string> toAdd = new List<string>();
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                toAdd.Add(tokens[i]); i++;
+                                floor2.Add(toAdd);
+                            }
+                        }
+                    }
+                    
+                    structuralMembers.slab.Add(floor);
+                    if (j > 0)
+                    {
+                        structuralMembers.slabSchedule.Add(floor2);
+                    }
+                    structuralMembers.slabNames.Add(name);
+                    j++;
+                }
+            }
 
             //Stairs
             i++;

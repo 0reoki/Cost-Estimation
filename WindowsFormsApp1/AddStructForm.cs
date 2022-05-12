@@ -22,7 +22,10 @@ namespace WindowsFormsApp1
         private List<ColumnSpacingUserControl> u_sUC;
         private List<BeamRowUserControl> br_UC;
         private List<BeamScheduleUserControl> bs_UC;
-        private List<RoofHRSUserControl> rHSR_UC;
+        private List<SlabScheduleUserControl> ss_UC;
+        private SlabDetail2UserControl sd1_UC;
+        private SlabDetail1UserControl sd2_UC;
+        private List<RoofHRSUserControl> rHRS_UC;
 
         //Passed Variables
         public string structMemName;
@@ -30,10 +33,10 @@ namespace WindowsFormsApp1
         private CostEstimationForm costEstimationForm;
         private List<TreeNode> nodes;
         private int floorCount;
-        private int memberCount, footingCount, wallFootingCount, columnCount, beamCount, stairsCount, roofCount;
+        private int memberCount, footingCount, wallFootingCount, columnCount, beamCount, slabCount, stairsCount, roofCount;
         private bool isNew, isFooting;
 
-        public AddStructForm(CostEstimationForm costEstimationForm, int floorCount, int footingCount, int wallFootingCount, int columnCount, int beamCount, int stairsCount, int roofCount, List<TreeNode> nodes, bool isNew, int index, string parentNode, bool isFooting)
+        public AddStructForm(CostEstimationForm costEstimationForm, int floorCount, int footingCount, int wallFootingCount, int columnCount, int beamCount, int slabCount, int stairsCount, int roofCount, List<TreeNode> nodes, bool isNew, int index, string parentNode, bool isFooting)
         {
             InitializeComponent();
 
@@ -48,6 +51,7 @@ namespace WindowsFormsApp1
             this.wallFootingCount = wallFootingCount;
             this.columnCount = columnCount;
             this.beamCount = beamCount;
+            this.slabCount = slabCount;
             this.stairsCount = stairsCount;
             this.roofCount = roofCount;
 
@@ -58,12 +62,16 @@ namespace WindowsFormsApp1
             u_sUC = new List<ColumnSpacingUserControl>();
             br_UC = new List<BeamRowUserControl>();
             bs_UC = new List<BeamScheduleUserControl>();
-            rHSR_UC = new List<RoofHRSUserControl>();
+            ss_UC = new List<SlabScheduleUserControl>();
+            sd1_UC = new SlabDetail2UserControl();
+            sd2_UC = new  SlabDetail1UserControl();
+            rHRS_UC = new List<RoofHRSUserControl>();
 
             //Init components
             addstruct_cbx.SelectedIndex = 0;
             colTabControl.SelectedIndex = 0;
             beam_BT_cbx.SelectedIndex = 0;
+            slabTabControl.SelectedIndex = 0;
             if (floorCount != 0)
             {
                 addstruct_cbx.Items.Clear();
@@ -79,6 +87,7 @@ namespace WindowsFormsApp1
                 addstruct_cbx.SelectedIndex = 0;
                 colTabControl.SelectedIndex = 1;
                 beam_BT_cbx.SelectedIndex = 0;
+                slabTabControl.SelectedIndex = 1;
             }
             //Init Footings Combo Boxes
             foot_FT_cbx.SelectedIndex = foot_IF_LR_HT_cbx.SelectedIndex = foot_IF_TR_HT_cbx.SelectedIndex = 
@@ -94,6 +103,12 @@ namespace WindowsFormsApp1
             //Init Beam Combo Boxes
             beam_MBHT_T_cbx.SelectedIndex = beam_MBHT_B_cbx.SelectedIndex = beam_SHT_cbx.SelectedIndex =
             beam_SA_cbx.SelectedIndex = beam_ST_T_cbx.SelectedIndex = beam_ST_B_cbx.SelectedIndex = 0;
+
+            //Init Slab Combo Boxes
+            slab_SOG_L_ST_cbx.SelectedIndex = slab_SOG_T_ST_cbx.SelectedIndex = 
+            slab_SS_SM_cbx.SelectedIndex = slab_SS_SD_cbx.SelectedIndex = slab_SS_L_T_cbx.SelectedIndex =
+            slab_SS_T_T_cbx.SelectedIndex = slab_SS_L_B_cbx.SelectedIndex = slab_SS_T_B_cbx.SelectedIndex =
+            slab_SS_CSR_HT_cbx.SelectedIndex = 0;
 
             //Init Stairs Combo Boxes
             stairs_ST_cbx.SelectedIndex = stairs_SS_WS_MB_cbx.SelectedIndex = stairs_SS_WS_DB_cbx.SelectedIndex =
@@ -127,13 +142,17 @@ namespace WindowsFormsApp1
                 {
                     setFootingValues();
                 }
-                if (parentNode.Equals("COLUMNS"))
+                else if (parentNode.Equals("COLUMNS"))
                 {
                     setColumnValues();
                 }
-                if (parentNode.Equals("BEAMS"))
+                else if (parentNode.Equals("BEAMS"))
                 {
                     setBeamValues();
+                }
+                else if (parentNode.Equals("SLABS"))
+                {
+                    setSlabvalues();
                 }
                 else if(parentNode.Equals("STAIRS"))
                 {
@@ -155,21 +174,21 @@ namespace WindowsFormsApp1
                         {
                             if (schedule[0].Equals("Footing Tie Beam"))
                             {
-                                insertSchedule(schedule);
+                                insertBeamSchedule(schedule);
                             }
                         }
                         else if (beam_BT_cbx.SelectedIndex == 1) // Grade Beam
                         {
                             if (schedule[0].Equals("Grade Beam"))
                             {
-                                insertSchedule(schedule);
+                                insertBeamSchedule(schedule);
                             }
                         }
                         else // Roof Beam
                         {
                             if (schedule[0].Equals("Roof Beam"))
                             {
-                                insertSchedule(schedule);
+                                insertBeamSchedule(schedule);
                             }
                         }
                     }
@@ -179,16 +198,24 @@ namespace WindowsFormsApp1
                         {
                             if (schedule[0].Equals("Suspended Beam"))
                             {
-                                insertSchedule(schedule);
+                                insertBeamSchedule(schedule);
                             }
                         }
                         else // Roof Beam
                         {
                             if (schedule[0].Equals("Roof Beam"))
                             {
-                                insertSchedule(schedule);
+                                insertBeamSchedule(schedule);
                             }
                         }
+                    }
+                }
+
+                if (floorCount > 0) // Upper Floors only
+                {
+                    foreach (List<string> schedule in costEstimationForm.structuralMembers.slabSchedule[floorCount - 1])
+                    {
+                        insertSlabSchedule(schedule);
                     }
                 }
             }
@@ -219,6 +246,13 @@ namespace WindowsFormsApp1
             colTabControl.ItemSize = new Size(0, 1);
             colTabControl.SizeMode = TabSizeMode.Fixed;
             foreach (TabPage tab in colTabControl.TabPages)
+            {
+                tab.Text = "";
+            }
+            slabTabControl.Appearance = TabAppearance.FlatButtons;
+            slabTabControl.ItemSize = new Size(0, 1);
+            slabTabControl.SizeMode = TabSizeMode.Fixed;
+            foreach (TabPage tab in slabTabControl.TabPages)
             {
                 tab.Text = "";
             }
@@ -1093,21 +1127,21 @@ namespace WindowsFormsApp1
                             {
                                 if (schedule[0].Equals("Footing Tie Beam"))
                                 {
-                                    updateSchedule(schedule, j); j++;
+                                    updateBeamSchedule(schedule, j); j++;
                                 }
                             }
                             else if (beam_BT_cbx.SelectedIndex == 1) // Grade Beam
                             {
                                 if (schedule[0].Equals("Grade Beam"))
                                 {
-                                    updateSchedule(schedule, j); j++;
+                                    updateBeamSchedule(schedule, j); j++;
                                 }
                             }
                             else // Roof Beam
                             {
                                 if (schedule[0].Equals("Roof Beam"))
                                 {
-                                    updateSchedule(schedule, j); j++;
+                                    updateBeamSchedule(schedule, j); j++;
                                 }
                             }
                         }
@@ -1117,14 +1151,14 @@ namespace WindowsFormsApp1
                             {
                                 if (schedule[0].Equals("Suspended Beam"))
                                 {
-                                    updateSchedule(schedule, j); j++;
+                                    updateBeamSchedule(schedule, j); j++;
                                 }
                             }
                             else // Roof Beam
                             {
                                 if (schedule[0].Equals("Roof Beam"))
                                 {
-                                    updateSchedule(schedule, j); j++;
+                                    updateBeamSchedule(schedule, j); j++;
                                 }
                             }
                         }
@@ -1137,11 +1171,338 @@ namespace WindowsFormsApp1
             {
                 if (isNew)
                 {
+                    //Name Validation
+                    if (costEstimationForm.structuralMembers.slabNames[floorCount].Contains(structMemName))
+                    {
+                        MessageBox.Show("Name already exists!");
+                        return;
+                    }
+                    foreach (SlabScheduleUserControl ss in ss_UC)
+                    {
+                        foreach (List<string> schedule in costEstimationForm.structuralMembers.beamSchedule[floorCount])
+                        {
+                            if (schedule[1].Equals(ss.slabMark))
+                            {
+                                MessageBox.Show("Name for schedule already exsits!");
+                                return;
+                            }
+                        }
+                    }
 
+                    //Do Whatever
+                    try
+                    {
+                        if(floorCount == 0) // Slab on Grade
+                        {
+                            List<string> members = new List<string>();
+                            members.Add("Slab on Grade");
+                            members.Add(slab_SOG_Q_bx.Text);
+                            members.Add(slab_SOG_T_bx.Text);
+                            members.Add(slab_SOG_E_bx.Text);
+
+                            members.Add(slab_SOG_L_D_bx.Text);
+                            members.Add(slab_SOG_T_D_bx.Text);
+                            members.Add(slab_SOG_L_S_bx.Text);
+                            members.Add(slab_SOG_T_S_bx.Text);
+                            members.Add(slab_SOG_L_ST_cbx.Text);
+                            members.Add(slab_SOG_T_ST_cbx.Text);
+
+                            members.Add(slab_SOG_SO_HL_bx.Text);
+                            members.Add(slab_SOG_SO_VL_bx.Text);
+                            members.Add(slab_SOG_SO_CC_bx.Text);
+
+                            members.Add(slab_SOG_SB_T_BR_cbx.Text);
+                            members.Add(slab_SOG_SB_T_AtB_cbx.Text);
+                            members.Add(slab_SOG_SB_T_CL_bx.Text);
+
+                            members.Add(slab_SOG_SB_B_BR_cbx.Text);
+                            members.Add(slab_SOG_SB_B_AtB_cbx.Text);
+                            members.Add(slab_SOG_SB_B_CL_bx.Text);
+
+                            members.Add(slab_SOG_SB_L_BR_cbx.Text);
+                            members.Add(slab_SOG_SB_L_AtB_cbx.Text);
+                            members.Add(slab_SOG_SB_L_CL_bx.Text);
+
+                            members.Add(slab_SOG_SB_R_BR_cbx.Text);
+                            members.Add(slab_SOG_SB_R_AtB_cbx.Text);
+                            members.Add(slab_SOG_SB_R_CL_bx.Text);
+
+                            members.Add(slab_SOG_SCSD_bx.Text);
+                            members.Add(slab_SOG_SOC_bx.Text);
+
+                            costEstimationForm.structuralMembers.slab[floorCount].Add(members);
+                            costEstimationForm.structuralMembers.slabNames[floorCount].Add(structMemName);
+
+                            //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                            MessageBox.Show("eto ang sagot sa tanong: " +
+                                costEstimationForm.structuralMembers.slab[floorCount][slabCount][0]);
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else // Suspended Slab
+                        {
+                            List<string> members = new List<string>();
+                            members.Add("Suspended Slab");
+                            members.Add(slab_SS_SM_cbx.Text);
+
+                            //Slab Detail
+                            members.Add(slab_SS_SD_cbx.Text);
+                            if(slab_SS_SD_cbx.SelectedIndex == 0)
+                            {
+                                members.Add(sd1_UC.SD2UC_LA);
+                                members.Add(sd1_UC.SD2UC_LB);
+                                members.Add(sd1_UC.SD2UC_BG);
+                            }
+                            else
+                            {
+                                members.Add(sd2_UC.SD1UC_LA);
+                                members.Add(sd2_UC.SD1UC_LB);
+                                members.Add(sd2_UC.SD1UC_LC);
+                                members.Add(sd2_UC.SD1UC_LD);
+                            }
+
+                            members.Add(slab_SS_L_T_cbx.Text);
+                            members.Add(slab_SS_T_T_cbx.Text);
+                            members.Add(slab_SS_L_B_cbx.Text);
+                            members.Add(slab_SS_T_B_cbx.Text);
+
+                            members.Add(slab_SS_SB_T_BR_cbx.Text);
+                            members.Add(slab_SS_SB_T_AtB_cbx.Text);
+                            members.Add(slab_SS_SB_T_CL_bx.Text);
+
+                            members.Add(slab_SS_SB_B_BR_cbx.Text);
+                            members.Add(slab_SS_SB_B_AtB_cbx.Text);
+                            members.Add(slab_SS_SB_B_CL_bx.Text);
+
+                            members.Add(slab_SS_SB_L_BR_cbx.Text);
+                            members.Add(slab_SS_SB_L_AtB_cbx.Text);
+                            members.Add(slab_SS_SB_L_CL_bx.Text);
+
+                            members.Add(slab_SS_SB_R_BR_cbx.Text);
+                            members.Add(slab_SS_SB_R_AtB_cbx.Text);
+                            members.Add(slab_SS_SB_R_CL_bx.Text);
+
+                            members.Add(slab_SS_SCSD_bx.Text);
+                            members.Add(slab_SS_SOC_bx.Text);
+
+                            foreach (SlabScheduleUserControl ss in ss_UC)
+                            {
+                                List<string> ssMember = new List<string>();
+                                ssMember.Add(ss.slabMark);
+                                ssMember.Add(ss.thickness);
+
+                                ssMember.Add(ss.RSASD_S);
+                                ssMember.Add(ss.RSASD_ES_T);
+                                ssMember.Add(ss.RSASD_ES_B);
+                                ssMember.Add(ss.RSASD_MS_T);
+                                ssMember.Add(ss.RSASD_MS_B);
+                                ssMember.Add(ss.RSASD_IS_T);
+                                ssMember.Add(ss.RSASD_IS_B);
+
+                                ssMember.Add(ss.RSALD_S);
+                                ssMember.Add(ss.RSALD_ES_T);
+                                ssMember.Add(ss.RSALD_ES_B);
+                                ssMember.Add(ss.RSALD_MS_T);
+                                ssMember.Add(ss.RSALD_MS_B);
+                                ssMember.Add(ss.RSALD_IS_T);
+                                ssMember.Add(ss.RSALD_IS_B);
+
+                                ssMember.Add(ss.remark);
+
+                                foreach (List<string> schedule in costEstimationForm.structuralMembers.slabSchedule[floorCount - 1])
+                                {
+                                    if (schedule[1].Equals(ss.slabMark))
+                                    {
+                                        MessageBox.Show("Duplicate names inside schedule are not allowed!");
+                                        costEstimationForm.structuralMembers.slabSchedule[floorCount - 1].Clear();
+                                        return;
+                                    }
+                                }
+                                costEstimationForm.structuralMembers.slabSchedule[floorCount - 1].Add(ssMember);
+                            }
+
+                            costEstimationForm.structuralMembers.slab[floorCount].Add(members);
+                            costEstimationForm.structuralMembers.slabNames[floorCount].Add(structMemName);
+
+                            //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                            MessageBox.Show("eto ang sagot sa tanong: " +
+                                costEstimationForm.structuralMembers.slab[floorCount][slabCount][0]);
+                            this.DialogResult = DialogResult.OK;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Do not leave any blank spaces!");
+                        Console.WriteLine(ex.ToString());
+                    }
                 }
                 else //Clicked from floors
                 {
+                    //Name Validation
+                    if (costEstimationForm.structuralMembers.slabNames[floorCount].Contains(structMemName))
+                    {
+                        if (structMemName.Equals(oldStructMemName))
+                        {
+                            //Do nothing
+                        }
+                        else
+                        {
+                            int found = 0;
+                            for (int i = 0; i < costEstimationForm.structuralMembers.slabNames[floorCount].Count; i++)
+                            {
+                                if (costEstimationForm.structuralMembers.slabNames[floorCount][i].Equals(structMemName))
+                                {
+                                    found++;
+                                }
+                            }
+                            if (found > 1)
+                            {   //Duplicate found
+                                MessageBox.Show("Name already exists!");
+                                return;
+                            }
+                        }
+                    }
+                    int found2 = 0;
+                    foreach (SlabScheduleUserControl ss in ss_UC)
+                    {
+                        foreach (List<string> schedule in costEstimationForm.structuralMembers.slabSchedule[floorCount - 1])
+                        {
+                            if (schedule[0].Equals(ss.slabMark))
+                            {
+                                found2++;
+                            }
+                        }
+                        if (found2 > 1)
+                        {
+                            MessageBox.Show("Duplicate names inside schedule are not allowed!");
+                            return;
+                        }
+                        else
+                        {
+                            found2 = 0;
+                        }
+                    }
 
+                    //Do Whatever 
+                    if (floorCount == 0) // Slab on Grade
+                    {
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][1] = slab_SOG_Q_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][2] = slab_SOG_T_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][3] = slab_SOG_E_bx.Text;
+
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][4] = slab_SOG_L_D_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][5] = slab_SOG_T_D_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][6] = slab_SOG_L_S_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][7] = slab_SOG_T_S_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][8] = slab_SOG_L_ST_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][9] = slab_SOG_T_ST_cbx.Text;
+
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][10] = slab_SOG_SO_HL_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][11] = slab_SOG_SO_VL_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][12] = slab_SOG_SO_CC_bx.Text;
+
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][13] = slab_SOG_SB_T_BR_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][14] = slab_SOG_SB_T_AtB_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][15] = slab_SOG_SB_T_CL_bx.Text;
+
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][16] = slab_SOG_SB_B_BR_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][17] = slab_SOG_SB_B_AtB_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][18] = slab_SOG_SB_B_CL_bx.Text;
+
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][19] = slab_SOG_SB_L_BR_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][20] = slab_SOG_SB_L_AtB_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][21] = slab_SOG_SB_L_CL_bx.Text;
+
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][22] = slab_SOG_SB_R_BR_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][23] = slab_SOG_SB_R_AtB_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][24] = slab_SOG_SB_R_CL_bx.Text;
+
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][25] = slab_SOG_SCSD_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][26] = slab_SOG_SOC_bx.Text;
+
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else // Suspended Slab
+                    {
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][1] = slab_SS_SM_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][2] = slab_SS_SD_cbx.Text;
+                        int i = 0;
+                        if (slab_SS_SD_cbx.Text == "No. 1")
+                        {
+                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][3] = sd1_UC.SD2UC_LA;
+                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][4] = sd1_UC.SD2UC_LB;
+                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][5] = sd1_UC.SD2UC_BG;
+                            i++;
+                        }
+                        else
+                        {
+                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][3] = sd2_UC.SD1UC_LA;
+                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][4] = sd2_UC.SD1UC_LB;
+                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][5] = sd2_UC.SD1UC_LC;
+                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][6] = sd2_UC.SD1UC_LD;
+                        }
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][7 - i] = slab_SS_L_T_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][8 - i] = slab_SS_T_T_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][9 - i] = slab_SS_L_B_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][10 - i] = slab_SS_T_B_cbx.Text;
+
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][11 - i] = slab_SS_SB_T_BR_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][12 - i] = slab_SS_SB_T_AtB_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][13 - i] = slab_SS_SB_T_CL_bx.Text;
+
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][14 - i] = slab_SS_SB_B_BR_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][15 - i] = slab_SS_SB_B_AtB_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][16 - i] = slab_SS_SB_B_CL_bx.Text;
+
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][17 - i] = slab_SS_SB_L_BR_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][18 - i] = slab_SS_SB_L_AtB_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][19 - i] = slab_SS_SB_L_CL_bx.Text;
+
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][20 - i] = slab_SS_SB_R_BR_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][21 - i] = slab_SS_SB_R_AtB_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][22 - i] = slab_SS_SB_R_CL_bx.Text;
+
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][23 - i] = slab_SS_SCSD_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][24 - i] = slab_SS_SOC_bx.Text;
+
+                        costEstimationForm.structuralMembers.slabSchedule[floorCount - 1].Clear();
+                        foreach (SlabScheduleUserControl ss in ss_UC)
+                        {
+                            List<string> ssMember = new List<string>();
+                            ssMember.Add(ss.slabMark);
+                            ssMember.Add(ss.thickness);
+
+                            ssMember.Add(ss.RSASD_S);
+                            ssMember.Add(ss.RSASD_ES_T);
+                            ssMember.Add(ss.RSASD_ES_B);
+                            ssMember.Add(ss.RSASD_MS_T);
+                            ssMember.Add(ss.RSASD_MS_B);
+                            ssMember.Add(ss.RSASD_IS_T);
+                            ssMember.Add(ss.RSASD_IS_B);
+
+                            ssMember.Add(ss.RSALD_S);
+                            ssMember.Add(ss.RSALD_ES_T);
+                            ssMember.Add(ss.RSALD_ES_B);
+                            ssMember.Add(ss.RSALD_MS_T);
+                            ssMember.Add(ss.RSALD_MS_B);
+                            ssMember.Add(ss.RSALD_IS_T);
+                            ssMember.Add(ss.RSALD_IS_B);
+
+                            ssMember.Add(ss.remark);
+
+                            foreach (List<string> schedule in costEstimationForm.structuralMembers.slabSchedule[floorCount - 1])
+                            {
+                                if (schedule[0].Equals(ss.slabMark))
+                                {
+                                    MessageBox.Show("Duplicate names inside schedule are not allowed!");
+                                    costEstimationForm.structuralMembers.slabSchedule[floorCount - 1].Clear();
+                                    return;
+                                }
+                            }
+                            costEstimationForm.structuralMembers.slabSchedule[floorCount - 1].Add(ssMember);
+                        }
+
+                        this.DialogResult = DialogResult.OK;
+                    }
                 }
             }
             else if (addstruct_cbx.Text.Equals("Stairs"))
@@ -1485,7 +1846,7 @@ namespace WindowsFormsApp1
                             members.Add(roof_GI_D_LP_bx.Text);
                             members.Add(roof_GI_D_EC_cbx.Text);
                             List<string> hrsMember = new List<string>();
-                            foreach (RoofHRSUserControl rHRS in rHSR_UC)
+                            foreach (RoofHRSUserControl rHRS in rHRS_UC)
                             {
                                 hrsMember.Add(rHRS.value);
                             }
@@ -1660,7 +2021,7 @@ namespace WindowsFormsApp1
                         }
 
                         List<string> hrsMember = new List<string>();
-                        foreach (RoofHRSUserControl rHRS in rHSR_UC)
+                        foreach (RoofHRSUserControl rHRS in rHRS_UC)
                         {
                             hrsMember.Add(rHRS.value);
                         }
@@ -2113,21 +2474,21 @@ namespace WindowsFormsApp1
                     {
                         if (schedule[0].Equals("Footing Tie Beam"))
                         {
-                            insertSchedule(schedule);
+                            insertBeamSchedule(schedule);
                         }
                     }
                     else if (beam_BT_cbx.SelectedIndex == 1) // Grade Beam
                     {
                         if (schedule[0].Equals("Grade Beam"))
                         {
-                            insertSchedule(schedule);
+                            insertBeamSchedule(schedule);
                         }
                     }
                     else // Roof Beam
                     {
                         if (schedule[0].Equals("Roof Beam"))
                         {
-                            insertSchedule(schedule);
+                            insertBeamSchedule(schedule);
                         }
                     }
                 }
@@ -2137,21 +2498,21 @@ namespace WindowsFormsApp1
                     {
                         if (schedule[0].Equals("Suspended Beam"))
                         {
-                            insertSchedule(schedule);
+                            insertBeamSchedule(schedule);
                         }
                     }
                     else // Roof Beam
                     {
                         if (schedule[0].Equals("Roof Beam"))
                         {
-                            insertSchedule(schedule);
+                            insertBeamSchedule(schedule);
                         }
                     }
                 }
             }
         }
 
-        private void insertSchedule(List<string> schedule)
+        private void insertBeamSchedule(List<string> schedule)
         {
             BeamScheduleUserControl content2 = new BeamScheduleUserControl(schedule[0]);
             content2.name = schedule[1];
@@ -2191,7 +2552,7 @@ namespace WindowsFormsApp1
             beam_BS_Panel.Controls.Add(content2);
         }
 
-        private void updateSchedule(List<string> schedule, int key)
+        private void updateBeamSchedule(List<string> schedule, int key)
         {
             schedule[0] = bs_UC[key].type;
             schedule[1] = bs_UC[key].name;
@@ -2200,34 +2561,202 @@ namespace WindowsFormsApp1
 
             schedule[4] = bs_UC[key].property;
             schedule[5] = bs_UC[key].propertieDiameter1;
-            /*
-            bs_UC[key].propertieDiameter2 = schedule[6];
+            schedule[6] = bs_UC[key].propertieDiameter2;
 
-            bs_UC[key].extSupport_qty1 = schedule[7];
-            bs_UC[key].extSupport_qty2 = schedule[8];
-            bs_UC[key].extSupport_qty3 = schedule[9];
-            bs_UC[key].extSupport_qty4 = schedule[10];
+            schedule[7] = bs_UC[key].extSupport_qty1;
+            schedule[8] = bs_UC[key].extSupport_qty2;
+            schedule[9] = bs_UC[key].extSupport_qty3;
+            schedule[10] = bs_UC[key].extSupport_qty4;
 
-            bs_UC[key].midspan_qty1 = schedule[11];
-            bs_UC[key].midspan_qty2 = schedule[12];
-            bs_UC[key].midspan_qty3 = schedule[13];
-            bs_UC[key].midspan_qty4 = schedule[14];
+            schedule[11] = bs_UC[key].midspan_qty1;
+            schedule[12] = bs_UC[key].midspan_qty2;
+            schedule[13] = bs_UC[key].midspan_qty3;
+            schedule[14] = bs_UC[key].midspan_qty4;
 
-            bs_UC[key].intSupport_qty1 = schedule[15];
-            bs_UC[key].intSupport_qty2 = schedule[16];
-            bs_UC[key].intSupport_qty3 = schedule[17];
-            bs_UC[key].intSupport_qty4 = schedule[18];
+            schedule[15] = bs_UC[key].intSupport_qty1;
+            schedule[16] = bs_UC[key].intSupport_qty2;
+            schedule[17] = bs_UC[key].intSupport_qty3;
+            schedule[18] = bs_UC[key].intSupport_qty4;
 
-            bs_UC[key].stirrupDiameter = schedule[19];
-            bs_UC[key].stirrupsValue1 = schedule[20];
-            bs_UC[key].stirrupsValueAt1 = schedule[21];
-            bs_UC[key].stirrupsValue2 = schedule[22];
-            bs_UC[key].stirrupsValueAt2 = schedule[23];
-            bs_UC[key].stirrupsRest = schedule[24];
+            schedule[19] = bs_UC[key].stirrupDiameter;
+            schedule[20] = bs_UC[key].stirrupsValue1;
+            schedule[21] = bs_UC[key].stirrupsValueAt1;
+            schedule[22] = bs_UC[key].stirrupsValue2;
+            schedule[23] = bs_UC[key].stirrupsValueAt2;
+            schedule[24] = bs_UC[key].stirrupsRest;
 
-            bs_UC[key].webBarsDiameter = schedule[25];
-            bs_UC[key].webBarsQty = schedule[26];
-            */
+            schedule[25] = bs_UC[key].webBarsDiameter;
+            schedule[26] = bs_UC[key].webBarsQty;
+        }
+
+        private void setSlabvalues()
+        {
+            if (floorCount == 0)
+            {
+                addstruct_cbx.SelectedIndex = 4;
+            }
+            else
+            {
+                addstruct_cbx.SelectedIndex = 2;
+            }
+
+            oldStructMemName = costEstimationForm.structuralMembers.slabNames[floorCount][memberCount];
+            addstruct_Name_bx.Text = costEstimationForm.structuralMembers.slabNames[floorCount][memberCount];
+
+            if (costEstimationForm.structuralMembers.slab[floorCount][memberCount][0].Equals("Slab on Grade"))
+            {
+                slab_SOG_Q_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][1];
+                slab_SOG_T_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][2];
+                slab_SOG_E_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][3];
+                
+                slab_SOG_L_D_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][4];
+                slab_SOG_T_D_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][5];
+                slab_SOG_L_S_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][6];
+                slab_SOG_T_S_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][7];
+                slab_SOG_L_ST_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][8];
+                slab_SOG_T_ST_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][9];
+
+                slab_SOG_SO_HL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][10];
+                slab_SOG_SO_VL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][11];
+                slab_SOG_SO_CC_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][12];
+
+                slab_SOG_SB_T_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][13];
+                slab_SOG_SB_T_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][14];
+                slab_SOG_SB_T_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][15];
+
+                slab_SOG_SB_B_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][16];
+                slab_SOG_SB_B_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][17];
+                slab_SOG_SB_B_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][18];
+
+                slab_SOG_SB_L_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][19];
+                slab_SOG_SB_L_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][20];
+                slab_SOG_SB_L_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][21];
+
+                slab_SOG_SB_R_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][22];
+                slab_SOG_SB_R_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][23];
+                slab_SOG_SB_R_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][24];
+
+                slab_SOG_SCSD_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][25];
+                slab_SOG_SOC_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][26];
+            }
+            else
+            {
+                slab_SS_SD_cbx.Enabled = false;
+                slab_SS_SM_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][1];
+                slab_SS_SD_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][2];
+                int i = 0;
+                if(slab_SS_SD_cbx.Text == "No. 1")
+                {
+                    var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.SLAB_DETAIL);
+                    Image picture = (Image)bmp;
+                    slab_SS_SD_pb.Image = picture;
+
+                    SlabDetail2UserControl content = new SlabDetail2UserControl();
+                    content.SD2UC_LA = costEstimationForm.structuralMembers.slab[floorCount][memberCount][3];
+                    content.SD2UC_LB = costEstimationForm.structuralMembers.slab[floorCount][memberCount][4];
+                    content.SD2UC_BG = costEstimationForm.structuralMembers.slab[floorCount][memberCount][5];
+                    sd1_UC = content;
+                    slab_SS_SD_Panel.Controls.Clear();
+                    slab_SS_SD_Panel.Controls.Add(content);
+                    i++;
+                }
+                else
+                {
+                    var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.SLAB_DETAIL_2);
+                    Image picture = (Image)bmp;
+                    slab_SS_SD_pb.Image = picture;
+
+                    SlabDetail1UserControl content = new SlabDetail1UserControl();
+                    sd2_UC = content;
+                    content.SD1UC_LA = costEstimationForm.structuralMembers.slab[floorCount][memberCount][3];
+                    content.SD1UC_LB = costEstimationForm.structuralMembers.slab[floorCount][memberCount][4];
+                    content.SD1UC_LC = costEstimationForm.structuralMembers.slab[floorCount][memberCount][5];
+                    content.SD1UC_LD = costEstimationForm.structuralMembers.slab[floorCount][memberCount][6];
+                    slab_SS_SD_Panel.Controls.Clear();
+                    slab_SS_SD_Panel.Controls.Add(content);
+                }
+                slab_SS_L_T_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][7 - i];
+                slab_SS_T_T_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][8 - i];
+                slab_SS_L_B_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][9 - i];
+                slab_SS_T_B_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][10 - i];
+
+                slab_SS_SB_T_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][11 - i];
+                slab_SS_SB_T_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][12 - i];
+                slab_SS_SB_T_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][13 - i];
+
+                slab_SS_SB_B_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][14 - i];
+                slab_SS_SB_B_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][15 - i];
+                slab_SS_SB_B_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][16 - i];
+
+                slab_SS_SB_L_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][17 - i];
+                slab_SS_SB_L_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][18 - i];
+                slab_SS_SB_L_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][19 - i];
+
+                slab_SS_SB_R_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][20 - i];
+                slab_SS_SB_R_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][21 - i];
+                slab_SS_SB_R_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][22 - i];
+
+                slab_SS_SCSD_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][23 - i];
+                slab_SS_SOC_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][24 - i];
+
+                foreach (List<string> schedule in costEstimationForm.structuralMembers.slabSchedule[floorCount - 1])
+                {
+                    insertSlabSchedule(schedule);
+                }
+            }
+        }
+
+        private void insertSlabSchedule(List<string> schedule)
+        {
+            SlabScheduleUserControl content2 = new SlabScheduleUserControl();
+
+            content2.slabMark = schedule[0];
+            content2.thickness = schedule[1];
+
+            content2.RSASD_S = schedule[2];
+            content2.RSASD_ES_T = schedule[3];
+            content2.RSASD_ES_B = schedule[4];
+            content2.RSASD_MS_T = schedule[5];
+            content2.RSASD_MS_B = schedule[6];
+            content2.RSASD_IS_T = schedule[7];
+            content2.RSASD_IS_B = schedule[8];
+
+            content2.RSALD_S = schedule[9];
+            content2.RSALD_ES_T = schedule[10];
+            content2.RSALD_ES_B = schedule[11];
+            content2.RSALD_MS_T = schedule[12];
+            content2.RSALD_MS_B = schedule[13];
+            content2.RSALD_IS_T = schedule[14];
+            content2.RSALD_IS_B = schedule[15];
+
+            content2.remark = schedule[16];
+
+            ss_UC.Add(content2);
+            slab_SS_SS_Panel.Controls.Add(content2);
+        }
+
+        private void updateSlabSchedule(List<string> schedule, int key)
+        {
+            schedule[0] = ss_UC[key].slabMark;
+            schedule[1] = ss_UC[key].thickness;
+
+            schedule[2] = ss_UC[key].RSASD_S;
+            schedule[3] = ss_UC[key].RSASD_ES_T;
+            schedule[4] = ss_UC[key].RSASD_ES_B;
+            schedule[5] = ss_UC[key].RSASD_MS_T;
+            schedule[6] = ss_UC[key].RSASD_MS_B;
+            schedule[7] = ss_UC[key].RSASD_IS_T;
+            schedule[8] = ss_UC[key].RSASD_IS_B;
+
+            schedule[9] = ss_UC[key].RSALD_S;
+            schedule[10] = ss_UC[key].RSALD_ES_T;
+            schedule[11] = ss_UC[key].RSALD_ES_B;
+            schedule[12] = ss_UC[key].RSALD_MS_T;
+            schedule[13] = ss_UC[key].RSALD_MS_B;
+            schedule[14] = ss_UC[key].RSALD_IS_T;
+            schedule[15] = ss_UC[key].RSALD_IS_B;
+
+            schedule[16] = ss_UC[key].remark;
         }
 
         private void setStairsValues()
@@ -2396,7 +2925,7 @@ namespace WindowsFormsApp1
                 {
                     RoofHRSUserControl content2 = new RoofHRSUserControl();
                     content2.value = value;
-                    rHSR_UC.Add(content2);
+                    rHRS_UC.Add(content2);
                     roof_GI_D_HRS_Panel.Controls.Add(content2);
                 }
             }
@@ -2626,7 +3155,48 @@ namespace WindowsFormsApp1
                     beam_BS_Panel.Controls.Add(content);
                 }
             }
-            
+
+        }
+
+        private void slab_SS_SS_AddBtn_Click(object sender, EventArgs e)
+        {
+            SlabScheduleUserControl content = new SlabScheduleUserControl();
+            ss_UC.Add(content);
+            slab_SS_SS_Panel.Controls.Add(content);
+        }
+
+        private void slab_SS_SS_DelBtn_Click(object sender, EventArgs e)
+        {
+            if(ss_UC.Count > 0)
+            {
+                slab_SS_SS_Panel.Controls.RemoveAt(ss_UC.Count);
+                ss_UC.RemoveAt(ss_UC.Count - 1);
+            }
+        }
+        private void slab_SS_SD_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(slab_SS_SD_cbx.SelectedIndex == 0)
+            {
+                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.SLAB_DETAIL);
+                Image picture = (Image)bmp;
+                slab_SS_SD_pb.Image = picture;
+
+                SlabDetail2UserControl content = new SlabDetail2UserControl();
+                sd1_UC = content;
+                slab_SS_SD_Panel.Controls.Clear();
+                slab_SS_SD_Panel.Controls.Add(content);
+            }
+            else
+            {
+                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.SLAB_DETAIL_2);
+                Image picture = (Image)bmp;
+                slab_SS_SD_pb.Image = picture;
+
+                SlabDetail1UserControl content = new SlabDetail1UserControl();
+                sd2_UC = content;
+                slab_SS_SD_Panel.Controls.Clear();
+                slab_SS_SD_Panel.Controls.Add(content);
+            }
         }
 
         private void roof_RP_W_rb_CheckedChanged(object sender, EventArgs e)
@@ -2698,7 +3268,7 @@ namespace WindowsFormsApp1
         private void roof_GI_D_HRS_AddBtn_Click(object sender, EventArgs e)
         {
             RoofHRSUserControl content = new RoofHRSUserControl();
-            rHSR_UC.Add(content);
+            rHRS_UC.Add(content);
             roof_GI_D_HRS_Panel.Controls.Add(content);
         }
 
