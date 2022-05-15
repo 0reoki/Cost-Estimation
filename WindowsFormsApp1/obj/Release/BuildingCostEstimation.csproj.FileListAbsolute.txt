@@ -72,3 +72,8 @@ C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Release\Bui
 C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Release\BuildingCostEstimation.csproj.CopyComplete
 C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Release\WindowsFormsApp1.exe
 C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Release\WindowsFormsApp1.pdb
+C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Release\WindowsFormsApp1.BeamRowUserControl.resources
+C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Release\WindowsFormsApp1.BeamScheduleUserControl.resources
+C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Release\WindowsFormsApp1.SlabDetail1UserControl.resources
+C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Release\WindowsFormsApp1.SlabDetail2UserControl.resources
+C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Release\WindowsFormsApp1.SlabScheduleUserControl.resources

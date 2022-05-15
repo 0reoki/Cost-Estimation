@@ -12,10 +12,18 @@ namespace WindowsFormsApp1
 {
     public partial class SlabScheduleUserControl : UserControl
     {
-        public SlabScheduleUserControl()
+        private AddStructForm asF;
+        public string oldName;
+        private bool initialized;
+
+        public SlabScheduleUserControl(AddStructForm asF)
         {
             InitializeComponent();
             SS_REMARK.SelectedIndex = 0;
+            this.asF = asF;
+            initialized = false;
+            SS_SM.Text = "S-" + (asF.ss_UC.Count + 1);
+            oldName = SS_SM.Text;
         }
 
         public string slabMark
@@ -206,6 +214,37 @@ namespace WindowsFormsApp1
             {
                 SS_REMARK.Text = value;
             }
+        }
+
+        private void SS_SM_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void SS_SM_KeyUp(object sender, KeyEventArgs e)
+        {
+            int found = 0;
+            foreach (SlabScheduleUserControl ss in asF.ss_UC)
+            {
+                if (ss.slabMark == SS_SM.Text)
+                {
+                    found++;
+                }
+                if (found == 2)
+                {
+                    MessageBox.Show("Duplicate names inside schedule are not allowed!");
+                    SS_SM.Text = oldName;
+                    asF.updateSlabMark(oldName, slabMark);
+                    oldName = SS_SM.Text;
+                    return;
+                }
+            }
+            if (slabMark == "")
+            {
+                slabMark = oldName;
+            }
+            asF.updateSlabMark(oldName, slabMark);
+            oldName = SS_SM.Text;
         }
     }
 }

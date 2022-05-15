@@ -69,7 +69,7 @@
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
             this.tableLayoutPanel140.Controls.Add(this.SS_REMARK, 16, 0);
             this.tableLayoutPanel140.Controls.Add(this.SS_RSALD_IS_B, 15, 0);
             this.tableLayoutPanel140.Controls.Add(this.SS_RSALD_IS_T, 14, 0);
@@ -252,6 +252,8 @@
             this.SS_SM.Size = new System.Drawing.Size(94, 26);
             this.SS_SM.TabIndex = 28;
             this.SS_SM.Text = "0";
+            this.SS_SM.TextChanged += new System.EventHandler(this.SS_SM_TextChanged);
+            this.SS_SM.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SS_SM_KeyUp);
             // 
             // SlabScheduleUserControl
             // 

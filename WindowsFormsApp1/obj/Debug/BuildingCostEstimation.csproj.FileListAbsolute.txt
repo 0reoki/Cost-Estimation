@@ -110,3 +110,4 @@ C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Debug\Windo
 C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.SlabDetail1UserControl.resources
 C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.SlabDetail2UserControl.resources
 C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.SlabScheduleUserControl.resources
+C:\Users\josep\Documents\Github\Cost-Estimation\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.ViewDetailedInfoForm.resources

@@ -109,6 +109,8 @@ namespace WindowsFormsApp1
             "Sandpaper (#100) [MTRS]",
             "Putty, Multipurpose [PAIL]",
             "Tie Wire (No. #16) [25kg/Roll]",
+            "25KG Tile Adhesive (Regular) [BAGS]",
+            "25KG Tile Adhesive (Heavy Duty) [BAGS]",
             "Acrylic Emulsion [GALS] ",
             "Concrete Epoxy Injection [GALS] ",
             "Concrete Primer & Sealer [PAIL] ",

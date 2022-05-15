@@ -12,13 +12,19 @@ namespace WindowsFormsApp1
 {
     public partial class BeamScheduleUserControl : UserControl
     {
-        public string type;
+        private AddStructForm asF;
+        public string type, oldName;
+        private bool initialized;
 
-        public BeamScheduleUserControl(string type)
+        public BeamScheduleUserControl(AddStructForm asF, string type)
         {
             InitializeComponent();
             properties_cbx.SelectedIndex = 0;
             this.type = type;
+            this.asF = asF;
+            initialized = false;
+            name_bx.Text = "B-" + (asF.bs_UC.Count + 1);
+            oldName = name_bx.Text;
         }
 
         public string name
@@ -331,6 +337,38 @@ namespace WindowsFormsApp1
             {
                 webBars_qty_bx.Text = value;
             }
+        }
+
+        private void name_bx_KeyUp(object sender, KeyEventArgs e)
+        {
+            int found = 0;
+            foreach (BeamScheduleUserControl bs in asF.bs_UC)
+            {
+                if (bs.name == name_bx.Text)
+                {
+                    found++;
+                }
+                if (found == 2)
+                {
+                    MessageBox.Show("Duplicate names inside schedule are not allowed!");
+                    name_bx.Text = oldName;
+                    foreach (BeamRowUserControl br in asF.br_UC)
+                    {
+                        br.updateScheduleName(oldName, name);
+                    }
+                    oldName = name_bx.Text;
+                    return;
+                }
+            }
+            if (name == "")
+            {
+                name = oldName;
+            }
+            foreach (BeamRowUserControl br in asF.br_UC)
+            {
+                br.updateScheduleName(oldName, name);
+            }
+            oldName = name_bx.Text;
         }
     }
 }

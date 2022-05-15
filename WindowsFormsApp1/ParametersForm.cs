@@ -257,12 +257,6 @@ namespace WindowsFormsApp1
             saveEveryParameters();
 
             costEstimationForm.structuralMembers.reComputeEarthworks();
-
-            MessageBox.Show("ETO ANG TUNAY NA SAGOT1: " + costEstimationForm.excavation_Total);
-            MessageBox.Show("ETO ANG TUNAY NA SAGOT2: " + costEstimationForm.gradingAndCompaction_Total);
-            MessageBox.Show("ETO ANG TUNAY NA SAGOT3: " + costEstimationForm.gravelBedding_Total);
-            MessageBox.Show("ETO ANG TUNAY NA SAGOT4: " + costEstimationForm.soilPoisoning_Total);
-            MessageBox.Show("ETO ANG TUNAY NA SAGOT5: " + costEstimationForm.backfillingAndCompaction_Total);
             /* TODO: ADD THIS IF MAY CANCEL NA - QoL
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to save these parameters?", "Save Parameters", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -1272,7 +1266,8 @@ namespace WindowsFormsApp1
             conc_CC_CEW_bx.Text = parameters.conc_CC_CEW;
 
             //Reinforcements
-            rein_LSL_TB_dg.DataSource = parameters.rein_LSL_TB_dt;
+            rein_LSL_TB_dt = parameters.rein_LSL_TB_dt;
+            rein_LSL_TB_dg.DataSource = rein_LSL_TB_dt;
             rein_LSL_TB_fc_Panel.Controls.Clear();
             for (int i = 0; i < parameters.rein_LSL_TB_fc_list.Count; i++)
             {
@@ -1283,7 +1278,8 @@ namespace WindowsFormsApp1
                 LslUC.Add(content);
                 rein_LSL_TB_fc_Panel.Controls.Add(content);
             }
-            rein_LSL_CB_dg.DataSource = parameters.rein_LSL_CB_dt;
+            rein_LSL_CB_dt = parameters.rein_LSL_CB_dt;
+            rein_LSL_CB_dg.DataSource = rein_LSL_CB_dt;
             rein_LSL_CB_fc_Panel.Controls.Clear();
             for (int i = 0; i < parameters.rein_LSL_CB_fc_list.Count; i++)
             {
@@ -1294,9 +1290,13 @@ namespace WindowsFormsApp1
                 LslUC.Add(content);
                 rein_LSL_CB_fc_Panel.Controls.Add(content);
             }
-            rein_BEH_MB_dg.DataSource = parameters.rein_BEH_MB_dt;
-            rein_BEH_ST_dg.DataSource = parameters.rein_BEH_ST_dt;
-            rein_W_dg.DataSource = parameters.rein_W_dt;
+            rein_BEH_MB_dt = parameters.rein_BEH_MB_dt;
+            rein_BEH_MB_dg.DataSource = rein_BEH_MB_dt;
+            rein_BEH_ST_dt = parameters.rein_BEH_ST_dt;
+            rein_BEH_ST_dg.DataSource = rein_BEH_ST_dt;
+            rein_W_dt = parameters.rein_W_dt;
+            rein_W_dg.DataSource = rein_W_dt;
+
             rein_S_C_SL_bx.Text = parameters.rein_S_C_SL;
             rein_S_C_SZ_bx.Text = parameters.rein_S_C_SZ;
             rein_S_C_AP_bx.Text = parameters.rein_S_C_AP;

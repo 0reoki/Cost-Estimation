@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
 {
     public partial class CostEstimationForm : Form
     {
-        //Formsadd
+        //Forms
         public Compute compute = new Compute();
         public ParametersForm pf;
         public Parameters parameters;
@@ -24,6 +24,7 @@ namespace WindowsFormsApp1
 
         //Local Variables
         public bool saveFileExists;
+        public bool viewInitalized;
         String fileName;
 
         //Volume Totality Variables (Volume Totality is for pricing computation)
@@ -46,10 +47,11 @@ namespace WindowsFormsApp1
             InitializeAsync();
 
             //Initialize Forms that are single throughout the whole program
+            viewInitalized = false;
+            saveFileExists = false;
             parameters = new Parameters();
             pf = new ParametersForm(parameters, this);
             structuralMembers = new StructuralMembers(this);
-            saveFileExists = false;
 
             addFloor();
 
@@ -83,12 +85,114 @@ namespace WindowsFormsApp1
                 e.Cancel = true;
                 fileMenu.Show(tabControl1, new Point(0, tabControl1.ItemSize.Height));
             }
+            //View Tab button is clicked
+            else if (e.TabPageIndex == 3)
+            {
+                initializeView();
+
+                //Console.WriteLine(structuralMembers.concreteWorkSolutionsC[0][0][0]);
+            }
             //Help tab button is clicked
             else if (e.TabPageIndex == 4)
             {
                 e.Cancel = true;
             }
         }
+
+        //View Functions -- START
+        private void initializeView()
+        {
+            if (!viewInitalized)
+            {
+                treeView1.Nodes.Clear();
+                treeView2.Nodes.Clear();
+                treeView3.Nodes.Clear();
+                //Tree View 1 - Earthworks and Concrete Works
+                List<TreeNode> nodes1;
+                TreeNode tn1 = new TreeNode("Earthworks");
+                tn1.Name = "earthworksParent";
+
+                TreeNode tn2 = new TreeNode("Concrete Works");
+                tn2.Name = "concreteWorksParent";
+                nodes1 = new List<TreeNode>() { tn1, tn2 };
+
+                setTree(nodes1, treeView1);
+
+                //Earthworks
+                TreeNode[] found = treeView1.Nodes.Find("earthworksParent", true);
+
+                TreeNode newChild1 = new TreeNode("1.1 Excavation " + excavation_Total.ToString());
+                newChild1.Name = "excavation_Total";
+
+                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction " + backfillingAndCompaction_Total.ToString());
+                newChild2.Name = "backfillingAndCompaction_Total";
+
+                TreeNode newChild3 = new TreeNode("1.3 Grading and Compaction " + gradingAndCompaction_Total.ToString());
+                newChild3.Name = "gradingAndCompaction_Total";
+
+                TreeNode newChild4 = new TreeNode("1.4 Gravel Bedding and Compaction " + gravelBedding_Total.ToString());
+                newChild4.Name = "gravelBedding_Total";
+
+                TreeNode newChild5 = new TreeNode("1.5 Soil Poisoning " + soilPoisoning_Total.ToString());
+                newChild5.Name = "soilPoisoning_Total";
+
+                found[0].Nodes.Add(newChild1);
+                found[0].Nodes.Add(newChild2);
+                found[0].Nodes.Add(newChild3);
+                found[0].Nodes.Add(newChild4);
+                found[0].Nodes.Add(newChild5);
+
+                //Tree View 2 - 
+            }
+        }
+        private void setTree(List<TreeNode> nodes, TreeView treeView)
+        {
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                treeView.Nodes.Add(nodes[i]);
+            }
+            AdjustTreeViewHeight(treeView);
+        }
+
+        //Local Variables
+        const int TVM_GETNEXTITEM = 0x1100 + 10;
+        const int TVGN_LASTVISIBLE = 0x000A;
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        extern static IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, IntPtr lParam);
+
+        public void AdjustTreeViewHeight(TreeView treeView)
+        {
+            treeView.Scrollable = false;
+            var nodeHandle = SendMessage(treeView.Handle, TVM_GETNEXTITEM,
+                TVGN_LASTVISIBLE, IntPtr.Zero);
+            var node = treeView.GetType().GetMethod("NodeFromHandle",
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                .Invoke(treeView, new object[] { nodeHandle }) as TreeNode;
+            var r = node.Bounds;
+            treeView.Height = r.Top + r.Height + 4;
+        }
+
+        private void treeView1_DoubleClick(object sender, EventArgs e)
+        {
+            string[] parents = { "Earthworks", "Concrete Works" };
+            TreeViewHitTestInfo info = treeView1.HitTest(treeView1.PointToClient(Cursor.Position));
+            try
+            {
+                if (treeView1.SelectedNode != null)
+                {
+                    if (Array.IndexOf(parents, info.Node.Text) < 0)
+                    {
+                        ViewDetailedInfoForm vf = new ViewDetailedInfoForm(info.Node.Text.Substring(0, 3), this, structuralMembers);
+                        vf.ShowDialog();
+                    }
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine("Exception: " + ex);
+            }
+        }
+        //View functions -- END
 
         //File Menu - New
         private void fileMenu1_Click(object sender, EventArgs e)
@@ -105,8 +209,8 @@ namespace WindowsFormsApp1
             openDialog.Filter = "Know Estimation files (*.est)|*.est";
             if (openDialog.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
+                //try
+                //{
                     if ((myStream = openDialog.OpenFile()) != null)
                     {
                         fileName = openDialog.FileName;
@@ -119,12 +223,14 @@ namespace WindowsFormsApp1
                             SaveToProgram(stringFile);
                         }
                     }
-                }
+                /*}
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                }
+                }*/
             }
+            viewInitalized = false;
+            initializeView();
         }
 
         //Save
@@ -188,7 +294,17 @@ namespace WindowsFormsApp1
 
         private void addFloor()
         {
-            //Initialize variables in AddStructForm for every floor created
+            initializeVariables();
+
+            //Set a ground floor
+            Floor floor = new Floor(this, false);
+            floors.Add(floor);
+            estimationPanel.Controls.Add(floor);
+        }
+
+        private void initializeVariables()
+        {
+            //Initialize variables in Structural Members for every floor created
             if (Floors.Count == 0)//Ground Floor
             {
                 //Footings
@@ -236,6 +352,16 @@ namespace WindowsFormsApp1
                 structuralMembers.roof.Add(newList16);
                 structuralMembers.roofHRS.Add(newList17);
                 structuralMembers.roofNames.Add(newList18);
+
+                //Solution Variables
+                List<List<double>> newList19 = new List<List<double>>();
+                List<List<double>> newList20 = new List<List<double>>();
+                List<List<double>> newList21 = new List<List<double>>();
+                List<List<double>> newList22 = new List<List<double>>();
+                structuralMembers.concreteWorkSolutionsC.Add(newList19);
+                structuralMembers.concreteWorkSolutionsBR.Add(newList20);
+                structuralMembers.concreteWorkSolutionsSL.Add(newList21);
+                structuralMembers.concreteWorkSolutionsST.Add(newList22);
             }
             else //Upper Floors
             {
@@ -280,12 +406,17 @@ namespace WindowsFormsApp1
                 structuralMembers.roof.Add(newList16);
                 structuralMembers.roofHRS.Add(newList17);
                 structuralMembers.roofNames.Add(newList18);
-            }
 
-            //Set a ground floor
-            Floor floor = new Floor(this, false);
-            floors.Add(floor);
-            estimationPanel.Controls.Add(floor);
+                //Solution Variables
+                List<List<double>> newList19 = new List<List<double>>();
+                List<List<double>> newList20 = new List<List<double>>();
+                List<List<double>> newList21 = new List<List<double>>();
+                List<List<double>> newList22 = new List<List<double>>();
+                structuralMembers.concreteWorkSolutionsC.Add(newList19);
+                structuralMembers.concreteWorkSolutionsBR.Add(newList20);
+                structuralMembers.concreteWorkSolutionsSL.Add(newList21);
+                structuralMembers.concreteWorkSolutionsST.Add(newList22);
+            }
         }
 
         public void refreshFloors()
@@ -321,6 +452,7 @@ namespace WindowsFormsApp1
         {
             pf.ShowDialog();
         }
+
         //Home Functions -- END
 
         //Long Functions -- START
@@ -565,8 +697,8 @@ namespace WindowsFormsApp1
 
             //Parameters -- END
 
-            //Computations -- START
-            stringParam += "Computations|\n";
+            //Structural Members -- START
+            stringParam += "Structural-Members|\n";
 
             //Footings
             stringParam += "Footings|\n" + "Floor-1" + "|"; //Only Ground Floor exists
@@ -721,13 +853,164 @@ namespace WindowsFormsApp1
                 }
                 j++;
             }
+            //Structural Members -- END
 
+            //Solutions -- START
+            stringParam += "\nSolutions|\n";
+
+            //Earth Works
+            stringParam += "Earthworks|\n" + "Floor-1" + "|"; //Only Ground Floor exists
+            j = 0;
+            foreach (List<double> solutions in structuralMembers.earthworkSolutions)
+            {
+                stringParam += "earthwork-" + (j + 1) + "|";
+                foreach (double value in solutions)
+                {
+                    stringParam += value + "|";
+                }
+                j++;
+            }
+            stringParam += "Extra-Earthworks|";
+            foreach(double value in structuralMembers.extraEarthworkSolutions)
+            {
+                stringParam += value + "|";
+            }
+
+            //Concrete Works
+            stringParam += "\nConcrete-Works|\n";
+            stringParam += "ConcreteF|\n";
+            j = 0;
+            foreach (List<double> solutions in structuralMembers.concreteWorkSolutionsF)
+            {
+                stringParam += "concreteF-" + (j + 1) + "|";
+                foreach (double value in solutions)
+                {
+                    stringParam += value + "|";
+                }
+                j++;
+            }
+
+            stringParam += "\nConcreteC|\n";
+            j = 0;
+            foreach (List<List<double>> floor in structuralMembers.concreteWorkSolutionsC)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<double> solutions in floor)
+                {
+                    stringParam += "concreteC-" + (k + 1) + "|";
+                    foreach (double value in solutions)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
+
+            stringParam += "\nConcreteBR|\n";
+            j = 0;
+            foreach (List<List<double>> floor in structuralMembers.concreteWorkSolutionsBR)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<double> solutions in floor)
+                {
+                    stringParam += "concreteBR-" + (k + 1) + "|";
+                    foreach (double value in solutions)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
+
+            stringParam += "\nConcreteSL|\n";
+            j = 0;
+            foreach (List<List<double>> floor in structuralMembers.concreteWorkSolutionsSL)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<double> solutions in floor)
+                {
+                    stringParam += "concreteSL-" + (k + 1) + "|";
+                    foreach (double value in solutions)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
+
+            stringParam += "\nConcreteST|\n";
+            j = 0;
+            foreach (List<List<double>> floor in structuralMembers.concreteWorkSolutionsST)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<double> solutions in floor)
+                {
+                    stringParam += "concreteST-" + (k + 1) + "|";
+                    foreach (double value in solutions)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
+
+            stringParam += "\nConcreteFS|\n";
+            foreach (double value in structuralMembers.concreteWorkSolutionsFS)
+            {
+                stringParam += value + "|";
+            }
+
+            //Solutions -- END
+
+            //Totalities -- START
+            stringParam += "\nTotalities|\n";
+
+            //Earthworks
+            stringParam += "\nEarthworks|\n";
+            stringParam += excavation_Total + "|";
+            stringParam += backfillingAndCompaction_Total + "|";
+            stringParam += gradingAndCompaction_Total + "|";
+            stringParam += gravelBedding_Total + "|";
+            stringParam += soilPoisoning_Total + "|";
+
+            //Totalities -- END
 
             stringParam += "\nEND";
-            //Computations -- END
 
             //Save to File
             File.WriteAllText(fileName, stringParam);
+        }
+
+        private void initializeVariablesFromFile()
+        {
+            //Initialize variables in Structural Members for every floor created
+            if (Floors.Count == 0)//Ground Floor
+            {
+                //Footings
+                List<List<string>> newList = new List<List<string>>();
+                List<List<string>> newList2 = new List<List<string>>();
+                structuralMembers.footingsColumn.Add(newList);
+                structuralMembers.footingsWall.Add(newList2);
+            }
+
+            /*Solution Variables
+            List<List<double>> newList19 = new List<List<double>>();
+            List<List<double>> newList20 = new List<List<double>>();
+            List<List<double>> newList21 = new List<List<double>>();
+            List<List<double>> newList22 = new List<List<double>>();
+            structuralMembers.concreteWorkSolutionsC.Add(newList19);
+            structuralMembers.concreteWorkSolutionsBR.Add(newList20);
+            structuralMembers.concreteWorkSolutionsSL.Add(newList21);
+            structuralMembers.concreteWorkSolutionsST.Add(newList22);
+            //*/
         }
 
         private void SaveToProgram(string stringFile)
@@ -814,15 +1097,18 @@ namespace WindowsFormsApp1
 
             structuralMembers.earthworkSolutions.Clear();
 
+            structuralMembers.concreteWorkSolutionsF.Clear();
+            structuralMembers.concreteWorkSolutionsC.Clear();
+            structuralMembers.concreteWorkSolutionsBR.Clear();
+            structuralMembers.concreteWorkSolutionsSL.Clear();
+            structuralMembers.concreteWorkSolutionsST.Clear();
+
             //Init variables for StructuralMember
-            List<List<string>> newList = new List<List<string>>();
-            List<List<string>> newList2 = new List<List<string>>();
-            structuralMembers.footingsColumn.Add(newList);
-            structuralMembers.footingsWall.Add(newList2);
 
             j = 0;
             while (!tokens[i].Equals("Parameters"))
             {
+                initializeVariablesFromFile();
                 //Set the floor
                 Floor floor = new Floor(this, false);
                 floors.Add(floor);
@@ -1371,7 +1657,7 @@ namespace WindowsFormsApp1
             //Misc
             i++;
             j = 0;
-            while (!tokens[i].Equals("Computations"))
+            while (!tokens[i].Equals("Structural-Members"))
             {
                 j++;
                 if (tokens[i].Equals("Custom_Item-" + j))
@@ -1384,7 +1670,7 @@ namespace WindowsFormsApp1
             }
             //Save to Parameters -- END
 
-            //Save to Computations -- START
+            //Save to Structural-Members -- START
             i++;
 
             //Footings
@@ -1410,7 +1696,7 @@ namespace WindowsFormsApp1
                         toAdd.Add(tokens[i]); i++;
                     }
                     structuralMembers.footingsColumn[0].Add(toAdd);
-                    compute.AddFootingWorks(this, j, l, true);
+                    //compute.AddFootingWorks(this, j, l, true);
                     j++;
                 }
                 else if (tokens[i].Equals("Wall-Footing-" + (l + 1)) && !tokens[i].Equals("Columns"))
@@ -1425,16 +1711,10 @@ namespace WindowsFormsApp1
                         toAdd.Add(tokens[i]); i++;
                     }
                     structuralMembers.footingsWall[0].Add(toAdd);
-                    compute.AddFootingWorks(this, j, l, false);
+                    //compute.AddFootingWorks(this, j, l, false);
                     l++;
                 }
             }
-
-            MessageBox.Show("ETO ANG TUNAY NA SAGOT1: " + excavation_Total);
-            MessageBox.Show("ETO ANG TUNAY NA SAGOT2: " + gradingAndCompaction_Total);
-            MessageBox.Show("ETO ANG TUNAY NA SAGOT3: " + gravelBedding_Total);
-            MessageBox.Show("ETO ANG TUNAY NA SAGOT4: " + soilPoisoning_Total);
-            MessageBox.Show("ETO ANG TUNAY NA SAGOT5: " + backfillingAndCompaction_Total);
 
             //Columns 
             i++;
@@ -1483,10 +1763,10 @@ namespace WindowsFormsApp1
                                 sMember.Add(tokens[i]); i++;
                             }
                         }
-                        l++;
                         floor.Add(member);
                         floor1.Add(ltMember);
                         floor2.Add(sMember);
+                        l++;
                     }
                     structuralMembers.column.Add(floor);
                     structuralMembers.columnLateralTies.Add(floor1);
@@ -1584,37 +1864,10 @@ namespace WindowsFormsApp1
                     structuralMembers.beamRow.Add(floor1);
                     structuralMembers.beamSchedule.Add(floor2);
                     structuralMembers.beamNames.Add(name);
+
                     j++;
                 }
             }
-            /*
-             //Slabs
-            stringParam += "\nSlabs|\n";
-            j = 0;
-            foreach (List<List<string>> floor in structuralMembers.slab)
-            {
-                stringParam += "Floor-" + (j + 1) + "|";
-                int k = 0;
-                foreach (List<string> member in floor)
-                {
-                    stringParam += "Slab-" + (k + 1) + "|";
-                    stringParam += structuralMembers.slabNames[j][k] + "|";
-                    foreach (string value in member)
-                    {
-                        stringParam += value + "|";
-                    }
-                    k++;
-                }
-                if(j > 0)
-                {
-                    stringParam += "Slab-Schedules" + "|";
-                    foreach (List<string> schedule in structuralMembers.slabSchedule[j - 1])
-                        foreach (string value in schedule)
-                            stringParam += value + "|";
-                }
-                j++;
-            }
-             */
 
             //Slabs
             i++;
@@ -1716,13 +1969,14 @@ namespace WindowsFormsApp1
                     j++;
                 }
             }
+
             //Roof
             i++;
             j = 0;
             l = 0;
-            while (!tokens[i].Equals("END"))
+            while (!tokens[i].Equals("Solutions"))
             {
-                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("END"))
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("Solutions"))
                 {
                     List<List<string>> floor = new List<List<string>>();
                     List<List<string>> floor2 = new List<List<string>>();
@@ -1740,7 +1994,7 @@ namespace WindowsFormsApp1
                             member.Add(tokens[i]); i++;
                         }
                         i++;
-                        while (!tokens[i].Equals("Roof-" + (l + 2)) && !tokens[i].Equals("Floor-" + (j + 2)) && !tokens[i].Equals("END"))
+                        while (!tokens[i].Equals("Roof-" + (l + 2)) && !tokens[i].Equals("Floor-" + (j + 2)) && !tokens[i].Equals("Solutions"))
                         {
                             hrsMember.Add(tokens[i]); i++;
                         }
@@ -1754,14 +2008,198 @@ namespace WindowsFormsApp1
                     j++;
                 }
             }
-                
-            //Computations -- END
+            //Structural Members -- END
 
-            //Save to Computations -- END
+            //Solutions -- START
+            i++;
+            //Earthworks
+            i++;
+
+            j = 0;
+            i++; //Only Ground Floor
+            while (!tokens[i].Equals("Extra-Earthworks"))
+            {
+                List<double> toAdd = new List<double>();
+                i++;
+
+                toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+                toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+                toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+                toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+                toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+                structuralMembers.earthworkSolutions.Add(toAdd);
+                
+                j++;
+            }
+
+            while (!tokens[i].Equals("Concrete-Works"))
+            {
+                i++;
+                int k = 0;
+                while (!tokens[i].Equals("Concrete-Works"))
+                {
+                    structuralMembers.extraEarthworkSolutions[k] = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++; k++;
+                }
+            }
+
+            //Concrete Works
+            i++;
+
+            //Concrete Footing
+            i++;
+            j = 0;
+            while (!tokens[i].Equals("ConcreteC")) 
+            {
+                if (tokens[i].Equals("concreteF-" + (j + 1)) && !tokens[i].Equals("ConcreteC"))
+                {
+                    List<double> toAdd = new List<double>();
+                    i++;
+
+                    while (!tokens[i].Equals("concreteF-" + (j + 2)) && !tokens[i].Equals("ConcreteC"))
+                    {
+                        toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+                    }
+
+                    structuralMembers.concreteWorkSolutionsF.Add(toAdd);
+                    j++;
+                }
+            }
+
+            //Concrete Column
+            i++;
+            j = 0;
+            l = 0;
+            while (!tokens[i].Equals("ConcreteBR"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("ConcreteBR"))
+                {
+                    List<List<double>> floor = new List<List<double>>();
+                    i++;
+                    l = 0;
+                    if (tokens[i].Equals("concreteC-" + (l + 1)) && !tokens[i].Equals("ConcreteBR"))
+                    {
+                        List<double> toAdd = new List<double>();
+                        i++;
+
+                        while (!tokens[i].Equals("concreteC-" + (l + 2)) && !tokens[i].Equals("ConcreteBR"))
+                        {
+                            toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+                        }
+                        l++;
+                        floor.Add(toAdd);
+                    }
+                    structuralMembers.concreteWorkSolutionsC.Add(floor);
+                    j++;
+                }
+            }
+
+            //Concrete Beam
+            i++;
+            j = 0;
+            l = 0;
+            while (!tokens[i].Equals("ConcreteSL"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("ConcreteSL"))
+                {
+                    List<List<double>> floor = new List<List<double>>();
+                    i++;
+                    l = 0;
+                    if (tokens[i].Equals("concreteBR-" + (l + 1)) && !tokens[i].Equals("ConcreteSL"))
+                    {
+                        List<double> toAdd = new List<double>();
+                        i++;
+
+                        while (!tokens[i].Equals("concreteBR-" + (l + 2)) && !tokens[i].Equals("ConcreteSL"))
+                        {
+                            toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+                        }
+                        l++;
+                        floor.Add(toAdd);
+                    }
+                    structuralMembers.concreteWorkSolutionsBR.Add(floor);
+                    j++;
+                }
+            }
+
+            //Concrete Slab
+            i++;
+            j = 0;
+            l = 0;
+            while (!tokens[i].Equals("ConcreteST"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("ConcreteST"))
+                {
+                    List<List<double>> floor = new List<List<double>>();
+                    i++;
+                    l = 0;
+                    if (tokens[i].Equals("concreteSL-" + (l + 1)) && !tokens[i].Equals("ConcreteST"))
+                    {
+                        List<double> toAdd = new List<double>();
+                        i++;
+
+                        while (!tokens[i].Equals("concreteSL-" + (l + 2)) && !tokens[i].Equals("ConcreteST"))
+                        {
+                            toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+                        }
+                        l++;
+                        floor.Add(toAdd);
+                    }
+                    structuralMembers.concreteWorkSolutionsSL.Add(floor);
+                    j++;
+                }
+            }
+
+            //Concrete Stairs
+            i++;
+            j = 0;
+            l = 0;
+            while (!tokens[i].Equals("ConcreteFS"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("ConcreteFS"))
+                {
+                    List<List<double>> floor = new List<List<double>>();
+                    i++;
+                    l = 0;
+                    if (tokens[i].Equals("concreteST-" + (l + 1)) && !tokens[i].Equals("ConcreteFS"))
+                    {
+                        List<double> toAdd = new List<double>();
+                        i++;
+
+                        while (!tokens[i].Equals("concreteST-" + (l + 2)) && !tokens[i].Equals("ConcreteFS"))
+                        {
+                            toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+                        }
+                        l++;
+                        floor.Add(toAdd);
+                    }
+                    structuralMembers.concreteWorkSolutionsST.Add(floor);
+                    j++;
+                }
+            }
+
+            //ConcreteFS TODO
+            i++;
+
+            //Solutions -- END
+
+            //Totalities -- START
+            i++;
+
+            //Earthworks
+            i++;
+            excavation_Total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            backfillingAndCompaction_Total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            gradingAndCompaction_Total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            gravelBedding_Total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            soilPoisoning_Total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+
+            //Totalities -- END
+
+            viewInitalized = false;
+            initializeView();
             //*/
             MessageBox.Show(tokens[i]);
             
-            //Save to Computations -- END
             pf = new ParametersForm(parameters, this);
         }
         //Long Functions -- END

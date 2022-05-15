@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
         private int floorCount;
         public List<TreeNode> nodes;
         public int footingCount, wallFootingCount, columnCount, beamCount, slabCount, stairsCount, roofCount;
-
+        
         public string setLabel
         {
             set
@@ -153,7 +153,7 @@ namespace WindowsFormsApp1
             //SaveFile?
             if (fromFile)
             {
-                
+
             }
             else //Add Parent nodes and set tree
             {
@@ -306,6 +306,77 @@ namespace WindowsFormsApp1
             this.Parent.Controls.Remove(this);
             costEstimationForm.Floors.Remove(this);
 
+            //Remove Lists when this Floor is deleted
+            if (floorCount == 0)//Ground Floor
+            {
+                //Footings
+                costEstimationForm.structuralMembers.footingsColumn.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.footingsWall.RemoveAt(floorCount);
+
+                //Columns
+                costEstimationForm.structuralMembers.columnNames.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.column.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.columnLateralTies.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.columnSpacing.RemoveAt(floorCount);
+
+                //Beams
+                costEstimationForm.structuralMembers.beam.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.beamRow.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.beamSchedule.RemoveAt(floorCount);
+
+                //Slabs
+                costEstimationForm.structuralMembers.slabNames.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.slab.RemoveAt(floorCount);
+
+                //Stairs
+                costEstimationForm.structuralMembers.stairs.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.stairsNames.RemoveAt(floorCount);
+
+                //Roof
+                List<string> newList18 = new List<string>();
+                costEstimationForm.structuralMembers.roof.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.roofHRS.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.roofNames.RemoveAt(floorCount);
+
+                //Solution Variables
+                costEstimationForm.structuralMembers.concreteWorkSolutionsC.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.concreteWorkSolutionsBR.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.concreteWorkSolutionsSL.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.concreteWorkSolutionsST.RemoveAt(floorCount);
+            }
+            else //Upper Floors
+            {
+                //Columns
+                costEstimationForm.structuralMembers.columnNames.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.column.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.columnLateralTies.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.columnSpacing.RemoveAt(floorCount);
+
+                //Beams
+                costEstimationForm.structuralMembers.beam.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.beamRow.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.beamSchedule.RemoveAt(floorCount);
+
+                //Slabs
+                costEstimationForm.structuralMembers.slabNames.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.slab.RemoveAt(floorCount);
+
+                //Stairs
+                costEstimationForm.structuralMembers.stairs.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.stairsNames.RemoveAt(floorCount);
+
+                //Roof
+                List<string> newList18 = new List<string>();
+                costEstimationForm.structuralMembers.roof.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.roofHRS.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.roofNames.RemoveAt(floorCount);
+
+                //Solution Variables
+                costEstimationForm.structuralMembers.concreteWorkSolutionsC.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.concreteWorkSolutionsBR.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.concreteWorkSolutionsSL.RemoveAt(floorCount);
+                costEstimationForm.structuralMembers.concreteWorkSolutionsST.RemoveAt(floorCount);
+            }
             costEstimationForm.refreshFloors();
         }
 

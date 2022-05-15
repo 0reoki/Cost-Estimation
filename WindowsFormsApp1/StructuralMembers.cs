@@ -32,7 +32,7 @@ namespace WindowsFormsApp1
         public List<List<List<List<string>>>> beamRow = new List<List<List<List<string>>>>();
         public List<List<List<string>>> beamSchedule = new List<List<List<string>>>();
 
-        //Beam Variables
+        //Slab Variables
         public List<List<string>> slabNames = new List<List<string>>();
         public List<List<List<string>>> slab = new List<List<List<string>>>();
         public List<List<List<string>>> slabSchedule = new List<List<List<string>>>();
@@ -46,13 +46,52 @@ namespace WindowsFormsApp1
         public List<List<List<string>>> roof = new List<List<List<string>>>();
         public List<List<List<string>>> roofHRS = new List<List<List<string>>>();
 
-        //Solution variables
+        //Solution Earthwork variables
         public List<List<double>> earthworkSolutions = new List<List<double>>();
+        public List<double> extraEarthworkSolutions = new List<double>();
+
+        //Solution Concrete variables
+        public List<List<double>> concreteWorkSolutionsF = new List<List<double>>();
+        public List<List<List<double>>> concreteWorkSolutionsC = new List<List<List<double>>>();
+        public List<List<List<double>>> concreteWorkSolutionsBR = new List<List<List<double>>>();
+        public List<List<List<double>>> concreteWorkSolutionsSL = new List<List<List<double>>>();
+        public List<List<List<double>>> concreteWorkSolutionsST = new List<List<List<double>>>();
+        public List<double> concreteWorkSolutionsFS = new List<double>();
+
+        //Solution Stair variables
         public List<List<double>> stairsSolutions = new List<List<double>>();
+
+        //Constant variables
+        public List<List<double>> concreteProportion = new List<List<double>>();
 
         public StructuralMembers(CostEstimationForm cEF)
         {
+            //Initialize Variables
             this.cEF = cEF;
+            for(int i = 0; i < 4; i++)
+            {
+                extraEarthworkSolutions.Add(0);
+            }
+
+            //Initialize Constant Variables
+            double subtrahend = 3;
+            double initValue = 12.0;
+            for(int i = 0; i < 4; i++)
+            {
+                List<double> toAdd = new List<double>();
+                toAdd.Add(initValue);
+                toAdd.Add(0.5);
+                toAdd.Add(1.0);
+                if (i < 1)
+                {
+                    initValue = initValue - subtrahend;
+                } 
+                else
+                {
+                    initValue = initValue - (subtrahend / 2);
+                }
+                concreteProportion.Add(toAdd);
+            }
         }
 
         public void reComputeEarthworks()
@@ -61,16 +100,41 @@ namespace WindowsFormsApp1
             int j = 0;
             foreach(List<double> data in earthworkSolutions)
             {
+
                 if(data[0] == 1)
                 {
-                    compute.ModifyFootingWorks(cEF, i , true);
+                    compute.ModifyFootingWorks(cEF, i, i + j, true);
                     i++;
                 }
                 else
                 {
-                    compute.ModifyFootingWorks(cEF, j, false);
+                    compute.ModifyFootingWorks(cEF, j, i + j, false);
                     j++;
                 }
+            }
+
+            i = 0;
+            foreach (List<List<double>> floor in concreteWorkSolutionsC)
+            {
+                j = 0;
+                foreach(List<double> member in floor)
+                {
+                    compute.ModifyColumnWorks(cEF, i, j);
+                    j++;
+                }
+                i++;
+            }
+
+            i = 0;
+            foreach (List<List<double>> floor in concreteWorkSolutionsBR)
+            {
+                j = 0;
+                foreach (List<double> member in floor)
+                {
+                    compute.ModifyBeamWorks(cEF, i, j);
+                    j++;
+                }
+                i++;
             }
         }
     }

@@ -104,7 +104,7 @@
             this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
+            this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
             this.tableLayoutPanel109.Controls.Add(this.label21, 3, 1);
             this.tableLayoutPanel109.Controls.Add(this.webBars_qty_bx, 14, 3);
             this.tableLayoutPanel109.Controls.Add(this.webBars_dia_bx, 14, 1);
@@ -779,6 +779,7 @@
             this.name_bx.TabIndex = 51;
             this.name_bx.Text = "B-";
             this.name_bx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.name_bx.KeyUp += new System.Windows.Forms.KeyEventHandler(this.name_bx_KeyUp);
             // 
             // b_bx
             // 
