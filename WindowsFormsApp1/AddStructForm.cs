@@ -983,7 +983,7 @@ namespace WindowsFormsApp1
                             bsMember.Add(bs.webBarsDiameter);
                             bsMember.Add(bs.webBarsQty);
 
-                            
+                            /*
                             foreach (List<string> schedule in costEstimationForm.structuralMembers.beamSchedule[floorCount])
                             {
                                 if (schedule[1].Equals(bs.name))
@@ -993,7 +993,8 @@ namespace WindowsFormsApp1
                                     return;
                                 }
                             }
-                            
+                            */ 
+
                             costEstimationForm.structuralMembers.beamSchedule[floorCount].Add(bsMember);
                         }
 
@@ -1270,7 +1271,7 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.slab[floorCount].Add(members);
                             costEstimationForm.structuralMembers.slabNames[floorCount].Add(structMemName);
 
-                            //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                            compute.AddSlabWorks(costEstimationForm, floorCount, slabCount);
                             this.DialogResult = DialogResult.OK;
                         }
                         else // Suspended Slab
@@ -1361,7 +1362,7 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.slab[floorCount].Add(members);
                             costEstimationForm.structuralMembers.slabNames[floorCount].Add(structMemName);
 
-                            //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                            compute.AddSlabWorks(costEstimationForm, floorCount, slabCount);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
@@ -1457,6 +1458,7 @@ namespace WindowsFormsApp1
                         costEstimationForm.structuralMembers.slab[floorCount][memberCount][25] = slab_SOG_SCSD_bx.Text;
                         costEstimationForm.structuralMembers.slab[floorCount][memberCount][26] = slab_SOG_SOC_bx.Text;
 
+                        compute.ModifySlabWorks(costEstimationForm, floorCount, memberCount);
                         this.DialogResult = DialogResult.OK;
                     }
                     else // Suspended Slab
@@ -1541,6 +1543,7 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.slabSchedule[floorCount - 1].Add(ssMember);
                         }
 
+                        compute.ModifySlabWorks(costEstimationForm, floorCount, memberCount);
                         this.DialogResult = DialogResult.OK;
                     }
                 }
@@ -2910,6 +2913,31 @@ namespace WindowsFormsApp1
             }
             else if(costEstimationForm.structuralMembers.stairs[floorCount][memberCount][0].Equals("L-Stairs"))
             {
+                stairs_ST_cbx.SelectedIndex = 2;
+                oldStructMemName = costEstimationForm.structuralMembers.stairsNames[floorCount][memberCount];
+                addstruct_Name_bx.Text = costEstimationForm.structuralMembers.stairsNames[floorCount][memberCount];
+
+                stairs_LS_D_Q_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][1];
+                stairs_LS_D_SFF_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][2];
+                stairs_LS_D_SSF_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][3];
+                stairs_LS_D_SL_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][4];
+                stairs_LS_D_RH_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][5];
+                stairs_LS_D_TW_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][6];
+                stairs_LS_D_WST_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][7];
+                stairs_LS_D_LST_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][8];
+
+                stairs_LS_WS_MB_cbx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][9];
+                stairs_LS_WS_MBS_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][10];
+                stairs_LS_WS_DB_cbx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][11];
+                stairs_LS_WS_DBS_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][12];
+                stairs_LS_L_MB_cbx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][13];
+                stairs_LS_L_MBS_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][14];
+                stairs_LS_S_MB_cbx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][15];
+                stairs_LS_S_MBS_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][16];
+                stairs_LS_S_NB_cbx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][17];
+            }
+            else
+            {
                 stairs_ST_cbx.SelectedIndex = 1;
                 oldStructMemName = costEstimationForm.structuralMembers.stairsNames[floorCount][memberCount];
                 addstruct_Name_bx.Text = costEstimationForm.structuralMembers.stairsNames[floorCount][memberCount];
@@ -2934,31 +2962,6 @@ namespace WindowsFormsApp1
                 stairs_US_S_MB_cbx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][17];
                 stairs_US_S_MBS_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][18];
                 stairs_US_S_NB_cbx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][19];
-            }
-            else
-            {
-                stairs_ST_cbx.SelectedIndex = 2;
-                oldStructMemName = costEstimationForm.structuralMembers.stairsNames[floorCount][memberCount];
-                addstruct_Name_bx.Text = costEstimationForm.structuralMembers.stairsNames[floorCount][memberCount];
-
-                stairs_LS_D_Q_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][1];
-                stairs_LS_D_SFF_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][2];
-                stairs_LS_D_SSF_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][3];
-                stairs_LS_D_SL_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][4];
-                stairs_LS_D_RH_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][5];
-                stairs_LS_D_TW_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][6];
-                stairs_LS_D_WST_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][7];
-                stairs_LS_D_LST_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][8];
-
-                stairs_LS_WS_MB_cbx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][9];
-                stairs_LS_WS_MBS_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][10];
-                stairs_LS_WS_DB_cbx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][11];
-                stairs_LS_WS_DBS_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][12];
-                stairs_LS_L_MB_cbx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][13];
-                stairs_LS_L_MBS_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][14];
-                stairs_LS_S_MB_cbx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][15];
-                stairs_LS_S_MBS_bx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][16];
-                stairs_LS_S_NB_cbx.Text = costEstimationForm.structuralMembers.stairs[floorCount][memberCount][17];
             }
         }
         
@@ -3499,7 +3502,6 @@ namespace WindowsFormsApp1
                 if (isSuspended)
                 {
                     beamName = beamName.Substring(0, beamName.IndexOf("(Suspended Beam)"));
-                    MessageBox.Show(beamName);
                     int index = 0;
                     slab_SS_SB_T_AtB_cbx.Items.Clear();
                     slab_SS_SB_T_AtB_cbx.Items.Add("None");
@@ -3528,7 +3530,6 @@ namespace WindowsFormsApp1
                 else
                 {
                     beamName = beamName.Substring(0, beamName.IndexOf("(Roof Beam)"));
-                    MessageBox.Show(beamName);
                     int index = 0;
                     slab_SS_SB_T_AtB_cbx.Items.Clear();
                     slab_SS_SB_T_AtB_cbx.Items.Add("None");
@@ -3566,7 +3567,6 @@ namespace WindowsFormsApp1
                 if (isSuspended)
                 {
                     beamName = beamName.Substring(0, beamName.IndexOf("(Suspended Beam)"));
-                    MessageBox.Show(beamName);
                     int index = 0;
                     slab_SS_SB_B_AtB_cbx.Items.Clear();
                     slab_SS_SB_B_AtB_cbx.Items.Add("None");
@@ -3595,7 +3595,6 @@ namespace WindowsFormsApp1
                 else
                 {
                     beamName = beamName.Substring(0, beamName.IndexOf("(Roof Beam)"));
-                    MessageBox.Show(beamName);
                     int index = 0;
                     slab_SS_SB_B_AtB_cbx.Items.Clear();
                     slab_SS_SB_B_AtB_cbx.Items.Add("None");
@@ -3633,7 +3632,6 @@ namespace WindowsFormsApp1
                 if (isSuspended)
                 {
                     beamName = beamName.Substring(0, beamName.IndexOf("(Suspended Beam)"));
-                    MessageBox.Show(beamName);
                     int index = 0;
                     slab_SS_SB_L_AtB_cbx.Items.Clear();
                     slab_SS_SB_L_AtB_cbx.Items.Add("None");
@@ -3662,7 +3660,6 @@ namespace WindowsFormsApp1
                 else
                 {
                     beamName = beamName.Substring(0, beamName.IndexOf("(Roof Beam)"));
-                    MessageBox.Show(beamName);
                     int index = 0;
                     slab_SS_SB_L_AtB_cbx.Items.Clear();
                     slab_SS_SB_L_AtB_cbx.Items.Add("None");
@@ -3691,7 +3688,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void slab_SS_SB_R_AtB_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        private void slab_SS_SB_R_BR_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (slab_SS_SB_R_BR_cbx.SelectedIndex != 0)
             {
@@ -3700,7 +3697,6 @@ namespace WindowsFormsApp1
                 if (isSuspended)
                 {
                     beamName = beamName.Substring(0, beamName.IndexOf("(Suspended Beam)"));
-                    MessageBox.Show(beamName);
                     int index = 0;
                     slab_SS_SB_R_AtB_cbx.Items.Clear();
                     slab_SS_SB_R_AtB_cbx.Items.Add("None");
@@ -3729,7 +3725,6 @@ namespace WindowsFormsApp1
                 else
                 {
                     beamName = beamName.Substring(0, beamName.IndexOf("(Roof Beam)"));
-                    MessageBox.Show(beamName);
                     int index = 0;
                     slab_SS_SB_R_AtB_cbx.Items.Clear();
                     slab_SS_SB_R_AtB_cbx.Items.Add("None");

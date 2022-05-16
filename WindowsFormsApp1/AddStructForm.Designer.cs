@@ -5238,7 +5238,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 202F));
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 202F));
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 202F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 137F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 141F));
             this.tableLayoutPanel112.Controls.Add(this.label280, 8, 0);
             this.tableLayoutPanel112.Controls.Add(this.label279, 7, 0);
             this.tableLayoutPanel112.Controls.Add(this.label278, 6, 0);
@@ -7171,7 +7171,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
             this.tableLayoutPanel140.Controls.Add(this.label404, 14, 2);
             this.tableLayoutPanel140.Controls.Add(this.label403, 13, 2);
             this.tableLayoutPanel140.Controls.Add(this.label402, 12, 2);
@@ -8774,7 +8774,6 @@ namespace WindowsFormsApp1
             this.slab_SS_SB_B_AtB_cbx.Name = "slab_SS_SB_B_AtB_cbx";
             this.slab_SS_SB_B_AtB_cbx.Size = new System.Drawing.Size(81, 28);
             this.slab_SS_SB_B_AtB_cbx.TabIndex = 39;
-            this.slab_SS_SB_B_AtB_cbx.SelectedIndexChanged += new System.EventHandler(this.slab_SS_SB_B_AtB_cbx_SelectedIndexChanged);
             // 
             // slab_SS_SB_L_AtB_cbx
             // 
@@ -8786,7 +8785,6 @@ namespace WindowsFormsApp1
             this.slab_SS_SB_L_AtB_cbx.Name = "slab_SS_SB_L_AtB_cbx";
             this.slab_SS_SB_L_AtB_cbx.Size = new System.Drawing.Size(81, 28);
             this.slab_SS_SB_L_AtB_cbx.TabIndex = 38;
-            this.slab_SS_SB_L_AtB_cbx.SelectedIndexChanged += new System.EventHandler(this.slab_SS_SB_L_AtB_cbx_SelectedIndexChanged);
             // 
             // slab_SS_SB_R_AtB_cbx
             // 
@@ -8798,7 +8796,6 @@ namespace WindowsFormsApp1
             this.slab_SS_SB_R_AtB_cbx.Name = "slab_SS_SB_R_AtB_cbx";
             this.slab_SS_SB_R_AtB_cbx.Size = new System.Drawing.Size(81, 28);
             this.slab_SS_SB_R_AtB_cbx.TabIndex = 37;
-            this.slab_SS_SB_R_AtB_cbx.SelectedIndexChanged += new System.EventHandler(this.slab_SS_SB_R_AtB_cbx_SelectedIndexChanged);
             // 
             // label325
             // 
@@ -8858,6 +8855,7 @@ namespace WindowsFormsApp1
             this.slab_SS_SB_R_BR_cbx.Name = "slab_SS_SB_R_BR_cbx";
             this.slab_SS_SB_R_BR_cbx.Size = new System.Drawing.Size(81, 28);
             this.slab_SS_SB_R_BR_cbx.TabIndex = 32;
+            this.slab_SS_SB_R_BR_cbx.SelectedIndexChanged += new System.EventHandler(this.slab_SS_SB_R_BR_cbx_SelectedIndexChanged);
             // 
             // slab_SS_SB_L_BR_cbx
             // 
@@ -8869,6 +8867,7 @@ namespace WindowsFormsApp1
             this.slab_SS_SB_L_BR_cbx.Name = "slab_SS_SB_L_BR_cbx";
             this.slab_SS_SB_L_BR_cbx.Size = new System.Drawing.Size(81, 28);
             this.slab_SS_SB_L_BR_cbx.TabIndex = 31;
+            this.slab_SS_SB_L_BR_cbx.SelectedIndexChanged += new System.EventHandler(this.slab_SS_SB_L_AtB_cbx_SelectedIndexChanged);
             // 
             // slab_SS_SB_B_BR_cbx
             // 
@@ -8880,6 +8879,7 @@ namespace WindowsFormsApp1
             this.slab_SS_SB_B_BR_cbx.Name = "slab_SS_SB_B_BR_cbx";
             this.slab_SS_SB_B_BR_cbx.Size = new System.Drawing.Size(81, 28);
             this.slab_SS_SB_B_BR_cbx.TabIndex = 30;
+            this.slab_SS_SB_B_BR_cbx.SelectedIndexChanged += new System.EventHandler(this.slab_SS_SB_B_AtB_cbx_SelectedIndexChanged);
             // 
             // slab_SS_SB_T_BR_cbx
             // 
@@ -9309,8 +9309,8 @@ namespace WindowsFormsApp1
             this.stairs_ST_cbx.FormattingEnabled = true;
             this.stairs_ST_cbx.Items.AddRange(new object[] {
             "Straight Stairs",
-            "L-Stairs",
-            "U-Stairs"});
+            "U-Stairs",
+            "L-Stairs"});
             this.stairs_ST_cbx.Location = new System.Drawing.Point(229, 3);
             this.stairs_ST_cbx.Name = "stairs_ST_cbx";
             this.stairs_ST_cbx.Size = new System.Drawing.Size(209, 28);

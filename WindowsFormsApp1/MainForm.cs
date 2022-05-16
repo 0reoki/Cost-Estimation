@@ -1169,6 +1169,7 @@ namespace WindowsFormsApp1
 
                         found[0].Nodes.Add(newChild);
                         floor.AdjustTreeViewHeight(floor.treeView);
+                        floor.beamCount++;
                     }
                 }
 
@@ -1183,6 +1184,7 @@ namespace WindowsFormsApp1
 
                         found[0].Nodes.Add(newChild);
                         floor.AdjustTreeViewHeight(floor.treeView);
+                        floor.slabCount++;
                     }
                 }
 
@@ -2076,12 +2078,12 @@ namespace WindowsFormsApp1
                     List<List<double>> floor = new List<List<double>>();
                     i++;
                     l = 0;
-                    if (tokens[i].Equals("concreteC-" + (l + 1)) && !tokens[i].Equals("ConcreteBR"))
+                    if (tokens[i].Equals("concreteC-" + (l + 1)) && !tokens[i].Equals("ConcreteBR") && !tokens[i].Equals("Floor-" + (j + 2)))
                     {
                         List<double> toAdd = new List<double>();
                         i++;
 
-                        while (!tokens[i].Equals("concreteC-" + (l + 2)) && !tokens[i].Equals("ConcreteBR"))
+                        while (!tokens[i].Equals("concreteC-" + (l + 2)) && !tokens[i].Equals("ConcreteBR") && !tokens[i].Equals("Floor-" + (j + 2)))
                         {
                             toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
                         }
@@ -2104,12 +2106,12 @@ namespace WindowsFormsApp1
                     List<List<double>> floor = new List<List<double>>();
                     i++;
                     l = 0;
-                    if (tokens[i].Equals("concreteBR-" + (l + 1)) && !tokens[i].Equals("ConcreteSL"))
+                    if (tokens[i].Equals("concreteBR-" + (l + 1)) && !tokens[i].Equals("ConcreteSL") && !tokens[i].Equals("Floor-" + (j + 2)))
                     {
                         List<double> toAdd = new List<double>();
                         i++;
 
-                        while (!tokens[i].Equals("concreteBR-" + (l + 2)) && !tokens[i].Equals("ConcreteSL"))
+                        while (!tokens[i].Equals("concreteBR-" + (l + 2)) && !tokens[i].Equals("ConcreteSL") && !tokens[i].Equals("Floor-" + (j + 2)))
                         {
                             toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
                         }
@@ -2132,12 +2134,12 @@ namespace WindowsFormsApp1
                     List<List<double>> floor = new List<List<double>>();
                     i++;
                     l = 0;
-                    if (tokens[i].Equals("concreteSL-" + (l + 1)) && !tokens[i].Equals("ConcreteST"))
+                    if (tokens[i].Equals("concreteSL-" + (l + 1)) && !tokens[i].Equals("ConcreteST") && !tokens[i].Equals("Floor-" + (j + 2)))
                     {
                         List<double> toAdd = new List<double>();
                         i++;
 
-                        while (!tokens[i].Equals("concreteSL-" + (l + 2)) && !tokens[i].Equals("ConcreteST"))
+                        while (!tokens[i].Equals("concreteSL-" + (l + 2)) && !tokens[i].Equals("ConcreteST") && !tokens[i].Equals("Floor-" + (j + 2)))
                         {
                             toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
                         }
@@ -2160,12 +2162,12 @@ namespace WindowsFormsApp1
                     List<List<double>> floor = new List<List<double>>();
                     i++;
                     l = 0;
-                    if (tokens[i].Equals("concreteST-" + (l + 1)) && !tokens[i].Equals("ConcreteFS"))
+                    if (tokens[i].Equals("concreteST-" + (l + 1)) && !tokens[i].Equals("ConcreteFS") && !tokens[i].Equals("Floor-" + (j + 2)))
                     {
                         List<double> toAdd = new List<double>();
                         i++;
 
-                        while (!tokens[i].Equals("concreteST-" + (l + 2)) && !tokens[i].Equals("ConcreteFS"))
+                        while (!tokens[i].Equals("concreteST-" + (l + 2)) && !tokens[i].Equals("ConcreteFS") && !tokens[i].Equals("Floor-" + (j + 2)))
                         {
                             toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
                         }
