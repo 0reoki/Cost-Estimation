@@ -12,7 +12,7 @@ namespace WindowsFormsApp1
         //General Functions -- START
         private void refreshSolutions(CostEstimationForm cEF)
         {
-            //Footing -- START
+            //Earthworks -- START
             cEF.excavation_Total = 0;
             cEF.gradingAndCompaction_Total = 0;
             cEF.gravelBedding_Total = 0;
@@ -94,12 +94,23 @@ namespace WindowsFormsApp1
                 // kailangan bumili lol
                 // Do something
             }
-            //Footing -- END
+            //Earthworks -- END
 
-            //Stairs -- START
+            //Concrete Works -- START
+            cEF.excavation_Total = 0;
+            cEF.gradingAndCompaction_Total = 0;
+            cEF.gravelBedding_Total = 0;
+            cEF.backfillingAndCompaction_Total = 0;
+            foreach (List<double> toAdd in cEF.structuralMembers.earthworkSolutions)
+            {
+                cEF.excavation_Total += toAdd[1];
+                cEF.gradingAndCompaction_Total += toAdd[2];
+                cEF.gravelBedding_Total += toAdd[3];
+                cEF.backfillingAndCompaction_Total += toAdd[1];
+                concreting += toAdd[4];
+            }
 
-
-            //Stairs -- END
+            //Concrete Works -- END
         }
         //General Functions -- END
 

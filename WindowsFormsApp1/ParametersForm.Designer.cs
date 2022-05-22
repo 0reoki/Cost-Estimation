@@ -1435,8 +1435,12 @@ namespace WindowsFormsApp1
             this.form_SM_F_FL_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_F_FL_cbx.FormattingEnabled = true;
             this.form_SM_F_FL_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x (8\', 10\', 12\')",
-            "2\" x 3\" x (8\', 10\', 12\')"});
+            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 10\'",
+            "2\" x 2\" x 12\'",
+            "2\" x 3\" x 8\'",
+            "2\" x 3\" x 10\'",
+            "2\" x 3\" x 12\'"});
             this.form_SM_F_FL_cbx.Location = new System.Drawing.Point(150, 34);
             this.form_SM_F_FL_cbx.Name = "form_SM_F_FL_cbx";
             this.form_SM_F_FL_cbx.Size = new System.Drawing.Size(191, 28);
@@ -1489,9 +1493,15 @@ namespace WindowsFormsApp1
             this.form_SM_C_VS_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_C_VS_cbx.FormattingEnabled = true;
             this.form_SM_C_VS_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x (8\', 10\', 12\')",
-            "2\" x 3\" x (8\', 10\', 12\')",
-            "2\" x 4\" x (8\', 10\', 12\')"});
+            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 10\'",
+            "2\" x 2\" x 12\'",
+            "2\" x 3\" x 8\'",
+            "2\" x 3\" x 10\'",
+            "2\" x 3\" x 12\'",
+            "2\" x 4\" x 8\'",
+            "2\" x 4\" x 10\'",
+            "2\" x 4\" x 12\'"});
             this.form_SM_C_VS_cbx.Location = new System.Drawing.Point(150, 99);
             this.form_SM_C_VS_cbx.Name = "form_SM_C_VS_cbx";
             this.form_SM_C_VS_cbx.Size = new System.Drawing.Size(191, 28);
@@ -1564,8 +1574,12 @@ namespace WindowsFormsApp1
             this.form_SM_C_FL_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_C_FL_cbx.FormattingEnabled = true;
             this.form_SM_C_FL_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x (8\', 10\', 12\')",
-            "2\" x 3\" x (8\', 10\', 12\')"});
+            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 10\'",
+            "2\" x 2\" x 12\'",
+            "2\" x 3\" x 8\'",
+            "2\" x 3\" x 10\'",
+            "2\" x 3\" x 12\'"});
             this.form_SM_C_FL_cbx.Location = new System.Drawing.Point(150, 34);
             this.form_SM_C_FL_cbx.Name = "form_SM_C_FL_cbx";
             this.form_SM_C_FL_cbx.Size = new System.Drawing.Size(191, 28);
@@ -1576,9 +1590,15 @@ namespace WindowsFormsApp1
             this.form_SM_C_HB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_C_HB_cbx.FormattingEnabled = true;
             this.form_SM_C_HB_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x (8\', 10\', 12\')",
-            "2\" x 3\" x (8\', 10\', 12\')",
-            "2\" x 4\" x (8\', 10\', 12\')"});
+            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 10\'",
+            "2\" x 2\" x 12\'",
+            "2\" x 3\" x 8\'",
+            "2\" x 3\" x 10\'",
+            "2\" x 3\" x 12\'",
+            "2\" x 4\" x 8\'",
+            "2\" x 4\" x 10\'",
+            "2\" x 4\" x 12\'"});
             this.form_SM_C_HB_cbx.Location = new System.Drawing.Point(150, 133);
             this.form_SM_C_HB_cbx.Name = "form_SM_C_HB_cbx";
             this.form_SM_C_HB_cbx.Size = new System.Drawing.Size(191, 28);
@@ -1632,9 +1652,15 @@ namespace WindowsFormsApp1
             this.form_SM_B_VS_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_B_VS_cbx.FormattingEnabled = true;
             this.form_SM_B_VS_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x (8\', 10\', 12\')",
-            "2\" x 3\" x (8\', 10\', 12\')",
-            "2\" x 4\" x (8\', 10\', 12\')"});
+            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 10\'",
+            "2\" x 2\" x 12\'",
+            "2\" x 3\" x 8\'",
+            "2\" x 3\" x 10\'",
+            "2\" x 3\" x 12\'",
+            "2\" x 4\" x 8\'",
+            "2\" x 4\" x 10\'",
+            "2\" x 4\" x 12\'"});
             this.form_SM_B_VS_cbx.Location = new System.Drawing.Point(150, 99);
             this.form_SM_B_VS_cbx.Name = "form_SM_B_VS_cbx";
             this.form_SM_B_VS_cbx.Size = new System.Drawing.Size(191, 28);
@@ -1719,8 +1745,12 @@ namespace WindowsFormsApp1
             this.form_SM_B_FL_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_B_FL_cbx.FormattingEnabled = true;
             this.form_SM_B_FL_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x (8\', 10\', 12\')",
-            "2\" x 3\" x (8\', 10\', 12\')"});
+            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 10\'",
+            "2\" x 2\" x 12\'",
+            "2\" x 3\" x 8\'",
+            "2\" x 3\" x 10\'",
+            "2\" x 3\" x 12\'"});
             this.form_SM_B_FL_cbx.Location = new System.Drawing.Point(150, 34);
             this.form_SM_B_FL_cbx.Name = "form_SM_B_FL_cbx";
             this.form_SM_B_FL_cbx.Size = new System.Drawing.Size(191, 28);
@@ -1731,9 +1761,15 @@ namespace WindowsFormsApp1
             this.form_SM_B_HB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_B_HB_cbx.FormattingEnabled = true;
             this.form_SM_B_HB_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x (8\', 10\', 12\')",
-            "2\" x 3\" x (8\', 10\', 12\')",
-            "2\" x 4\" x (8\', 10\', 12\')"});
+            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 10\'",
+            "2\" x 2\" x 12\'",
+            "2\" x 3\" x 8\'",
+            "2\" x 3\" x 10\'",
+            "2\" x 3\" x 12\'",
+            "2\" x 4\" x 8\'",
+            "2\" x 4\" x 10\'",
+            "2\" x 4\" x 12\'"});
             this.form_SM_B_HB_cbx.Location = new System.Drawing.Point(150, 133);
             this.form_SM_B_HB_cbx.Name = "form_SM_B_HB_cbx";
             this.form_SM_B_HB_cbx.Size = new System.Drawing.Size(191, 28);
@@ -1744,9 +1780,15 @@ namespace WindowsFormsApp1
             this.form_SM_B_DB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_B_DB_cbx.FormattingEnabled = true;
             this.form_SM_B_DB_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x (8\', 10\', 12\')",
-            "2\" x 3\" x (8\', 10\', 12\')",
-            "2\" x 4\" x (8\', 10\', 12\')"});
+            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 10\'",
+            "2\" x 2\" x 12\'",
+            "2\" x 3\" x 8\'",
+            "2\" x 3\" x 10\'",
+            "2\" x 3\" x 12\'",
+            "2\" x 4\" x 8\'",
+            "2\" x 4\" x 10\'",
+            "2\" x 4\" x 12\'"});
             this.form_SM_B_DB_cbx.Location = new System.Drawing.Point(150, 167);
             this.form_SM_B_DB_cbx.Name = "form_SM_B_DB_cbx";
             this.form_SM_B_DB_cbx.Size = new System.Drawing.Size(191, 28);
@@ -1793,9 +1835,15 @@ namespace WindowsFormsApp1
             this.form_SM_HS_VS_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_HS_VS_cbx.FormattingEnabled = true;
             this.form_SM_HS_VS_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x (8\', 10\', 12\')",
-            "2\" x 3\" x (8\', 10\', 12\')",
-            "2\" x 4\" x (8\', 10\', 12\')"});
+            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 10\'",
+            "2\" x 2\" x 12\'",
+            "2\" x 3\" x 8\'",
+            "2\" x 3\" x 10\'",
+            "2\" x 3\" x 12\'",
+            "2\" x 4\" x 8\'",
+            "2\" x 4\" x 10\'",
+            "2\" x 4\" x 12\'"});
             this.form_SM_HS_VS_cbx.Location = new System.Drawing.Point(150, 34);
             this.form_SM_HS_VS_cbx.Name = "form_SM_HS_VS_cbx";
             this.form_SM_HS_VS_cbx.Size = new System.Drawing.Size(191, 28);
@@ -1871,9 +1919,15 @@ namespace WindowsFormsApp1
             this.form_SM_ST_VS_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_ST_VS_cbx.FormattingEnabled = true;
             this.form_SM_ST_VS_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x (8\', 10\', 12\')",
-            "2\" x 3\" x (8\', 10\', 12\')",
-            "2\" x 4\" x (8\', 10\', 12\')"});
+            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 10\'",
+            "2\" x 2\" x 12\'",
+            "2\" x 3\" x 8\'",
+            "2\" x 3\" x 10\'",
+            "2\" x 3\" x 12\'",
+            "2\" x 4\" x 8\'",
+            "2\" x 4\" x 10\'",
+            "2\" x 4\" x 12\'"});
             this.form_SM_ST_VS_cbx.Location = new System.Drawing.Point(150, 99);
             this.form_SM_ST_VS_cbx.Name = "form_SM_ST_VS_cbx";
             this.form_SM_ST_VS_cbx.Size = new System.Drawing.Size(191, 28);
@@ -1934,8 +1988,12 @@ namespace WindowsFormsApp1
             this.form_SM_ST_FL_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_ST_FL_cbx.FormattingEnabled = true;
             this.form_SM_ST_FL_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x (8\', 10\', 12\')",
-            "2\" x 3\" x (8\', 10\', 12\')"});
+            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 10\'",
+            "2\" x 2\" x 12\'",
+            "2\" x 3\" x 8\'",
+            "2\" x 3\" x 10\'",
+            "2\" x 3\" x 12\'"});
             this.form_SM_ST_FL_cbx.Location = new System.Drawing.Point(150, 34);
             this.form_SM_ST_FL_cbx.Name = "form_SM_ST_FL_cbx";
             this.form_SM_ST_FL_cbx.Size = new System.Drawing.Size(191, 28);

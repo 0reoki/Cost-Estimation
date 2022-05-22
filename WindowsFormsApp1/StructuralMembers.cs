@@ -55,6 +55,7 @@ namespace WindowsFormsApp1
         public List<List<List<double>>> concreteWorkSolutionsC = new List<List<List<double>>>();
         public List<List<List<double>>> concreteWorkSolutionsBR = new List<List<List<double>>>();
         public List<List<List<double>>> concreteWorkSolutionsSL = new List<List<List<double>>>();
+        public List<List<string>> concreteWorkSolutionsSLSM = new List<List<string>>();
         public List<List<List<double>>> concreteWorkSolutionsST = new List<List<List<double>>>();
         public List<double> concreteWorkSolutionsFS = new List<double>();
 

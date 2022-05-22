@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -23,6 +25,7 @@ namespace WindowsFormsApp1
         //Passed Variables
 
         //Local Variables
+        public List<string> searchList;
         public bool saveFileExists;
         public bool viewInitalized;
         String fileName;
@@ -56,6 +59,7 @@ namespace WindowsFormsApp1
             addFloor();
 
             //Initialize Local Variables
+            searchList = new List<string>();
             fileName = null;
             excavation_Total = 0; 
             backfillingAndCompaction_Total = 0; 
@@ -68,6 +72,20 @@ namespace WindowsFormsApp1
                 gravel_Total[i] = 0;
                 water_Total[i] = 0;
             }
+
+            //Initialize Price Parameters
+            InitPriceList();
+            //AdjustPriceView();
+
+            //Remove tab control tabpages
+            priceTabControl.Appearance = TabAppearance.FlatButtons;
+            priceTabControl.ItemSize = new Size(0, 1);
+            priceTabControl.SizeMode = TabSizeMode.Fixed;
+            foreach (TabPage tab in priceTabControl.TabPages)
+            {
+                tab.Text = "";
+            }
+            price_Category_cbx.SelectedIndex = 0;
         }
         //General Functions -- END
 
@@ -98,101 +116,6 @@ namespace WindowsFormsApp1
                 e.Cancel = true;
             }
         }
-
-        //View Functions -- START
-        private void initializeView()
-        {
-            if (!viewInitalized)
-            {
-                treeView1.Nodes.Clear();
-                treeView2.Nodes.Clear();
-                treeView3.Nodes.Clear();
-                //Tree View 1 - Earthworks and Concrete Works
-                List<TreeNode> nodes1;
-                TreeNode tn1 = new TreeNode("Earthworks");
-                tn1.Name = "earthworksParent";
-
-                TreeNode tn2 = new TreeNode("Concrete Works");
-                tn2.Name = "concreteWorksParent";
-                nodes1 = new List<TreeNode>() { tn1, tn2 };
-
-                setTree(nodes1, treeView1);
-
-                //Earthworks
-                TreeNode[] found = treeView1.Nodes.Find("earthworksParent", true);
-
-                TreeNode newChild1 = new TreeNode("1.1 Excavation " + excavation_Total.ToString());
-                newChild1.Name = "excavation_Total";
-
-                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction " + backfillingAndCompaction_Total.ToString());
-                newChild2.Name = "backfillingAndCompaction_Total";
-
-                TreeNode newChild3 = new TreeNode("1.3 Grading and Compaction " + gradingAndCompaction_Total.ToString());
-                newChild3.Name = "gradingAndCompaction_Total";
-
-                TreeNode newChild4 = new TreeNode("1.4 Gravel Bedding and Compaction " + gravelBedding_Total.ToString());
-                newChild4.Name = "gravelBedding_Total";
-
-                TreeNode newChild5 = new TreeNode("1.5 Soil Poisoning " + soilPoisoning_Total.ToString());
-                newChild5.Name = "soilPoisoning_Total";
-
-                found[0].Nodes.Add(newChild1);
-                found[0].Nodes.Add(newChild2);
-                found[0].Nodes.Add(newChild3);
-                found[0].Nodes.Add(newChild4);
-                found[0].Nodes.Add(newChild5);
-
-                //Tree View 2 - 
-            }
-        }
-        private void setTree(List<TreeNode> nodes, TreeView treeView)
-        {
-            for (int i = 0; i < nodes.Count; i++)
-            {
-                treeView.Nodes.Add(nodes[i]);
-            }
-            AdjustTreeViewHeight(treeView);
-        }
-
-        //Local Variables
-        const int TVM_GETNEXTITEM = 0x1100 + 10;
-        const int TVGN_LASTVISIBLE = 0x000A;
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        extern static IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, IntPtr lParam);
-
-        public void AdjustTreeViewHeight(TreeView treeView)
-        {
-            treeView.Scrollable = false;
-            var nodeHandle = SendMessage(treeView.Handle, TVM_GETNEXTITEM,
-                TVGN_LASTVISIBLE, IntPtr.Zero);
-            var node = treeView.GetType().GetMethod("NodeFromHandle",
-                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-                .Invoke(treeView, new object[] { nodeHandle }) as TreeNode;
-            var r = node.Bounds;
-            treeView.Height = r.Top + r.Height + 4;
-        }
-
-        private void treeView1_DoubleClick(object sender, EventArgs e)
-        {
-            string[] parents = { "Earthworks", "Concrete Works" };
-            TreeViewHitTestInfo info = treeView1.HitTest(treeView1.PointToClient(Cursor.Position));
-            try
-            {
-                if (treeView1.SelectedNode != null)
-                {
-                    if (Array.IndexOf(parents, info.Node.Text) < 0)
-                    {
-                        ViewDetailedInfoForm vf = new ViewDetailedInfoForm(info.Node.Text.Substring(0, 3), this, structuralMembers);
-                        vf.ShowDialog();
-                    }
-                }
-            }
-            catch (NullReferenceException ex)
-            {
-                Console.WriteLine("Exception: " + ex);
-            }
-        }
-        //View functions -- END
 
         //File Menu - New
         private void fileMenu1_Click(object sender, EventArgs e)
@@ -357,11 +280,13 @@ namespace WindowsFormsApp1
                 List<List<double>> newList19 = new List<List<double>>();
                 List<List<double>> newList20 = new List<List<double>>();
                 List<List<double>> newList21 = new List<List<double>>();
-                List<List<double>> newList22 = new List<List<double>>();
+                List<string> newList22 = new List<string>();
+                List<List<double>> newList23 = new List<List<double>>();
                 structuralMembers.concreteWorkSolutionsC.Add(newList19);
                 structuralMembers.concreteWorkSolutionsBR.Add(newList20);
                 structuralMembers.concreteWorkSolutionsSL.Add(newList21);
-                structuralMembers.concreteWorkSolutionsST.Add(newList22);
+                structuralMembers.concreteWorkSolutionsSLSM.Add(newList22);
+                structuralMembers.concreteWorkSolutionsST.Add(newList23);
             }
             else //Upper Floors
             {
@@ -411,11 +336,13 @@ namespace WindowsFormsApp1
                 List<List<double>> newList19 = new List<List<double>>();
                 List<List<double>> newList20 = new List<List<double>>();
                 List<List<double>> newList21 = new List<List<double>>();
-                List<List<double>> newList22 = new List<List<double>>();
+                List<string> newList22 = new List<string>();
+                List<List<double>> newList23 = new List<List<double>>();
                 structuralMembers.concreteWorkSolutionsC.Add(newList19);
                 structuralMembers.concreteWorkSolutionsBR.Add(newList20);
                 structuralMembers.concreteWorkSolutionsSL.Add(newList21);
-                structuralMembers.concreteWorkSolutionsST.Add(newList22);
+                structuralMembers.concreteWorkSolutionsSLSM.Add(newList22);
+                structuralMembers.concreteWorkSolutionsST.Add(newList23);
             }
         }
 
@@ -454,6 +381,376 @@ namespace WindowsFormsApp1
         }
 
         //Home Functions -- END
+
+        //View Functions -- START
+        private void initializeView()
+        {
+            if (!viewInitalized)
+            {
+                treeView1.Nodes.Clear();
+                treeView2.Nodes.Clear();
+                treeView3.Nodes.Clear();
+                //Tree View 1 - Earthworks and Concrete Works
+                List<TreeNode> nodes1;
+                TreeNode tn1 = new TreeNode("Earthworks");
+                tn1.Name = "earthworksParent";
+
+                TreeNode tn2 = new TreeNode("Concrete Works");
+                tn2.Name = "concreteWorksParent";
+                nodes1 = new List<TreeNode>() { tn1, tn2 };
+
+                setTree(nodes1, treeView1);
+
+                //Earthworks
+                TreeNode[] found = treeView1.Nodes.Find("earthworksParent", true);
+
+                TreeNode newChild1 = new TreeNode("1.1 Excavation " + excavation_Total.ToString());
+                newChild1.Name = "excavation_Total";
+
+                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction " + backfillingAndCompaction_Total.ToString());
+                newChild2.Name = "backfillingAndCompaction_Total";
+
+                TreeNode newChild3 = new TreeNode("1.3 Grading and Compaction " + gradingAndCompaction_Total.ToString());
+                newChild3.Name = "gradingAndCompaction_Total";
+
+                TreeNode newChild4 = new TreeNode("1.4 Gravel Bedding and Compaction " + gravelBedding_Total.ToString());
+                newChild4.Name = "gravelBedding_Total";
+
+                TreeNode newChild5 = new TreeNode("1.5 Soil Poisoning " + soilPoisoning_Total.ToString());
+                newChild5.Name = "soilPoisoning_Total";
+
+                found[0].Nodes.Add(newChild1);
+                found[0].Nodes.Add(newChild2);
+                found[0].Nodes.Add(newChild3);
+                found[0].Nodes.Add(newChild4);
+                found[0].Nodes.Add(newChild5);
+
+                //Tree View 2 - 
+            }
+        }
+        private void setTree(List<TreeNode> nodes, TreeView treeView)
+        {
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                treeView.Nodes.Add(nodes[i]);
+            }
+            AdjustTreeViewHeight(treeView);
+        }
+
+        //Local Variables
+        const int TVM_GETNEXTITEM = 0x1100 + 10;
+        const int TVGN_LASTVISIBLE = 0x000A;
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        extern static IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, IntPtr lParam);
+
+        public void AdjustTreeViewHeight(TreeView treeView)
+        {
+            treeView.Scrollable = false;
+            var nodeHandle = SendMessage(treeView.Handle, TVM_GETNEXTITEM,
+                TVGN_LASTVISIBLE, IntPtr.Zero);
+            var node = treeView.GetType().GetMethod("NodeFromHandle",
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                .Invoke(treeView, new object[] { nodeHandle }) as TreeNode;
+            var r = node.Bounds;
+            treeView.Height = r.Top + r.Height + 4;
+        }
+
+        private void treeView1_DoubleClick(object sender, EventArgs e)
+        {
+            string[] parents = { "Earthworks", "Concrete Works" };
+            TreeViewHitTestInfo info = treeView1.HitTest(treeView1.PointToClient(Cursor.Position));
+            try
+            {
+                if (treeView1.SelectedNode != null)
+                {
+                    if (Array.IndexOf(parents, info.Node.Text) < 0)
+                    {
+                        ViewDetailedInfoForm vf = new ViewDetailedInfoForm(info.Node.Text.Substring(0, 3), this, structuralMembers);
+                        vf.ShowDialog();
+                    }
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine("Exception: " + ex);
+            }
+        }
+        //View functions -- END
+
+        //Price functions -- START
+        private void InitPriceList() 
+        {
+            //TODO, sa ngayon isang item lang per category to test
+            //1 - Common Materials
+            parameters.price_CommonMaterials.Add("Cyclone Wire (Gauge#10, 2”x2”, 3ft x 10m) [ROLL]", 3250);
+            parameters.price_CommonMaterials.Add("Gasket  (6mm thk, 1m x 1m) [ROLL]", 2840);
+            parameters.price_CommonMaterials.Add("Acetylene Gas [CYL]", 1045);
+            parameters.price_CommonMaterials.Add("Oxygen Gas [CYL]", 438);
+            parameters.price_CommonMaterials.Add("Rugby [CANS]", 648);
+            parameters.price_CommonMaterials.Add("Vulca Seal [LTR]", 470);
+            parameters.price_CommonMaterials.Add("Broom, Soft [PC]", 218);
+            parameters.price_CommonMaterials.Add("Concrete Epoxy [SET]", 3000);
+            parameters.price_CommonMaterials.Add("Concrete Patching Compound [KGS]", 386);
+            parameters.price_CommonMaterials.Add("GI Wire (no. 16) [ROLL]", 1750);
+            parameters.price_CommonMaterials.Add("GI Wire (no. 12) [KG]", 70.85);
+            parameters.price_CommonMaterials.Add("GI Wire (no. 16) [KG]", 71.37);
+            parameters.price_CommonMaterials.Add("Non-Shrink Grout [BAGS]", 621);
+            parameters.price_CommonMaterials.Add("40 kg Portland Cement [BAGS]", 165);
+            parameters.price_CommonMaterials.Add("Sand [m3]", 1400);
+            parameters.price_CommonMaterials.Add("Rivets 1/8” x ½” [BOX]", 200);
+            parameters.price_CommonMaterials.Add("Rivets 1-1/2” x ½” [BOX]", 250);
+            parameters.price_CommonMaterials.Add("Rope (⌀ 1/2”) [MTRS]", 26);
+            parameters.price_CommonMaterials.Add("Tape, Caution [ROLLS]", 800);
+            parameters.price_CommonMaterials.Add("Tile Grout (2KG)  [BAGS]", 61);
+            parameters.price_CommonMaterials.Add("Tiles, Floor (600 x 600) [PC]", 152);
+            parameters.price_CommonMaterials.Add("Tiles, Wall (300 x 300) [PC]", 33);
+            parameters.price_CommonMaterials.Add("BroomStick [PC]", 37);
+            parameters.price_CommonMaterials.Add("Chalk Stone [PC]", 7);
+            parameters.price_CommonMaterials.Add("Sandpaper (#100) [MTRS]", 202);
+            parameters.price_CommonMaterials.Add("Sandpaper (#50) [MTRS]", 284);
+            parameters.price_CommonMaterials.Add("Common  Nail [KG]", 150);
+            parameters.price_CommonMaterials.Add("Concrete  Nail [KG]", 170);
+            parameters.price_CommonMaterials.Add("Putty, Multipurpose [PAIL]", 883);
+            parameters.price_CommonMaterials.Add("Tie Wire (No. #16) [25kg/Roll]", 1800);
+            parameters.price_CommonMaterials.Add("25KG Tile Adhesive (Regular) [BAGS]", 300);
+            parameters.price_CommonMaterials.Add("25 KG Tile Adhesive (Heavy duty) [BAGS]", 550);
+            parameters.price_CommonMaterials.Add("CHB 4” (0.10 x 0.20 x 0.40) [PC]", 20);
+            parameters.price_CommonMaterials.Add("CHB 6” (0.15 x 0.20 x 0.40) [PC]", 22);
+            parameters.price_CommonMaterials.Add("CHB 4” (0.20 x 0.20 x 0.40) [PC]", 26);
+            foreach (DictionaryEntry dict in parameters.price_CommonMaterials)
+            {
+                searchList.Add(dict.Key + " - Common Materials");
+            }
+
+            //2 - Paint and Coating
+            parameters.price_PaintAndCoating.Add("Acrylic Emulsion [GALS]", 705); 
+            parameters.price_PaintAndCoating.Add("Concrete Epoxy Injection [GALS]", 1834);
+            parameters.price_PaintAndCoating.Add("Concrete Primer & Sealer [PAIL]", 2618);
+            parameters.price_PaintAndCoating.Add("Epopatch, Base and Hardener [SETS]", 2075);
+            parameters.price_PaintAndCoating.Add("Lacquer Thinner [GALS]", 359);
+            parameters.price_PaintAndCoating.Add("Paint Brush, Bamboo 1-1/2” [PC]", 35);
+            parameters.price_PaintAndCoating.Add("Paint, Acrylic 1 [GAL]", 650);
+            parameters.price_PaintAndCoating.Add("Paint, Epoxy Enamel White [GAL]", 1100);
+            parameters.price_PaintAndCoating.Add("Paint, Epoxy Floor Coating [GALS]", 2800);
+            parameters.price_PaintAndCoating.Add("Paint, Epoxy Primer Gray [GALS]", 865);
+            parameters.price_PaintAndCoating.Add("Paint, Epoxy Reducer [GALS]", 529);
+            parameters.price_PaintAndCoating.Add("Paint Latex Gloss [GAL]", 640.2);
+            parameters.price_PaintAndCoating.Add("Paint Enamel [GAL]", 660);
+            parameters.price_PaintAndCoating.Add("Paint, Semi-Gloss [GALS]", 675);
+            parameters.price_PaintAndCoating.Add("Putty, Masonry [PAIL]", 1396);
+            parameters.price_PaintAndCoating.Add("Rust Converter [GAL]", 771);
+            parameters.price_PaintAndCoating.Add("Skim Coat [BAGS]", 650);
+            parameters.price_PaintAndCoating.Add("Underwater Epoxy [GALS]", 2211);
+            parameters.price_PaintAndCoating.Add("Concrete neutralizer [GALS]", 475);
+            foreach (DictionaryEntry dict in parameters.price_PaintAndCoating)
+            {
+                searchList.Add(dict.Key + " - Paint and Coating");
+            }
+
+            //3 - Welding Rod
+            parameters.price_WeldingRod.Add("Stainless Welding Rod 308 (3.2mm) [KGS]", 500); 
+            parameters.price_WeldingRod.Add("Welding Rod 6011 (3.2mm) [KGS] ", 125);
+            parameters.price_WeldingRod.Add("Welding Rod 6011 (3.2mm) [BOX] ", 2400);
+            parameters.price_WeldingRod.Add("Welding Rod 6013 (3.2mm) [KGS] ", 107);
+            parameters.price_WeldingRod.Add("Welding Rod 6013 (3.2mm) [BOX] ", 2000);
+            foreach (DictionaryEntry dict in parameters.price_WeldingRod)
+            {
+                searchList.Add(dict.Key + " - Welding Rod");
+            }
+
+            //4 - Personal Protective Equipment
+            parameters.price_PersonalProtectiveEquipment.Add("Chemical Gloves PAIR Cotton Gloves [PAIRS]", 212);
+            parameters.price_PersonalProtectiveEquipment.Add("Cotton Gloves [PAIRS]", 18);
+            parameters.price_PersonalProtectiveEquipment.Add("Dust Mask N95 [PC]", 28);
+            parameters.price_PersonalProtectiveEquipment.Add("Gloves, Orange Palm [PAIRS]", 28);
+            parameters.price_PersonalProtectiveEquipment.Add("Hard Hat w/ Headgear and chin strap [20 SET]", 221);
+            parameters.price_PersonalProtectiveEquipment.Add("Overall with reflector [PC]", 1074);
+            parameters.price_PersonalProtectiveEquipment.Add("Oxy-Acetylene Cutting Outfit [SET]", 17125);
+            parameters.price_PersonalProtectiveEquipment.Add("PVC Apron  [PC]", 508);
+            parameters.price_PersonalProtectiveEquipment.Add("Respirator mask w/ Cartridge [PC]", 2117);
+            parameters.price_PersonalProtectiveEquipment.Add("Respirator, Filter Cartridge [PACK]", 656);
+            parameters.price_PersonalProtectiveEquipment.Add("Safety Goggles [PC]", 130);
+            parameters.price_PersonalProtectiveEquipment.Add("Safety Rubber boots [PAIR]", 391);
+            parameters.price_PersonalProtectiveEquipment.Add("Safety Shoes  [PAIR]", 960);
+            parameters.price_PersonalProtectiveEquipment.Add("Safety Vest [PC]", 120); 
+            parameters.price_PersonalProtectiveEquipment.Add("Welding Mask  [PC]", 130);
+            parameters.price_PersonalProtectiveEquipment.Add("Welding Apron [PC]", 262);
+            parameters.price_PersonalProtectiveEquipment.Add("Welding Mask, Auto Darkening [SETS]", 2500);
+            foreach (DictionaryEntry dict in parameters.price_PersonalProtectiveEquipment)
+            {
+                searchList.Add(dict.Key + " - Personal Protective Equipment");
+            }
+
+            //5 - Tools 
+            parameters.price_Tools.Add("Adjustable Wrench Set 4”— 24” [SET]", 2468);
+            parameters.price_Tools.Add("Baby Roller (Cotton) 4” [PC]", 63);
+            parameters.price_Tools.Add("Ball Hammer [PC]", 671);
+            parameters.price_Tools.Add("Bench Vise [UNIT]", 5122);
+            parameters.price_Tools.Add("Blade Cutter [PC]", 57);
+            parameters.price_Tools.Add("Camlock (Male & Female Set) 50mm DIA [SET]", 1585);
+            parameters.price_Tools.Add("Chipping Gun [UNIT]", 30607);
+            parameters.price_Tools.Add("Combination Wrench Set 6mm — 32mm [SET]", 3340);
+            parameters.price_Tools.Add("Cut-off Wheel ⌀ 16” [BOX]", 6295);
+            parameters.price_Tools.Add("Cutting Disc ⌀ 4” [BOX]", 1570);
+            parameters.price_Tools.Add("Cutting Disc ⌀ 7” [BOX]", 3785);
+            parameters.price_Tools.Add("Drill Bit [BOX]” [BOX]", 608);
+            parameters.price_Tools.Add("Electrical Plier [PC]", 408);
+            parameters.price_Tools.Add("Grinder, Angle 4” [UNIT]", 4017);
+            parameters.price_Tools.Add("Grinder, Angle 7” [UNIT]", 9184);
+            parameters.price_Tools.Add("Grinder, Baby [UNIT]", 5053);
+            parameters.price_Tools.Add("Grinder, Mother [UNIT]", 9025);
+            parameters.price_Tools.Add("Grinding Disc ⌀ 4” [BOX]", 929);
+            parameters.price_Tools.Add("Grinding Disc ⌀ 7” [BOX]", 1875);
+            parameters.price_Tools.Add("Heat Gun [UNIT]", 3500);
+            parameters.price_Tools.Add("Ladder (A-Type), 6h, Aluminum [PC]", 2270);
+            parameters.price_Tools.Add("Level Bar 24” [PC]", 540);
+            parameters.price_Tools.Add("Paint Brush 4” [PC]", 63);
+            parameters.price_Tools.Add("Paint Brush 2” [PC]", 39);
+            parameters.price_Tools.Add("Portable Axial Fan Blower  ⌀  8” [SET]", 8295);
+            parameters.price_Tools.Add("Power Ratchet [UNIT]", 8068);
+            parameters.price_Tools.Add("Rivet Gun / Riveter [UNIT]", 820);
+            parameters.price_Tools.Add("Roller Brush 7” [PC]", 97);
+            parameters.price_Tools.Add("Screwdriver, Flat [SET]", 273);
+            parameters.price_Tools.Add("Screwdriver, Philip [SET] ", 290);
+            parameters.price_Tools.Add("Shovel, Pointed [PC]", 500);
+            parameters.price_Tools.Add("Snap Ring Plier [SET]", 548);
+            parameters.price_Tools.Add("Socket Wrench Set 19mm — 50mm [SET]", 6329);
+            parameters.price_Tools.Add("Speed Cutter [UNIT]", 10000);
+            parameters.price_Tools.Add("Steel Brush [PC]", 30);
+            parameters.price_Tools.Add("Test Light [PC]", 158);
+            parameters.price_Tools.Add("Test Wrench [UNIT]", 5940);
+            parameters.price_Tools.Add("Torque Wrench [UNIT]", 6217);
+            parameters.price_Tools.Add("Vise Grip [PC]", 456);
+            parameters.price_Tools.Add("Welding Machine (Portable) 12.3 kVA(20-300A) [UNIT]", 19500);
+            foreach (DictionaryEntry dict in parameters.price_Tools)
+            {
+                searchList.Add(dict.Key + " - Tools");
+            }
+
+            //6 - Ready Mix Concrete 
+            parameters.price_ReadyMixConcrete.Add("Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 28 Days [m3]", 6); //6
+
+            parameters.price_Gravel.Add("GRAVEL G1 [m3]", 7); //7
+            parameters.price_FormworksAndLumber.Add("Lumber 2\"x 2” x 8'", 8); //8
+            parameters.price_TubularSteel1mm.Add("B.I. (Black Iron) Tubular 20mm x 20mm x 1.0mm thick [6m]", 9); //9
+            parameters.price_TubularSteel1p2mm.Add("B.I (Black Iron) Tubular 25mm x 25mm x 1.2mm thick [6m]", 10); //10
+            parameters.price_TubularSteel1p5mm.Add("B.I. (Black Iron) Tubular 25mm x 25mm x 1.5mm thick [6m]", 11); //11
+            parameters.price_Embankment.Add("Common Borrow [m3]", 12); //12
+            parameters.price_RebarGrade33.Add("Rebar GRADE 30 (⌀10mm) [6m]", 13); //13 -- 230 Mpa
+            parameters.price_RebarGrade40.Add("Rebar GRADE 40 (⌀10mm) [6m]", 14); //14 -- 275 Mpa
+            parameters.price_RebarGrade60.Add("Rebar GRADE 60 (⌀10mm) [6m]", 15); //15 -- 415 Mpa
+
+            //17 - Labor Rate - Earthworks
+            parameters.price_LaborRate_Earthworks.Add("Excavation [m3]", 400); //17 -- per m3
+            parameters.price_LaborRate_Earthworks.Add("Backfilling and Compaction [m3]", 400); //17 -- per m3
+            parameters.price_LaborRate_Earthworks.Add("Grading and Compaction [m3]", 350); //17 -- per m3
+            parameters.price_LaborRate_Earthworks.Add("Gravel Bedding and Compaction [m3]", 300); //17 -- per m3
+            parameters.price_LaborRate_Earthworks.Add("Soil Poisoning [m2]", 60); //17 -- per m3
+            foreach (DictionaryEntry dict in parameters.price_LaborRate_Earthworks)
+            {
+                searchList.Add(dict.Key + " - Labor Rate - Earthworks");
+            }
+            //17
+            parameters.price_LaborRate_Concreting.Add("FOOTING", 17); //17 -- per m3
+            parameters.price_LaborRate_Rebar.Add("FOOTING", 18); //18 -- per KG
+            parameters.price_LaborRate_Paint.Add("PAINTER", 19); //19 -- per m2
+            parameters.price_LaborRate_Tiles.Add("PAINTER", 20); //20 -- per m2
+            parameters.price_LaborRate_Masonry.Add("WALA1", 21); //21 -- per ?
+            parameters.price_LaborRate_Roofings.Add("WALA2", 22); //22 -- per ?
+            parameters.price_Manpower.Add("Foreman", 23); //23 -- per Day
+            parameters.price_Equipment.Add("Crawler Loader (80kW/ 1.5 - 2.0 cu.m)", 24); //24 -- per Hour
+        }
+
+        private void AdjustPriceView()
+        {
+            //1
+            price_1_1.Text = parameters.price_CommonMaterials["Cyclone Wire (Gauge#10, 2”x2”, 3ft x 10m) [ROLL]"].ToString();
+            price_1_2.Text = parameters.price_CommonMaterials["Gasket (6mm thk, 1m x 1m) [ROLL]"].ToString();
+            price_1_3.Text = parameters.price_CommonMaterials["Acetylene Gas [CYL]"].ToString();
+            price_1_4.Text = parameters.price_CommonMaterials["Oxygen Gas [CYL]"].ToString();
+            price_1_5.Text = parameters.price_CommonMaterials["Rugby [CANS]"].ToString();
+            price_1_6.Text = parameters.price_CommonMaterials["Vulca Seal [LTR]"].ToString();
+            price_1_7.Text = parameters.price_CommonMaterials["Broom, Soft [PC]"].ToString();
+            price_1_8.Text = parameters.price_CommonMaterials["Concrete Epoxy [SET]"].ToString();
+            price_1_9.Text = parameters.price_CommonMaterials["Concrete Patching Compound [KGS]"].ToString();
+            price_1_10.Text = parameters.price_CommonMaterials["GI Wire (no. 16) [ROLL]"].ToString();
+            price_1_11.Text = parameters.price_CommonMaterials["GI Wire (no. 12) [KG]"].ToString();
+            price_1_12.Text = parameters.price_CommonMaterials["GI Wire (no. 16) [KG]"].ToString();
+            price_1_13.Text = parameters.price_CommonMaterials["Non-Shrink Grout [BAGS]"].ToString();
+            price_1_14.Text = parameters.price_CommonMaterials["40 kg Portland Cement [BAGS]"].ToString();
+            price_1_15.Text = parameters.price_CommonMaterials["Sand [m3]"].ToString();
+            price_1_16.Text = parameters.price_CommonMaterials["Rivets 1/8” x ½” [BOX]"].ToString();
+            price_1_17.Text = parameters.price_CommonMaterials["Rivets 1-1/2” x ½” [BOX]"].ToString();
+            price_1_18.Text = parameters.price_CommonMaterials["Rope (⌀ 1/2”) [MTRS]"].ToString();
+            price_1_19.Text = parameters.price_CommonMaterials["Tape, Caution [ROLLS]"].ToString();
+            price_1_20.Text = parameters.price_CommonMaterials["Tile Grout (2KG)  [BAGS]"].ToString();
+            price_1_21.Text = parameters.price_CommonMaterials["Tiles, Floor (600 x 600) [PC]"].ToString();
+            price_1_22.Text = parameters.price_CommonMaterials["Tiles, Wall (300 x 300) [PC]"].ToString();
+            price_1_23.Text = parameters.price_CommonMaterials["Broom Stick [PC]"].ToString();
+            price_1_24.Text = parameters.price_CommonMaterials["Chalk Stone [PC]"].ToString();
+            price_1_25.Text = parameters.price_CommonMaterials["Sandpaper (#100) [MTRS]"].ToString();
+            price_1_26.Text = parameters.price_CommonMaterials["Sandpaper (#50) [MTRS]"].ToString();
+            price_1_27.Text = parameters.price_CommonMaterials["Putty, Multipurpose [PAIL]"].ToString();
+            price_1_28.Text = parameters.price_CommonMaterials["Tie Wire (No. #16) [25kg/Roll]"].ToString();
+            price_1_29.Text = parameters.price_CommonMaterials["25KG Tile Adhesive (Regular) [BAGS]"].ToString();
+            price_1_30.Text = parameters.price_CommonMaterials["25 KG Tile Adhesive (Heavy duty) [BAGS]"].ToString();
+            price_1_31.Text = parameters.price_CommonMaterials["CHB 4” (0.10 x 0.20 x 0.40) [PC]"].ToString();
+            price_1_32.Text = parameters.price_CommonMaterials["CHB 6” (0.15 x 0.20 x 0.40) [PC]"].ToString();
+            price_1_33.Text = parameters.price_CommonMaterials["CHB 8” (0.20 x 0.20 x 0.40) [PC]"].ToString();
+
+            //17
+            price_17_1.Text = parameters.price_LaborRate_Earthworks["Excavation [m3]"].ToString();
+            price_17_2.Text = parameters.price_LaborRate_Earthworks["Backfilling and Compaction [m3]"].ToString();
+            price_17_3.Text = parameters.price_LaborRate_Earthworks["Grading and Compaction [m3]"].ToString();
+            price_17_4.Text = parameters.price_LaborRate_Earthworks["Gravel Bedding and Compaction [m3]"].ToString();
+            price_17_5.Text = parameters.price_LaborRate_Earthworks["Soil Poisoning [m2]"].ToString();
+        }
+
+        private void foot_FT_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            priceTabControl.SelectedIndex = price_Category_cbx.SelectedIndex;
+        }   
+
+        private void price_SaveBtn_Click(object sender, EventArgs e)
+        {
+            //TODO if complete data
+            //17
+            parameters.price_LaborRate_Earthworks["Excavation [m3]"] = price_17_1.Text;
+            parameters.price_LaborRate_Earthworks["Backfilling and Compaction [m3]"] = price_17_2.Text;
+            parameters.price_LaborRate_Earthworks["Grading and Compaction [m3]"] = price_17_3.Text;
+            parameters.price_LaborRate_Earthworks["Gravel Bedding and Compaction [m3]"] = price_17_4.Text;
+            parameters.price_LaborRate_Earthworks["Soil Poisoning [m2]"] = price_17_5.Text;
+        }
+
+        private void price_SearchBar_bx_TextChanged(object sender, EventArgs e)
+        {
+            if (!price_SearchBar_bx.Text.Equals(""))
+            {
+                price_Search_Panel.Controls.Clear();
+                IEnumerable<string> results = searchList.Where(s => s.ToLower().Contains(price_SearchBar_bx.Text.ToLower()));
+                foreach (string result in results)
+                {
+                    Label label = new Label();
+                    label.Click += searchLabel_Click;
+                    label.AutoSize = true;
+                    label.Text = result;
+                    price_Search_Panel.Controls.Add(label);
+                }
+            }
+        }
+
+        protected void searchLabel_Click(object sender, EventArgs e)
+        {
+            Label lbl = (Label)sender;
+            string[] data = lbl.Text.Split(new string[] { "] - " }, StringSplitOptions.None);
+            string name = data[0] + "]";
+            string category = data[1];
+            if (category.Equals("Common Materials")) //1
+                price_Category_cbx.SelectedIndex = 0;
+            else if (category.Equals("Labor Rate - Earthworks")) //17
+                price_Category_cbx.SelectedIndex = 16;
+        }
+        //Price functions -- END
 
         //Long Functions -- START
         private void SaveToFile(String fileName)
@@ -695,10 +992,24 @@ namespace WindowsFormsApp1
                 stringParam += parameters.misc_CustomItems[i][1] + "|";
             }
 
+            //Price List TODO all 24 categories
+            stringParam += "\nPrice-List|\n";
+            //1
+            stringParam += "Common-Materials|\n";
+            foreach (DictionaryEntry dict in parameters.price_CommonMaterials)
+            {
+                stringParam += dict.Value.ToString() + "|";
+            }
+            //17
+            stringParam += "\nLabor-Rate-Earthworks|\n";
+            foreach (DictionaryEntry dict in parameters.price_LaborRate_Earthworks)
+            {
+                stringParam += dict.Value.ToString() + "|";
+            }
             //Parameters -- END
 
             //Structural Members -- START
-            stringParam += "Structural-Members|\n";
+            stringParam += "\nStructural-Members|\n";
 
             //Footings
             stringParam += "Footings|\n" + "Floor-1" + "|"; //Only Ground Floor exists
@@ -989,6 +1300,7 @@ namespace WindowsFormsApp1
             File.WriteAllText(fileName, stringParam);
         }
 
+
         private void initializeVariablesFromFile()
         {
             //Initialize variables in Structural Members for every floor created
@@ -1101,6 +1413,7 @@ namespace WindowsFormsApp1
             structuralMembers.concreteWorkSolutionsC.Clear();
             structuralMembers.concreteWorkSolutionsBR.Clear();
             structuralMembers.concreteWorkSolutionsSL.Clear();
+            structuralMembers.concreteWorkSolutionsSLSM.Clear();
             structuralMembers.concreteWorkSolutionsST.Clear();
 
             //Init variables for StructuralMember
@@ -1659,7 +1972,7 @@ namespace WindowsFormsApp1
             //Misc
             i++;
             j = 0;
-            while (!tokens[i].Equals("Structural-Members"))
+            while (!tokens[i].Equals("Price-List"))
             {
                 j++;
                 if (tokens[i].Equals("Custom_Item-" + j))
@@ -1670,7 +1983,38 @@ namespace WindowsFormsApp1
                 }
                 i += 2;
             }
-            //Save to Parameters -- END
+
+            //Price-List TODO IF DATA COMPLETE
+            i++;
+            
+            //1
+            i++;
+            parameters.price_CommonMaterials["Cyclone Wire (Gauge#10, 2”x2”, 3ft x 10m) [ROLL]"] =
+                double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            Console.WriteLine(parameters.price_CommonMaterials["Cyclone Wire (Gauge#10, 2”x2”, 3ft x 10m) [ROLL]"]);
+
+            //17
+            i++;
+            parameters.price_LaborRate_Earthworks["Excavation [m3]"] =
+                double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            parameters.price_LaborRate_Earthworks["Backfilling and Compaction [m3]"] =
+                double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            parameters.price_LaborRate_Earthworks["Grading and Compaction [m3]"] =
+                double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            parameters.price_LaborRate_Earthworks["Gravel Bedding and Compaction [m3]"] =
+                double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            parameters.price_LaborRate_Earthworks["Soil Poisoning [m2]"] =
+                double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+
+            AdjustPriceView();
+            /*2
+            stringParam += "Paint-And-Coating|\n";
+            foreach (DictionaryEntry dict in parameters.price_PaintAndCoating)
+            {
+                stringParam += dict.Value.ToString() + "|";
+            }*/
+
+            //Save to Parameters -- END -- Structural-Members (for 24)
 
             //Save to Structural-Members -- START
             i++;
@@ -2200,7 +2544,7 @@ namespace WindowsFormsApp1
             viewInitalized = false;
             initializeView();
             //*/
-            MessageBox.Show(tokens[i]);
+            //MessageBox.Show(tokens[i]);
             
             pf = new ParametersForm(parameters, this);
         }
