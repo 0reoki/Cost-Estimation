@@ -97,18 +97,7 @@ namespace WindowsFormsApp1
             //Earthworks -- END
 
             //Concrete Works -- START
-            cEF.excavation_Total = 0;
-            cEF.gradingAndCompaction_Total = 0;
-            cEF.gravelBedding_Total = 0;
-            cEF.backfillingAndCompaction_Total = 0;
-            foreach (List<double> toAdd in cEF.structuralMembers.earthworkSolutions)
-            {
-                cEF.excavation_Total += toAdd[1];
-                cEF.gradingAndCompaction_Total += toAdd[2];
-                cEF.gravelBedding_Total += toAdd[3];
-                cEF.backfillingAndCompaction_Total += toAdd[1];
-                concreting += toAdd[4];
-            }
+
 
             //Concrete Works -- END
         }
@@ -622,7 +611,17 @@ namespace WindowsFormsApp1
                     trHookType = double.Parse(cEF.structuralMembers.footingsColumn[0][structMemCount][11], System.Globalization.CultureInfo.InvariantCulture);
 
                     //Computation -- Earth Works
-                    int i = count;
+                    int i = 0;
+                    int wfC = 0;
+                    foreach(List<double> solution in cEF.structuralMembers.earthworkSolutions)
+                    {
+                        if (solution[0] == 2)
+                            wfC++;
+
+                        if (count == i - wfC && count <= i)
+                            break;
+                        i++;
+                    }
 
                     //Excavation
                     cEF.structuralMembers.earthworkSolutions[i][1] =
@@ -636,6 +635,8 @@ namespace WindowsFormsApp1
                     cEF.structuralMembers.earthworkSolutions[i][3] =
                         ((length + formworkAllowance * 2) * (width + formworkAllowance * 2) *
                         (gravelBedding + (gravelBedding * compactionAllowance))) * quantity;
+
+                    Console.WriteLine("NICE: " + i);
 
                     //Backfilling and Compaction
                     //Concreting
@@ -734,7 +735,17 @@ namespace WindowsFormsApp1
                     urHookType = double.Parse(cEF.structuralMembers.footingsColumn[0][structMemCount][17], System.Globalization.CultureInfo.InvariantCulture);
 
                     //Computation -- Earth Works
-                    int i = count;
+                    int i = 0;
+                    int wfC = 0;
+                    foreach (List<double> solution in cEF.structuralMembers.earthworkSolutions)
+                    {
+                        if (solution[0] == 2)
+                            wfC++;
+
+                        if (count == i - wfC && count <= i)
+                            break;
+                        i++;
+                    }
 
                     //Excavation
                     cEF.structuralMembers.earthworkSolutions[i][1] =
@@ -847,7 +858,17 @@ namespace WindowsFormsApp1
                     trHookType = double.Parse(cEF.structuralMembers.footingsWall[0][structMemCount][14], System.Globalization.CultureInfo.InvariantCulture);
 
                     //Computation -- Earth Works
-                    int i = count;
+                    int i = 0;
+                    int fC = 0;
+                    foreach (List<double> solution in cEF.structuralMembers.earthworkSolutions)
+                    {
+                        if (solution[0] == 1)
+                            fC++;
+
+                        if (count == i - fC && count <= i)
+                            break;
+                        i++;
+                    }
 
                     cEF.structuralMembers.earthworkSolutions[i][1] =
                         (lengthF2F + formworkAllowance * 2) * (wfBase + formworkAllowance * 2) * (depth + gravelBedding) * quantity;
@@ -865,6 +886,8 @@ namespace WindowsFormsApp1
                     //Concreting
                     cEF.structuralMembers.earthworkSolutions[i][4] =
                         length * wfBase * thickness * quantity;
+
+                    Console.WriteLine("NICE: " + i);
 
                     //Computation -- Concrete Works
                     if (cEF.parameters.conc_cmIsSelected[0])
@@ -957,7 +980,17 @@ namespace WindowsFormsApp1
                     trHookType = double.Parse(cEF.structuralMembers.footingsWall[0][structMemCount][15], System.Globalization.CultureInfo.InvariantCulture);
 
                     //Computation -- Earth Works
-                    int i = count;
+                    int i = 0;
+                    int fC = 0;
+                    foreach (List<double> solution in cEF.structuralMembers.earthworkSolutions)
+                    {
+                        if (solution[0] == 1)
+                            fC++;
+
+                        if (count == i - fC && count <= i)
+                            break;
+                        i++;
+                    }
 
                     cEF.structuralMembers.earthworkSolutions[i][1] =
                         (lengthF2F + formworkAllowance * 2) * (wfBaseT + formworkAllowance * 2) * (depth + gravelBedding) * quantity;

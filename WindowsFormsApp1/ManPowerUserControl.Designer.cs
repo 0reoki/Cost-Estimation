@@ -82,16 +82,16 @@ namespace WindowsFormsApp1
             this.mpUC_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mpUC_cbx.FormattingEnabled = true;
             this.mpUC_cbx.Items.AddRange(new object[] {
-            "Foreman",
-            "Fitter",
-            "Welder",
-            "Electrician",
-            "Carpenter",
-            "Painter",
-            "Mason",
-            "Driver",
-            "Eqpt Operator",
-            "Helper"});
+            "Foreman [hr]",
+            "Fitter [hr]",
+            "Welder [hr]",
+            "Electrician [hr]",
+            "Carpenter [hr]",
+            "Painter [hr]",
+            "Mason [hr]",
+            "Driver [hr]",
+            "Eqpt Operator [hr]",
+            "Helper [hr]"});
             this.mpUC_cbx.Location = new System.Drawing.Point(45, 3);
             this.mpUC_cbx.Name = "mpUC_cbx";
             this.mpUC_cbx.Size = new System.Drawing.Size(339, 28);

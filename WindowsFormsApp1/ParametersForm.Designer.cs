@@ -668,15 +668,16 @@ namespace WindowsFormsApp1
             this.earth_CF_TY_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.earth_CF_TY_cbx.FormattingEnabled = true;
             this.earth_CF_TY_cbx.Items.AddRange(new object[] {
-            "G1",
-            "G2",
-            "G1-1/2\"",
-            "G2-1/2\"",
-            "G-3/4\""});
+            "GRAVEL G1 [m3]",
+            "GRAVEL G2 [m3]",
+            "GRAVEL G1- ½” [m3]",
+            "GRAVEL G2- ½” [m3]",
+            "GRAVEL ¾” [m3]"});
             this.earth_CF_TY_cbx.Location = new System.Drawing.Point(188, 151);
             this.earth_CF_TY_cbx.Name = "earth_CF_TY_cbx";
             this.earth_CF_TY_cbx.Size = new System.Drawing.Size(180, 28);
             this.earth_CF_TY_cbx.TabIndex = 25;
+            this.earth_CF_TY_cbx.SelectedIndexChanged += new System.EventHandler(this.earth_CF_TY_cbx_SelectedIndexChanged);
             // 
             // earth_CF_CF_bx
             // 
@@ -810,15 +811,16 @@ namespace WindowsFormsApp1
             this.earth_WF_TY_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.earth_WF_TY_cbx.FormattingEnabled = true;
             this.earth_WF_TY_cbx.Items.AddRange(new object[] {
-            "G1",
-            "G2",
-            "G1-1/2\"",
-            "G2-1/2\"",
-            "G-3/4\""});
+            "GRAVEL G1 [m3]",
+            "GRAVEL G2 [m3]",
+            "GRAVEL G1- ½” [m3]",
+            "GRAVEL G2- ½” [m3]",
+            "GRAVEL ¾” [m3]"});
             this.earth_WF_TY_cbx.Location = new System.Drawing.Point(188, 151);
             this.earth_WF_TY_cbx.Name = "earth_WF_TY_cbx";
             this.earth_WF_TY_cbx.Size = new System.Drawing.Size(180, 28);
             this.earth_WF_TY_cbx.TabIndex = 26;
+            this.earth_WF_TY_cbx.SelectedIndexChanged += new System.EventHandler(this.earth_WF_TY_cbx_SelectedIndexChanged);
             // 
             // earth_WF_CF_bx
             // 
@@ -955,15 +957,16 @@ namespace WindowsFormsApp1
             this.earth_SG_TY_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.earth_SG_TY_cbx.FormattingEnabled = true;
             this.earth_SG_TY_cbx.Items.AddRange(new object[] {
-            "G1",
-            "G2",
-            "G1-1/2\"",
-            "G2-1/2\"",
-            "G-3/4\""});
+            "GRAVEL G1 [m3]",
+            "GRAVEL G2 [m3]",
+            "GRAVEL G1- ½” [m3]",
+            "GRAVEL G2- ½” [m3]",
+            "GRAVEL ¾” [m3]"});
             this.earth_SG_TY_cbx.Location = new System.Drawing.Point(188, 183);
             this.earth_SG_TY_cbx.Name = "earth_SG_TY_cbx";
             this.earth_SG_TY_cbx.Size = new System.Drawing.Size(180, 28);
             this.earth_SG_TY_cbx.TabIndex = 26;
+            this.earth_SG_TY_cbx.SelectedIndexChanged += new System.EventHandler(this.earth_SG_TY_cbx_SelectedIndexChanged);
             // 
             // earth_SG_TH_bx
             // 
@@ -1154,15 +1157,16 @@ namespace WindowsFormsApp1
             this.earth_WTB_TY_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.earth_WTB_TY_cbx.FormattingEnabled = true;
             this.earth_WTB_TY_cbx.Items.AddRange(new object[] {
-            "G1",
-            "G2",
-            "G1-1/2\"",
-            "G2-1/2\"",
-            "G-3/4\""});
+            "GRAVEL G1 [m3]",
+            "GRAVEL G2 [m3]",
+            "GRAVEL G1- ½” [m3]",
+            "GRAVEL G2- ½” [m3]",
+            "GRAVEL ¾” [m3]"});
             this.earth_WTB_TY_cbx.Location = new System.Drawing.Point(188, 151);
             this.earth_WTB_TY_cbx.Name = "earth_WTB_TY_cbx";
             this.earth_WTB_TY_cbx.Size = new System.Drawing.Size(180, 28);
             this.earth_WTB_TY_cbx.TabIndex = 26;
+            this.earth_WTB_TY_cbx.SelectedIndexChanged += new System.EventHandler(this.earth_WTB_TY_cbx_SelectedIndexChanged);
             // 
             // earth_WTB_CF_bx
             // 
@@ -1435,7 +1439,7 @@ namespace WindowsFormsApp1
             this.form_SM_F_FL_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_F_FL_cbx.FormattingEnabled = true;
             this.form_SM_F_FL_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 8\'",
             "2\" x 2\" x 10\'",
             "2\" x 2\" x 12\'",
             "2\" x 3\" x 8\'",
@@ -1493,7 +1497,7 @@ namespace WindowsFormsApp1
             this.form_SM_C_VS_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_C_VS_cbx.FormattingEnabled = true;
             this.form_SM_C_VS_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 8\'",
             "2\" x 2\" x 10\'",
             "2\" x 2\" x 12\'",
             "2\" x 3\" x 8\'",
@@ -1574,7 +1578,7 @@ namespace WindowsFormsApp1
             this.form_SM_C_FL_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_C_FL_cbx.FormattingEnabled = true;
             this.form_SM_C_FL_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 8\'",
             "2\" x 2\" x 10\'",
             "2\" x 2\" x 12\'",
             "2\" x 3\" x 8\'",
@@ -1590,7 +1594,7 @@ namespace WindowsFormsApp1
             this.form_SM_C_HB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_C_HB_cbx.FormattingEnabled = true;
             this.form_SM_C_HB_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 8\'",
             "2\" x 2\" x 10\'",
             "2\" x 2\" x 12\'",
             "2\" x 3\" x 8\'",
@@ -1652,7 +1656,7 @@ namespace WindowsFormsApp1
             this.form_SM_B_VS_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_B_VS_cbx.FormattingEnabled = true;
             this.form_SM_B_VS_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 8\'",
             "2\" x 2\" x 10\'",
             "2\" x 2\" x 12\'",
             "2\" x 3\" x 8\'",
@@ -1745,7 +1749,7 @@ namespace WindowsFormsApp1
             this.form_SM_B_FL_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_B_FL_cbx.FormattingEnabled = true;
             this.form_SM_B_FL_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 8\'",
             "2\" x 2\" x 10\'",
             "2\" x 2\" x 12\'",
             "2\" x 3\" x 8\'",
@@ -1761,7 +1765,7 @@ namespace WindowsFormsApp1
             this.form_SM_B_HB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_B_HB_cbx.FormattingEnabled = true;
             this.form_SM_B_HB_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 8\'",
             "2\" x 2\" x 10\'",
             "2\" x 2\" x 12\'",
             "2\" x 3\" x 8\'",
@@ -1780,7 +1784,7 @@ namespace WindowsFormsApp1
             this.form_SM_B_DB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_B_DB_cbx.FormattingEnabled = true;
             this.form_SM_B_DB_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 8\'",
             "2\" x 2\" x 10\'",
             "2\" x 2\" x 12\'",
             "2\" x 3\" x 8\'",
@@ -1835,7 +1839,7 @@ namespace WindowsFormsApp1
             this.form_SM_HS_VS_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_HS_VS_cbx.FormattingEnabled = true;
             this.form_SM_HS_VS_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 8\'",
             "2\" x 2\" x 10\'",
             "2\" x 2\" x 12\'",
             "2\" x 3\" x 8\'",
@@ -1919,7 +1923,7 @@ namespace WindowsFormsApp1
             this.form_SM_ST_VS_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_ST_VS_cbx.FormattingEnabled = true;
             this.form_SM_ST_VS_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 8\'",
             "2\" x 2\" x 10\'",
             "2\" x 2\" x 12\'",
             "2\" x 3\" x 8\'",
@@ -1988,7 +1992,7 @@ namespace WindowsFormsApp1
             this.form_SM_ST_FL_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.form_SM_ST_FL_cbx.FormattingEnabled = true;
             this.form_SM_ST_FL_cbx.Items.AddRange(new object[] {
-            "2\" x 2\" x 8\' ",
+            "2\" x 2\" x 8\'",
             "2\" x 2\" x 10\'",
             "2\" x 2\" x 12\'",
             "2\" x 3\" x 8\'",
@@ -2343,11 +2347,11 @@ namespace WindowsFormsApp1
             this.conc_CM_F_GT_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.conc_CM_F_GT_cbx.FormattingEnabled = true;
             this.conc_CM_F_GT_cbx.Items.AddRange(new object[] {
-            "G1",
-            "G2",
-            "G1-1/2\"",
-            "G2-1/2\"",
-            "G-3/4\""});
+            "GRAVEL G1 [m3]",
+            "GRAVEL G2 [m3]",
+            "GRAVEL G1- ½” [m3]",
+            "GRAVEL G2- ½” [m3]",
+            "GRAVEL ¾” [m3]"});
             this.conc_CM_F_GT_cbx.Location = new System.Drawing.Point(187, 37);
             this.conc_CM_F_GT_cbx.Name = "conc_CM_F_GT_cbx";
             this.conc_CM_F_GT_cbx.Size = new System.Drawing.Size(155, 28);
@@ -2499,11 +2503,11 @@ namespace WindowsFormsApp1
             this.conc_CM_C_GT_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.conc_CM_C_GT_cbx.FormattingEnabled = true;
             this.conc_CM_C_GT_cbx.Items.AddRange(new object[] {
-            "G1",
-            "G2",
-            "G1-1/2\"",
-            "G2-1/2\"",
-            "G-3/4\""});
+            "GRAVEL G1 [m3]",
+            "GRAVEL G2 [m3]",
+            "GRAVEL G1- ½” [m3]",
+            "GRAVEL G2- ½” [m3]",
+            "GRAVEL ¾” [m3]"});
             this.conc_CM_C_GT_cbx.Location = new System.Drawing.Point(187, 37);
             this.conc_CM_C_GT_cbx.Name = "conc_CM_C_GT_cbx";
             this.conc_CM_C_GT_cbx.Size = new System.Drawing.Size(155, 28);
@@ -2654,11 +2658,11 @@ namespace WindowsFormsApp1
             this.conc_CM_B_GT_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.conc_CM_B_GT_cbx.FormattingEnabled = true;
             this.conc_CM_B_GT_cbx.Items.AddRange(new object[] {
-            "G1",
-            "G2",
-            "G1-1/2\"",
-            "G2-1/2\"",
-            "G-3/4\""});
+            "GRAVEL G1 [m3]",
+            "GRAVEL G2 [m3]",
+            "GRAVEL G1- ½” [m3]",
+            "GRAVEL G2- ½” [m3]",
+            "GRAVEL ¾” [m3]"});
             this.conc_CM_B_GT_cbx.Location = new System.Drawing.Point(187, 37);
             this.conc_CM_B_GT_cbx.Name = "conc_CM_B_GT_cbx";
             this.conc_CM_B_GT_cbx.Size = new System.Drawing.Size(155, 28);
@@ -2809,11 +2813,11 @@ namespace WindowsFormsApp1
             this.conc_CM_S_GT_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.conc_CM_S_GT_cbx.FormattingEnabled = true;
             this.conc_CM_S_GT_cbx.Items.AddRange(new object[] {
-            "G1",
-            "G2",
-            "G1-1/2\"",
-            "G2-1/2\"",
-            "G-3/4\""});
+            "GRAVEL G1 [m3]",
+            "GRAVEL G2 [m3]",
+            "GRAVEL G1- ½” [m3]",
+            "GRAVEL G2- ½” [m3]",
+            "GRAVEL ¾” [m3]"});
             this.conc_CM_S_GT_cbx.Location = new System.Drawing.Point(187, 37);
             this.conc_CM_S_GT_cbx.Name = "conc_CM_S_GT_cbx";
             this.conc_CM_S_GT_cbx.Size = new System.Drawing.Size(155, 28);
@@ -3178,11 +3182,11 @@ namespace WindowsFormsApp1
             this.conc_CM_ST_GT_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.conc_CM_ST_GT_cbx.FormattingEnabled = true;
             this.conc_CM_ST_GT_cbx.Items.AddRange(new object[] {
-            "G1",
-            "G2",
-            "G1-1/2\"",
-            "G2-1/2\"",
-            "G-3/4\""});
+            "GRAVEL G1 [m3]",
+            "GRAVEL G2 [m3]",
+            "GRAVEL G1- ½” [m3]",
+            "GRAVEL G2- ½” [m3]",
+            "GRAVEL ¾” [m3]"});
             this.conc_CM_ST_GT_cbx.Location = new System.Drawing.Point(187, 37);
             this.conc_CM_ST_GT_cbx.Name = "conc_CM_ST_GT_cbx";
             this.conc_CM_ST_GT_cbx.Size = new System.Drawing.Size(155, 28);

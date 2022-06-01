@@ -166,8 +166,6 @@ namespace WindowsFormsApp1
             } 
             else
             {
-                
-
                 if (floorCount > 0) // Upper Floors only
                 {
                     foreach (List<string> schedule in costEstimationForm.structuralMembers.slabSchedule[floorCount - 1])

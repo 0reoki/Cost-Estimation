@@ -1088,7 +1088,7 @@ namespace WindowsFormsApp1
             ManPowerUserControl content = new ManPowerUserControl(this);
             MpUC.Add(content);
             //Default Values
-            content.set_mpUC_cbx = "Foreman";
+            content.set_mpUC_cbx = "Foreman [hr]";
             content.set_mpUC_qty = "1";
             labor_MP_Panel.Controls.Add(content);
         }
@@ -1098,7 +1098,7 @@ namespace WindowsFormsApp1
             EquipmentUserControl content = new EquipmentUserControl(this);
             EqUC.Add(content);
             //Default Values
-            content.set_eqUC_cbx = "Backhoe Crawler (0.75 - 1.0 cu.m)";
+            content.set_eqUC_cbx = "Crawler Loader (80kW/ 1.5 - 2.0 cu.m) [hr]";
             content.set_eqUC_qty = "1";
             labor_EQP_Panel.Controls.Add(content);
         }
@@ -1560,23 +1560,20 @@ namespace WindowsFormsApp1
         {
             earth_CF_FA_bx.Text = "250";
             earth_CF_TH_bx.Text = "100";
-            earth_CF_TY_cbx.Text = "G1";
+            earth_CF_TY_cbx.SelectedIndex = 0;
             earth_CF_CF_bx.Text = "30%";
 
             earth_WF_FA_bx.Text = "100";
             earth_WF_TH_bx.Text = "100";
-            earth_WF_TY_cbx.Text = "G1";
             earth_WF_CF_bx.Text = "30%";
 
             earth_WTB_FA_bx.Text = "100";
             earth_WTB_TH_bx.Text = "100";
-            earth_WTB_TY_cbx.Text = "G1";
             earth_WTB_CF_bx.Text = "30%";
 
             earth_SG_AS_bx.Text = "75";
             earth_SG_TS_bx.Text = "100";
             earth_SG_TH_bx.Text = "100";
-            earth_SG_TY_cbx.Text = "G1";
             earth_SG_CF_bx.Text = "30%";
             if(mef != null)
             {
@@ -1588,17 +1585,17 @@ namespace WindowsFormsApp1
 
         private void setFormworkDefaultValues()
         {
-            form_SM_F_FL_cbx.Text = "2\" x 2\" x (8', 10', 12')";
-            form_SM_C_FL_cbx.Text = "2\" x 2\" x (8', 10', 12')";
-            form_SM_C_VS_cbx.Text = "2\" x 2\" x (8', 10', 12')";
-            form_SM_C_HB_cbx.Text = "2\" x 2\" x (8', 10', 12')";
-            form_SM_B_FL_cbx.Text = "2\" x 3\" x (8', 10', 12')";
-            form_SM_B_VS_cbx.Text = "2\" x 3\" x (8', 10', 12')";
-            form_SM_B_HB_cbx.Text = "2\" x 2\" x (8', 10', 12')";
-            form_SM_B_DB_cbx.Text = "2\" x 2\" x (8', 10', 12')";
-            form_SM_HS_VS_cbx.Text = "2\" x 3\" x (8', 10', 12')";
-            form_SM_ST_FL_cbx.Text = "2\" x 3\" x (8', 10', 12')";
-            form_SM_ST_VS_cbx.Text = "2\" x 3\" x (8', 10', 12')";
+            form_SM_F_FL_cbx.SelectedIndex = 0;
+            form_SM_C_FL_cbx.SelectedIndex = 0;
+            form_SM_C_VS_cbx.SelectedIndex = 0;
+            form_SM_C_HB_cbx.SelectedIndex = 0;
+            form_SM_B_FL_cbx.SelectedIndex = 0;
+            form_SM_B_VS_cbx.SelectedIndex = 0;
+            form_SM_B_HB_cbx.SelectedIndex = 0;
+            form_SM_B_DB_cbx.SelectedIndex = 0;
+            form_SM_HS_VS_cbx.SelectedIndex = 0;
+            form_SM_ST_FL_cbx.SelectedIndex = 0;
+            form_SM_ST_VS_cbx.SelectedIndex = 0;
             form_F_T_cbx.Text = "Plywood";
             form_F_NU_bx.Text = "2";
             form_F_N_bx.Text = "0.215 kg/1 m2";
@@ -1607,22 +1604,22 @@ namespace WindowsFormsApp1
         private void setConcreteDefaultValues()
         {
             conc_CM_F_CG_cbx.Text = "CLASS AA";
-            conc_CM_F_GT_cbx.Text = "G1";
+            conc_CM_F_GT_cbx.SelectedIndex = 0;
             conc_CM_F_RM_cbx.Text = "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 28 Days";
             conc_CM_F_CG_rb.Select();
 
             conc_CM_C_CG_cbx.Text = "CLASS AA";
-            conc_CM_C_GT_cbx.Text = "G1";
+            conc_CM_C_GT_cbx.SelectedIndex = 0;
             conc_CM_C_RM_cbx.Text = "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 28 Days";
             conc_CM_C_CG_rb.Select();
 
             conc_CM_B_CG_cbx.Text = "CLASS AA";
-            conc_CM_B_GT_cbx.Text = "G1";
+            conc_CM_B_GT_cbx.SelectedIndex = 0;
             conc_CM_B_RM_cbx.Text = "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 28 Days";
             conc_CM_B_CG_rb.Select();
 
             conc_CM_S_CG_cbx.Text = "CLASS AA";
-            conc_CM_S_GT_cbx.Text = "G1";
+            conc_CM_S_GT_cbx.SelectedIndex = 0;
             conc_CM_S_RM_cbx.Text = "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 28 Days";
             conc_CM_S_CG_rb.Select();
 
@@ -1632,7 +1629,7 @@ namespace WindowsFormsApp1
             conc_CM_W_P_PT_cbx.Text = "20mm";
 
             conc_CM_ST_CG_cbx.Text = "CLASS AA";
-            conc_CM_ST_GT_cbx.Text = "G1";
+            conc_CM_ST_GT_cbx.SelectedIndex = 0;
             conc_CM_ST_RM_cbx.Text = "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 28 Days";
             conc_CM_ST_CG_rb.Select();
 
@@ -2069,6 +2066,33 @@ namespace WindowsFormsApp1
         private void paramTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void earth_CF_TY_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            earth_WF_TY_cbx.SelectedIndex = earth_CF_TY_cbx.SelectedIndex;
+            earth_WTB_TY_cbx.SelectedIndex = earth_CF_TY_cbx.SelectedIndex;
+            earth_SG_TY_cbx.SelectedIndex = earth_CF_TY_cbx.SelectedIndex;
+        }
+        private void earth_WF_TY_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            earth_CF_TY_cbx.SelectedIndex = earth_WF_TY_cbx.SelectedIndex;
+            earth_WTB_TY_cbx.SelectedIndex = earth_WF_TY_cbx.SelectedIndex;
+            earth_SG_TY_cbx.SelectedIndex = earth_WF_TY_cbx.SelectedIndex;
+        }
+
+        private void earth_WTB_TY_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            earth_CF_TY_cbx.SelectedIndex = earth_WTB_TY_cbx.SelectedIndex;
+            earth_WF_TY_cbx.SelectedIndex = earth_WTB_TY_cbx.SelectedIndex;
+            earth_SG_TY_cbx.SelectedIndex = earth_WTB_TY_cbx.SelectedIndex;
+        }
+
+        private void earth_SG_TY_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            earth_CF_TY_cbx.SelectedIndex = earth_SG_TY_cbx.SelectedIndex;
+            earth_WF_TY_cbx.SelectedIndex = earth_SG_TY_cbx.SelectedIndex;
+            earth_WF_TY_cbx.SelectedIndex = earth_SG_TY_cbx.SelectedIndex;
         }
         //Extra Functions -- END
     }

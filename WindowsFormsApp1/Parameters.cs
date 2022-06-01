@@ -93,22 +93,25 @@ namespace WindowsFormsApp1
         public ListDictionary price_ReadyMixConcrete = new ListDictionary(); //6
         public ListDictionary price_Gravel = new ListDictionary(); //7
         public ListDictionary price_FormworksAndLumber = new ListDictionary(); //8
-        public ListDictionary price_TubularSteel1mm = new ListDictionary(); //9
-        public ListDictionary price_TubularSteel1p2mm = new ListDictionary(); //10
-        public ListDictionary price_TubularSteel1p5mm = new ListDictionary(); //11
-        public ListDictionary price_Embankment = new ListDictionary(); //12
-        public ListDictionary price_RebarGrade33 = new ListDictionary(); //13 -- 230 Mpa
-        public ListDictionary price_RebarGrade40 = new ListDictionary(); //14 -- 275 Mpa
-        public ListDictionary price_RebarGrade60 = new ListDictionary(); //15 -- 415 Mpa
-        public ListDictionary price_LaborRate_Earthworks = new ListDictionary(); //16 -- per m3
-        public ListDictionary price_LaborRate_Concreting = new ListDictionary(); //17 -- per m3
-        public ListDictionary price_LaborRate_Rebar = new ListDictionary(); //18 -- per KG
-        public ListDictionary price_LaborRate_Paint = new ListDictionary(); //19 -- per m2
-        public ListDictionary price_LaborRate_Tiles = new ListDictionary(); //20 -- per m2
-        public ListDictionary price_LaborRate_Masonry = new ListDictionary(); //21 -- per ?
-        public ListDictionary price_LaborRate_Roofings = new ListDictionary(); //22 -- per ?
-        public ListDictionary price_Manpower = new ListDictionary(); //23 -- per Day
-        public ListDictionary price_Equipment = new ListDictionary(); //24 -- per Hour
+        public ListDictionary price_RoofMaterials = new ListDictionary(); //9
+        public ListDictionary price_TubularSteel1mm = new ListDictionary(); //10
+        public ListDictionary price_TubularSteel1p2mm = new ListDictionary(); //11
+        public ListDictionary price_TubularSteel1p5mm = new ListDictionary(); //12
+        public ListDictionary price_Embankment = new ListDictionary(); //13
+        public ListDictionary price_RebarGrade33 = new ListDictionary(); //14 -- 230 Mpa
+        public ListDictionary price_RebarGrade40 = new ListDictionary(); //15 -- 275 Mpa
+        public ListDictionary price_RebarGrade60 = new ListDictionary(); //16 -- 415 Mpa
+        public ListDictionary price_LaborRate_Earthworks = new ListDictionary(); //17 -- per m3
+        public ListDictionary price_LaborRate_Concreting = new ListDictionary(); //18 -- per m3
+        public ListDictionary price_LaborRate_Formworks = new ListDictionary(); //19 -- per m2
+        public ListDictionary price_LaborRate_Rebar = new ListDictionary(); //20 -- per KG
+        public ListDictionary price_LaborRate_Paint = new ListDictionary(); //21 -- per m2
+        public ListDictionary price_LaborRate_Tiles = new ListDictionary(); //22 -- per m2
+        public ListDictionary price_LaborRate_Masonry = new ListDictionary(); //23 -- per ?
+        public ListDictionary price_LaborRate_Roofings = new ListDictionary(); //24 -- per ?
+        public ListDictionary price_ManpowerM = new ListDictionary(); //25.1 -- per Hour
+        public ListDictionary price_ManpowerP = new ListDictionary(); //25.2 -- per Hour
+        public ListDictionary price_Equipment = new ListDictionary(); //26 -- per Hour
 
         public Parameters()
         {

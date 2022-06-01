@@ -121,6 +121,12 @@
     <Compile Include="FloorUserControl.Designer.cs">
       <DependentUpon>FloorUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="LaborAndEquipmentUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LaborAndEquipmentUserControl.Designer.cs">
+      <DependentUpon>LaborAndEquipmentUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="LSLBarsUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FloorUserControl.resx">
       <DependentUpon>FloorUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LaborAndEquipmentUserControl.resx">
+      <DependentUpon>LaborAndEquipmentUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LSLBarsUserControl.resx">
       <DependentUpon>LSLBarsUserControl.cs</DependentUpon>

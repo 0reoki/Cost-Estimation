@@ -104,12 +104,12 @@ namespace WindowsFormsApp1
 
                 if(data[0] == 1)
                 {
-                    compute.ModifyFootingWorks(cEF, i, i + j, true);
+                    compute.ModifyFootingWorks(cEF, i, i, true);
                     i++;
                 }
                 else
                 {
-                    compute.ModifyFootingWorks(cEF, j, i + j, false);
+                    compute.ModifyFootingWorks(cEF, j, j, false);
                     j++;
                 }
             }
