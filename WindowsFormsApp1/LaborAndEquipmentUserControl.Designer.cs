@@ -30,12 +30,12 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
-            this.laq_days_bx = new System.Windows.Forms.TextBox();
-            this.laq_hrs_bx = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.laq_Label = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.price_Label = new System.Windows.Forms.Label();
+            this.laq_hrs_bx = new System.Windows.Forms.Label();
+            this.laq_days_bx = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,9 +49,9 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.laq_days_bx, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.laq_hrs_bx, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label8, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.laq_Label, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 5, 0);
@@ -75,26 +75,6 @@
             this.label3.TabIndex = 32;
             this.label3.Text = "L..";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // laq_days_bx
-            // 
-            this.laq_days_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.laq_days_bx.Location = new System.Drawing.Point(603, 3);
-            this.laq_days_bx.Name = "laq_days_bx";
-            this.laq_days_bx.Size = new System.Drawing.Size(94, 26);
-            this.laq_days_bx.TabIndex = 30;
-            this.laq_days_bx.Text = "7";
-            this.laq_days_bx.TextChanged += new System.EventHandler(this.laq_days_bx_TextChanged);
-            // 
-            // laq_hrs_bx
-            // 
-            this.laq_hrs_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.laq_hrs_bx.Location = new System.Drawing.Point(403, 3);
-            this.laq_hrs_bx.Name = "laq_hrs_bx";
-            this.laq_hrs_bx.Size = new System.Drawing.Size(94, 26);
-            this.laq_hrs_bx.TabIndex = 25;
-            this.laq_hrs_bx.Text = "8";
-            this.laq_hrs_bx.TextChanged += new System.EventHandler(this.laq_hrs_bx_TextChanged);
             // 
             // label8
             // 
@@ -144,6 +124,30 @@
             this.price_Label.Text = "P 1000";
             this.price_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // laq_hrs_bx
+            // 
+            this.laq_hrs_bx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.laq_hrs_bx.Location = new System.Drawing.Point(401, 0);
+            this.laq_hrs_bx.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.laq_hrs_bx.Name = "laq_hrs_bx";
+            this.laq_hrs_bx.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.laq_hrs_bx.Size = new System.Drawing.Size(96, 31);
+            this.laq_hrs_bx.TabIndex = 33;
+            this.laq_hrs_bx.Text = "8";
+            this.laq_hrs_bx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // laq_days_bx
+            // 
+            this.laq_days_bx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.laq_days_bx.Location = new System.Drawing.Point(601, 0);
+            this.laq_days_bx.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.laq_days_bx.Name = "laq_days_bx";
+            this.laq_days_bx.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.laq_days_bx.Size = new System.Drawing.Size(96, 31);
+            this.laq_days_bx.TabIndex = 34;
+            this.laq_days_bx.Text = "7";
+            this.laq_days_bx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // LaborAndEquipmentUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -152,7 +156,6 @@
             this.Name = "LaborAndEquipmentUserControl";
             this.Size = new System.Drawing.Size(1100, 45);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -160,12 +163,12 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TextBox laq_hrs_bx;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label laq_Label;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox laq_days_bx;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label price_Label;
+        private System.Windows.Forms.Label laq_days_bx;
+        private System.Windows.Forms.Label laq_hrs_bx;
     }
 }

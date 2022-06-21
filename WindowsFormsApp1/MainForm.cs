@@ -38,6 +38,10 @@ namespace WindowsFormsApp1
         //Volume Totality Variables (Volume Totality is for pricing computation)
         //If price is missing CostTotal, use CostL or CostM instead (no pair)
 
+        //Price Checklists (Show if checklist == true)
+        public bool[] earthworksChecklist = { true, true, true, true, true, true }; //1.0
+        public ListDictionary laborAndEquipmentChecklist; //10.0
+       
         //1.0 - Earthwork Variables
         //Totalities
         public double excavation_Total, backfillingAndCompaction_Total, gradingAndCompaction_Total,
@@ -543,73 +547,42 @@ namespace WindowsFormsApp1
 
         private void AdjustView10()
         {
-            List<LaborAndEquipmentUserControl> old_laqUC = new List<LaborAndEquipmentUserControl>();
-            foreach(LaborAndEquipmentUserControl content in laqUC)
-            {
-                old_laqUC.Add(content);
-            }
-            
             laqUC.Clear();
             view_10_Panel.Controls.Clear();
-            int i = 0;
             //Manpower
             if (parameters.labor_RD.Equals("Manila Rate"))
             {
                 foreach (string[] data in parameters.labor_MP)
                 {
-                    LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], parameters.price_ManpowerM[data[0]], i);
+                    LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_ManpowerM[data[0]]);
                     laqUC.Add(content);
                     content.laq = data[0] + " x " + data[1];
-                    foreach(LaborAndEquipmentUserControl oldContent in old_laqUC)
-                    {
-                        if(i == oldContent.id)
-                        {
-                            content.hrs = oldContent.hrs;
-                            content.days = oldContent.days;
-                            break;
-                        }
-                    }
+                    content.hrs = data[2];
+                    content.days = data[3];
                     view_10_Panel.Controls.Add(content);
-                    i++;
                 }
             }
             else //Provincial
             {
                 foreach (string[] data in parameters.labor_MP)
                 {
-                    LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], parameters.price_ManpowerP[data[0]], i);
+                    LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_ManpowerP[data[0]]);
                     laqUC.Add(content);
                     content.laq = data[0] + " x " + data[1];
-                    foreach (LaborAndEquipmentUserControl oldContent in old_laqUC)
-                    {
-                        if (i == oldContent.id)
-                        {
-                            content.hrs = oldContent.hrs;
-                            content.days = oldContent.days;
-                            break;
-                        }
-                    }
+                    content.hrs = data[2];
+                    content.days = data[3];
                     view_10_Panel.Controls.Add(content);
-                    i++;
                 }
             }
             //Equipment
             foreach(string[] data in parameters.labor_EQP)
             {
-                LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], parameters.price_Equipment[data[0]], i);
+                LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_Equipment[data[0]]);
                 laqUC.Add(content);
                 content.laq = data[0] + " x " + data[1];
-                foreach (LaborAndEquipmentUserControl oldContent in old_laqUC)
-                {
-                    if (i == oldContent.id)
-                    {
-                        content.hrs = oldContent.hrs;
-                        content.days = oldContent.days;
-                        break;
-                    }
-                }
+                content.hrs = data[2];
+                content.days = data[3];
                 view_10_Panel.Controls.Add(content);
-                i++;
             }
         }
         //View functions -- END
@@ -1627,6 +1600,15 @@ namespace WindowsFormsApp1
             parameters.price_Equipment["Sump Pump (Dewatering) 0.75  –2HP- [hr]"] = 213.5;
             parameters.price_Equipment["Sump Pump (Dewatering) 5HP [hr]"] = 426.5;
             parameters.price_Equipment["Road Paint Stripper [hr]"] = 186.5;
+        }
+
+        private void view_ConfigureBtn_Click(object sender, EventArgs e)
+        {
+            PriceChecklistForms dlg = new PriceChecklistForms(this);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show("Wp pare");
+            }
         }
 
         private void AdjustPriceView()
@@ -2847,12 +2829,16 @@ namespace WindowsFormsApp1
                 stringParam += "Man_Power-" + (i + 1) + "|";
                 stringParam += parameters.labor_MP[i][0] + "|";
                 stringParam += parameters.labor_MP[i][1] + "|";
+                stringParam += parameters.labor_MP[i][2] + "|";
+                stringParam += parameters.labor_MP[i][3] + "|";
             }
             for (int i = 0; i < parameters.labor_EQP.Count; i++)
             {
                 stringParam += "Equipment-" + (i + 1) + "|";
                 stringParam += parameters.labor_EQP[i][0] + "|";
                 stringParam += parameters.labor_EQP[i][1] + "|";
+                stringParam += parameters.labor_EQP[i][2] + "|";
+                stringParam += parameters.labor_EQP[i][3] + "|";
             }
 
             //Misc
@@ -3027,13 +3013,6 @@ namespace WindowsFormsApp1
             foreach (DictionaryEntry dict in parameters.price_Equipment)
             {
                 stringParam += dict.Value.ToString() + "|";
-            }
-
-            //View 10
-            stringParam += "\nLaborAndEquipment|\n";
-            foreach(LaborAndEquipmentUserControl content in laqUC)
-            {
-                stringParam += content.hrs + "|" + content.days + "|";
             }
 
             //BOQ
@@ -3997,22 +3976,23 @@ namespace WindowsFormsApp1
                 if (tokens[i].Equals("Man_Power-" + j))
                 {
                     i++;
-                    string[] toAdd = { tokens[i], tokens[i + 1] };
+                    string[] toAdd = { tokens[i], tokens[i + 1], tokens[i + 2], tokens[i + 3] };
                     parameters.labor_MP.Add(toAdd);
                 }
-                i += 2;
+                i += 4;
             }
             j = 0;
+            Console.WriteLine(tokens[i]);
             while (!tokens[i].Equals("Misc"))
             {
                 j++;
                 if (tokens[i].Equals("Equipment-" + j))
                 {
                     i++;
-                    string[] toAdd = { tokens[i], tokens[i + 1] };
+                    string[] toAdd = { tokens[i], tokens[i + 1], tokens[i + 2], tokens[i + 3] };
                     parameters.labor_EQP.Add(toAdd);
                 }
-                i += 2;
+                i += 4;
             }
 
             //Misc
@@ -4030,7 +4010,7 @@ namespace WindowsFormsApp1
                 i += 2;
             }
 
-            //Price-List TODO IF DATA COMPLETE
+            //Price-List 
             i++;
             
             //1
@@ -4881,18 +4861,6 @@ namespace WindowsFormsApp1
                 double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
 
             AdjustPriceView();
-            AdjustView10();
-
-            //View 10
-            i++;
-            j = 0;
-            while (!tokens[i].Equals("BOQ"))
-            {
-                laqUC[j].hrs = tokens[i]; i++;
-                laqUC[j].days = tokens[i]; i++;
-                j++;
-            }
-
             AdjustView10();
 
             //BOQ

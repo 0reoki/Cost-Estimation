@@ -1090,6 +1090,8 @@ namespace WindowsFormsApp1
             //Default Values
             content.set_mpUC_cbx = "Foreman [hr]";
             content.set_mpUC_qty = "1";
+            content.set_mpUC_hrs = "8";
+            content.set_mpUC_days = "7";
             labor_MP_Panel.Controls.Add(content);
         }
 
@@ -1100,6 +1102,8 @@ namespace WindowsFormsApp1
             //Default Values
             content.set_eqUC_cbx = "Crawler Loader (80kW/ 1.5 - 2.0 cu.m) [hr]";
             content.set_eqUC_qty = "1";
+            content.set_eqUC_hrs = "8";
+            content.set_eqUC_days = "7";
             labor_EQP_Panel.Controls.Add(content);
         }
 
@@ -1526,6 +1530,8 @@ namespace WindowsFormsApp1
                     ManPowerUserControl content = new ManPowerUserControl(this);
                     content.set_mpUC_cbx = parameters.labor_MP[i][0];
                     content.set_mpUC_qty = parameters.labor_MP[i][1];
+                    content.set_mpUC_hrs = parameters.labor_MP[i][2];
+                    content.set_mpUC_days = parameters.labor_MP[i][3];
                     MpUC.Add(content);
                     labor_MP_Panel.Controls.Add(MpUC[i]);
                 }
@@ -1537,6 +1543,8 @@ namespace WindowsFormsApp1
                     EquipmentUserControl content = new EquipmentUserControl(this);
                     content.set_eqUC_cbx = parameters.labor_EQP[i][0];
                     content.set_eqUC_qty = parameters.labor_EQP[i][1];
+                    content.set_eqUC_hrs = parameters.labor_EQP[i][2];
+                    content.set_eqUC_days = parameters.labor_EQP[i][3];
                     EqUC.Add(content);
                     labor_EQP_Panel.Controls.Add(EqUC[i]);
                 }
@@ -2021,13 +2029,13 @@ namespace WindowsFormsApp1
             List<string[]> labor_MP = new List<string[]>();
             for (int i = 0; i < mpUC.Count; i++)
             {
-                string[] toAdd = { mpUC[i].set_mpUC_cbx, mpUC[i].set_mpUC_qty };
+                string[] toAdd = { mpUC[i].set_mpUC_cbx, mpUC[i].set_mpUC_qty, mpUC[i].set_mpUC_hrs, mpUC[i].set_mpUC_days };
                 labor_MP.Add(toAdd);
             }
             List<string[]> labor_EQP = new List<string[]>();
             for (int i = 0; i < eqUC.Count; i++)
             {
-                string[] toAdd = { eqUC[i].set_eqUC_cbx, eqUC[i].set_eqUC_qty };
+                string[] toAdd = { eqUC[i].set_eqUC_cbx, eqUC[i].set_eqUC_qty, eqUC[i].set_eqUC_hrs, eqUC[i].set_eqUC_days };
                 labor_EQP.Add(toAdd);
             }
             parameters.setLaborParameters(

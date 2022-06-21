@@ -2000,7 +2000,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.view_TV1 = new System.Windows.Forms.TreeView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.view_ConfigureBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.view_10_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
@@ -32720,7 +32720,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.button2, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.view_ConfigureBtn, 0, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -32729,19 +32729,20 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel2.Size = new System.Drawing.Size(392, 64);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
-            // button2
+            // view_ConfigureBtn
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.view_ConfigureBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.AutoSize = true;
-            this.button2.Location = new System.Drawing.Point(10, 10);
-            this.button2.Margin = new System.Windows.Forms.Padding(10);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(176, 44);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Configure ";
-            this.button2.UseVisualStyleBackColor = true;
+            this.view_ConfigureBtn.AutoSize = true;
+            this.view_ConfigureBtn.Location = new System.Drawing.Point(10, 10);
+            this.view_ConfigureBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.view_ConfigureBtn.Name = "view_ConfigureBtn";
+            this.view_ConfigureBtn.Size = new System.Drawing.Size(176, 44);
+            this.view_ConfigureBtn.TabIndex = 10;
+            this.view_ConfigureBtn.Text = "Configure ";
+            this.view_ConfigureBtn.UseVisualStyleBackColor = true;
+            this.view_ConfigureBtn.Click += new System.EventHandler(this.view_ConfigureBtn_Click);
             // 
             // tableLayoutPanel8
             // 
@@ -33932,7 +33933,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Button paraBtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button view_ConfigureBtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;

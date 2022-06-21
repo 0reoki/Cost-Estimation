@@ -13,10 +13,9 @@ namespace WindowsFormsApp1
     public partial class LaborAndEquipmentUserControl : UserControl
     {
         public double qtyDouble, daysDouble, hrsDouble, priceDouble, totalPrice;
-        public int id;
         public string name;
 
-        public LaborAndEquipmentUserControl(string item, string qty, object price, int id)
+        public LaborAndEquipmentUserControl(string item, string qty, string hrs, string days, object price)
         {
             InitializeComponent();
             qtyDouble = double.Parse(qty, System.Globalization.CultureInfo.InvariantCulture);
@@ -24,7 +23,6 @@ namespace WindowsFormsApp1
             hrsDouble = double.Parse(hrs, System.Globalization.CultureInfo.InvariantCulture);
             priceDouble = double.Parse(price.ToString(), System.Globalization.CultureInfo.InvariantCulture);
             name = item;
-            this.id = id;
 
             Compute();
         }
@@ -33,18 +31,6 @@ namespace WindowsFormsApp1
         {
             totalPrice = qtyDouble * hrsDouble * daysDouble * priceDouble;
             this.price = "₱" + totalPrice.ToString();
-        }
-
-        private void laq_hrs_bx_TextChanged(object sender, EventArgs e)
-        {
-            hrsDouble = double.Parse(hrs, System.Globalization.CultureInfo.InvariantCulture);
-            Compute();
-        }
-
-        private void laq_days_bx_TextChanged(object sender, EventArgs e)
-        {
-            daysDouble = double.Parse(days, System.Globalization.CultureInfo.InvariantCulture);
-            Compute();
         }
 
         public string laq

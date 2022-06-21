@@ -44,6 +44,30 @@ namespace WindowsFormsApp1
             }
         }
 
+        public string set_eqUC_hrs
+        {
+            set
+            {
+                eqUC_hrs.Text = value;
+            }
+            get
+            {
+                return eqUC_hrs.Text;
+            }
+        }
+
+        public string set_eqUC_days
+        {
+            set
+            {
+                eqUC_days.Text = value;
+            }
+            get
+            {
+                return eqUC_days.Text;
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             this.Parent.Controls.Remove(this);

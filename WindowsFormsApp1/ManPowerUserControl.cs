@@ -44,6 +44,30 @@ namespace WindowsFormsApp1
             }
         }
 
+        public string set_mpUC_hrs
+        {
+            set
+            {
+                mpUC_hrs.Text = value;
+            }
+            get
+            {
+                return mpUC_hrs.Text;
+            }
+        }
+
+        public string set_mpUC_days
+        {
+            set
+            {
+                mpUC_days.Text = value;
+            }
+            get
+            {
+                return mpUC_days.Text;
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             this.Parent.Controls.Remove(this);
