@@ -126,15 +126,10 @@ namespace WindowsFormsApp1
             price_Category_cbx.SelectedIndex = 0;
 
             //Initialize Summary BOQ table
-            summ_BOQ_dt = new DataTable();
-            summ_BOQ_bs = new BindingSource();
+            initializeSummaryTable();
 
-            summ_BOQ_bs.DataSource = summ_BOQ_dt;
-
-            summ_BOQ_dt.Columns.Add("Item");
-            summ_BOQ_dg.DataSource = summ_BOQ_dt;
-
-            summ_BOQ_dg.Columns[0].Width = 45;
+            //Initialize Help
+            initializeHelpTree();
         }
         //General Functions -- END
 
@@ -142,6 +137,7 @@ namespace WindowsFormsApp1
         async void InitializeAsync()
         {
             await webView.EnsureCoreWebView2Async(null);
+            await help_webView.EnsureCoreWebView2Async(null);
         }
 
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
@@ -166,11 +162,6 @@ namespace WindowsFormsApp1
                 AdjustView10();
                 
                 //Console.WriteLine(structuralMembers.concreteWorkSolutionsC[0][0][0]);
-            }
-            //Help tab button is clicked
-            else if (e.TabPageIndex == 5)
-            {
-                e.Cancel = true;
             }
         }
 
@@ -443,18 +434,36 @@ namespace WindowsFormsApp1
         private void initializeView()
         {
             //TODO: Compute Cost according to checked
-            //Cost Computation 
-            excavation_CostL = excavation_Total * double.Parse(parameters.price_LaborRate_Earthworks["Excavation [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture); 
-            backfillingAndCompaction_CostL = backfillingAndCompaction_Total * double.Parse(parameters.price_LaborRate_Earthworks["Backfilling and Compaction [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
-            gradingAndCompaction_CostL = gradingAndCompaction_Total * double.Parse(parameters.price_LaborRate_Earthworks["Grading and Compaction [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+            //Cost Computation - START
+
+            //Excavation
+            if (earthworksChecklist[1])
+                excavation_CostL = excavation_Total * double.Parse(parameters.price_LaborRate_Earthworks["Excavation [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+            else
+                excavation_CostL = 0;
+            if (earthworksChecklist[2])
+                backfillingAndCompaction_CostL = backfillingAndCompaction_Total * double.Parse(parameters.price_LaborRate_Earthworks["Backfilling and Compaction [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+            else
+                backfillingAndCompaction_CostL = 0;
+            if (earthworksChecklist[3])
+                gradingAndCompaction_CostL = gradingAndCompaction_Total * double.Parse(parameters.price_LaborRate_Earthworks["Grading and Compaction [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+            else
+                gradingAndCompaction_CostL = 0;
             string earthworks_gravelBeddingType = parameters.earth_CF_TY;
             gravelBedding_CostM = gravelBedding_Total * double.Parse(parameters.price_Gravel[earthworks_gravelBeddingType].ToString(), System.Globalization.CultureInfo.InvariantCulture);
             gravelBedding_CostL = gravelBedding_Total * double.Parse(parameters.price_LaborRate_Earthworks["Gravel Bedding and Compaction [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
-            gravelBedding_CostTotal = gravelBedding_CostM + gravelBedding_CostL;
-            soilPoisoning_CostM = soilPoisoning_Total * double.Parse(parameters.price_LaborRate_Earthworks["Soil Poisoning [m2]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+            if (earthworksChecklist[4])
+                gravelBedding_CostTotal = gravelBedding_CostM + gravelBedding_CostL;
+            else
+                gravelBedding_CostTotal = 0;
+            if (earthworksChecklist[5])
+                soilPoisoning_CostM = soilPoisoning_Total * double.Parse(parameters.price_LaborRate_Earthworks["Soil Poisoning [m2]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+            else
+                soilPoisoning_CostM = 0;
             earthworks_CostTotal = excavation_CostL + backfillingAndCompaction_CostL + gradingAndCompaction_CostL +
                                    gravelBedding_CostTotal + soilPoisoning_CostM;
 
+            //Cost Computation - END
             if (!viewInitalized)
             {
                 view_TV1.Nodes.Clear();
@@ -506,7 +515,7 @@ namespace WindowsFormsApp1
             AdjustTreeViewHeight(treeView);
         }
 
-        //Local Variables
+        //View Variables
         const int TVM_GETNEXTITEM = 0x1100 + 10;
         const int TVGN_LASTVISIBLE = 0x000A;
         [System.Runtime.InteropServices.DllImport("user32.dll")]
@@ -583,6 +592,20 @@ namespace WindowsFormsApp1
                 content.hrs = data[2];
                 content.days = data[3];
                 view_10_Panel.Controls.Add(content);
+            }
+        }
+
+        private void view_ConfigureBtn_Click(object sender, EventArgs e)
+        {
+            PriceChecklistForms dlg = new PriceChecklistForms(this);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                //Update view
+                viewInitalized = false;
+                initializeView();
+                AdjustView10();
+
+                //Update BOQ
             }
         }
         //View functions -- END
@@ -1602,15 +1625,6 @@ namespace WindowsFormsApp1
             parameters.price_Equipment["Road Paint Stripper [hr]"] = 186.5;
         }
 
-        private void view_ConfigureBtn_Click(object sender, EventArgs e)
-        {
-            PriceChecklistForms dlg = new PriceChecklistForms(this);
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                MessageBox.Show("Wp pare");
-            }
-        }
-
         private void AdjustPriceView()
         {
             //1 - Common Materials
@@ -2054,7 +2068,7 @@ namespace WindowsFormsApp1
         private void foot_FT_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             priceTabControl.SelectedIndex = price_Category_cbx.SelectedIndex;
-        }   
+        }
 
         private void price_SaveBtn_Click(object sender, EventArgs e)
         {
@@ -2603,8 +2617,169 @@ namespace WindowsFormsApp1
         //Price functions -- END
 
         //Summary functions -- START
+        void initializeSummaryTable()
+        {
+            summ_BOQ_dt = new DataTable();
+            summ_BOQ_bs = new BindingSource();
 
+            summ_BOQ_bs.DataSource = summ_BOQ_dt;
+
+            summ_BOQ_dt.Columns.Add("Item");
+            summ_BOQ_dt.Columns.Add("Description");
+            summ_BOQ_dt.Columns.Add("QTY");
+            summ_BOQ_dt.Columns.Add("Unit");
+            summ_BOQ_dt.Columns.Add("Materials");
+            summ_BOQ_dt.Columns.Add("Labor");
+            summ_BOQ_dt.Columns.Add("Total Cost");
+
+            summ_BOQ_dg.DataSource = summ_BOQ_dt;
+
+            summ_BOQ_dg.Columns[0].Width = 45;
+            summ_BOQ_dg.Columns[1].Width = 180;
+            summ_BOQ_dg.Columns[2].Width = 45;
+            summ_BOQ_dg.Columns[3].Width = 45;
+            summ_BOQ_dg.Columns[4].Width = 90;
+            summ_BOQ_dg.Columns[5].Width = 90;
+            summ_BOQ_dg.Columns[5].Width = 90;
+        }
         //Summary functions -- END
+
+        //Help functions -- START
+        void initializeHelpTree()
+        {
+            //Parent nodes
+            TreeNode tn1 = new TreeNode("EARTHWORKS");
+            TreeNode tn2 = new TreeNode("CONCRETE WORKS");
+            TreeNode tn3 = new TreeNode("FORMWORKS");
+            TreeNode tn4 = new TreeNode("PAINT WORKS");
+            TreeNode tn5 = new TreeNode("TILE WORKS");
+            TreeNode tn6 = new TreeNode("FOOTING REBARS");
+            TreeNode tn7 = new TreeNode("WALLFOOTING REBARS");
+            TreeNode tn8 = new TreeNode("COLUMN MAIN BARS");
+            TreeNode tn9 = new TreeNode("COLUMN LATERAL TIES");
+            TreeNode tn10 = new TreeNode("STAIRS REBARS");
+            TreeNode tn11 = new TreeNode("BEAM MAIN TOP REBARS");
+            TreeNode tn12 = new TreeNode("BEAM REBAR SPACERS");
+            TreeNode tn13 = new TreeNode("BEAM STIRRUPS");
+            TreeNode tn14 = new TreeNode("SLAB REBARS");
+            TreeNode tn15 = new TreeNode("MASONRY");
+            TreeNode tn16 = new TreeNode("ROOFINGS");
+
+
+            //Init variables
+            List<TreeNode> nodes;
+            nodes = new List<TreeNode>() { tn1, tn2, tn3, tn4, tn5, tn6, tn7, tn8, tn9, tn10, tn11, tn12, tn13, tn14, tn15, tn16 };
+            setTree(nodes);
+        }
+        private void setTree(List<TreeNode> nodes)
+        {
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                help_treeView.Nodes.Add(nodes[i]);
+            }
+            AdjustTreeViewHeight(help_treeView);
+        }
+
+        private void help_treeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (help_treeView.SelectedNode.ToString().Equals("TreeNode: EARTHWORKS"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\EARTHWORKS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.EARTHWORKS);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            } 
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: CONCRETE WORKS"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CONCRETE WORKS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.CONCRETE_WORKS);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: FORMWORKS"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\FORMWORKS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.FORMWORKS);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: PAINT WORKS"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\PAINT WORKS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.Paint_Works);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: TILE WORKS"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TILE WORKS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.TILE_WORKS);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: FOOTING REBARS"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\FOOTING REBARS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.FOOTING_REBARS);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: WALLFOOTING REBARS"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\WALLFOOTING REBARS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.WALLFOOTING_REBARS);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: COLUMN MAIN BARS"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\COLUMN MAIN BARS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.COLUMN_MAIN_BARS);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: COLUMN LATERAL TIES"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\COLUMN LATERAL TIES.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.COLUMN_LATERAL_TIES);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: STAIRS REBARS"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\STAIRS REBARS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.STAIRS_REBARS);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: BEAM MAIN TOP REBARS"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BEAM MAIN TOP REBARS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.BEAM_MAIN_TOP_REBARS);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: BEAM REBAR SPACERS"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BEAM REBAR SPACERS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.BEAM_REBAR_SPACERS);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: BEAM STIRRUPS"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BEAM STIRRUPS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.BEAM_STIRRUPS);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: SLAB REBARS")) //TODO: to follow pdf file
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\SLAB REBARS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.EARTHWORKS);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: MASONRY"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\MASONRY.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.MASONRY);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: ROOFINGS"))
+            {
+                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\ROOFINGS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.Roofings);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+        }
+        //Help functions -- END
 
         //Long Functions -- START
         private void SaveToFile(String fileName)
@@ -2852,8 +3027,14 @@ namespace WindowsFormsApp1
 
             //Price List
             stringParam += "\nPrice-List|\n";
+            stringParam += "Price-Checklist|\n";
+            //Checklist
+            foreach(bool checkMark in earthworksChecklist)
+            {
+                stringParam += checkMark + "|";
+            }
             //1
-            stringParam += "Common-Materials|\n";
+            stringParam += "\nCommon-Materials|\n";
             foreach (DictionaryEntry dict in parameters.price_CommonMaterials)
             {
                 stringParam += dict.Value.ToString() + "|";
@@ -4009,10 +4190,17 @@ namespace WindowsFormsApp1
                 }
                 i += 2;
             }
-
             //Price-List 
-            i++;
-            
+            i++; i++;
+
+            //Checklist
+            earthworksChecklist[0] = bool.Parse(tokens[i]); i++;
+            earthworksChecklist[1] = bool.Parse(tokens[i]); i++;
+            earthworksChecklist[2] = bool.Parse(tokens[i]); i++;
+            earthworksChecklist[3] = bool.Parse(tokens[i]); i++;
+            earthworksChecklist[4] = bool.Parse(tokens[i]); i++;
+            earthworksChecklist[5] = bool.Parse(tokens[i]); i++;
+
             //1
             i++;
             parameters.price_CommonMaterials["Cyclone Wire (Gauge#10, 2”x2”, 3ft x 10m) [ROLL]"] =

@@ -324,6 +324,21 @@
     <None Include="Resources\Footing\WALL FOOTING.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Help\BEAM MAIN TOP REBARS.pdf" />
+    <None Include="Resources\Help\BEAM REBAR SPACERS.pdf" />
+    <None Include="Resources\Help\BEAM STIRRUPS.pdf" />
+    <None Include="Resources\Help\COLUMN LATERAL TIES.pdf" />
+    <None Include="Resources\Help\COLUMN MAIN BARS.pdf" />
+    <None Include="Resources\Help\CONCRETE WORKS.pdf" />
+    <None Include="Resources\Help\EARTHWORKS.pdf" />
+    <None Include="Resources\Help\FOOTING REBARS.pdf" />
+    <None Include="Resources\Help\FORMWORKS.pdf" />
+    <None Include="Resources\Help\MASONRY.pdf" />
+    <None Include="Resources\Help\Paint Works.pdf" />
+    <None Include="Resources\Help\Roofings.pdf" />
+    <None Include="Resources\Help\STAIRS REBARS.pdf" />
+    <None Include="Resources\Help\TILE WORKS.pdf" />
+    <None Include="Resources\Help\WALLFOOTING REBARS.pdf" />
     <None Include="Resources\Stairs\L STAIRS.PNG" />
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +396,7 @@
     <Content Include="Resources\Slab\SLAB.PNG" />
     <Content Include="Resources\Stairs\L STAIRS REBARS.PNG" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.1150.38\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.1150.38\build\Microsoft.Web.WebView2.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

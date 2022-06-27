@@ -81,6 +81,16 @@ namespace WindowsFormsApp1.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BEAM_MAIN_TOP_REBARS {
+            get {
+                object obj = ResourceManager.GetObject("BEAM_MAIN_TOP_REBARS", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap BEAM_PROP_1 {
@@ -101,6 +111,26 @@ namespace WindowsFormsApp1.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BEAM_REBAR_SPACERS {
+            get {
+                object obj = ResourceManager.GetObject("BEAM_REBAR_SPACERS", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BEAM_STIRRUPS {
+            get {
+                object obj = ResourceManager.GetObject("BEAM_STIRRUPS", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap COLUMN {
@@ -111,12 +141,42 @@ namespace WindowsFormsApp1.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] COLUMN_LATERAL_TIES {
+            get {
+                object obj = ResourceManager.GetObject("COLUMN_LATERAL_TIES", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] COLUMN_MAIN_BARS {
+            get {
+                object obj = ResourceManager.GetObject("COLUMN_MAIN_BARS", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap COMB_FOOTING {
             get {
                 object obj = ResourceManager.GetObject("COMB FOOTING", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] CONCRETE_WORKS {
+            get {
+                object obj = ResourceManager.GetObject("CONCRETE_WORKS", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -157,6 +217,36 @@ namespace WindowsFormsApp1.Properties {
             get {
                 object obj = ResourceManager.GetObject("DISTRIBUTION BARS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] EARTHWORKS {
+            get {
+                object obj = ResourceManager.GetObject("EARTHWORKS", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] FOOTING_REBARS {
+            get {
+                object obj = ResourceManager.GetObject("FOOTING_REBARS", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] FORMWORKS {
+            get {
+                object obj = ResourceManager.GetObject("FORMWORKS", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -331,12 +421,32 @@ namespace WindowsFormsApp1.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MASONRY {
+            get {
+                object obj = ResourceManager.GetObject("MASONRY", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ORANGE {
             get {
                 object obj = ResourceManager.GetObject("ORANGE", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Paint_Works {
+            get {
+                object obj = ResourceManager.GetObject("Paint_Works", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -367,6 +477,16 @@ namespace WindowsFormsApp1.Properties {
             get {
                 object obj = ResourceManager.GetObject("Roof_Accesories__Tinsworks_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Roofings {
+            get {
+                object obj = ResourceManager.GetObject("Roofings", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -411,6 +531,26 @@ namespace WindowsFormsApp1.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] STAIRS_REBARS {
+            get {
+                object obj = ResourceManager.GetObject("STAIRS_REBARS", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] TILE_WORKS {
+            get {
+                object obj = ResourceManager.GetObject("TILE_WORKS", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap TRAPEZOIDAL__WALL_FOOTING {
@@ -437,6 +577,16 @@ namespace WindowsFormsApp1.Properties {
             get {
                 object obj = ResourceManager.GetObject("WALL FOOTING", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] WALLFOOTING_REBARS {
+            get {
+                object obj = ResourceManager.GetObject("WALLFOOTING_REBARS", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

@@ -63,8 +63,8 @@ namespace WindowsFormsApp1
             toAddtoGB = gravelBedding + (gravelBedding * compactionAllowance);
             toAddtoGB /= 1000;
             toAddtoGB *= sogArea;
-            double factorOfSafety = (cEF.gravelBedding_Total + toAddtoGB) * 0.05;
-            cEF.gravelBedding_Total = cEF.gravelBedding_Total + toAddtoGB + factorOfSafety;
+            //double factorOfSafety = (cEF.gravelBedding_Total + toAddtoGB) * 0.05;
+            cEF.gravelBedding_Total = cEF.gravelBedding_Total + toAddtoGB /*+ factorOfSafety*/;
             cEF.structuralMembers.extraEarthworkSolutions[1] = toAddtoGB; //Slab On Grade
 
             //Backfilling and Compaction

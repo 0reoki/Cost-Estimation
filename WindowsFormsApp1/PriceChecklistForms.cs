@@ -12,9 +12,12 @@ namespace WindowsFormsApp1
 {
     public partial class PriceChecklistForms : Form
     {
+        CostEstimationForm costEstimationForm;
+
         public PriceChecklistForms(CostEstimationForm costEstimationForm)
         {
             InitializeComponent();
+            this.costEstimationForm = costEstimationForm;
             pcl_1_cb.Checked = costEstimationForm.earthworksChecklist[0];
             pcl_11_cb.Checked = costEstimationForm.earthworksChecklist[1];
             pcl_12_cb.Checked = costEstimationForm.earthworksChecklist[2];
@@ -25,7 +28,13 @@ namespace WindowsFormsApp1
 
         private void priceCL_OKBtn_Click(object sender, EventArgs e)
         {
-            // Change costEstimationForm Checklist bool data
+            costEstimationForm.earthworksChecklist[0] = pcl_1_cb.Checked;
+            costEstimationForm.earthworksChecklist[1] = pcl_11_cb.Checked;
+            costEstimationForm.earthworksChecklist[2] = pcl_12_cb.Checked;
+            costEstimationForm.earthworksChecklist[3] = pcl_13_cb.Checked;
+            costEstimationForm.earthworksChecklist[4] = pcl_14_cb.Checked;
+            costEstimationForm.earthworksChecklist[5] = pcl_15_cb.Checked;
+
             this.DialogResult = DialogResult.OK;
         }
 

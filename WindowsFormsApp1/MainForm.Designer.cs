@@ -1987,6 +1987,8 @@ namespace WindowsFormsApp1
             this.label1124 = new System.Windows.Forms.Label();
             this.label1125 = new System.Windows.Forms.Label();
             this.label1126 = new System.Windows.Forms.Label();
+            this.tab27 = new System.Windows.Forms.TabPage();
+            this.price_CustomItems_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.price_Category_cbx = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -2019,6 +2021,11 @@ namespace WindowsFormsApp1
             this.label1133 = new System.Windows.Forms.Label();
             this.label1135 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel411 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1137 = new System.Windows.Forms.Label();
+            this.help_treeView = new System.Windows.Forms.TreeView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.help_webView = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.fileMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.fileMenu1 = new System.Windows.Forms.ToolStripMenuItem();
             this.fileMenu2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -2461,6 +2468,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel404.SuspendLayout();
             this.tableLayoutPanel405.SuspendLayout();
             this.tableLayoutPanel406.SuspendLayout();
+            this.tab27.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -2474,6 +2482,10 @@ namespace WindowsFormsApp1
             ((System.ComponentModel.ISupportInitialize)(this.summ_BOQ_dg)).BeginInit();
             this.tableLayoutPanel409.SuspendLayout();
             this.tableLayoutPanel410.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tableLayoutPanel411.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.help_webView)).BeginInit();
             this.fileMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -2836,6 +2848,7 @@ namespace WindowsFormsApp1
             this.priceTabControl.Controls.Add(this.tab24);
             this.priceTabControl.Controls.Add(this.tab25);
             this.priceTabControl.Controls.Add(this.tab26);
+            this.priceTabControl.Controls.Add(this.tab27);
             this.priceTabControl.ItemSize = new System.Drawing.Size(60, 25);
             this.priceTabControl.Location = new System.Drawing.Point(4, 47);
             this.priceTabControl.Name = "priceTabControl";
@@ -32518,6 +32531,30 @@ namespace WindowsFormsApp1
             this.label1126.Text = "/ hr";
             this.label1126.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // tab27
+            // 
+            this.tab27.Controls.Add(this.price_CustomItems_Panel);
+            this.tab27.Location = new System.Drawing.Point(4, 29);
+            this.tab27.Name = "tab27";
+            this.tab27.Padding = new System.Windows.Forms.Padding(3);
+            this.tab27.Size = new System.Drawing.Size(588, 480);
+            this.tab27.TabIndex = 26;
+            this.tab27.Text = "27";
+            this.tab27.UseVisualStyleBackColor = true;
+            // 
+            // price_CustomItems_Panel
+            // 
+            this.price_CustomItems_Panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.price_CustomItems_Panel.AutoScroll = true;
+            this.price_CustomItems_Panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.price_CustomItems_Panel.Location = new System.Drawing.Point(6, 6);
+            this.price_CustomItems_Panel.Name = "price_CustomItems_Panel";
+            this.price_CustomItems_Panel.Size = new System.Drawing.Size(576, 468);
+            this.price_CustomItems_Panel.TabIndex = 33;
+            this.price_CustomItems_Panel.WrapContents = false;
+            // 
             // tableLayoutPanel12
             // 
             this.tableLayoutPanel12.ColumnCount = 2;
@@ -32829,13 +32866,14 @@ namespace WindowsFormsApp1
             this.summ_BOQ_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.summ_BOQ_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.summ_BOQ_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.summ_BOQ_dg.Cursor = System.Windows.Forms.Cursors.Default;
             this.summ_BOQ_dg.GridColor = System.Drawing.SystemColors.Control;
             this.summ_BOQ_dg.Location = new System.Drawing.Point(4, 218);
             this.summ_BOQ_dg.Name = "summ_BOQ_dg";
@@ -32993,6 +33031,8 @@ namespace WindowsFormsApp1
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.tableLayoutPanel411);
+            this.tabPage5.Controls.Add(this.panel1);
             this.tabPage5.Location = new System.Drawing.Point(4, 29);
             this.tabPage5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage5.Name = "tabPage5";
@@ -33000,6 +33040,76 @@ namespace WindowsFormsApp1
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Help";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel411
+            // 
+            this.tableLayoutPanel411.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel411.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel411.ColumnCount = 1;
+            this.tableLayoutPanel411.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel411.Controls.Add(this.label1137, 0, 0);
+            this.tableLayoutPanel411.Controls.Add(this.help_treeView, 0, 1);
+            this.tableLayoutPanel411.Location = new System.Drawing.Point(899, 12);
+            this.tableLayoutPanel411.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel411.Name = "tableLayoutPanel411";
+            this.tableLayoutPanel411.RowCount = 2;
+            this.tableLayoutPanel411.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel411.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel411.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel411.Size = new System.Drawing.Size(320, 599);
+            this.tableLayoutPanel411.TabIndex = 8;
+            // 
+            // label1137
+            // 
+            this.tableLayoutPanel411.SetColumnSpan(this.label1137, 2);
+            this.label1137.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1137.Location = new System.Drawing.Point(2, 1);
+            this.label1137.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label1137.Name = "label1137";
+            this.label1137.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label1137.Size = new System.Drawing.Size(314, 31);
+            this.label1137.TabIndex = 10;
+            this.label1137.Text = "List of Manual Documents";
+            this.label1137.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // help_treeView
+            // 
+            this.help_treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.help_treeView.Location = new System.Drawing.Point(4, 55);
+            this.help_treeView.Name = "help_treeView";
+            this.help_treeView.Size = new System.Drawing.Size(312, 540);
+            this.help_treeView.TabIndex = 13;
+            this.help_treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.help_treeView_AfterSelect);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.help_webView);
+            this.panel1.Location = new System.Drawing.Point(8, 12);
+            this.panel1.Margin = new System.Windows.Forms.Padding(10);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(10);
+            this.panel1.Size = new System.Drawing.Size(884, 599);
+            this.panel1.TabIndex = 9;
+            // 
+            // help_webView
+            // 
+            this.help_webView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.help_webView.CreationProperties = null;
+            this.help_webView.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.help_webView.Location = new System.Drawing.Point(10, 10);
+            this.help_webView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.help_webView.Name = "help_webView";
+            this.help_webView.Size = new System.Drawing.Size(864, 577);
+            this.help_webView.TabIndex = 5;
+            this.help_webView.ZoomFactor = 1D;
             // 
             // fileMenu
             // 
@@ -33884,6 +33994,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel405.PerformLayout();
             this.tableLayoutPanel406.ResumeLayout(false);
             this.tableLayoutPanel406.PerformLayout();
+            this.tab27.ResumeLayout(false);
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
@@ -33899,6 +34010,10 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel409.ResumeLayout(false);
             this.tableLayoutPanel410.ResumeLayout(false);
             this.tableLayoutPanel410.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tableLayoutPanel411.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.help_webView)).EndInit();
             this.fileMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -35902,6 +36017,13 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label1135;
         private System.Windows.Forms.DataGridView summ_BOQ_dg;
         private System.Windows.Forms.FlowLayoutPanel view_10_Panel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel411;
+        private System.Windows.Forms.Panel panel1;
+        private Microsoft.Web.WebView2.WinForms.WebView2 help_webView;
+        private System.Windows.Forms.Label label1137;
+        private System.Windows.Forms.TreeView help_treeView;
+        private System.Windows.Forms.TabPage tab27;
+        private System.Windows.Forms.FlowLayoutPanel price_CustomItems_Panel;
     }
 }
 
