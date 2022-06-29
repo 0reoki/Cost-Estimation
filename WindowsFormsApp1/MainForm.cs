@@ -64,6 +64,14 @@ namespace WindowsFormsApp1
         //10.0 - Additional Labor and Equipment
         // List<double> laborAndEqpt_CostL = new List<double>(); recomputes instead of just saving
 
+        //11.0 Paints
+        public List<List<double>> paintsSolution = new List<List<double>>();
+
+        //12.0 Tiles
+        public List<List<double>> tilesSolution = new List<List<double>>();
+
+        //13.0 Masonry
+
         //Getters and Setters
         public List<Floor> Floors { get => floors; set => floors = value; }
 
@@ -2619,28 +2627,116 @@ namespace WindowsFormsApp1
         //Summary functions -- START
         void initializeSummaryTable()
         {
-            summ_BOQ_dt = new DataTable();
-            summ_BOQ_bs = new BindingSource();
+            DataGridView summ_BOQ_dg = new DataGridView();
+            this.summ_BOQ_dg.Columns.Add("item1", "");
+            this.summ_BOQ_dg.Columns.Add("description1", "");
+            this.summ_BOQ_dg.Columns.Add("description2", "");
+            this.summ_BOQ_dg.Columns.Add("qty1", "");
+            this.summ_BOQ_dg.Columns.Add("unit1", "");
+            this.summ_BOQ_dg.Columns.Add("materials1", "UNIT COST");
+            this.summ_BOQ_dg.Columns.Add("materials2", "TOTAL");
+            this.summ_BOQ_dg.Columns.Add("labor1", "UNIT COST");
+            this.summ_BOQ_dg.Columns.Add("labor2", "TOTAL");
+            this.summ_BOQ_dg.Columns.Add("totalcost1", "TOTAL COST");
+            this.summ_BOQ_dg.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            /*for (int x = 0; x < 10; x++)
+            {
+                this.summ_BOQ_dg.Rows[0].Cells[x].Style.BackColor = Color.Green;
+            }*/
+            this.summ_BOQ_dg.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGreen;
+            this.summ_BOQ_dg.EnableHeadersVisualStyles = false;
 
-            summ_BOQ_bs.DataSource = summ_BOQ_dt;
 
-            summ_BOQ_dt.Columns.Add("Item");
-            summ_BOQ_dt.Columns.Add("Description");
-            summ_BOQ_dt.Columns.Add("QTY");
-            summ_BOQ_dt.Columns.Add("Unit");
-            summ_BOQ_dt.Columns.Add("Materials");
-            summ_BOQ_dt.Columns.Add("Labor");
-            summ_BOQ_dt.Columns.Add("Total Cost");
+            //for adding contents in table -- START
+            for (int x = 0; x < 3; x++)
+            {
+                var index = this.summ_BOQ_dg.Rows.Add();
+                this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "EARTHWORKS";
+                this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = 50.2;
+            }
+            //for adding contents in table -- END
 
-            summ_BOQ_dg.DataSource = summ_BOQ_dt;
+            for (int j = 0; j < this.summ_BOQ_dg.ColumnCount; j++)
+            {
+                this.summ_BOQ_dg.Columns[j].Width = 100;
+            }
 
-            summ_BOQ_dg.Columns[0].Width = 45;
-            summ_BOQ_dg.Columns[1].Width = 180;
-            summ_BOQ_dg.Columns[2].Width = 45;
-            summ_BOQ_dg.Columns[3].Width = 45;
-            summ_BOQ_dg.Columns[4].Width = 90;
-            summ_BOQ_dg.Columns[5].Width = 90;
-            summ_BOQ_dg.Columns[5].Width = 90;
+            this.summ_BOQ_dg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.summ_BOQ_dg.ColumnHeadersHeight = this.summ_BOQ_dg.ColumnHeadersHeight * 2;
+            this.summ_BOQ_dg.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter;
+            this.summ_BOQ_dg.CellPainting += new DataGridViewCellPaintingEventHandler(dataGridView1_CellPainting);
+            this.summ_BOQ_dg.Paint += new PaintEventHandler(dataGridView1_Paint);
+            this.summ_BOQ_dg.Scroll += new ScrollEventHandler(dataGridView1_Scroll);
+            this.summ_BOQ_dg.ColumnWidthChanged += new DataGridViewColumnEventHandler(dataGridView1_ColumnWidthChanged);
+        }
+
+        private void dataGridView1_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            Rectangle rtHeader = this.summ_BOQ_dg.DisplayRectangle;
+            rtHeader.Height = this.summ_BOQ_dg.ColumnHeadersHeight / 2;
+            this.summ_BOQ_dg.Invalidate(rtHeader);
+        }
+
+        private void dataGridView1_Scroll(object sender, ScrollEventArgs e)
+        {
+            Rectangle rtHeader = this.summ_BOQ_dg.DisplayRectangle;
+            rtHeader.Height = this.summ_BOQ_dg.ColumnHeadersHeight / 2;
+            this.summ_BOQ_dg.Invalidate(rtHeader);
+        }
+
+        private void dataGridView1_Paint(object sender, PaintEventArgs e)
+        {
+            string[] header_BOQ = {"ITEM", "DESCRIPTION", "QTY", "UNIT", "MATERIALS","LABOR",""};
+            Rectangle rect;
+            //Pen forBorder;
+        
+            int reach_nextC;
+            StringFormat format = new StringFormat();
+            format.Alignment = StringAlignment.Center;
+            format.LineAlignment = StringAlignment.Center;
+            int columnIndex = 0;
+            
+            for (int strIndex = 0; strIndex < header_BOQ.Length; strIndex++)
+            {
+                rect = this.summ_BOQ_dg.GetCellDisplayRectangle(columnIndex, -1, true);
+                if(columnIndex == 1 || columnIndex == 5 || columnIndex == 7)
+                {
+                    reach_nextC = this.summ_BOQ_dg.GetCellDisplayRectangle(columnIndex + 1, -1, true).Width;
+                    rect.X += 1;
+                    rect.Y += 1;
+                    rect.Width = rect.Width + reach_nextC - 2;
+                    rect.Height = rect.Height / 2 - 2;
+                    columnIndex +=2;
+                }
+                else
+                {
+                    rect.X += 1;
+                    rect.Y += 1;
+                    rect.Width = rect.Width - 2;
+                    rect.Height = rect.Height / 2 - 2;
+                    columnIndex +=1;
+                }
+                e.Graphics.FillRectangle(new SolidBrush(this.summ_BOQ_dg.ColumnHeadersDefaultCellStyle.BackColor), rect);
+                e.Graphics.DrawString
+                    (header_BOQ[strIndex],
+                    this.summ_BOQ_dg.ColumnHeadersDefaultCellStyle.Font,
+                    new SolidBrush(this.summ_BOQ_dg.ColumnHeadersDefaultCellStyle.ForeColor),
+                    rect,
+                    format);
+                e.Graphics.DrawRectangle(Pens.Green,rect);
+            }
+        }   
+        private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex == -1 && e.ColumnIndex > -1)
+            {
+                Rectangle r2 = e.CellBounds;
+                r2.Y += e.CellBounds.Height / 2;
+                r2.Height = e.CellBounds.Height / 2;
+                e.PaintBackground(r2, true);
+                e.PaintContent(r2);
+                e.Handled = true;
+            }
         }
         //Summary functions -- END
 

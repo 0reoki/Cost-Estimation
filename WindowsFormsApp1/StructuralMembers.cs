@@ -137,6 +137,24 @@ namespace WindowsFormsApp1
                 }
                 i++;
             }
+            //paints function call
+            List<List<double>> temp_paint = new List<List<double>>();
+            for (int x = 0; x < cEF.parameters.paint_Area.Count; x++)
+            {
+                temp_paint.Add(cEF.compute.computePaints(cEF.parameters.paint_SCL, cEF.parameters.paint_Area[x][0], cEF.parameters.paint_Area[x][1], cEF.parameters.paint_Area[x][2]));
+            }
+            cEF.paintsSolution = temp_paint;            
+            //tiles function call
+            List<List<double>> temp_tiles = new List<List<double>>();
+            for (int x = 0; x < cEF.parameters.tiles_Area.Count; x++)
+            {
+                temp_tiles.Add(cEF.compute.computeTiles(cEF.parameters.tiles_FS, cEF.parameters.tiles_TG, cEF.parameters.tiles_Area[x][0], cEF.parameters.tiles_Area[x][1], cEF.parameters.tiles_Area[x][2]));                
+            }
+            cEF.tilesSolution = temp_tiles;
+
+            //Masonry function call
+            List<double> sol = new List<double>();
+            sol = cEF.compute.computeMasonry(cEF.parameters.mason_exteriorWall, cEF.parameters.mason_exteriorWindow, cEF.parameters.mason_exteriorDoor, cEF.parameters.mason_interiorWall, cEF.parameters.mason_interiorWindow, cEF.parameters.mason_interiorDoor);
         }
     }
 }

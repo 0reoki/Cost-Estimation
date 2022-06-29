@@ -2898,5 +2898,172 @@ namespace WindowsFormsApp1
 
         }
         //Roof Computation Functions -- END
+
+        //Paints computataion function -- START
+        public List<double> computePaints(string skim ,string paintA, string paintB, string paintC)
+        {
+            List<double> masterPaint = new List<double>();
+            double sLayer = double.Parse(skim, System.Globalization.CultureInfo.InvariantCulture);
+            double pArea = double.Parse(paintA, System.Globalization.CultureInfo.InvariantCulture);
+            double pLayer = double.Parse(paintC, System.Globalization.CultureInfo.InvariantCulture);
+            print(sLayer.ToString()+"-"+ paintA.ToString() +"-"+ paintB + "-" + paintC.ToString());// checking values
+            double neutGal = rounder((pArea / 20)/3);//neutralizer
+            double skimBags = rounder(pArea / 20);//skim coating            
+            double primerGal = rounder(pArea / 20);//primer             
+            double paintGal = rounder((pArea / 25) * pLayer);//paint gallon
+            masterPaint.Add(neutGal);
+            masterPaint.Add(skimBags);
+            masterPaint.Add(primerGal);
+            masterPaint.Add(paintGal);
+            return masterPaint;
+        }
+        //Paints computataion function -- END
+
+        //Tiles computation function -- START
+        public List<double> computeTiles(string safety, string grout, string tilesA, string tilesB, string tilesC)
+        {
+            List<string> dimension = dimensionFilterer(tilesB);
+            List<double> masterTile = new List<double>();
+            double dim1 = double.Parse(dimension[0])/1000;
+            double dim2 = double.Parse(dimension[1])/1000;
+            double area = double.Parse(tilesA);
+            double total_tiles = rounder(area / (dim1 * dim2));
+            total_tiles = rounder(total_tiles + (total_tiles / double.Parse(filterer(safety))));//tiles
+            double adhesive_bag = rounder(area/ 3);//adhesive bag
+            double grout_bag = rounder(area / 4);//grout bag
+            masterTile.Add(total_tiles);
+            masterTile.Add(adhesive_bag);
+            masterTile.Add(grout_bag);
+            return masterTile;
+        }
+        //Tiles computation function -- END
+
+        //Masonry computation function -- START
+
+        public List<double> computeMasonry(List<string[]> eWall, List<string[]> eWindow, List<string[]> eDoor, List<string[]> iWall, List<string[]> iWindow, List<string[]> iDoor)
+        {
+            double eWall_total = 0;
+            double eWindow_total = 0;
+            double eDoor_total = 0;
+            double eCHB_total;
+
+            double iWall_total = 0;
+            double iWindow_total = 0;
+            double iDoor_total = 0;
+            double iCHB_total;
+            List<double> masterMasonry = new List<double>();
+            
+            //exterior
+            for (int x = 0; x < eWall.Count; x++)
+            {
+                double eOne = double.Parse(eWall[x][0]);
+                double eTwo = double.Parse(eWall[x][1]);
+                eWall_total += eOne * eTwo;
+            }
+
+            for (int x = 0; x < eWindow.Count; x++)
+            {
+                double eOne = double.Parse(eWindow[x][0]);
+                double eTwo = double.Parse(eWindow[x][1]);
+                eWindow_total += eOne * eTwo;
+            }
+
+            for (int x = 0; x < eDoor.Count; x++)
+            {
+                double eOne = double.Parse(eDoor[x][0]);
+                double eTwo = double.Parse(eDoor[x][1]);
+                eDoor_total += eOne * eTwo;
+            }
+            eCHB_total = rounder((eWall_total - eWindow_total - eDoor_total) * 12.5);
+            //interior
+            for (int x = 0; x < iWall.Count; x++)
+            {
+                double eOne = double.Parse(iWall[x][0]);
+                double eTwo = double.Parse(iWall[x][1]);
+                iWall_total += eOne * eTwo;
+            }
+
+            for (int x = 0; x < iWindow.Count; x++)
+            {
+                double eOne = double.Parse(iWindow[x][0]);
+                double eTwo = double.Parse(iWindow[x][1]);
+                iWindow_total += eOne * eTwo;
+            }
+
+            for (int x = 0; x < iDoor.Count; x++)
+            {
+                double eOne = double.Parse(iDoor[x][0]);
+                double eTwo = double.Parse(iDoor[x][1]);
+                iDoor_total += eOne * eTwo;
+            }
+            iCHB_total = rounder((iWall_total - iWindow_total - iDoor_total) * 12.5);
+
+            print("Exterior\n");
+            print("Wall: " + eWall_total + " \nWindow: " + eWindow_total + " \nDoor: " + eDoor_total + " \nCHB: " + eCHB_total);
+            print("Interior\n");
+            print("Wall: " + iWall_total + " \nWindow: " + iWindow_total + " \nDoor: " + iDoor_total + " \nCHB: " + iCHB_total);
+            return masterMasonry;
+        }
+
+        //Masonry computation function -- END
+        //Helper functions --- START
+        public void print(string str)
+        {
+            Console.WriteLine(str);
+        }
+        public double rounder(double val)
+        {
+            double rounded_val = val;
+            if ((val % 1) != 0)
+            {
+                 rounded_val = Math.Truncate(val) + 1;
+                return rounded_val;
+            }
+            else
+            {
+                return rounded_val;
+            }
+        }
+
+        public string filterer(string str)
+        {
+            string retStr = "";
+            foreach (char c in str)
+            {
+                if (Char.IsDigit(c))
+                {
+                    retStr += c;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return retStr;
+        }
+
+        public static List<string> dimensionFilterer (string str)
+        {
+            List<string> dims = new List<string>();
+            string retStr = "";
+            foreach (char c in str)
+            {
+                if (Char.IsDigit(c))
+                {
+                    retStr += c;
+                }
+                else
+                {
+                    if(!Char.IsWhiteSpace(c))
+                    {
+                        dims.Add(retStr);
+                        retStr = "";
+                    }
+                }
+            }
+            dims.Add(retStr);
+            return dims;
+        }
+        //Helper functions -- END
     }
 }
