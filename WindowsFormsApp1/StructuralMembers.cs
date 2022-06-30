@@ -152,9 +152,43 @@ namespace WindowsFormsApp1
             }
             cEF.tilesSolution = temp_tiles;
 
-            //Masonry function call
-            List<double> sol = new List<double>();
-            sol = cEF.compute.computeMasonry(cEF.parameters.mason_exteriorWall, cEF.parameters.mason_exteriorWindow, cEF.parameters.mason_exteriorDoor, cEF.parameters.mason_interiorWall, cEF.parameters.mason_interiorWindow, cEF.parameters.mason_interiorDoor);
+            //Masonry function call            
+            cEF.masonrysSolutionP1 = cEF.compute.computeMasonry(cEF, cEF.parameters.mason_exteriorWall, cEF.parameters.mason_exteriorWindow, cEF.parameters.mason_exteriorDoor, cEF.parameters.mason_interiorWall, cEF.parameters.mason_interiorWindow, cEF.parameters.mason_interiorDoor, cEF.parameters.mason_CHB_EW, cEF.parameters.mason_CHB_IW);
+            cEF.masonrysSolutionP2 = cEF.compute.computeConcreteWall_mortar(cEF, cEF.parameters.conc_CM_W_MEW_CM, cEF.parameters.conc_CM_W_MIW_CM, cEF.parameters.conc_CM_W_P_CM, cEF.parameters.conc_CM_W_P_PT);
+            cEF.masonrysSolutionP3 = cEF.compute.computeCHB_reinforcement(cEF.masonrysSolutionP1[3], cEF.masonrysSolutionP1[8], cEF.parameters.mason_RTW_VS, cEF.parameters.mason_RTW_HSL, cEF.parameters.mason_RTW_RG, cEF.parameters.mason_RTW_BD, cEF.parameters.mason_RTW_RL, cEF.parameters.mason_RTW_LTW);
+
+            //just checkers kung tama yung mga nakukuha kong solutions
+            Console.WriteLine("Paints");
+            foreach (var val in cEF.paintsSolution)
+            {
+                foreach (var val2 in val)
+                {
+                    Console.WriteLine(val2);
+                }
+            }
+            Console.WriteLine("Tiles");
+            foreach (var val in cEF.tilesSolution)
+            {
+                foreach (var val2 in val)
+                {
+                    Console.WriteLine(val2);
+                }
+            }
+            Console.WriteLine("Mason 1"); 
+            foreach (var val in cEF.masonrysSolutionP1)
+            {
+                Console.WriteLine(val);
+            }
+            Console.WriteLine("Mason 2");
+            foreach (var val in cEF.masonrysSolutionP2)
+            {
+                Console.WriteLine(val);
+            }
+            Console.WriteLine("Mason 3");
+            foreach(var val in cEF.masonrysSolutionP3)
+            {
+                Console.WriteLine(val);
+            }
         }
     }
 }

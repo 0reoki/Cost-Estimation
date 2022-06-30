@@ -64,13 +64,21 @@ namespace WindowsFormsApp1
         //10.0 - Additional Labor and Equipment
         // List<double> laborAndEqpt_CostL = new List<double>(); recomputes instead of just saving
 
-        //11.0 Paints
+        //11.0 Paints (neutralizer -> skimcoating -> primer -> paint)
         public List<List<double>> paintsSolution = new List<List<double>>();
 
-        //12.0 Tiles
+        //12.0 Tiles (tiles -> adhesive -> grout)
         public List<List<double>> tilesSolution = new List<List<double>>();
 
         //13.0 Masonry
+        //exteriorWall -> exteriorWindow -> exteriorDoor -> exteriorCHBarea -> exteriorCHBtotalpcs -> interiorWall -> interiorWindow -> interiorDoor -> interiorCHBarea ->  interiorCHBtotalpcs
+        public List<double> masonrysSolutionP1 = new List<double>();
+        //extCement -> extSand -> intCement -> intSand -> extplasterArea -> extplasterCement -> extplasterSand -> intplasterArea -> intplasterCement -> intplasterSand
+        public List<double> masonrysSolutionP2 = new List<double>();
+        //extReinforcementCHB -> extReinforcementWeight -> extTieWire -> intReinforcementCHB -> intReinforcementWeight -> intTieWire
+        public List<double> masonrysSolutionP3 = new List<double>();
+        public string extCHBdimension;
+        public string intCHBdimension;
 
         //Getters and Setters
         public List<Floor> Floors { get => floors; set => floors = value; }

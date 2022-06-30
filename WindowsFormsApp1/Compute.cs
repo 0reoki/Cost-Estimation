@@ -2905,8 +2905,7 @@ namespace WindowsFormsApp1
             List<double> masterPaint = new List<double>();
             double sLayer = double.Parse(skim, System.Globalization.CultureInfo.InvariantCulture);
             double pArea = double.Parse(paintA, System.Globalization.CultureInfo.InvariantCulture);
-            double pLayer = double.Parse(paintC, System.Globalization.CultureInfo.InvariantCulture);
-            print(sLayer.ToString()+"-"+ paintA.ToString() +"-"+ paintB + "-" + paintC.ToString());// checking values
+            double pLayer = double.Parse(paintC, System.Globalization.CultureInfo.InvariantCulture);            
             double neutGal = rounder((pArea / 20)/3);//neutralizer
             double skimBags = rounder(pArea / 20);//skim coating            
             double primerGal = rounder(pArea / 20);//primer             
@@ -2940,17 +2939,20 @@ namespace WindowsFormsApp1
 
         //Masonry computation function -- START
 
-        public List<double> computeMasonry(List<string[]> eWall, List<string[]> eWindow, List<string[]> eDoor, List<string[]> iWall, List<string[]> iWindow, List<string[]> iDoor)
+        public List<double> computeMasonry(CostEstimationForm cEF, List<string[]> eWall, List<string[]> eWindow, List<string[]> eDoor, List<string[]> iWall, List<string[]> iWindow, List<string[]> iDoor, string eDimCHB, string iDimCHB)
         {
             double eWall_total = 0;
             double eWindow_total = 0;
             double eDoor_total = 0;
+            double eCHB_area = 0;
             double eCHB_total;
 
             double iWall_total = 0;
             double iWindow_total = 0;
             double iDoor_total = 0;
+            double iCHB_area = 0;
             double iCHB_total;
+
             List<double> masterMasonry = new List<double>();
             
             //exterior
@@ -2974,7 +2976,9 @@ namespace WindowsFormsApp1
                 double eTwo = double.Parse(eDoor[x][1]);
                 eDoor_total += eOne * eTwo;
             }
-            eCHB_total = rounder((eWall_total - eWindow_total - eDoor_total) * 12.5);
+            eCHB_area = eWall_total - eWindow_total - eDoor_total;
+            eCHB_total = eCHB_area * 12.5;
+            eCHB_total = rounder((eCHB_total * 0.05) + eCHB_total);
             //interior
             for (int x = 0; x < iWall.Count; x++)
             {
@@ -2996,16 +3000,224 @@ namespace WindowsFormsApp1
                 double eTwo = double.Parse(iDoor[x][1]);
                 iDoor_total += eOne * eTwo;
             }
-            iCHB_total = rounder((iWall_total - iWindow_total - iDoor_total) * 12.5);
-
-            print("Exterior\n");
-            print("Wall: " + eWall_total + " \nWindow: " + eWindow_total + " \nDoor: " + eDoor_total + " \nCHB: " + eCHB_total);
-            print("Interior\n");
-            print("Wall: " + iWall_total + " \nWindow: " + iWindow_total + " \nDoor: " + iDoor_total + " \nCHB: " + iCHB_total);
+            iCHB_area = iWall_total - iWindow_total - iDoor_total;
+            iCHB_total = iCHB_area * 12.5;
+            iCHB_total = rounder((iCHB_total * 0.05) + iCHB_total);
+            
+            masterMasonry.Add(eWall_total);
+            masterMasonry.Add(eWindow_total);
+            masterMasonry.Add(eDoor_total);
+            masterMasonry.Add(eCHB_area);
+            masterMasonry.Add(eCHB_total);
+            masterMasonry.Add(iWall_total);
+            masterMasonry.Add(iWindow_total);
+            masterMasonry.Add(iDoor_total);
+            masterMasonry.Add(iCHB_area);
+            masterMasonry.Add(iCHB_total);
+            cEF.extCHBdimension = eDimCHB;
+            cEF.intCHBdimension = iDimCHB;
             return masterMasonry;
         }
 
+        //Concrete wall function... still part of masonry
+        public List<double> computeConcreteWall_mortar(CostEstimationForm cEF, string extM, string intM, string plasterCM, string plasterPT)
+        {
+            double [] cementDimA = {.792, .522, .394, .328, .0435 };
+            double[] cementDimB = { 1.526, 1.018, .763, .633, .0844 };
+            double[] cementDimC = { 2.260, 1.500, 1.125, .938, .1250 };
+            double[] plasterClass = { 18.0, 12.0, 9.0, 7.5 };
+            string[] mixtures = { extM, intM };
+            string[] dimensions = { cEF.extCHBdimension, cEF.extCHBdimension };
+            double[] dimCHB = { cEF.masonrysSolutionP1[3], cEF.masonrysSolutionP1[8] };
+            double[] openings = { cEF.masonrysSolutionP1[0], cEF.masonrysSolutionP1[1], cEF.masonrysSolutionP1[2], cEF.masonrysSolutionP1[5], cEF.masonrysSolutionP1[6], cEF.masonrysSolutionP1[7] };
+            List<double> cementAndsands = new List<double>();
+            double cement;
+            double sand;
+            double plasterArea;
+            double plasterCement;
+            int pClassifier;
+
+            for (int pass = 0; pass < 2; pass++)
+            {
+                int col;
+                if (mixtures[pass] == "CLASS A")
+                {
+                    col = 0;
+                }
+                else if (mixtures[pass] == "CLASS B")
+                {
+                    col = 1;
+                }
+                else if (mixtures[pass] == "CLASS C")
+                {
+                    col = 2;
+                }
+                else
+                {
+                    col = 3;
+                }
+
+                if (dimensions[pass] == ".10 x .20 x .40")
+                {
+                    cement = rounder(dimCHB[pass] * cementDimA[col]);
+                    sand = sandRounder(dimCHB[pass] * cementDimA[4]);
+                }
+                else if (dimensions[pass] == ".15 x .20 x .40")
+                {
+                    cement = rounder(dimCHB[pass] * cementDimB[col]);
+                    sand = sandRounder(dimCHB[pass] * cementDimB[4]);
+                }
+                else
+                {
+                    cement = rounder(dimCHB[pass] * cementDimC[col]);
+                    sand = sandRounder(dimCHB[pass] * cementDimC[4]);
+                }
+                cementAndsands.Add(cement);
+                cementAndsands.Add(sand - (sand % .1));
+                
+            }
+
+            //Plaster computation            
+            for (int x = 1; x < 5; x+=3)
+            {
+                plasterArea = openings[x-1] - (openings[x] + openings[x + 1]);                
+                if(plasterCM == "CLASS A")
+                {
+                    pClassifier = 0;
+                    plasterCement = (plasterArea* (double.Parse(filterer(plasterPT))/1000)) * plasterClass[pClassifier];
+                }
+                else if(plasterCM == "CLASS B")
+                {
+                    pClassifier = 1;
+                    plasterCement = (plasterArea * (double.Parse(filterer(plasterPT)) / 1000)) * plasterClass[pClassifier];
+                }
+                else if(plasterCM == "CLASS C")
+                {
+                    pClassifier = 2;
+                    plasterCement = (plasterArea * (double.Parse(filterer(plasterPT)) / 1000)) * plasterClass[pClassifier];
+                }
+                else
+                {
+                    pClassifier = 3;
+                    plasterCement = (plasterArea * (double.Parse(filterer(plasterPT)) / 1000)) * plasterClass[pClassifier];
+                }
+                cementAndsands.Add(plasterArea);
+                cementAndsands.Add(rounder(plasterCement*2));
+                double handler = sandRounder(plasterArea * (double.Parse(filterer(plasterPT)) / 1000) * 2);
+                cementAndsands.Add( handler - (handler %.1));            
+            }            
+            return cementAndsands;
+        }
+
+        public List<double> computeCHB_reinforcement(double eCHB, double iCHB, string vSpace, string hSpace, string grade, string diam, string rLen, string tWire)
+        {
+            List<double> mason = new List<double>();
+            double [] vertical = { 2.93, 2.13, 1.60 };
+            double [] horizontal = { 3.30, 2.15, 1.72 };
+            double[] diameter = { 0.616, 0.888, 1.578, 2.466, 3.853 };
+            double[,] tieXL = new double[,] { { .054, .039, .024 }, { .065, .047, .029 }, { .086, .063, .039 } };
+            double[,] tieLX = new double[,] { { .036, .026, .020 }, { .044, .032, .024 }, { .057, .042, .032 } };
+            double[,] tieLXXX = new double[,] { { .027, .020, .015 }, { .033, .024, .018 }, { .044, .032, .024 } };
+            double[] chbS = { eCHB, iCHB };
+            int vIndexer;
+            int hIndexer;
+            int diamIndexer;
+            int tieIndexer;
+            double vBAR;
+            double hBAR;
+            double reinforceCHB;
+            double reinforceCHBweight;
+            double tieWire;
+            double[,] arrayHandler;
+            //Vertical
+            if (vSpace == ".40")
+            {
+                vIndexer = 0;
+            }
+            else if (vSpace == ".60")
+            {
+                vIndexer = 1;
+            }
+            else
+            {
+                vIndexer = 2;
+            }
+            //Horizontal
+            if (hSpace == "2")
+            {
+                hIndexer = 0;
+            }
+            else if (hSpace == "3")
+            {
+                hIndexer = 1;
+            }
+            else
+            {
+                hIndexer = 2;
+            }
+            //Rebar Length
+            if (diam == "10mm")
+            {
+                diamIndexer = 0;
+            }
+            else if (diam == "12mm")
+            {
+                diamIndexer = 1;
+            }
+            else if (diam == "16mm")
+            {
+                diamIndexer = 2;
+            }
+            else if (diam == "20mm")
+            {
+                diamIndexer = 3;
+            }
+            else 
+            {
+                diamIndexer = 4;
+            }
+            //Tie Wire
+            if (vSpace == ".40")
+            {
+                arrayHandler = tieXL;
+            }
+            else if (vSpace == ".60")
+            {
+                arrayHandler = tieLX;
+            }
+            else
+            {
+                arrayHandler = tieLXXX;
+            }
+            
+            if(tWire == "25cm")
+            {
+                tieIndexer = 0;
+            }
+            else if(tWire == "30cm")
+            {
+                tieIndexer = 1;
+            }
+            else
+            {
+                tieIndexer = 2;
+            }
+            
+            for (int x = 0; x < 2; x++)
+            {
+                vBAR = chbS[x] * vertical[vIndexer];
+                hBAR = chbS[x] * horizontal[hIndexer];
+                reinforceCHB = rounder((vBAR + hBAR) / double.Parse(filterer(rLen)));
+                reinforceCHBweight = rounder(reinforceCHB * diameter[diamIndexer] * double.Parse(filterer(rLen)));
+                tieWire = rounder(chbS[x] * arrayHandler[tieIndexer, hIndexer]);
+                mason.Add(reinforceCHB);
+                mason.Add(reinforceCHBweight);
+                mason.Add(tieWire);
+            }
+            return mason;
+        }
         //Masonry computation function -- END
+
         //Helper functions --- START
         public void print(string str)
         {
@@ -3064,6 +3276,19 @@ namespace WindowsFormsApp1
             dims.Add(retStr);
             return dims;
         }
+
+        public double sandRounder(double x)
+        {
+            if (x % 10 > 0)
+            {
+                x = (int)x + ((x - (int)x) + .10);
+                return x;
+            }
+            else
+            {
+                return x;
+            }            
+        }
         //Helper functions -- END
-    }
+    }   
 }
