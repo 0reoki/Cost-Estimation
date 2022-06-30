@@ -42,15 +42,11 @@ namespace WindowsFormsApp1
         public bool[] earthworksChecklist = { true, true, true, true, true, true }; //1.0
         public ListDictionary laborAndEquipmentChecklist; //10.0
 
-        //Totalities
+        //Totalities -- START
 
-        //1.0 - Earthwork Variables
+        //1.0 - Earthwork 
         public double excavation_Total, backfillingAndCompaction_Total, gradingAndCompaction_Total,
                       gravelBedding_Total, soilPoisoning_Total;
-        //Cost
-        public double excavation_CostL, backfillingAndCompaction_CostL, gradingAndCompaction_CostL,
-                      gravelBedding_CostM, gravelBedding_CostL, gravelBedding_CostTotal, soilPoisoning_CostM, 
-                      earthworks_CostTotal;
 
         //2.0 - Concrete Works Variables (List by struct member [Footing, Concreting, Etc.])
         public double[] cement_Total = new double[6];
@@ -75,7 +71,14 @@ namespace WindowsFormsApp1
         //8.0 Paints (neutralizer -> skimcoating -> primer -> paint)
         public List<List<double>> paintsSolution = new List<List<double>>();
 
-        //Cost
+        //Totalities -- END
+
+        //Cost -- START
+
+        //1.0  - Earthwork
+        public double excavation_CostL, backfillingAndCompaction_CostL, gradingAndCompaction_CostL,
+                      gravelBedding_CostM, gravelBedding_CostL, gravelBedding_CostTotal, soilPoisoning_CostM,
+                      earthworks_CostTotal;
 
         //9.0 - Miscellaneous Items
         public List<double> misc_CostM = new List<double>();
@@ -83,10 +86,7 @@ namespace WindowsFormsApp1
         //10.0 - Additional Labor and Equipment
         // List<double> laborAndEqpt_CostL = new List<double>(); recomputes instead of just saving
 
-        
-
-
-        
+        //Cost -- END
 
         //Getters and Setters
         public List<Floor> Floors { get => floors; set => floors = value; }
