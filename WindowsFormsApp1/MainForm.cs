@@ -41,22 +41,44 @@ namespace WindowsFormsApp1
         //Price Checklists (Show if checklist == true)
         public bool[] earthworksChecklist = { true, true, true, true, true, true }; //1.0
         public ListDictionary laborAndEquipmentChecklist; //10.0
-       
-        //1.0 - Earthwork Variables
-        //Totalities
+
+        //Totalities -- START
+
+        //1.0 - Earthwork 
         public double excavation_Total, backfillingAndCompaction_Total, gradingAndCompaction_Total,
                       gravelBedding_Total, soilPoisoning_Total;
-        //Cost
-        public double excavation_CostL, backfillingAndCompaction_CostL, gradingAndCompaction_CostL,
-                      gravelBedding_CostM, gravelBedding_CostL, gravelBedding_CostTotal, soilPoisoning_CostM, 
-                      earthworks_CostTotal;
 
         //2.0 - Concrete Works Variables (List by struct member [Footing, Concreting, Etc.])
-        //Totalities
         public double[] cement_Total = new double[6];
         public double[] gravel_Total = new double[6];
         public double[] water_Total = new double[6];
-        //Cost
+
+        //4.0 Masonry
+        //exteriorWall -> exteriorWindow -> exteriorDoor -> exteriorCHBarea -> exteriorCHBtotalpcs -> interiorWall -> interiorWindow -> interiorDoor -> interiorCHBarea ->  interiorCHBtotalpcs
+        public List<double> masonrysSolutionP1 = new List<double>();
+
+        //extCement -> extSand -> intCement -> intSand -> extplasterArea -> extplasterCement -> extplasterSand -> intplasterArea -> intplasterCement -> intplasterSand
+        public List<double> masonrysSolutionP2 = new List<double>();
+
+        //extReinforcementCHB -> extReinforcementWeight -> extTieWire -> intReinforcementCHB -> intReinforcementWeight -> intTieWire
+        public List<double> masonrysSolutionP3 = new List<double>();
+        public string extCHBdimension;
+        public string intCHBdimension;
+
+        //7.0 Tiles (tiles -> adhesive -> grout)
+        public List<List<double>> tilesSolution = new List<List<double>>();
+
+        //8.0 Paints (neutralizer -> skimcoating -> primer -> paint)
+        public List<List<double>> paintsSolution = new List<List<double>>();
+
+        //Totalities -- END
+
+        //Cost -- START
+
+        //1.0  - Earthwork
+        public double excavation_CostL, backfillingAndCompaction_CostL, gradingAndCompaction_CostL,
+                      gravelBedding_CostM, gravelBedding_CostL, gravelBedding_CostTotal, soilPoisoning_CostM,
+                      earthworks_CostTotal;
 
         //9.0 - Miscellaneous Items
         public List<double> misc_CostM = new List<double>();
@@ -64,21 +86,7 @@ namespace WindowsFormsApp1
         //10.0 - Additional Labor and Equipment
         // List<double> laborAndEqpt_CostL = new List<double>(); recomputes instead of just saving
 
-        //11.0 Paints (neutralizer -> skimcoating -> primer -> paint)
-        public List<List<double>> paintsSolution = new List<List<double>>();
-
-        //12.0 Tiles (tiles -> adhesive -> grout)
-        public List<List<double>> tilesSolution = new List<List<double>>();
-
-        //13.0 Masonry
-        //exteriorWall -> exteriorWindow -> exteriorDoor -> exteriorCHBarea -> exteriorCHBtotalpcs -> interiorWall -> interiorWindow -> interiorDoor -> interiorCHBarea ->  interiorCHBtotalpcs
-        public List<double> masonrysSolutionP1 = new List<double>();
-        //extCement -> extSand -> intCement -> intSand -> extplasterArea -> extplasterCement -> extplasterSand -> intplasterArea -> intplasterCement -> intplasterSand
-        public List<double> masonrysSolutionP2 = new List<double>();
-        //extReinforcementCHB -> extReinforcementWeight -> extTieWire -> intReinforcementCHB -> intReinforcementWeight -> intTieWire
-        public List<double> masonrysSolutionP3 = new List<double>();
-        public string extCHBdimension;
-        public string intCHBdimension;
+        //Cost -- END
 
         //Getters and Setters
         public List<Floor> Floors { get => floors; set => floors = value; }
