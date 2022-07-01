@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
     {
         //Forms
         ManageElevForm mef;
-        Parameters parameters;
+        xxx xxx;
         CostEstimationForm costEstimationForm;
 
         //Local Variables
