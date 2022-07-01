@@ -1124,10 +1124,10 @@ namespace WindowsFormsApp1
         //Misc Functions -- START
         private void misc_AddItemsBtn_Click(object sender, EventArgs e)
         {
-            CustomItemsUserControl content = new CustomItemsUserControl(this);
+            CustomItemsUserControl content = new CustomItemsUserControl(this, parameters);
             CiUC.Add(content);
             //Default Values
-            content.set_ciUC_cbx = "Vulca Seal";
+            content.set_ciUC_cbx = "Cyclone Wire (Gauge#10, 2”x2”, 3ft x 10m) [ROLL] - Common Materials";
             content.set_ciUC_qty = "3";
             misc_Panel.Controls.Add(content);
         }
@@ -1555,9 +1555,10 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < parameters.misc_CustomItems.Count; i++)
                 {
-                    CustomItemsUserControl content = new CustomItemsUserControl(this);
+                    CustomItemsUserControl content = new CustomItemsUserControl(this, parameters);
                     content.set_ciUC_cbx = parameters.misc_CustomItems[i][0];
                     content.set_ciUC_qty = parameters.misc_CustomItems[i][1];
+                    content.set_ciUC_price = parameters.misc_CustomItems[i][2];
                     CiUC.Add(content);
                     misc_Panel.Controls.Add(CiUC[i]);
                 }
@@ -2046,7 +2047,7 @@ namespace WindowsFormsApp1
             List<string[]> misc_CustomItems = new List<string[]>();
             for (int i = 0; i < ciUC.Count; i++)
             {
-                string[] toAdd = { ciUC[i].set_ciUC_cbx, ciUC[i].set_ciUC_qty };
+                string[] toAdd = { ciUC[i].set_ciUC_cbx, ciUC[i].set_ciUC_qty, ciUC[i].set_ciUC_price };
                 misc_CustomItems.Add(toAdd);
             }
             parameters.setMiscParameters(misc_CustomItems);

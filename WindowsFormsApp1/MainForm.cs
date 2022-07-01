@@ -28,7 +28,6 @@ namespace WindowsFormsApp1
         public List<LaborAndEquipmentUserControl> laqUC;
         List<string> hoursList;
         List<string> daysList;
-        public List<string> searchList;
         public bool saveFileExists;
         public bool viewInitalized;
         String fileName;
@@ -110,7 +109,6 @@ namespace WindowsFormsApp1
             hoursList = new List<string>();
             daysList = new List<string>();
             laqUC = new List<LaborAndEquipmentUserControl>();
-            searchList = new List<string>();
             fileName = null;
 
             //Earthwork Variables
@@ -675,7 +673,8 @@ namespace WindowsFormsApp1
             parameters.price_CommonMaterials.Add("CHB 8” (0.20 x 0.20 x 0.40) [PC]", 26);
             foreach (DictionaryEntry dict in parameters.price_CommonMaterials)
             {
-                searchList.Add(dict.Key + " - Common Materials");
+                parameters.searchList.Add(dict.Key + " - Common Materials");
+                parameters.customItemsList.Add(dict.Key + " - Common Materials");
             }
 
             //2 - Paint and Coating
@@ -700,7 +699,8 @@ namespace WindowsFormsApp1
             parameters.price_PaintAndCoating.Add("Concrete neutralizer [GALS]", 475);
             foreach (DictionaryEntry dict in parameters.price_PaintAndCoating)
             {
-                searchList.Add(dict.Key + " - Paint and Coating");
+                parameters.searchList.Add(dict.Key + " - Paint and Coating");
+                parameters.customItemsList.Add(dict.Key + " - Paint and Coating");
             }
 
             //3 - Welding Rod
@@ -711,7 +711,8 @@ namespace WindowsFormsApp1
             parameters.price_WeldingRod.Add("Welding Rod 6013 (3.2mm) [BOX]", 2000);
             foreach (DictionaryEntry dict in parameters.price_WeldingRod)
             {
-                searchList.Add(dict.Key + " - Welding Rod");
+                parameters.searchList.Add(dict.Key + " - Welding Rod");
+                parameters.customItemsList.Add(dict.Key + " - Welding Rod");
             }
 
             //4 - Personal Protective Equipment
@@ -734,7 +735,8 @@ namespace WindowsFormsApp1
             parameters.price_PersonalProtectiveEquipment.Add("Welding Mask, Auto Darkening [SETS]", 2500);
             foreach (DictionaryEntry dict in parameters.price_PersonalProtectiveEquipment)
             {
-                searchList.Add(dict.Key + " - Personal Protective Equipment");
+                parameters.searchList.Add(dict.Key + " - Personal Protective Equipment");
+                parameters.customItemsList.Add(dict.Key + " - Personal Protective Equipment");
             }
 
             //5 - Tools 
@@ -780,7 +782,8 @@ namespace WindowsFormsApp1
             parameters.price_Tools.Add("Welding Machine (Portable) 12.3 kVA(20-300A) [UNIT]", 19500);
             foreach (DictionaryEntry dict in parameters.price_Tools)
             {
-                searchList.Add(dict.Key + " - Tools");
+                parameters.searchList.Add(dict.Key + " - Tools");
+                parameters.customItemsList.Add(dict.Key + " - Tools");
             }
 
             //6 - Ready Mix Concrete 
@@ -798,7 +801,8 @@ namespace WindowsFormsApp1
             parameters.price_ReadyMixConcrete.Add("Ready Mix Concrete, 5000PSI (34.5 Mpa) @ 28 Days[m3]", 5280);
             foreach (DictionaryEntry dict in parameters.price_ReadyMixConcrete)
             {
-                searchList.Add(dict.Key + " - Ready Mix Concrete");
+                parameters.searchList.Add(dict.Key + " - Ready Mix Concrete");
+                parameters.customItemsList.Add(dict.Key + " - Ready Mix Concrete");
             }
 
             //7 - Gravel
@@ -809,7 +813,8 @@ namespace WindowsFormsApp1
             parameters.price_Gravel.Add("GRAVEL ¾” [m3]", 440);
             foreach (DictionaryEntry dict in parameters.price_Gravel)
             {
-                searchList.Add(dict.Key + " - Gravel");
+                parameters.searchList.Add(dict.Key + " - Gravel");
+                parameters.customItemsList.Add(dict.Key + " - Gravel");
             }
 
             //8 - Formworks and Lumber
@@ -834,7 +839,8 @@ namespace WindowsFormsApp1
             parameters.price_FormworksAndLumber.Add("PHENOLIC BOARD- 3/4” [1.22m x 2.44m]", 2656.20);
             foreach (DictionaryEntry dict in parameters.price_FormworksAndLumber)
             {
-                searchList.Add(dict.Key + " - Formworks and Lumber");
+                parameters.searchList.Add(dict.Key + " - Formworks and Lumber");
+                parameters.customItemsList.Add(dict.Key + " - Formworks and Lumber");
             }
 
             //9 - Roof Materials
@@ -855,7 +861,8 @@ namespace WindowsFormsApp1
             parameters.price_RoofMaterials.Add("Umbrella Nails [KG]", 120);
             foreach (DictionaryEntry dict in parameters.price_RoofMaterials)
             {
-                searchList.Add(dict.Key + " - Roof Materials");
+                parameters.searchList.Add(dict.Key + " - Roof Materials");
+                parameters.customItemsList.Add(dict.Key + " - Roof Materials");
             }
 
             //10 - Tubular Steel (1mm thick)
@@ -866,7 +873,8 @@ namespace WindowsFormsApp1
             parameters.price_TubularSteel1mm.Add("B.I. (Black Iron) Tubular 50mm x 50mm x 1.0mm thick [6m]", 493);
             foreach (DictionaryEntry dict in parameters.price_TubularSteel1mm)
             {
-                searchList.Add(dict.Key + " - Tubular Steel (1mm thick)");
+                parameters.searchList.Add(dict.Key + " - Tubular Steel (1mm thick)");
+                parameters.customItemsList.Add(dict.Key + " - Tubular Steel (1mm thick)");
             }
 
             //11 - Tubular Steel (1.2mm thick)
@@ -879,7 +887,8 @@ namespace WindowsFormsApp1
             parameters.price_TubularSteel1p2mm.Add("B.I. (Black Iron) Tubular 150mm x 50mm x 1.2mm thick [6m]", 1551);
             foreach (DictionaryEntry dict in parameters.price_TubularSteel1p2mm)
             {
-                searchList.Add(dict.Key + " - Tubular Steel (1.2mm thick)");
+                parameters.searchList.Add(dict.Key + " - Tubular Steel (1.2mm thick)");
+                parameters.customItemsList.Add(dict.Key + " - Tubular Steel (1.2mm thick)");
             }
 
             //12 - Tubular Steel (1.5mm thick)
@@ -892,7 +901,8 @@ namespace WindowsFormsApp1
             parameters.price_TubularSteel1p5mm.Add("B.I. (Black Iron) Tubular 150mm x 50mm x 1.5mm thick [6m]", 1932);
             foreach (DictionaryEntry dict in parameters.price_TubularSteel1p5mm)
             {
-                searchList.Add(dict.Key + " - Tubular Steel (1.5mm thick)");
+                parameters.searchList.Add(dict.Key + " - Tubular Steel (1.5mm thick)");
+                parameters.customItemsList.Add(dict.Key + " - Tubular Steel (1.5mm thick)");
             }
 
             //13 - Embankment
@@ -902,7 +912,8 @@ namespace WindowsFormsApp1
             parameters.price_Embankment.Add("Rock [m3]", 613.76);
             foreach (DictionaryEntry dict in parameters.price_Embankment)
             {
-                searchList.Add(dict.Key + " - Embankment");
+                parameters.searchList.Add(dict.Key + " - Embankment");
+                parameters.customItemsList.Add(dict.Key + " - Embankment");
             }
 
             //14 - Rebar Grade 33 (230 Mpa)
@@ -935,7 +946,8 @@ namespace WindowsFormsApp1
             parameters.price_RebarGrade33.Add("Rebar GRADE 33 (⌀25mm) [12m]", 1849.44);
             foreach (DictionaryEntry dict in parameters.price_RebarGrade33)
             {
-                searchList.Add(dict.Key + " - Rebar Grade 33 (230 Mpa)");
+                parameters.searchList.Add(dict.Key + " - Rebar Grade 33 (230 Mpa)");
+                parameters.customItemsList.Add(dict.Key + " - Rebar Grade 33 (230 Mpa)");
             }
 
             //15 - Rebar Grade 40 (275 Mpa) 
@@ -968,7 +980,8 @@ namespace WindowsFormsApp1
             parameters.price_RebarGrade40.Add("Rebar GRADE 40 (⌀25mm) [12m]", 2015.89);
             foreach (DictionaryEntry dict in parameters.price_RebarGrade40)
             {
-                searchList.Add(dict.Key + " - Rebar Grade 40 (275 Mpa)");
+                parameters.searchList.Add(dict.Key + " - Rebar Grade 40 (275 Mpa)");
+                parameters.customItemsList.Add(dict.Key + " - Rebar Grade 40 (275 Mpa)");
             }
 
             //16 -  Rebar Grade 60 (415 Mpa)
@@ -1036,9 +1049,9 @@ namespace WindowsFormsApp1
             parameters.price_RebarGrade60.Add("Rebar GRADE 60 (⌀50mm) [12m]", 5655);
             foreach (DictionaryEntry dict in parameters.price_RebarGrade60)
             {
-                searchList.Add(dict.Key + " - Rebar Grade 60 (415 Mpa)");
+                parameters.searchList.Add(dict.Key + " - Rebar Grade 60 (415 Mpa)");
+                parameters.customItemsList.Add(dict.Key + " - Rebar Grade 60 (415 Mpa)");
             }
-
             //17 - Labor Rate - Earthworks
             parameters.price_LaborRate_Earthworks.Add("Excavation [m3]", 400);
             parameters.price_LaborRate_Earthworks.Add("Backfilling and Compaction [m3]", 400);
@@ -1047,9 +1060,8 @@ namespace WindowsFormsApp1
             parameters.price_LaborRate_Earthworks.Add("Soil Poisoning [m2]", 60);
             foreach (DictionaryEntry dict in parameters.price_LaborRate_Earthworks)
             {
-                searchList.Add(dict.Key + " - Labor Rate - Earthworks");
+                parameters.searchList.Add(dict.Key + " - Labor Rate - Earthworks");
             }
-
             //18 - Labor Rate - Concreting
             parameters.price_LaborRate_Concreting.Add("FOOTING [m3]", 400);
             parameters.price_LaborRate_Concreting.Add("WALL FOOTING [m3]", 400);
@@ -1060,7 +1072,7 @@ namespace WindowsFormsApp1
             parameters.price_LaborRate_Concreting.Add("SLAB ON GRADE [m3]", 350);
             foreach (DictionaryEntry dict in parameters.price_LaborRate_Concreting)
             {
-                searchList.Add(dict.Key + " - Labor Rate - Concreting");
+                parameters.searchList.Add(dict.Key + " - Labor Rate - Concreting");
             }
 
             //19 - Labor Rate - Formworks
@@ -1072,7 +1084,7 @@ namespace WindowsFormsApp1
             parameters.price_LaborRate_Formworks.Add("SUSPENDED SLAB [m2]", 300);
             foreach (DictionaryEntry dict in parameters.price_LaborRate_Formworks)
             {
-                searchList.Add(dict.Key + " - Labor Rate - Formworks");
+                parameters.searchList.Add(dict.Key + " - Labor Rate - Formworks");
             }
 
             //20 - Labor Rate - Rebar
@@ -1087,35 +1099,35 @@ namespace WindowsFormsApp1
             parameters.price_LaborRate_Rebar.Add("WALLS [KG]", 16);
             foreach (DictionaryEntry dict in parameters.price_LaborRate_Rebar)
             {
-                searchList.Add(dict.Key + " - Labor Rate - Rebar");
+                parameters.searchList.Add(dict.Key + " - Labor Rate - Rebar");
             }
 
             //21 - Labor Rate - Paint
             parameters.price_LaborRate_Paint.Add("PAINTER [m2]", 55);
             foreach (DictionaryEntry dict in parameters.price_LaborRate_Paint)
             {
-                searchList.Add(dict.Key + " - Labor Rate - Paint");
+                parameters.searchList.Add(dict.Key + " - Labor Rate - Paint");
             }
 
             //22 - Labor Rate - Tiles
             parameters.price_LaborRate_Tiles.Add("TILES [m2]", 248);
             foreach (DictionaryEntry dict in parameters.price_LaborRate_Tiles)
             {
-                searchList.Add(dict.Key + " - Labor Rate - Tiles");
+                parameters.searchList.Add(dict.Key + " - Labor Rate - Tiles");
             }
 
             //23 - Labor Rate - Masonry
             parameters.price_LaborRate_Masonry.Add("MASONRY [m2]", 400);
             foreach (DictionaryEntry dict in parameters.price_LaborRate_Masonry)
             {
-                searchList.Add(dict.Key + " - Labor Rate - Masonry");
+                parameters.searchList.Add(dict.Key + " - Labor Rate - Masonry");
             }
 
             //24 - Labor Rate - Roofings
             parameters.price_LaborRate_Roofings.Add("ROOFINGS [m2]", 70);
             foreach (DictionaryEntry dict in parameters.price_LaborRate_Roofings)
             {
-                searchList.Add(dict.Key + " - Labor Rate - Roofings");
+                parameters.searchList.Add(dict.Key + " - Labor Rate - Roofings");
             }
 
             //25.1 - Manpower - Manila
@@ -1131,7 +1143,7 @@ namespace WindowsFormsApp1
             parameters.price_ManpowerM.Add("Helper [hr]", 65);
             foreach (DictionaryEntry dict in parameters.price_ManpowerM)
             {
-                searchList.Add(dict.Key + " - Manpower - Manila");
+                parameters.searchList.Add(dict.Key + " - Manpower - Manila");
             }
 
             //25.2 - Manpower - Provincial
@@ -1147,7 +1159,7 @@ namespace WindowsFormsApp1
             parameters.price_ManpowerP.Add("Helper [hr]", 48);
             foreach (DictionaryEntry dict in parameters.price_ManpowerP)
             {
-                searchList.Add(dict.Key + " - Manpower - Provincial");
+                parameters.searchList.Add(dict.Key + " - Manpower - Provincial");
             }
 
             //26 - Equipment
@@ -1192,7 +1204,7 @@ namespace WindowsFormsApp1
             parameters.price_Equipment.Add("Road Paint Stripper [hr]", 186.5);
             foreach (DictionaryEntry dict in parameters.price_Equipment)
             {
-                searchList.Add(dict.Key + " - Equipment");
+                parameters.searchList.Add(dict.Key + " - Equipment");
             }
         }
 
@@ -2551,7 +2563,7 @@ namespace WindowsFormsApp1
             if (!price_SearchBar_bx.Text.Equals(""))
             {
                 price_Search_Panel.Controls.Clear();
-                IEnumerable<string> results = searchList.Where(s => s.ToLower().Contains(price_SearchBar_bx.Text.ToLower()));
+                IEnumerable<string> results = parameters.searchList.Where(s => s.ToLower().Contains(price_SearchBar_bx.Text.ToLower()));
                 foreach (string result in results)
                 {
                     Label label = new Label();
@@ -3135,6 +3147,7 @@ namespace WindowsFormsApp1
                 stringParam += "Custom_Item-" + (i + 1) + "|";
                 stringParam += parameters.misc_CustomItems[i][0] + "|";
                 stringParam += parameters.misc_CustomItems[i][1] + "|";
+                stringParam += parameters.misc_CustomItems[i][2] + "|";
             }
 
             //Price List
@@ -4297,10 +4310,10 @@ namespace WindowsFormsApp1
                 if (tokens[i].Equals("Custom_Item-" + j))
                 {
                     i++;
-                    string[] toAdd = { tokens[i], tokens[i + 1] };
+                    string[] toAdd = { tokens[i], tokens[i + 1], tokens[i + 2] };
                     parameters.misc_CustomItems.Add(toAdd);
                 }
-                i += 2;
+                i += 3;
             }
             //Price-List 
             i++; i++;
