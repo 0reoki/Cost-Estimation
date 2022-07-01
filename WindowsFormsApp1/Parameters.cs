@@ -113,6 +113,9 @@ namespace WindowsFormsApp1
         public ListDictionary price_ManpowerP = new ListDictionary(); //25.2 -- per Hour
         public ListDictionary price_Equipment = new ListDictionary(); //26 -- per Hour
 
+        public List<string> searchList = new List<string>();
+        public List<string> customItemsList = new List<string>();
+
         public Parameters()
         {
             rein_LSL_TB_dt.Columns.Add("Bar Sizes");
