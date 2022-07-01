@@ -2669,6 +2669,7 @@ namespace WindowsFormsApp1
             // 
             // webView
             // 
+            this.webView.AllowExternalDrop = true;
             this.webView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -32835,7 +32836,7 @@ namespace WindowsFormsApp1
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage6.Size = new System.Drawing.Size(1227, 623);
             this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "Summary";
+            this.tabPage6.Text = "BOQ";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel408
@@ -32978,7 +32979,7 @@ namespace WindowsFormsApp1
             this.label1130.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.label1130.Size = new System.Drawing.Size(717, 31);
             this.label1130.TabIndex = 9;
-            this.label1130.Text = "Summary (BOQ)";
+            this.label1130.Text = "Bill of Quantities";
             this.label1130.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1131
@@ -33099,6 +33100,7 @@ namespace WindowsFormsApp1
             // 
             // help_webView
             // 
+            this.help_webView.AllowExternalDrop = true;
             this.help_webView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
