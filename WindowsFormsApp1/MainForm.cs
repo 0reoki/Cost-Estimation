@@ -39,6 +39,9 @@ namespace WindowsFormsApp1
 
         //Price Checklists (Show if checklist == true)
         public bool[] earthworksChecklist = { true, true, true, true, true, true }; //1.0
+        public bool[] masonryChecklist = { true, true }; //4.0
+        public bool[] tilesChecklist = { true, true }; //7.0
+        public bool[] paintsChecklist = { true, true, true, true }; //8.0
         public ListDictionary laborAndEquipmentChecklist; //10.0
 
         //Totalities -- START
@@ -59,16 +62,22 @@ namespace WindowsFormsApp1
         //extCement -> extSand -> intCement -> intSand -> extplasterArea -> extplasterCement -> extplasterSand -> intplasterArea -> intplasterCement -> intplasterSand
         public List<double> masonrysSolutionP2 = new List<double>();
 
-        //extReinforcementCHB -> extReinforcementWeight -> extTieWire -> intReinforcementCHB -> intReinforcementWeight -> intTieWire
+        //extvBAR -> exthBAR -> extReinforcementCHB -> extReinforcementWeight -> extTieWire -> intvBAR -> inthBAR -> intReinforcementCHB -> intReinforcementWeight -> intTieWire
         public List<double> masonrysSolutionP3 = new List<double>();
         public string extCHBdimension;
         public string intCHBdimension;
 
-        //7.0 Tiles (tiles -> adhesive -> grout)
-        public List<List<double>> tilesSolution = new List<List<double>>();
+        //7.0 Tiles
+        //area -> tilesPCS -> tilesADHESIVE -> tilesGROUT
+        public List<double> sixhun = new List<double>();
+        public List<double> threehun = new List<double>();
 
-        //8.0 Paints (neutralizer -> skimcoating -> primer -> paint)
-        public List<List<double>> paintsSolution = new List<List<double>>();
+        //8.0 Paints 
+        //area -> neut -> skim -> primer ->paintGAL
+        public List<double> enamel = new List<double>();
+        public List<double> acrylic = new List<double>();
+        public List<double> latex = new List<double>();
+        public List<double> gloss = new List<double>();
 
         //Totalities -- END
 
@@ -78,6 +87,22 @@ namespace WindowsFormsApp1
         public double excavation_CostL, backfillingAndCompaction_CostL, gradingAndCompaction_CostL,
                       gravelBedding_CostM, gravelBedding_CostL, gravelBedding_CostTotal, soilPoisoning_CostM,
                       earthworks_CostTotal;
+
+        //4.0 Masonry
+        public double exterior_UnitM, exterior_CostM, exterior_CostL, interior_UnitM, interior_CostM, interior_CostL, 
+                      masonMCost_total,masonLCost_total, exterior_costTotal, interior_costTotal, exterior_TOTALCOST,
+                      interior_TOTALCOST, mason_TOTALCOST;
+        //7.0 Tiles
+        public double sixhun_MUnit, sixhun_MCost, sixhun_LCost, sixhun_costTotal,
+                      threehun_MUnit, threehun_MCost, threehun_LCost, threehun_costTotal,
+                      tiles_mTOTALCOST, tiles_lTOTALCOST, tiles_TOTALCOST;
+        //8.0 Paints
+        public double enam_MUnit, enam_MCost, enam_LCost, enam_TOTALCOST,
+                      acry_MUnit, acry_MCost, acry_LCost, acry_TOTALCOST,
+                      late_MUnit, late_MCost, late_LCost, late_TOTALCOST,
+                      semi_MUnit, semi_MCost, semi_LCost, semi_TOTALCOST,
+                      paint_mTOTALCOST, paint_lTOTALCOST, 
+                      paints_TOTALCOST;
 
         //9.0 - Miscellaneous Items
         public List<double> misc_CostM = new List<double>();
@@ -484,7 +509,299 @@ namespace WindowsFormsApp1
                 soilPoisoning_CostM = 0;
             earthworks_CostTotal = excavation_CostL + backfillingAndCompaction_CostL + gradingAndCompaction_CostL +
                                    gravelBedding_CostTotal + soilPoisoning_CostM;
+            //Masonry
+            string strCHB;
+            if (masonryChecklist[0])
+            {
+                try
+                {
+                    if(parameters.mason_CHB_EW == ".10 x .20 x .40")
+                    {
+                        strCHB = "CHB 4” (0.10 x 0.20 x 0.40) [PC]";
+                    }
+                    else if((parameters.mason_CHB_EW == ".15 x .20 x .40"))
+                    {
+                        strCHB = "CHB 6” (0.15 x 0.20 x 0.40) [PC]";
+                    }
+                    else
+                    {
+                        strCHB = "CHB 8” (0.20 x 0.20 x 0.40) [PC]";
+                    }                                                                                                                                                      
+                    exterior_CostM = (masonrysSolutionP1[4] * double.Parse(parameters.price_CommonMaterials[strCHB].ToString())) + 
+                        (masonrysSolutionP2[0] * double.Parse(parameters.price_CommonMaterials["40 kg Portland Cement [BAGS]"].ToString())) + 
+                        (masonrysSolutionP2[1] * double.Parse(parameters.price_CommonMaterials["Sand [m3]"].ToString())) + 
+                        (masonrysSolutionP2[5] * double.Parse(parameters.price_CommonMaterials["40 kg Portland Cement [BAGS]"].ToString())) + 
+                        (masonrysSolutionP2[6] * double.Parse(parameters.price_CommonMaterials["Sand [m3]"].ToString()));
+                    exterior_UnitM = Math.Round(exterior_CostM / masonrysSolutionP1[3], 2);
+                    exterior_CostL = masonrysSolutionP1[3] * double.Parse(parameters.price_LaborRate_Masonry["MASONRY [m2]"].ToString());                    
+                    exterior_costTotal = exterior_CostM + exterior_CostL;
 
+                    
+                }
+                catch
+                {
+                    exterior_CostM = 0;
+                    exterior_UnitM = 0;
+                    exterior_CostL = 0;
+                    exterior_costTotal = 0;
+                }                
+            }
+            else
+            {
+                exterior_CostM = 0;
+                exterior_UnitM = 0;
+                exterior_CostL = 0;
+                exterior_costTotal = 0;
+            }
+            if (masonryChecklist[1])
+            {
+                try
+                {                    
+                    if (parameters.mason_CHB_IW == ".10 x .20 x .40")
+                    {
+                        strCHB = "CHB 4” (0.10 x 0.20 x 0.40) [PC]";                        
+                    }
+                    else if ((parameters.mason_CHB_IW == ".15 x .20 x .40"))
+                    {
+                        strCHB = "CHB 6” (0.15 x 0.20 x 0.40) [PC]";
+                    }
+                    else
+                    {
+                        strCHB = "CHB 8” (0.20 x 0.20 x 0.40) [PC]";
+                    }                                                                                                                                                                           
+                    interior_CostM = (masonrysSolutionP1[9] * double.Parse(parameters.price_CommonMaterials[strCHB].ToString())) + 
+                        (masonrysSolutionP2[2] * double.Parse(parameters.price_CommonMaterials["40 kg Portland Cement [BAGS]"].ToString())) + 
+                        (masonrysSolutionP2[3] * double.Parse(parameters.price_CommonMaterials["Sand [m3]"].ToString())) + 
+                        (masonrysSolutionP2[8] * double.Parse(parameters.price_CommonMaterials["40 kg Portland Cement [BAGS]"].ToString())) + 
+                        (masonrysSolutionP2[9] * double.Parse(parameters.price_CommonMaterials["Sand [m3]"].ToString()));
+                    interior_UnitM = Math.Round(interior_CostM / masonrysSolutionP1[8], 2);
+                    interior_CostL = masonrysSolutionP1[8] * double.Parse(parameters.price_LaborRate_Masonry["MASONRY [m2]"].ToString());
+                    interior_costTotal = interior_CostM + interior_CostL;
+                }
+                catch
+                {
+                    interior_CostM = 0;
+                    interior_UnitM = 0;
+                    interior_CostL = 0;
+                    interior_costTotal = 0;
+                }
+            }
+            else
+            {
+                interior_CostM = 0;
+                interior_UnitM = 0;
+                interior_CostL = 0;
+                interior_costTotal = 0;
+            }
+            masonMCost_total = exterior_CostM + interior_CostM;
+            masonLCost_total = exterior_CostL + interior_CostL;
+            exterior_TOTALCOST = exterior_CostM + exterior_CostL;
+            interior_TOTALCOST = interior_CostM + interior_CostL;
+            mason_TOTALCOST = interior_costTotal + exterior_costTotal;
+            print("=== MASONRY ===");
+            print("M_unit: " + exterior_UnitM + " M_cost: " + exterior_CostM + "L_cost: " + exterior_CostL + "EXT_TOTAL: "+exterior_TOTALCOST);
+            print("M_unit: " + interior_UnitM + " M_cost: " + interior_CostM + "L_cost: " + interior_CostL + "INT_TOTAL: " + interior_TOTALCOST);                        
+            print("-- TOTAL -- ");
+            print("M_total: " + masonMCost_total);
+            print("L_total: " + masonLCost_total);
+            print("TOTAL COST: " + mason_TOTALCOST);
+            //Masonry -- END
+
+            //Tiles
+            if (tilesChecklist[0])
+            {
+                try
+                {
+                    sixhun_MCost = (sixhun[1] * double.Parse(parameters.price_CommonMaterials["Tiles, Floor (600 x 600) [PC]"].ToString())) + 
+                        (sixhun[2]) + 
+                        (double.Parse(parameters.price_CommonMaterials["Tile Grout (2KG)  [BAGS]"].ToString()) * sixhun[3]);
+                    sixhun_MUnit = Math.Round(sixhun_MCost / sixhun[0],2);
+                    sixhun_LCost = double.Parse(parameters.price_LaborRate_Tiles["TILES [m2]"].ToString()) * sixhun[0];
+                    sixhun_costTotal = sixhun_MCost + sixhun_LCost;
+                }
+                catch
+                {
+                    sixhun_MCost = 0;
+                    sixhun_MUnit = 0;
+                    sixhun_LCost = 0;
+                    sixhun_costTotal = 0;
+                }
+            }
+            else
+            {
+                sixhun_MCost = 0;
+                sixhun_MUnit = 0;
+                sixhun_LCost = 0;
+                sixhun_costTotal = 0;
+            }
+            if (tilesChecklist[1])
+            {
+                try
+                {
+                    threehun_MCost = (threehun[1] * double.Parse(parameters.price_CommonMaterials["Tiles, Wall (300 x 300) [PC]"].ToString())) + 
+                        (threehun[2]) + 
+                        (double.Parse(parameters.price_CommonMaterials["Tile Grout (2KG)  [BAGS]"].ToString()) * threehun[3]);
+                    threehun_MUnit = Math.Round(threehun_MCost / threehun[0],2);
+                    threehun_LCost = double.Parse(parameters.price_LaborRate_Tiles["TILES [m2]"].ToString()) * threehun[0];
+                    threehun_costTotal = threehun_MCost + threehun_LCost;
+                }
+                catch
+                {
+                    threehun_MCost = 0;
+                    threehun_MUnit = 0;
+                    threehun_LCost = 0;
+                    threehun_costTotal = 0;
+                }                
+            }
+            else
+            {
+                threehun_MCost = 0;
+                threehun_MUnit = 0;
+                threehun_LCost = 0;
+                threehun_costTotal = 0;
+            }
+            tiles_mTOTALCOST = threehun_MCost + sixhun_MCost;
+            tiles_lTOTALCOST = threehun_LCost + sixhun_LCost;
+            tiles_TOTALCOST = tiles_lTOTALCOST + tiles_mTOTALCOST;
+            print("=== TILES ===");
+            print("600 x 600:");
+            print("M_Unit: "+sixhun_MUnit+ " M_Cost: "+sixhun_MCost+ " L_Cost: "+sixhun_LCost+ " Total Cost: "+sixhun_costTotal);
+            print("300 x 300:");
+            print("M_Unit: " + threehun_MUnit + " M_Cost: " + threehun_MCost + " L_Cost: " + threehun_LCost + " Total Cost: " + threehun_costTotal);
+            print("--- TOTAL ---");
+            print("M_Total:"+ tiles_mTOTALCOST);
+            print("L_Total:" + tiles_lTOTALCOST);
+            print("TOTAL COST:" + tiles_TOTALCOST);
+            //Tiles -- END
+
+            //Paints
+            if (paintsChecklist[0])//enamel
+            {
+                try
+                {
+                    enam_MCost = (enamel[1] * double.Parse(parameters.price_PaintAndCoating["Concrete neutralizer [GALS]"].ToString())) + 
+                        (enamel[2] * double.Parse(parameters.price_PaintAndCoating["Skim Coat [BAGS]"].ToString())) + 
+                        (enamel[3] * double.Parse(parameters.price_PaintAndCoating["Paint, Epoxy Primer Gray [GALS]"].ToString())) + 
+                        (enamel[4] * double.Parse(parameters.price_PaintAndCoating["Paint Enamel [GAL]"].ToString()));                    
+                    enam_MUnit = (enam_MCost / enamel[0]) - ((enam_MCost / enamel[0])%.01);
+                    enam_LCost = double.Parse(parameters.price_LaborRate_Paint["PAINTER [m2]"].ToString()) * enamel[0];
+                    enam_TOTALCOST = enam_MCost + enam_LCost;
+                }
+                catch
+                {
+                    enam_MCost = 0;
+                    enam_MUnit = 0;
+                    enam_LCost = 0;
+                    enam_TOTALCOST = 0;
+                }
+                
+            }
+            else
+            {
+                enam_MCost = 0;
+                enam_MUnit = 0;
+                enam_LCost = 0;
+                enam_TOTALCOST = 0;
+            }
+            if (paintsChecklist[1])//acrylic
+            {
+                try
+                {
+                    acry_MCost = (acrylic[1] * double.Parse(parameters.price_PaintAndCoating["Concrete neutralizer [GALS]"].ToString())) + 
+                        (acrylic[2] * double.Parse(parameters.price_PaintAndCoating["Skim Coat [BAGS]"].ToString())) + 
+                        (acrylic[3] * double.Parse(parameters.price_PaintAndCoating["Paint, Epoxy Primer Gray [GALS]"].ToString())) + 
+                        (acrylic[4] * double.Parse(parameters.price_PaintAndCoating["Paint, Acrylic 1 [GAL]"].ToString()));
+                    acry_MUnit = (acry_MCost / acrylic[0]) -((acry_MCost / acrylic[0])%.01);
+                    acry_LCost = double.Parse(parameters.price_LaborRate_Paint["PAINTER [m2]"].ToString()) * acrylic[0];
+                    acry_TOTALCOST = acry_MCost + acry_LCost;
+                }
+                catch
+                {
+                    enam_MCost = 0;
+                    enam_MUnit = 0;
+                    enam_LCost = 0;
+                    enam_TOTALCOST = 0;
+                }                
+            }
+            else
+            {
+                acry_MCost = 0;
+                acry_MUnit = 0;
+                acry_LCost = 0;
+                acry_TOTALCOST = 0;
+            }
+            if (paintsChecklist[2])//latex
+            {
+                try
+                {
+                    late_MCost = (latex[1] * double.Parse(parameters.price_PaintAndCoating["Concrete neutralizer [GALS]"].ToString())) + 
+                        (latex[2] * double.Parse(parameters.price_PaintAndCoating["Skim Coat [BAGS]"].ToString())) + 
+                        (latex[3] * double.Parse(parameters.price_PaintAndCoating["Paint, Epoxy Primer Gray [GALS]"].ToString())) + 
+                        (latex[4] * double.Parse(parameters.price_PaintAndCoating["Paint Latex Gloss [GAL]"].ToString()));
+                    late_MUnit = (late_MCost / latex[0]) - ((late_MCost / latex[0])%.01);
+                    late_LCost = double.Parse(parameters.price_LaborRate_Paint["PAINTER [m2]"].ToString()) * latex[0];
+                    late_TOTALCOST = late_MCost + late_LCost;
+                }
+                catch
+                {
+                    late_MCost = 0;
+                    late_MUnit = 0;
+                    late_LCost = 0;
+                    late_TOTALCOST = 0;
+                }                
+            }
+            else
+            {
+                late_MCost = 0;
+                late_MUnit = 0;
+                late_LCost = 0;
+                late_TOTALCOST = 0;
+            }
+            if (paintsChecklist[3])//semi-gloss
+            {
+                try
+                {
+                    semi_MCost = (gloss[1] * double.Parse(parameters.price_PaintAndCoating["Concrete neutralizer [GALS]"].ToString())) + 
+                        (gloss[2] * double.Parse(parameters.price_PaintAndCoating["Skim Coat [BAGS]"].ToString())) + 
+                        (gloss[3] * double.Parse(parameters.price_PaintAndCoating["Paint, Epoxy Primer Gray [GALS]"].ToString())) + 
+                        (gloss[4] * double.Parse(parameters.price_PaintAndCoating["Paint, Semi-Gloss [GALS]"].ToString()));
+                    semi_MUnit = (semi_MCost / gloss[0]) - ((semi_MCost / gloss[0])%.01);
+                    semi_LCost = double.Parse(parameters.price_LaborRate_Paint["PAINTER [m2]"].ToString()) * gloss[0];
+                    semi_TOTALCOST = semi_MCost + semi_LCost;
+                }
+                catch
+                {
+                    semi_MCost = 0;
+                    semi_MUnit = 0;
+                    semi_LCost = 0;
+                    semi_TOTALCOST = 0;
+                }                
+            }
+            else
+            {
+                semi_MCost = 0;
+                semi_MUnit = 0;
+                semi_LCost = 0;
+                semi_TOTALCOST = 0;
+            }
+            paint_mTOTALCOST = enam_MCost + acry_MCost + late_MCost + semi_MCost;
+            paint_lTOTALCOST = enam_LCost + acry_LCost + late_LCost + semi_LCost;
+            paints_TOTALCOST = paint_mTOTALCOST + paint_lTOTALCOST;
+            print("==== PAINTS ====");
+            print("ENAMEL ->");
+            print("M_Unit: "+enam_MUnit+" M_Cost: "+enam_MCost+ " L_Cost: "+enam_LCost+" Enamel_TOTAL: "+ enam_TOTALCOST);
+            print("ACRYLIC ->");
+            print("M_Unit: " + acry_MUnit + " M_Cost: " + acry_MCost + " L_Cost: " + acry_LCost + " Acrylic_TOTAL: " + acry_TOTALCOST);
+            print("LATEX ->");
+            print("M_Unit: " + late_MUnit + " M_Cost: " + late_MCost + " L_Cost: " + late_LCost + " Latex_TOTAL: " + late_TOTALCOST);
+            print("GLOSS ->");
+            print("M_Unit: " + semi_MUnit + " M_Cost: " + semi_MCost + " L_Cost: " + semi_LCost + " Semi-gloss_TOTAL: " + semi_TOTALCOST);
+            print("--- TOTAL ---");
+            print("Material Cost: " + paint_mTOTALCOST);
+            print("Labot Cost: " + paint_lTOTALCOST);
+            print("TOTAL Cost: " + paints_TOTALCOST);
+
+            //Paints -- END
             //Cost Computation - END
             if (!viewInitalized)
             {
@@ -5765,6 +6082,11 @@ namespace WindowsFormsApp1
             {
                 e.Cancel = true;
             }   
+        }
+
+        public void print(string str)
+        {
+            Console.WriteLine(str);
         }
         //Extra Functions -- END
     }
