@@ -68,9 +68,10 @@ namespace WindowsFormsApp1
         public string intCHBdimension;
 
         //7.0 Tiles
-        //area -> tilesPCS -> tilesADHESIVE -> tilesGROUT
+        //area -> tilesPCS -> tilesADHESIVE_regular -> tilesADHESIVE_heavy -> tilesGROUT
         public List<double> sixhun = new List<double>();
         public List<double> threehun = new List<double>();
+
 
         //8.0 Paints 
         //area -> neut -> skim -> primer ->paintGAL
@@ -89,21 +90,58 @@ namespace WindowsFormsApp1
                       earthworks_CostTotal;
 
         //4.0 Masonry
-        public double exterior_UnitM, exterior_CostM, exterior_CostL, interior_UnitM, interior_CostM, interior_CostL, 
-                      masonMCost_total,masonLCost_total, exterior_costTotal, interior_costTotal, exterior_TOTALCOST,
-                      interior_TOTALCOST, mason_TOTALCOST;
-        //7.0 Tiles
-        public double sixhun_MUnit, sixhun_MCost, sixhun_LCost, sixhun_costTotal,
-                      threehun_MUnit, threehun_MCost, threehun_LCost, threehun_costTotal,
-                      tiles_mTOTALCOST, tiles_lTOTALCOST, tiles_TOTALCOST;
-        //8.0 Paints
-        public double enam_MUnit, enam_MCost, enam_LCost, enam_TOTALCOST,
-                      acry_MUnit, acry_MCost, acry_LCost, acry_TOTALCOST,
-                      late_MUnit, late_MCost, late_LCost, late_TOTALCOST,
-                      semi_MUnit, semi_MCost, semi_LCost, semi_TOTALCOST,
-                      paint_mTOTALCOST, paint_lTOTALCOST, 
-                      paints_TOTALCOST;
+        public double exterior_UnitM, //exterior - Materials Unit
+                      exterior_CostM, //exterior - Materials Cost
+                      exterior_CostL, //exterior - Labor Cost
+                      exterior_costTotal, //exterior - TOTAL COST
+                      interior_UnitM, //interior - Materials Unit
+                      interior_CostM, //interior - Materials Cost
+                      interior_CostL, //interior - Labors Unit
+                      interior_costTotal,  //interior - TOTAL COST
+                      masonMCost_total, //Materials - Total Cost
+                      masonLCost_total, //Labor - Total Cost                                           
+                      mason_TOTALCOST; // Masonry - OVERALL COST
+                                       // exterior QTY -> masonrysSolutionP1[3]
+                                       // interior QTY -> masonrysSolutionP1[8]
 
+        //7.0 Tiles
+        public double sixhun_MUnit, //600 x 600 - Materials Unit
+                      sixhun_MCost, //600 x 600 - Materials Cost
+                      sixhun_LCost, //600 x 600 - Labor Cost
+                      sixhun_costTotal, //600 x 600 - TOTAL COST
+                      threehun_MUnit,  //300 x 300 - Materials Unit
+                      threehun_MCost, //300 x 300 - Materials Cost
+                      threehun_LCost, //300 x 300 - Labor Cost
+                      threehun_costTotal, //300 x 300 - TOTAL COST
+                      tiles_mTOTALCOST, //Materials - TOTAL COST
+                      tiles_lTOTALCOST, //Labor - TOTAL COST
+                      tiles_TOTALCOST; //Tiles - OVERALL COST
+                                       //600 x 600 QTY -> sixhun[0]
+                                       //300 x 300 QTY -> threehun[0]
+        //8.0 Paints
+        public double enam_MUnit, //Enamel - Materials Unit
+                      enam_MCost, //Enamel - Materials Cost
+                      enam_LCost, //Enamel - Labor Cost
+                      enam_TOTALCOST,//Enamel - TOTAL COST
+                      acry_MUnit, //Acrylic - Materials Unit
+                      acry_MCost, //Acrylic - Materials Cost
+                      acry_LCost, //Acrylic - Labor Cost
+                      acry_TOTALCOST, //Acrylic - TOTAL COST
+                      late_MUnit, //Latex - Materials Unit
+                      late_MCost, //Latex - Materials Cost
+                      late_LCost, //Latex - Labor Cost
+                      late_TOTALCOST,//Latex - TOTAL COST
+                      semi_MUnit, //Semi-gloss - Materials Unit
+                      semi_MCost, //Semi-gloss - Materials Cost
+                      semi_LCost, //Semi-gloss - Labor Cost
+                      semi_TOTALCOST,//Semi-gloss - TOTAL COST
+                      paint_mTOTALCOST, //Materials TOTAL COST
+                      paint_lTOTALCOST, //Labor TOTAL COST
+                      paints_TOTALCOST; //Paints - OVERALL COST
+                                        //Enamel QTY -> enamel[0]
+                                        //Acrylic QTY -> acrylic[0]
+                                        //Latex QTY -> latex[0]
+                                        //Semi-gloss QTY -> gloss[0]
         //9.0 - Miscellaneous Items
         public List<double> misc_CostM = new List<double>();
 
@@ -595,12 +633,10 @@ namespace WindowsFormsApp1
             }
             masonMCost_total = exterior_CostM + interior_CostM;
             masonLCost_total = exterior_CostL + interior_CostL;
-            exterior_TOTALCOST = exterior_CostM + exterior_CostL;
-            interior_TOTALCOST = interior_CostM + interior_CostL;
             mason_TOTALCOST = interior_costTotal + exterior_costTotal;
             print("=== MASONRY ===");
-            print("M_unit: " + exterior_UnitM + " M_cost: " + exterior_CostM + "L_cost: " + exterior_CostL + "EXT_TOTAL: "+exterior_TOTALCOST);
-            print("M_unit: " + interior_UnitM + " M_cost: " + interior_CostM + "L_cost: " + interior_CostL + "INT_TOTAL: " + interior_TOTALCOST);                        
+            print("M_unit: " + exterior_UnitM + " M_cost: " + exterior_CostM + "L_cost: " + exterior_CostL + "EXT_TOTAL: "+ exterior_costTotal);
+            print("M_unit: " + interior_UnitM + " M_cost: " + interior_CostM + "L_cost: " + interior_CostL + "INT_TOTAL: " + interior_costTotal);                        
             print("-- TOTAL -- ");
             print("M_total: " + masonMCost_total);
             print("L_total: " + masonLCost_total);
@@ -611,10 +647,10 @@ namespace WindowsFormsApp1
             if (tilesChecklist[0])
             {
                 try
-                {
-                    sixhun_MCost = (sixhun[1] * double.Parse(parameters.price_CommonMaterials["Tiles, Floor (600 x 600) [PC]"].ToString())) + 
-                        (sixhun[2]) + 
-                        (double.Parse(parameters.price_CommonMaterials["Tile Grout (2KG)  [BAGS]"].ToString()) * sixhun[3]);
+                {                    
+                    sixhun_MCost = (sixhun[1] * double.Parse(parameters.price_CommonMaterials["Tiles, Floor (600 x 600) [PC]"].ToString())) +
+                        ((sixhun[2] * double.Parse(parameters.price_CommonMaterials["25KG Tile Adhesive (Regular) [BAGS]"].ToString())) + (sixhun[3] * double.Parse(parameters.price_CommonMaterials["25 KG Tile Adhesive (Heavy duty) [BAGS]"].ToString()))) + 
+                        (double.Parse(parameters.price_CommonMaterials["Tile Grout (2KG)  [BAGS]"].ToString()) * sixhun[4]);
                     sixhun_MUnit = Math.Round(sixhun_MCost / sixhun[0],2);
                     sixhun_LCost = double.Parse(parameters.price_LaborRate_Tiles["TILES [m2]"].ToString()) * sixhun[0];
                     sixhun_costTotal = sixhun_MCost + sixhun_LCost;
@@ -637,10 +673,10 @@ namespace WindowsFormsApp1
             if (tilesChecklist[1])
             {
                 try
-                {
-                    threehun_MCost = (threehun[1] * double.Parse(parameters.price_CommonMaterials["Tiles, Wall (300 x 300) [PC]"].ToString())) + 
-                        (threehun[2]) + 
-                        (double.Parse(parameters.price_CommonMaterials["Tile Grout (2KG)  [BAGS]"].ToString()) * threehun[3]);
+                {                    
+                    threehun_MCost = (threehun[1] * double.Parse(parameters.price_CommonMaterials["Tiles, Wall (300 x 300) [PC]"].ToString())) +
+                        ((threehun[2] * double.Parse(parameters.price_CommonMaterials["25KG Tile Adhesive (Regular) [BAGS]"].ToString())) + (threehun[3] * double.Parse(parameters.price_CommonMaterials["25 KG Tile Adhesive (Heavy duty) [BAGS]"].ToString()))) + 
+                        (double.Parse(parameters.price_CommonMaterials["Tile Grout (2KG)  [BAGS]"].ToString()) * threehun[4]);
                     threehun_MUnit = Math.Round(threehun_MCost / threehun[0],2);
                     threehun_LCost = double.Parse(parameters.price_LaborRate_Tiles["TILES [m2]"].ToString()) * threehun[0];
                     threehun_costTotal = threehun_MCost + threehun_LCost;

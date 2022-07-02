@@ -3187,11 +3187,13 @@ namespace WindowsFormsApp1
             //Init variables for tiles
             double sixhundred_AREA = 0;
             double sixhundred_PCS = 0;
-            double sixhundred_ADH = 0;
+            double sixhundred_ADH_REG = 0;
+            double sixhundred_ADH_HVY = 0;            
             double sixhundred_GRO = 0;
             double threehundred_AREA = 0;
             double threehundred_PCS = 0;
-            double threehundred_ADH = 0;
+            double threehundred_ADH_REG = 0;
+            double threehundred_ADH_HVY = 0;
             double threehundred_GRO = 0;
             List<double> six_handler = new List<double>();
             List<double> three_handler = new List<double>();
@@ -3205,40 +3207,48 @@ namespace WindowsFormsApp1
                 double total_tiles = rounder(area / (dim1 * dim2));
                 total_tiles = rounder(total_tiles + (total_tiles / double.Parse(filterer(cEF.parameters.tiles_FS))));//tiles
                 double adhesive_bag = rounder(area / 3);//adhesive bag
-                double grout_bag = rounder(area / 4);//grout bag
-                double adhesivePrice;//for Regualar and Heavy Duty pricing
-                if (cEF.parameters.tiles_Area[x][2] == "Regular")
-                {
-                    adhesivePrice = double.Parse(cEF.parameters.price_CommonMaterials["25KG Tile Adhesive (Regular) [BAGS]"].ToString());
-                }
-                else
-                {
-                    adhesivePrice = double.Parse(cEF.parameters.price_CommonMaterials["25 KG Tile Adhesive (Heavy duty) [BAGS]"].ToString());
-                }
+                double grout_bag = rounder(area / 4);//grout bag                
+                
 
                 if (cEF.parameters.tiles_Area[x][1] == "600 x 600")
                 {
                     sixhundred_AREA += area;
-                    sixhundred_PCS += total_tiles;
-                    sixhundred_ADH += adhesivePrice * adhesive_bag;
+                    sixhundred_PCS += total_tiles;                    
                     sixhundred_GRO += grout_bag;
+                    if (cEF.parameters.tiles_Area[x][2] == "Regular")
+                    {
+                        sixhundred_ADH_REG += adhesive_bag;
+                    }
+                    else
+                    {
+                        sixhundred_ADH_HVY += adhesive_bag;
+                    }
                 }
                 else
                 {
                     threehundred_AREA += area;
-                    threehundred_PCS += total_tiles;
-                    threehundred_ADH += adhesivePrice * adhesive_bag;
+                    threehundred_PCS += total_tiles;                    
                     threehundred_GRO += grout_bag;
+                    if (cEF.parameters.tiles_Area[x][2] == "Regular")
+                    {
+                        threehundred_ADH_REG += adhesive_bag;
+                    }
+                    else
+                    {
+                        threehundred_ADH_HVY += adhesive_bag;
+                    }
                 }
             }
             six_handler.Add(sixhundred_AREA);
             six_handler.Add(sixhundred_PCS);
-            six_handler.Add(sixhundred_ADH);
+            six_handler.Add(sixhundred_ADH_REG);
+            six_handler.Add(sixhundred_ADH_HVY);
             six_handler.Add(sixhundred_GRO);
             cEF.sixhun = six_handler;
             three_handler.Add(threehundred_AREA);
             three_handler.Add(threehundred_PCS);
-            three_handler.Add(threehundred_ADH);
+            three_handler.Add(threehundred_ADH_REG);
+            three_handler.Add(threehundred_ADH_HVY);
             three_handler.Add(threehundred_GRO);
             cEF.threehun = three_handler;
         }
