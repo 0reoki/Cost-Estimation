@@ -2899,46 +2899,7 @@ namespace WindowsFormsApp1
         }
         //Roof Computation Functions -- END
 
-        //Paints computataion function -- START
-        public List<double> computePaints(string skim ,string paintA, string paintB, string paintC)
-        {
-            List<double> masterPaint = new List<double>();
-            double sLayer = double.Parse(skim, System.Globalization.CultureInfo.InvariantCulture);
-            double pArea = double.Parse(paintA, System.Globalization.CultureInfo.InvariantCulture);
-            double pLayer = double.Parse(paintC, System.Globalization.CultureInfo.InvariantCulture);            
-            double neutGal = rounder((pArea / 20)/3);//neutralizer
-            double skimBags = rounder(pArea / 20);//skim coating            
-            double primerGal = rounder(pArea / 20);//primer             
-            double paintGal = rounder((pArea / 25) * pLayer);//paint gallon
-            masterPaint.Add(neutGal);
-            masterPaint.Add(skimBags);
-            masterPaint.Add(primerGal);
-            masterPaint.Add(paintGal);
-            return masterPaint;
-        }
-        //Paints computataion function -- END
-
-        //Tiles computation function -- START
-        public List<double> computeTiles(string safety, string grout, string tilesA, string tilesB, string tilesC)
-        {
-            List<string> dimension = dimensionFilterer(tilesB);
-            List<double> masterTile = new List<double>();
-            double dim1 = double.Parse(dimension[0])/1000;
-            double dim2 = double.Parse(dimension[1])/1000;
-            double area = double.Parse(tilesA);
-            double total_tiles = rounder(area / (dim1 * dim2));
-            total_tiles = rounder(total_tiles + (total_tiles / double.Parse(filterer(safety))));//tiles
-            double adhesive_bag = rounder(area/ 3);//adhesive bag
-            double grout_bag = rounder(area / 4);//grout bag
-            masterTile.Add(total_tiles);
-            masterTile.Add(adhesive_bag);
-            masterTile.Add(grout_bag);
-            return masterTile;
-        }
-        //Tiles computation function -- END
-
         //Masonry computation function -- START
-
         public List<double> computeMasonry(CostEstimationForm cEF, List<string[]> eWall, List<string[]> eWindow, List<string[]> eDoor, List<string[]> iWall, List<string[]> iWindow, List<string[]> iDoor, string eDimCHB, string iDimCHB)
         {
             double eWall_total = 0;
@@ -2954,7 +2915,7 @@ namespace WindowsFormsApp1
             double iCHB_total;
 
             List<double> masterMasonry = new List<double>();
-            
+
             //exterior
             for (int x = 0; x < eWall.Count; x++)
             {
@@ -3003,7 +2964,7 @@ namespace WindowsFormsApp1
             iCHB_area = iWall_total - iWindow_total - iDoor_total;
             iCHB_total = iCHB_area * 12.5;
             iCHB_total = rounder((iCHB_total * 0.05) + iCHB_total);
-            
+
             masterMasonry.Add(eWall_total);
             masterMasonry.Add(eWindow_total);
             masterMasonry.Add(eDoor_total);
@@ -3022,12 +2983,12 @@ namespace WindowsFormsApp1
         //Concrete wall function... still part of masonry
         public List<double> computeConcreteWall_mortar(CostEstimationForm cEF, string extM, string intM, string plasterCM, string plasterPT)
         {
-            double [] cementDimA = {.792, .522, .394, .328, .0435 };
+            double[] cementDimA = { .792, .522, .394, .328, .0435 };
             double[] cementDimB = { 1.526, 1.018, .763, .633, .0844 };
             double[] cementDimC = { 2.260, 1.500, 1.125, .938, .1250 };
             double[] plasterClass = { 18.0, 12.0, 9.0, 7.5 };
             string[] mixtures = { extM, intM };
-            string[] dimensions = { cEF.extCHBdimension, cEF.extCHBdimension };
+            string[] dimensions = { cEF.extCHBdimension, cEF.intCHBdimension };
             double[] dimCHB = { cEF.masonrysSolutionP1[3], cEF.masonrysSolutionP1[8] };
             double[] openings = { cEF.masonrysSolutionP1[0], cEF.masonrysSolutionP1[1], cEF.masonrysSolutionP1[2], cEF.masonrysSolutionP1[5], cEF.masonrysSolutionP1[6], cEF.masonrysSolutionP1[7] };
             List<double> cementAndsands = new List<double>();
@@ -3074,24 +3035,24 @@ namespace WindowsFormsApp1
                 }
                 cementAndsands.Add(cement);
                 cementAndsands.Add(sand - (sand % .1));
-                
+
             }
 
             //Plaster computation            
-            for (int x = 1; x < 5; x+=3)
+            for (int x = 1; x < 5; x += 3)
             {
-                plasterArea = openings[x-1] - (openings[x] + openings[x + 1]);                
-                if(plasterCM == "CLASS A")
+                plasterArea = openings[x - 1] - (openings[x] + openings[x + 1]);
+                if (plasterCM == "CLASS A")
                 {
                     pClassifier = 0;
-                    plasterCement = (plasterArea* (double.Parse(filterer(plasterPT))/1000)) * plasterClass[pClassifier];
+                    plasterCement = (plasterArea * (double.Parse(filterer(plasterPT)) / 1000)) * plasterClass[pClassifier];
                 }
-                else if(plasterCM == "CLASS B")
+                else if (plasterCM == "CLASS B")
                 {
                     pClassifier = 1;
                     plasterCement = (plasterArea * (double.Parse(filterer(plasterPT)) / 1000)) * plasterClass[pClassifier];
                 }
-                else if(plasterCM == "CLASS C")
+                else if (plasterCM == "CLASS C")
                 {
                     pClassifier = 2;
                     plasterCement = (plasterArea * (double.Parse(filterer(plasterPT)) / 1000)) * plasterClass[pClassifier];
@@ -3102,18 +3063,18 @@ namespace WindowsFormsApp1
                     plasterCement = (plasterArea * (double.Parse(filterer(plasterPT)) / 1000)) * plasterClass[pClassifier];
                 }
                 cementAndsands.Add(plasterArea);
-                cementAndsands.Add(rounder(plasterCement*2));
+                cementAndsands.Add(rounder(plasterCement * 2));
                 double handler = sandRounder(plasterArea * (double.Parse(filterer(plasterPT)) / 1000) * 2);
-                cementAndsands.Add( handler - (handler %.1));            
-            }            
+                cementAndsands.Add(handler - (handler % .1));
+            }
             return cementAndsands;
         }
 
         public List<double> computeCHB_reinforcement(double eCHB, double iCHB, string vSpace, string hSpace, string grade, string diam, string rLen, string tWire)
         {
             List<double> mason = new List<double>();
-            double [] vertical = { 2.93, 2.13, 1.60 };
-            double [] horizontal = { 3.30, 2.15, 1.72 };
+            double[] vertical = { 2.93, 2.13, 1.60 };
+            double[] horizontal = { 3.30, 2.15, 1.72 };
             double[] diameter = { 0.616, 0.888, 1.578, 2.466, 3.853 };
             double[,] tieXL = new double[,] { { .054, .039, .024 }, { .065, .047, .029 }, { .086, .063, .039 } };
             double[,] tieLX = new double[,] { { .036, .026, .020 }, { .044, .032, .024 }, { .057, .042, .032 } };
@@ -3172,7 +3133,7 @@ namespace WindowsFormsApp1
             {
                 diamIndexer = 3;
             }
-            else 
+            else
             {
                 diamIndexer = 4;
             }
@@ -3189,12 +3150,12 @@ namespace WindowsFormsApp1
             {
                 arrayHandler = tieLXXX;
             }
-            
-            if(tWire == "25cm")
+
+            if (tWire == "25cm")
             {
                 tieIndexer = 0;
             }
-            else if(tWire == "30cm")
+            else if (tWire == "30cm")
             {
                 tieIndexer = 1;
             }
@@ -3202,7 +3163,7 @@ namespace WindowsFormsApp1
             {
                 tieIndexer = 2;
             }
-            
+
             for (int x = 0; x < 2; x++)
             {
                 vBAR = chbS[x] * vertical[vIndexer];
@@ -3210,6 +3171,8 @@ namespace WindowsFormsApp1
                 reinforceCHB = rounder((vBAR + hBAR) / double.Parse(filterer(rLen)));
                 reinforceCHBweight = rounder(reinforceCHB * diameter[diamIndexer] * double.Parse(filterer(rLen)));
                 tieWire = rounder(chbS[x] * arrayHandler[tieIndexer, hIndexer]);
+                mason.Add(vBAR);
+                mason.Add(hBAR);
                 mason.Add(reinforceCHB);
                 mason.Add(reinforceCHBweight);
                 mason.Add(tieWire);
@@ -3217,6 +3180,184 @@ namespace WindowsFormsApp1
             return mason;
         }
         //Masonry computation function -- END
+
+        //Tiles computation function -- START
+        public void computeTiles(CostEstimationForm cEF)
+        {
+            //Init variables for tiles
+            double sixhundred_AREA = 0;
+            double sixhundred_PCS = 0;
+            double sixhundred_ADH_REG = 0;
+            double sixhundred_ADH_HVY = 0;            
+            double sixhundred_GRO = 0;
+            double threehundred_AREA = 0;
+            double threehundred_PCS = 0;
+            double threehundred_ADH_REG = 0;
+            double threehundred_ADH_HVY = 0;
+            double threehundred_GRO = 0;
+            List<double> six_handler = new List<double>();
+            List<double> three_handler = new List<double>();
+            for (int x = 0; x < cEF.parameters.tiles_Area.Count; x++)
+            {
+                //Init variables for computing tiles
+                List<string> dimension = dimensionFilterer(cEF.parameters.tiles_Area[x][1]);
+                double dim1 = double.Parse(dimension[0]) / 1000;
+                double dim2 = double.Parse(dimension[1]) / 1000;
+                double area = double.Parse(cEF.parameters.tiles_Area[x][0]);
+                double total_tiles = rounder(area / (dim1 * dim2));
+                total_tiles = rounder(total_tiles + (total_tiles / double.Parse(filterer(cEF.parameters.tiles_FS))));//tiles
+                double adhesive_bag = rounder(area / 3);//adhesive bag
+                double grout_bag = rounder(area / 4);//grout bag                
+                
+
+                if (cEF.parameters.tiles_Area[x][1] == "600 x 600")
+                {
+                    sixhundred_AREA += area;
+                    sixhundred_PCS += total_tiles;                    
+                    sixhundred_GRO += grout_bag;
+                    if (cEF.parameters.tiles_Area[x][2] == "Regular")
+                    {
+                        sixhundred_ADH_REG += adhesive_bag;
+                    }
+                    else
+                    {
+                        sixhundred_ADH_HVY += adhesive_bag;
+                    }
+                }
+                else
+                {
+                    threehundred_AREA += area;
+                    threehundred_PCS += total_tiles;                    
+                    threehundred_GRO += grout_bag;
+                    if (cEF.parameters.tiles_Area[x][2] == "Regular")
+                    {
+                        threehundred_ADH_REG += adhesive_bag;
+                    }
+                    else
+                    {
+                        threehundred_ADH_HVY += adhesive_bag;
+                    }
+                }
+            }
+            six_handler.Add(sixhundred_AREA);
+            six_handler.Add(sixhundred_PCS);
+            six_handler.Add(sixhundred_ADH_REG);
+            six_handler.Add(sixhundred_ADH_HVY);
+            six_handler.Add(sixhundred_GRO);
+            cEF.sixhun = six_handler;
+            three_handler.Add(threehundred_AREA);
+            three_handler.Add(threehundred_PCS);
+            three_handler.Add(threehundred_ADH_REG);
+            three_handler.Add(threehundred_ADH_HVY);
+            three_handler.Add(threehundred_GRO);
+            cEF.threehun = three_handler;
+        }
+        //Tiles computation function -- END
+
+        //Paints computataion function -- START
+        public void computePaints(CostEstimationForm cEF)
+        {
+            //Init variables for each paints
+            double enam_neut = 0;
+            double enam_skim = 0;
+            double enam_primer = 0;
+            double enam_paint = 0;
+            double acry_neut = 0;
+            double acry_skim = 0;
+            double acry_primer = 0;
+            double acry_paint = 0;
+            double late_neut = 0;
+            double late_skim = 0;
+            double late_primer = 0;
+            double late_paint = 0;
+            double semi_neut = 0;
+            double semi_skim = 0;
+            double semi_primer = 0;
+            double semi_paint = 0;
+            double enam_Area = 0;
+            double acry_Area = 0;
+            double late_Area = 0;
+            double semi_Area = 0;
+            List<double> enamel_handler = new List<double>();
+            List<double> acry_handler = new List<double>();
+            List<double> late_handler = new List<double>();
+            List<double> semi_handler = new List<double>();
+            //compute every paint area
+            for (int x = 0; x < cEF.parameters.paint_Area.Count; x++)
+            {            
+                double sLayer = double.Parse(cEF.parameters.paint_SCL, System.Globalization.CultureInfo.InvariantCulture);
+                double pArea = double.Parse(cEF.parameters.paint_Area[x][0], System.Globalization.CultureInfo.InvariantCulture);
+                double pLayer = double.Parse(cEF.parameters.paint_Area[x][2], System.Globalization.CultureInfo.InvariantCulture);            
+                double neutGal = rounder((pArea / 20)/3);//neutralizer
+                double skimBags = rounder(pArea / 20);//skim coating            
+                double primerGal = rounder(pArea / 20);//primer             
+                double paintGal = rounder((pArea / 25) * pLayer);//paint gallon                         
+                string paintKind = cEF.parameters.paint_Area[x][1];
+                if (paintKind == "Enamel")
+                {
+                    enam_neut += neutGal;
+                    enam_skim += skimBags;
+                    enam_primer += primerGal;
+                    enam_paint += paintGal;
+                    enam_Area += pArea;
+                }
+                else if (paintKind == "Acrylic")
+                {
+                    acry_neut += neutGal;
+                    acry_skim += skimBags;
+                    acry_primer += primerGal;
+                    acry_paint += paintGal;
+                    acry_Area += pArea;
+                }
+                else if (paintKind == "Latex Gloss")
+                {
+                    late_neut += neutGal;
+                    late_skim += skimBags;
+                    late_primer += primerGal;
+                    late_paint += paintGal;
+                    late_Area += pArea;
+                }
+                else if (paintKind == "Semi-gloss")
+                {
+                    semi_neut += neutGal;
+                    semi_skim += skimBags;
+                    semi_primer += primerGal;
+                    semi_paint += paintGal;
+                    semi_Area += pArea;
+                }
+            }
+            //add each paints values to its corresponding kind
+            enamel_handler.Add(enam_Area);
+            enamel_handler.Add(enam_neut);
+            enamel_handler.Add(enam_skim);
+            enamel_handler.Add(enam_primer);
+            enamel_handler.Add(enam_paint);
+            cEF.enamel = enamel_handler;
+            //
+            acry_handler.Add(acry_Area);
+            acry_handler.Add(acry_neut);
+            acry_handler.Add(acry_skim);
+            acry_handler.Add(acry_primer);
+            acry_handler.Add(acry_paint);
+            cEF.acrylic = acry_handler;
+            //
+            late_handler.Add(late_Area);
+            late_handler.Add(late_neut);
+            late_handler.Add(late_skim);
+            late_handler.Add(late_primer);
+            late_handler.Add(late_paint);
+            cEF.latex = late_handler;
+            //
+            semi_handler.Add(semi_Area);
+            semi_handler.Add(semi_neut);
+            semi_handler.Add(semi_skim);
+            semi_handler.Add(semi_primer);
+            semi_handler.Add(semi_paint);
+            cEF.gloss = semi_handler;
+        }
+        //Paints computataion function -- END
+       
+        
 
         //Helper functions --- START
         public void print(string str)
