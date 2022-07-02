@@ -39,9 +39,9 @@ namespace WindowsFormsApp1
 
         //Price Checklists (Show if checklist == true)
         public bool[] earthworksChecklist = { true, true, true, true, true, true }; //1.0
-        public bool[] masonryChecklist = { true, true }; //4.0
-        public bool[] tilesChecklist = { true, true }; //7.0
-        public bool[] paintsChecklist = { true, true, true, true }; //8.0
+        public bool[] masonryChecklist = { true, true }; //4.0 **
+        public bool[] tilesChecklist = { true, true }; //7.0 **
+        public bool[] paintsChecklist = { true, true, true, true }; //8.0 **
         public ListDictionary laborAndEquipmentChecklist; //10.0
 
         //Totalities -- START
@@ -55,7 +55,7 @@ namespace WindowsFormsApp1
         public double[] gravel_Total = new double[6];
         public double[] water_Total = new double[6];
 
-        //4.0 Masonry
+        //4.0 Masonry **
         //exteriorWall -> exteriorWindow -> exteriorDoor -> exteriorCHBarea -> exteriorCHBtotalpcs -> interiorWall -> interiorWindow -> interiorDoor -> interiorCHBarea ->  interiorCHBtotalpcs
         public List<double> masonrysSolutionP1 = new List<double>();
 
@@ -67,13 +67,13 @@ namespace WindowsFormsApp1
         public string extCHBdimension;
         public string intCHBdimension;
 
-        //7.0 Tiles
+        //7.0 Tiles **
         //area -> tilesPCS -> tilesADHESIVE_regular -> tilesADHESIVE_heavy -> tilesGROUT
         public List<double> sixhun = new List<double>();
         public List<double> threehun = new List<double>();
 
 
-        //8.0 Paints 
+        //8.0 Paints **
         //area -> neut -> skim -> primer ->paintGAL
         public List<double> enamel = new List<double>();
         public List<double> acrylic = new List<double>();
@@ -89,7 +89,7 @@ namespace WindowsFormsApp1
                       gravelBedding_CostM, gravelBedding_CostL, gravelBedding_CostTotal, soilPoisoning_CostM,
                       earthworks_CostTotal;
 
-        //4.0 Masonry
+        //4.0 Masonry **
         public double exterior_UnitM, //exterior - Materials Unit
                       exterior_CostM, //exterior - Materials Cost
                       exterior_CostL, //exterior - Labor Cost
@@ -104,7 +104,7 @@ namespace WindowsFormsApp1
                                        // exterior QTY -> masonrysSolutionP1[3]
                                        // interior QTY -> masonrysSolutionP1[8]
 
-        //7.0 Tiles
+        //7.0 Tiles **
         public double sixhun_MUnit, //600 x 600 - Materials Unit
                       sixhun_MCost, //600 x 600 - Materials Cost
                       sixhun_LCost, //600 x 600 - Labor Cost
@@ -118,7 +118,7 @@ namespace WindowsFormsApp1
                       tiles_TOTALCOST; //Tiles - OVERALL COST
                                        //600 x 600 QTY -> sixhun[0]
                                        //300 x 300 QTY -> threehun[0]
-        //8.0 Paints
+        //8.0 Paints **
         public double enam_MUnit, //Enamel - Materials Unit
                       enam_MCost, //Enamel - Materials Cost
                       enam_LCost, //Enamel - Labor Cost
