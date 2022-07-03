@@ -39,10 +39,13 @@ namespace WindowsFormsApp1
 
         //Price Checklists (Show if checklist == true)
         public bool[] earthworksChecklist = { true, true, true, true, true, true }; //1.0
-        public bool[] masonryChecklist = { true, true }; //4.0 **
-        public bool[] tilesChecklist = { true, true }; //7.0 **
-        public bool[] paintsChecklist = { true, true, true, true }; //8.0 **
-        public ListDictionary laborAndEquipmentChecklist; //10.0
+        public bool[] masonryChecklist = { true, true }; //4.0
+        public bool[] tilesChecklist = { true, true }; //7.0
+        public bool[] paintsChecklist = { true, true, true, true }; //8.0
+        public ListDictionary laborAndEquipmentChecklist; //10.0 TODO
+
+        //Factor of Safety for Price
+        public string fos_Cement, fos_Sand, fos_Gravel, fos_RMC, fos_CHB, fos_Tiles, fos_LC_Type, fos_LC_Percentage;
 
         //Totalities -- START
 
@@ -71,7 +74,6 @@ namespace WindowsFormsApp1
         //area -> tilesPCS -> tilesADHESIVE_regular -> tilesADHESIVE_heavy -> tilesGROUT
         public List<double> sixhun = new List<double>();
         public List<double> threehun = new List<double>();
-
 
         //8.0 Paints **
         //area -> neut -> skim -> primer ->paintGAL
@@ -138,10 +140,11 @@ namespace WindowsFormsApp1
                       paint_mTOTALCOST, //Materials TOTAL COST
                       paint_lTOTALCOST, //Labor TOTAL COST
                       paints_TOTALCOST; //Paints - OVERALL COST
-                                        //Enamel QTY -> enamel[0]
-                                        //Acrylic QTY -> acrylic[0]
-                                        //Latex QTY -> latex[0]
-                                        //Semi-gloss QTY -> gloss[0]
+
+        //Enamel QTY -> enamel[0]
+        //Acrylic QTY -> acrylic[0]
+        //Latex QTY -> latex[0]
+        //Semi-gloss QTY -> gloss[0]
         //9.0 - Miscellaneous Items
         public List<double> misc_CostM = new List<double>();
 
@@ -173,6 +176,16 @@ namespace WindowsFormsApp1
             daysList = new List<string>();
             laqUC = new List<LaborAndEquipmentUserControl>();
             fileName = null;
+            
+            //Factor of Safety default values
+            fos_Cement = "5%";
+            fos_Sand = "5%";
+            fos_Gravel = "5%";
+            fos_RMC = "5%"; 
+            fos_CHB = "5%";
+            fos_Tiles = "10%"; 
+            fos_LC_Type = "Rate"; 
+            fos_LC_Percentage = "30%";
 
             //Earthwork Variables
             excavation_Total = 0; 
@@ -2990,6 +3003,21 @@ namespace WindowsFormsApp1
                 price_Category_cbx.SelectedIndex = 25;
         }
 
+        private void price_SettingsBtn_Click(object sender, EventArgs e)
+        {
+            //TODO PRICE
+            FactorOfSafetyForm dlg = new FactorOfSafetyForm(this);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                //Update view
+                viewInitalized = false;
+                initializeView();
+                AdjustView10();
+
+                //Update BOQ
+            }
+        }
+
         private void price_RestoreDefaultsBtn_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to RESET price list into default?", "Reset Price List", MessageBoxButtons.YesNo);
@@ -3506,11 +3534,29 @@ namespace WindowsFormsApp1
             //Price List
             stringParam += "\nPrice-List|\n";
             stringParam += "Price-Checklist|\n";
+
             //Checklist
             foreach(bool checkMark in earthworksChecklist)
             {
                 stringParam += checkMark + "|";
             }
+            foreach(bool checkMark in masonryChecklist)
+            {
+                stringParam += checkMark + "|";
+            }
+            foreach(bool checkMark in tilesChecklist)
+            {
+                stringParam += checkMark + "|";
+            }
+            foreach(bool checkMark in paintsChecklist)
+            {
+                stringParam += checkMark + "|";
+            }
+
+            //Factor of Safety
+            stringParam += "\n" + fos_Cement + "|" + fos_Sand + "|" + fos_Gravel + "|" + fos_RMC + "|" + fos_CHB + "|" + 
+                           fos_Tiles + "|" + fos_LC_Type + "|" + fos_LC_Percentage + "|";
+
             //1
             stringParam += "\nCommon-Materials|\n";
             foreach (DictionaryEntry dict in parameters.price_CommonMaterials)
@@ -3959,9 +4005,9 @@ namespace WindowsFormsApp1
             //Totalities -- START
             stringParam += "\nTotalities|\n";
 
-            //Earthworks
-            //Totalities
+            //1.0 - Earthworks
             stringParam += "\nEarthworks|\n";
+            //Totalities
             stringParam += excavation_Total + "|";
             stringParam += backfillingAndCompaction_Total + "|";
             stringParam += gradingAndCompaction_Total + "|";
@@ -3976,6 +4022,121 @@ namespace WindowsFormsApp1
             stringParam += gravelBedding_CostTotal + "|";
             stringParam += soilPoisoning_CostM + "|";
             stringParam += earthworks_CostTotal + "|";
+
+            //2.0 - Concrete
+            //stringParam += "\nConcrete|\n";
+            //Totalities
+            //Cost
+
+            //4.0 - Masonry (DITO SIMULA NG SAVE FILE FUNCTION)
+            stringParam += "\nMasonry|\n";
+            //Totalities
+            stringParam += "\nSolutionP1|\n";
+            foreach (double solution in masonrysSolutionP1)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "\nSolutionP2|\n";
+            foreach (double solution in masonrysSolutionP2)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "\nSolutionP3|\n";
+            foreach (double solution in masonrysSolutionP3)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "\nInteriorAndExterior|\n";
+            stringParam += extCHBdimension + "|";
+            stringParam += intCHBdimension + "|";
+            //Cost
+            stringParam += exterior_UnitM + "|";
+            stringParam += exterior_CostM + "|";
+            stringParam += exterior_CostL + "|";
+            stringParam += exterior_costTotal + "|";
+            stringParam += interior_UnitM + "|";
+            stringParam += interior_CostM + "|";
+            stringParam += interior_CostL + "|";
+            stringParam += interior_costTotal + "|";
+            stringParam += masonMCost_total + "|";
+            stringParam += masonLCost_total + "|";
+            stringParam += mason_TOTALCOST + "|";
+
+            //7.0 - Tiles
+            stringParam += "\nTiles|\n";
+            //Totalities
+            stringParam += "\nSixhun|\n";
+            foreach (double solution in sixhun)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "\nThreehun|\n";
+            foreach (double solution in threehun)
+            {
+                stringParam += solution + "|";
+            }
+            //Cost
+            stringParam += "\nCost|\n";
+            stringParam += sixhun_MUnit + "|";
+            stringParam += sixhun_MCost + "|";
+            stringParam += sixhun_LCost + "|";
+            stringParam += sixhun_costTotal + "|";
+            stringParam += threehun_MUnit + "|";
+            stringParam += threehun_MCost + "|";
+            stringParam += threehun_LCost + "|";
+            stringParam += threehun_costTotal + "|";
+            stringParam += tiles_mTOTALCOST + "|";
+            stringParam += tiles_lTOTALCOST + "|";
+            stringParam += tiles_TOTALCOST + "|";
+
+            //8.0 - Paints
+            stringParam += "\nPaints|\n";
+            //Totalities
+            stringParam += "\nEnamel|\n";
+            foreach (double solution in enamel)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "\nAcrylic|\n";
+            foreach (double solution in acrylic)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "\nLatex|\n";
+            foreach (double solution in latex)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "\nGloss|\n";
+            foreach (double solution in gloss)
+            {
+                stringParam += solution + "|";
+            }
+            //Cost
+            stringParam += "\nCost|\n";
+            stringParam += enam_MUnit + "|";
+            stringParam += enam_MCost + "|";
+            stringParam += enam_LCost + "|";
+            stringParam += enam_TOTALCOST + "|";
+            stringParam += acry_MUnit + "|";
+            stringParam += acry_MCost + "|";
+            stringParam += acry_LCost + "|";
+            stringParam += acry_TOTALCOST + "|";
+            stringParam += late_MUnit + "|";
+            stringParam += late_MCost + "|";
+            stringParam += late_LCost + "|";
+            stringParam += late_TOTALCOST + "|";
+            stringParam += semi_MUnit + "|";
+            stringParam += semi_MCost + "|";
+            stringParam += semi_LCost + "|";
+            stringParam += semi_TOTALCOST + "|";
+            stringParam += paint_mTOTALCOST + "|";
+            stringParam += paint_lTOTALCOST + "|";
+            stringParam += paints_TOTALCOST + "|";
+
+            //9.0 - Misc TODO
+            //Totalities
+            //Cost
 
             //Totalities -- END
 
@@ -4099,6 +4260,18 @@ namespace WindowsFormsApp1
             structuralMembers.concreteWorkSolutionsSL.Clear();
             structuralMembers.concreteWorkSolutionsSLSM.Clear();
             structuralMembers.concreteWorkSolutionsST.Clear();
+
+            masonrysSolutionP1.Clear();
+            masonrysSolutionP2.Clear();
+            masonrysSolutionP3.Clear();
+
+            sixhun.Clear();
+            threehun.Clear();
+
+            enamel.Clear();
+            acrylic.Clear();
+            latex.Clear();
+            gloss.Clear();
 
             //Init variables for StructuralMember
 
@@ -4668,6 +4841,7 @@ namespace WindowsFormsApp1
                 }
                 i += 3;
             }
+
             //Price-List 
             i++; i++;
 
@@ -4678,6 +4852,24 @@ namespace WindowsFormsApp1
             earthworksChecklist[3] = bool.Parse(tokens[i]); i++;
             earthworksChecklist[4] = bool.Parse(tokens[i]); i++;
             earthworksChecklist[5] = bool.Parse(tokens[i]); i++;
+            masonryChecklist[0] = bool.Parse(tokens[i]); i++;
+            masonryChecklist[1] = bool.Parse(tokens[i]); i++;
+            tilesChecklist[0] = bool.Parse(tokens[i]); i++;
+            tilesChecklist[1] = bool.Parse(tokens[i]); i++;
+            paintsChecklist[0] = bool.Parse(tokens[i]); i++;
+            paintsChecklist[1] = bool.Parse(tokens[i]); i++;
+            paintsChecklist[2] = bool.Parse(tokens[i]); i++;
+            paintsChecklist[3] = bool.Parse(tokens[i]); i++;
+
+            //Factor of Safety for Price
+            fos_Cement = tokens[i]; i++;
+            fos_Sand = tokens[i]; i++;
+            fos_Gravel = tokens[i]; i++;
+            fos_RMC = tokens[i]; i++;
+            fos_CHB = tokens[i]; i++;
+            fos_Tiles = tokens[i]; i++;
+            fos_LC_Type = tokens[i]; i++;
+            fos_LC_Percentage = tokens[i]; i++;
 
             //1
             i++;
@@ -6061,8 +6253,6 @@ namespace WindowsFormsApp1
             gradingAndCompaction_Total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             gravelBedding_Total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             soilPoisoning_Total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
-
-            //Totalities -- END
             //Cost
             excavation_CostL = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             backfillingAndCompaction_CostL = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
@@ -6073,6 +6263,115 @@ namespace WindowsFormsApp1
             soilPoisoning_CostM = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             earthworks_CostTotal = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
 
+            //4.0 - Masonry (DITO SIMULA NG OPEN FILE FUNCTION) 
+            i++;
+            //Totalities
+            i++;
+            while (!tokens[i].Equals("SolutionP2"))
+            {
+                masonrysSolutionP1.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("SolutionP3"))
+            {
+                masonrysSolutionP2.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("InteriorAndExterior"))
+            {
+                masonrysSolutionP3.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            extCHBdimension = tokens[i]; i++;
+            intCHBdimension = tokens[i]; i++;
+            //Cost
+            exterior_UnitM = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            exterior_CostM = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            exterior_CostL = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            exterior_costTotal = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            interior_UnitM = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            interior_CostM = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            interior_CostL = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            interior_costTotal = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            masonMCost_total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            masonLCost_total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            mason_TOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+
+            //7.0 - Tiles
+            i++;
+            //Totalities
+            i++;
+            while (!tokens[i].Equals("Threehun"))
+            {
+                sixhun.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("Cost"))
+            {
+                threehun.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            //Cost
+            i++;
+            sixhun_MUnit = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            sixhun_MCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            sixhun_LCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            sixhun_costTotal = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            threehun_MUnit = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            threehun_MCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            threehun_LCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            threehun_costTotal = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            tiles_mTOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            tiles_lTOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            tiles_TOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+
+            //8.0 - Paints
+            i++;
+            //Totalities
+            i++;
+            while (!tokens[i].Equals("Acrylic"))
+            {
+                enamel.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("Latex"))
+            {
+                acrylic.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("Gloss"))
+            {
+                latex.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("Cost"))
+            {
+                gloss.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            //Cost
+            i++;
+            enam_MUnit = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            enam_MCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            enam_LCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            enam_TOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            acry_MUnit = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            acry_MCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            acry_LCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            acry_TOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            late_MUnit = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            late_MCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            late_LCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            late_TOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            semi_MUnit = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            semi_MCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            semi_LCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            semi_TOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            paint_mTOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            paint_lTOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            paints_TOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+
+            //9.0 - Misc TODO
+
+            //Totalities -- END
             viewInitalized = false;
             //*/
             //MessageBox.Show(tokens[i]);
