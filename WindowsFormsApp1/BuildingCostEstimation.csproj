@@ -115,6 +115,12 @@
     <Compile Include="EquipmentUserControl.Designer.cs">
       <DependentUpon>EquipmentUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="FactorOfSafetyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FactorOfSafetyForm.Designer.cs">
+      <DependentUpon>FactorOfSafetyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FloorUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -246,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EquipmentUserControl.resx">
       <DependentUpon>EquipmentUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FactorOfSafetyForm.resx">
+      <DependentUpon>FactorOfSafetyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FloorUserControl.resx">
       <DependentUpon>FloorUserControl.cs</DependentUpon>
