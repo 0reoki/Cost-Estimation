@@ -30,7 +30,7 @@
         {
             this.tableLayoutPanel84 = new System.Windows.Forms.TableLayoutPanel();
             this.label267 = new System.Windows.Forms.Label();
-            this.col_G_S_S_bx = new System.Windows.Forms.TextBox();
+            this.roof_GI_D_EC_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel84.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,8 +40,8 @@
             this.tableLayoutPanel84.ColumnCount = 2;
             this.tableLayoutPanel84.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.34615F));
             this.tableLayoutPanel84.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.65385F));
+            this.tableLayoutPanel84.Controls.Add(this.roof_GI_D_EC_cbx, 0, 0);
             this.tableLayoutPanel84.Controls.Add(this.label267, 0, 0);
-            this.tableLayoutPanel84.Controls.Add(this.col_G_S_S_bx, 1, 0);
             this.tableLayoutPanel84.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel84.Name = "tableLayoutPanel84";
             this.tableLayoutPanel84.RowCount = 1;
@@ -61,15 +61,22 @@
             this.label267.Text = "Height of Roof Sheet:";
             this.label267.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // col_G_S_S_bx
+            // roof_GI_D_EC_cbx
             // 
-            this.col_G_S_S_bx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.col_G_S_S_bx.Location = new System.Drawing.Point(210, 3);
-            this.col_G_S_S_bx.Name = "col_G_S_S_bx";
-            this.col_G_S_S_bx.Size = new System.Drawing.Size(98, 26);
-            this.col_G_S_S_bx.TabIndex = 34;
-            this.col_G_S_S_bx.Text = "0";
+            this.roof_GI_D_EC_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roof_GI_D_EC_cbx.FormattingEnabled = true;
+            this.roof_GI_D_EC_cbx.Items.AddRange(new object[] {
+            "1.5",
+            "1.8",
+            "2.1",
+            "2.4",
+            "2.7",
+            "3.0",
+            "3.6"});
+            this.roof_GI_D_EC_cbx.Location = new System.Drawing.Point(210, 3);
+            this.roof_GI_D_EC_cbx.Name = "roof_GI_D_EC_cbx";
+            this.roof_GI_D_EC_cbx.Size = new System.Drawing.Size(99, 28);
+            this.roof_GI_D_EC_cbx.TabIndex = 36;
             // 
             // RoofHRSUserControl
             // 
@@ -79,7 +86,6 @@
             this.Name = "RoofHRSUserControl";
             this.Size = new System.Drawing.Size(318, 41);
             this.tableLayoutPanel84.ResumeLayout(false);
-            this.tableLayoutPanel84.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -87,7 +93,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel84;
-        private System.Windows.Forms.TextBox col_G_S_S_bx;
         private System.Windows.Forms.Label label267;
+        private System.Windows.Forms.ComboBox roof_GI_D_EC_cbx;
     }
 }
