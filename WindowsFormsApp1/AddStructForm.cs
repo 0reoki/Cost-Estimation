@@ -123,7 +123,6 @@ namespace WindowsFormsApp1
             roof_GI_D_EC_cbx.SelectedIndex = roof_GI_M_SP_cbx.SelectedIndex = roof_PGR_cbx.SelectedIndex = 0;
             
             roof_RP_W_rb.Checked = true;
-            roof_GI_M_CGIS_rb.Checked = true;
 
             setDefaultStructMemName();
             populateColumnConnectionBelow();
@@ -1878,21 +1877,21 @@ namespace WindowsFormsApp1
                                 hrsMember.Add(rHRS.value);
                             }
 
-                            if (roof_GI_M_CGIS_rb.Checked == true)
-                                members.Add(roof_GI_M_CGIS_rb.Text);
-                            else if (roof_GI_M_GIRN_rb.Checked == true)
-                                members.Add(roof_GI_M_GIRN_rb.Text);
-                            else if (roof_GI_M_GIR_rb.Checked == true)
-                                members.Add(roof_GI_M_GIR_rb.Text);
-                            else if (roof_GI_M_GIW_rb.Checked == true)
-                                members.Add(roof_GI_M_GIW_rb.Text);
-                            else if (roof_GI_M_LW_rb.Checked == true)
-                                members.Add(roof_GI_M_LW_rb.Text);
-                            else if (roof_GI_M_UN_rb.Checked == true)
-                                members.Add(roof_GI_M_UN_rb.Text);
-                            else if (roof_GI_M_PGIS_rb.Checked == true)
+                            if (roof_GI_M_CGIS_cb.Checked == true)
+                                members.Add(roof_GI_M_CGIS_cb.Text);
+                            if (roof_GI_M_GIRN_cb.Checked == true)
+                                members.Add(roof_GI_M_GIRN_cb.Text);
+                            if (roof_GI_M_GIR_cb.Checked == true)
+                                members.Add(roof_GI_M_GIR_cb.Text);
+                            if (roof_GI_M_GIW_cb.Checked == true)
+                                members.Add(roof_GI_M_GIW_cb.Text);
+                            if (roof_GI_M_LW_cb.Checked == true)
+                                members.Add(roof_GI_M_LW_cb.Text);
+                            if (roof_GI_M_UN_cb.Checked == true)
+                                members.Add(roof_GI_M_UN_cb.Text);
+                            if (roof_GI_M_PGIS_cb.Checked == true)
                             {
-                                members.Add(roof_GI_M_PGIS_rb.Text); 
+                                members.Add(roof_GI_M_PGIS_cb.Text); 
                                 members.Add(roof_GI_M_SP_cbx.Text);
                             }
 
@@ -2023,22 +2022,26 @@ namespace WindowsFormsApp1
                         costEstimationForm.structuralMembers.roof[floorCount][memberCount][1] = roof_GI_D_LP_bx.Text;
                         costEstimationForm.structuralMembers.roof[floorCount][memberCount][2] = roof_GI_D_EC_cbx.Text;
 
-                        if (roof_GI_M_CGIS_rb.Checked == true)
-                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = "Corrugated G.I Sheet";
-                        else if (roof_GI_M_GIRN_rb.Checked == true)
-                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = "G.I Roof Nails";
-                        else if (roof_GI_M_GIR_rb.Checked == true)
-                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = "G.I Rivets";   
-                        else if (roof_GI_M_GIW_rb.Checked == true)
-                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = "G.I Washers";
-                        else if (roof_GI_M_LW_rb.Checked == true)
-                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = "Lead Washers";
-                        else if (roof_GI_M_UN_rb.Checked == true)
-                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = "Umbrella Nails";
-                        else if (roof_GI_M_PGIS_rb.Checked == true)
+                        for(int i = 3; i < costEstimationForm.structuralMembers.roof[floorCount][memberCount].Count; i++)
                         {
-                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][3] = "Plain G.I Strap";
-                            costEstimationForm.structuralMembers.roof[floorCount][memberCount][4] = roof_GI_M_SP_cbx.Text;
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount].RemoveAt(i);
+                        }
+                        if (roof_GI_M_CGIS_cb.Checked == true)
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount].Add("Corrugated G.I Sheet");
+                        if (roof_GI_M_GIRN_cb.Checked == true)
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount].Add("G.I Roof Nails");
+                        if (roof_GI_M_GIR_cb.Checked == true)
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount].Add("G.I Rivets");   
+                        if (roof_GI_M_GIW_cb.Checked == true)
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount].Add("G.I Washers");
+                        if (roof_GI_M_LW_cb.Checked == true)
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount].Add("Lead Washers");
+                        if (roof_GI_M_UN_cb.Checked == true)
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount].Add("Umbrella Nails");
+                        if (roof_GI_M_PGIS_cb.Checked == true)
+                        {
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount].Add("Plain G.I Strap");
+                            costEstimationForm.structuralMembers.roof[floorCount][memberCount].Add(roof_GI_M_SP_cbx.Text);
                         }
 
                         List<string> hrsMember = new List<string>();
@@ -2965,6 +2968,7 @@ namespace WindowsFormsApp1
         
         private void setRoofValues()
         {
+            roof_PGR_cbx.Enabled = false;
             if (floorCount == 0)
             {
                 addstruct_cbx.SelectedIndex = 6;
@@ -3022,22 +3026,23 @@ namespace WindowsFormsApp1
                 roof_GI_D_LP_bx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][1];
                 roof_GI_D_EC_cbx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][2];
 
-                if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][3].Equals("Corrugated G.I Sheet"))
-                    roof_GI_M_CGIS_rb.Checked = true;
-                else if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][3].Equals("G.I Roof Nails"))
-                    roof_GI_M_GIRN_rb.Checked = true;
-                else if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][3].Equals("G.I Rivets"))
-                    roof_GI_M_GIR_rb.Checked = true;
-                else if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][3].Equals("G.I Washers"))
-                    roof_GI_M_GIW_rb.Checked = true;
-                else if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][3].Equals("Lead Washers"))
-                    roof_GI_M_LW_rb.Checked = true;
-                else if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][3].Equals("Umbrella Nails"))
-                    roof_GI_M_UN_rb.Checked = true;
-                else if (costEstimationForm.structuralMembers.roof[floorCount][memberCount][3].Equals("Plain G.I Strap"))
+                if (costEstimationForm.structuralMembers.roof[floorCount][memberCount].Contains("Corrugated G.I Sheet"))
+                    roof_GI_M_CGIS_cb.Checked = true;
+                if (costEstimationForm.structuralMembers.roof[floorCount][memberCount].Contains("G.I Roof Nails"))
+                    roof_GI_M_GIRN_cb.Checked = true;
+                if (costEstimationForm.structuralMembers.roof[floorCount][memberCount].Contains("G.I Rivets"))
+                    roof_GI_M_GIR_cb.Checked = true;
+                if (costEstimationForm.structuralMembers.roof[floorCount][memberCount].Contains("G.I Washers"))
+                    roof_GI_M_GIW_cb.Checked = true;
+                if (costEstimationForm.structuralMembers.roof[floorCount][memberCount].Contains("Lead Washers"))
+                    roof_GI_M_LW_cb.Checked = true;
+                if (costEstimationForm.structuralMembers.roof[floorCount][memberCount].Contains("Umbrella Nails"))
+                    roof_GI_M_UN_cb.Checked = true;
+                if (costEstimationForm.structuralMembers.roof[floorCount][memberCount].Contains("Plain G.I Strap"))
                 {
-                    roof_GI_M_PGIS_rb.Checked = true;
-                    roof_GI_M_SP_cbx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][4];
+                    roof_GI_M_PGIS_cb.Checked = true;
+                    int count = costEstimationForm.structuralMembers.roof[floorCount][memberCount].Count - 1;
+                    roof_GI_M_SP_cbx.Text = costEstimationForm.structuralMembers.roof[floorCount][memberCount][count];
                 }
 
                 foreach (string value in costEstimationForm.structuralMembers.roofHRS[floorCount][memberCount])
@@ -3748,6 +3753,18 @@ namespace WindowsFormsApp1
                     }
                     slab_SS_SB_R_AtB_cbx.SelectedIndex = 0;
                 }
+            }
+        }
+
+        private void roof_GI_M_PGIS_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (roof_GI_M_PGIS_cb.Checked)
+            {
+                roof_GI_M_SP_cbx.Enabled = true;
+            }
+            else
+            {
+                roof_GI_M_SP_cbx.Enabled = false;
             }
         }
 

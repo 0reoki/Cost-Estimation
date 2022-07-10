@@ -861,13 +861,6 @@ namespace WindowsFormsApp1
             this.label268 = new System.Windows.Forms.Label();
             this.roof_GI_M_SP_cbx = new System.Windows.Forms.ComboBox();
             this.label273 = new System.Windows.Forms.Label();
-            this.roof_GI_M_CGIS_rb = new System.Windows.Forms.RadioButton();
-            this.roof_GI_M_GIRN_rb = new System.Windows.Forms.RadioButton();
-            this.roof_GI_M_GIR_rb = new System.Windows.Forms.RadioButton();
-            this.roof_GI_M_GIW_rb = new System.Windows.Forms.RadioButton();
-            this.roof_GI_M_LW_rb = new System.Windows.Forms.RadioButton();
-            this.roof_GI_M_PGIS_rb = new System.Windows.Forms.RadioButton();
-            this.roof_GI_M_UN_rb = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel102 = new System.Windows.Forms.TableLayoutPanel();
             this.roof_GI_D_EC_cbx = new System.Windows.Forms.ComboBox();
             this.roof_GI_D_LP_bx = new System.Windows.Forms.TextBox();
@@ -943,6 +936,13 @@ namespace WindowsFormsApp1
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.roof_GI_M_CGIS_cb = new System.Windows.Forms.CheckBox();
+            this.roof_GI_M_GIRN_cb = new System.Windows.Forms.CheckBox();
+            this.roof_GI_M_GIR_cb = new System.Windows.Forms.CheckBox();
+            this.roof_GI_M_GIW_cb = new System.Windows.Forms.CheckBox();
+            this.roof_GI_M_LW_cb = new System.Windows.Forms.CheckBox();
+            this.roof_GI_M_UN_cb = new System.Windows.Forms.CheckBox();
+            this.roof_GI_M_PGIS_cb = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel9.SuspendLayout();
             this.addstructTabControl.SuspendLayout();
             this.footingTabPage.SuspendLayout();
@@ -5238,7 +5238,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 202F));
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 202F));
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 202F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
             this.tableLayoutPanel112.Controls.Add(this.label280, 8, 0);
             this.tableLayoutPanel112.Controls.Add(this.label279, 7, 0);
             this.tableLayoutPanel112.Controls.Add(this.label278, 6, 0);
@@ -7171,7 +7171,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 138F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140F));
             this.tableLayoutPanel140.Controls.Add(this.label404, 14, 2);
             this.tableLayoutPanel140.Controls.Add(this.label403, 13, 2);
             this.tableLayoutPanel140.Controls.Add(this.label402, 12, 2);
@@ -12321,19 +12321,20 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel100.ColumnCount = 2;
             this.tableLayoutPanel100.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel100.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_PGIS_cb, 0, 7);
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_UN_cb, 0, 6);
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_LW_cb, 0, 5);
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_GIW_cb, 0, 4);
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_GIR_cb, 0, 3);
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_GIRN_cb, 0, 2);
             this.tableLayoutPanel100.Controls.Add(this.label268, 0, 8);
             this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_SP_cbx, 1, 8);
             this.tableLayoutPanel100.Controls.Add(this.label273, 0, 0);
-            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_CGIS_rb, 0, 1);
-            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_GIRN_rb, 1, 2);
-            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_GIR_rb, 0, 3);
-            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_GIW_rb, 1, 4);
-            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_LW_rb, 0, 5);
-            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_PGIS_rb, 0, 7);
-            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_UN_rb, 1, 6);
+            this.tableLayoutPanel100.Controls.Add(this.roof_GI_M_CGIS_cb, 0, 1);
             this.tableLayoutPanel100.Location = new System.Drawing.Point(3, 237);
             this.tableLayoutPanel100.Name = "tableLayoutPanel100";
-            this.tableLayoutPanel100.RowCount = 9;
+            this.tableLayoutPanel100.RowCount = 10;
+            this.tableLayoutPanel100.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel100.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel100.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel100.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -12362,6 +12363,7 @@ namespace WindowsFormsApp1
             // roof_GI_M_SP_cbx
             // 
             this.roof_GI_M_SP_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roof_GI_M_SP_cbx.Enabled = false;
             this.roof_GI_M_SP_cbx.FormattingEnabled = true;
             this.roof_GI_M_SP_cbx.Items.AddRange(new object[] {
             "2\" x 3\"",
@@ -12385,97 +12387,6 @@ namespace WindowsFormsApp1
             this.label273.TabIndex = 9;
             this.label273.Text = "Materials:";
             this.label273.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // roof_GI_M_CGIS_rb
-            // 
-            this.roof_GI_M_CGIS_rb.AutoSize = true;
-            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_CGIS_rb, 2);
-            this.roof_GI_M_CGIS_rb.Location = new System.Drawing.Point(3, 50);
-            this.roof_GI_M_CGIS_rb.Name = "roof_GI_M_CGIS_rb";
-            this.roof_GI_M_CGIS_rb.Size = new System.Drawing.Size(187, 24);
-            this.roof_GI_M_CGIS_rb.TabIndex = 29;
-            this.roof_GI_M_CGIS_rb.TabStop = true;
-            this.roof_GI_M_CGIS_rb.Text = "Corrugated G.I Sheet";
-            this.roof_GI_M_CGIS_rb.UseVisualStyleBackColor = true;
-            this.roof_GI_M_CGIS_rb.CheckedChanged += new System.EventHandler(this.roof_GI_M_CGIS_rb_CheckedChanged);
-            // 
-            // roof_GI_M_GIRN_rb
-            // 
-            this.roof_GI_M_GIRN_rb.AutoSize = true;
-            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_GIRN_rb, 2);
-            this.roof_GI_M_GIRN_rb.Location = new System.Drawing.Point(3, 80);
-            this.roof_GI_M_GIRN_rb.Name = "roof_GI_M_GIRN_rb";
-            this.roof_GI_M_GIRN_rb.Size = new System.Drawing.Size(133, 24);
-            this.roof_GI_M_GIRN_rb.TabIndex = 30;
-            this.roof_GI_M_GIRN_rb.TabStop = true;
-            this.roof_GI_M_GIRN_rb.Text = "G.I Roof Nails";
-            this.roof_GI_M_GIRN_rb.UseVisualStyleBackColor = true;
-            this.roof_GI_M_GIRN_rb.CheckedChanged += new System.EventHandler(this.roof_GI_M_CGIS_rb_CheckedChanged);
-            // 
-            // roof_GI_M_GIR_rb
-            // 
-            this.roof_GI_M_GIR_rb.AutoSize = true;
-            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_GIR_rb, 2);
-            this.roof_GI_M_GIR_rb.Location = new System.Drawing.Point(3, 110);
-            this.roof_GI_M_GIR_rb.Name = "roof_GI_M_GIR_rb";
-            this.roof_GI_M_GIR_rb.Size = new System.Drawing.Size(104, 24);
-            this.roof_GI_M_GIR_rb.TabIndex = 31;
-            this.roof_GI_M_GIR_rb.TabStop = true;
-            this.roof_GI_M_GIR_rb.Text = "G.I Rivets";
-            this.roof_GI_M_GIR_rb.UseVisualStyleBackColor = true;
-            this.roof_GI_M_GIR_rb.CheckedChanged += new System.EventHandler(this.roof_GI_M_CGIS_rb_CheckedChanged);
-            // 
-            // roof_GI_M_GIW_rb
-            // 
-            this.roof_GI_M_GIW_rb.AutoSize = true;
-            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_GIW_rb, 2);
-            this.roof_GI_M_GIW_rb.Location = new System.Drawing.Point(3, 140);
-            this.roof_GI_M_GIW_rb.Name = "roof_GI_M_GIW_rb";
-            this.roof_GI_M_GIW_rb.Size = new System.Drawing.Size(123, 24);
-            this.roof_GI_M_GIW_rb.TabIndex = 32;
-            this.roof_GI_M_GIW_rb.TabStop = true;
-            this.roof_GI_M_GIW_rb.Text = "G.I Washers";
-            this.roof_GI_M_GIW_rb.UseVisualStyleBackColor = true;
-            this.roof_GI_M_GIW_rb.CheckedChanged += new System.EventHandler(this.roof_GI_M_CGIS_rb_CheckedChanged);
-            // 
-            // roof_GI_M_LW_rb
-            // 
-            this.roof_GI_M_LW_rb.AutoSize = true;
-            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_LW_rb, 2);
-            this.roof_GI_M_LW_rb.Location = new System.Drawing.Point(3, 170);
-            this.roof_GI_M_LW_rb.Name = "roof_GI_M_LW_rb";
-            this.roof_GI_M_LW_rb.Size = new System.Drawing.Size(137, 24);
-            this.roof_GI_M_LW_rb.TabIndex = 33;
-            this.roof_GI_M_LW_rb.TabStop = true;
-            this.roof_GI_M_LW_rb.Text = "Lead Washers";
-            this.roof_GI_M_LW_rb.UseVisualStyleBackColor = true;
-            this.roof_GI_M_LW_rb.CheckedChanged += new System.EventHandler(this.roof_GI_M_CGIS_rb_CheckedChanged);
-            // 
-            // roof_GI_M_PGIS_rb
-            // 
-            this.roof_GI_M_PGIS_rb.AutoSize = true;
-            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_PGIS_rb, 2);
-            this.roof_GI_M_PGIS_rb.Location = new System.Drawing.Point(3, 230);
-            this.roof_GI_M_PGIS_rb.Name = "roof_GI_M_PGIS_rb";
-            this.roof_GI_M_PGIS_rb.Size = new System.Drawing.Size(137, 24);
-            this.roof_GI_M_PGIS_rb.TabIndex = 35;
-            this.roof_GI_M_PGIS_rb.TabStop = true;
-            this.roof_GI_M_PGIS_rb.Text = "Plain G.I Strap";
-            this.roof_GI_M_PGIS_rb.UseVisualStyleBackColor = true;
-            this.roof_GI_M_PGIS_rb.CheckedChanged += new System.EventHandler(this.roof_GI_M_PGIS_rb_CheckedChanged);
-            // 
-            // roof_GI_M_UN_rb
-            // 
-            this.roof_GI_M_UN_rb.AutoSize = true;
-            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_UN_rb, 2);
-            this.roof_GI_M_UN_rb.Location = new System.Drawing.Point(3, 200);
-            this.roof_GI_M_UN_rb.Name = "roof_GI_M_UN_rb";
-            this.roof_GI_M_UN_rb.Size = new System.Drawing.Size(135, 24);
-            this.roof_GI_M_UN_rb.TabIndex = 34;
-            this.roof_GI_M_UN_rb.TabStop = true;
-            this.roof_GI_M_UN_rb.Text = "Umbrella Nails";
-            this.roof_GI_M_UN_rb.UseVisualStyleBackColor = true;
-            this.roof_GI_M_UN_rb.CheckedChanged += new System.EventHandler(this.roof_GI_M_CGIS_rb_CheckedChanged);
             // 
             // tableLayoutPanel102
             // 
@@ -13402,6 +13313,78 @@ namespace WindowsFormsApp1
             this.pictureBox1.TabIndex = 31;
             this.pictureBox1.TabStop = false;
             // 
+            // roof_GI_M_CGIS_cb
+            // 
+            this.roof_GI_M_CGIS_cb.AutoSize = true;
+            this.tableLayoutPanel100.SetColumnSpan(this.roof_GI_M_CGIS_cb, 2);
+            this.roof_GI_M_CGIS_cb.Location = new System.Drawing.Point(3, 50);
+            this.roof_GI_M_CGIS_cb.Name = "roof_GI_M_CGIS_cb";
+            this.roof_GI_M_CGIS_cb.Size = new System.Drawing.Size(188, 24);
+            this.roof_GI_M_CGIS_cb.TabIndex = 37;
+            this.roof_GI_M_CGIS_cb.Text = "Corrugated G.I Sheet";
+            this.roof_GI_M_CGIS_cb.UseVisualStyleBackColor = true;
+            // 
+            // roof_GI_M_GIRN_cb
+            // 
+            this.roof_GI_M_GIRN_cb.AutoSize = true;
+            this.roof_GI_M_GIRN_cb.Location = new System.Drawing.Point(3, 80);
+            this.roof_GI_M_GIRN_cb.Name = "roof_GI_M_GIRN_cb";
+            this.roof_GI_M_GIRN_cb.Size = new System.Drawing.Size(134, 24);
+            this.roof_GI_M_GIRN_cb.TabIndex = 38;
+            this.roof_GI_M_GIRN_cb.Text = "G.I Roof Nails";
+            this.roof_GI_M_GIRN_cb.UseVisualStyleBackColor = true;
+            // 
+            // roof_GI_M_GIR_cb
+            // 
+            this.roof_GI_M_GIR_cb.AutoSize = true;
+            this.roof_GI_M_GIR_cb.Location = new System.Drawing.Point(3, 110);
+            this.roof_GI_M_GIR_cb.Name = "roof_GI_M_GIR_cb";
+            this.roof_GI_M_GIR_cb.Size = new System.Drawing.Size(105, 24);
+            this.roof_GI_M_GIR_cb.TabIndex = 39;
+            this.roof_GI_M_GIR_cb.Text = "G.I Rivets";
+            this.roof_GI_M_GIR_cb.UseVisualStyleBackColor = true;
+            // 
+            // roof_GI_M_GIW_cb
+            // 
+            this.roof_GI_M_GIW_cb.AutoSize = true;
+            this.roof_GI_M_GIW_cb.Location = new System.Drawing.Point(3, 140);
+            this.roof_GI_M_GIW_cb.Name = "roof_GI_M_GIW_cb";
+            this.roof_GI_M_GIW_cb.Size = new System.Drawing.Size(124, 24);
+            this.roof_GI_M_GIW_cb.TabIndex = 40;
+            this.roof_GI_M_GIW_cb.Text = "G.I Washers";
+            this.roof_GI_M_GIW_cb.UseVisualStyleBackColor = true;
+            // 
+            // roof_GI_M_LW_cb
+            // 
+            this.roof_GI_M_LW_cb.AutoSize = true;
+            this.roof_GI_M_LW_cb.Location = new System.Drawing.Point(3, 170);
+            this.roof_GI_M_LW_cb.Name = "roof_GI_M_LW_cb";
+            this.roof_GI_M_LW_cb.Size = new System.Drawing.Size(138, 24);
+            this.roof_GI_M_LW_cb.TabIndex = 41;
+            this.roof_GI_M_LW_cb.Text = "Lead Washers";
+            this.roof_GI_M_LW_cb.UseVisualStyleBackColor = true;
+            // 
+            // roof_GI_M_UN_cb
+            // 
+            this.roof_GI_M_UN_cb.AutoSize = true;
+            this.roof_GI_M_UN_cb.Location = new System.Drawing.Point(3, 200);
+            this.roof_GI_M_UN_cb.Name = "roof_GI_M_UN_cb";
+            this.roof_GI_M_UN_cb.Size = new System.Drawing.Size(136, 24);
+            this.roof_GI_M_UN_cb.TabIndex = 42;
+            this.roof_GI_M_UN_cb.Text = "Umbrella Nails";
+            this.roof_GI_M_UN_cb.UseVisualStyleBackColor = true;
+            // 
+            // roof_GI_M_PGIS_cb
+            // 
+            this.roof_GI_M_PGIS_cb.AutoSize = true;
+            this.roof_GI_M_PGIS_cb.Location = new System.Drawing.Point(3, 230);
+            this.roof_GI_M_PGIS_cb.Name = "roof_GI_M_PGIS_cb";
+            this.roof_GI_M_PGIS_cb.Size = new System.Drawing.Size(138, 24);
+            this.roof_GI_M_PGIS_cb.TabIndex = 43;
+            this.roof_GI_M_PGIS_cb.Text = "Plain G.I Strap";
+            this.roof_GI_M_PGIS_cb.UseVisualStyleBackColor = true;
+            this.roof_GI_M_PGIS_cb.CheckedChanged += new System.EventHandler(this.roof_GI_M_PGIS_cb_CheckedChanged);
+            // 
             // AddStructForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -14210,13 +14193,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label303;
         private System.Windows.Forms.Label label304;
         private System.Windows.Forms.Label label268;
-        private System.Windows.Forms.RadioButton roof_GI_M_CGIS_rb;
-        private System.Windows.Forms.RadioButton roof_GI_M_GIRN_rb;
-        private System.Windows.Forms.RadioButton roof_GI_M_GIR_rb;
-        private System.Windows.Forms.RadioButton roof_GI_M_GIW_rb;
-        private System.Windows.Forms.RadioButton roof_GI_M_LW_rb;
-        private System.Windows.Forms.RadioButton roof_GI_M_PGIS_rb;
-        private System.Windows.Forms.RadioButton roof_GI_M_UN_rb;
         private System.Windows.Forms.ComboBox roof_GI_D_EC_cbx;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel71;
         private System.Windows.Forms.Label label206;
@@ -14609,5 +14585,12 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label396;
         private System.Windows.Forms.Label label395;
         private System.Windows.Forms.FlowLayoutPanel slab_SS_SD_Panel;
+        private System.Windows.Forms.CheckBox roof_GI_M_CGIS_cb;
+        private System.Windows.Forms.CheckBox roof_GI_M_GIRN_cb;
+        private System.Windows.Forms.CheckBox roof_GI_M_PGIS_cb;
+        private System.Windows.Forms.CheckBox roof_GI_M_UN_cb;
+        private System.Windows.Forms.CheckBox roof_GI_M_LW_cb;
+        private System.Windows.Forms.CheckBox roof_GI_M_GIW_cb;
+        private System.Windows.Forms.CheckBox roof_GI_M_GIR_cb;
     }
 }

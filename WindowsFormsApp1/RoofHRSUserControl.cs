@@ -15,17 +15,18 @@ namespace WindowsFormsApp1
         public RoofHRSUserControl()
         {
             InitializeComponent();
+            roof_GI_D_EC_cbx.SelectedIndex = 0;
         }
 
         public string value
         {
             get
             {
-                return col_G_S_S_bx.Text;
+                return roof_GI_D_EC_cbx.Text;
             }
             set
             {
-                col_G_S_S_bx.Text = value;
+                roof_GI_D_EC_cbx.Text = value;
             }
         }
     }

@@ -65,6 +65,8 @@ namespace WindowsFormsApp1
         //Constant variables
         public List<List<double>> concreteProportion = new List<List<double>>();
 
+        //Roof Solution
+
         public StructuralMembers(CostEstimationForm cEF)
         {
             //Initialize Variables
