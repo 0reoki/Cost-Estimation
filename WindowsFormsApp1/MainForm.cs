@@ -119,7 +119,7 @@ namespace WindowsFormsApp1
             tins_costTotal,// Tinswork - TOTAL COST
             roof_MTOTAL,// Total Material Cost
             roof_LTOTAL,// Total Labor Cost
-            roof_TOTALCOST;// Overall Total Cost
+            roof_TOTALCOST;// Overall Total Cost    
 
         //7.0 Tiles **
         public double sixhun_MUnit, //600 x 600 - Materials Unit
@@ -3749,7 +3749,11 @@ namespace WindowsFormsApp1
             {
                 stringParam += checkMark + "|";
             }
-            foreach(bool checkMark in tilesChecklist)
+            foreach (bool checkMark in roofingsChecklist)
+            {
+                stringParam += checkMark + "|";
+            }
+            foreach (bool checkMark in tilesChecklist)
             {
                 stringParam += checkMark + "|";
             }
@@ -4267,6 +4271,41 @@ namespace WindowsFormsApp1
             stringParam += masonLCost_total + "|";
             stringParam += mason_TOTALCOST + "|";
 
+            //6.0 - Roofings
+            stringParam += "\nRoofings|\n";
+            //Totalities
+            stringParam += "Solutions|\n";
+            j = 0;
+            foreach (List<List<double>> floor in structuralMembers.roofSolutions)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<double> solutions in floor)
+                {
+                    stringParam += "roof-" + (k + 1) + "|";
+                    foreach (double value in solutions)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
+            //Cost
+            stringParam += "\nCost|\n";
+            stringParam += rANDp_MCost + "|";
+            stringParam += rANDp_LCost + "|";
+            stringParam += rANDp_costTotal + "|";
+            stringParam += acce_MCost + "|";
+            stringParam += acce_LCost + "|";
+            stringParam += acce_costTotal + "|";
+            stringParam += tins_MCost + "|";
+            stringParam += tins_LCost + "|";
+            stringParam += tins_costTotal + "|";
+            stringParam += roof_MTOTAL + "|";
+            stringParam += roof_LTOTAL + "|";
+            stringParam += roof_TOTALCOST + "|";
+
             //7.0 - Tiles
             stringParam += "\nTiles|\n";
             //Totalities
@@ -4469,6 +4508,8 @@ namespace WindowsFormsApp1
             masonrysSolutionP1.Clear();
             masonrysSolutionP2.Clear();
             masonrysSolutionP3.Clear();
+
+            structuralMembers.roofSolutions.Clear();
 
             sixhun.Clear();
             threehun.Clear();
@@ -5059,6 +5100,9 @@ namespace WindowsFormsApp1
             earthworksChecklist[5] = bool.Parse(tokens[i]); i++;
             masonryChecklist[0] = bool.Parse(tokens[i]); i++;
             masonryChecklist[1] = bool.Parse(tokens[i]); i++;
+            roofingsChecklist[0] = bool.Parse(tokens[i]); i++;
+            roofingsChecklist[1] = bool.Parse(tokens[i]); i++;
+            roofingsChecklist[2] = bool.Parse(tokens[i]); i++;
             tilesChecklist[0] = bool.Parse(tokens[i]); i++;
             tilesChecklist[1] = bool.Parse(tokens[i]); i++;
             paintsChecklist[0] = bool.Parse(tokens[i]); i++;
@@ -6501,6 +6545,50 @@ namespace WindowsFormsApp1
             masonMCost_total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             masonLCost_total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             mason_TOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+
+            //6.0 - Roofings
+            i++;
+            //Totalities
+            i++;
+            j = 0;
+            l = 0;
+            while (!tokens[i].Equals("Cost"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("Cost"))
+                {
+                    List<List<double>> floor = new List<List<double>>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("roof-" + (l + 1)) && !tokens[i].Equals("Cost") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    {
+                        List<double> toAdd = new List<double>();
+                        i++;
+
+                        while (!tokens[i].Equals("roof-" + (l + 2)) && !tokens[i].Equals("Cost") && !tokens[i].Equals("Floor-" + (j + 2)))
+                        {
+                            toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+                        }
+                        floor.Add(toAdd);
+                        l++;
+                    }
+                    structuralMembers.roofSolutions.Add(floor);
+                    j++;
+                }
+            }
+            //Cost
+            i++;
+            rANDp_MCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            rANDp_LCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            rANDp_costTotal = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            acce_MCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            acce_LCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            acce_costTotal = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            tins_MCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            tins_LCost = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            tins_costTotal = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            roof_MTOTAL = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            roof_LTOTAL = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            roof_TOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
 
             //7.0 - Tiles
             i++;
