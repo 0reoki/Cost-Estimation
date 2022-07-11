@@ -798,7 +798,7 @@ namespace WindowsFormsApp1
                 print("C-Purlins Raft: " + ceeRaft_price);
                 print("C-Purlins Purlins: " + ceePurlins_price);
                 rANDp_MCost = wood_price + steelRaft_price + steelPurlins_price + ceeRaft_price + ceePurlins_price;
-                rANDp_LCost = (height_roof * purl_len) * double.Parse(parameters.price_LaborRate_Roofings["ROOFINGS [m2]"].ToString());
+                rANDp_LCost = 0;
                 rANDp_costTotal = rANDp_MCost + rANDp_LCost;
             }
             else
@@ -865,7 +865,7 @@ namespace WindowsFormsApp1
                 }
                 print("Tinswork: "+tinswork_price);
                 tins_MCost = tinswork_price;
-                tins_LCost = (height_roof * purl_len) * double.Parse(parameters.price_LaborRate_Roofings["ROOFINGS [m2]"].ToString());
+                tins_LCost = 0;
                 tins_costTotal = tins_MCost + tins_LCost;
             }
             else
@@ -876,7 +876,7 @@ namespace WindowsFormsApp1
             }
             print("====== Roofings =====");
             roof_MTOTAL = rANDp_MCost + acce_MCost + tins_MCost;
-            roof_LTOTAL = roof_LTOTAL + acce_LCost + tins_LCost;
+            roof_LTOTAL = (height_roof * purl_len) * double.Parse(parameters.price_LaborRate_Roofings["ROOFINGS [m2]"].ToString());
             roof_TOTALCOST = roof_MTOTAL + roof_LTOTAL;
             print("RandP Mat cost: " + rANDp_MCost + " RandP Lab cost: " + rANDp_LCost + " RandP TOTAL COST: "+ rANDp_costTotal);
             print("Acce Mat cost: " + acce_MCost + " Acce Lab cost: " + acce_LCost + " Acce TOTAL COST: " + acce_costTotal);
