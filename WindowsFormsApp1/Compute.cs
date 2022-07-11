@@ -2986,7 +2986,7 @@ namespace WindowsFormsApp1
                 double giWashers = 0;
                 double leadWashers = 0;
                 double umbNails = 0;
-                double plain_sheets = 0;
+                double plain_sheets = 0;                
                 List<double> materials = new List<double>();                
                 // corr - ginail - girivet - giwash - leadwash - umbnails - strap               
                 //if (roofs.Contains("Corrugated G.I Sheet"))

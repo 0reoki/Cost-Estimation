@@ -54,6 +54,7 @@ namespace WindowsFormsApp1
             this.slabCount = slabCount;
             this.stairsCount = stairsCount;
             this.roofCount = roofCount;
+            
 
             oldStructMemName = "";
             g_ltUC = new List<ColumnLateralTiesUserControl>();
@@ -127,7 +128,7 @@ namespace WindowsFormsApp1
             setDefaultStructMemName();
             populateColumnConnectionBelow();
             populateBeamRowConnections();
-
+            
             //existing node?
             if (!isNew)
             {
@@ -232,6 +233,10 @@ namespace WindowsFormsApp1
             {
                 tab.Text = "";
             }
+            roof_RP_ST_D_CLTSP_cbx.DropDownWidth = DropDownWidth(roof_RP_ST_D_CLTSP_cbx);
+            roof_RP_ST_D_CLTSR_cbx.DropDownWidth = DropDownWidth(roof_RP_ST_D_CLTSR_cbx);
+            roof_RP_SCP_D_CLCPR_cbx.DropDownWidth = DropDownWidth(roof_RP_SCP_D_CLCPR_cbx);
+            roof_RP_SCP_D_CLCPP_cbx.DropDownWidth = DropDownWidth(roof_RP_SCP_D_CLCPP_cbx);           
         }
 
         private void earth_SaveBtn_Click(object sender, EventArgs e)
@@ -3853,6 +3858,11 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void roof_RP_ST_D_CLTSR_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void roof_GI_D_HRS_AddBtn_Click(object sender, EventArgs e)
         {
             RoofHRSUserControl content = new RoofHRSUserControl();
@@ -4025,6 +4035,20 @@ namespace WindowsFormsApp1
             slab_SS_SM_cbx.Items.RemoveAt(index);
             slab_SS_SM_cbx.Items.Insert(index, newName);
             slab_SS_SM_cbx.SelectedIndex = selectedIndex;
+        }
+
+        int DropDownWidth(ComboBox myCombo)
+        {
+            int maxWidth = 0, temp = 0;
+            foreach (var obj in myCombo.Items)
+            {
+                temp = TextRenderer.MeasureText(obj.ToString(), myCombo.Font).Width;
+                if (temp > maxWidth)
+                {
+                    maxWidth = temp;
+                }
+            }
+            return maxWidth;
         }
     }
 }
