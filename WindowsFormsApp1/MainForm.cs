@@ -40,6 +40,7 @@ namespace WindowsFormsApp1
         //Price Checklists (Show if checklist == true)
         public bool[] earthworksChecklist = { true, true, true, true, true, true }; //1.0
         public bool[] masonryChecklist = { true, true }; //4.0
+        public bool[] roofingsChecklist = { true, true, true}; //6.0
         public bool[] tilesChecklist = { true, true }; //7.0
         public bool[] paintsChecklist = { true, true, true, true }; //8.0
         public ListDictionary laborAndEquipmentChecklist; //10.0 TODO
@@ -68,7 +69,7 @@ namespace WindowsFormsApp1
         //extvBAR -> exthBAR -> extReinforcementCHB -> extReinforcementWeight -> extTieWire -> intvBAR -> inthBAR -> intReinforcementCHB -> intReinforcementWeight -> intTieWire
         public List<double> masonrysSolutionP3 = new List<double>();
         public string extCHBdimension;
-        public string intCHBdimension;
+        public string intCHBdimension;        
 
         //7.0 Tiles **
         //area -> tilesPCS -> tilesADHESIVE_regular -> tilesADHESIVE_heavy -> tilesGROUT
@@ -105,6 +106,20 @@ namespace WindowsFormsApp1
                       mason_TOTALCOST; // Masonry - OVERALL COST
                                        // exterior QTY -> masonrysSolutionP1[3]
                                        // interior QTY -> masonrysSolutionP1[8]
+
+        //6.0 Roofings **
+        public double rANDp_MCost,// Rafter and Purlins - Material Cost
+            rANDp_LCost,// Rafter and Purlins - Labor Cost
+            rANDp_costTotal,// Rafter and Purlins - TOTAL COST
+            acce_MCost, // G.I Roof and Its Accessories - Material Cost
+            acce_LCost,// G.I Roof and Its Accessories - Labor Cost
+            acce_costTotal,// G.I Roof and Its Accessories - TOTAL COST
+            tins_MCost,// Tinswork - Material Cost
+            tins_LCost,// Tinswork - Labor Cost
+            tins_costTotal,// Tinswork - TOTAL COST
+            roof_MTOTAL,// Total Material Cost
+            roof_LTOTAL,// Total Labor Cost
+            roof_TOTALCOST;// Overall Total Cost
 
         //7.0 Tiles **
         public double sixhun_MUnit, //600 x 600 - Materials Unit
@@ -655,6 +670,196 @@ namespace WindowsFormsApp1
             print("L_total: " + masonLCost_total);
             print("TOTAL COST: " + mason_TOTALCOST);
             //Masonry -- END
+
+            //Roofings -- START
+            if (roofingsChecklist[0])
+            {
+                double wood_price = 0;
+                double steelRaft_price = 0;
+                double steelPurlins_price = 0;
+                double ceeRaft_price = 0;
+                double ceePurlins_price = 0;
+                for (int i = 0; i < structuralMembers.roofSolutions.Count; i++)//floor
+                {
+                    for(int j = 0; j < structuralMembers.roofSolutions[i].Count; j++)// roofs each floor
+                    {
+                        if (structuralMembers.roofSolutions[i][j][0] == 1)//rafters and purlins
+                        {
+                            if(structuralMembers.roofSolutions[i][j][1] == 1)//wood
+                            {
+                                wood_price += structuralMembers.roofSolutions[i][j][2] * 62;
+                            }
+                            else if(structuralMembers.roofSolutions[i][j][1] == 2)//accessories
+                            {                                                
+                                for(int x = 7; x < 9; x++) {
+                                    if (steelFilterer(structuralMembers.roof[i][j][x])[2] == "1.0")
+                                    {
+                                        if(x == 7)
+                                        {
+                                            steelRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_TubularSteel1mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString());
+                                        }
+                                        else
+                                        {
+                                            steelPurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_TubularSteel1mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString());
+                                        }
+                                    }
+                                    else if (steelFilterer(structuralMembers.roof[i][j][x])[2] == "1.2")
+                                    {
+                                        if (x == 7)
+                                        {
+                                            steelRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_TubularSteel1p2mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString());
+                                        }
+                                        else
+                                        {
+                                            steelPurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_TubularSteel1p2mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString());
+                                        }
+
+                                    }
+                                    else if (steelFilterer(structuralMembers.roof[i][j][x])[2] == "1.5")
+                                    {
+                                        if (x == 7)
+                                        {                                            
+                                            steelRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_TubularSteel1p5mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString());
+                                        }
+                                        else
+                                        {                                            
+                                            steelPurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_TubularSteel1p5mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString());
+                                        }
+                                    }                                    
+                                }
+                            }
+                            else if (structuralMembers.roofSolutions[i][j][1] == 3)//cee purlins
+                            {
+                                for(int x = 7; x < 9; x++)
+                                {
+                                    if (x == 7)
+                                    {                                        
+                                        if (parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + ") [6 m]"] != null)
+                                        {
+                                            print(" -- 1 -- ");
+                                            ceeRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + ") [6 m]"].ToString());
+                                            print(structuralMembers.roofSolutions[i][j][2]+ " * " +double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + ") [6 m]"].ToString()));
+                                        }
+                                        else
+                                        {
+                                            print(" -- 2 -- ");
+                                            ceeRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + " ) [6 m]"].ToString());
+                                            print(structuralMembers.roofSolutions[i][j][2] +" * "+ double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + " ) [6 m]"].ToString()));
+                                        }                                                                                                                                                       
+                                    }
+                                    //150mm x 50mm x 1.0mm thick
+                                    else
+                                    {
+                                        if (parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + ") [6 m]"] != null)
+                                        {
+                                            print(" -- 3 -- ");
+                                            ceePurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + ") [6 m]"].ToString());
+                                            print(structuralMembers.roofSolutions[i][j][3] +" * "+ double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + ") [6 m]"].ToString()));
+                                        }
+                                        else
+                                        {
+                                            print(" -- 4 -- ");
+                                            ceePurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + " ) [6 m]"].ToString());
+                                            print(structuralMembers.roofSolutions[i][j][3] +" * " +double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + " ) [6 m]"].ToString()));
+                                        }                                                                                                                        
+                                    }
+                                }
+                            }
+                        }
+                    }                    
+                }
+                print("Wood: " + wood_price);
+                print("Steel rafters: " + steelRaft_price);
+                print("Steel purlins: " + steelPurlins_price);
+                print("TinsWork Raft: " + ceeRaft_price);
+                print("Tinswork Purlins: " + ceePurlins_price);
+                rANDp_MCost = wood_price + steelRaft_price + steelPurlins_price + ceeRaft_price + ceePurlins_price;
+                rANDp_LCost = double.Parse(parameters.price_LaborRate_Roofings["ROOFINGS [m2]"].ToString());
+                rANDp_costTotal = rANDp_MCost + rANDp_LCost;
+            }
+            else
+            {
+                rANDp_MCost = 0;
+                rANDp_LCost = 0;
+                rANDp_costTotal = 0;
+            }
+            if (roofingsChecklist[1])
+            {
+                double corrugated = 0;
+                double ginails = 0;
+                double rivets = 0;
+                double giwashers = 0;
+                double leadwashers = 0;
+                double umbnails = 0;
+                double plain = 0;
+                for (int i = 0; i < structuralMembers.roofSolutions.Count; i++)//floor
+                {
+                    for (int j = 0; j < structuralMembers.roofSolutions[i].Count; j++)// roofs each floor
+                    {
+                        if (structuralMembers.roofSolutions[i][j][0] == 2)//acce
+                        {
+                            corrugated += structuralMembers.roofSolutions[i][j][1] * double.Parse(parameters.price_RoofMaterials["Corrugated G.I Sheet, Gauge 26 (0.551mmx2.44 mm) [m2]"].ToString());
+                            ginails += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_RoofMaterials["G.I. Roof Nails [KG]"].ToString());
+                            rivets += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_RoofMaterials["G.I Rivets [KG]"].ToString()); 
+                            giwashers += structuralMembers.roofSolutions[i][j][4] * double.Parse(parameters.price_RoofMaterials["G.I Washers [KG]"].ToString());
+                            leadwashers += structuralMembers.roofSolutions[i][j][5] * double.Parse(parameters.price_RoofMaterials["G.I Washers [KG]"].ToString());
+                            umbnails += structuralMembers.roofSolutions[i][j][6] * double.Parse(parameters.price_RoofMaterials["Umbrella Nails [KG]"].ToString());
+                            plain += structuralMembers.roofSolutions[i][j][7] * double.Parse(parameters.price_RoofMaterials["Plain G.I Sheet, Gauge 24 (4ft x 8 ft) [UNIT]"].ToString());
+                        }
+                    }
+                }
+                print("corruageted: "+corrugated);
+                print("GI nails: "+ ginails);
+                print("Rivets: "+rivets);
+                print("GI washers: "+ giwashers);
+                print("Leadwashers: "+ leadwashers);
+                print("umbrella nails: "+umbnails);
+                print("Plain Sheets: "+plain);
+                acce_MCost = corrugated + ginails + rivets + giwashers + leadwashers + umbnails + plain;
+                acce_LCost = double.Parse(parameters.price_LaborRate_Roofings["ROOFINGS [m2]"].ToString());
+                acce_costTotal = acce_MCost + acce_LCost;
+            }
+            else
+            {
+                acce_MCost = 0;
+                acce_LCost = 0;
+                acce_costTotal = 0;
+            }
+            if (roofingsChecklist[2])
+            {
+                double tinswork_price = 0;
+                for (int i = 0; i < structuralMembers.roofSolutions.Count; i++)//floor
+                {
+                    for (int j = 0; j < structuralMembers.roofSolutions[i].Count; j++)// roofs each floor
+                    {
+                        if (structuralMembers.roofSolutions[i][j][0] == 3)//tinswork
+                        {
+                            tinswork_price += structuralMembers.roofSolutions[i][j][1] * double.Parse(parameters.price_RoofMaterials["Plain G.I Sheet, Gauge 24 (4ft x 8 ft) [UNIT]"].ToString());
+                        }
+                    }
+                }
+                tins_MCost = tinswork_price;
+                tins_LCost = double.Parse(parameters.price_LaborRate_Roofings["ROOFINGS [m2]"].ToString());
+                tins_costTotal = tins_MCost + tins_LCost;
+            }
+            else
+            {
+                tins_MCost = 0;
+                tins_LCost = 0;
+                tins_costTotal = 0;
+            }
+            print("====== Roofings =====");
+            roof_MTOTAL = rANDp_MCost + acce_MCost + tins_MCost;
+            roof_LTOTAL = roof_LTOTAL + acce_LCost + tins_LCost;
+            roof_TOTALCOST = roof_MTOTAL + roof_LTOTAL;
+            print("RandP Mat cost: " + rANDp_MCost + " RandP Lab cost: " + rANDp_LCost + " RandP TOTAL COST: "+ rANDp_costTotal);
+            print("Acce Mat cost: " + acce_MCost + " Acce Lab cost: " + acce_LCost + " Acce TOTAL COST: " + acce_costTotal);
+            print("Tins Mat cost: " + tins_MCost + " Tins Lab cost: " + tins_LCost + " Tins TOTAL COST: " + tins_costTotal);
+            print("--- TOTAL ---");
+            print("Materials Cost: " + roof_MTOTAL);
+            print("Labor Cost: " + roof_LTOTAL);
+            print("TOTAL COST: " + roof_TOTALCOST);
+            //Roofings -- END
 
             //Tiles
             if (tilesChecklist[0])
@@ -6423,6 +6628,30 @@ namespace WindowsFormsApp1
         {
             Console.WriteLine(str);
         }
+
+        public static List<string> steelFilterer(string str)
+        {
+            List<string> dims = new List<string>();
+            string retStr = "";
+            foreach (char c in str)
+            {
+                if (Char.IsDigit(c)||c == '.')
+                {
+                    retStr += c;
+                }
+                else
+                {
+                    if (c == 'x')
+                    {
+                        dims.Add(retStr);
+                        retStr = "";
+                    }
+                }
+            }
+            dims.Add(retStr);
+            return dims;
+        }
         //Extra Functions -- END
     }
 }
+

@@ -62,6 +62,9 @@ namespace WindowsFormsApp1
         //Solution Stair variables
         public List<List<double>> stairsSolutions = new List<List<double>>();
 
+        //Solution Roof        
+        public List<List<List<double>>> roofSolutions = new List<List<List<double>>>();
+
         //Constant variables
         public List<List<double>> concreteProportion = new List<List<double>>();
 

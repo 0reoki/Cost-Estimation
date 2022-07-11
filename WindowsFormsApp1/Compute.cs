@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace WindowsFormsApp1
 {
     public class Compute 
-    {
+    {        
         //General Functions -- START
         private void refreshSolutions(CostEstimationForm cEF)
         {
@@ -574,6 +575,7 @@ namespace WindowsFormsApp1
                 }
             }
         }
+        
 
         //Modify
         public void modifyFootingWorks(CostEstimationForm cEF, int structMemCount, int count, bool isFooting)
@@ -1069,7 +1071,7 @@ namespace WindowsFormsApp1
         }
         //Footing Computation Functions  -- END
 
-        //Column Computation Functions -- STAR
+        //Column Computation Functions -- START
         public void AddColumnWorks(CostEstimationForm cEF, int floorCount, int columnCount)
         {
             List<double> newList = new List<double>();
@@ -2882,20 +2884,363 @@ namespace WindowsFormsApp1
         //Roof Computation Functions -- START
         public void AddRoofWorks(CostEstimationForm cEF, int floorCount, int roofCount)
         {
-            List<double> newList = new List<double>();
-            //cEF.structuralMembers.roofSolutions.Add(newList);
+            List<List<double>> newList = new List<List<double>>();
+            int curr_FC = cEF.structuralMembers.roofSolutions.Count;
+            if(curr_FC != floorCount+1)
+            {
+                for(int i = curr_FC; i < floorCount+1; i++)
+                {                           
+                    cEF.structuralMembers.roofSolutions.Add(newList);
+                }                
+            }
+            else
+            {
+                print("same floor");
+            }
+            print(cEF.structuralMembers.roofSolutions.Count + " :FLOOR" );
             roofWorks(cEF, floorCount, roofCount);
         }
 
         public void roofWorks(CostEstimationForm cEF, int floorCount, int roofCount)
         {
-            double length;
-            length = double.Parse(cEF.structuralMembers.stairs[floorCount][roofCount][1], System.Globalization.CultureInfo.InvariantCulture);
+            List<double> outputs = new List<double>();
+            foreach(var c in cEF.structuralMembers.roof[floorCount][roofCount])
+            {
+                print(c + " ---");
+            }
+            if (cEF.structuralMembers.roof[floorCount][roofCount][0] == "Rafter and Purlins")
+            {
+                if (cEF.structuralMembers.roof[floorCount][roofCount][1] == "Wood")
+                {
+                    //kind - wodsandshts -// 2 Lraft - Lpurl - spaceR - spaceP
+                    double raft = rounder(((double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][3]) / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][4])) + 1)) * 2;
+                    double lenRaft = rounder(double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][2]) * 3.28);
+                    double purl = (rounder((double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][2]) / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][5])) + 1)) * 2;
+                    double lenPurl = rounder(double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][3]) * 3.28);
+                    double rafB = rounder(raft * ((2 * 6 * (lenRaft)) / 12));
+                    double purB = rounder(purl * ((2 * 2 * (lenPurl)) / 12));
+                    double totB = rafB + purB;
+                    outputs.Add(1);//rafter and purlians
+                    outputs.Add(1);//wood
+                    outputs.Add(totB);//total
+                    print(totB + " TOTAL");
+                }
+                else if (cEF.structuralMembers.roof[floorCount][roofCount][1] == "Steel - Tubular")
+                {
+                    //2 Lraft(SW) - Lraft - Lpurl - spaceR - spaceP - CommR - CommP
+                    double raft = rounder(((double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][2]) / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][5])) + 1) * 2);
+                    double lenRaft = rounder((raft) * (double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][3])));
+                    double sixLenR = rounder(lenRaft / 6);
+                    double purl = rounder(((double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][3]) / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][6])) + 1) * 2);
+                    double lenPurl = rounder(purl * double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][4]));
+                    double sixLenP = rounder(lenPurl / 6);
+                    outputs.Add(1);
+                    outputs.Add(2);                    
+                    outputs.Add(sixLenR);
+                    outputs.Add(sixLenP);                    
+                    print(sixLenR + " 6m Com Raft");
+                    print(sixLenP + " 6m Com Purl");
+                }
+                else
+                {
+                    double raft = rounder(((double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][2]) / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][5])) + 1) * 2);
+                    double lenRaft = rounder((raft) * (double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][3])));
+                    double sixLenR = rounder(lenRaft / 6);
+                    double purl = rounder(((double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][3]) / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][6])) + 1) * 2);
+                    double lenPurl = rounder(purl * double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][4]));
+                    double sixLenP = rounder(lenPurl / 6);
+                    outputs.Add(1);
+                    outputs.Add(3);
+                    outputs.Add(sixLenR);
+                    outputs.Add(sixLenP);
+                    print(sixLenR + " 6m Com Raft");
+                    print(sixLenP + " 6m Com Purl");
+                }
+            }
+            else if (cEF.structuralMembers.roof[floorCount][roofCount][0] == "G.I Roof and Its Accessories")
+            {
+                ListDictionary table1 = new ListDictionary();
+                table1.Add("1.50", 14);
+                table1.Add("1.80", 14);
+                table1.Add("2.10", 18);
+                table1.Add("2.40", 18);
+                table1.Add("2.70", 22);
+                table1.Add("3.00", 22);
+                table1.Add("3.60", 26);
+                ListDictionary table2 = new ListDictionary();
+                table2.Add("1.50", 28);
+                table2.Add("1.80", 28);
+                table2.Add("2.10", 36);
+                table2.Add("2.40", 36);
+                table2.Add("2.70", 44);
+                table2.Add("3.00", 44);
+                table2.Add("3.60", 52);
+                ListDictionary table3 = new ListDictionary();
+                table3.Add("2\" x 3\"", 384);
+                table3.Add("2\" x 4\"", 342);
+                table3.Add("2\" x 5\"", 312);
+                table3.Add("2\" x 6\"", 288);
+                double corrSheets = 0;
+                double giNails = 0;
+                double rivets = 0;
+                double giWashers = 0;
+                double leadWashers = 0;
+                double umbNails = 0;
+                double plain_sheets = 0;
+                List<double> materials = new List<double>();                
+                // corr - ginail - girivet - giwash - leadwash - umbnails - strap               
+                //if (roofs.Contains("Corrugated G.I Sheet"))
+                //{
+                corrSheets = rounder(double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][1]) / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][2])) * 2;
+                //}
+                if (cEF.structuralMembers.roof[floorCount][roofCount].Contains("G.I Roof Nails"))
+                {
+                    foreach (string str in cEF.structuralMembers.roofHRS[floorCount][roofCount])
+                    {
+                        giNails += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 120;
+                    }
+                }
+                if (cEF.structuralMembers.roof[floorCount][roofCount].Contains("G.I Rivets"))
+                {
+                    foreach (string str in cEF.structuralMembers.roofHRS[floorCount][roofCount])
+                    {
+                        rivets += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 180;
+                    }
+                }
+                if (cEF.structuralMembers.roof[floorCount][roofCount].Contains("G.I Washers"))
+                {
+                    foreach (string str in cEF.structuralMembers.roofHRS[floorCount][roofCount])
+                    {
+                        giWashers += (corrSheets * double.Parse(table2[double.Parse(str).ToString("F")].ToString())) / 126;
+                    }
+                }
+                if (cEF.structuralMembers.roof[floorCount][roofCount].Contains("Lead Washers"))
+                {
+                    foreach (string str in cEF.structuralMembers.roofHRS[floorCount][roofCount])
+                    {
+                        leadWashers += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 75;
+                    }
+                }
+                if (cEF.structuralMembers.roof[floorCount][roofCount].Contains("Umbrella Nails"))
+                {
+                    foreach (string str in cEF.structuralMembers.roofHRS[floorCount][roofCount])
+                    {
+                        umbNails += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 120;
+                    }
+                }
+                if (cEF.structuralMembers.roof[floorCount][roofCount].Contains("Plain G.I Strap"))
+                {
+                    foreach (string str in cEF.structuralMembers.roofHRS[floorCount][roofCount])
+                    {
+                        plain_sheets += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString()));
+                    }
+                    plain_sheets = plain_sheets / double.Parse(table3[cEF.structuralMembers.roof[floorCount][roofCount][cEF.structuralMembers.roof[floorCount][roofCount].Count - 1]].ToString());
+                }
+                outputs.Add(2);
+                outputs.Add(rounder(corrSheets));
+                outputs.Add(rounder(giNails));
+                outputs.Add(rounder(rivets));
+                outputs.Add(rounder(giWashers));
+                outputs.Add(rounder(leadWashers));
+                outputs.Add(rounder(umbNails));
+                outputs.Add(rounder(plain_sheets));
+            }
+            else
+            {
+                double gutter = rounder((double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][1]) / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][2])) / (.90 / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][3])));
+                double flashing = rounder((double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][4]) / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][5])) / (.90 / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][6])));
+                double ridge = rounder((double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][7]) / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][8])) / (.90 / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][9])));
+                double valley = rounder((double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][10]) / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][11])) / (.90 / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][12])));
+                double hipped = rounder((double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][13]) / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][14])) / (.90 / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][15])));
+                outputs.Add(3);
+                outputs.Add(gutter + flashing + ridge + valley + hipped);
+            }
+            cEF.structuralMembers.roofSolutions[floorCount].Add(outputs);
+            int x = 1;
+            foreach (var c in cEF.structuralMembers.roofSolutions)
+            {
+                print("FLOOR: " + x);
+                foreach (var k in c)
+                {
+                    foreach (var o in k)
+                    {
+                        print(o + "");
+                    }
+                    print("--other roof same floor--");
+                }
+                x++;
+            }
         }
 
         public void ModifyRoofWorks(CostEstimationForm cEF, int floorCount, int index)
         {
-
+            List<double> outputs = new List<double>();
+            foreach (var c in cEF.structuralMembers.roof[floorCount][index])
+            {
+                print(c + " ---");
+            }
+            if (cEF.structuralMembers.roof[floorCount][index][0] == "Rafter and Purlins")
+            {
+                if (cEF.structuralMembers.roof[floorCount][index][1] == "Wood")
+                {
+                    //kind - wodsandshts -// 2 Lraft - Lpurl - spaceR - spaceP
+                    double raft = rounder(((double.Parse(cEF.structuralMembers.roof[floorCount][index][3]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][4])) + 1)) * 2;
+                    double lenRaft = rounder(double.Parse(cEF.structuralMembers.roof[floorCount][index][2]) * 3.28);
+                    double purl = (rounder((double.Parse(cEF.structuralMembers.roof[floorCount][index][2]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][5])) + 1)) * 2;
+                    double lenPurl = rounder(double.Parse(cEF.structuralMembers.roof[floorCount][index][3]) * 3.28);
+                    double rafB = rounder(raft * ((2 * 6 * (lenRaft)) / 12));
+                    double purB = rounder(purl * ((2 * 2 * (lenPurl)) / 12));
+                    double totB = rafB + purB;
+                    outputs.Add(1);//rafter and purlians
+                    outputs.Add(1);//wood
+                    outputs.Add(totB);//total
+                    print(totB + " TOTAL");
+                }
+                else if (cEF.structuralMembers.roof[floorCount][index][1] == "Steel - Tubular")
+                {
+                    //2 Lraft(SW) - Lraft - Lpurl - spaceR - spaceP - CommR - CommP
+                    double raft = rounder(((double.Parse(cEF.structuralMembers.roof[floorCount][index][2]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][5])) + 1) * 2);
+                    double lenRaft = rounder((raft) * (double.Parse(cEF.structuralMembers.roof[floorCount][index][3])));
+                    double sixLenR = rounder(lenRaft / 6);
+                    double purl = rounder(((double.Parse(cEF.structuralMembers.roof[floorCount][index][3]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][6])) + 1) * 2);
+                    double lenPurl = rounder(purl * double.Parse(cEF.structuralMembers.roof[floorCount][index][4]));
+                    double sixLenP = rounder(lenPurl / 6);
+                    outputs.Add(1);
+                    outputs.Add(2);
+                    outputs.Add(sixLenR);
+                    outputs.Add(sixLenP);
+                    print(sixLenR + " 6m Com Raft");
+                    print(sixLenP + " 6m Com Purl");
+                }
+                else
+                {
+                    double raft = rounder(((double.Parse(cEF.structuralMembers.roof[floorCount][index][2]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][5])) + 1) * 2);
+                    double lenRaft = rounder((raft) * (double.Parse(cEF.structuralMembers.roof[floorCount][index][3])));
+                    double sixLenR = rounder(lenRaft / 6);
+                    double purl = rounder(((double.Parse(cEF.structuralMembers.roof[floorCount][index][3]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][6])) + 1) * 2);
+                    double lenPurl = rounder(purl * double.Parse(cEF.structuralMembers.roof[floorCount][index][4]));
+                    double sixLenP = rounder(lenPurl / 6);
+                    outputs.Add(1);
+                    outputs.Add(3);
+                    outputs.Add(sixLenR);
+                    outputs.Add(sixLenP);
+                    print(sixLenR + " 6m Com Raft");
+                    print(sixLenP + " 6m Com Purl");
+                }
+            }
+            else if (cEF.structuralMembers.roof[floorCount][index][0] == "G.I Roof and Its Accessories")
+            {
+                ListDictionary table1 = new ListDictionary();
+                table1.Add("1.50", 14);
+                table1.Add("1.80", 14);
+                table1.Add("2.10", 18);
+                table1.Add("2.40", 18);
+                table1.Add("2.70", 22);
+                table1.Add("3.00", 22);
+                table1.Add("3.60", 26);
+                ListDictionary table2 = new ListDictionary();
+                table2.Add("1.50", 28);
+                table2.Add("1.80", 28);
+                table2.Add("2.10", 36);
+                table2.Add("2.40", 36);
+                table2.Add("2.70", 44);
+                table2.Add("3.00", 44);
+                table2.Add("3.60", 52);
+                ListDictionary table3 = new ListDictionary();
+                table3.Add("2\" x 3\"", 384);
+                table3.Add("2\" x 4\"", 342);
+                table3.Add("2\" x 5\"", 312);
+                table3.Add("2\" x 6\"", 288);
+                double corrSheets = 0;
+                double giNails = 0;
+                double rivets = 0;
+                double giWashers = 0;
+                double leadWashers = 0;
+                double umbNails = 0;
+                double plain_sheets = 0;
+                List<double> materials = new List<double>();
+                // corr - ginail - girivet - giwash - leadwash - umbnails - strap               
+                //if (roofs.Contains("Corrugated G.I Sheet"))
+                //{
+                corrSheets = rounder(double.Parse(cEF.structuralMembers.roof[floorCount][index][1]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][2])) * 2;
+                //}
+                if (cEF.structuralMembers.roof[floorCount][index].Contains("G.I Roof Nails"))
+                {
+                    foreach (string str in cEF.structuralMembers.roofHRS[floorCount][index])
+                    {
+                        giNails += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 120;
+                    }
+                }
+                if (cEF.structuralMembers.roof[floorCount][index].Contains("G.I Rivets"))
+                {
+                    foreach (string str in cEF.structuralMembers.roofHRS[floorCount][index])
+                    {
+                        rivets += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 180;
+                    }
+                }
+                if (cEF.structuralMembers.roof[floorCount][index].Contains("G.I Washers"))
+                {
+                    foreach (string str in cEF.structuralMembers.roofHRS[floorCount][index])
+                    {
+                        giWashers += (corrSheets * double.Parse(table2[double.Parse(str).ToString("F")].ToString())) / 126;
+                    }
+                }
+                if (cEF.structuralMembers.roof[floorCount][index].Contains("Lead Washers"))
+                {
+                    foreach (string str in cEF.structuralMembers.roofHRS[floorCount][index])
+                    {
+                        leadWashers += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 75;
+                    }
+                }
+                if (cEF.structuralMembers.roof[floorCount][index].Contains("Umbrella Nails"))
+                {
+                    foreach (string str in cEF.structuralMembers.roofHRS[floorCount][index])
+                    {
+                        umbNails += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 120;
+                    }
+                }
+                if (cEF.structuralMembers.roof[floorCount][index].Contains("Plain G.I Strap"))
+                {
+                    foreach (string str in cEF.structuralMembers.roofHRS[floorCount][index])
+                    {
+                        plain_sheets += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString()));
+                    }
+                    plain_sheets = plain_sheets / double.Parse(table3[cEF.structuralMembers.roof[floorCount][index][cEF.structuralMembers.roof[floorCount][index].Count - 1]].ToString());
+                }
+                outputs.Add(2);
+                outputs.Add(rounder(corrSheets));
+                outputs.Add(rounder(giNails));
+                outputs.Add(rounder(rivets));
+                outputs.Add(rounder(giWashers));
+                outputs.Add(rounder(leadWashers));
+                outputs.Add(rounder(umbNails));
+                outputs.Add(rounder(plain_sheets));
+            }
+            else
+            {
+                double gutter = rounder((double.Parse(cEF.structuralMembers.roof[floorCount][index][1]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][2])) / (.90 / double.Parse(cEF.structuralMembers.roof[floorCount][index][3])));
+                double flashing = rounder((double.Parse(cEF.structuralMembers.roof[floorCount][index][4]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][5])) / (.90 / double.Parse(cEF.structuralMembers.roof[floorCount][index][6])));
+                double ridge = rounder((double.Parse(cEF.structuralMembers.roof[floorCount][index][7]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][8])) / (.90 / double.Parse(cEF.structuralMembers.roof[floorCount][index][9])));
+                double valley = rounder((double.Parse(cEF.structuralMembers.roof[floorCount][index][10]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][11])) / (.90 / double.Parse(cEF.structuralMembers.roof[floorCount][index][12])));
+                double hipped = rounder((double.Parse(cEF.structuralMembers.roof[floorCount][index][13]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][14])) / (.90 / double.Parse(cEF.structuralMembers.roof[floorCount][index][15])));
+                outputs.Add(3);
+                outputs.Add(gutter + flashing + ridge + valley + hipped);
+            }
+            cEF.structuralMembers.roofSolutions[floorCount][index]= outputs;
+            int x = 1;
+            foreach (var c in cEF.structuralMembers.roofSolutions)
+            {
+                print("FLOOR: " + x);
+                foreach (var k in c)
+                {
+                    foreach (var o in k)
+                    {
+                        print(o + "");
+                    }
+                    print("--other roof same floor--");
+                }
+                x++;
+            }
         }
         //Roof Computation Functions -- END
 
@@ -2921,7 +3266,7 @@ namespace WindowsFormsApp1
             {
                 double eOne = double.Parse(eWall[x][0]);
                 double eTwo = double.Parse(eWall[x][1]);
-                eWall_total += eOne * eTwo;
+                eWall_total += (eOne * eTwo) / 1000000;
             }
 
             for (int x = 0; x < eWindow.Count; x++)
@@ -2945,7 +3290,7 @@ namespace WindowsFormsApp1
             {
                 double eOne = double.Parse(iWall[x][0]);
                 double eTwo = double.Parse(iWall[x][1]);
-                iWall_total += eOne * eTwo;
+                iWall_total += (eOne * eTwo) / 1000000;
             }
 
             for (int x = 0; x < iWindow.Count; x++)
@@ -3356,6 +3701,146 @@ namespace WindowsFormsApp1
             cEF.gloss = semi_handler;
         }
         //Paints computataion function -- END
+
+        //roofings -- START
+        public void addRoofings(List<string> roofs, params string [] val)
+        {
+            foreach(var c in roofs)
+            {
+                print(c+" -");
+            }
+            if (roofs[0] == "Rafter and Purlins")
+            {
+                if (roofs[1] == "Wood")
+                {
+                    //kind - wodsandshts -// 2 Lraft - Lpurl - spaceR - spaceP
+                    double raft = rounder(((double.Parse(roofs[3]) / double.Parse(roofs[4])) + 1))*2;
+                    double lenRaft = rounder(double.Parse(roofs[2]) * 3.28);
+                    double purl = (rounder((double.Parse(roofs[2]) / double.Parse(roofs[5])) + 1))*2;
+                    double lenPurl = rounder(double.Parse(roofs[3]) * 3.28);
+                    double rafB = rounder(raft * ((2 * 6 * (lenRaft)) / 12));
+                    double purB = rounder(purl * ((2 * 2 * (lenPurl)) / 12));
+                    double totB = rafB + purB;
+                    print(totB + " TOTAL");
+                }
+                else if (roofs[1] == "Steel - Tubular")
+                {
+                    //2 Lraft(SW) - Lraft - Lpurl - spaceR - spaceP - CommR - CommP
+                    double raft = rounder(((double.Parse(roofs[2]) / double.Parse(roofs[5]))+1)*2);
+                    double lenRaft = rounder((raft) * (double.Parse(roofs[3])));
+                    double sixLenR = rounder(lenRaft/6);
+                    double purl = rounder(((double.Parse(roofs[3]) / double.Parse(roofs[6]))+1)*2);
+                    double lenPurl = rounder(purl * double.Parse(roofs[4]));
+                    double sixLenP = rounder(lenPurl/6);
+                    print(sixLenR+" 6m Com Raft");
+                    print(sixLenP + " 6m Com Purl");
+                }
+                else
+                {
+                    double raft = rounder(((double.Parse(roofs[2]) / double.Parse(roofs[5])) + 1) * 2);
+                    double lenRaft = rounder((raft) * (double.Parse(roofs[3])));
+                    double sixLenR = rounder(lenRaft / 6);
+                    double purl = rounder(((double.Parse(roofs[3]) / double.Parse(roofs[6])) + 1) * 2);
+                    double lenPurl = rounder(purl * double.Parse(roofs[4]));
+                    double sixLenP = rounder(lenPurl / 6);
+                    print(sixLenR + " 6m Com Raft");
+                    print(sixLenP + " 6m Com Purl");
+                }
+            }
+            else if (roofs[0] == "G.I Roof and Its Accessories")
+            {                
+                ListDictionary table1 = new ListDictionary();
+                table1.Add("1.50", 14);
+                table1.Add("1.80", 14);
+                table1.Add("2.10", 18);
+                table1.Add("2.40", 18);
+                table1.Add("2.70", 22);
+                table1.Add("3.00", 22);
+                table1.Add("3.60", 26);
+                ListDictionary table2 = new ListDictionary();
+                table2.Add("1.50", 28);
+                table2.Add("1.80", 28);
+                table2.Add("2.10", 36);
+                table2.Add("2.40", 36);
+                table2.Add("2.70", 44);
+                table2.Add("3.00", 44);
+                table2.Add("3.60", 52);
+                ListDictionary table3 = new ListDictionary();
+                table3.Add("2\" x 3\"", 384);
+                table3.Add("2\" x 4\"", 342);
+                table3.Add("2\" x 5\"", 312);
+                table3.Add("2\" x 6\"", 288);
+                double corrSheets = 0;
+                double giNails = 0;
+                double rivets = 0;
+                double giWashers = 0;
+                double leadWashers = 0;
+                double umbNails = 0;
+                double plain_sheets = 0;                
+                List<double> materials = new List<double>();
+                // corr - ginail - girivet - giwash - leadwash - umbnails - strap               
+                //if (roofs.Contains("Corrugated G.I Sheet"))
+                //{
+                    corrSheets = rounder(double.Parse(roofs[1]) / double.Parse(roofs[2]))*2;          
+                //}
+                if (roofs.Contains("G.I Roof Nails"))
+                {
+                    foreach (string str in val)
+                    {
+                        giNails += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 120;
+                    }
+                }
+                if (roofs.Contains("G.I Rivets"))
+                {
+                    foreach (string str in val)
+                    {
+                        rivets += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 180;
+                    }
+                }
+                if (roofs.Contains("G.I Washers"))
+                {
+                    foreach (string str in val)
+                    {
+                        giWashers += (corrSheets * double.Parse(table2[double.Parse(str).ToString("F")].ToString())) / 126;
+                    }
+                }
+                if (roofs.Contains("Lead Washers"))
+                {
+                    foreach (string str in val)
+                    {
+                        leadWashers += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 75;
+                    }
+                }
+                if (roofs.Contains("Umbrella Nails"))
+                {
+                    foreach (string str in val)
+                    {
+                        umbNails += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 120;
+                    }
+                }
+                if (roofs.Contains("Plain G.I Strap"))
+                {
+                    foreach (string str in val)
+                    {
+                        plain_sheets += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString()));
+                    }
+                    plain_sheets = plain_sheets / double.Parse(table3[roofs[roofs.Count-1]].ToString());
+                }
+                materials.Add(rounder(corrSheets));
+                materials.Add(rounder(giNails));
+                materials.Add(rounder(rivets)); 
+                materials.Add(rounder(giWashers));
+                materials.Add(rounder(leadWashers));
+                materials.Add(rounder(umbNails));
+                materials.Add(rounder(plain_sheets));
+            }
+            else
+            {
+                print("sheesh");
+            }
+        }
+
+        //roofings -- END
        
         
 
