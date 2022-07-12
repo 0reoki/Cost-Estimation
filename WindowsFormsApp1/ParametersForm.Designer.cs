@@ -458,6 +458,7 @@ namespace WindowsFormsApp1
             this.labor_RD_cbx = new System.Windows.Forms.ComboBox();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
+            this.label147 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.misc_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.misc_AddItemsBtn = new System.Windows.Forms.Button();
@@ -468,7 +469,6 @@ namespace WindowsFormsApp1
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label147 = new System.Windows.Forms.Label();
             this.paramTabControl.SuspendLayout();
             this.earthworksTabPage.SuspendLayout();
             this.earthworksPanel.SuspendLayout();
@@ -6590,6 +6590,18 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel21.Size = new System.Drawing.Size(758, 582);
             this.tableLayoutPanel21.TabIndex = 5;
             // 
+            // label147
+            // 
+            this.label147.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label147.Location = new System.Drawing.Point(378, 0);
+            this.label147.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label147.Name = "label147";
+            this.label147.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label147.Size = new System.Drawing.Size(377, 58);
+            this.label147.TabIndex = 39;
+            this.label147.Text = "!follow this format when adding custom items: ITEM NAME[UNIT]";
+            this.label147.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // label49
             // 
             this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -6718,18 +6730,6 @@ namespace WindowsFormsApp1
             this.toolTip1.AutoPopDelay = 5000;
             this.toolTip1.InitialDelay = 500;
             this.toolTip1.ReshowDelay = 0;
-            // 
-            // label147
-            // 
-            this.label147.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label147.Location = new System.Drawing.Point(378, 0);
-            this.label147.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label147.Name = "label147";
-            this.label147.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label147.Size = new System.Drawing.Size(377, 58);
-            this.label147.TabIndex = 39;
-            this.label147.Text = "!follow this format when adding custom items: ITEM NAME[UNIT]";
-            this.label147.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // ParametersForm
             // 
