@@ -107,8 +107,8 @@ namespace WindowsFormsApp1
             //Init Slab Combo Boxes
             slab_SOG_L_ST_cbx.SelectedIndex = slab_SOG_T_ST_cbx.SelectedIndex = 
             slab_SS_SM_cbx.SelectedIndex = slab_SS_SD_cbx.SelectedIndex = slab_SS_L_T_cbx.SelectedIndex =
-            slab_SS_T_T_cbx.SelectedIndex = slab_SS_L_B_cbx.SelectedIndex = slab_SS_T_B_cbx.SelectedIndex =
-            slab_SS_CSR_HT_cbx.SelectedIndex = 0;
+            slab_SS_T_T_cbx.SelectedIndex = slab_SS_L_B_cbx.SelectedIndex =
+            slab_SS_SP_cbx.SelectedIndex = slab_SS_T_B_cbx.SelectedIndex = 0;
 
             //Init Stairs Combo Boxes
             stairs_ST_cbx.SelectedIndex = stairs_SS_WS_MB_cbx.SelectedIndex = stairs_SS_WS_DB_cbx.SelectedIndex =
@@ -126,7 +126,6 @@ namespace WindowsFormsApp1
 
             setDefaultStructMemName();
             populateColumnConnectionBelow();
-            populateBeamRowConnections();
             
             //existing node?
             if (!isNew)
@@ -1231,33 +1230,22 @@ namespace WindowsFormsApp1
                             members.Add(slab_SOG_L_ST_cbx.Text);
                             members.Add(slab_SOG_T_ST_cbx.Text);
 
-                            members.Add(slab_SOG_SO_HL_bx.Text);
-                            members.Add(slab_SOG_SO_VL_bx.Text);
-                            members.Add(slab_SOG_SO_CC_bx.Text);
-
-                            members.Add(slab_SOG_SB_T_BR_cbx.Text);
-                            members.Add(slab_SOG_SB_T_AtB_cbx.Text);
+                            members.Add(slab_SOG_SB_T_L_bx.Text);
                             members.Add(slab_SOG_SB_T_CL_bx.Text);
 
-                            members.Add(slab_SOG_SB_B_BR_cbx.Text);
-                            members.Add(slab_SOG_SB_B_AtB_cbx.Text);
+                            members.Add(slab_SOG_SB_B_L_bx.Text);
                             members.Add(slab_SOG_SB_B_CL_bx.Text);
 
-                            members.Add(slab_SOG_SB_L_BR_cbx.Text);
-                            members.Add(slab_SOG_SB_L_AtB_cbx.Text);
+                            members.Add(slab_SOG_SB_L_L_bx.Text);
                             members.Add(slab_SOG_SB_L_CL_bx.Text);
 
-                            members.Add(slab_SOG_SB_R_BR_cbx.Text);
-                            members.Add(slab_SOG_SB_R_AtB_cbx.Text);
+                            members.Add(slab_SOG_SB_R_L_bx.Text);
                             members.Add(slab_SOG_SB_R_CL_bx.Text);
-
-                            members.Add(slab_SOG_SCSD_bx.Text);
-                            members.Add(slab_SOG_SOC_bx.Text);
 
                             costEstimationForm.structuralMembers.slab[floorCount].Add(members);
                             costEstimationForm.structuralMembers.slabNames[floorCount].Add(structMemName);
 
-                            compute.AddSlabWorks(costEstimationForm, floorCount, slabCount);
+                            //compute.AddSlabWorks(costEstimationForm, floorCount, slabCount);
                             this.DialogResult = DialogResult.OK;
                         }
                         else // Suspended Slab
@@ -1265,6 +1253,8 @@ namespace WindowsFormsApp1
                             List<string> members = new List<string>();
                             members.Add("Suspended Slab");
                             members.Add(slab_SS_SM_cbx.Text);
+                            members.Add(slab_SS_QTY_bx.Text);
+                            members.Add(slab_SS_SP_cbx.Text);
 
                             //Slab Detail
                             members.Add(slab_SS_SD_cbx.Text);
@@ -1287,24 +1277,17 @@ namespace WindowsFormsApp1
                             members.Add(slab_SS_L_B_cbx.Text);
                             members.Add(slab_SS_T_B_cbx.Text);
 
-                            members.Add(slab_SS_SB_T_BR_cbx.Text);
-                            members.Add(slab_SS_SB_T_AtB_cbx.Text);
+                            members.Add(slab_SS_SB_T_L_bx.Text);
                             members.Add(slab_SS_SB_T_CL_bx.Text);
 
-                            members.Add(slab_SS_SB_B_BR_cbx.Text);
-                            members.Add(slab_SS_SB_B_AtB_cbx.Text);
+                            members.Add(slab_SS_SB_B_L_bx.Text);
                             members.Add(slab_SS_SB_B_CL_bx.Text);
 
-                            members.Add(slab_SS_SB_L_BR_cbx.Text);
-                            members.Add(slab_SS_SB_L_AtB_cbx.Text);
+                            members.Add(slab_SS_SB_L_L_bx.Text);
                             members.Add(slab_SS_SB_L_CL_bx.Text);
 
-                            members.Add(slab_SS_SB_R_BR_cbx.Text);
-                            members.Add(slab_SS_SB_R_AtB_cbx.Text);
+                            members.Add(slab_SS_SB_R_L_bx.Text);
                             members.Add(slab_SS_SB_R_CL_bx.Text);
-
-                            members.Add(slab_SS_SCSD_bx.Text);
-                            members.Add(slab_SS_SOC_bx.Text);
 
                             costEstimationForm.structuralMembers.slabSchedule[floorCount - 1].Clear();
                             foreach (SlabScheduleUserControl ss in ss_UC)
@@ -1348,7 +1331,7 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.slab[floorCount].Add(members);
                             costEstimationForm.structuralMembers.slabNames[floorCount].Add(structMemName);
 
-                            compute.AddSlabWorks(costEstimationForm, floorCount, slabCount);
+                            //compute.AddSlabWorks(costEstimationForm, floorCount, slabCount);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
@@ -1421,74 +1404,59 @@ namespace WindowsFormsApp1
                         costEstimationForm.structuralMembers.slab[floorCount][memberCount][8] = slab_SOG_L_ST_cbx.Text;
                         costEstimationForm.structuralMembers.slab[floorCount][memberCount][9] = slab_SOG_T_ST_cbx.Text;
 
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][10] = slab_SOG_SO_HL_bx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][11] = slab_SOG_SO_VL_bx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][12] = slab_SOG_SO_CC_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][10] = slab_SOG_SB_T_L_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][11] = slab_SOG_SB_T_CL_bx.Text;
 
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][13] = slab_SOG_SB_T_BR_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][14] = slab_SOG_SB_T_AtB_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][15] = slab_SOG_SB_T_CL_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][12] = slab_SOG_SB_B_L_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][13] = slab_SOG_SB_B_CL_bx.Text;
 
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][16] = slab_SOG_SB_B_BR_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][17] = slab_SOG_SB_B_AtB_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][18] = slab_SOG_SB_B_CL_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][14] = slab_SOG_SB_L_L_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][15] = slab_SOG_SB_L_CL_bx.Text;
 
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][19] = slab_SOG_SB_L_BR_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][20] = slab_SOG_SB_L_AtB_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][21] = slab_SOG_SB_L_CL_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][16] = slab_SOG_SB_R_L_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][17] = slab_SOG_SB_R_CL_bx.Text;
 
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][22] = slab_SOG_SB_R_BR_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][23] = slab_SOG_SB_R_AtB_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][24] = slab_SOG_SB_R_CL_bx.Text;
-
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][25] = slab_SOG_SCSD_bx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][26] = slab_SOG_SOC_bx.Text;
-
-                        compute.ModifySlabWorks(costEstimationForm, floorCount, memberCount);
+                        //compute.ModifySlabWorks(costEstimationForm, floorCount, memberCount);
                         this.DialogResult = DialogResult.OK;
                     }
                     else // Suspended Slab
                     {
                         costEstimationForm.structuralMembers.slab[floorCount][memberCount][1] = slab_SS_SM_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][2] = slab_SS_SD_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][2] = slab_SS_QTY_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][3] = slab_SS_SP_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][4] = slab_SS_SD_cbx.Text;
+
                         int i = 0;
                         if (slab_SS_SD_cbx.Text == "No. 1")
                         {
-                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][3] = sd1_UC.SD2UC_LA;
-                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][4] = sd1_UC.SD2UC_LB;
-                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][5] = sd1_UC.SD2UC_BG;
+                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][5] = sd1_UC.SD2UC_LA;
+                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][6] = sd1_UC.SD2UC_LB;
+                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][7] = sd1_UC.SD2UC_BG;
                             i++;
                         }
                         else
                         {
-                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][3] = sd2_UC.SD1UC_LA;
-                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][4] = sd2_UC.SD1UC_LB;
-                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][5] = sd2_UC.SD1UC_LC;
-                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][6] = sd2_UC.SD1UC_LD;
+                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][5] = sd2_UC.SD1UC_LA;
+                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][6] = sd2_UC.SD1UC_LB;
+                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][7] = sd2_UC.SD1UC_LC;
+                            costEstimationForm.structuralMembers.slab[floorCount][memberCount][8] = sd2_UC.SD1UC_LD;
                         }
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][7 - i] = slab_SS_L_T_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][8 - i] = slab_SS_T_T_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][9 - i] = slab_SS_L_B_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][10 - i] = slab_SS_T_B_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][9 - i] = slab_SS_L_T_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][10 - i] = slab_SS_T_T_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][11 - i] = slab_SS_L_B_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][12 - i] = slab_SS_T_B_cbx.Text;
 
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][11 - i] = slab_SS_SB_T_BR_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][12 - i] = slab_SS_SB_T_AtB_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][13 - i] = slab_SS_SB_T_CL_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][13 - i] = slab_SS_SB_T_L_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][14 - i] = slab_SS_SB_T_CL_bx.Text;
 
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][14 - i] = slab_SS_SB_B_BR_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][15 - i] = slab_SS_SB_B_AtB_cbx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][15 - i] = slab_SS_SB_B_L_bx.Text;
                         costEstimationForm.structuralMembers.slab[floorCount][memberCount][16 - i] = slab_SS_SB_B_CL_bx.Text;
 
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][17 - i] = slab_SS_SB_L_BR_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][18 - i] = slab_SS_SB_L_AtB_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][19 - i] = slab_SS_SB_L_CL_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][17 - i] = slab_SS_SB_L_L_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][18 - i] = slab_SS_SB_L_CL_bx.Text;
 
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][20 - i] = slab_SS_SB_R_BR_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][21 - i] = slab_SS_SB_R_AtB_cbx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][22 - i] = slab_SS_SB_R_CL_bx.Text;
-
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][23 - i] = slab_SS_SCSD_bx.Text;
-                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][24 - i] = slab_SS_SOC_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][19 - i] = slab_SS_SB_R_L_bx.Text;
+                        costEstimationForm.structuralMembers.slab[floorCount][memberCount][20 - i] = slab_SS_SB_R_CL_bx.Text;
 
                         costEstimationForm.structuralMembers.slabSchedule[floorCount - 1].Clear();
                         foreach (SlabScheduleUserControl ss in ss_UC)
@@ -1529,7 +1497,7 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.slabSchedule[floorCount - 1].Add(ssMember);
                         }
 
-                        compute.ModifySlabWorks(costEstimationForm, floorCount, memberCount);
+                        //compute.ModifySlabWorks(costEstimationForm, floorCount, memberCount);
                         this.DialogResult = DialogResult.OK;
                     }
                 }
@@ -2568,89 +2536,6 @@ namespace WindowsFormsApp1
             schedule[25] = bs_UC[key].webBarsDiameter;
             schedule[26] = bs_UC[key].webBarsQty;
         }
-        
-        private void populateBeamRowConnections()
-        {
-            if(floorCount == 0) //Slab on Grade
-            {
-                int i = 0;
-                slab_SOG_SB_T_BR_cbx.Items.Clear();
-                slab_SOG_SB_B_BR_cbx.Items.Clear();
-                slab_SOG_SB_L_BR_cbx.Items.Clear();
-                slab_SOG_SB_R_BR_cbx.Items.Clear();
-
-                slab_SOG_SB_T_BR_cbx.Items.Add("None");
-                slab_SOG_SB_B_BR_cbx.Items.Add("None");
-                slab_SOG_SB_L_BR_cbx.Items.Add("None");
-                slab_SOG_SB_R_BR_cbx.Items.Add("None");
-                foreach(List<string> beam in costEstimationForm.structuralMembers.beam[floorCount])
-                {
-                    if (costEstimationForm.structuralMembers.beam[floorCount][i][0].Equals("Footing Tie Beam") ||
-                           costEstimationForm.structuralMembers.beam[floorCount][i][0].Equals("Grade Beam"))
-                    {
-                        slab_SOG_SB_T_BR_cbx.Items.Add(costEstimationForm.structuralMembers.beamNames[floorCount][i]);
-                        slab_SOG_SB_B_BR_cbx.Items.Add(costEstimationForm.structuralMembers.beamNames[floorCount][i]);
-                        slab_SOG_SB_L_BR_cbx.Items.Add(costEstimationForm.structuralMembers.beamNames[floorCount][i]);
-                        slab_SOG_SB_R_BR_cbx.Items.Add(costEstimationForm.structuralMembers.beamNames[floorCount][i]);
-                    }
-                    i++;
-                }
-                slab_SOG_SB_T_BR_cbx.SelectedIndex = 0;
-                slab_SOG_SB_B_BR_cbx.SelectedIndex = 0;
-                slab_SOG_SB_L_BR_cbx.SelectedIndex = 0;
-                slab_SOG_SB_R_BR_cbx.SelectedIndex = 0;
-
-                slab_SOG_SB_T_AtB_cbx.SelectedIndex = 0;
-                slab_SOG_SB_B_AtB_cbx.SelectedIndex = 0;
-                slab_SOG_SB_L_AtB_cbx.SelectedIndex = 0;
-                slab_SOG_SB_R_AtB_cbx.SelectedIndex = 0;
-            }
-            else //Suspended Slab
-            {
-                int i = 0;
-                slab_SS_SB_T_BR_cbx.Items.Clear();
-                slab_SS_SB_B_BR_cbx.Items.Clear();
-                slab_SS_SB_L_BR_cbx.Items.Clear();
-                slab_SS_SB_R_BR_cbx.Items.Clear();
-
-                slab_SS_SB_T_BR_cbx.Items.Add("None");
-                slab_SS_SB_B_BR_cbx.Items.Add("None");
-                slab_SS_SB_L_BR_cbx.Items.Add("None");
-                slab_SS_SB_R_BR_cbx.Items.Add("None");
-                foreach (List<string> beam in costEstimationForm.structuralMembers.beam[floorCount])
-                {
-                    if (costEstimationForm.structuralMembers.beam[floorCount][i][0].Equals("Suspended Beam"))
-                    {
-                        slab_SS_SB_T_BR_cbx.Items.Add(costEstimationForm.structuralMembers.beamNames[floorCount][i] + "(Suspended Beam)");
-                        slab_SS_SB_B_BR_cbx.Items.Add(costEstimationForm.structuralMembers.beamNames[floorCount][i] + "(Suspended Beam)");
-                        slab_SS_SB_L_BR_cbx.Items.Add(costEstimationForm.structuralMembers.beamNames[floorCount][i] + "(Suspended Beam)");
-                        slab_SS_SB_R_BR_cbx.Items.Add(costEstimationForm.structuralMembers.beamNames[floorCount][i] + "(Suspended Beam)");
-                    }
-                    i++;
-                }
-                i = 0;
-                foreach (List<string> beam in costEstimationForm.structuralMembers.beam[floorCount - 1])
-                {
-                    if (costEstimationForm.structuralMembers.beam[floorCount - 1][i][0].Equals("Roof Beam"))
-                    {
-                        slab_SS_SB_T_BR_cbx.Items.Add(costEstimationForm.structuralMembers.beamNames[floorCount - 1][i] + "(Roof Beam)");
-                        slab_SS_SB_B_BR_cbx.Items.Add(costEstimationForm.structuralMembers.beamNames[floorCount - 1][i] + "(Roof Beam)");
-                        slab_SS_SB_L_BR_cbx.Items.Add(costEstimationForm.structuralMembers.beamNames[floorCount - 1][i] + "(Roof Beam)");
-                        slab_SS_SB_R_BR_cbx.Items.Add(costEstimationForm.structuralMembers.beamNames[floorCount - 1][i] + "(Roof Beam)");
-                    }
-                    i++;
-                }
-                slab_SS_SB_T_BR_cbx.SelectedIndex = 0;
-                slab_SS_SB_B_BR_cbx.SelectedIndex = 0;
-                slab_SS_SB_L_BR_cbx.SelectedIndex = 0;
-                slab_SS_SB_R_BR_cbx.SelectedIndex = 0;
-
-                slab_SS_SB_T_AtB_cbx.SelectedIndex = 0;
-                slab_SS_SB_B_AtB_cbx.SelectedIndex = 0;
-                slab_SS_SB_L_AtB_cbx.SelectedIndex = 0;
-                slab_SS_SB_R_AtB_cbx.SelectedIndex = 0;
-            }
-        }
 
         private void setSlabvalues()
         {
@@ -2679,34 +2564,25 @@ namespace WindowsFormsApp1
                 slab_SOG_L_ST_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][8];
                 slab_SOG_T_ST_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][9];
 
-                slab_SOG_SO_HL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][10];
-                slab_SOG_SO_VL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][11];
-                slab_SOG_SO_CC_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][12];
+                slab_SOG_SB_T_L_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][10];
+                slab_SOG_SB_T_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][11];
 
-                slab_SOG_SB_T_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][13];
-                slab_SOG_SB_T_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][14];
-                slab_SOG_SB_T_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][15];
+                slab_SOG_SB_B_L_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][12];
+                slab_SOG_SB_B_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][13];
 
-                slab_SOG_SB_B_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][16];
-                slab_SOG_SB_B_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][17];
-                slab_SOG_SB_B_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][18];
+                slab_SOG_SB_L_L_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][14];
+                slab_SOG_SB_L_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][15];
 
-                slab_SOG_SB_L_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][19];
-                slab_SOG_SB_L_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][20];
-                slab_SOG_SB_L_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][21];
-
-                slab_SOG_SB_R_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][22];
-                slab_SOG_SB_R_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][23];
-                slab_SOG_SB_R_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][24];
-
-                slab_SOG_SCSD_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][25];
-                slab_SOG_SOC_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][26];
+                slab_SOG_SB_R_L_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][16];
+                slab_SOG_SB_R_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][17];
             }
             else
             {
                 slab_SS_SD_cbx.Enabled = false;
                 slab_SS_SM_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][1];
-                slab_SS_SD_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][2];
+                slab_SS_QTY_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][2];
+                slab_SS_SP_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][3];
+                slab_SS_SD_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][4];
                 int i = 0;
                 if(slab_SS_SD_cbx.Text == "No. 1")
                 {
@@ -2715,9 +2591,9 @@ namespace WindowsFormsApp1
                     slab_SS_SD_pb.Image = picture;
 
                     SlabDetail2UserControl content = new SlabDetail2UserControl();
-                    content.SD2UC_LA = costEstimationForm.structuralMembers.slab[floorCount][memberCount][3];
-                    content.SD2UC_LB = costEstimationForm.structuralMembers.slab[floorCount][memberCount][4];
-                    content.SD2UC_BG = costEstimationForm.structuralMembers.slab[floorCount][memberCount][5];
+                    content.SD2UC_LA = costEstimationForm.structuralMembers.slab[floorCount][memberCount][5];
+                    content.SD2UC_LB = costEstimationForm.structuralMembers.slab[floorCount][memberCount][6];
+                    content.SD2UC_BG = costEstimationForm.structuralMembers.slab[floorCount][memberCount][7];
                     sd1_UC = content;
                     slab_SS_SD_Panel.Controls.Clear();
                     slab_SS_SD_Panel.Controls.Add(content);
@@ -2731,36 +2607,29 @@ namespace WindowsFormsApp1
 
                     SlabDetail1UserControl content = new SlabDetail1UserControl();
                     sd2_UC = content;
-                    content.SD1UC_LA = costEstimationForm.structuralMembers.slab[floorCount][memberCount][3];
-                    content.SD1UC_LB = costEstimationForm.structuralMembers.slab[floorCount][memberCount][4];
-                    content.SD1UC_LC = costEstimationForm.structuralMembers.slab[floorCount][memberCount][5];
-                    content.SD1UC_LD = costEstimationForm.structuralMembers.slab[floorCount][memberCount][6];
+                    content.SD1UC_LA = costEstimationForm.structuralMembers.slab[floorCount][memberCount][5];
+                    content.SD1UC_LB = costEstimationForm.structuralMembers.slab[floorCount][memberCount][6];
+                    content.SD1UC_LC = costEstimationForm.structuralMembers.slab[floorCount][memberCount][7];
+                    content.SD1UC_LD = costEstimationForm.structuralMembers.slab[floorCount][memberCount][8];
                     slab_SS_SD_Panel.Controls.Clear();
                     slab_SS_SD_Panel.Controls.Add(content);
                 }
-                slab_SS_L_T_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][7 - i];
-                slab_SS_T_T_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][8 - i];
-                slab_SS_L_B_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][9 - i];
-                slab_SS_T_B_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][10 - i];
+                slab_SS_L_T_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][9 - i];
+                slab_SS_T_T_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][10 - i];
+                slab_SS_L_B_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][11 - i];
+                slab_SS_T_B_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][12 - i];
 
-                slab_SS_SB_T_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][11 - i];
-                slab_SS_SB_T_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][12 - i];
-                slab_SS_SB_T_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][13 - i];
+                slab_SS_SB_T_L_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][13 - i];
+                slab_SS_SB_T_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][14 - i];
 
-                slab_SS_SB_B_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][14 - i];
-                slab_SS_SB_B_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][15 - i];
+                slab_SS_SB_B_L_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][15 - i];
                 slab_SS_SB_B_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][16 - i];
 
-                slab_SS_SB_L_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][17 - i];
-                slab_SS_SB_L_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][18 - i];
-                slab_SS_SB_L_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][19 - i];
+                slab_SS_SB_L_L_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][17 - i];
+                slab_SS_SB_L_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][18 - i];
 
-                slab_SS_SB_R_BR_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][20 - i];
-                slab_SS_SB_R_AtB_cbx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][21 - i];
-                slab_SS_SB_R_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][22 - i];
-
-                slab_SS_SCSD_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][23 - i];
-                slab_SS_SOC_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][24 - i];
+                slab_SS_SB_R_L_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][19 - i];
+                slab_SS_SB_R_CL_bx.Text = costEstimationForm.structuralMembers.slab[floorCount][memberCount][20 - i];
 
                 foreach (List<string> schedule in costEstimationForm.structuralMembers.slabSchedule[floorCount - 1])
                 {
@@ -3332,394 +3201,6 @@ namespace WindowsFormsApp1
             roof_GI_M_SP_cbx.Enabled = false;
         }
 
-        private void slab_SOG_SB_T_BR_cbx_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(slab_SOG_SB_T_BR_cbx.SelectedIndex != 0)
-            {
-                string beamName = slab_SOG_SB_T_BR_cbx.Text;
-                int index = 0;
-                slab_SOG_SB_T_AtB_cbx.Items.Clear();
-                slab_SOG_SB_T_AtB_cbx.Items.Add("None");
-                foreach(string name in costEstimationForm.structuralMembers.beamNames[floorCount])
-                {
-                    if (name.Equals(beamName))
-                    {
-                        foreach (List<string> beamRows in costEstimationForm.structuralMembers.beamRow[floorCount][index])
-                        {
-                            int count = 1;
-                            for (int i = 0; i < slab_SOG_SB_T_AtB_cbx.Items.Count; i++)
-                            {
-                                string value = slab_SOG_SB_T_AtB_cbx.GetItemText(slab_SOG_SB_T_AtB_cbx.Items[i]);
-                                if (value.Equals(beamRows[0] + " (" + count + ")"))
-                                {
-                                    count++;
-                                }
-                            }
-                            slab_SOG_SB_T_AtB_cbx.Items.Add(beamRows[0] + " (" + count + ")");
-                        }
-                    }
-                    index++;
-                }
-                slab_SOG_SB_T_AtB_cbx.SelectedIndex = 0;
-            }
-        }
-
-        private void slab_SOG_SB_B_BR_cbx_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (slab_SOG_SB_B_BR_cbx.SelectedIndex != 0)
-            {
-                string beamName = slab_SOG_SB_B_BR_cbx.Text;
-                int index = 0;
-                slab_SOG_SB_B_AtB_cbx.Items.Clear();
-                slab_SOG_SB_B_AtB_cbx.Items.Add("None");
-                foreach (string name in costEstimationForm.structuralMembers.beamNames[floorCount])
-                {
-                    if (name.Equals(beamName))
-                    {
-                        foreach (List<string> beamRows in costEstimationForm.structuralMembers.beamRow[floorCount][index])
-                        {
-                            int count = 1;
-                            for (int i = 0; i < slab_SOG_SB_B_AtB_cbx.Items.Count; i++)
-                            {
-                                string value = slab_SOG_SB_B_AtB_cbx.GetItemText(slab_SOG_SB_B_AtB_cbx.Items[i]);
-                                if (value.Equals(beamRows[0] + " (" + count + ")"))
-                                {
-                                    count++;
-                                }
-                            }
-                            slab_SOG_SB_B_AtB_cbx.Items.Add(beamRows[0] + " (" + count + ")");
-                        }
-                    }
-                    index++;
-                }
-                slab_SOG_SB_B_AtB_cbx.SelectedIndex = 0;
-            }
-        }
-
-        private void slab_SOG_SB_L_BR_cbx_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (slab_SOG_SB_L_BR_cbx.SelectedIndex != 0)
-            {
-                string beamName = slab_SOG_SB_L_BR_cbx.Text;
-                int index = 0;
-                slab_SOG_SB_L_AtB_cbx.Items.Clear();
-                slab_SOG_SB_L_AtB_cbx.Items.Add("None");
-                foreach (string name in costEstimationForm.structuralMembers.beamNames[floorCount])
-                {
-                    if (name.Equals(beamName))
-                    {
-                        foreach (List<string> beamRows in costEstimationForm.structuralMembers.beamRow[floorCount][index])
-                        {
-                            int count = 1;
-                            for (int i = 0; i < slab_SOG_SB_L_AtB_cbx.Items.Count; i++)
-                            {
-                                string value = slab_SOG_SB_L_AtB_cbx.GetItemText(slab_SOG_SB_L_AtB_cbx.Items[i]);
-                                if (value.Equals(beamRows[0] + " (" + count + ")"))
-                                {
-                                    count++;
-                                }
-                            }
-                            slab_SOG_SB_L_AtB_cbx.Items.Add(beamRows[0] + " (" + count + ")");
-                        }
-                    }
-                    index++;
-                }
-                slab_SOG_SB_L_AtB_cbx.SelectedIndex = 0;
-            }
-        }
-
-        private void slab_SOG_SB_R_BR_cbx_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (slab_SOG_SB_R_BR_cbx.SelectedIndex != 0)
-            {
-                string beamName = slab_SOG_SB_R_BR_cbx.Text;
-                int index = 0;
-                slab_SOG_SB_R_AtB_cbx.Items.Clear();
-                slab_SOG_SB_R_AtB_cbx.Items.Add("None");
-                foreach (string name in costEstimationForm.structuralMembers.beamNames[floorCount])
-                {
-                    if (name.Equals(beamName))
-                    {
-                        foreach (List<string> beamRows in costEstimationForm.structuralMembers.beamRow[floorCount][index])
-                        {
-                            int count = 1;
-                            for (int i = 0; i < slab_SOG_SB_R_AtB_cbx.Items.Count; i++)
-                            {
-                                string value = slab_SOG_SB_R_AtB_cbx.GetItemText(slab_SOG_SB_R_AtB_cbx.Items[i]);
-                                if (value.Equals(beamRows[0] + " (" + count + ")"))
-                                {
-                                    count++;
-                                }
-                            }
-                            slab_SOG_SB_R_AtB_cbx.Items.Add(beamRows[0] + " (" + count + ")");
-                        }
-                    }
-                    index++;
-                }
-                slab_SOG_SB_R_AtB_cbx.SelectedIndex = 0;
-            }
-        }
-
-        private void slab_SS_SB_T_BR_cbx_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (slab_SS_SB_T_BR_cbx.SelectedIndex != 0)
-            {
-                string beamName = slab_SS_SB_T_BR_cbx.Text;
-                bool isSuspended = beamName.Contains("(Suspended Beam)");
-                if (isSuspended)
-                {
-                    beamName = beamName.Substring(0, beamName.IndexOf("(Suspended Beam)"));
-                    int index = 0;
-                    slab_SS_SB_T_AtB_cbx.Items.Clear();
-                    slab_SS_SB_T_AtB_cbx.Items.Add("None");
-                    foreach (string name in costEstimationForm.structuralMembers.beamNames[floorCount])
-                    {
-                        if (name.Equals(beamName))
-                        {
-                            foreach (List<string> beamRows in costEstimationForm.structuralMembers.beamRow[floorCount][index])
-                            {
-                                int count = 1;
-                                for (int j = 0; j < slab_SS_SB_T_AtB_cbx.Items.Count; j++)
-                                {
-                                    string value = slab_SS_SB_T_AtB_cbx.GetItemText(slab_SS_SB_T_AtB_cbx.Items[j]);
-                                    if (value.Equals(beamRows[0] + " (" + count + ")"))
-                                    {
-                                        count++;
-                                    }
-                                }
-                                slab_SS_SB_T_AtB_cbx.Items.Add(beamRows[0] + " (" + count + ")");
-                            }
-                        }
-                        index++;
-                    }
-                    slab_SS_SB_T_AtB_cbx.SelectedIndex = 0;
-                }
-                else
-                {
-                    beamName = beamName.Substring(0, beamName.IndexOf("(Roof Beam)"));
-                    int index = 0;
-                    slab_SS_SB_T_AtB_cbx.Items.Clear();
-                    slab_SS_SB_T_AtB_cbx.Items.Add("None");
-                    foreach (string name in costEstimationForm.structuralMembers.beamNames[floorCount - 1])
-                    {
-                        if (name.Equals(beamName))
-                        {
-                            foreach (List<string> beamRows in costEstimationForm.structuralMembers.beamRow[floorCount - 1][index])
-                            {
-                                int count = 1;
-                                for (int j = 0; j < slab_SS_SB_T_AtB_cbx.Items.Count; j++)
-                                {
-                                    string value = slab_SS_SB_T_AtB_cbx.GetItemText(slab_SS_SB_T_AtB_cbx.Items[j]);
-                                    if (value.Equals(beamRows[0] + " (" + count + ")"))
-                                    {
-                                        count++;
-                                    }
-                                }
-                                slab_SS_SB_T_AtB_cbx.Items.Add(beamRows[0] + " (" + count + ")");
-                            }
-                        }
-                        index++;
-                    }
-                    slab_SS_SB_T_AtB_cbx.SelectedIndex = 0;
-                }
-            }
-        }
-
-        private void slab_SS_SB_B_AtB_cbx_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (slab_SS_SB_B_BR_cbx.SelectedIndex != 0)
-            {
-                string beamName = slab_SS_SB_B_BR_cbx.Text;
-                bool isSuspended = beamName.Contains("(Suspended Beam)");
-                if (isSuspended)
-                {
-                    beamName = beamName.Substring(0, beamName.IndexOf("(Suspended Beam)"));
-                    int index = 0;
-                    slab_SS_SB_B_AtB_cbx.Items.Clear();
-                    slab_SS_SB_B_AtB_cbx.Items.Add("None");
-                    foreach (string name in costEstimationForm.structuralMembers.beamNames[floorCount])
-                    {
-                        if (name.Equals(beamName))
-                        {
-                            foreach (List<string> beamRows in costEstimationForm.structuralMembers.beamRow[floorCount][index])
-                            {
-                                int count = 1;
-                                for (int j = 0; j < slab_SS_SB_B_AtB_cbx.Items.Count; j++)
-                                {
-                                    string value = slab_SS_SB_B_AtB_cbx.GetItemText(slab_SS_SB_B_AtB_cbx.Items[j]);
-                                    if (value.Equals(beamRows[0] + " (" + count + ")"))
-                                    {
-                                        count++;
-                                    }
-                                }
-                                slab_SS_SB_B_AtB_cbx.Items.Add(beamRows[0] + " (" + count + ")");
-                            }
-                        }
-                        index++;
-                    }
-                    slab_SS_SB_B_AtB_cbx.SelectedIndex = 0;
-                }
-                else
-                {
-                    beamName = beamName.Substring(0, beamName.IndexOf("(Roof Beam)"));
-                    int index = 0;
-                    slab_SS_SB_B_AtB_cbx.Items.Clear();
-                    slab_SS_SB_B_AtB_cbx.Items.Add("None");
-                    foreach (string name in costEstimationForm.structuralMembers.beamNames[floorCount - 1])
-                    {
-                        if (name.Equals(beamName))
-                        {
-                            foreach (List<string> beamRows in costEstimationForm.structuralMembers.beamRow[floorCount - 1][index])
-                            {
-                                int count = 1;
-                                for (int j = 0; j < slab_SS_SB_B_AtB_cbx.Items.Count; j++)
-                                {
-                                    string value = slab_SS_SB_B_AtB_cbx.GetItemText(slab_SS_SB_B_AtB_cbx.Items[j]);
-                                    if (value.Equals(beamRows[0] + " (" + count + ")"))
-                                    {
-                                        count++;
-                                    }
-                                }
-                                slab_SS_SB_B_AtB_cbx.Items.Add(beamRows[0] + " (" + count + ")");
-                            }
-                        }
-                        index++;
-                    }
-                    slab_SS_SB_B_AtB_cbx.SelectedIndex = 0;
-                }
-            }
-        }
-
-        private void slab_SS_SB_L_AtB_cbx_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (slab_SS_SB_L_BR_cbx.SelectedIndex != 0)
-            {
-                string beamName = slab_SS_SB_L_BR_cbx.Text;
-                bool isSuspended = beamName.Contains("(Suspended Beam)");
-                if (isSuspended)
-                {
-                    beamName = beamName.Substring(0, beamName.IndexOf("(Suspended Beam)"));
-                    int index = 0;
-                    slab_SS_SB_L_AtB_cbx.Items.Clear();
-                    slab_SS_SB_L_AtB_cbx.Items.Add("None");
-                    foreach (string name in costEstimationForm.structuralMembers.beamNames[floorCount])
-                    {
-                        if (name.Equals(beamName))
-                        {
-                            foreach (List<string> beamRows in costEstimationForm.structuralMembers.beamRow[floorCount][index])
-                            {
-                                int count = 1;
-                                for (int j = 0; j < slab_SS_SB_L_AtB_cbx.Items.Count; j++)
-                                {
-                                    string value = slab_SS_SB_L_AtB_cbx.GetItemText(slab_SS_SB_L_AtB_cbx.Items[j]);
-                                    if (value.Equals(beamRows[0] + " (" + count + ")"))
-                                    {
-                                        count++;
-                                    }
-                                }
-                                slab_SS_SB_L_AtB_cbx.Items.Add(beamRows[0] + " (" + count + ")");
-                            }
-                        }
-                        index++;
-                    }
-                    slab_SS_SB_L_AtB_cbx.SelectedIndex = 0;
-                }
-                else
-                {
-                    beamName = beamName.Substring(0, beamName.IndexOf("(Roof Beam)"));
-                    int index = 0;
-                    slab_SS_SB_L_AtB_cbx.Items.Clear();
-                    slab_SS_SB_L_AtB_cbx.Items.Add("None");
-                    foreach (string name in costEstimationForm.structuralMembers.beamNames[floorCount - 1])
-                    {
-                        if (name.Equals(beamName))
-                        {
-                            foreach (List<string> beamRows in costEstimationForm.structuralMembers.beamRow[floorCount - 1][index])
-                            {
-                                int count = 1;
-                                for (int j = 0; j < slab_SS_SB_L_AtB_cbx.Items.Count; j++)
-                                {
-                                    string value = slab_SS_SB_L_AtB_cbx.GetItemText(slab_SS_SB_L_AtB_cbx.Items[j]);
-                                    if (value.Equals(beamRows[0] + " (" + count + ")"))
-                                    {
-                                        count++;
-                                    }
-                                }
-                                slab_SS_SB_L_AtB_cbx.Items.Add(beamRows[0] + " (" + count + ")");
-                            }
-                        }
-                        index++;
-                    }
-                    slab_SS_SB_L_AtB_cbx.SelectedIndex = 0;
-                }
-            }
-        }
-
-        private void slab_SS_SB_R_BR_cbx_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (slab_SS_SB_R_BR_cbx.SelectedIndex != 0)
-            {
-                string beamName = slab_SS_SB_R_BR_cbx.Text;
-                bool isSuspended = beamName.Contains("(Suspended Beam)");
-                if (isSuspended)
-                {
-                    beamName = beamName.Substring(0, beamName.IndexOf("(Suspended Beam)"));
-                    int index = 0;
-                    slab_SS_SB_R_AtB_cbx.Items.Clear();
-                    slab_SS_SB_R_AtB_cbx.Items.Add("None");
-                    foreach (string name in costEstimationForm.structuralMembers.beamNames[floorCount])
-                    {
-                        if (name.Equals(beamName))
-                        {
-                            foreach (List<string> beamRows in costEstimationForm.structuralMembers.beamRow[floorCount][index])
-                            {
-                                int count = 1;
-                                for (int j = 0; j < slab_SS_SB_R_AtB_cbx.Items.Count; j++)
-                                {
-                                    string value = slab_SS_SB_R_AtB_cbx.GetItemText(slab_SS_SB_R_AtB_cbx.Items[j]);
-                                    if (value.Equals(beamRows[0] + " (" + count + ")"))
-                                    {
-                                        count++;
-                                    }
-                                }
-                                slab_SS_SB_R_AtB_cbx.Items.Add(beamRows[0] + " (" + count + ")");
-                            }
-                        }
-                        index++;
-                    }
-                    slab_SS_SB_R_AtB_cbx.SelectedIndex = 0;
-                }
-                else
-                {
-                    beamName = beamName.Substring(0, beamName.IndexOf("(Roof Beam)"));
-                    int index = 0;
-                    slab_SS_SB_R_AtB_cbx.Items.Clear();
-                    slab_SS_SB_R_AtB_cbx.Items.Add("None");
-                    foreach (string name in costEstimationForm.structuralMembers.beamNames[floorCount - 1])
-                    {
-                        if (name.Equals(beamName))
-                        {
-                            foreach (List<string> beamRows in costEstimationForm.structuralMembers.beamRow[floorCount - 1][index])
-                            {
-                                int count = 1;
-                                for (int j = 0; j < slab_SS_SB_R_AtB_cbx.Items.Count; j++)
-                                {
-                                    string value = slab_SS_SB_R_AtB_cbx.GetItemText(slab_SS_SB_R_AtB_cbx.Items[j]);
-                                    if (value.Equals(beamRows[0] + " (" + count + ")"))
-                                    {
-                                        count++;
-                                    }
-                                }
-                                slab_SS_SB_R_AtB_cbx.Items.Add(beamRows[0] + " (" + count + ")");
-                            }
-                        }
-                        index++;
-                    }
-                    slab_SS_SB_R_AtB_cbx.SelectedIndex = 0;
-                }
-            }
-        }
-
         private void roof_GI_M_PGIS_cb_CheckedChanged(object sender, EventArgs e)
         {
             if (roof_GI_M_PGIS_cb.Checked)
@@ -3831,6 +3312,21 @@ namespace WindowsFormsApp1
         }
 
         private void tableLayoutPanel47_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label125_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel52_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label317_Click(object sender, EventArgs e)
         {
 
         }
