@@ -26,11 +26,12 @@ namespace WindowsFormsApp1
                       form_F_T, form_F_NU, form_F_N;
 
         //Parameters for Concrete
-        public bool[] conc_cmIsSelected = { true, true, true, true, true };
+        public bool[] conc_cmIsSelected = { true, true, true, true, true, true };
         public string conc_CM_F_CG, conc_CM_F_GT, conc_CM_F_RM,
                       conc_CM_C_CG, conc_CM_C_GT, conc_CM_C_RM,
                       conc_CM_B_CG, conc_CM_B_GT, conc_CM_B_RM,
-                      conc_CM_S_CG, conc_CM_S_GT, conc_CM_S_RM,
+                      conc_CM_S_SOG_CG, conc_CM_S_SOG_GT, conc_CM_S_SOG_RM,
+                      conc_CM_S_SS_CG, conc_CM_S_SS_GT, conc_CM_S_SS_RM,
                       conc_CM_W_MEW_CM, conc_CM_W_MIW_CM, conc_CM_W_P_CM, conc_CM_W_P_PT,
                       conc_CM_ST_CG, conc_CM_ST_GT, conc_CM_ST_RM,
                       conc_CC_F, conc_CC_SS, conc_CC_SG, conc_CC_BEE, conc_CC_BEW,
@@ -44,10 +45,7 @@ namespace WindowsFormsApp1
         public DataTable rein_BEH_MB_dt = new DataTable();
         public DataTable rein_BEH_ST_dt = new DataTable();
         public DataTable rein_W_dt = new DataTable();
-        public string rein_S_C_SL, rein_S_C_SZ, rein_S_C_AP, rein_S_C_MVDAB,
-                      rein_S_B_T_SL, rein_S_B_T_SZ, rein_S_B_T_AP, rein_S_B_B_SL, rein_S_B_B_SZ, rein_S_B_B_AP, rein_S_B_MHDAB,
-                      rein_S_S_T_SL, rein_S_S_B_SL,
-                      rein_RG_C, rein_RG_F, rein_RG_B, rein_RG_ST, rein_RG_W, rein_RG_SL;
+        public string rein_RG_C, rein_RG_CLT, rein_RG_F, rein_RG_B, rein_RG_BS, rein_RG_ST, rein_RG_W, rein_RG_SL;
         public bool[,] rein_mfIsSelected = new bool[,]  {
                                                             { true, true, true, true, true, true, true },
                                                             { true, true, true, true, true, true, true },
@@ -225,7 +223,8 @@ namespace WindowsFormsApp1
             (bool[] cmIsSelected, string conc_CM_F_CG, string conc_CM_F_GT, string conc_CM_F_RM,
              string conc_CM_C_CG, string conc_CM_C_GT, string conc_CM_C_RM,
              string conc_CM_B_CG, string conc_CM_B_GT, string conc_CM_B_RM,
-             string conc_CM_S_CG, string conc_CM_S_GT, string conc_CM_S_RM,
+             string conc_CM_S_SOG_CG, string conc_CM_S_SOG_GT, string conc_CM_S_SOG_RM,
+             string conc_CM_S_SS_CG, string conc_CM_S_SS_GT, string conc_CM_S_SS_RM,
              string conc_CM_MEW_M_CM, string conc_CM_MIW_M_CM, string conc_CM_W_P_CM, string conc_CM_W_P_PT,
              string conc_CM_ST_CG, string conc_CM_ST_GT, string conc_CM_ST_RM,
              string conc_CC_F, string conc_CC_SS, string conc_CC_SG, string conc_CC_BEE,
@@ -241,9 +240,12 @@ namespace WindowsFormsApp1
             this.conc_CM_B_CG = conc_CM_B_CG; 
             this.conc_CM_B_GT = conc_CM_B_GT; 
             this.conc_CM_B_RM = conc_CM_B_RM;
-            this.conc_CM_S_CG = conc_CM_S_CG; 
-            this.conc_CM_S_GT = conc_CM_S_GT; 
-            this.conc_CM_S_RM = conc_CM_S_RM;
+            this.conc_CM_S_SOG_CG = conc_CM_S_SOG_CG;
+            this.conc_CM_S_SOG_GT = conc_CM_S_SOG_GT;
+            this.conc_CM_S_SOG_RM = conc_CM_S_SOG_RM;
+            this.conc_CM_S_SS_CG = conc_CM_S_SS_CG; 
+            this.conc_CM_S_SS_GT = conc_CM_S_SS_GT; 
+            this.conc_CM_S_SS_RM = conc_CM_S_SS_RM;
             this.conc_CM_W_MEW_CM = conc_CM_MEW_M_CM;
             this.conc_CM_W_MIW_CM = conc_CM_MIW_M_CM;
             this.conc_CM_W_P_CM = conc_CM_W_P_CM; 
@@ -263,10 +265,7 @@ namespace WindowsFormsApp1
         public void setReinforcementsParameters
             (DataTable rein_LSL_TB_dt, DataTable rein_LSL_CB_dt, DataTable rein_BEH_MB_dt, DataTable rein_BEH_ST_dt,
              DataTable rein_W_dt, List<string> rein_LSL_TB_fc_list, List<string> rein_LSL_CB_fc_list,
-             string rein_S_C_SL, string rein_S_C_SZ, string rein_S_C_AP, string rein_S_C_MVDAB,
-             string rein_S_B_T_SL, string rein_S_B_T_SZ, string rein_S_B_T_AP, string rein_S_B_B_SL, string rein_S_B_B_SZ, string rein_S_B_B_AP, string rein_S_B_MHDAB,
-             string rein_S_S_T_SL, string rein_S_S_B_SL,
-             string rein_RG_C, string rein_RG_F, string rein_RG_B, string rein_RG_ST, string rein_RG_W, string rein_RG_SL,
+             string rein_RG_C, string rein_RG_CLT, string rein_RG_F, string rein_RG_B, string rein_RG_BS, string rein_RG_ST, string rein_RG_W, string rein_RG_SL,
              bool[,] rein_mfIsSelected)
         {
             this.rein_LSL_TB_dt = rein_LSL_TB_dt;
@@ -278,25 +277,11 @@ namespace WindowsFormsApp1
             this.rein_LSL_TB_fc_list = rein_LSL_TB_fc_list;
             this.rein_LSL_CB_fc_list = rein_LSL_CB_fc_list;
 
-            this.rein_S_C_SL = rein_S_C_SL;
-            this.rein_S_C_SZ = rein_S_C_SZ;
-            this.rein_S_C_AP = rein_S_C_AP;
-            this.rein_S_C_MVDAB = rein_S_C_MVDAB;
-
-            this.rein_S_B_T_SL = rein_S_B_T_SL;
-            this.rein_S_B_T_SZ = rein_S_B_T_SZ;
-            this.rein_S_B_T_AP = rein_S_B_T_AP;
-            this.rein_S_B_B_SL = rein_S_B_B_SL;
-            this.rein_S_B_B_SZ = rein_S_B_B_SZ;
-            this.rein_S_B_B_AP = rein_S_B_B_AP;
-            this.rein_S_B_MHDAB = rein_S_B_MHDAB;
-
-            this.rein_S_S_T_SL = rein_S_S_T_SL;
-            this.rein_S_S_B_SL = rein_S_S_B_SL;
-
             this.rein_RG_C = rein_RG_C;
+            this.rein_RG_CLT = rein_RG_CLT;
             this.rein_RG_F = rein_RG_F;
             this.rein_RG_B = rein_RG_B;
+            this.rein_RG_BS = rein_RG_BS;
             this.rein_RG_ST = rein_RG_ST;
             this.rein_RG_W = rein_RG_W;
             this.rein_RG_SL = rein_RG_SL;

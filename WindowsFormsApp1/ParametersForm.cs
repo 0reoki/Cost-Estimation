@@ -146,7 +146,7 @@ namespace WindowsFormsApp1
             conc_CM_F_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_F_RM_cbx);
             conc_CM_C_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_C_RM_cbx);
             conc_CM_B_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_B_RM_cbx);
-            conc_CM_S_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_S_RM_cbx);
+            conc_CM_S_SOG_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_S_SOG_RM_cbx);
             conc_CM_ST_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_ST_RM_cbx);
         }
 
@@ -370,17 +370,29 @@ namespace WindowsFormsApp1
             }
 
             //Slabs
-            if (conc_CM_S_CG_rb.Checked)
+            if (conc_CM_S_SOG_CG_rb.Checked)
             {
-                conc_CM_S_CG_cbx.Enabled = true;
-                conc_CM_S_GT_cbx.Enabled = true;
-                conc_CM_S_RM_cbx.Enabled = false;
+                conc_CM_S_SOG_CG_cbx.Enabled = true;
+                conc_CM_S_SOG_GT_cbx.Enabled = true;
+                conc_CM_S_SOG_RM_cbx.Enabled = false;
             }
             else
             {
-                conc_CM_S_CG_cbx.Enabled = false;
-                conc_CM_S_GT_cbx.Enabled = false;
-                conc_CM_S_RM_cbx.Enabled = true;
+                conc_CM_S_SOG_CG_cbx.Enabled = false;
+                conc_CM_S_SOG_GT_cbx.Enabled = false;
+                conc_CM_S_SOG_RM_cbx.Enabled = true;
+            }
+            if (conc_CM_S_SS_CG_rb.Checked)
+            {
+                conc_CM_S_SS_CG_cbx.Enabled = true;
+                conc_CM_S_SS_GT_cbx.Enabled = true;
+                conc_CM_S_SS_RM_cbx.Enabled = false;
+            }
+            else
+            {
+                conc_CM_S_SS_CG_cbx.Enabled = false;
+                conc_CM_S_SS_GT_cbx.Enabled = false;
+                conc_CM_S_SS_RM_cbx.Enabled = true;
             }
 
             //Stairs
@@ -416,7 +428,7 @@ namespace WindowsFormsApp1
 
         private void conc_CM_S_RM_cbx_MouseHover(object sender, EventArgs e)
         {
-            toolTip1.Show(conc_CM_S_RM_cbx.SelectedItem.ToString(), conc_CM_S_RM_cbx);
+            toolTip1.Show(conc_CM_S_SOG_RM_cbx.SelectedItem.ToString(), conc_CM_S_SOG_RM_cbx);
         }
 
         private void conc_CM_ST_RM_cbx_MouseHover(object sender, EventArgs e)
@@ -1246,10 +1258,15 @@ namespace WindowsFormsApp1
             conc_CM_B_RM_cbx.Text = parameters.conc_CM_B_RM;
             if (parameters.conc_cmIsSelected[2]) { conc_CM_B_CG_rb.Select(); } else { conc_CM_B_RM_rb.Select(); }
 
-            conc_CM_S_CG_cbx.Text = parameters.conc_CM_S_CG;
-            conc_CM_S_GT_cbx.Text = parameters.conc_CM_S_GT;
-            conc_CM_S_RM_cbx.Text = parameters.conc_CM_S_RM;
-            if (parameters.conc_cmIsSelected[3]) { conc_CM_S_CG_rb.Select(); } else { conc_CM_S_RM_rb.Select(); }
+            conc_CM_S_SOG_CG_cbx.Text = parameters.conc_CM_S_SOG_CG;
+            conc_CM_S_SOG_GT_cbx.Text = parameters.conc_CM_S_SOG_GT;
+            conc_CM_S_SOG_RM_cbx.Text = parameters.conc_CM_S_SOG_RM;
+            if (parameters.conc_cmIsSelected[3]) { conc_CM_S_SOG_CG_rb.Select(); } else { conc_CM_S_SOG_RM_rb.Select(); }
+
+            conc_CM_S_SS_CG_cbx.Text = parameters.conc_CM_S_SS_CG;
+            conc_CM_S_SS_GT_cbx.Text = parameters.conc_CM_S_SS_GT;
+            conc_CM_S_SS_RM_cbx.Text = parameters.conc_CM_S_SS_RM;
+            if (parameters.conc_cmIsSelected[4]) { conc_CM_S_SS_CG_rb.Select(); } else { conc_CM_S_SS_RM_rb.Select(); }
 
             conc_CM_W_MEW_CM_cbx.Text = parameters.conc_CM_W_MEW_CM;
             conc_CM_W_MIW_CM_cbx.Text = parameters.conc_CM_W_MIW_CM;
@@ -1259,7 +1276,7 @@ namespace WindowsFormsApp1
             conc_CM_ST_CG_cbx.Text = parameters.conc_CM_ST_CG;
             conc_CM_ST_GT_cbx.Text = parameters.conc_CM_ST_GT;
             conc_CM_ST_RM_cbx.Text = parameters.conc_CM_ST_RM;
-            if (parameters.conc_cmIsSelected[4]) { conc_CM_ST_CG_rb.Select(); } else { conc_CM_ST_RM_rb.Select(); }
+            if (parameters.conc_cmIsSelected[5]) { conc_CM_ST_CG_rb.Select(); } else { conc_CM_ST_RM_rb.Select(); }
 
             conc_CC_F_bx.Text = parameters.conc_CC_F;
             conc_CC_SS_bx.Text = parameters.conc_CC_SS;
@@ -1301,25 +1318,11 @@ namespace WindowsFormsApp1
             rein_W_dt = parameters.rein_W_dt;
             rein_W_dg.DataSource = rein_W_dt;
 
-            rein_S_C_SL_bx.Text = parameters.rein_S_C_SL;
-            rein_S_C_SZ_bx.Text = parameters.rein_S_C_SZ;
-            rein_S_C_AP_bx.Text = parameters.rein_S_C_AP;
-            rein_S_C_MVDAB_bx.Text = parameters.rein_S_C_MVDAB;
-
-            rein_S_B_T_SL_bx.Text = parameters.rein_S_B_T_SL;
-            rein_S_B_T_SZ_bx.Text = parameters.rein_S_B_T_SZ;
-            rein_S_B_T_AP_bx.Text = parameters.rein_S_B_T_AP;
-            rein_S_B_B_SL_bx.Text = parameters.rein_S_B_B_SL;
-            rein_S_B_B_SZ_bx.Text = parameters.rein_S_B_B_SZ;
-            rein_S_B_B_AP_bx.Text = parameters.rein_S_B_B_AP;
-            rein_S_B_MHDAB_bx.Text = parameters.rein_S_B_MHDAB;
-
-            rein_S_S_T_SL_bx.Text = parameters.rein_S_S_T_SL;
-            rein_S_S_B_SL_bx.Text = parameters.rein_S_S_B_SL;
-
             rein_RG_C_cbx.Text = parameters.rein_RG_C;
+            rein_RG_CLT_cbx.Text = parameters.rein_RG_CLT;
             rein_RG_F_cbx.Text = parameters.rein_RG_F;
             rein_RG_B_cbx.Text = parameters.rein_RG_B;
+            rein_RG_BS_cbx.Text = parameters.rein_RG_BS;
             rein_RG_ST_cbx.Text = parameters.rein_RG_ST;
             rein_RG_W_cbx.Text = parameters.rein_RG_W;
             rein_RG_SL_cbx.Text = parameters.rein_RG_SL;
@@ -1627,10 +1630,15 @@ namespace WindowsFormsApp1
             conc_CM_B_RM_cbx.Text = "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 28 Days";
             conc_CM_B_CG_rb.Select();
 
-            conc_CM_S_CG_cbx.Text = "CLASS AA";
-            conc_CM_S_GT_cbx.SelectedIndex = 0;
-            conc_CM_S_RM_cbx.Text = "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 28 Days";
-            conc_CM_S_CG_rb.Select();
+            conc_CM_S_SOG_CG_cbx.Text = "CLASS AA";
+            conc_CM_S_SOG_GT_cbx.SelectedIndex = 0;
+            conc_CM_S_SOG_RM_cbx.Text = "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 28 Days";
+            conc_CM_S_SOG_CG_rb.Select();
+
+            conc_CM_S_SS_CG_cbx.Text = "CLASS AA";
+            conc_CM_S_SS_GT_cbx.SelectedIndex = 0;
+            conc_CM_S_SS_RM_cbx.Text = "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 28 Days";
+            conc_CM_S_SS_CG_rb.Select();
 
             conc_CM_W_MEW_CM_cbx.Text = "CLASS A";
             conc_CM_W_MIW_CM_cbx.Text = "CLASS A";
@@ -1669,25 +1677,11 @@ namespace WindowsFormsApp1
             rein_W_dt.Rows[13][1] = "19.318";
             rein_W_dg.DataSource = rein_W_dt;
 
-            rein_S_C_SL_bx.Text = "0.5";
-            rein_S_C_SZ_bx.Text = "0.5";
-            rein_S_C_AP_bx.Text = "50";
-            rein_S_C_MVDAB_bx.Text = "600";
-
-            rein_S_B_T_SL_bx.Text = "0.5";
-            rein_S_B_T_SZ_bx.Text = "0.5";
-            rein_S_B_T_AP_bx.Text = "50";
-            rein_S_B_B_SL_bx.Text = "0.165";
-            rein_S_B_B_SZ_bx.Text = "0.1";
-            rein_S_B_B_AP_bx.Text = "50";
-            rein_S_B_MHDAB_bx.Text = "600";
-
-            rein_S_S_T_SL_bx.Text = "0.5";
-            rein_S_S_B_SL_bx.Text = "0.2";
-
             rein_RG_C_cbx.SelectedIndex = 0;
+            rein_RG_CLT_cbx.SelectedIndex = 0;
             rein_RG_F_cbx.SelectedIndex = 0;
             rein_RG_B_cbx.SelectedIndex = 0;
+            rein_RG_BS_cbx.SelectedIndex = 0;
             rein_RG_ST_cbx.SelectedIndex = 0;
             rein_RG_W_cbx.SelectedIndex = 0;
             rein_RG_SL_cbx.SelectedIndex = 0;
@@ -1873,7 +1867,8 @@ namespace WindowsFormsApp1
 
             //Concrete
             bool[] cmIsSelected = { conc_CM_F_CG_rb.Checked, conc_CM_C_CG_rb.Checked,
-                    conc_CM_C_CG_rb.Checked, conc_CM_S_CG_rb.Checked, conc_CM_ST_CG_rb.Checked };
+                    conc_CM_C_CG_rb.Checked, conc_CM_S_SOG_CG_rb.Checked, conc_CM_S_SS_CG_rb.Checked, 
+                    conc_CM_ST_CG_rb.Checked };
             parameters.setConcreteParameters(
                 cmIsSelected,
                 conc_CM_F_CG_cbx.SelectedItem.ToString(),
@@ -1888,9 +1883,13 @@ namespace WindowsFormsApp1
                 conc_CM_B_GT_cbx.SelectedItem.ToString(),
                 conc_CM_B_RM_cbx.SelectedItem.ToString(),
 
-                conc_CM_S_CG_cbx.SelectedItem.ToString(),
-                conc_CM_S_GT_cbx.SelectedItem.ToString(),
-                conc_CM_S_RM_cbx.SelectedItem.ToString(),
+                conc_CM_S_SOG_CG_cbx.SelectedItem.ToString(),
+                conc_CM_S_SOG_GT_cbx.SelectedItem.ToString(),
+                conc_CM_S_SOG_RM_cbx.SelectedItem.ToString(),
+
+                conc_CM_S_SS_CG_cbx.SelectedItem.ToString(),
+                conc_CM_S_SS_GT_cbx.SelectedItem.ToString(),
+                conc_CM_S_SS_RM_cbx.SelectedItem.ToString(),
 
                 conc_CM_W_MEW_CM_cbx.SelectedItem.ToString(),
                 conc_CM_W_MIW_CM_cbx.SelectedItem.ToString(),
@@ -1937,10 +1936,7 @@ namespace WindowsFormsApp1
             parameters.setReinforcementsParameters(
                 rein_LSL_TB_dt, rein_LSL_CB_dt, rein_BEH_MB_dt, rein_BEH_ST_dt,
                 rein_W_dt, rein_LSL_TB_fc_list, rein_LSL_CB_fc_list,
-                rein_S_C_SL_bx.Text,  rein_S_C_SZ_bx.Text,  rein_S_C_AP_bx.Text,  rein_S_C_MVDAB_bx.Text,
-                rein_S_B_T_SL_bx.Text, rein_S_B_T_SZ_bx.Text, rein_S_B_T_AP_bx.Text, rein_S_B_B_SL_bx.Text, rein_S_B_B_SZ_bx.Text, rein_S_B_B_AP_bx.Text, rein_S_B_MHDAB_bx.Text,
-                rein_S_S_T_SL_bx.Text, rein_S_S_B_SL_bx.Text,
-                rein_RG_C_cbx.Text, rein_RG_F_cbx.Text, rein_RG_B_cbx.Text, rein_RG_ST_cbx.Text, rein_RG_W_cbx.Text, rein_RG_SL_cbx.Text,
+                rein_RG_C_cbx.Text, rein_RG_CLT_cbx.Text, rein_RG_F_cbx.Text, rein_RG_B_cbx.Text, rein_RG_BS_cbx.Text, rein_RG_ST_cbx.Text, rein_RG_W_cbx.Text, rein_RG_SL_cbx.Text,
                 rein_mfIsSelected
             );
                 

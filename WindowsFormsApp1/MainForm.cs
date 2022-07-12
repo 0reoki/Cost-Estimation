@@ -3583,11 +3583,12 @@ namespace WindowsFormsApp1
             parameters.conc_cmIsSelected[0] + "|" + parameters.conc_CM_F_CG + "|" + parameters.conc_CM_F_GT + "|" + parameters.conc_CM_F_RM + "|" +
             parameters.conc_cmIsSelected[1] + "|" + parameters.conc_CM_C_CG + "|" + parameters.conc_CM_C_GT + "|" + parameters.conc_CM_C_RM + "|" +
             parameters.conc_cmIsSelected[2] + "|" + parameters.conc_CM_B_CG + "|" + parameters.conc_CM_B_GT + "|" + parameters.conc_CM_B_RM + "|" +
-            parameters.conc_cmIsSelected[3] + "|" + parameters.conc_CM_S_CG + "|" + parameters.conc_CM_S_GT + "|" + parameters.conc_CM_S_RM + "|" +
+            parameters.conc_cmIsSelected[3] + "|" + parameters.conc_CM_S_SOG_CG + "|" + parameters.conc_CM_S_SOG_GT + "|" + parameters.conc_CM_S_SOG_RM + "|" +
+            parameters.conc_cmIsSelected[4] + "|" + parameters.conc_CM_S_SS_CG + "|" + parameters.conc_CM_S_SS_GT + "|" + parameters.conc_CM_S_SS_RM + "|" +
 
             parameters.conc_CM_W_MEW_CM + "|" + parameters.conc_CM_W_MIW_CM + "|" + parameters.conc_CM_W_P_CM + "|" + parameters.conc_CM_W_P_PT + "|" +
 
-            parameters.conc_cmIsSelected[4] + "|" + parameters.conc_CM_ST_CG + "|" + parameters.conc_CM_ST_GT + "|" + parameters.conc_CM_ST_RM + "|" +
+            parameters.conc_cmIsSelected[5] + "|" + parameters.conc_CM_ST_CG + "|" + parameters.conc_CM_ST_GT + "|" + parameters.conc_CM_ST_RM + "|" +
 
             parameters.conc_CC_F + "|" + parameters.conc_CC_SS + "|" + parameters.conc_CC_SG + "|" + parameters.conc_CC_BEE + "|" +
             parameters.conc_CC_BEW + "|" + parameters.conc_CC_CEE + "|" + parameters.conc_CC_CEW + "|" ;
@@ -3657,10 +3658,7 @@ namespace WindowsFormsApp1
                 }
                 j++;
             }
-            stringParam += parameters.rein_S_C_SL + "|" + parameters.rein_S_C_SZ + "|" + parameters.rein_S_C_AP + "|" + parameters.rein_S_C_MVDAB + "|" +
-                      parameters.rein_S_B_T_SL + "|" + parameters.rein_S_B_T_SZ + "|" + parameters.rein_S_B_T_AP + "|" + parameters.rein_S_B_B_SL + "|" + parameters.rein_S_B_B_SZ + "|" + parameters.rein_S_B_B_AP + "|" + parameters.rein_S_B_MHDAB + "|" +
-                      parameters.rein_S_S_T_SL + "|" + parameters.rein_S_S_B_SL + "|" +
-                      parameters.rein_RG_C + "|" + parameters.rein_RG_F + "|" + parameters.rein_RG_B + "|" + parameters.rein_RG_ST + "|" + parameters.rein_RG_W + "|" + parameters.rein_RG_SL + "|";
+            stringParam += parameters.rein_RG_C + "|" + parameters.rein_RG_CLT + "|" + parameters.rein_RG_F + "|" + parameters.rein_RG_B + "|" + parameters.rein_RG_BS + "|" + parameters.rein_RG_ST + "|" + parameters.rein_RG_W + "|" + parameters.rein_RG_SL + "|";
 
             for (int col = 0; col < parameters.rein_mfIsSelected.GetLength(0); col++)
                 for (int row = 0; row < parameters.rein_mfIsSelected.GetLength(1); row++)
@@ -4736,16 +4734,20 @@ namespace WindowsFormsApp1
             parameters.conc_CM_B_GT = tokens[i]; i++;
             parameters.conc_CM_B_RM = tokens[i]; i++;
             parameters.conc_cmIsSelected[3] = bool.Parse(tokens[i]); i++;
-            parameters.conc_CM_S_CG = tokens[i]; i++;
-            parameters.conc_CM_S_GT = tokens[i]; i++;
-            parameters.conc_CM_S_RM = tokens[i]; i++;
+            parameters.conc_CM_S_SOG_CG = tokens[i]; i++;
+            parameters.conc_CM_S_SOG_GT = tokens[i]; i++;
+            parameters.conc_CM_S_SOG_RM = tokens[i]; i++;
+            parameters.conc_cmIsSelected[4] = bool.Parse(tokens[i]); i++;
+            parameters.conc_CM_S_SS_CG = tokens[i]; i++;
+            parameters.conc_CM_S_SS_GT = tokens[i]; i++;
+            parameters.conc_CM_S_SS_RM = tokens[i]; i++;
 
             parameters.conc_CM_W_MEW_CM = tokens[i]; i++;
             parameters.conc_CM_W_MIW_CM = tokens[i]; i++;
             parameters.conc_CM_W_P_CM = tokens[i]; i++;
             parameters.conc_CM_W_P_PT = tokens[i]; i++;
 
-            parameters.conc_cmIsSelected[4] = bool.Parse(tokens[i]); i++;
+            parameters.conc_cmIsSelected[5] = bool.Parse(tokens[i]); i++;
             parameters.conc_CM_ST_CG = tokens[i]; i++;
             parameters.conc_CM_ST_GT = tokens[i]; i++;
             parameters.conc_CM_ST_RM = tokens[i]; i++;
@@ -4918,25 +4920,11 @@ namespace WindowsFormsApp1
             parameters.rein_W_dt.Rows[12][1] = tokens[i]; i += 3;
             parameters.rein_W_dt.Rows[13][1] = tokens[i]; i++;
 
-            parameters.rein_S_C_SL = tokens[i]; i++;
-            parameters.rein_S_C_SZ = tokens[i]; i++;
-            parameters.rein_S_C_AP = tokens[i]; i++;
-            parameters.rein_S_C_MVDAB = tokens[i]; i++;
-
-            parameters.rein_S_B_T_SL = tokens[i]; i++;
-            parameters.rein_S_B_T_SZ = tokens[i]; i++;
-            parameters.rein_S_B_T_AP = tokens[i]; i++;
-            parameters.rein_S_B_B_SL = tokens[i]; i++;
-            parameters.rein_S_B_B_SZ = tokens[i]; i++;
-            parameters.rein_S_B_B_AP = tokens[i]; i++;
-            parameters.rein_S_B_MHDAB = tokens[i]; i++;
-
-            parameters.rein_S_S_T_SL = tokens[i]; i++;
-            parameters.rein_S_S_B_SL = tokens[i]; i++;
-
             parameters.rein_RG_C = tokens[i]; i++;
+            parameters.rein_RG_CLT = tokens[i]; i++;
             parameters.rein_RG_F = tokens[i]; i++;
             parameters.rein_RG_B = tokens[i]; i++;
+            parameters.rein_RG_BS = tokens[i]; i++;
             parameters.rein_RG_ST = tokens[i]; i++;
             parameters.rein_RG_W = tokens[i]; i++;
             parameters.rein_RG_SL = tokens[i]; i++;
@@ -6693,7 +6681,7 @@ namespace WindowsFormsApp1
             //Totalities -- END
             viewInitalized = false;
             //*/
-            MessageBox.Show(tokens[i]);
+            //MessageBox.Show(tokens[i]);
 
             pf = new ParametersForm(parameters, this);
         }

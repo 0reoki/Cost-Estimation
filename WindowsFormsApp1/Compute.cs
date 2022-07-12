@@ -1467,7 +1467,7 @@ namespace WindowsFormsApp1
                 string concreteGrade;
 
                 //Init variables from Parameters
-                concreteGrade = cEF.parameters.conc_CM_S_CG;
+                concreteGrade = cEF.parameters.conc_CM_S_SOG_CG;
 
                 //Variables from StructMem
                 double quantity, thickness, customLengthTop, customLengthBot, customLengthLeft, customLengthRight;
@@ -1578,7 +1578,7 @@ namespace WindowsFormsApp1
                 string concreteGrade;
 
                 //Init variables from Parameters
-                concreteGrade = cEF.parameters.conc_CM_S_CG;
+                concreteGrade = cEF.parameters.conc_CM_S_SS_CG;
 
                 //Variables from StructMem
                 double quantity, thickness, customLengthTop, customLengthBot, customLengthLeft, customLengthRight;
@@ -1787,7 +1787,7 @@ namespace WindowsFormsApp1
                 string concreteGrade;
 
                 //Init variables from Parameters
-                concreteGrade = cEF.parameters.conc_CM_S_CG;
+                concreteGrade = cEF.parameters.conc_CM_S_SOG_CG;
 
                 //Variables from StructMem
                 double quantity, thickness, customLengthTop, customLengthBot, customLengthLeft, customLengthRight;
@@ -1898,7 +1898,7 @@ namespace WindowsFormsApp1
                 string concreteGrade;
 
                 //Init variables from Parameters
-                concreteGrade = cEF.parameters.conc_CM_S_CG;
+                concreteGrade = cEF.parameters.conc_CM_S_SS_CG;
 
                 //Variables from StructMem
                 double quantity, thickness, customLengthTop, customLengthBot, customLengthLeft, customLengthRight;
