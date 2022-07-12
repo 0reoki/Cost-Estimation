@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel109 = new System.Windows.Forms.TableLayoutPanel();
-            this.qty_bx = new System.Windows.Forms.TextBox();
+            this.clearlength_bx = new System.Windows.Forms.TextBox();
             this.length_bx = new System.Windows.Forms.TextBox();
-            this.endSupportRB_cbx = new System.Windows.Forms.ComboBox();
-            this.endSupportLT_cbx = new System.Windows.Forms.ComboBox();
+            this.qty_bx = new System.Windows.Forms.TextBox();
+            this.support_cbx = new System.Windows.Forms.ComboBox();
             this.beamName_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel109.SuspendLayout();
             this.SuspendLayout();
@@ -46,10 +46,10 @@
             this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.76471F));
             this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.41176F));
             this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.41176F));
-            this.tableLayoutPanel109.Controls.Add(this.qty_bx, 2, 0);
-            this.tableLayoutPanel109.Controls.Add(this.length_bx, 1, 0);
-            this.tableLayoutPanel109.Controls.Add(this.endSupportRB_cbx, 4, 0);
-            this.tableLayoutPanel109.Controls.Add(this.endSupportLT_cbx, 3, 0);
+            this.tableLayoutPanel109.Controls.Add(this.clearlength_bx, 3, 0);
+            this.tableLayoutPanel109.Controls.Add(this.length_bx, 2, 0);
+            this.tableLayoutPanel109.Controls.Add(this.qty_bx, 1, 0);
+            this.tableLayoutPanel109.Controls.Add(this.support_cbx, 4, 0);
             this.tableLayoutPanel109.Controls.Add(this.beamName_cbx, 0, 0);
             this.tableLayoutPanel109.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel109.Location = new System.Drawing.Point(0, 0);
@@ -59,47 +59,47 @@
             this.tableLayoutPanel109.Size = new System.Drawing.Size(747, 40);
             this.tableLayoutPanel109.TabIndex = 41;
             // 
-            // qty_bx
+            // clearlength_bx
             // 
-            this.qty_bx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.clearlength_bx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.qty_bx.Location = new System.Drawing.Point(223, 4);
-            this.qty_bx.Name = "qty_bx";
-            this.qty_bx.Size = new System.Drawing.Size(81, 26);
-            this.qty_bx.TabIndex = 49;
-            this.qty_bx.Text = "0";
+            this.clearlength_bx.Location = new System.Drawing.Point(311, 4);
+            this.clearlength_bx.Name = "clearlength_bx";
+            this.clearlength_bx.Size = new System.Drawing.Size(211, 26);
+            this.clearlength_bx.TabIndex = 50;
+            this.clearlength_bx.Text = "0";
             // 
             // length_bx
             // 
             this.length_bx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.length_bx.Location = new System.Drawing.Point(135, 4);
+            this.length_bx.Location = new System.Drawing.Point(223, 4);
             this.length_bx.Name = "length_bx";
             this.length_bx.Size = new System.Drawing.Size(81, 26);
-            this.length_bx.TabIndex = 48;
+            this.length_bx.TabIndex = 49;
             this.length_bx.Text = "0";
             // 
-            // endSupportRB_cbx
+            // qty_bx
             // 
-            this.endSupportRB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.endSupportRB_cbx.FormattingEnabled = true;
-            this.endSupportRB_cbx.Items.AddRange(new object[] {
-            "None"});
-            this.endSupportRB_cbx.Location = new System.Drawing.Point(529, 4);
-            this.endSupportRB_cbx.Name = "endSupportRB_cbx";
-            this.endSupportRB_cbx.Size = new System.Drawing.Size(211, 28);
-            this.endSupportRB_cbx.TabIndex = 47;
+            this.qty_bx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.qty_bx.Location = new System.Drawing.Point(135, 4);
+            this.qty_bx.Name = "qty_bx";
+            this.qty_bx.Size = new System.Drawing.Size(81, 26);
+            this.qty_bx.TabIndex = 48;
+            this.qty_bx.Text = "0";
             // 
-            // endSupportLT_cbx
+            // support_cbx
             // 
-            this.endSupportLT_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.endSupportLT_cbx.FormattingEnabled = true;
-            this.endSupportLT_cbx.Items.AddRange(new object[] {
-            "None"});
-            this.endSupportLT_cbx.Location = new System.Drawing.Point(311, 4);
-            this.endSupportLT_cbx.Name = "endSupportLT_cbx";
-            this.endSupportLT_cbx.Size = new System.Drawing.Size(211, 28);
-            this.endSupportLT_cbx.TabIndex = 46;
+            this.support_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.support_cbx.FormattingEnabled = true;
+            this.support_cbx.Items.AddRange(new object[] {
+            "1-End Support",
+            "2-End Supports"});
+            this.support_cbx.Location = new System.Drawing.Point(529, 4);
+            this.support_cbx.Name = "support_cbx";
+            this.support_cbx.Size = new System.Drawing.Size(211, 28);
+            this.support_cbx.TabIndex = 47;
             // 
             // beamName_cbx
             // 
@@ -128,10 +128,10 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel109;
-        private System.Windows.Forms.TextBox qty_bx;
         private System.Windows.Forms.TextBox length_bx;
-        private System.Windows.Forms.ComboBox endSupportRB_cbx;
-        private System.Windows.Forms.ComboBox endSupportLT_cbx;
+        private System.Windows.Forms.TextBox qty_bx;
+        private System.Windows.Forms.ComboBox support_cbx;
         private System.Windows.Forms.ComboBox beamName_cbx;
+        private System.Windows.Forms.TextBox clearlength_bx;
     }
 }

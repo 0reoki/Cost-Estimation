@@ -6411,7 +6411,7 @@ namespace WindowsFormsApp1
                     List<List<double>> floor = new List<List<double>>();
                     i++;
                     l = 0;
-                    if (tokens[i].Equals("concreteC-" + (l + 1)) && !tokens[i].Equals("ConcreteBR") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    while (tokens[i].Equals("concreteC-" + (l + 1)) && !tokens[i].Equals("ConcreteBR") && !tokens[i].Equals("Floor-" + (j + 2)))
                     {
                         List<double> toAdd = new List<double>();
                         i++;
@@ -6439,7 +6439,7 @@ namespace WindowsFormsApp1
                     List<List<double>> floor = new List<List<double>>();
                     i++;
                     l = 0;
-                    if (tokens[i].Equals("concreteBR-" + (l + 1)) && !tokens[i].Equals("ConcreteSL") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    while (tokens[i].Equals("concreteBR-" + (l + 1)) && !tokens[i].Equals("ConcreteSL") && !tokens[i].Equals("Floor-" + (j + 2)))
                     {
                         List<double> toAdd = new List<double>();
                         i++;
@@ -6467,7 +6467,7 @@ namespace WindowsFormsApp1
                     List<List<double>> floor = new List<List<double>>();
                     i++;
                     l = 0;
-                    if (tokens[i].Equals("concreteSL-" + (l + 1)) && !tokens[i].Equals("ConcreteST") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    while (tokens[i].Equals("concreteSL-" + (l + 1)) && !tokens[i].Equals("ConcreteST") && !tokens[i].Equals("Floor-" + (j + 2)))
                     {
                         List<double> toAdd = new List<double>();
                         i++;
@@ -6495,7 +6495,7 @@ namespace WindowsFormsApp1
                     List<List<double>> floor = new List<List<double>>();
                     i++;
                     l = 0;
-                    if (tokens[i].Equals("concreteST-" + (l + 1)) && !tokens[i].Equals("ConcreteFS") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    while (tokens[i].Equals("concreteST-" + (l + 1)) && !tokens[i].Equals("ConcreteFS") && !tokens[i].Equals("Floor-" + (j + 2)))
                     {
                         List<double> toAdd = new List<double>();
                         i++;
@@ -6693,7 +6693,7 @@ namespace WindowsFormsApp1
             //Totalities -- END
             viewInitalized = false;
             //*/
-            //MessageBox.Show(tokens[i]);
+            MessageBox.Show(tokens[i]);
 
             pf = new ParametersForm(parameters, this);
         }

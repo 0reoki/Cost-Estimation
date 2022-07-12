@@ -101,8 +101,8 @@ namespace WindowsFormsApp1
                 col_G_ST_cbx.SelectedIndex = col_U_ST_cbx.SelectedIndex = 0;
 
             //Init Beam Combo Boxes
-            beam_MBHT_T_cbx.SelectedIndex = beam_MBHT_B_cbx.SelectedIndex = beam_SHT_cbx.SelectedIndex =
-            beam_SA_cbx.SelectedIndex = beam_ST_T_cbx.SelectedIndex = beam_ST_B_cbx.SelectedIndex = 0;
+            beam_MBHT_cbx.SelectedIndex = beam_SHT_cbx.SelectedIndex = beam_SHT_cbx.SelectedIndex =
+            beam_ST_cbx.SelectedIndex = 0;
 
             //Init Slab Combo Boxes
             slab_SOG_L_ST_cbx.SelectedIndex = slab_SOG_T_ST_cbx.SelectedIndex = 
@@ -899,29 +899,22 @@ namespace WindowsFormsApp1
                         members.Add(beam_BT_cbx.Text);
                         members.Add(beam_D_bx.Text);
                         members.Add(beam_QTY_bx.Text);
-                        members.Add(beam_SRBS_D_bx.Text);
-                        members.Add(beam_SRBS_S_bx.Text);
-                        members.Add(beam_MBHT_T_cbx.Text);
-                        members.Add(beam_MBHT_B_cbx.Text);
+                        members.Add(beam_MBHT_cbx.Text);
                         members.Add(beam_SHT_cbx.Text);
+                        members.Add(beam_ST_cbx.Text);
 
-
-                        members.Add(beam_SA_cbx.Text);
-                        members.Add(beam_ST_T_cbx.Text);
-                        members.Add(beam_ST_B_cbx.Text);
                         members.Add(beam_TR_CL_bx.Text);
                         members.Add(beam_BR_CL_bx.Text);
-                        members.Add(beam_BRMSD_BD_bx.Text);
 
                         List<List<string>> brMember = new List<List<string>>();
                         foreach (BeamRowUserControl br in br_UC)
                         {
                             List<string> brValues = new List<string>();
                             brValues.Add(br.beamName);
-                            brValues.Add(br.length);
                             brValues.Add(br.qty);
-                            brValues.Add(br.endSupportLT);
-                            brValues.Add(br.endSupportRB);
+                            brValues.Add(br.length);
+                            brValues.Add(br.clearLength);
+                            brValues.Add(br.support);
                             brMember.Add(brValues);
                         }
 
@@ -1062,32 +1055,26 @@ namespace WindowsFormsApp1
 
                     //Do Whatever
                     costEstimationForm.structuralMembers.beamNames[floorCount][memberCount] = addstruct_Name_bx.Text;
-                    
+
                     costEstimationForm.structuralMembers.beam[floorCount][memberCount][0] = beam_BT_cbx.Text;
                     costEstimationForm.structuralMembers.beam[floorCount][memberCount][1] = beam_D_bx.Text;
                     costEstimationForm.structuralMembers.beam[floorCount][memberCount][2] = beam_QTY_bx.Text;
-                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][3] = beam_SRBS_D_bx.Text;
-                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][4] = beam_SRBS_S_bx.Text;
-                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][5] = beam_MBHT_T_cbx.Text;
-                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][6] = beam_MBHT_B_cbx.Text;
-                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][7] = beam_SHT_cbx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][3] = beam_MBHT_cbx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][4] = beam_SHT_cbx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][5] = beam_ST_cbx.Text;
 
-                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][8] = beam_SA_cbx.Text;
-                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][9] = beam_ST_T_cbx.Text;
-                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][10] = beam_ST_B_cbx.Text;
-                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][11] = beam_TR_CL_bx.Text;
-                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][12] = beam_BR_CL_bx.Text;
-                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][13] = beam_BRMSD_BD_bx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][6] = beam_TR_CL_bx.Text;
+                    costEstimationForm.structuralMembers.beam[floorCount][memberCount][7] = beam_BR_CL_bx.Text;
 
                     List<List<string>> brMember = new List<List<string>>();
                     foreach (BeamRowUserControl br in br_UC)
                     {
                         List<string> brValues = new List<string>();
                         brValues.Add(br.beamName);
-                        brValues.Add(br.length);
                         brValues.Add(br.qty);
-                        brValues.Add(br.endSupportLT);
-                        brValues.Add(br.endSupportRB);
+                        brValues.Add(br.length);
+                        brValues.Add(br.clearLength);
+                        brValues.Add(br.support);
                         brMember.Add(brValues);
                     }
 
@@ -2442,27 +2429,21 @@ namespace WindowsFormsApp1
             beam_BT_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][0];
             beam_D_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][1];
             beam_QTY_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][2];
-            beam_SRBS_D_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][3];
-            beam_SRBS_S_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][4];
-            beam_MBHT_T_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][5];
-            beam_MBHT_B_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][6];
-            beam_SHT_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][7];
+            beam_MBHT_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][3];
+            beam_SHT_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][4];
+            beam_ST_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][5];
 
-            beam_SA_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][8];
-            beam_ST_T_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][9];
-            beam_ST_B_cbx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][10];
-            beam_TR_CL_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][11];
-            beam_BR_CL_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][12];
-            beam_BRMSD_BD_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][13];
+            beam_TR_CL_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][6];
+            beam_BR_CL_bx.Text = costEstimationForm.structuralMembers.beam[floorCount][memberCount][7];
 
             foreach (List<string> br in costEstimationForm.structuralMembers.beamRow[floorCount][memberCount])
             {
-                BeamRowUserControl content2 = new BeamRowUserControl(this, costEstimationForm.structuralMembers, beam_BT_cbx.Text, floorCount, memberCount, br[0], br[3], br[4]);
+                BeamRowUserControl content2 = new BeamRowUserControl(this, br[0]);
                 content2.beamName = br[0];
-                content2.length = br[1];
-                content2.qty = br[2];
-                content2.endSupportLT = br[3];
-                content2.endSupportRB = br[4];
+                content2.qty = br[1];
+                content2.length = br[2];
+                content2.clearLength = br[3];
+                content2.support = br[4];
                 br_UC.Add(content2);
                 beam_BR_Panel.Controls.Add(content2);
             }
@@ -3219,7 +3200,7 @@ namespace WindowsFormsApp1
 
         private void beam_BR_AddBtn_Click(object sender, EventArgs e)
         {
-            BeamRowUserControl content = new BeamRowUserControl(this, costEstimationForm.structuralMembers, beam_BT_cbx.Text, floorCount, memberCount, "None", "None", "None");
+            BeamRowUserControl content = new BeamRowUserControl(this, "None");
             br_UC.Add(content);
             beam_BR_Panel.Controls.Add(content);
         }
@@ -3845,6 +3826,11 @@ namespace WindowsFormsApp1
         }
 
         private void roof_RP_ST_D_CLTSR_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel47_Paint(object sender, PaintEventArgs e)
         {
 
         }
