@@ -69,7 +69,7 @@
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107F));
             this.tableLayoutPanel140.Controls.Add(this.SS_REMARK, 16, 0);
             this.tableLayoutPanel140.Controls.Add(this.SS_RSALD_IS_B, 15, 0);
             this.tableLayoutPanel140.Controls.Add(this.SS_RSALD_IS_T, 14, 0);
@@ -89,12 +89,13 @@
             this.tableLayoutPanel140.Controls.Add(this.SS_SM, 0, 0);
             this.tableLayoutPanel140.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel140.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel140.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel140.Name = "tableLayoutPanel140";
             this.tableLayoutPanel140.RowCount = 1;
             this.tableLayoutPanel140.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel140.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel140.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel140.Size = new System.Drawing.Size(1800, 35);
+            this.tableLayoutPanel140.Size = new System.Drawing.Size(1850, 35);
             this.tableLayoutPanel140.TabIndex = 42;
             // 
             // SS_REMARK
@@ -106,7 +107,7 @@
             "2-WAY"});
             this.SS_REMARK.Location = new System.Drawing.Point(1720, 4);
             this.SS_REMARK.Name = "SS_REMARK";
-            this.SS_REMARK.Size = new System.Drawing.Size(77, 28);
+            this.SS_REMARK.Size = new System.Drawing.Size(126, 28);
             this.SS_REMARK.TabIndex = 44;
             // 
             // SS_RSALD_IS_B
@@ -261,7 +262,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel140);
             this.Name = "SlabScheduleUserControl";
-            this.Size = new System.Drawing.Size(1800, 35);
+            this.Size = new System.Drawing.Size(1850, 35);
             this.tableLayoutPanel140.ResumeLayout(false);
             this.tableLayoutPanel140.PerformLayout();
             this.ResumeLayout(false);
