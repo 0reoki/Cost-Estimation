@@ -54,6 +54,7 @@ namespace WindowsFormsApp1
             this.slabCount = slabCount;
             this.stairsCount = stairsCount;
             this.roofCount = roofCount;
+            
 
             oldStructMemName = "";
             g_ltUC = new List<ColumnLateralTiesUserControl>();
@@ -126,7 +127,7 @@ namespace WindowsFormsApp1
             setDefaultStructMemName();
             populateColumnConnectionBelow();
             populateBeamRowConnections();
-
+            
             //existing node?
             if (!isNew)
             {
@@ -231,6 +232,10 @@ namespace WindowsFormsApp1
             {
                 tab.Text = "";
             }
+            roof_RP_ST_D_CLTSP_cbx.DropDownWidth = DropDownWidth(roof_RP_ST_D_CLTSP_cbx);
+            roof_RP_ST_D_CLTSR_cbx.DropDownWidth = DropDownWidth(roof_RP_ST_D_CLTSR_cbx);
+            roof_RP_SCP_D_CLCPR_cbx.DropDownWidth = DropDownWidth(roof_RP_SCP_D_CLCPR_cbx);
+            roof_RP_SCP_D_CLCPP_cbx.DropDownWidth = DropDownWidth(roof_RP_SCP_D_CLCPP_cbx);           
         }
 
         private void earth_SaveBtn_Click(object sender, EventArgs e)
@@ -1792,8 +1797,8 @@ namespace WindowsFormsApp1
                     }
                 }
             }
-            else //Roofing
-            {
+            else //Roofing(here)
+            {                
                 if (isNew)
                 {
                     //Name Validation
@@ -1814,7 +1819,6 @@ namespace WindowsFormsApp1
                             if (roof_RP_W_rb.Checked == true) //Wood
                             {
                                 members.Add(roof_RP_W_rb.Text);
-
                                 members.Add(roof_RP_W_D_LR_bx.Text);
                                 members.Add(roof_RP_W_D_LP_bx.Text);
                                 members.Add(roof_RP_W_D_SR_bx.Text);
@@ -1823,7 +1827,6 @@ namespace WindowsFormsApp1
                             else if (roof_RP_ST_rb.Checked == true) //Steel - Tubular
                             {
                                 members.Add(roof_RP_ST_rb.Text);
-
                                 members.Add(roof_RP_ST_D_LRSW_bx.Text);
                                 members.Add(roof_RP_ST_D_LR_bx.Text);
                                 members.Add(roof_RP_ST_D_LP_bx.Text); 
@@ -1835,7 +1838,6 @@ namespace WindowsFormsApp1
                             else if (roof_RP_SCP_rb.Checked == true) //Steel - Cee Purlins
                             {
                                 members.Add(roof_RP_SCP_rb.Text);
-
                                 members.Add(roof_RP_SCP_D_LRSW_bx.Text);
                                 members.Add(roof_RP_SCP_D_LR_bx.Text);
                                 members.Add(roof_RP_SCP_D_LP_bx.Text);
@@ -1844,13 +1846,11 @@ namespace WindowsFormsApp1
                                 members.Add(roof_RP_SCP_D_CLCPR_cbx.Text);
                                 members.Add(roof_RP_SCP_D_CLCPP_cbx.Text);
                             }
-
                             List<string> hrsMember = new List<string>();
                             costEstimationForm.structuralMembers.roof[floorCount].Add(members);
                             costEstimationForm.structuralMembers.roofHRS[floorCount].Add(hrsMember);
-                            costEstimationForm.structuralMembers.roofNames[floorCount].Add(structMemName);
-
-                            //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                            costEstimationForm.structuralMembers.roofNames[floorCount].Add(structMemName);                            
+                            compute.AddRoofWorks(costEstimationForm, floorCount, roofCount);
                             this.DialogResult = DialogResult.OK;
                         }
                         catch (Exception ex)
@@ -1891,12 +1891,10 @@ namespace WindowsFormsApp1
                                 members.Add(roof_GI_M_PGIS_cb.Text); 
                                 members.Add(roof_GI_M_SP_cbx.Text);
                             }
-
                             costEstimationForm.structuralMembers.roof[floorCount].Add(members);
                             costEstimationForm.structuralMembers.roofHRS[floorCount].Add(hrsMember);
                             costEstimationForm.structuralMembers.roofNames[floorCount].Add(structMemName);
-
-                            //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                            compute.AddRoofWorks(costEstimationForm, floorCount, roofCount);
                             this.DialogResult = DialogResult.OK;
                         }
                         catch (Exception ex)
@@ -1936,8 +1934,7 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.roof[floorCount].Add(members);
                             costEstimationForm.structuralMembers.roofHRS[floorCount].Add(hrsMember);
                             costEstimationForm.structuralMembers.roofNames[floorCount].Add(structMemName);
-
-                            //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
+                            compute.AddRoofWorks(costEstimationForm, floorCount, roofCount);
                             this.DialogResult = DialogResult.OK;
                         }
                         catch (Exception ex)
@@ -2008,7 +2005,7 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.roof[floorCount][memberCount][7] = roof_RP_SCP_D_CLCPR_cbx.Text;
                             costEstimationForm.structuralMembers.roof[floorCount][memberCount][8] = roof_RP_SCP_D_CLCPP_cbx.Text;
                         }
-
+                        compute.ModifyRoofWorks(costEstimationForm, floorCount, memberCount);
                         //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
                         this.DialogResult = DialogResult.OK;
                     }
@@ -2048,7 +2045,7 @@ namespace WindowsFormsApp1
                         }
 
                         costEstimationForm.structuralMembers.roofHRS[floorCount][memberCount] = hrsMember;
-                        
+                        compute.ModifyRoofWorks(costEstimationForm, floorCount, memberCount);
                         //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
                         this.DialogResult = DialogResult.OK;
                     }
@@ -2075,7 +2072,7 @@ namespace WindowsFormsApp1
                         costEstimationForm.structuralMembers.roof[floorCount][memberCount][13] = roof_RA_D_HR_TL_bx.Text;
                         costEstimationForm.structuralMembers.roof[floorCount][memberCount][14] = roof_RA_D_HR_EL_bx.Text;
                         costEstimationForm.structuralMembers.roof[floorCount][memberCount][15] = roof_RA_D_HR_TW_bx.Text;
-                        
+                        compute.ModifyRoofWorks(costEstimationForm, floorCount, memberCount);
                         //compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
                         this.DialogResult = DialogResult.OK;
 
@@ -3847,6 +3844,11 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void roof_RP_ST_D_CLTSR_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void roof_GI_D_HRS_AddBtn_Click(object sender, EventArgs e)
         {
             RoofHRSUserControl content = new RoofHRSUserControl();
@@ -4019,6 +4021,20 @@ namespace WindowsFormsApp1
             slab_SS_SM_cbx.Items.RemoveAt(index);
             slab_SS_SM_cbx.Items.Insert(index, newName);
             slab_SS_SM_cbx.SelectedIndex = selectedIndex;
+        }
+
+        int DropDownWidth(ComboBox myCombo)
+        {
+            int maxWidth = 0, temp = 0;
+            foreach (var obj in myCombo.Items)
+            {
+                temp = TextRenderer.MeasureText(obj.ToString(), myCombo.Font).Width;
+                if (temp > maxWidth)
+                {
+                    maxWidth = temp;
+                }
+            }
+            return maxWidth;
         }
     }
 }
