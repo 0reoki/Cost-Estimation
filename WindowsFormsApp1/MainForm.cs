@@ -243,6 +243,9 @@ namespace WindowsFormsApp1
             //Initialize Summary BOQ table
             initializeSummaryTable();
 
+            //Initialize View and BOQ additional rows
+            initializeView();
+
             //Initialize Help
             initializeHelpTree();
         }
@@ -553,26 +556,26 @@ namespace WindowsFormsApp1
 
             //Excavation
             if (earthworksChecklist[1])
-                excavation_CostL = excavation_Total * double.Parse(parameters.price_LaborRate_Earthworks["Excavation [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                excavation_CostL = Math.Round(excavation_Total, 2) * double.Parse(parameters.price_LaborRate_Earthworks["Excavation [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
             else
                 excavation_CostL = 0;
             if (earthworksChecklist[2])
-                backfillingAndCompaction_CostL = backfillingAndCompaction_Total * double.Parse(parameters.price_LaborRate_Earthworks["Backfilling and Compaction [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                backfillingAndCompaction_CostL = Math.Round(backfillingAndCompaction_Total, 2) * double.Parse(parameters.price_LaborRate_Earthworks["Backfilling and Compaction [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
             else
                 backfillingAndCompaction_CostL = 0;
             if (earthworksChecklist[3])
-                gradingAndCompaction_CostL = gradingAndCompaction_Total * double.Parse(parameters.price_LaborRate_Earthworks["Grading and Compaction [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                gradingAndCompaction_CostL = Math.Round(gradingAndCompaction_Total, 2) * double.Parse(parameters.price_LaborRate_Earthworks["Grading and Compaction [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
             else
                 gradingAndCompaction_CostL = 0;
             string earthworks_gravelBeddingType = parameters.earth_CF_TY;
-            gravelBedding_CostM = gravelBedding_Total * double.Parse(parameters.price_Gravel[earthworks_gravelBeddingType].ToString(), System.Globalization.CultureInfo.InvariantCulture);
-            gravelBedding_CostL = gravelBedding_Total * double.Parse(parameters.price_LaborRate_Earthworks["Gravel Bedding and Compaction [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+            gravelBedding_CostM = Math.Round(gravelBedding_Total, 2) * double.Parse(parameters.price_Gravel[earthworks_gravelBeddingType].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+            gravelBedding_CostL = Math.Round(gravelBedding_Total, 2) * double.Parse(parameters.price_LaborRate_Earthworks["Gravel Bedding and Compaction [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
             if (earthworksChecklist[4])
                 gravelBedding_CostTotal = gravelBedding_CostM + gravelBedding_CostL;
             else
                 gravelBedding_CostTotal = 0;
             if (earthworksChecklist[5])
-                soilPoisoning_CostM = soilPoisoning_Total * double.Parse(parameters.price_LaborRate_Earthworks["Soil Poisoning [m2]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                soilPoisoning_CostM = Math.Round(soilPoisoning_Total, 2) * double.Parse(parameters.price_LaborRate_Earthworks["Soil Poisoning [m2]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
             else
                 soilPoisoning_CostM = 0;
             earthworks_CostTotal = excavation_CostL + backfillingAndCompaction_CostL + gradingAndCompaction_CostL +
@@ -1083,12 +1086,309 @@ namespace WindowsFormsApp1
 
             //Paints -- END
             //Cost Computation - END
+            //Setting View -- START
             if (!viewInitalized)
             {
+                //For refresh
                 view_TV1.Nodes.Clear();
                 view_TV2.Nodes.Clear();
-                //Tree View 1 - Earthworks and Concrete Works
+                this.summ_BOQ_dg.Rows.Clear(); 
+
+                //Tree View 1 - Earthworks, Concrete Works, Form Works, and Masonry
                 List<TreeNode> nodes1;
+                TreeNode tn1 = new TreeNode("Earthworks (₱" + earthworks_CostTotal.ToString("#,##0.00") + ")");
+                tn1.Name = "earthworksParent";
+
+                TreeNode tn2 = new TreeNode("Concrete Works");
+                tn2.Name = "concreteWorksParent";
+
+                TreeNode tn3 = new TreeNode("Form Works");
+                tn3.Name = "formWorksParent";
+
+                TreeNode tn4 = new TreeNode("Masonry (₱" + mason_TOTALCOST.ToString("#,##0.00") + ")");
+                tn4.Name = "masonryParent";
+
+                nodes1 = new List<TreeNode>() { tn1, tn2, tn3, tn4 };
+
+                setTree(nodes1, view_TV1);
+
+                //1.0 - Earthworks -- START
+                TreeNode[] found = view_TV1.Nodes.Find("earthworksParent", true);
+
+                TreeNode newChild1 = new TreeNode("1.1 Excavation (₱" + excavation_CostL.ToString("#,##0.00") + ")");
+                newChild1.Name = "excavation_Total";
+
+                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction (₱" + backfillingAndCompaction_CostL.ToString("#,##0.00") + ")");
+                newChild2.Name = "backfillingAndCompaction_Total";
+
+                TreeNode newChild3 = new TreeNode("1.3 Grading and Compaction (₱" + gradingAndCompaction_CostL.ToString("#,##0.00") + ")");
+                newChild3.Name = "gradingAndCompaction_Total";
+
+                TreeNode newChild4 = new TreeNode("1.4 Gravel Bedding and Compaction (₱" + gravelBedding_CostTotal.ToString("#,##0.00") + ")");
+                newChild4.Name = "gravelBedding_Total";
+
+                TreeNode newChild5 = new TreeNode("1.5 Soil Poisoning (₱" + soilPoisoning_CostM.ToString("#,##0.00") + ")");
+                newChild5.Name = "soilPoisoning_Total";
+
+                found[0].Nodes.Add(newChild1);
+                found[0].Nodes.Add(newChild2);
+                found[0].Nodes.Add(newChild3);
+                found[0].Nodes.Add(newChild4);
+                found[0].Nodes.Add(newChild5);
+
+                //Setting of BOQ     
+                if (earthworksChecklist[0])
+                {
+                    //for adding contents in table (search for "Column Names")
+                    var index = this.summ_BOQ_dg.Rows.Add();
+                    this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "1.0";
+                    this.summ_BOQ_dg.Rows[index].Cells["item1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                    this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "EARTHWORKS";
+                    this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+
+                    if (earthworksChecklist[1])
+                    {
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.1";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Excavation";
+                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = excavation_Total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Earthworks["Excavation [m3]"].ToString()).ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + excavation_CostL.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + excavation_CostL.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+                    if (earthworksChecklist[2])
+                    {
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.2";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Backfilling and Compaction";
+                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = backfillingAndCompaction_Total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Earthworks["Backfilling and Compaction [m3]"].ToString()).ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + backfillingAndCompaction_CostL.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + backfillingAndCompaction_CostL.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+                    if (earthworksChecklist[3])
+                    {
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.3";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Grading and Compaction";
+                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = gradingAndCompaction_Total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Earthworks["Grading and Compaction [m3]"].ToString()).ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + gradingAndCompaction_CostL.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + gradingAndCompaction_CostL.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+                    if (earthworksChecklist[4])
+                    {
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.4";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Gravel bedding and Compaction";
+                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = gravelBedding_Total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                        this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + double.Parse(parameters.price_Gravel[earthworks_gravelBeddingType].ToString()).ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + gravelBedding_CostM.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Earthworks["Gravel Bedding and Compaction [m3]"].ToString()).ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + gravelBedding_CostL.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + gravelBedding_CostTotal.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+                    if (earthworksChecklist[5])
+                    {
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.5";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Soil Poisoning";
+                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = soilPoisoning_Total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                        this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Earthworks["Soil Poisoning [m2]"].ToString()).ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + soilPoisoning_CostM.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + soilPoisoning_CostM.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+
+                    this.summ_BOQ_dg.Rows.Add();
+                    index = this.summ_BOQ_dg.Rows.Add();
+                    double earthworks_TotalCostM = gravelBedding_CostM + soilPoisoning_CostM;
+                    double earthworks_TotalCostL = excavation_CostL + backfillingAndCompaction_CostL + gradingAndCompaction_CostL + gravelBedding_CostL;
+                    double earthworks_TotalCost = earthworks_TotalCostM + earthworks_TotalCostL;
+                    this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + earthworks_TotalCostM.ToString("#,##0.00");
+                    this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + earthworks_TotalCostL.ToString("#,##0.00");
+                    this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + earthworks_TotalCost.ToString("#,##0.00");
+                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
+                }
+                //1.0 - Earthworks -- END
+                /*
+                //2.0 - Concrete Works -- START
+                TreeNode[] found = view_TV1.Nodes.Find("earthworksParent", true);
+
+                TreeNode newChild1 = new TreeNode("1.1 Excavation (₱" + excavation_CostL.ToString("#,##0.00") + ")");
+                newChild1.Name = "excavation_Total";
+
+                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction (₱" + backfillingAndCompaction_CostL.ToString("#,##0.00") + ")");
+                newChild2.Name = "backfillingAndCompaction_Total";
+
+                TreeNode newChild3 = new TreeNode("1.3 Grading and Compaction (₱" + gradingAndCompaction_CostL.ToString("#,##0.00") + ")");
+                newChild3.Name = "gradingAndCompaction_Total";
+
+                TreeNode newChild4 = new TreeNode("1.4 Gravel Bedding and Compaction (₱" + gravelBedding_CostTotal.ToString("#,##0.00") + ")");
+                newChild4.Name = "gravelBedding_Total";
+
+                TreeNode newChild5 = new TreeNode("1.5 Soil Poisoning (₱" + soilPoisoning_CostM.ToString("#,##0.00") + ")");
+                newChild5.Name = "soilPoisoning_Total";
+
+                found[0].Nodes.Add(newChild1);
+                found[0].Nodes.Add(newChild2);
+                found[0].Nodes.Add(newChild3);
+                found[0].Nodes.Add(newChild4);
+                found[0].Nodes.Add(newChild5);
+
+                //2.0 - Concrete Works -- END
+
+                //3.0 - Formworks -- START
+                TreeNode[] found = view_TV1.Nodes.Find("earthworksParent", true);
+
+                TreeNode newChild1 = new TreeNode("1.1 Excavation (₱" + excavation_CostL.ToString("#,##0.00") + ")");
+                newChild1.Name = "excavation_Total";
+
+                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction (₱" + backfillingAndCompaction_CostL.ToString("#,##0.00") + ")");
+                newChild2.Name = "backfillingAndCompaction_Total";
+
+                TreeNode newChild3 = new TreeNode("1.3 Grading and Compaction (₱" + gradingAndCompaction_CostL.ToString("#,##0.00") + ")");
+                newChild3.Name = "gradingAndCompaction_Total";
+
+                TreeNode newChild4 = new TreeNode("1.4 Gravel Bedding and Compaction (₱" + gravelBedding_CostTotal.ToString("#,##0.00") + ")");
+                newChild4.Name = "gravelBedding_Total";
+
+                TreeNode newChild5 = new TreeNode("1.5 Soil Poisoning (₱" + soilPoisoning_CostM.ToString("#,##0.00") + ")");
+                newChild5.Name = "soilPoisoning_Total";
+
+                found[0].Nodes.Add(newChild1);
+                found[0].Nodes.Add(newChild2);
+                found[0].Nodes.Add(newChild3);
+                found[0].Nodes.Add(newChild4);
+                found[0].Nodes.Add(newChild5);
+
+                //3.0 - Formworks -- END
+                */
+
+                //4.0 - Masonry -- START
+                found = view_TV1.Nodes.Find("masonryParent", true);
+
+                TreeNode M_newChild1 = new TreeNode("4.1 Exterior Walls (₱" + exterior_costTotal.ToString("#,##0.00") + ")");
+                newChild1.Name = "exterior_Wall_Total";
+
+                TreeNode M_newChild2 = new TreeNode("4.2 Interior Walls (₱" + interior_costTotal.ToString("#,##0.00") + ")");
+                newChild2.Name = "interior_Wall_Total";
+
+                found[0].Nodes.Add(M_newChild1);
+                found[0].Nodes.Add(M_newChild2);
+                //Setting of BOQ     
+                if (masonryChecklist.Contains(true))
+                {
+                    var index = this.summ_BOQ_dg.Rows.Add();
+                    this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "4.0";
+                    this.summ_BOQ_dg.Rows[index].Cells["item1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                    this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "MASONRY";
+                    this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+
+                    if (masonryChecklist[0])
+                    {
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "4.1";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Exterior Walls";
+                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = masonrysSolutionP1[3].ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                        this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + exterior_UnitM.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + exterior_CostM.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Masonry["MASONRY [m2]"].ToString()).ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + exterior_CostL.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + exterior_costTotal.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+                    if (masonryChecklist[1])
+                    {
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "4.2";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Interior Walls";
+                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = masonrysSolutionP1[8].ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                        this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + interior_UnitM.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + interior_CostM.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Masonry["MASONRY [m2]"].ToString()).ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + interior_CostL.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + interior_costTotal.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+
+                    this.summ_BOQ_dg.Rows.Add();
+                    index = this.summ_BOQ_dg.Rows.Add();
+                    this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + masonMCost_total.ToString("#,##0.00");
+                    this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + masonLCost_total.ToString("#,##0.00");
+                    this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + mason_TOTALCOST.ToString("#,##0.00");
+                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
+                }
+                //4.0 - Masonry -- END
+
+                /*
+                //Tree View 2 - Reinforcement Steel, Roofing, Tile Works, Paint Works, and Miscellaneous Items
+                List<TreeNode> nodes2;
                 TreeNode tn1 = new TreeNode("Earthworks (₱" + earthworks_CostTotal.ToString() + ")");
                 tn1.Name = "earthworksParent";
 
@@ -1098,22 +1398,22 @@ namespace WindowsFormsApp1
 
                 setTree(nodes1, view_TV1);
 
-                //Earthworks
+                //Reinforcement Steel
                 TreeNode[] found = view_TV1.Nodes.Find("earthworksParent", true);
 
-                TreeNode newChild1 = new TreeNode("1.1 Excavation (₱" + excavation_CostL.ToString() + ")");
+                TreeNode newChild1 = new TreeNode("1.1 Excavation (₱" + excavation_CostL.ToString("#,##0.00") + ")");
                 newChild1.Name = "excavation_Total";
 
-                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction (₱" + backfillingAndCompaction_CostL.ToString() + ")");
+                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction (₱" + backfillingAndCompaction_CostL.ToString("#,##0.00") + ")");
                 newChild2.Name = "backfillingAndCompaction_Total";
 
-                TreeNode newChild3 = new TreeNode("1.3 Grading and Compaction (₱" + gradingAndCompaction_CostL.ToString() + ")");
+                TreeNode newChild3 = new TreeNode("1.3 Grading and Compaction (₱" + gradingAndCompaction_CostL.ToString("#,##0.00") + ")");
                 newChild3.Name = "gradingAndCompaction_Total";
 
-                TreeNode newChild4 = new TreeNode("1.4 Gravel Bedding and Compaction (₱" + gravelBedding_CostTotal.ToString() + ")");
+                TreeNode newChild4 = new TreeNode("1.4 Gravel Bedding and Compaction (₱" + gravelBedding_CostTotal.ToString("#,##0.00") + ")");
                 newChild4.Name = "gravelBedding_Total";
 
-                TreeNode newChild5 = new TreeNode("1.5 Soil Poisoning (₱" + soilPoisoning_CostM.ToString() + ")");
+                TreeNode newChild5 = new TreeNode("1.5 Soil Poisoning (₱" + soilPoisoning_CostM.ToString("#,##0.00") + ")");
                 newChild5.Name = "soilPoisoning_Total";
 
                 found[0].Nodes.Add(newChild1);
@@ -1121,9 +1421,13 @@ namespace WindowsFormsApp1
                 found[0].Nodes.Add(newChild3);
                 found[0].Nodes.Add(newChild4);
                 found[0].Nodes.Add(newChild5);
+                */
 
-                //Tree View 2 - 
+                //Setting BOQ Cell Autosize to True
+                this.summ_BOQ_dg.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                this.summ_BOQ_dg.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
+            //Setting View End
         }
         private void setTree(List<TreeNode> nodes, TreeView treeView)
         {
@@ -1223,8 +1527,6 @@ namespace WindowsFormsApp1
                 viewInitalized = false;
                 initializeView();
                 AdjustView10();
-
-                //Update BOQ
             }
         }
         //View functions -- END
@@ -3244,8 +3546,6 @@ namespace WindowsFormsApp1
                 viewInitalized = false;
                 initializeView();
                 AdjustView10();
-
-                //Update BOQ
             }
         }
 
@@ -3267,7 +3567,7 @@ namespace WindowsFormsApp1
         //Summary functions -- START
         void initializeSummaryTable()
         {
-            DataGridView summ_BOQ_dg = new DataGridView();
+            DataGridView summ_BOQ_dg = new DataGridView(); //Column Names
             this.summ_BOQ_dg.Columns.Add("item1", "");
             this.summ_BOQ_dg.Columns.Add("description1", "");
             this.summ_BOQ_dg.Columns.Add("description2", "");
@@ -3278,23 +3578,12 @@ namespace WindowsFormsApp1
             this.summ_BOQ_dg.Columns.Add("labor1", "UNIT COST");
             this.summ_BOQ_dg.Columns.Add("labor2", "TOTAL");
             this.summ_BOQ_dg.Columns.Add("totalcost1", "TOTAL COST");
-            this.summ_BOQ_dg.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             /*for (int x = 0; x < 10; x++)
             {
                 this.summ_BOQ_dg.Rows[0].Cells[x].Style.BackColor = Color.Green;
             }*/
             this.summ_BOQ_dg.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGreen;
             this.summ_BOQ_dg.EnableHeadersVisualStyles = false;
-
-
-            //for adding contents in table -- START
-            for (int x = 0; x < 3; x++)
-            {
-                var index = this.summ_BOQ_dg.Rows.Add();
-                this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "EARTHWORKS";
-                this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = 50.2;
-            }
-            //for adding contents in table -- END
 
             for (int j = 0; j < this.summ_BOQ_dg.ColumnCount; j++)
             {

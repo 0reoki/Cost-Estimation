@@ -32879,6 +32879,7 @@ namespace WindowsFormsApp1
             this.summ_BOQ_dg.GridColor = System.Drawing.SystemColors.Control;
             this.summ_BOQ_dg.Location = new System.Drawing.Point(4, 218);
             this.summ_BOQ_dg.Name = "summ_BOQ_dg";
+            this.summ_BOQ_dg.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
