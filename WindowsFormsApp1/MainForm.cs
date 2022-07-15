@@ -273,8 +273,8 @@ namespace WindowsFormsApp1
 
                 //Console.WriteLine(structuralMembers.concreteWorkSolutionsC[0][0][0]);
             }
-            //View Tab button is clicked
-            else if (e.TabPageIndex == 3)
+            //View or BOQ Tab button is clicked
+            else if (e.TabPageIndex == 3 || e.TabPageIndex == 4)
             {
                 initializeView();
                 AdjustView10();
@@ -1096,16 +1096,16 @@ namespace WindowsFormsApp1
 
                 //Tree View 1 - Earthworks, Concrete Works, Form Works, and Masonry
                 List<TreeNode> nodes1;
-                TreeNode tn1 = new TreeNode("Earthworks (₱" + earthworks_CostTotal.ToString("#,##0.00") + ")");
+                TreeNode tn1 = new TreeNode("1.0 Earthworks (₱" + earthworks_CostTotal.ToString("#,##0.00") + ")");
                 tn1.Name = "earthworksParent";
 
-                TreeNode tn2 = new TreeNode("Concrete Works");
+                TreeNode tn2 = new TreeNode("2.0 Concrete Works");
                 tn2.Name = "concreteWorksParent";
 
-                TreeNode tn3 = new TreeNode("Form Works");
+                TreeNode tn3 = new TreeNode("3.0 Form Works");
                 tn3.Name = "formWorksParent";
 
-                TreeNode tn4 = new TreeNode("Masonry (₱" + mason_TOTALCOST.ToString("#,##0.00") + ")");
+                TreeNode tn4 = new TreeNode("4.0 Masonry (₱" + mason_TOTALCOST.ToString("#,##0.00") + ")");
                 tn4.Name = "masonryParent";
 
                 nodes1 = new List<TreeNode>() { tn1, tn2, tn3, tn4 };
@@ -1321,85 +1321,102 @@ namespace WindowsFormsApp1
                 found[0].Nodes.Add(M_newChild1);
                 found[0].Nodes.Add(M_newChild2);
                 //Setting of BOQ     
-                if (masonryChecklist.Contains(true))
+                try
                 {
-                    var index = this.summ_BOQ_dg.Rows.Add();
-                    this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "4.0";
-                    this.summ_BOQ_dg.Rows[index].Cells["item1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
-                    this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "MASONRY";
-                    this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
-
-                    if (masonryChecklist[0])
+                    if (masonryChecklist.Contains(true))
                     {
-                        index = this.summ_BOQ_dg.Rows.Add();
-                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "4.1";
-                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        var index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "4.0";
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "MASONRY";
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
-                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Exterior Walls";
-                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
-                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = masonrysSolutionP1[3].ToString("#,##0.00");
-                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
-                        this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + exterior_UnitM.ToString("#,##0.00");
-                        this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + exterior_CostM.ToString("#,##0.00");
-                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Masonry["MASONRY [m2]"].ToString()).ToString("#,##0.00");
-                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + exterior_CostL.ToString("#,##0.00");
-                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + exterior_costTotal.ToString("#,##0.00");
-                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    }
-                    if (masonryChecklist[1])
-                    {
-                        index = this.summ_BOQ_dg.Rows.Add();
-                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "4.2";
-                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
-                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Interior Walls";
-                        this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
-                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = masonrysSolutionP1[8].ToString("#,##0.00");
-                        this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
-                        this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + interior_UnitM.ToString("#,##0.00");
-                        this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + interior_CostM.ToString("#,##0.00");
-                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Masonry["MASONRY [m2]"].ToString()).ToString("#,##0.00");
-                        this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + interior_CostL.ToString("#,##0.00");
-                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + interior_costTotal.ToString("#,##0.00");
-                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    }
 
-                    this.summ_BOQ_dg.Rows.Add();
-                    index = this.summ_BOQ_dg.Rows.Add();
-                    this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + masonMCost_total.ToString("#,##0.00");
-                    this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + masonLCost_total.ToString("#,##0.00");
-                    this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + mason_TOTALCOST.ToString("#,##0.00");
-                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
+                        if (masonryChecklist[0])
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "4.1";
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Exterior Walls";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = masonrysSolutionP1[3].ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + exterior_UnitM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + exterior_CostM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Masonry["MASONRY [m2]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + exterior_CostL.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + exterior_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+                        if (masonryChecklist[1])
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "4.2";
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Interior Walls";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = masonrysSolutionP1[8].ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + interior_UnitM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + interior_CostM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Masonry["MASONRY [m2]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + interior_CostL.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + interior_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+
+                        this.summ_BOQ_dg.Rows.Add();
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + masonMCost_total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + masonLCost_total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + mason_TOTALCOST.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
+                    }
+                } 
+                catch (Exception ex)
+                {
+                    
                 }
                 //4.0 - Masonry -- END
 
-                /*
                 //Tree View 2 - Reinforcement Steel, Roofing, Tile Works, Paint Works, and Miscellaneous Items
                 List<TreeNode> nodes2;
-                TreeNode tn1 = new TreeNode("Earthworks (₱" + earthworks_CostTotal.ToString() + ")");
-                tn1.Name = "earthworksParent";
+                TreeNode tn1_2 = new TreeNode("5.0 Reinforcement Steel");
+                tn1_2.Name = "reinParent";
 
-                TreeNode tn2 = new TreeNode("Concrete Works");
-                tn2.Name = "concreteWorksParent";
-                nodes1 = new List<TreeNode>() { tn1, tn2 };
+                TreeNode tn2_2 = new TreeNode("6.0 Roofing (₱" + roof_TOTALCOST.ToString("#,##0.00") + ")");
+                tn2_2.Name = "roofingParent";
 
-                setTree(nodes1, view_TV1);
+                TreeNode tn3_2 = new TreeNode("7.0 Tiling Works");
+                tn3_2.Name = "tilingParent";
 
-                //Reinforcement Steel
-                TreeNode[] found = view_TV1.Nodes.Find("earthworksParent", true);
+                TreeNode tn4_2 = new TreeNode("8.0 Paint Works (₱" + mason_TOTALCOST.ToString("#,##0.00") + ")");
+                tn4_2.Name = "paintParent";
+
+                TreeNode tn5_2 = new TreeNode("9.0 Miscellaneous Items (₱" + mason_TOTALCOST.ToString("#,##0.00") + ")");
+                tn5_2.Name = "miscParent";
+                
+                nodes2 = new List<TreeNode>() { tn1_2, tn2_2, tn3_2, tn4_2, tn5_2 };
+
+                setTree(nodes2, view_TV2);
+
+                /*
+                //5.0 - Reinforcement Steel -- START
+                TreeNode[] found = view_TV2.Nodes.Find("reinParent", true);
 
                 TreeNode newChild1 = new TreeNode("1.1 Excavation (₱" + excavation_CostL.ToString("#,##0.00") + ")");
                 newChild1.Name = "excavation_Total";
@@ -1421,7 +1438,121 @@ namespace WindowsFormsApp1
                 found[0].Nodes.Add(newChild3);
                 found[0].Nodes.Add(newChild4);
                 found[0].Nodes.Add(newChild5);
+                //5.0 - Reinforcement Steel -- END
+
+                //6.0 Roofings **
+                public double rANDp_MCost,// Rafter and Purlins - Material Cost
+                            rANDp_LCost,// Rafter and Purlins - Labor Cost
+                            rANDp_costTotal,// Rafter and Purlins - TOTAL COST
+                            acce_MCost, // G.I Roof and Its Accessories - Material Cost
+                            acce_LCost,// G.I Roof and Its Accessories - Labor Cost
+                            acce_costTotal,// G.I Roof and Its Accessories - TOTAL COST
+                            tins_MCost,// Tinswork - Material Cost
+                            tins_LCost,// Tinswork - Labor Cost
+                            tins_costTotal,// Tinswork - TOTAL COST
+                            roof_MTOTAL,// Total Material Cost
+                            roof_LTOTAL,// Total Labor Cost
+                            roof_TOTALCOST;// Overall Total Cost   
+
+                roofingsChecklist
                 */
+
+                //6.0 - Roofing -- START
+                found = view_TV2.Nodes.Find("roofingParent", true);
+
+                TreeNode roof_newChild1 = new TreeNode("6.1 G.I. and Accessories (₱" + acce_costTotal.ToString("#,##0.00") + ")");
+                roof_newChild1.Name = "GI_and_Accessories_Total";
+
+                TreeNode roof_newChild2 = new TreeNode("6.2 Rafters and Purlins (₱" + rANDp_costTotal.ToString("#,##0.00") + ")");
+                roof_newChild2.Name = "Rafters_and_Purlins_Total";
+
+                TreeNode roof_newChild3 = new TreeNode("6.3 Tinswork (₱" + tins_costTotal.ToString("#,##0.00") + ")");
+                roof_newChild3.Name = "Tinswork_Total";
+
+                found[0].Nodes.Add(roof_newChild1);
+                found[0].Nodes.Add(roof_newChild2);
+                found[0].Nodes.Add(roof_newChild3);
+
+                //Setting of BOQ     
+                try
+                {
+                    if (roofingsChecklist.Contains(true))
+                    {
+                        var index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "6.0";
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "ROOFING";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+
+                        if (roofingsChecklist[0])
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "6.1";
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "G.I. and ACCESSORIES";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = acce_MCost.ToString("#,##0.00"); // TODO
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + acce_MCost.ToString("#,##0.00"); // TODO
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + acce_MCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Roofings["ROOFINGS [m2]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + roof_LTOTAL.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + acce_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+                        if (roofingsChecklist[1])
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "6.2";
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "RAFTERS AND PURLINS";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + rANDp_MCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + rANDp_LCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + rANDp_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+                        if (roofingsChecklist[2])
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "6.3";
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "TINSWORK";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + tins_MCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + tins_LCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + tins_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+
+                        this.summ_BOQ_dg.Rows.Add();
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + roof_MTOTAL.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + roof_LTOTAL.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + roof_TOTALCOST.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+                //6.0 - Roofing -- END
 
                 //Setting BOQ Cell Autosize to True
                 this.summ_BOQ_dg.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
