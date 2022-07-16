@@ -65,10 +65,23 @@ namespace WindowsFormsApp1
         //Solution Roof        
         public List<List<List<double>>> roofSolutions = new List<List<List<double>>>();
 
+        //Solution Formworks
+        public List<double> per_col = new List<double>();
+        public List<double> per_wal = new List<double>();
+        public List<double> footings_comps = new List<double>();// formworkFC - frameworkFC - formworkWF [FOOTINGS]
+        public List<double> col_area = new List<double>();
+        public List<double> col_woods = new List<double>();
+        public List<double> col_post = new List<double>();
+        public List<double> col_scafV = new List<double>();
+        public List<double> col_scafH = new List<double>();
+        public List<double> col_scafD = new List<double>();
+        //Floor - eachbeam - each contents
+        public List<List<List<string>>> Bbeam_FW = new List<List<List<string>>>();
+        public List<List<List<string>>> Bsched_FW = new List<List<List<string>>>();
+        public List<List<List<List<string>>>> Brow_FW = new List<List<List<List<string>>>>();
+
         //Constant variables
         public List<List<double>> concreteProportion = new List<List<double>>();
-
-        //Roof Solution
 
         public StructuralMembers(CostEstimationForm cEF)
         {
@@ -149,7 +162,9 @@ namespace WindowsFormsApp1
             //Masonry function call            
             cEF.masonrysSolutionP1 = cEF.compute.computeMasonry(cEF, cEF.parameters.mason_exteriorWall, cEF.parameters.mason_exteriorWindow, cEF.parameters.mason_exteriorDoor, cEF.parameters.mason_interiorWall, cEF.parameters.mason_interiorWindow, cEF.parameters.mason_interiorDoor, cEF.parameters.mason_CHB_EW, cEF.parameters.mason_CHB_IW);
             cEF.masonrysSolutionP2 = cEF.compute.computeConcreteWall_mortar(cEF, cEF.parameters.conc_CM_W_MEW_CM, cEF.parameters.conc_CM_W_MIW_CM, cEF.parameters.conc_CM_W_P_CM, cEF.parameters.conc_CM_W_P_PT);
-            cEF.masonrysSolutionP3 = cEF.compute.computeCHB_reinforcement(cEF.masonrysSolutionP1[3], cEF.masonrysSolutionP1[8], cEF.parameters.mason_RTW_VS, cEF.parameters.mason_RTW_HSL, cEF.parameters.mason_RTW_RG, cEF.parameters.mason_RTW_BD, cEF.parameters.mason_RTW_RL, cEF.parameters.mason_RTW_LTW);            
+            cEF.masonrysSolutionP3 = cEF.compute.computeCHB_reinforcement(cEF.masonrysSolutionP1[3], cEF.masonrysSolutionP1[8], cEF.parameters.mason_RTW_VS, cEF.parameters.mason_RTW_HSL, cEF.parameters.mason_RTW_RG, cEF.parameters.mason_RTW_BD, cEF.parameters.mason_RTW_RL, cEF.parameters.mason_RTW_LTW);
+            cEF.compute.recomputeFW_Footings(cEF);
+            cEF.compute.recomputeFW_Column(cEF);
         }
     }
 }
