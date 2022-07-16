@@ -43,7 +43,6 @@ namespace WindowsFormsApp1
         public bool[] roofingsChecklist = { true, true, true}; //6.0
         public bool[] tilesChecklist = { true, true }; //7.0
         public bool[] paintsChecklist = { true, true, true, true }; //8.0
-        public ListDictionary laborAndEquipmentChecklist; //10.0 TODO
 
         //Factor of Safety for Price
         public string fos_Cement, fos_Sand, fos_Gravel, fos_RMC, fos_CHB, fos_Tiles, fos_LC_Type, fos_LC_Percentage;
@@ -163,10 +162,10 @@ namespace WindowsFormsApp1
         //Latex QTY -> latex[0]
         //Semi-gloss QTY -> gloss[0]
         //9.0 - Miscellaneous Items
-        public List<double> misc_CostM = new List<double>();
+        public double misc_TOTALCOST;
 
         //10.0 - Additional Labor and Equipment
-        // List<double> laborAndEqpt_CostL = new List<double>(); recomputes instead of just saving
+        public double laborAndEqpt_TOTALCOST;
 
         //Cost -- END
 
@@ -227,6 +226,11 @@ namespace WindowsFormsApp1
                 water_Total[i] = 0;
             }
 
+            //Miscellaneous Variables
+            misc_TOTALCOST = 0;
+
+            //Additional Labor and Equipment Variables
+            laborAndEqpt_TOTALCOST = 0;
             //Initialize Price Parameters
             InitPriceList();
 
@@ -277,7 +281,6 @@ namespace WindowsFormsApp1
             else if (e.TabPageIndex == 3 || e.TabPageIndex == 4)
             {
                 initializeView();
-                AdjustView10();
                 
                 //Console.WriteLine(structuralMembers.concreteWorkSolutionsC[0][0][0]);
             }
@@ -1085,6 +1088,53 @@ namespace WindowsFormsApp1
             print("TOTAL Cost: " + paints_TOTALCOST);
 
             //Paints -- END
+
+            //9.0 - Miscellaneous Items -- START NICE
+            misc_TOTALCOST = 0;
+            foreach (string[] data in parameters.misc_CustomItems)
+            {
+                if (bool.Parse(data[3]))
+                {
+                    misc_TOTALCOST += (double.Parse(data[1], System.Globalization.CultureInfo.InvariantCulture) * double.Parse(data[2], System.Globalization.CultureInfo.InvariantCulture));
+                }
+            }
+            //9.0 - Miscellaneous Items -- END
+
+            //10.0 - Additional Labor and Equipment -- START
+            laborAndEqpt_TOTALCOST = 0;
+            //Manpower
+            if (parameters.labor_RD.Equals("Manila Rate"))
+            {
+                foreach (string[] data in parameters.labor_MP)
+                {
+                    if (bool.Parse(data[4]))
+                    {
+                        LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_ManpowerM[data[0]]);
+                        laborAndEqpt_TOTALCOST += content.totalPrice;
+                    }
+                }
+            }
+            else //Provincial
+            {
+                foreach (string[] data in parameters.labor_MP) 
+                {
+                    if (bool.Parse(data[4]))
+                    {
+                        LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_ManpowerP[data[0]]);
+                        laborAndEqpt_TOTALCOST += content.totalPrice;
+                    }
+                }
+            }
+            //Equipment
+            foreach (string[] data in parameters.labor_EQP) 
+            {
+                if (bool.Parse(data[4]))
+                {
+                    LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_Equipment[data[0]]);
+                    laborAndEqpt_TOTALCOST += content.totalPrice;
+                }
+            }
+            //10.0 - Additional Labor and Equipment -- END
             //Cost Computation - END
             //Setting View -- START
             if (!viewInitalized)
@@ -1092,6 +1142,7 @@ namespace WindowsFormsApp1
                 //For refresh
                 view_TV1.Nodes.Clear();
                 view_TV2.Nodes.Clear();
+                view_TV3.Nodes.Clear();
                 this.summ_BOQ_dg.Rows.Clear(); 
 
                 //Tree View 1 - Earthworks, Concrete Works, Form Works, and Masonry
@@ -1139,7 +1190,6 @@ namespace WindowsFormsApp1
                 //Setting of BOQ     
                 if (earthworksChecklist[0])
                 {
-                    //for adding contents in table (search for "Column Names")
                     var index = this.summ_BOQ_dg.Rows.Add();
                     this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "1.0";
                     this.summ_BOQ_dg.Rows[index].Cells["item1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
@@ -1320,6 +1370,7 @@ namespace WindowsFormsApp1
 
                 found[0].Nodes.Add(M_newChild1);
                 found[0].Nodes.Add(M_newChild2);
+
                 //Setting of BOQ     
                 try
                 {
@@ -1393,7 +1444,7 @@ namespace WindowsFormsApp1
                 }
                 //4.0 - Masonry -- END
 
-                //Tree View 2 - Reinforcement Steel, Roofing, Tile Works, Paint Works, and Miscellaneous Items
+                //Tree View 2 - Reinforcement Steel, Roofing, Tile Works, Paint Works
                 List<TreeNode> nodes2;
                 TreeNode tn1_2 = new TreeNode("5.0 Reinforcement Steel");
                 tn1_2.Name = "reinParent";
@@ -1401,16 +1452,13 @@ namespace WindowsFormsApp1
                 TreeNode tn2_2 = new TreeNode("6.0 Roofing (₱" + roof_TOTALCOST.ToString("#,##0.00") + ")");
                 tn2_2.Name = "roofingParent";
 
-                TreeNode tn3_2 = new TreeNode("7.0 Tiling Works");
+                TreeNode tn3_2 = new TreeNode("7.0 Tiling Works (₱" + tiles_TOTALCOST.ToString("#,##0.00") + ")");
                 tn3_2.Name = "tilingParent";
 
-                TreeNode tn4_2 = new TreeNode("8.0 Paint Works (₱" + mason_TOTALCOST.ToString("#,##0.00") + ")");
+                TreeNode tn4_2 = new TreeNode("8.0 Paint Works (₱" + paints_TOTALCOST.ToString("#,##0.00") + ")");
                 tn4_2.Name = "paintParent";
-
-                TreeNode tn5_2 = new TreeNode("9.0 Miscellaneous Items (₱" + mason_TOTALCOST.ToString("#,##0.00") + ")");
-                tn5_2.Name = "miscParent";
                 
-                nodes2 = new List<TreeNode>() { tn1_2, tn2_2, tn3_2, tn4_2, tn5_2 };
+                nodes2 = new List<TreeNode>() { tn1_2, tn2_2, tn3_2, tn4_2 };
 
                 setTree(nodes2, view_TV2);
 
@@ -1484,10 +1532,11 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "ROOFING";
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
 
+                        int i = 1;
                         if (roofingsChecklist[0])
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
-                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "6.1";
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "6." + i;
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "G.I. and ACCESSORIES";
@@ -1501,15 +1550,16 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Roofings["ROOFINGS [m2]"].ToString()).ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + roof_LTOTAL.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + acce_LCost.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + acce_costTotal.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
                         }
                         if (roofingsChecklist[1])
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
-                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "6.2";
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "6." + i;
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "RAFTERS AND PURLINS";
@@ -1520,11 +1570,12 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + rANDp_costTotal.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
                         }
                         if (roofingsChecklist[2])
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
-                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "6.3";
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "6." + i;
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "TINSWORK";
@@ -1535,6 +1586,7 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + tins_costTotal.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
                         }
 
                         this.summ_BOQ_dg.Rows.Add();
@@ -1554,6 +1606,493 @@ namespace WindowsFormsApp1
                 }
                 //6.0 - Roofing -- END
 
+                //7.0 - Tile Works -- START
+                found = view_TV2.Nodes.Find("tilingParent", true);
+
+                TreeNode tile_newChild1 = new TreeNode("7.1 600 x 600 (₱" + sixhun_costTotal.ToString("#,##0.00") + ")");
+                tile_newChild1.Name = "600_Total";
+
+                TreeNode tile_newChild2 = new TreeNode("7.2 300 x 300 (₱" + threehun_costTotal.ToString("#,##0.00") + ")");
+                tile_newChild2.Name = "300_Total";
+
+                found[0].Nodes.Add(tile_newChild1);
+                found[0].Nodes.Add(tile_newChild2);
+
+                //Setting of BOQ   
+                try
+                {
+                    if (tilesChecklist.Contains(true))
+                    {
+                        var index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "7.0";
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "TILE WORKS";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+
+                        int i = 1;
+                        if (tilesChecklist[0])
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "7." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "600 x 600 TILE";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = sixhun[0].ToString("#,##0.00"); 
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + sixhun_MUnit.ToString("#,##0.00"); 
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + sixhun_MCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Tiles["TILES [m2]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + sixhun_LCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + sixhun_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (tilesChecklist[1])
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "7." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "300 x 300 TILE";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = threehun[0].ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + threehun_MUnit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + threehun_MCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Tiles["TILES [m2]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + threehun_LCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + threehun_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+
+                        this.summ_BOQ_dg.Rows.Add();
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + tiles_mTOTALCOST.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + tiles_lTOTALCOST.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + tiles_TOTALCOST.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+                //7.0 - Tile Works -- END
+
+                //8.0 - Paint Works -- START
+                found = view_TV2.Nodes.Find("paintParent", true);
+
+                TreeNode paint_newChild1 = new TreeNode("8.1 ENAMEL PAINT (₱" + enam_TOTALCOST.ToString("#,##0.00") + ")");
+                paint_newChild1.Name = "Enamel_Paint_Total";
+
+                TreeNode paint_newChild2 = new TreeNode("8.2 ACRYLIC PAINT (₱" + acry_TOTALCOST.ToString("#,##0.00") + ")");
+                paint_newChild2.Name = "Acrylic_Paint_Total";
+
+                TreeNode paint_newChild3 = new TreeNode("8.3 LATEX PAINT (₱" + late_TOTALCOST.ToString("#,##0.00") + ")");
+                paint_newChild3.Name = "Latex_Paint_Total";
+
+                TreeNode paint_newChild4 = new TreeNode("8.4 SEMI-GLOSS PAINT (₱" + semi_TOTALCOST.ToString("#,##0.00") + ")");
+                paint_newChild4.Name = "SemiGloss_Paint_Total";
+
+                found[0].Nodes.Add(paint_newChild1);
+                found[0].Nodes.Add(paint_newChild2);
+                found[0].Nodes.Add(paint_newChild3);
+                found[0].Nodes.Add(paint_newChild4);
+
+                //Setting of BOQ   
+                try
+                {
+                    if (paintsChecklist.Contains(true))
+                    {
+                        var index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "8.0";
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "PAINT WORKS";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+
+                        int i = 1;
+                        if (paintsChecklist[0])
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "8." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "ENAMEL PAINT";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = enamel[0].ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + enam_MUnit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + enam_MCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Paint["PAINTER [m2]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + enam_LCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + enam_TOTALCOST.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (paintsChecklist[1])
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "8." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "ACRYLIC PAINT";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = acrylic[0].ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + acry_MUnit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + acry_MCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Paint["PAINTER [m2]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + acry_LCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + acry_TOTALCOST.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (paintsChecklist[2])
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "8." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "LATEX PAINT";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = latex[0].ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + late_MUnit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + late_MCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Paint["PAINTER [m2]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + late_LCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + late_TOTALCOST.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (paintsChecklist[3])
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "8." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "SEMI-GLOSS PAINT";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = gloss[0].ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + semi_MUnit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + semi_MCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Paint["PAINTER [m2]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + semi_LCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + semi_TOTALCOST.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+
+                        this.summ_BOQ_dg.Rows.Add();
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + paint_mTOTALCOST.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + paint_lTOTALCOST.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + paints_TOTALCOST.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+                //8.0 - Paint Works -- END
+
+                //Tree View 3 - Miscellaneous Items and Additional Labor and Equipment
+                List<TreeNode> nodes3;
+                TreeNode tn1_3 = new TreeNode("9.0 Miscellaneous Items (₱" + misc_TOTALCOST.ToString("#,##0.00") + ")");
+                tn1_3.Name = "miscParent";
+
+                TreeNode tn2_3 = new TreeNode("10.0 Additional Labor and Equipment (₱" + laborAndEqpt_TOTALCOST.ToString("#,##0.00") + ")");
+                tn2_3.Name = "laborAndEquipmentParent";
+
+                nodes3 = new List<TreeNode>() { tn1_3, tn2_3 };
+
+                setTree(nodes3, view_TV3);
+
+                //9.0 - Miscellaneous Items -- START
+                found = view_TV3.Nodes.Find("miscParent", true);
+
+                int j = 1;
+                foreach (string[] data in parameters.misc_CustomItems)
+                {
+                    if (bool.Parse(data[3]))
+                    {
+                        string[] nameSplit = data[0].Split(new string[] { "] -" }, StringSplitOptions.None);
+                        string name = nameSplit[0];
+                        double cost = (double.Parse(data[1], System.Globalization.CultureInfo.InvariantCulture) * double.Parse(data[2], System.Globalization.CultureInfo.InvariantCulture));
+                        TreeNode misc_newChild = new TreeNode("9." + j + " " + name + "] x " + data[1] + " (₱" + cost.ToString("#,##0.00") + ")");
+                        misc_newChild.Name = "misc_" + data[0];
+
+                        found[0].Nodes.Add(misc_newChild);
+                        j++;
+                    }
+                }
+
+                //Setting of BOQ   
+                try
+                {
+                    if (misc_TOTALCOST > 0)
+                    {
+                        var index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "9.0";
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "MISCELLANEOUS ITEMS";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+
+                        int i = 1;
+                        foreach (string[] data in parameters.misc_CustomItems)
+                        {
+                            if (bool.Parse(data[3]))
+                            {
+                                string[] nameSplit = data[0].Split(new string[] { "[" }, StringSplitOptions.None);
+                                string name = nameSplit[0];
+                                string[] nameSplit2 = nameSplit[1].Split(new string[] { "] -" }, StringSplitOptions.None);
+                                string category = nameSplit2[0];
+                                double cost = (double.Parse(data[1], System.Globalization.CultureInfo.InvariantCulture) * double.Parse(data[2], System.Globalization.CultureInfo.InvariantCulture));
+                                index = this.summ_BOQ_dg.Rows.Add();
+                                this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "9." + i;
+                                this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                                this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = name;
+                                this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                                this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = data[1];
+                                this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = category;
+                                this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + double.Parse(data[2]).ToString("#,##0.00");
+                                this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + cost.ToString("#,##0.00");
+                                this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + cost.ToString("#,##0.00");
+                                this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                i++;
+                            }
+                        }
+
+                        this.summ_BOQ_dg.Rows.Add();
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + misc_TOTALCOST.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+                //9.0 - Miscellaneous Items -- END
+
+                //10.0 - Additional Labor and Equipment -- START
+                found = view_TV3.Nodes.Find("laborAndEquipmentParent", true);
+
+                j = 1;
+                //Manpower
+                if (laborAndEqpt_TOTALCOST > 0)
+                {
+                    if (parameters.labor_RD.Equals("Manila Rate"))
+                    {
+                        foreach (string[] data in parameters.labor_MP)
+                        {
+                            if (bool.Parse(data[4]))
+                            {
+                                LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_ManpowerM[data[0]]);
+                                double cost = content.totalPrice;
+                                TreeNode labor_newChild = new TreeNode("10." + j + " " + data[0] + " x " + data[1] + " x " + data[2] + " HOURS x " + data[3] + " DAYS (₱" + cost.ToString("#,##0.00") + ")");
+                                labor_newChild.Name = "laborAndEquipment_" + data[0];
+
+                                found[0].Nodes.Add(labor_newChild);
+                                j++;
+                            }
+                        }
+                    }
+                    else //Provincial
+                    {
+                        foreach (string[] data in parameters.labor_MP)
+                        {
+                            if (bool.Parse(data[4]))
+                            {
+                                LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_ManpowerP[data[0]]);
+                                double cost = content.totalPrice;
+                                TreeNode labor_newChild = new TreeNode("10." + j + " " + data[0] + " x " + data[1] + " x " + data[2] + " HOURS x " + data[3] + " DAYS (₱" + cost.ToString("#,##0.00") + ")");
+                                labor_newChild.Name = "laborAndEquipment_" + data[0];
+
+                                found[0].Nodes.Add(labor_newChild);
+                                j++;
+                            }
+                        }
+                    }
+                }
+                //Equipment
+                if (misc_TOTALCOST > 0)
+                {
+                    foreach (string[] data in parameters.labor_EQP)
+                    {
+                        if (bool.Parse(data[4]))
+                        {
+                            LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_Equipment[data[0]]);
+                            double cost = content.totalPrice;
+                            TreeNode labor_newChild = new TreeNode("10." + j + " " + data[0] + " x " + data[1] + " x " + data[2] + " HOURS x " + data[3] + " DAYS (₱" + cost.ToString("#,##0.00") + ")");
+                            labor_newChild.Name = "laborAndEquipment_" + data[0];
+
+                            found[0].Nodes.Add(labor_newChild);
+                            j++;
+                        }
+                    }
+                }
+                
+                //Setting of BOQ   
+                try
+                {
+                    if (laborAndEqpt_TOTALCOST > 0)
+                    {
+                        var index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "10.0";
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "ADDITIONAL LABOR AND EQUIPMENT";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+
+                        int i = 1;
+                        //Manpower
+                        if (parameters.labor_RD.Equals("Manila Rate"))
+                        {
+                            foreach (string[] data in parameters.labor_MP)
+                            {
+                                if (bool.Parse(data[4]))
+                                {
+                                    LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_ManpowerM[data[0]]);
+                                    double cost = content.totalPrice;
+                                    string[] nameSplit = data[0].Split(new string[] { "[" }, StringSplitOptions.None);
+                                    string name = nameSplit[0] + " [MNL]";
+                                    double hours = (double.Parse(data[1], System.Globalization.CultureInfo.InvariantCulture) * double.Parse(data[2], System.Globalization.CultureInfo.InvariantCulture) * double.Parse(data[3], System.Globalization.CultureInfo.InvariantCulture));
+                                    index = this.summ_BOQ_dg.Rows.Add();
+                                    this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "10." + i;
+                                    this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                                    this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = name;
+                                    this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                                    this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = hours.ToString("#,##0.00");
+                                    this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "hrs";
+                                    this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_ManpowerM[data[0]].ToString()).ToString("#,##0.00");
+                                    this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + cost.ToString("#,##0.00");
+                                    this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + cost.ToString("#,##0.00");
+                                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    i++;
+                                }
+                            }
+                        }
+                        else //Provincial
+                        {
+                            foreach (string[] data in parameters.labor_MP)
+                            {
+                                if (bool.Parse(data[4]))
+                                {
+                                    LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_ManpowerP[data[0]]);
+                                    double cost = content.totalPrice;
+                                    string[] nameSplit = data[0].Split(new string[] { "[" }, StringSplitOptions.None);
+                                    string name = nameSplit[0] + " [PRO]";
+                                    double hours = (double.Parse(data[1], System.Globalization.CultureInfo.InvariantCulture) * double.Parse(data[2], System.Globalization.CultureInfo.InvariantCulture) * double.Parse(data[3], System.Globalization.CultureInfo.InvariantCulture));
+                                    index = this.summ_BOQ_dg.Rows.Add();
+                                    this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "10." + i;
+                                    this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                                    this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = name;
+                                    this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                                    this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = hours.ToString("#,##0.00");
+                                    this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "hrs";
+                                    this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_ManpowerP[data[0]].ToString()).ToString("#,##0.00");
+                                    this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + cost.ToString("#,##0.00");
+                                    this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + cost.ToString("#,##0.00");
+                                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    i++;
+                                }
+                            }
+                        }
+                        //Equipment
+                        foreach (string[] data in parameters.labor_EQP)
+                        {
+                            if (bool.Parse(data[4]))
+                            {
+                                LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_Equipment[data[0]]);
+                                double cost = content.totalPrice;
+                                string[] nameSplit = data[0].Split(new string[] { "[" }, StringSplitOptions.None);
+                                string name = nameSplit[0];
+                                double hours = (double.Parse(data[1], System.Globalization.CultureInfo.InvariantCulture) * double.Parse(data[2], System.Globalization.CultureInfo.InvariantCulture) * double.Parse(data[3], System.Globalization.CultureInfo.InvariantCulture));
+                                index = this.summ_BOQ_dg.Rows.Add();
+                                this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "10." + i;
+                                this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                                this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = name;
+                                this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                                this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = hours.ToString("#,##0.00");
+                                this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "hrs";
+                                this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_Equipment[data[0]].ToString()).ToString("#,##0.00");
+                                this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + cost.ToString("#,##0.00");
+                                this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + cost.ToString("#,##0.00");
+                                this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                i++;
+                            }
+                        }
+
+                        this.summ_BOQ_dg.Rows.Add();
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + laborAndEqpt_TOTALCOST.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+                //10.0 - Additional Labor and Equipment -- END
+                
                 //Setting BOQ Cell Autosize to True
                 this.summ_BOQ_dg.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 this.summ_BOQ_dg.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -1608,47 +2147,6 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void AdjustView10()
-        {
-            laqUC.Clear();
-            view_10_Panel.Controls.Clear();
-            //Manpower
-            if (parameters.labor_RD.Equals("Manila Rate"))
-            {
-                foreach (string[] data in parameters.labor_MP)
-                {
-                    LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_ManpowerM[data[0]]);
-                    laqUC.Add(content);
-                    content.laq = data[0] + " x " + data[1];
-                    content.hrs = data[2];
-                    content.days = data[3];
-                    view_10_Panel.Controls.Add(content);
-                }
-            }
-            else //Provincial
-            {
-                foreach (string[] data in parameters.labor_MP)
-                {
-                    LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_ManpowerP[data[0]]);
-                    laqUC.Add(content);
-                    content.laq = data[0] + " x " + data[1];
-                    content.hrs = data[2];
-                    content.days = data[3];
-                    view_10_Panel.Controls.Add(content);
-                }
-            }
-            //Equipment
-            foreach(string[] data in parameters.labor_EQP)
-            {
-                LaborAndEquipmentUserControl content = new LaborAndEquipmentUserControl(data[0], data[1], data[2], data[3], parameters.price_Equipment[data[0]]);
-                laqUC.Add(content);
-                content.laq = data[0] + " x " + data[1];
-                content.hrs = data[2];
-                content.days = data[3];
-                view_10_Panel.Controls.Add(content);
-            }
-        }
-
         private void view_ConfigureBtn_Click(object sender, EventArgs e)
         {
             PriceChecklistForms dlg = new PriceChecklistForms(this);
@@ -1657,7 +2155,6 @@ namespace WindowsFormsApp1
                 //Update view
                 viewInitalized = false;
                 initializeView();
-                AdjustView10();
             }
         }
         //View functions -- END
@@ -3676,7 +4173,6 @@ namespace WindowsFormsApp1
                 //Update view
                 viewInitalized = false;
                 initializeView();
-                AdjustView10();
             }
         }
 
@@ -4160,6 +4656,7 @@ namespace WindowsFormsApp1
                 stringParam += parameters.labor_MP[i][1] + "|";
                 stringParam += parameters.labor_MP[i][2] + "|";
                 stringParam += parameters.labor_MP[i][3] + "|";
+                stringParam += parameters.labor_MP[i][4] + "|";
             }
             for (int i = 0; i < parameters.labor_EQP.Count; i++)
             {
@@ -4168,6 +4665,7 @@ namespace WindowsFormsApp1
                 stringParam += parameters.labor_EQP[i][1] + "|";
                 stringParam += parameters.labor_EQP[i][2] + "|";
                 stringParam += parameters.labor_EQP[i][3] + "|";
+                stringParam += parameters.labor_EQP[i][4] + "|";
             }
 
             //Misc
@@ -4178,6 +4676,7 @@ namespace WindowsFormsApp1
                 stringParam += parameters.misc_CustomItems[i][0] + "|";
                 stringParam += parameters.misc_CustomItems[i][1] + "|";
                 stringParam += parameters.misc_CustomItems[i][2] + "|";
+                stringParam += parameters.misc_CustomItems[i][3] + "|";
             }
 
             //Price List
@@ -5488,10 +5987,10 @@ namespace WindowsFormsApp1
                 if (tokens[i].Equals("Man_Power-" + j))
                 {
                     i++;
-                    string[] toAdd = { tokens[i], tokens[i + 1], tokens[i + 2], tokens[i + 3] };
+                    string[] toAdd = { tokens[i], tokens[i + 1], tokens[i + 2], tokens[i + 3], tokens[i + 4] };
                     parameters.labor_MP.Add(toAdd);
                 }
-                i += 4;
+                i += 5;
             }
             j = 0;
             Console.WriteLine(tokens[i]);
@@ -5501,10 +6000,10 @@ namespace WindowsFormsApp1
                 if (tokens[i].Equals("Equipment-" + j))
                 {
                     i++;
-                    string[] toAdd = { tokens[i], tokens[i + 1], tokens[i + 2], tokens[i + 3] };
+                    string[] toAdd = { tokens[i], tokens[i + 1], tokens[i + 2], tokens[i + 3], tokens[i + 4] };
                     parameters.labor_EQP.Add(toAdd);
                 }
-                i += 4;
+                i += 5;
             }
 
             //Misc
@@ -5516,10 +6015,10 @@ namespace WindowsFormsApp1
                 if (tokens[i].Equals("Custom_Item-" + j))
                 {
                     i++;
-                    string[] toAdd = { tokens[i], tokens[i + 1], tokens[i + 2] };
+                    string[] toAdd = { tokens[i], tokens[i + 1], tokens[i + 2], tokens[i + 3] };
                     parameters.misc_CustomItems.Add(toAdd);
                 }
-                i += 3;
+                i += 4;
             }
 
             //Price-List 
@@ -6402,7 +6901,6 @@ namespace WindowsFormsApp1
                 double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
 
             AdjustPriceView();
-            AdjustView10();
 
             //BOQ
             i++;

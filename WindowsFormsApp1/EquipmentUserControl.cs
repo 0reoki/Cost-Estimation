@@ -13,11 +13,13 @@ namespace WindowsFormsApp1
     public partial class EquipmentUserControl : UserControl
     {
         ParametersForm parametersForm;
+        public bool checkList;
 
         public EquipmentUserControl(ParametersForm parametersForm)
         {
             InitializeComponent();
             this.parametersForm = parametersForm;
+            checkList = true;
         }
 
         public string set_eqUC_cbx

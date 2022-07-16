@@ -1473,7 +1473,7 @@ namespace WindowsFormsApp1
             this.tabPage16.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage16.Size = new System.Drawing.Size(357, 430);
             this.tabPage16.TabIndex = 1;
-            this.tabPage16.Text = "Columns";
+            this.tabPage16.Text = "Beams";
             this.tabPage16.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel33
@@ -1635,7 +1635,7 @@ namespace WindowsFormsApp1
             this.tabPage17.Name = "tabPage17";
             this.tabPage17.Size = new System.Drawing.Size(357, 430);
             this.tabPage17.TabIndex = 2;
-            this.tabPage17.Text = "Beams";
+            this.tabPage17.Text = "Columns";
             this.tabPage17.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel32

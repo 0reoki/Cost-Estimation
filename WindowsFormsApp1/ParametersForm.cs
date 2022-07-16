@@ -1104,6 +1104,7 @@ namespace WindowsFormsApp1
             content.set_mpUC_qty = "1";
             content.set_mpUC_hrs = "8";
             content.set_mpUC_days = "7";
+            content.checkList = true;
             labor_MP_Panel.Controls.Add(content);
         }
 
@@ -1116,6 +1117,7 @@ namespace WindowsFormsApp1
             content.set_eqUC_qty = "1";
             content.set_eqUC_hrs = "8";
             content.set_eqUC_days = "7";
+            content.checkList = true;
             labor_EQP_Panel.Controls.Add(content);
         }
 
@@ -1141,6 +1143,7 @@ namespace WindowsFormsApp1
             //Default Values
             content.set_ciUC_cbx = "Cyclone Wire (Gauge#10, 2”x2”, 3ft x 10m) [ROLL] - Common Materials";
             content.set_ciUC_qty = "3";
+            content.checkList = true;
             misc_Panel.Controls.Add(content);
         }
 
@@ -1535,6 +1538,7 @@ namespace WindowsFormsApp1
                     content.set_mpUC_qty = parameters.labor_MP[i][1];
                     content.set_mpUC_hrs = parameters.labor_MP[i][2];
                     content.set_mpUC_days = parameters.labor_MP[i][3];
+                    content.checkList = bool.Parse(parameters.labor_MP[i][4]);
                     MpUC.Add(content);
                     labor_MP_Panel.Controls.Add(MpUC[i]);
                 }
@@ -1548,6 +1552,7 @@ namespace WindowsFormsApp1
                     content.set_eqUC_qty = parameters.labor_EQP[i][1];
                     content.set_eqUC_hrs = parameters.labor_EQP[i][2];
                     content.set_eqUC_days = parameters.labor_EQP[i][3];
+                    content.checkList = bool.Parse(parameters.labor_EQP[i][4]);
                     EqUC.Add(content);
                     labor_EQP_Panel.Controls.Add(EqUC[i]);
                 }
@@ -1562,6 +1567,7 @@ namespace WindowsFormsApp1
                     content.set_ciUC_cbx = parameters.misc_CustomItems[i][0];
                     content.set_ciUC_qty = parameters.misc_CustomItems[i][1];
                     content.set_ciUC_price = parameters.misc_CustomItems[i][2];
+                    content.checkList = bool.Parse(parameters.misc_CustomItems[i][3]);
                     CiUC.Add(content);
                     misc_Panel.Controls.Add(CiUC[i]);
                 }
@@ -2026,13 +2032,13 @@ namespace WindowsFormsApp1
             List<string[]> labor_MP = new List<string[]>();
             for (int i = 0; i < mpUC.Count; i++)
             {
-                string[] toAdd = { mpUC[i].set_mpUC_cbx, mpUC[i].set_mpUC_qty, mpUC[i].set_mpUC_hrs, mpUC[i].set_mpUC_days };
+                string[] toAdd = { mpUC[i].set_mpUC_cbx, mpUC[i].set_mpUC_qty, mpUC[i].set_mpUC_hrs, mpUC[i].set_mpUC_days, mpUC[i].checkList.ToString() };
                 labor_MP.Add(toAdd);
             }
             List<string[]> labor_EQP = new List<string[]>();
             for (int i = 0; i < eqUC.Count; i++)
             {
-                string[] toAdd = { eqUC[i].set_eqUC_cbx, eqUC[i].set_eqUC_qty, eqUC[i].set_eqUC_hrs, eqUC[i].set_eqUC_days };
+                string[] toAdd = { eqUC[i].set_eqUC_cbx, eqUC[i].set_eqUC_qty, eqUC[i].set_eqUC_hrs, eqUC[i].set_eqUC_days, eqUC[i].checkList.ToString() };
                 labor_EQP.Add(toAdd);
             }
             parameters.setLaborParameters(
@@ -2043,7 +2049,7 @@ namespace WindowsFormsApp1
             List<string[]> misc_CustomItems = new List<string[]>();
             for (int i = 0; i < ciUC.Count; i++)
             {
-                string[] toAdd = { ciUC[i].set_ciUC_cbx, ciUC[i].set_ciUC_qty, ciUC[i].set_ciUC_price };
+                string[] toAdd = { ciUC[i].set_ciUC_cbx, ciUC[i].set_ciUC_qty, ciUC[i].set_ciUC_price, ciUC[i].checkList.ToString() };
                 misc_CustomItems.Add(toAdd);
             }
             parameters.setMiscParameters(misc_CustomItems);

@@ -14,6 +14,7 @@ namespace WindowsFormsApp1
     {
         ParametersForm parametersForm;
         Parameters parameters;
+        public bool checkList;
 
         public CustomItemsUserControl(ParametersForm parametersForm, Parameters parameters)
         {
@@ -25,6 +26,8 @@ namespace WindowsFormsApp1
             ciUC_cbx.Items.AddRange(parameters.customItemsList.ToArray());
 
             ciUC_cbx.DropDownWidth = DropDownWidth(ciUC_cbx);
+
+            checkList = true;
         }
 
         public string set_ciUC_cbx
