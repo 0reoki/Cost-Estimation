@@ -66,6 +66,9 @@ namespace WindowsFormsApp1
         public List<List<List<double>>> roofSolutions = new List<List<List<double>>>();
 
         //Constant variables
+        //Cement
+        //Sand
+        //Gravel
         public List<List<double>> concreteProportion = new List<List<double>>();
 
         //Roof Solution

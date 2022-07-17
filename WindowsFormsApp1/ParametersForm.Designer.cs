@@ -3103,6 +3103,7 @@ namespace WindowsFormsApp1
             this.conc_CM_S_SS_RM_cbx.Name = "conc_CM_S_SS_RM_cbx";
             this.conc_CM_S_SS_RM_cbx.Size = new System.Drawing.Size(152, 28);
             this.conc_CM_S_SS_RM_cbx.TabIndex = 24;
+            this.conc_CM_S_SS_RM_cbx.MouseHover += new System.EventHandler(this.conc_CM_S_SS_RM_cbx_MouseHover);
             // 
             // tabPage13
             // 

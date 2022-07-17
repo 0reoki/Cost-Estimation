@@ -98,7 +98,7 @@ namespace WindowsFormsApp1
             //Earthworks -- END
 
             //Concrete Works -- START
-
+            //Refresh all Column, Beams, Slabs TODO
 
             //Concrete Works -- END
         }
@@ -197,6 +197,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[0][1] * quantity);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[0][2] * quantity);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                         else if (concreteGrade.Equals("CLASS A"))
                         {
@@ -208,6 +210,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[1][1] * quantity);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[1][2] * quantity);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                         else if (concreteGrade.Equals("CLASS B"))
                         {
@@ -219,6 +223,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[2][1] * quantity);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[2][2] * quantity);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                         else
                         {
@@ -230,6 +236,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[3][1] * quantity);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[3][2] * quantity);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                     }
                     else
@@ -308,6 +316,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[0][1] * quantity);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[0][2] * quantity);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                         else if (concreteGrade.Equals("CLASS A"))
                         {
@@ -319,6 +329,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[1][1] * quantity);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[1][2] * quantity);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                         else if (concreteGrade.Equals("CLASS B"))
                         {
@@ -330,6 +342,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[2][1] * quantity);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[2][2] * quantity);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                         else
                         {
@@ -341,6 +355,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[3][1] * quantity);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[3][2] * quantity);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                     }
                     else
@@ -420,6 +436,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[0][1] * quantity);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[0][2] * quantity);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                         else if (concreteGrade.Equals("CLASS A"))
                         {
@@ -431,6 +449,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[1][1] * quantity);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[1][2] * quantity);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                         else if (concreteGrade.Equals("CLASS B"))
                         {
@@ -442,6 +462,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[2][1] * quantity);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[2][2] * quantity);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                         else
                         {
@@ -453,6 +475,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[3][1] * quantity);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[3][2] * quantity);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                     }
                     else
@@ -530,6 +554,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[0][1]);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[0][2]);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                         else if (concreteGrade.Equals("CLASS A"))
                         {
@@ -541,6 +567,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[1][1] * quantity);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[1][2] * quantity);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                         else if (concreteGrade.Equals("CLASS B"))
                         {
@@ -552,6 +580,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[2][1]);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[2][2]);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                         else
                         {
@@ -563,6 +593,8 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[3][1]);
                             cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                                 volume * cEF.structuralMembers.concreteProportion[3][2]);
+                            cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
+                                volume * quantity);
                         }
                     }
                     else
@@ -638,8 +670,6 @@ namespace WindowsFormsApp1
                         ((length + formworkAllowance * 2) * (width + formworkAllowance * 2) *
                         (gravelBedding + (gravelBedding * compactionAllowance))) * quantity;
 
-                    Console.WriteLine("NICE: " + i);
-
                     //Backfilling and Compaction
                     //Concreting
                     cEF.structuralMembers.earthworkSolutions[i][4] =
@@ -658,6 +688,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[0][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[0][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                         else if (concreteGrade.Equals("CLASS A"))
                         {
@@ -669,6 +700,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[1][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[1][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                         else if (concreteGrade.Equals("CLASS B"))
                         {
@@ -680,6 +712,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[2][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[2][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                         else
                         {
@@ -691,6 +724,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[3][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[3][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                     }
                     else
@@ -780,6 +814,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[0][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[0][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                         else if (concreteGrade.Equals("CLASS A"))
                         {
@@ -791,6 +826,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[1][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[1][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                         else if (concreteGrade.Equals("CLASS B"))
                         {
@@ -802,6 +838,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[2][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[2][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                         else
                         {
@@ -813,6 +850,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[3][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[3][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                     }
                     else
@@ -889,8 +927,6 @@ namespace WindowsFormsApp1
                     cEF.structuralMembers.earthworkSolutions[i][4] =
                         length * wfBase * thickness * quantity;
 
-                    Console.WriteLine("NICE: " + i);
-
                     //Computation -- Concrete Works
                     if (cEF.parameters.conc_cmIsSelected[0])
                     {
@@ -904,6 +940,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[0][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[0][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                         else if (concreteGrade.Equals("CLASS A"))
                         {
@@ -915,6 +952,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[1][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[1][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                         else if (concreteGrade.Equals("CLASS B"))
                         {
@@ -926,6 +964,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[2][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[2][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                         else
                         {
@@ -937,6 +976,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[3][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[3][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                     }
                     else
@@ -1024,6 +1064,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[0][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[0][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                         else if (concreteGrade.Equals("CLASS A"))
                         {
@@ -1035,6 +1076,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[1][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[1][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                         else if (concreteGrade.Equals("CLASS B"))
                         {
@@ -1046,6 +1088,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[2][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[2][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                         else
                         {
@@ -1057,6 +1100,7 @@ namespace WindowsFormsApp1
                                 volume * cEF.structuralMembers.concreteProportion[3][1] * quantity;
                             cEF.structuralMembers.concreteWorkSolutionsF[i][3] =
                                 volume * cEF.structuralMembers.concreteProportion[3][2] * quantity;
+                            cEF.structuralMembers.concreteWorkSolutionsF[i][4] = volume * quantity;
                         }
                     }
                     else
@@ -1081,22 +1125,53 @@ namespace WindowsFormsApp1
 
         //Add 
         public void columnWorks(CostEstimationForm cEF, int floorCount, int columnCount)
-        {   
+        {
             //Variables from Parameters
+            double columnExposedEarth, columnExposedWeather;
             string concreteGrade;
 
             //Init variables from Parameters
             concreteGrade = cEF.parameters.conc_CM_C_CG;
+            columnExposedEarth = double.Parse(cEF.parameters.conc_CC_CEE, System.Globalization.CultureInfo.InvariantCulture);
+            columnExposedWeather = double.Parse(cEF.parameters.conc_CC_CEW, System.Globalization.CultureInfo.InvariantCulture);
 
             //Variables from StructMem
-            double baseC, depth, height, quantity;
+            double baseC, depth, height, clearHeight, quantity, slabElevation, footingThickness, footingDepth;
+            string connectionF, connectionS;
 
             //Init variables from StructMem
             baseC = double.Parse(cEF.structuralMembers.column[floorCount][columnCount][1], System.Globalization.CultureInfo.InvariantCulture);
             depth = double.Parse(cEF.structuralMembers.column[floorCount][columnCount][2], System.Globalization.CultureInfo.InvariantCulture);
             height = double.Parse(cEF.structuralMembers.column[floorCount][columnCount][3], System.Globalization.CultureInfo.InvariantCulture);
-            quantity = double.Parse(cEF.structuralMembers.column[floorCount][columnCount][4], System.Globalization.CultureInfo.InvariantCulture);
+            clearHeight = double.Parse(cEF.structuralMembers.column[floorCount][columnCount][4], System.Globalization.CultureInfo.InvariantCulture);
+            quantity = double.Parse(cEF.structuralMembers.column[floorCount][columnCount][5], System.Globalization.CultureInfo.InvariantCulture);
 
+            connectionF = cEF.structuralMembers.column[floorCount][columnCount][6];
+            connectionS = cEF.structuralMembers.column[floorCount][columnCount][7];
+
+            footingThickness = footingDepth = 0;
+            int j = 0;
+            foreach (string name in cEF.structuralMembers.footingColumnNames)
+            {
+                if (name.Equals(connectionF))
+                {
+                    footingThickness = double.Parse(cEF.structuralMembers.footingsColumn[0][j][3], System.Globalization.CultureInfo.InvariantCulture);
+                    footingDepth = double.Parse(cEF.structuralMembers.footingsColumn[0][j][5], System.Globalization.CultureInfo.InvariantCulture);
+                }
+                j++;
+            }
+
+            slabElevation = 0;
+            j = 0;
+            foreach (string name in cEF.structuralMembers.slabNames[0])
+            {
+                if (name.Equals(connectionS))
+                {
+                    slabElevation = double.Parse(cEF.structuralMembers.slab[0][j][3], System.Globalization.CultureInfo.InvariantCulture);
+                }
+                j++;
+            }
+            
             //Computation -- Concrete Works
             if (cEF.structuralMembers.column[floorCount][columnCount][0].Equals("Ground"))
             {
@@ -1104,7 +1179,11 @@ namespace WindowsFormsApp1
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
-                        double volume = baseC * depth * height * quantity;
+                        double volume1 = (footingDepth + slabElevation - footingThickness) * 
+                                         (baseC + 2 * (columnExposedEarth - columnExposedWeather)) *
+                                         (depth + 2 * (columnExposedEarth - columnExposedWeather));
+                        double volume2 = baseC * depth * (height - slabElevation);
+                        double volume = (volume1 + volume2) * quantity;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[0][0]);
@@ -1112,10 +1191,15 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[0][1]);
                         cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[0][2]);
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(volume);
                     }
                     else if (concreteGrade.Equals("CLASS A"))
                     {
-                        double volume = baseC * depth * height * quantity;
+                        double volume1 = (footingDepth + slabElevation - footingThickness) *
+                                         (baseC + 2 * (columnExposedEarth - columnExposedWeather)) *
+                                         (depth + 2 * (columnExposedEarth - columnExposedWeather));
+                        double volume2 = baseC * depth * (height - slabElevation);
+                        double volume = (volume1 + volume2) * quantity;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[1][0]);
@@ -1123,10 +1207,15 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[1][1]);
                         cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[1][2]);
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(volume);
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
-                        double volume = baseC * depth * height * quantity;
+                        double volume1 = (footingDepth + slabElevation - footingThickness) *
+                                         (baseC + 2 * (columnExposedEarth - columnExposedWeather)) *
+                                         (depth + 2 * (columnExposedEarth - columnExposedWeather));
+                        double volume2 = baseC * depth * (height - slabElevation);
+                        double volume = (volume1 + volume2) * quantity;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[2][0]);
@@ -1134,10 +1223,15 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[2][1]);
                         cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[2][2]);
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(volume);
                     }
                     else
                     {
-                        double volume = baseC * depth * height * quantity;
+                        double volume1 = (footingDepth + slabElevation - footingThickness) *
+                                         (baseC + 2 * (columnExposedEarth - columnExposedWeather)) *
+                                         (depth + 2 * (columnExposedEarth - columnExposedWeather));
+                        double volume2 = baseC * depth * (height - slabElevation);
+                        double volume = (volume1 + volume2) * quantity;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[3][0]);
@@ -1145,12 +1239,18 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[3][1]);
                         cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[3][2]);
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(volume);
                     }
                 }
                 else
                 {
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
-                        ((baseC * depth * height) / 1000000000) * quantity);
+                    double volume1 = (footingDepth + slabElevation - footingThickness) *
+                                            (baseC + 2 * (columnExposedEarth - columnExposedWeather)) *
+                                            (depth + 2 * (columnExposedEarth - columnExposedWeather));
+                    double volume2 = baseC * depth * (height - slabElevation);
+                    double volume = (volume1 + volume2) * quantity;
+                    volume /= 1000000000;
+                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(volume);
                 }
             } 
             else
@@ -1167,6 +1267,7 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[0][1]);
                         cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[0][2]);
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(volume);
                     }
                     else if (concreteGrade.Equals("CLASS A"))
                     {
@@ -1178,6 +1279,7 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[1][1]);
                         cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[1][2]);
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(volume);
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
@@ -1189,6 +1291,7 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[2][1]);
                         cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[2][2]);
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(volume);
                     }
                     else
                     {
@@ -1200,6 +1303,7 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[3][1]);
                         cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[3][2]);
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(volume);
                     }
                 }
                 else
@@ -1210,108 +1314,199 @@ namespace WindowsFormsApp1
             }
 
             refreshSolutions(cEF);
-
-
-            /* Will use if calculation is different from ground and upper floor
-            int i = count;
-            if (cEF.structuralMembers.column[floorCount][columnCount][0].Equals("Ground"))
-            {
-
-            }
-            else
-            {
-
-            }
-            */
         }
 
         //Modify
         public void ModifyColumnWorks(CostEstimationForm cEF, int floorCount, int index)
         {
             //Variables from Parameters
+            double columnExposedEarth, columnExposedWeather;
             string concreteGrade;
 
             //Init variables from Parameters
             concreteGrade = cEF.parameters.conc_CM_C_CG;
+            columnExposedEarth = double.Parse(cEF.parameters.conc_CC_CEE, System.Globalization.CultureInfo.InvariantCulture);
+            columnExposedWeather = double.Parse(cEF.parameters.conc_CC_CEW, System.Globalization.CultureInfo.InvariantCulture);
 
             //Variables from StructMem
-            double baseC, depth, height, quantity;
+            double baseC, depth, height, clearHeight, quantity, slabElevation, footingThickness, footingDepth;
+            string connectionF, connectionS;
 
             //Init variables from StructMem
             baseC = double.Parse(cEF.structuralMembers.column[floorCount][index][1], System.Globalization.CultureInfo.InvariantCulture);
             depth = double.Parse(cEF.structuralMembers.column[floorCount][index][2], System.Globalization.CultureInfo.InvariantCulture);
             height = double.Parse(cEF.structuralMembers.column[floorCount][index][3], System.Globalization.CultureInfo.InvariantCulture);
-            quantity = double.Parse(cEF.structuralMembers.column[floorCount][index][4], System.Globalization.CultureInfo.InvariantCulture);
+            clearHeight = double.Parse(cEF.structuralMembers.column[floorCount][index][4], System.Globalization.CultureInfo.InvariantCulture);
+            quantity = double.Parse(cEF.structuralMembers.column[floorCount][index][5], System.Globalization.CultureInfo.InvariantCulture);
+
+            connectionF = cEF.structuralMembers.column[floorCount][index][6];
+            connectionS = cEF.structuralMembers.column[floorCount][index][7];
+
+            footingThickness = footingDepth = 0;
+            int j = 0;
+            foreach (string name in cEF.structuralMembers.footingColumnNames)
+            {
+                if (name.Equals(connectionF))
+                {
+                    footingThickness = double.Parse(cEF.structuralMembers.footingsColumn[0][j][3], System.Globalization.CultureInfo.InvariantCulture);
+                    footingDepth = double.Parse(cEF.structuralMembers.footingsColumn[0][j][5], System.Globalization.CultureInfo.InvariantCulture);
+                }
+                j++;
+            }
+
+            slabElevation = 0;
+            j = 0;
+            foreach (string name in cEF.structuralMembers.slabNames[0])
+            {
+                if (name.Equals(connectionS))
+                {
+                    slabElevation = double.Parse(cEF.structuralMembers.slab[0][j][3], System.Globalization.CultureInfo.InvariantCulture);
+                }
+                j++;
+            }
 
             //Computation -- Concrete Works
-            //Computation -- Concrete Works
-            if (cEF.parameters.conc_cmIsSelected[1])
+            if (cEF.structuralMembers.column[floorCount][index][0].Equals("Ground"))
             {
-                if (concreteGrade.Equals("CLASS AA"))
+                if (cEF.parameters.conc_cmIsSelected[1])
                 {
-                    double volume = baseC * depth * height * quantity; ;
-                    volume /= 1000000000;
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
-                        volume * cEF.structuralMembers.concreteProportion[0][0];
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][1] =
-                        volume * cEF.structuralMembers.concreteProportion[0][1];
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][2] =
-                        volume * cEF.structuralMembers.concreteProportion[0][2];
-                }
-                else if (concreteGrade.Equals("CLASS A"))
-                {
-                    double volume = baseC * depth * height * quantity;
-                    volume /= 1000000000;
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
-                        volume * cEF.structuralMembers.concreteProportion[1][0];
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][1] =
-                        volume * cEF.structuralMembers.concreteProportion[1][1];
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][2] =
-                        volume * cEF.structuralMembers.concreteProportion[1][2];
-                }
-                else if (concreteGrade.Equals("CLASS B"))
-                {
-                    double volume = baseC * depth * height * quantity;
-                    volume /= 1000000000;
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
-                        volume * cEF.structuralMembers.concreteProportion[2][0];
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][1] =
-                        volume * cEF.structuralMembers.concreteProportion[2][1];
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][2] =
-                        volume * cEF.structuralMembers.concreteProportion[2][2];
+                    if (concreteGrade.Equals("CLASS AA"))
+                    {
+                        double volume1 = (footingDepth + slabElevation - footingThickness) *
+                                         (baseC + 2 * (columnExposedEarth - columnExposedWeather)) *
+                                         (depth + 2 * (columnExposedEarth - columnExposedWeather));
+                        double volume2 = baseC * depth * (height - slabElevation);
+                        double volume = (volume1 + volume2) * quantity;
+                        volume /= 1000000000;
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
+                            volume * cEF.structuralMembers.concreteProportion[0][0];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][1] =
+                            volume * cEF.structuralMembers.concreteProportion[0][1];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][2] =
+                            volume * cEF.structuralMembers.concreteProportion[0][2];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][3] = volume;
+                    }
+                    else if (concreteGrade.Equals("CLASS A"))
+                    {
+                        double volume1 = (footingDepth + slabElevation - footingThickness) *
+                                         (baseC + 2 * (columnExposedEarth - columnExposedWeather)) *
+                                         (depth + 2 * (columnExposedEarth - columnExposedWeather));
+                        double volume2 = baseC * depth * (height - slabElevation);
+                        double volume = (volume1 + volume2) * quantity;
+                        volume /= 1000000000;
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
+                            volume * cEF.structuralMembers.concreteProportion[0][0];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][1] =
+                            volume * cEF.structuralMembers.concreteProportion[0][1];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][2] =
+                            volume * cEF.structuralMembers.concreteProportion[0][2];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][3] = volume;
+                    }
+                    else if (concreteGrade.Equals("CLASS B"))
+                    {
+                        double volume1 = (footingDepth + slabElevation - footingThickness) *
+                                         (baseC + 2 * (columnExposedEarth - columnExposedWeather)) *
+                                         (depth + 2 * (columnExposedEarth - columnExposedWeather));
+                        double volume2 = baseC * depth * (height - slabElevation);
+                        double volume = (volume1 + volume2) * quantity;
+                        volume /= 1000000000;
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
+                            volume * cEF.structuralMembers.concreteProportion[0][0];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][1] =
+                            volume * cEF.structuralMembers.concreteProportion[0][1];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][2] =
+                            volume * cEF.structuralMembers.concreteProportion[0][2];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][3] = volume;
+                    }
+                    else
+                    {
+                        double volume1 = (footingDepth + slabElevation - footingThickness) *
+                                         (baseC + 2 * (columnExposedEarth - columnExposedWeather)) *
+                                         (depth + 2 * (columnExposedEarth - columnExposedWeather));
+                        double volume2 = baseC * depth * (height - slabElevation);
+                        double volume = (volume1 + volume2) * quantity;
+                        volume /= 1000000000;
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
+                            volume * cEF.structuralMembers.concreteProportion[0][0];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][1] =
+                            volume * cEF.structuralMembers.concreteProportion[0][1];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][2] =
+                            volume * cEF.structuralMembers.concreteProportion[0][2];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][3] = volume;
+                    }
                 }
                 else
                 {
-                    double volume = baseC * depth * height * quantity;
+                    double volume1 = (footingDepth + slabElevation - footingThickness) *
+                                            (baseC + 2 * (columnExposedEarth - columnExposedWeather)) *
+                                            (depth + 2 * (columnExposedEarth - columnExposedWeather));
+                    double volume2 = baseC * depth * (height - slabElevation);
+                    double volume = (volume1 + volume2) * quantity;
                     volume /= 1000000000;
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
-                        volume * cEF.structuralMembers.concreteProportion[3][0];
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][1] =
-                        volume * cEF.structuralMembers.concreteProportion[3][1];
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][2] =
-                        volume * cEF.structuralMembers.concreteProportion[3][2];
+                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] = volume;
                 }
             }
-            else
+            else // Upper
             {
-                cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
-                    ((baseC * depth * height) / 1000000000) * quantity;
+                if (cEF.parameters.conc_cmIsSelected[1])
+                {
+                    if (concreteGrade.Equals("CLASS AA"))
+                    {
+                        double volume = baseC * depth * height * quantity; ;
+                        volume /= 1000000000;
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
+                            volume * cEF.structuralMembers.concreteProportion[0][0];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][1] =
+                            volume * cEF.structuralMembers.concreteProportion[0][1];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][2] =
+                            volume * cEF.structuralMembers.concreteProportion[0][2];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][3] = volume;
+                    }
+                    else if (concreteGrade.Equals("CLASS A"))
+                    {
+                        double volume = baseC * depth * height * quantity;
+                        volume /= 1000000000;
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
+                            volume * cEF.structuralMembers.concreteProportion[1][0];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][1] =
+                            volume * cEF.structuralMembers.concreteProportion[1][1];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][2] =
+                            volume * cEF.structuralMembers.concreteProportion[1][2];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][3] = volume;
+                    }
+                    else if (concreteGrade.Equals("CLASS B"))
+                    {
+                        double volume = baseC * depth * height * quantity;
+                        volume /= 1000000000;
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
+                            volume * cEF.structuralMembers.concreteProportion[2][0];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][1] =
+                            volume * cEF.structuralMembers.concreteProportion[2][1];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][2] =
+                            volume * cEF.structuralMembers.concreteProportion[2][2];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][3] = volume;
+                    }
+                    else
+                    {
+                        double volume = baseC * depth * height * quantity;
+                        volume /= 1000000000;
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
+                            volume * cEF.structuralMembers.concreteProportion[3][0];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][1] =
+                            volume * cEF.structuralMembers.concreteProportion[3][1];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][2] =
+                            volume * cEF.structuralMembers.concreteProportion[3][2];
+                        cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][3] = volume;
+                    }
+                }
+                else
+                {
+                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
+                        ((baseC * depth * height) / 1000000000) * quantity;
+                }
             }
 
             refreshSolutions(cEF);
-
-
-            /* Will use if calculation is different from ground and upper floor
-            int i = count;
-            if (cEF.structuralMembers.column[floorCount][columnCount][0].Equals("Ground"))
-            {
-
-            }
-            else
-            {
-
-            }
-            */
         }
         //Column Computation Functions -- END
 
@@ -1320,10 +1515,15 @@ namespace WindowsFormsApp1
         {
             List<double> newList = new List<double>();
             cEF.structuralMembers.concreteWorkSolutionsBR[floorCount].Add(newList);
-            if(!cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount].Any())
+            if(!cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount].Any() && cEF.parameters.conc_cmIsSelected[2])
             {
                 cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount].Add(0);
                 cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount].Add(0);
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount].Add(0);
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount].Add(0);
+            } 
+            else if (!cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount].Any() && !cEF.parameters.conc_cmIsSelected[2])
+            {
                 cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount].Add(0);
             }
             beamWorks(cEF, floorCount, beamCount, beamType);
@@ -1339,10 +1539,12 @@ namespace WindowsFormsApp1
             concreteGrade = cEF.parameters.conc_CM_B_CG;
 
             //Variables from StructMem
-            double baseB, depth, length, quantity;
+            double baseB, depth, length, quantity, beamQuantity;
+
+            beamQuantity = double.Parse(cEF.structuralMembers.beam[floorCount][beamCount][2], System.Globalization.CultureInfo.InvariantCulture);
 
             //Init variables from StructMem
-            foreach(List<string> beamRow in cEF.structuralMembers.beamRow[floorCount][beamCount])
+            foreach (List<string> beamRow in cEF.structuralMembers.beamRow[floorCount][beamCount])
             {
                 foreach(List<string> schedule in cEF.structuralMembers.beamSchedule[floorCount])
                 {
@@ -1353,7 +1555,7 @@ namespace WindowsFormsApp1
                             //Init variables from Beam Row and Beam Schedule
                             baseB = double.Parse(schedule[2], System.Globalization.CultureInfo.InvariantCulture);
                             depth = double.Parse(schedule[3], System.Globalization.CultureInfo.InvariantCulture);
-                            length = double.Parse(beamRow[2], System.Globalization.CultureInfo.InvariantCulture);
+                            length = double.Parse(beamRow[3], System.Globalization.CultureInfo.InvariantCulture);
                             quantity = double.Parse(beamRow[1], System.Globalization.CultureInfo.InvariantCulture);
 
                             //Computation -- Concrete Works
@@ -1361,7 +1563,7 @@ namespace WindowsFormsApp1
                             {
                                 if (concreteGrade.Equals("CLASS AA"))
                                 {
-                                    double volume = baseB * depth * length * quantity; ;
+                                    double volume = baseB * depth * length * quantity; 
                                     volume /= 1000000000;
                                     cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][0] +=
                                         volume * cEF.structuralMembers.concreteProportion[0][0];
@@ -1369,6 +1571,7 @@ namespace WindowsFormsApp1
                                         volume * cEF.structuralMembers.concreteProportion[0][1];
                                     cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][2] +=
                                         volume * cEF.structuralMembers.concreteProportion[0][2];
+                                    cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][3] += volume;
                                 }
                                 else if (concreteGrade.Equals("CLASS A"))
                                 {
@@ -1380,6 +1583,7 @@ namespace WindowsFormsApp1
                                         volume * cEF.structuralMembers.concreteProportion[1][1];
                                     cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][2] +=
                                         volume * cEF.structuralMembers.concreteProportion[1][2];
+                                    cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][3] += volume;
                                 }
                                 else if (concreteGrade.Equals("CLASS B"))
                                 {
@@ -1391,6 +1595,7 @@ namespace WindowsFormsApp1
                                         volume * cEF.structuralMembers.concreteProportion[2][1];
                                     cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][2] +=
                                         volume * cEF.structuralMembers.concreteProportion[2][2];
+                                    cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][3] += volume;
                                 }
                                 else
                                 {
@@ -1402,6 +1607,7 @@ namespace WindowsFormsApp1
                                         volume * cEF.structuralMembers.concreteProportion[3][1];
                                     cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][2] +=
                                         volume * cEF.structuralMembers.concreteProportion[3][2];
+                                    cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][3] += volume;
                                 }
                             }
                             else
@@ -1410,11 +1616,23 @@ namespace WindowsFormsApp1
                                     ((baseB * depth * length) / 1000000000) * quantity;
                             }
 
-                            refreshSolutions(cEF);
                         }
                     }
                 }
             }
+
+            if (cEF.parameters.conc_cmIsSelected[2])
+            {
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][0] *= beamQuantity;
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][1] *= beamQuantity;
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][2] *= beamQuantity;
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][3] *= beamQuantity;
+            }
+            else
+            {
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][0] *= beamQuantity;
+            }
+            refreshSolutions(cEF);
         }
 
         //Modify
@@ -1427,12 +1645,21 @@ namespace WindowsFormsApp1
             concreteGrade = cEF.parameters.conc_CM_B_CG;
 
             //Variables from StructMem
-            double baseB, depth, length, quantity;
+            double baseB, depth, length, quantity, beamQuantity;
+
+            beamQuantity = double.Parse(cEF.structuralMembers.beam[floorCount][index][2], System.Globalization.CultureInfo.InvariantCulture);
 
             //Init variables from StructMem
-            cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][0] = 0;
-            cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][1] = 0;
-            cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][2] = 0;
+            if (cEF.parameters.conc_cmIsSelected[2])
+            {
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][0] = 0;
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][1] = 0;
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][2] = 0;
+            }
+            else
+            {
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][0] = 0;
+            }
             foreach (List<string> beamRow in cEF.structuralMembers.beamRow[floorCount][index])
             {
                 foreach (List<string> schedule in cEF.structuralMembers.beamSchedule[floorCount])
@@ -1444,7 +1671,7 @@ namespace WindowsFormsApp1
                             //Init variables from Beam Row and Beam Schedule
                             baseB = double.Parse(schedule[2], System.Globalization.CultureInfo.InvariantCulture);
                             depth = double.Parse(schedule[3], System.Globalization.CultureInfo.InvariantCulture);
-                            length = double.Parse(beamRow[2], System.Globalization.CultureInfo.InvariantCulture);
+                            length = double.Parse(beamRow[3], System.Globalization.CultureInfo.InvariantCulture);
                             quantity = double.Parse(beamRow[1], System.Globalization.CultureInfo.InvariantCulture);
 
                             //Computation -- Concrete Works
@@ -1460,6 +1687,7 @@ namespace WindowsFormsApp1
                                         volume * cEF.structuralMembers.concreteProportion[0][1];
                                     cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][2] +=
                                         volume * cEF.structuralMembers.concreteProportion[0][2];
+                                    cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][3] += volume;
                                 }
                                 else if (concreteGrade.Equals("CLASS A"))
                                 {
@@ -1471,6 +1699,7 @@ namespace WindowsFormsApp1
                                         volume * cEF.structuralMembers.concreteProportion[1][1];
                                     cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][2] +=
                                         volume * cEF.structuralMembers.concreteProportion[1][2];
+                                    cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][3] += volume;
                                 }
                                 else if (concreteGrade.Equals("CLASS B"))
                                 {
@@ -1482,6 +1711,7 @@ namespace WindowsFormsApp1
                                         volume * cEF.structuralMembers.concreteProportion[2][1];
                                     cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][2] +=
                                         volume * cEF.structuralMembers.concreteProportion[2][2];
+                                    cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][3] += volume;
                                 }
                                 else
                                 {
@@ -1493,6 +1723,7 @@ namespace WindowsFormsApp1
                                         volume * cEF.structuralMembers.concreteProportion[3][1];
                                     cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][2] +=
                                         volume * cEF.structuralMembers.concreteProportion[3][2];
+                                    cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][3] += volume;
                                 }
                             }
                             else
@@ -1500,12 +1731,23 @@ namespace WindowsFormsApp1
                                 cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][0] +=
                                     ((baseB * depth * length) / 1000000000) * quantity;
                             }
-
-                            refreshSolutions(cEF);
                         }
                     }
                 }
             }
+
+            if (cEF.parameters.conc_cmIsSelected[2])
+            {
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][0] *= beamQuantity;
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][1] *= beamQuantity;
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][2] *= beamQuantity;
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][3] *= beamQuantity;
+            }
+            else
+            {
+                cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][index][0] *= beamQuantity;
+            }
+            refreshSolutions(cEF);
         }
         //Beam Computation Functions -- END
 
@@ -1533,13 +1775,13 @@ namespace WindowsFormsApp1
                 //Init variables from StructMem
                 quantity = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][1], System.Globalization.CultureInfo.InvariantCulture);
                 thickness = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][2], System.Globalization.CultureInfo.InvariantCulture);
-                lengthTop = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][10], System.Globalization.CultureInfo.InvariantCulture);
-                lengthBot = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][12], System.Globalization.CultureInfo.InvariantCulture);
-                lengthLeft = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][14], System.Globalization.CultureInfo.InvariantCulture);
-                lengthRight = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][16], System.Globalization.CultureInfo.InvariantCulture);
+                lengthTop = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][11], System.Globalization.CultureInfo.InvariantCulture);
+                lengthBot = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][13], System.Globalization.CultureInfo.InvariantCulture);
+                lengthLeft = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][15], System.Globalization.CultureInfo.InvariantCulture);
+                lengthRight = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][17], System.Globalization.CultureInfo.InvariantCulture);
 
                 //Computation -- Concrete Works
-                if (cEF.parameters.conc_cmIsSelected[0])
+                if (cEF.parameters.conc_cmIsSelected[3])
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
@@ -1551,6 +1793,8 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[0][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[0][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                     else if (concreteGrade.Equals("CLASS A"))
                     {
@@ -1562,6 +1806,8 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[1][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[1][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
@@ -1573,6 +1819,8 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[2][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[2][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                     else
                     {
@@ -1584,6 +1832,8 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[3][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[3][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                 }
                 else
@@ -1615,7 +1865,7 @@ namespace WindowsFormsApp1
                 }
 
                 quantity = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][2], System.Globalization.CultureInfo.InvariantCulture);
-                slabMark = cEF.structuralMembers.slab[floorCount][slabCount][4]; 
+                slabMark = cEF.structuralMembers.slab[floorCount][slabCount][1]; 
                 thickness = 0;
                 foreach (List<string> schedule in cEF.structuralMembers.slabSchedule[floorCount - 1])
                 {
@@ -1630,7 +1880,7 @@ namespace WindowsFormsApp1
                 lengthRight = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][19 - i], System.Globalization.CultureInfo.InvariantCulture);
 
                 //Computation -- Concrete Works
-                if (cEF.parameters.conc_cmIsSelected[0])
+                if (cEF.parameters.conc_cmIsSelected[4])
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
@@ -1642,6 +1892,8 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[0][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[0][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                     else if (concreteGrade.Equals("CLASS A"))
                     {
@@ -1653,6 +1905,8 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[1][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[1][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
@@ -1664,6 +1918,8 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[2][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[2][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                     else
                     {
@@ -1675,6 +1931,8 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[3][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[3][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                 }
                 else
@@ -1682,7 +1940,6 @@ namespace WindowsFormsApp1
                     cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                         ((((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness) / 1000000000) * quantity);
                 }
-
                 refreshSolutions(cEF);
             }
         }
@@ -1703,13 +1960,13 @@ namespace WindowsFormsApp1
                 //Init variables from StructMem
                 quantity = double.Parse(cEF.structuralMembers.slab[floorCount][index][1], System.Globalization.CultureInfo.InvariantCulture);
                 thickness = double.Parse(cEF.structuralMembers.slab[floorCount][index][2], System.Globalization.CultureInfo.InvariantCulture);
-                lengthTop = double.Parse(cEF.structuralMembers.slab[floorCount][index][10], System.Globalization.CultureInfo.InvariantCulture);
-                lengthBot = double.Parse(cEF.structuralMembers.slab[floorCount][index][12], System.Globalization.CultureInfo.InvariantCulture);
-                lengthLeft = double.Parse(cEF.structuralMembers.slab[floorCount][index][14], System.Globalization.CultureInfo.InvariantCulture);
-                lengthRight = double.Parse(cEF.structuralMembers.slab[floorCount][index][16], System.Globalization.CultureInfo.InvariantCulture);
+                lengthTop = double.Parse(cEF.structuralMembers.slab[floorCount][index][11], System.Globalization.CultureInfo.InvariantCulture);
+                lengthBot = double.Parse(cEF.structuralMembers.slab[floorCount][index][13], System.Globalization.CultureInfo.InvariantCulture);
+                lengthLeft = double.Parse(cEF.structuralMembers.slab[floorCount][index][15], System.Globalization.CultureInfo.InvariantCulture);
+                lengthRight = double.Parse(cEF.structuralMembers.slab[floorCount][index][17], System.Globalization.CultureInfo.InvariantCulture);
 
                 //Computation -- Concrete Works
-                if (cEF.parameters.conc_cmIsSelected[0])
+                if (cEF.parameters.conc_cmIsSelected[3])
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
@@ -1721,6 +1978,7 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[0][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
                             volume * cEF.structuralMembers.concreteProportion[0][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume  * quantity;
                     }
                     else if (concreteGrade.Equals("CLASS A"))
                     {
@@ -1732,6 +1990,7 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[1][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
                             volume * cEF.structuralMembers.concreteProportion[1][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
@@ -1743,6 +2002,7 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[2][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
                             volume * cEF.structuralMembers.concreteProportion[2][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                     else
                     {
@@ -1754,6 +2014,7 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[3][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
                             volume * cEF.structuralMembers.concreteProportion[3][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                 }
                 else
@@ -1785,7 +2046,7 @@ namespace WindowsFormsApp1
                 }
 
                 quantity = double.Parse(cEF.structuralMembers.slab[floorCount][index][2], System.Globalization.CultureInfo.InvariantCulture);
-                slabMark = cEF.structuralMembers.slab[floorCount][index][4];
+                slabMark = cEF.structuralMembers.slab[floorCount][index][1];
                 thickness = 0;
                 foreach (List<string> schedule in cEF.structuralMembers.slabSchedule[floorCount - 1])
                 {
@@ -1800,7 +2061,7 @@ namespace WindowsFormsApp1
                 lengthRight = double.Parse(cEF.structuralMembers.slab[floorCount][index][19 - i], System.Globalization.CultureInfo.InvariantCulture);
 
                 //Computation -- Concrete Works
-                if (cEF.parameters.conc_cmIsSelected[0])
+                if (cEF.parameters.conc_cmIsSelected[4])
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
@@ -1812,6 +2073,7 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[0][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
                             volume * cEF.structuralMembers.concreteProportion[0][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                     else if (concreteGrade.Equals("CLASS A"))
                     {
@@ -1823,6 +2085,7 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[1][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
                             volume * cEF.structuralMembers.concreteProportion[1][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
@@ -1834,6 +2097,7 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[2][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
                             volume * cEF.structuralMembers.concreteProportion[2][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                     else
                     {
@@ -1845,6 +2109,7 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[3][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
                             volume * cEF.structuralMembers.concreteProportion[3][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                 }
                 else
@@ -1888,7 +2153,7 @@ namespace WindowsFormsApp1
                 Thc = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][6], System.Globalization.CultureInfo.InvariantCulture);
 
                 //Computation -- Concrete Works
-                if (cEF.parameters.conc_cmIsSelected[4])
+                if (cEF.parameters.conc_cmIsSelected[5])
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
@@ -1902,11 +2167,13 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF + volumeSteps;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[0][0]);
+                            volume * cEF.structuralMembers.concreteProportion[0][0] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[0][1]);
+                            volume * cEF.structuralMembers.concreteProportion[0][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[0][2]);
+                            volume * cEF.structuralMembers.concreteProportion[0][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
+                            volume * quantity);
                     }
 
                     else if (concreteGrade.Equals("CLASS A"))
@@ -1921,11 +2188,13 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF + volumeSteps;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[1][0]);
+                            volume * cEF.structuralMembers.concreteProportion[1][0] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[1][1]);
+                            volume * cEF.structuralMembers.concreteProportion[1][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[1][2]);
+                            volume * cEF.structuralMembers.concreteProportion[1][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
+                            volume * quantity);
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
@@ -1939,11 +2208,13 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF + volumeSteps;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[2][0]);
+                            volume * cEF.structuralMembers.concreteProportion[2][0] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[2][1]);
+                            volume * cEF.structuralMembers.concreteProportion[2][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[2][2]);
+                            volume * cEF.structuralMembers.concreteProportion[2][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
+                            volume * quantity);
                     }
                     else
                     {
@@ -1957,11 +2228,13 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF + volumeSteps;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[3][0]);
+                            volume * cEF.structuralMembers.concreteProportion[3][0] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[3][1]);
+                            volume * cEF.structuralMembers.concreteProportion[3][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[3][2]);
+                            volume * cEF.structuralMembers.concreteProportion[3][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
+                            volume * quantity);
                     }
                 }
 
@@ -1977,10 +2250,10 @@ namespace WindowsFormsApp1
                     double volume = volumeWSF + volumeSteps;
                     volume /= 1000000000;
                     cEF.structuralMembers.concreteWorkSolutionsC[floorCount][stairsCount].Add(
-                        volume);
+                        volume * quantity);
                 }
             }
-            else if (cEF.structuralMembers.stairs[floorCount][stairsCount][0].Equals("L - Stairs"))
+            else if (cEF.structuralMembers.stairs[floorCount][stairsCount][0].Equals("L-Stairs"))
             {
                 //Variables from Parameters
                 string concreteGrade;
@@ -2002,7 +2275,7 @@ namespace WindowsFormsApp1
                 landingThc = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][8], System.Globalization.CultureInfo.InvariantCulture);
 
                 //Computation -- Concrete Works
-                if (cEF.parameters.conc_cmIsSelected[4])
+                if (cEF.parameters.conc_cmIsSelected[5])
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
@@ -2024,11 +2297,13 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[0][0]);
+                            volume * cEF.structuralMembers.concreteProportion[0][0] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[0][1]);
+                            volume * cEF.structuralMembers.concreteProportion[0][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[0][2]);
+                            volume * cEF.structuralMembers.concreteProportion[0][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
+                            volume * quantity);
                     }
                     else if (concreteGrade.Equals("CLASS A"))
                     {
@@ -2050,11 +2325,13 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[1][0]);
+                            volume * cEF.structuralMembers.concreteProportion[1][0] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[1][1]);
+                            volume * cEF.structuralMembers.concreteProportion[1][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[1][2]);
+                            volume * cEF.structuralMembers.concreteProportion[1][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
+                            volume * quantity);
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
@@ -2076,11 +2353,13 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[2][0]);
+                            volume * cEF.structuralMembers.concreteProportion[2][0] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[2][1]);
+                            volume * cEF.structuralMembers.concreteProportion[2][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[2][2]);
+                            volume * cEF.structuralMembers.concreteProportion[2][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
+                            volume * quantity);
                     }
                     else
                     {
@@ -2102,11 +2381,13 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[3][0]);
+                            volume * cEF.structuralMembers.concreteProportion[3][0] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[3][1]);
+                            volume * cEF.structuralMembers.concreteProportion[3][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[3][2]);
+                            volume * cEF.structuralMembers.concreteProportion[3][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
+                            volume * quantity);
                     }
                 }
                 else
@@ -2129,7 +2410,7 @@ namespace WindowsFormsApp1
                     double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                     volume /= 1000000000;
                     cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                        volume);
+                        volume * quantity);
                 }
             }
             else
@@ -2156,7 +2437,7 @@ namespace WindowsFormsApp1
                 landingThc = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][10], System.Globalization.CultureInfo.InvariantCulture);
 
                 //Computation -- Concrete Works
-                if (cEF.parameters.conc_cmIsSelected[4])
+                if (cEF.parameters.conc_cmIsSelected[5])
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
@@ -2178,11 +2459,13 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[0][0]);
+                            volume * cEF.structuralMembers.concreteProportion[0][0] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[0][1]);
+                            volume * cEF.structuralMembers.concreteProportion[0][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[0][2]);
+                            volume * cEF.structuralMembers.concreteProportion[0][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
+                            volume * quantity);
                     }
                     else if (concreteGrade.Equals("CLASS A"))
                     {
@@ -2204,11 +2487,13 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[1][0]);
+                            volume * cEF.structuralMembers.concreteProportion[1][0] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[1][1]);
+                            volume * cEF.structuralMembers.concreteProportion[1][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[1][2]);
+                            volume * cEF.structuralMembers.concreteProportion[1][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
+                            volume * quantity);
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
@@ -2230,11 +2515,13 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[2][0]);
+                            volume * cEF.structuralMembers.concreteProportion[2][0] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[2][1]);
+                            volume * cEF.structuralMembers.concreteProportion[2][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[2][2]);
+                            volume * cEF.structuralMembers.concreteProportion[2][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
+                            volume * quantity);
                     }
                     else
                     {
@@ -2256,11 +2543,13 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[3][0]);
+                            volume * cEF.structuralMembers.concreteProportion[3][0] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[3][1]);
+                            volume * cEF.structuralMembers.concreteProportion[3][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                            volume * cEF.structuralMembers.concreteProportion[3][2]);
+                            volume * cEF.structuralMembers.concreteProportion[3][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
+                            volume * quantity);
                     }
                 }
                 else
@@ -2283,7 +2572,7 @@ namespace WindowsFormsApp1
                     double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                     volume /= 1000000000;
                     cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
-                        volume);
+                        volume * quantity);
                 }
             }
 
@@ -2312,7 +2601,7 @@ namespace WindowsFormsApp1
                 Thc = double.Parse(cEF.structuralMembers.stairs[floorCount][index][6], System.Globalization.CultureInfo.InvariantCulture);
 
                 //Computation -- Concrete Works
-                if (cEF.parameters.conc_cmIsSelected[4])
+                if (cEF.parameters.conc_cmIsSelected[5])
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
@@ -2326,11 +2615,12 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF + volumeSteps;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] = 
-                            volume * cEF.structuralMembers.concreteProportion[0][0];
+                            volume * cEF.structuralMembers.concreteProportion[0][0] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][1] = 
-                            volume * cEF.structuralMembers.concreteProportion[0][1];
+                            volume * cEF.structuralMembers.concreteProportion[0][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][2] = 
-                            volume * cEF.structuralMembers.concreteProportion[0][2];
+                            volume * cEF.structuralMembers.concreteProportion[0][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][3] = volume * quantity;
                     }
 
                     else if (concreteGrade.Equals("CLASS A"))
@@ -2345,11 +2635,12 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF + volumeSteps;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] = 
-                            volume * cEF.structuralMembers.concreteProportion[1][0];
+                            volume * cEF.structuralMembers.concreteProportion[1][0] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][1] = 
-                            volume * cEF.structuralMembers.concreteProportion[1][1];
+                            volume * cEF.structuralMembers.concreteProportion[1][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][2] = 
-                            volume * cEF.structuralMembers.concreteProportion[1][2];
+                            volume * cEF.structuralMembers.concreteProportion[1][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][3] = volume * quantity;
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
@@ -2363,11 +2654,12 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF + volumeSteps;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] = 
-                            volume * cEF.structuralMembers.concreteProportion[2][0];
+                            volume * cEF.structuralMembers.concreteProportion[2][0] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][1] = 
-                            volume * cEF.structuralMembers.concreteProportion[2][1];
+                            volume * cEF.structuralMembers.concreteProportion[2][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][2] = 
-                            volume * cEF.structuralMembers.concreteProportion[2][2];
+                            volume * cEF.structuralMembers.concreteProportion[2][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][3] = volume * quantity;
                     }
                     else
                     {
@@ -2381,11 +2673,12 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF + volumeSteps;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] = 
-                            volume * cEF.structuralMembers.concreteProportion[3][0];
+                            volume * cEF.structuralMembers.concreteProportion[3][0] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][1] = 
-                            volume * cEF.structuralMembers.concreteProportion[3][1];
+                            volume * cEF.structuralMembers.concreteProportion[3][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][2] = 
-                            volume * cEF.structuralMembers.concreteProportion[3][2];
+                            volume * cEF.structuralMembers.concreteProportion[3][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][3] = volume * quantity;
                     }
                 }
 
@@ -2400,11 +2693,11 @@ namespace WindowsFormsApp1
                     double volumeSteps = (riser * tread) / 2 * SL * steps;
                     double volume = volumeWSF + volumeSteps;
                     volume /= 1000000000;
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] = 
-                        volume;
+                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
+                        volume * quantity;
                 }
             }
-            else if (cEF.structuralMembers.stairs[floorCount][index][0].Equals("L - Stairs"))
+            else if (cEF.structuralMembers.stairs[floorCount][index][0].Equals("L-Stairs"))
             {
                 //Variables from Parameters
                 string concreteGrade;
@@ -2426,7 +2719,7 @@ namespace WindowsFormsApp1
                 landingThc = double.Parse(cEF.structuralMembers.stairs[floorCount][index][8], System.Globalization.CultureInfo.InvariantCulture);
 
                 //Computation -- Concrete Works
-                if (cEF.parameters.conc_cmIsSelected[4])
+                if (cEF.parameters.conc_cmIsSelected[5])
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
@@ -2448,11 +2741,12 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] = 
-                            volume * cEF.structuralMembers.concreteProportion[0][0];
+                            volume * cEF.structuralMembers.concreteProportion[0][0] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][1] = 
-                            volume * cEF.structuralMembers.concreteProportion[0][1];
+                            volume * cEF.structuralMembers.concreteProportion[0][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][2] = 
-                            volume * cEF.structuralMembers.concreteProportion[0][2];
+                            volume * cEF.structuralMembers.concreteProportion[0][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][3] = volume * quantity;
                     }
                     else if (concreteGrade.Equals("CLASS A"))
                     {
@@ -2474,11 +2768,12 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] = 
-                            volume * cEF.structuralMembers.concreteProportion[1][0];
+                            volume * cEF.structuralMembers.concreteProportion[1][0] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][1] = 
-                            volume * cEF.structuralMembers.concreteProportion[1][1];
+                            volume * cEF.structuralMembers.concreteProportion[1][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][2] = 
-                            volume * cEF.structuralMembers.concreteProportion[1][2];
+                            volume * cEF.structuralMembers.concreteProportion[1][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][3] = volume * quantity;
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
@@ -2500,11 +2795,12 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] = 
-                            volume * cEF.structuralMembers.concreteProportion[2][0];
+                            volume * cEF.structuralMembers.concreteProportion[2][0] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][1] = 
-                            volume * cEF.structuralMembers.concreteProportion[2][1];
+                            volume * cEF.structuralMembers.concreteProportion[2][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][2] = 
-                            volume * cEF.structuralMembers.concreteProportion[2][2];
+                            volume * cEF.structuralMembers.concreteProportion[2][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][3] = volume * quantity;
                     }
                     else
                     {
@@ -2526,11 +2822,12 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] = 
-                            volume * cEF.structuralMembers.concreteProportion[3][0];
+                            volume * cEF.structuralMembers.concreteProportion[3][0] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][1] = 
-                            volume * cEF.structuralMembers.concreteProportion[3][1];
+                            volume * cEF.structuralMembers.concreteProportion[3][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][2] = 
-                            volume * cEF.structuralMembers.concreteProportion[3][2];
+                            volume * cEF.structuralMembers.concreteProportion[3][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][3] = volume * quantity;
                     }
                 }
                 else
@@ -2552,8 +2849,11 @@ namespace WindowsFormsApp1
                     double landing = (SL * SL) * landingThc;
                     double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                     volume /= 1000000000;
-                    cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] = 
-                        volume;
+                    cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] =
+                        volume * quantity;
+                    
+                    print(volumeSteps + " * " + volumeWSF1 + " * " + volumeSteps + " * " + volumeWSF2 + " = " +
+                        ((volumeWSF1 + volumeSteps + volumeWSF2 + landing) / 1000000000) * quantity);
                 }
             }
             else
@@ -2580,7 +2880,7 @@ namespace WindowsFormsApp1
                 landingThc = double.Parse(cEF.structuralMembers.stairs[floorCount][index][10], System.Globalization.CultureInfo.InvariantCulture);
 
                 //Computation -- Concrete Works
-                if (cEF.parameters.conc_cmIsSelected[4])
+                if (cEF.parameters.conc_cmIsSelected[5])
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
@@ -2602,11 +2902,12 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] = 
-                            volume * cEF.structuralMembers.concreteProportion[0][0];
+                            volume * cEF.structuralMembers.concreteProportion[0][0] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][1] = 
-                            volume * cEF.structuralMembers.concreteProportion[0][1];
+                            volume * cEF.structuralMembers.concreteProportion[0][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][2] = 
-                            volume * cEF.structuralMembers.concreteProportion[0][2];
+                            volume * cEF.structuralMembers.concreteProportion[0][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][3] = volume * quantity;
                     }
                     else if (concreteGrade.Equals("CLASS A"))
                     {
@@ -2628,11 +2929,12 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] = 
-                            volume * cEF.structuralMembers.concreteProportion[1][0];
+                            volume * cEF.structuralMembers.concreteProportion[1][0] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][1] = 
-                            volume * cEF.structuralMembers.concreteProportion[1][1];
+                            volume * cEF.structuralMembers.concreteProportion[1][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][2] = 
-                            volume * cEF.structuralMembers.concreteProportion[1][2];
+                            volume * cEF.structuralMembers.concreteProportion[1][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][3] = volume * quantity;
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
@@ -2654,11 +2956,12 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] = 
-                            volume * cEF.structuralMembers.concreteProportion[2][0];
+                            volume * cEF.structuralMembers.concreteProportion[2][0] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][1] = 
-                            volume * cEF.structuralMembers.concreteProportion[2][1];
+                            volume * cEF.structuralMembers.concreteProportion[2][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][2] = 
-                            volume * cEF.structuralMembers.concreteProportion[2][2];
+                            volume * cEF.structuralMembers.concreteProportion[2][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][3] = volume * quantity;
                     }
                     else
                     {
@@ -2680,11 +2983,12 @@ namespace WindowsFormsApp1
                         double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] = 
-                            volume * cEF.structuralMembers.concreteProportion[3][0];
+                            volume * cEF.structuralMembers.concreteProportion[3][0] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][1] = 
-                            volume * cEF.structuralMembers.concreteProportion[3][1];
+                            volume * cEF.structuralMembers.concreteProportion[3][1] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][2] = 
-                            volume * cEF.structuralMembers.concreteProportion[3][2];
+                            volume * cEF.structuralMembers.concreteProportion[3][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][3] = volume * quantity;
                     }
                 }
                 else
@@ -2706,8 +3010,8 @@ namespace WindowsFormsApp1
                     double landing = ((SL * 2) + gap) * landingW * landingThc;
                     double volume = volumeWSF1 + volumeSteps + volumeWSF2 + landing;
                     volume /= 1000000000;
-                    cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] = 
-                        volume;
+                    cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] =
+                        volume * quantity;
                 }
             }
 

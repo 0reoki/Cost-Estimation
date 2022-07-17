@@ -39,6 +39,7 @@ namespace WindowsFormsApp1
 
         //Price Checklists (Show if checklist == true)
         public bool[] earthworksChecklist = { true, true, true, true, true, true }; //1.0
+        public bool[] concreteChecklist = { true, true, true, true, true, true }; //2.0
         public bool[] masonryChecklist = { true, true }; //4.0
         public bool[] roofingsChecklist = { true, true, true}; //6.0
         public bool[] tilesChecklist = { true, true }; //7.0
@@ -53,10 +54,11 @@ namespace WindowsFormsApp1
         public double excavation_Total, backfillingAndCompaction_Total, gradingAndCompaction_Total,
                       gravelBedding_Total, soilPoisoning_Total;
 
-        //2.0 - Concrete Works Variables (List by struct member [Footing, Concreting, Etc.])
+        //2.0 - Concrete Works Variables - Footing, Column, Beams, SOG Slab, SS Slab, Stairs
         public double[] cement_Total = new double[6];
+        public double[] sand_Total = new double[6];
         public double[] gravel_Total = new double[6];
-        public double[] water_Total = new double[6];
+        public double[] concreteVolume_Total = new double[6];
 
         //4.0 Masonry **
         //exteriorWall -> exteriorWindow -> exteriorDoor -> exteriorCHBarea -> exteriorCHBtotalpcs -> interiorWall -> interiorWindow -> interiorDoor -> interiorCHBarea ->  interiorCHBtotalpcs
@@ -90,6 +92,43 @@ namespace WindowsFormsApp1
         public double excavation_CostL, backfillingAndCompaction_CostL, gradingAndCompaction_CostL,
                       gravelBedding_CostM, gravelBedding_CostL, gravelBedding_CostTotal, soilPoisoning_CostM,
                       earthworks_CostTotal;
+
+        //2.0 Concrete 
+        public double concreteF_UnitM,      //Concrete Footing - Materials Unit
+                      concreteF_CostM,      //Concrete Footing - Materials Cost
+                      concreteF_CostL,      //Concrete Footing - Labor Cost
+                      concreteF_costTotal,  //Concrete Footing - TOTAL COST
+                      
+                      concreteC_UnitM,      //Concrete Column - Materials Unit
+                      concreteC_CostM,      //Concrete Column - Materials Cost
+                      concreteC_CostL,      //Concrete Column - Labor Cost
+                      concreteC_costTotal,  //Concrete Column - TOTAL COST
+
+                      concreteBR_UnitM,      //Concrete Beam - Materials Unit
+                      concreteBR_CostM,      //Concrete Beam - Materials Cost
+                      concreteBR_CostL,      //Concrete Beam - Labor Cost
+                      concreteBR_costTotal,  //Concrete Beam - TOTAL COST
+
+                      concreteSOG_UnitM,      //Concrete SOG - Materials Unit
+                      concreteSOG_CostM,      //Concrete SOG - Materials Cost
+                      concreteSOG_CostL,      //Concrete SOG - Labor Cost
+
+                      concreteSS_UnitM,      //Concrete SS - Materials Unit
+                      concreteSS_CostM,      //Concrete SS - Materials Cost
+                      concreteSS_CostL,      //Concrete SS - Labor Cost
+                      concreteSL_costTotal,  //Concrete Slab - TOTAL COST
+
+                      concreteST_UnitM,      //Concrete Stairs - Materials Unit
+                      concreteST_CostM,      //Concrete Stairs - Materials Cost
+                      concreteST_CostL,      //Concrete Stairs - Labor Cost
+                      concreteST_costTotal,  //Concrete Stairs - TOTAL COST
+
+                      concreteFS_CostM,      //Concrete Factor of Safety - Materials Cost
+                      concreteFS_costTotal,  //Concrete Factor of Safety - TOTAL COST
+
+                      concreteMCost_total,  //Concrete Materials - Total Cost
+                      concreteLCost_total,  //Concrete Labor - Total Cost                                           
+                      concrete_TOTALCOST;   //Concrete - OVERALL COST
 
         //4.0 Masonry **
         public double exterior_UnitM, //exterior - Materials Unit
@@ -222,9 +261,45 @@ namespace WindowsFormsApp1
             for (int i = 0; i < cement_Total.Length; i++)
             {
                 cement_Total[i] = 0;
+                sand_Total[i] = 0;
                 gravel_Total[i] = 0;
-                water_Total[i] = 0;
+                concreteVolume_Total[i] = 0;
             }
+            concreteF_UnitM = 0;
+            concreteF_CostM = 0;
+            concreteF_CostL = 0;
+            concreteF_costTotal = 0;
+
+            concreteC_UnitM = 0;
+            concreteC_CostM = 0;
+            concreteC_CostL = 0;
+            concreteC_costTotal = 0;
+
+            concreteBR_UnitM = 0;
+            concreteBR_CostM = 0;
+            concreteBR_CostL = 0;
+            concreteBR_costTotal = 0;
+
+            concreteSOG_UnitM = 0;
+            concreteSOG_CostM = 0;
+            concreteSOG_CostL = 0;
+
+            concreteSS_UnitM = 0;
+            concreteSS_CostM = 0;
+            concreteSS_CostL = 0;
+            concreteSL_costTotal = 0;
+
+            concreteST_UnitM = 0;
+            concreteST_CostM = 0;
+            concreteST_CostL = 0;
+            concreteST_costTotal = 0;
+
+            concreteFS_CostM = 0;
+            concreteFS_costTotal = 0;
+
+            concreteMCost_total = 0;
+            concreteLCost_total = 0;
+            concrete_TOTALCOST = 0;
 
             //Miscellaneous Variables
             misc_TOTALCOST = 0;
@@ -554,10 +629,9 @@ namespace WindowsFormsApp1
         //View Functions -- START
         private void initializeView()
         {
-            //TODO: Compute Cost according to checked
             //Cost Computation - START
 
-            //Excavation
+            //Earthworks
             if (earthworksChecklist[1])
                 excavation_CostL = Math.Round(excavation_Total, 2) * double.Parse(parameters.price_LaborRate_Earthworks["Excavation [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
             else
@@ -583,6 +657,286 @@ namespace WindowsFormsApp1
                 soilPoisoning_CostM = 0;
             earthworks_CostTotal = excavation_CostL + backfillingAndCompaction_CostL + gradingAndCompaction_CostL +
                                    gravelBedding_CostTotal + soilPoisoning_CostM;
+
+            //Concreting - TODO PRICE PAG CEMENT SAND GRAVEL
+            //Refresh Totalities to 0
+            for (int i = 0; i < cement_Total.Length; i++)
+            {
+                cement_Total[i] = 0;
+                sand_Total[i] = 0;
+                gravel_Total[i] = 0;
+                concreteVolume_Total[i] = 0;
+            }
+            
+            if (concreteChecklist[0]) //2.1 Footing
+            {
+                if (parameters.conc_cmIsSelected[0]) //Not Ready Mix
+                {
+                    foreach (List<double> solution in structuralMembers.concreteWorkSolutionsF)
+                    {
+                        cement_Total[0] += solution[1];
+                        sand_Total[0] += solution[2];
+                        gravel_Total[0] += solution[3];
+                        concreteVolume_Total[0] += solution[4];
+                    }
+                    concreteVolume_Total[0] = Math.Round(concreteVolume_Total[0], 2);
+                    //Cost
+                }
+                else //Ready Mix
+                {
+                    foreach (List<double> solution in structuralMembers.concreteWorkSolutionsF)
+                    {
+                        concreteVolume_Total[0] += solution[1];
+                    }
+                    concreteVolume_Total[0] = Math.Round(concreteVolume_Total[0], 2);
+                    concreteF_UnitM = double.Parse(parameters.price_ReadyMixConcrete[parameters.conc_CM_F_RM + " [m3]"].ToString());
+                    concreteF_CostM = concreteVolume_Total[0] * concreteF_UnitM;
+                    double laborRate = double.Parse(parameters.price_LaborRate_Concreting["FOOTING [m3]"].ToString()); //TODO
+                    concreteF_CostL = concreteVolume_Total[0] * laborRate;
+                    concreteF_costTotal = concreteF_CostM + concreteF_CostL;
+                }
+            }
+            if (concreteChecklist[1]) //2.2 Columns
+            {
+                if (parameters.conc_cmIsSelected[1]) //Not Ready Mix
+                {
+                    int i = 0;
+                    foreach (List<List<double>> floor in structuralMembers.concreteWorkSolutionsC)
+                    {
+                        int floorMultiplier = int.Parse(floors[i].getValues()[0]);
+                        foreach (List<double> solution in floor)
+                        {
+                            cement_Total[1] += solution[0] * floorMultiplier;
+                            sand_Total[1] += solution[1] * floorMultiplier;
+                            gravel_Total[1] += solution[2] * floorMultiplier;
+                            concreteVolume_Total[1] += solution[3] * floorMultiplier;
+                        }
+                        i++;
+                    }
+                    concreteVolume_Total[1] = Math.Round(concreteVolume_Total[1], 2);
+                    //Cost
+                }
+                else //Ready Mix
+                {
+                    int i = 0;
+                    foreach (List<List<double>> floor in structuralMembers.concreteWorkSolutionsC)
+                    {
+                        int floorMultiplier = int.Parse(floors[i].getValues()[0]);
+                        foreach (List<double> solution in floor)
+                        {
+                            concreteVolume_Total[1] += solution[0] * floorMultiplier;
+                        }
+                        i++;
+                    }
+                    concreteVolume_Total[1] = Math.Round(concreteVolume_Total[1], 2);
+                    concreteC_UnitM = double.Parse(parameters.price_ReadyMixConcrete[parameters.conc_CM_C_RM + " [m3]"].ToString());
+                    concreteC_CostM = concreteVolume_Total[1] * concreteC_UnitM;
+                    double laborRate = double.Parse(parameters.price_LaborRate_Concreting["COLUMN [m3]"].ToString());
+                    concreteC_CostL = concreteVolume_Total[1] * laborRate;
+                    concreteC_costTotal = concreteC_CostM + concreteC_CostL;
+                }
+            }
+            if (concreteChecklist[2]) //2.3 Beams
+            {
+                if (parameters.conc_cmIsSelected[2]) //Not Ready Mix
+                {
+                    int i = 0;
+                    foreach (List<List<double>> floor in structuralMembers.concreteWorkSolutionsBR)
+                    {
+                        int floorMultiplier = int.Parse(floors[i].getValues()[0]);
+                        foreach (List<double> solution in floor)
+                        {
+                            cement_Total[2] += solution[0] * floorMultiplier;
+                            sand_Total[2] += solution[1] * floorMultiplier;
+                            gravel_Total[2] += solution[2] * floorMultiplier;
+                            concreteVolume_Total[2] += solution[3] * floorMultiplier;
+                        }
+                        i++;
+                    }
+                    concreteVolume_Total[2] = Math.Round(concreteVolume_Total[2], 2);
+                    //Cost
+                }
+                else //Ready Mix
+                {
+                    int i = 0;
+                    foreach (List<List<double>> floor in structuralMembers.concreteWorkSolutionsBR)
+                    {
+                        int floorMultiplier = int.Parse(floors[i].getValues()[0]);
+                        foreach (List<double> solution in floor)
+                        {
+                            concreteVolume_Total[2] += solution[0] * floorMultiplier;
+                        }
+                        i++;
+                    }
+                    concreteVolume_Total[2] = Math.Round(concreteVolume_Total[2], 2);
+                    concreteBR_UnitM = double.Parse(parameters.price_ReadyMixConcrete[parameters.conc_CM_B_RM + " [m3]"].ToString());
+                    concreteBR_CostM = concreteVolume_Total[2] * concreteBR_UnitM;
+                    double laborRate = double.Parse(parameters.price_LaborRate_Concreting["BEAM [m3]"].ToString());
+                    concreteBR_CostL = concreteVolume_Total[2] * laborRate;
+                    concreteBR_costTotal = concreteBR_CostM + concreteBR_CostL;
+                }
+            }
+            if (concreteChecklist[3]) //2.4 Slab
+            {
+                int i = 0;
+                foreach (List<List<double>> floor in structuralMembers.concreteWorkSolutionsSL)
+                {
+                    int floorMultiplier = int.Parse(floors[i].getValues()[0]);
+                    if (i == 0) // SOG
+                    {
+                        if (parameters.conc_cmIsSelected[3]) //Not Ready Mix
+                        {
+                            foreach (List<double> solution in floor)
+                            {
+                                cement_Total[3] += solution[0] * floorMultiplier;
+                                sand_Total[3] += solution[1] * floorMultiplier;
+                                gravel_Total[3] += solution[2] * floorMultiplier;
+                                concreteVolume_Total[3] += solution[3] * floorMultiplier;
+                            }
+                            concreteVolume_Total[3] = Math.Round(concreteVolume_Total[3], 2);
+                            //Cost
+                        }
+                        else // Ready Mix
+                        {
+                            foreach (List<double> solution in floor)
+                            {
+                                concreteVolume_Total[3] += solution[0] * floorMultiplier;
+                            }
+                            concreteVolume_Total[3] = Math.Round(concreteVolume_Total[3], 2);
+                            concreteSOG_UnitM = double.Parse(parameters.price_ReadyMixConcrete[parameters.conc_CM_S_SOG_RM + " [m3]"].ToString());
+                            concreteSOG_CostM = concreteVolume_Total[3] * concreteSOG_UnitM;
+                            double laborRate = double.Parse(parameters.price_LaborRate_Concreting["SLAB ON GRADE [m3]"].ToString());
+                            concreteSOG_CostL = concreteVolume_Total[3] * laborRate;
+                            concreteSL_costTotal = concreteSOG_CostM + concreteSOG_CostL;
+                        }
+                    }
+                    else // SS
+                    {
+                        if (parameters.conc_cmIsSelected[4]) //Not Ready Mix
+                        {
+                            foreach (List<double> solution in floor)
+                            {
+                                cement_Total[4] += solution[0] * floorMultiplier;
+                                sand_Total[4] += solution[1] * floorMultiplier;
+                                gravel_Total[4] += solution[2] * floorMultiplier;
+                                concreteVolume_Total[4] += solution[3] * floorMultiplier;
+                            }
+                            concreteVolume_Total[4] = Math.Round(concreteVolume_Total[4], 2);
+                            //Cost
+                        }
+                        else // Ready Mix
+                        {
+                            foreach (List<double> solution in floor)
+                            {
+                                concreteVolume_Total[4] += solution[0] * floorMultiplier;
+                            }
+                            concreteVolume_Total[4] = Math.Round(concreteVolume_Total[4], 2);
+                            concreteSS_UnitM = double.Parse(parameters.price_ReadyMixConcrete[parameters.conc_CM_S_SS_RM + " [m3]"].ToString());
+                            concreteSS_CostM = concreteVolume_Total[4] * concreteSS_UnitM;
+                            double laborRate = double.Parse(parameters.price_LaborRate_Concreting["SUSPENDED SLAB [m3]"].ToString());
+                            concreteSS_CostL = concreteVolume_Total[4] * laborRate;
+                            concreteSL_costTotal = concreteSS_CostM + concreteSS_CostL;
+                        }
+                    }
+                    i++;
+                }
+            }
+            if (concreteChecklist[4]) //2.5 Stairs
+            {
+                if (parameters.conc_cmIsSelected[5]) //Not Ready Mix
+                {
+                    int i = 0;
+                    foreach (List<List<double>> floor in structuralMembers.concreteWorkSolutionsST)
+                    {
+                        //int floorMultiplier = int.Parse(floors[i].getValues()[0]);
+                        int floorMultiplier = 1;
+                        foreach (List<double> solution in floor)
+                        {
+                            cement_Total[5] += solution[0] * floorMultiplier;
+                            sand_Total[5] += solution[1] * floorMultiplier;
+                            gravel_Total[5] += solution[2] * floorMultiplier;
+                            concreteVolume_Total[5] += solution[3] * floorMultiplier;
+                        }
+                        i++;
+                    }
+                    concreteVolume_Total[5] = Math.Round(concreteVolume_Total[5], 2);
+                    //Cost
+                }
+                else //Ready Mix
+                {
+                    int i = 0;
+                    foreach (List<List<double>> floor in structuralMembers.concreteWorkSolutionsST)
+                    {
+                        //int floorMultiplier = int.Parse(floors[i].getValues()[0]);
+                        int floorMultiplier = 1;
+                        foreach (List<double> solution in floor)
+                        {
+                            concreteVolume_Total[5] += solution[0] * floorMultiplier;
+                        }
+                        i++;
+                    }
+                    concreteVolume_Total[5] = Math.Round(concreteVolume_Total[5], 2);
+                    concreteST_UnitM = double.Parse(parameters.price_ReadyMixConcrete[parameters.conc_CM_ST_RM + " [m3]"].ToString());
+                    concreteST_CostM = concreteVolume_Total[5] * concreteST_UnitM;
+                    double laborRate = double.Parse(parameters.price_LaborRate_Concreting["STAIRS [m3]"].ToString()); //TODO
+                    concreteST_CostL = concreteVolume_Total[5] * laborRate;
+                    concreteST_costTotal = concreteST_CostM + concreteST_CostL;
+                }
+            }
+            if (concreteChecklist[5]) //2.6 Factor of Safety
+            {
+
+            }
+            concreteMCost_total = concreteF_CostM + concreteC_CostM + concreteBR_CostM +
+                                  concreteSOG_CostM + concreteSS_CostM + concreteST_CostM + concreteFS_CostM;
+            concreteLCost_total = concreteF_CostL + concreteC_CostL + concreteBR_CostL +
+                                  concreteSOG_CostL + concreteSS_CostL + concreteST_CostL;
+            concrete_TOTALCOST = concreteMCost_total + concreteLCost_total;
+
+            print("\n====== Concreting ======");
+            print("Footing Total: " + concreteVolume_Total[0]);
+            print("Column Total: " + concreteVolume_Total[1]);
+            print("Beams Total: " + concreteVolume_Total[2]);
+            print("SOG Slab Total: " + concreteVolume_Total[3]);
+            print("SS Slab Total: " + concreteVolume_Total[4]);
+            print("Stairs Total: " + concreteVolume_Total[5]);
+            print("\n====== COST Concreting ======");
+            print("=== Footing Cost ===");
+            print("Material Unit Cost: " + concreteF_UnitM);
+            print("Material Total Cost: " + concreteF_CostM);
+            print("Labor Total Cost: " + concreteF_CostL);
+            print("Total Cost: " + concreteF_costTotal);
+            print("=== Column Cost ===");
+            print("Material Unit Cost: " + concreteC_UnitM);
+            print("Material Total Cost: " + concreteC_CostM);
+            print("Labor Total Cost: " + concreteC_CostL);
+            print("Total Cost: " + concreteC_costTotal);
+            print("=== Beam Cost ===");
+            print("Material Unit Cost: " + concreteBR_UnitM);
+            print("Material Total Cost: " + concreteBR_CostM);
+            print("Labor Total Cost: " + concreteBR_CostL);
+            print("Total Cost: " + concreteBR_costTotal);
+            print("=== Slab Cost ===");
+            print("SOG Material Unit Cost: " + concreteSOG_UnitM);
+            print("SOG Material Total Cost: " + concreteSOG_CostM);
+            print("SOG Labor Total Cost: " + concreteSOG_CostL);
+            print("SS Material Unit Cost: " + concreteSS_UnitM);
+            print("SS Material Total Cost: " + concreteSS_CostM);
+            print("SS Labor Total Cost: " + concreteSS_CostL);
+            print("Total Cost: " + concreteSL_costTotal);
+            print("=== Stairs Cost ===");
+            print("Material Unit Cost: " + concreteST_UnitM);
+            print("Material Total Cost: " + concreteST_CostM);
+            print("Labor Total Cost: " + concreteST_CostL);
+            print("Total Cost: " + concreteST_costTotal);
+            print("=== Factor of Safety Cost ===");
+            print("Material Total Cost: " + concreteFS_CostM);
+            print("Total Cost: " + concreteFS_costTotal);
+            print("=== Total Cost ===");
+            print("Material Total Cost: " + concreteMCost_total);
+            print("Labor Total Cost: " + concreteLCost_total);
+            print("Total Cost: " + concrete_TOTALCOST);
+
             //Masonry
             string strCHB;
             if (masonryChecklist[0])
@@ -1150,7 +1504,7 @@ namespace WindowsFormsApp1
                 TreeNode tn1 = new TreeNode("1.0 Earthworks (₱" + earthworks_CostTotal.ToString("#,##0.00") + ")");
                 tn1.Name = "earthworksParent";
 
-                TreeNode tn2 = new TreeNode("2.0 Concrete Works");
+                TreeNode tn2 = new TreeNode("2.0 Concrete Works (₱" + concrete_TOTALCOST.ToString("#,##0.00") + ")");
                 tn2.Name = "concreteWorksParent";
 
                 TreeNode tn3 = new TreeNode("3.0 Form Works");
@@ -1181,14 +1535,19 @@ namespace WindowsFormsApp1
                 TreeNode newChild5 = new TreeNode("1.5 Soil Poisoning (₱" + soilPoisoning_CostM.ToString("#,##0.00") + ")");
                 newChild5.Name = "soilPoisoning_Total";
 
-                found[0].Nodes.Add(newChild1);
-                found[0].Nodes.Add(newChild2);
-                found[0].Nodes.Add(newChild3);
-                found[0].Nodes.Add(newChild4);
-                found[0].Nodes.Add(newChild5);
+                if (excavation_CostL != 0)
+                    found[0].Nodes.Add(newChild1);
+                if (backfillingAndCompaction_CostL != 0)
+                    found[0].Nodes.Add(newChild2);
+                if (gradingAndCompaction_CostL != 0)
+                    found[0].Nodes.Add(newChild3);
+                if (gravelBedding_CostTotal != 0)
+                    found[0].Nodes.Add(newChild4);
+                if (soilPoisoning_CostM != 0)
+                    found[0].Nodes.Add(newChild5);
 
                 //Setting of BOQ     
-                if (earthworksChecklist[0])
+                if (earthworks_CostTotal != 0)
                 {
                     var index = this.summ_BOQ_dg.Rows.Add();
                     this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "1.0";
@@ -1196,7 +1555,7 @@ namespace WindowsFormsApp1
                     this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "EARTHWORKS";
                     this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
 
-                    if (earthworksChecklist[1])
+                    if (excavation_CostL != 0)
                     {
                         index = this.summ_BOQ_dg.Rows.Add();
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.1";
@@ -1214,7 +1573,7 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + excavation_CostL.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
-                    if (earthworksChecklist[2])
+                    if (backfillingAndCompaction_CostL != 0)
                     {
                         index = this.summ_BOQ_dg.Rows.Add();
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.2";
@@ -1232,7 +1591,7 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + backfillingAndCompaction_CostL.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
-                    if (earthworksChecklist[3])
+                    if (gradingAndCompaction_CostL != 0)
                     {
                         index = this.summ_BOQ_dg.Rows.Add();
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.3";
@@ -1250,7 +1609,7 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + gradingAndCompaction_CostL.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
-                    if (earthworksChecklist[4])
+                    if (gravelBedding_CostTotal != 0)
                     {
                         index = this.summ_BOQ_dg.Rows.Add();
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.4";
@@ -1272,7 +1631,7 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + gravelBedding_CostTotal.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
-                    if (earthworksChecklist[5])
+                    if (soilPoisoning_CostM != 0)
                     {
                         index = this.summ_BOQ_dg.Rows.Add();
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.5";
@@ -1305,33 +1664,250 @@ namespace WindowsFormsApp1
                     this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
                 }
                 //1.0 - Earthworks -- END
-                /*
+                
                 //2.0 - Concrete Works -- START
-                TreeNode[] found = view_TV1.Nodes.Find("earthworksParent", true);
+                found = view_TV1.Nodes.Find("concreteWorksParent", true);
 
-                TreeNode newChild1 = new TreeNode("1.1 Excavation (₱" + excavation_CostL.ToString("#,##0.00") + ")");
-                newChild1.Name = "excavation_Total";
+                TreeNode column_newChild1 = new TreeNode("2.1 Footing (₱" + concreteF_costTotal.ToString("#,##0.00") + ")");
+                newChild1.Name = "concreting_Footing";
 
-                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction (₱" + backfillingAndCompaction_CostL.ToString("#,##0.00") + ")");
-                newChild2.Name = "backfillingAndCompaction_Total";
+                TreeNode column_newChild2 = new TreeNode("2.2 Column (₱" + concreteC_costTotal.ToString("#,##0.00") + ")");
+                newChild2.Name = "concreting_Column";
 
-                TreeNode newChild3 = new TreeNode("1.3 Grading and Compaction (₱" + gradingAndCompaction_CostL.ToString("#,##0.00") + ")");
-                newChild3.Name = "gradingAndCompaction_Total";
+                TreeNode column_newChild3 = new TreeNode("2.3 Beam (₱" + concreteBR_costTotal.ToString("#,##0.00") + ")");
+                newChild3.Name = "concreting_Beam";
 
-                TreeNode newChild4 = new TreeNode("1.4 Gravel Bedding and Compaction (₱" + gravelBedding_CostTotal.ToString("#,##0.00") + ")");
-                newChild4.Name = "gravelBedding_Total";
+                TreeNode column_newChild4 = new TreeNode("2.4 Slab (₱" + concreteSL_costTotal.ToString("#,##0.00") + ")");
+                newChild4.Name = "concreting_Slab";
 
-                TreeNode newChild5 = new TreeNode("1.5 Soil Poisoning (₱" + soilPoisoning_CostM.ToString("#,##0.00") + ")");
-                newChild5.Name = "soilPoisoning_Total";
+                TreeNode column_newChild5 = new TreeNode("2.5 Stairs (₱" + concreteST_costTotal.ToString("#,##0.00") + ")");
+                newChild5.Name = "concreting_Stairs";
 
-                found[0].Nodes.Add(newChild1);
-                found[0].Nodes.Add(newChild2);
-                found[0].Nodes.Add(newChild3);
-                found[0].Nodes.Add(newChild4);
-                found[0].Nodes.Add(newChild5);
+                TreeNode column_newChild6 = new TreeNode("2.6 Factor of Safety (₱" + concreteFS_costTotal.ToString("#,##0.00") + ")");
+                column_newChild6.Name = "concreting_FS";
 
+                if (concreteF_costTotal != 0)
+                    found[0].Nodes.Add(column_newChild1);
+                if (concreteC_costTotal != 0)
+                    found[0].Nodes.Add(column_newChild2);
+                if (concreteBR_costTotal != 0)
+                    found[0].Nodes.Add(column_newChild3);
+                if (concreteSL_costTotal != 0)
+                    found[0].Nodes.Add(column_newChild4);
+                if (concreteST_costTotal != 0)
+                    found[0].Nodes.Add(column_newChild5);
+                if (concreteFS_costTotal != 0)
+                    found[0].Nodes.Add(column_newChild6);
+
+                //Setting of BOQ     
+                try
+                {
+                    if (concrete_TOTALCOST != 0)
+                    {
+                        var index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "2.0";
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "CONCRETE WORKS";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+
+                        int i = 1;
+                        if (concreteF_costTotal != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "2." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            string PSI = "";
+                            if (!parameters.conc_cmIsSelected[0])
+                            {
+                                PSI = parameters.conc_CM_F_RM.Substring(20, 7);
+                            }
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "FOOTINGS";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "FOOTING AND WALL FOOTING (" + PSI + ")";
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = concreteVolume_Total[0].ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + concreteF_UnitM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + concreteF_CostM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Concreting["FOOTING [m3]"].ToString()).ToString("#,##0.00"); // TODO
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + concreteF_CostL.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + concreteF_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (concreteC_costTotal != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "2." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            string PSI = "";
+                            if (!parameters.conc_cmIsSelected[1])
+                            {
+                                PSI = parameters.conc_CM_C_RM.Substring(20, 7);
+                            }
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "COLUMNS";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "COLUMNS (" + PSI + ")";
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = concreteVolume_Total[1].ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + concreteC_UnitM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + concreteC_CostM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Concreting["COLUMN [m3]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + concreteC_CostL.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + concreteC_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (concreteBR_costTotal != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "2." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            string PSI = "";
+                            if (!parameters.conc_cmIsSelected[2])
+                            {
+                                PSI = parameters.conc_CM_B_RM.Substring(20, 7);
+                            }
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "BEAMS";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "BEAMS (" + PSI + ")";
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = concreteVolume_Total[2].ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + concreteBR_UnitM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + concreteBR_CostM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Concreting["BEAM [m3]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + concreteBR_CostL.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + concreteBR_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (concreteSL_costTotal != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "2." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "SLAB";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            string PSI = "";
+                            if (!parameters.conc_cmIsSelected[3])
+                            {
+                                PSI = parameters.conc_CM_S_SOG_RM.Substring(20, 7);
+                            }
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "SLAB ON GRADE (" + PSI + ")";
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = concreteVolume_Total[3].ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + concreteSOG_UnitM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + concreteSOG_CostM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Concreting["SLAB ON GRADE [m3]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + concreteSOG_CostL.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            PSI = "";
+                            if (!parameters.conc_cmIsSelected[4])
+                            {
+                                PSI = parameters.conc_CM_S_SS_RM.Substring(20, 7);
+                            }
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "SUSPENDED SLAB (" + PSI + ")";
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = concreteVolume_Total[4].ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + concreteSS_UnitM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + concreteSS_CostM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Concreting["SUSPENDED SLAB [m3]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + concreteSS_CostL.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + concreteSL_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (concreteST_costTotal != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "2." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            string PSI = "";
+                            if (!parameters.conc_cmIsSelected[5])
+                            {
+                                PSI = parameters.conc_CM_ST_RM.Substring(20, 7);
+                            }
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "STAIRS";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "STAIRS (" + PSI + ")";
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = concreteVolume_Total[5].ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + concreteST_UnitM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + concreteST_CostM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Concreting["STAIRS [m3]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + concreteST_CostL.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + concreteST_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (concreteFS_costTotal != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "2." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "FACTOR OF SAFETY";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + concreteFS_CostM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + concreteFS_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        }
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + concreteMCost_total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + concreteLCost_total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + concrete_TOTALCOST.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
                 //2.0 - Concrete Works -- END
-
+                /*
                 //3.0 - Formworks -- START
                 TreeNode[] found = view_TV1.Nodes.Find("earthworksParent", true);
 
@@ -1368,13 +1944,15 @@ namespace WindowsFormsApp1
                 TreeNode M_newChild2 = new TreeNode("4.2 Interior Walls (₱" + interior_costTotal.ToString("#,##0.00") + ")");
                 newChild2.Name = "interior_Wall_Total";
 
-                found[0].Nodes.Add(M_newChild1);
-                found[0].Nodes.Add(M_newChild2);
+                if (exterior_costTotal != 0)
+                    found[0].Nodes.Add(M_newChild1);
+                if (interior_costTotal != 0)
+                    found[0].Nodes.Add(M_newChild2);
 
                 //Setting of BOQ     
                 try
                 {
-                    if (masonryChecklist.Contains(true))
+                    if (mason_TOTALCOST != 0)
                     {
                         var index = this.summ_BOQ_dg.Rows.Add();
                         this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "4.0";
@@ -1382,10 +1960,11 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "MASONRY";
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
 
-                        if (masonryChecklist[0])
+                        int i = 1;
+                        if (exterior_costTotal != 0)
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
-                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "4.1";
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "4." + i;
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Exterior Walls";
@@ -1403,11 +1982,12 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + exterior_costTotal.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
                         }
-                        if (masonryChecklist[1])
+                        if (interior_costTotal != 0)
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
-                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "4.2";
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "4." + i;
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Interior Walls";
@@ -1425,6 +2005,7 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + interior_costTotal.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
                         }
 
                         this.summ_BOQ_dg.Rows.Add();
@@ -1517,14 +2098,17 @@ namespace WindowsFormsApp1
                 TreeNode roof_newChild3 = new TreeNode("6.3 Tinswork (₱" + tins_costTotal.ToString("#,##0.00") + ")");
                 roof_newChild3.Name = "Tinswork_Total";
 
+                if (acce_costTotal != 0)
                 found[0].Nodes.Add(roof_newChild1);
-                found[0].Nodes.Add(roof_newChild2);
-                found[0].Nodes.Add(roof_newChild3);
+                if (rANDp_costTotal != 0)
+                    found[0].Nodes.Add(roof_newChild2);
+                if (tins_costTotal != 0)
+                    found[0].Nodes.Add(roof_newChild3);
 
                 //Setting of BOQ     
                 try
                 {
-                    if (roofingsChecklist.Contains(true))
+                    if (roof_TOTALCOST != 0)
                     {
                         var index = this.summ_BOQ_dg.Rows.Add();
                         this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "6.0";
@@ -1533,7 +2117,7 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
 
                         int i = 1;
-                        if (roofingsChecklist[0])
+                        if (acce_costTotal != 0)
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "6." + i;
@@ -1556,7 +2140,7 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             i++;
                         }
-                        if (roofingsChecklist[1])
+                        if (rANDp_costTotal != 0)
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "6." + i;
@@ -1572,7 +2156,7 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             i++;
                         }
-                        if (roofingsChecklist[2])
+                        if (tins_costTotal != 0)
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "6." + i;
@@ -1615,13 +2199,15 @@ namespace WindowsFormsApp1
                 TreeNode tile_newChild2 = new TreeNode("7.2 300 x 300 (₱" + threehun_costTotal.ToString("#,##0.00") + ")");
                 tile_newChild2.Name = "300_Total";
 
-                found[0].Nodes.Add(tile_newChild1);
-                found[0].Nodes.Add(tile_newChild2);
+                if (sixhun_costTotal != 0)
+                    found[0].Nodes.Add(tile_newChild1);
+                if (threehun_costTotal != 0)
+                    found[0].Nodes.Add(tile_newChild2);
 
                 //Setting of BOQ   
                 try
                 {
-                    if (tilesChecklist.Contains(true))
+                    if (tiles_TOTALCOST != 0)
                     {
                         var index = this.summ_BOQ_dg.Rows.Add();
                         this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "7.0";
@@ -1630,7 +2216,7 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
 
                         int i = 1;
-                        if (tilesChecklist[0])
+                        if (sixhun_costTotal != 0)
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "7." + i;
@@ -1653,7 +2239,7 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             i++;
                         }
-                        if (tilesChecklist[1])
+                        if (threehun_costTotal != 0)
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "7." + i;
@@ -1709,15 +2295,19 @@ namespace WindowsFormsApp1
                 TreeNode paint_newChild4 = new TreeNode("8.4 SEMI-GLOSS PAINT (₱" + semi_TOTALCOST.ToString("#,##0.00") + ")");
                 paint_newChild4.Name = "SemiGloss_Paint_Total";
 
-                found[0].Nodes.Add(paint_newChild1);
-                found[0].Nodes.Add(paint_newChild2);
-                found[0].Nodes.Add(paint_newChild3);
-                found[0].Nodes.Add(paint_newChild4);
+                if (enam_TOTALCOST != 0)
+                    found[0].Nodes.Add(paint_newChild1);
+                if (acry_TOTALCOST != 0)
+                    found[0].Nodes.Add(paint_newChild2);
+                if (late_TOTALCOST != 0)
+                    found[0].Nodes.Add(paint_newChild3);
+                if (semi_TOTALCOST != 0)
+                    found[0].Nodes.Add(paint_newChild4);
 
                 //Setting of BOQ   
                 try
                 {
-                    if (paintsChecklist.Contains(true))
+                    if (paints_TOTALCOST != 0)
                     {
                         var index = this.summ_BOQ_dg.Rows.Add();
                         this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "8.0";
@@ -1726,7 +2316,7 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
 
                         int i = 1;
-                        if (paintsChecklist[0])
+                        if (enam_TOTALCOST != 0)
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "8." + i;
@@ -1749,7 +2339,7 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             i++;
                         }
-                        if (paintsChecklist[1])
+                        if (acry_TOTALCOST != 0)
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "8." + i;
@@ -1772,7 +2362,7 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             i++;
                         }
-                        if (paintsChecklist[2])
+                        if (late_TOTALCOST != 0)
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "8." + i;
@@ -1795,7 +2385,7 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             i++;
                         }
-                        if (paintsChecklist[3])
+                        if (semi_TOTALCOST != 0)
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "8." + i;
@@ -2325,7 +2915,7 @@ namespace WindowsFormsApp1
             parameters.price_ReadyMixConcrete.Add("Ready Mix Concrete, 4000PSI (27.6 Mpa) @ 28 Days [m3]", 4910);
             parameters.price_ReadyMixConcrete.Add("Ready Mix Concrete, 4000PSI (27.6 Mpa) @ 14 Days [m3]", 5300);
             parameters.price_ReadyMixConcrete.Add("Ready Mix Concrete, 4500PSI (31 Mpa) @ 28 Days [m3]", 5020);
-            parameters.price_ReadyMixConcrete.Add("Ready Mix Concrete, 5000PSI (34.5 Mpa) @ 28 Days[m3]", 5280);
+            parameters.price_ReadyMixConcrete.Add("Ready Mix Concrete, 5000PSI (34.5 Mpa) @ 28 Days [m3]", 5280);
             foreach (DictionaryEntry dict in parameters.price_ReadyMixConcrete)
             {
                 parameters.searchList.Add(dict.Key + " - Ready Mix Concrete");
@@ -2875,7 +3465,7 @@ namespace WindowsFormsApp1
             parameters.price_ReadyMixConcrete["Ready Mix Concrete, 4000PSI (27.6 Mpa) @ 28 Days [m3]"] = 4910;
             parameters.price_ReadyMixConcrete["Ready Mix Concrete, 4000PSI (27.6 Mpa) @ 14 Days [m3]"] = 5300;
             parameters.price_ReadyMixConcrete["Ready Mix Concrete, 4500PSI (31 Mpa) @ 28 Days [m3]"] = 5020;
-            parameters.price_ReadyMixConcrete["Ready Mix Concrete, 5000PSI (34.5 Mpa) @ 28 Days[m3]"] = 5280;
+            parameters.price_ReadyMixConcrete["Ready Mix Concrete, 5000PSI (34.5 Mpa) @ 28 Days [m3]"] = 5280;
 
             //7 - Gravel
             parameters.price_Gravel["GRAVEL G1 [m3]"] = 530;
@@ -3328,7 +3918,7 @@ namespace WindowsFormsApp1
             price_6_9.Text = parameters.price_ReadyMixConcrete["Ready Mix Concrete, 4000PSI (27.6 Mpa) @ 28 Days [m3]"].ToString();
             price_6_10.Text = parameters.price_ReadyMixConcrete["Ready Mix Concrete, 4000PSI (27.6 Mpa) @ 14 Days [m3]"].ToString();
             price_6_11.Text = parameters.price_ReadyMixConcrete["Ready Mix Concrete, 4500PSI (31 Mpa) @ 28 Days [m3]"].ToString();
-            price_6_12.Text = parameters.price_ReadyMixConcrete["Ready Mix Concrete, 5000PSI (34.5 Mpa) @ 28 Days[m3]"].ToString();
+            price_6_12.Text = parameters.price_ReadyMixConcrete["Ready Mix Concrete, 5000PSI (34.5 Mpa) @ 28 Days [m3]"].ToString();
 
             //7 - Gravel
             price_7_1.Text = parameters.price_Gravel["GRAVEL G1 [m3]"].ToString();
@@ -3776,7 +4366,7 @@ namespace WindowsFormsApp1
                 parameters.price_ReadyMixConcrete["Ready Mix Concrete, 4000PSI (27.6 Mpa) @ 28 Days [m3]"] = price_6_9.Text;
                 parameters.price_ReadyMixConcrete["Ready Mix Concrete, 4000PSI (27.6 Mpa) @ 14 Days [m3]"] = price_6_10.Text;
                 parameters.price_ReadyMixConcrete["Ready Mix Concrete, 4500PSI (31 Mpa) @ 28 Days [m3]"] = price_6_11.Text;
-                parameters.price_ReadyMixConcrete["Ready Mix Concrete, 5000PSI (34.5 Mpa) @ 28 Days[m3]"] = price_6_12.Text;
+                parameters.price_ReadyMixConcrete["Ready Mix Concrete, 5000PSI (34.5 Mpa) @ 28 Days [m3]"] = price_6_12.Text;
 
                 //7 - Gravel
                 parameters.price_Gravel["GRAVEL G1 [m3]"] = price_7_1.Text;
@@ -4685,6 +5275,10 @@ namespace WindowsFormsApp1
 
             //Checklist
             foreach(bool checkMark in earthworksChecklist)
+            {
+                stringParam += checkMark + "|";
+            }
+            foreach(bool checkMark in concreteChecklist)
             {
                 stringParam += checkMark + "|";
             }
@@ -6031,6 +6625,12 @@ namespace WindowsFormsApp1
             earthworksChecklist[3] = bool.Parse(tokens[i]); i++;
             earthworksChecklist[4] = bool.Parse(tokens[i]); i++;
             earthworksChecklist[5] = bool.Parse(tokens[i]); i++;
+            concreteChecklist[0] = bool.Parse(tokens[i]); i++;
+            concreteChecklist[1] = bool.Parse(tokens[i]); i++;
+            concreteChecklist[2] = bool.Parse(tokens[i]); i++;
+            concreteChecklist[3] = bool.Parse(tokens[i]); i++;
+            concreteChecklist[4] = bool.Parse(tokens[i]); i++;
+            concreteChecklist[5] = bool.Parse(tokens[i]); i++;
             masonryChecklist[0] = bool.Parse(tokens[i]); i++;
             masonryChecklist[1] = bool.Parse(tokens[i]); i++;
             roofingsChecklist[0] = bool.Parse(tokens[i]); i++;
@@ -6324,7 +6924,7 @@ namespace WindowsFormsApp1
                 double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             parameters.price_ReadyMixConcrete["Ready Mix Concrete, 4500PSI (31 Mpa) @ 28 Days [m3]"] =
                 double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
-            parameters.price_ReadyMixConcrete["Ready Mix Concrete, 5000PSI (34.5 Mpa) @ 28 Days[m3]"] =
+            parameters.price_ReadyMixConcrete["Ready Mix Concrete, 5000PSI (34.5 Mpa) @ 28 Days [m3]"] =
                 double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
 
             //7

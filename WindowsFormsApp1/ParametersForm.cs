@@ -147,6 +147,7 @@ namespace WindowsFormsApp1
             conc_CM_C_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_C_RM_cbx);
             conc_CM_B_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_B_RM_cbx);
             conc_CM_S_SOG_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_S_SOG_RM_cbx);
+            conc_CM_S_SS_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_S_SS_RM_cbx);
             conc_CM_ST_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_ST_RM_cbx);
         }
 
@@ -429,6 +430,11 @@ namespace WindowsFormsApp1
         private void conc_CM_S_RM_cbx_MouseHover(object sender, EventArgs e)
         {
             toolTip1.Show(conc_CM_S_SOG_RM_cbx.SelectedItem.ToString(), conc_CM_S_SOG_RM_cbx);
+        }
+
+        private void conc_CM_S_SS_RM_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show(conc_CM_S_SS_RM_cbx.SelectedItem.ToString(), conc_CM_S_SS_RM_cbx);
         }
 
         private void conc_CM_ST_RM_cbx_MouseHover(object sender, EventArgs e)
@@ -1873,7 +1879,7 @@ namespace WindowsFormsApp1
 
             //Concrete
             bool[] cmIsSelected = { conc_CM_F_CG_rb.Checked, conc_CM_C_CG_rb.Checked,
-                    conc_CM_C_CG_rb.Checked, conc_CM_S_SOG_CG_rb.Checked, conc_CM_S_SS_CG_rb.Checked, 
+                    conc_CM_B_CG_rb.Checked, conc_CM_S_SOG_CG_rb.Checked, conc_CM_S_SS_CG_rb.Checked, 
                     conc_CM_ST_CG_rb.Checked };
             parameters.setConcreteParameters(
                 cmIsSelected,
@@ -2105,6 +2111,7 @@ namespace WindowsFormsApp1
             earth_WF_TY_cbx.SelectedIndex = earth_SG_TY_cbx.SelectedIndex;
             earth_WF_TY_cbx.SelectedIndex = earth_SG_TY_cbx.SelectedIndex;
         }
+
         //Extra Functions -- END
     }
 }
