@@ -89,9 +89,9 @@ namespace WindowsFormsApp1
         //Cost -- START
 
         //1.0  - Earthwork
-        public double excavation_CostL, backfillingAndCompaction_CostL, gradingAndCompaction_CostL,
-                      gravelBedding_CostM, gravelBedding_CostL, gravelBedding_CostTotal, soilPoisoning_CostM,
-                      earthworks_CostTotal;
+        public double excavation_CostL, backfillingAndCompaction_CostL, backfillingAndCompaction_CostM, backfillingAndCompaction_CostTotal,
+                      gradingAndCompaction_CostL, gravelBedding_CostM, gravelBedding_CostL, gravelBedding_CostTotal,
+                      soilPoisoning_CostM, earthworks_CostTotal;
 
         //2.0 Concrete 
         public double concreteF_UnitM,      //Concrete Footing - Materials Unit
@@ -251,6 +251,8 @@ namespace WindowsFormsApp1
             soilPoisoning_Total = 0;
             excavation_CostL = 0;
             backfillingAndCompaction_CostL = 0;
+            backfillingAndCompaction_CostM = 0;
+            backfillingAndCompaction_CostTotal = 0;
             gradingAndCompaction_CostL = 0;
             gravelBedding_CostM = 0;
             gravelBedding_CostL = 0;
@@ -638,10 +640,15 @@ namespace WindowsFormsApp1
                 excavation_CostL = Math.Round(excavation_Total, 2) * double.Parse(parameters.price_LaborRate_Earthworks["Excavation [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
             else
                 excavation_CostL = 0;
-            if (earthworksChecklist[2])
-                backfillingAndCompaction_CostL = Math.Round(backfillingAndCompaction_Total, 2) * double.Parse(parameters.price_LaborRate_Earthworks["Backfilling and Compaction [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+            if (structuralMembers.extraEarthworkSolutions[3] < structuralMembers.extraEarthworkSolutions[2])
+                backfillingAndCompaction_CostM = Math.Round((structuralMembers.extraEarthworkSolutions[2] - structuralMembers.extraEarthworkSolutions[3]), 2) * double.Parse(parameters.price_Embankment["Common Borrow [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
             else
-                backfillingAndCompaction_CostL = 0;
+                backfillingAndCompaction_CostM = 0;
+                backfillingAndCompaction_CostL = Math.Round(backfillingAndCompaction_Total, 2) * double.Parse(parameters.price_LaborRate_Earthworks["Backfilling and Compaction [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+            if (earthworksChecklist[2])
+                backfillingAndCompaction_CostTotal = backfillingAndCompaction_CostL + backfillingAndCompaction_CostM;
+            else
+                backfillingAndCompaction_CostTotal = 0;
             if (earthworksChecklist[3])
                 gradingAndCompaction_CostL = Math.Round(gradingAndCompaction_Total, 2) * double.Parse(parameters.price_LaborRate_Earthworks["Grading and Compaction [m3]"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
             else
@@ -1619,7 +1626,7 @@ namespace WindowsFormsApp1
                 TreeNode newChild1 = new TreeNode("1.1 Excavation (₱" + excavation_CostL.ToString("#,##0.00") + ")");
                 newChild1.Name = "excavation_Total";
 
-                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction (₱" + backfillingAndCompaction_CostL.ToString("#,##0.00") + ")");
+                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction (₱" + backfillingAndCompaction_CostTotal.ToString("#,##0.00") + ")");
                 newChild2.Name = "backfillingAndCompaction_Total";
 
                 TreeNode newChild3 = new TreeNode("1.3 Grading and Compaction (₱" + gradingAndCompaction_CostL.ToString("#,##0.00") + ")");
@@ -1633,7 +1640,7 @@ namespace WindowsFormsApp1
 
                 if (excavation_CostL != 0)
                     found[0].Nodes.Add(newChild1);
-                if (backfillingAndCompaction_CostL != 0)
+                if (backfillingAndCompaction_CostTotal != 0)
                     found[0].Nodes.Add(newChild2);
                 if (gradingAndCompaction_CostL != 0)
                     found[0].Nodes.Add(newChild3);
@@ -1669,7 +1676,7 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + excavation_CostL.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
-                    if (backfillingAndCompaction_CostL != 0)
+                    if (backfillingAndCompaction_CostTotal != 0)
                     {
                         index = this.summ_BOQ_dg.Rows.Add();
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.2";
@@ -1680,11 +1687,18 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = backfillingAndCompaction_Total.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                         this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                        if(backfillingAndCompaction_CostM != 0)
+                        {
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + double.Parse(parameters.price_Embankment["Common Borrow [m3]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + backfillingAndCompaction_CostM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        }
                         this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Earthworks["Backfilling and Compaction [m3]"].ToString()).ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                         this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + backfillingAndCompaction_CostL.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + backfillingAndCompaction_CostL.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + backfillingAndCompaction_CostTotal.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
                     if (gradingAndCompaction_CostL != 0)
@@ -1748,7 +1762,7 @@ namespace WindowsFormsApp1
 
                     this.summ_BOQ_dg.Rows.Add();
                     index = this.summ_BOQ_dg.Rows.Add();
-                    double earthworks_TotalCostM = gravelBedding_CostM + soilPoisoning_CostM;
+                    double earthworks_TotalCostM = backfillingAndCompaction_CostM + gravelBedding_CostM + soilPoisoning_CostM;
                     double earthworks_TotalCostL = excavation_CostL + backfillingAndCompaction_CostL + gradingAndCompaction_CostL + gravelBedding_CostL;
                     double earthworks_TotalCost = earthworks_TotalCostM + earthworks_TotalCostL;
                     this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + earthworks_TotalCostM.ToString("#,##0.00");

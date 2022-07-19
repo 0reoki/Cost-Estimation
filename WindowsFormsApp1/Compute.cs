@@ -92,8 +92,7 @@ namespace WindowsFormsApp1
             }
             else
             {
-                //jdklsajdl
-                // Do something
+                // Do something sa cost
             }
             //Earthworks -- END
 
