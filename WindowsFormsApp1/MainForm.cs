@@ -112,11 +112,12 @@ namespace WindowsFormsApp1
                       concreteSOG_UnitM,      //Concrete SOG - Materials Unit
                       concreteSOG_CostM,      //Concrete SOG - Materials Cost
                       concreteSOG_CostL,      //Concrete SOG - Labor Cost
+                      concreteSOG_costTotal,  //Concrete SOG - TOTAL COST
 
                       concreteSS_UnitM,      //Concrete SS - Materials Unit
                       concreteSS_CostM,      //Concrete SS - Materials Cost
                       concreteSS_CostL,      //Concrete SS - Labor Cost
-                      concreteSL_costTotal,  //Concrete Slab - TOTAL COST
+                      concreteSS_costTotal,  //Concrete SS - TOTAL COST
 
                       concreteST_UnitM,      //Concrete Stairs - Materials Unit
                       concreteST_CostM,      //Concrete Stairs - Materials Cost
@@ -283,11 +284,12 @@ namespace WindowsFormsApp1
             concreteSOG_UnitM = 0;
             concreteSOG_CostM = 0;
             concreteSOG_CostL = 0;
+            concreteSOG_costTotal = 0;
 
             concreteSS_UnitM = 0;
             concreteSS_CostM = 0;
             concreteSS_CostL = 0;
-            concreteSL_costTotal = 0;
+            concreteSS_costTotal = 0;
 
             concreteST_UnitM = 0;
             concreteST_CostM = 0;
@@ -658,7 +660,7 @@ namespace WindowsFormsApp1
             earthworks_CostTotal = excavation_CostL + backfillingAndCompaction_CostL + gradingAndCompaction_CostL +
                                    gravelBedding_CostTotal + soilPoisoning_CostM;
 
-            //Concreting - TODO PRICE PAG CEMENT SAND GRAVEL
+            //Concreting
             //Refresh Totalities to 0
             for (int i = 0; i < cement_Total.Length; i++)
             {
@@ -667,7 +669,14 @@ namespace WindowsFormsApp1
                 gravel_Total[i] = 0;
                 concreteVolume_Total[i] = 0;
             }
-            
+
+            string value = fos_Cement.Replace(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, "");
+            double cementFS = double.Parse(value, System.Globalization.CultureInfo.InvariantCulture) / 100;
+            value = fos_Sand.Replace(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, "");
+            double sandFS = double.Parse(value, System.Globalization.CultureInfo.InvariantCulture) / 100;
+            value = fos_Gravel.Replace(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, "");
+            double gravelFS = double.Parse(value, System.Globalization.CultureInfo.InvariantCulture) / 100;
+
             if (concreteChecklist[0]) //2.1 Footing
             {
                 if (parameters.conc_cmIsSelected[0]) //Not Ready Mix
@@ -681,6 +690,15 @@ namespace WindowsFormsApp1
                     }
                     concreteVolume_Total[0] = Math.Round(concreteVolume_Total[0], 2);
                     //Cost
+                    double cementCost = cement_Total[0] * double.Parse(parameters.price_CommonMaterials["40 kg Portland Cement [BAGS]"].ToString());
+                    double sandCost = sand_Total[0] * double.Parse(parameters.price_CommonMaterials["Sand [m3]"].ToString());
+                    double gravelCost = gravel_Total[0] * double.Parse(parameters.price_Gravel[parameters.conc_CM_F_GT].ToString());
+                    concreteFS_CostM = (cementCost * cementFS) + (sandCost * sandFS) + (gravelCost * gravelFS);
+                    concreteF_UnitM = cementCost + sandCost + gravelCost;
+                    concreteF_CostM = concreteVolume_Total[0] * concreteF_UnitM;
+                    double laborRate = double.Parse(parameters.price_LaborRate_Concreting["FOOTING [m3]"].ToString());
+                    concreteF_CostL = concreteVolume_Total[0] * laborRate;
+                    concreteF_costTotal = concreteF_CostM + concreteF_CostL;
                 }
                 else //Ready Mix
                 {
@@ -689,9 +707,10 @@ namespace WindowsFormsApp1
                         concreteVolume_Total[0] += solution[1];
                     }
                     concreteVolume_Total[0] = Math.Round(concreteVolume_Total[0], 2);
+                    //Cost
                     concreteF_UnitM = double.Parse(parameters.price_ReadyMixConcrete[parameters.conc_CM_F_RM + " [m3]"].ToString());
                     concreteF_CostM = concreteVolume_Total[0] * concreteF_UnitM;
-                    double laborRate = double.Parse(parameters.price_LaborRate_Concreting["FOOTING [m3]"].ToString()); //TODO
+                    double laborRate = double.Parse(parameters.price_LaborRate_Concreting["FOOTING [m3]"].ToString());
                     concreteF_CostL = concreteVolume_Total[0] * laborRate;
                     concreteF_costTotal = concreteF_CostM + concreteF_CostL;
                 }
@@ -715,6 +734,15 @@ namespace WindowsFormsApp1
                     }
                     concreteVolume_Total[1] = Math.Round(concreteVolume_Total[1], 2);
                     //Cost
+                    double cementCost = cement_Total[0] * double.Parse(parameters.price_CommonMaterials["40 kg Portland Cement [BAGS]"].ToString());
+                    double sandCost = sand_Total[0] * double.Parse(parameters.price_CommonMaterials["Sand [m3]"].ToString());
+                    double gravelCost = gravel_Total[0] * double.Parse(parameters.price_Gravel[parameters.conc_CM_C_GT].ToString());
+                    concreteFS_CostM = (cementCost * cementFS) + (sandCost * sandFS) + (gravelCost * gravelFS);
+                    concreteC_UnitM = cementCost + sandCost + gravelCost;
+                    concreteC_CostM = concreteVolume_Total[1] * concreteC_UnitM;
+                    double laborRate = double.Parse(parameters.price_LaborRate_Concreting["COLUMN [m3]"].ToString());
+                    concreteC_CostL = concreteVolume_Total[1] * laborRate;
+                    concreteC_costTotal = concreteC_CostM + concreteC_CostL;
                 }
                 else //Ready Mix
                 {
@@ -729,6 +757,7 @@ namespace WindowsFormsApp1
                         i++;
                     }
                     concreteVolume_Total[1] = Math.Round(concreteVolume_Total[1], 2);
+                    //Cost
                     concreteC_UnitM = double.Parse(parameters.price_ReadyMixConcrete[parameters.conc_CM_C_RM + " [m3]"].ToString());
                     concreteC_CostM = concreteVolume_Total[1] * concreteC_UnitM;
                     double laborRate = double.Parse(parameters.price_LaborRate_Concreting["COLUMN [m3]"].ToString());
@@ -755,6 +784,15 @@ namespace WindowsFormsApp1
                     }
                     concreteVolume_Total[2] = Math.Round(concreteVolume_Total[2], 2);
                     //Cost
+                    double cementCost = cement_Total[0] * double.Parse(parameters.price_CommonMaterials["40 kg Portland Cement [BAGS]"].ToString());
+                    double sandCost = sand_Total[0] * double.Parse(parameters.price_CommonMaterials["Sand [m3]"].ToString());
+                    double gravelCost = gravel_Total[0] * double.Parse(parameters.price_Gravel[parameters.conc_CM_B_GT].ToString());
+                    concreteFS_CostM = (cementCost * cementFS) + (sandCost * sandFS) + (gravelCost * gravelFS);
+                    concreteBR_UnitM = cementCost + sandCost + gravelCost;
+                    concreteBR_CostM = concreteVolume_Total[2] * concreteBR_UnitM;
+                    double laborRate = double.Parse(parameters.price_LaborRate_Concreting["BEAM [m3]"].ToString());
+                    concreteBR_CostL = concreteVolume_Total[2] * laborRate;
+                    concreteBR_costTotal = concreteBR_CostM + concreteBR_CostL;
                 }
                 else //Ready Mix
                 {
@@ -769,6 +807,7 @@ namespace WindowsFormsApp1
                         i++;
                     }
                     concreteVolume_Total[2] = Math.Round(concreteVolume_Total[2], 2);
+                    //Cost
                     concreteBR_UnitM = double.Parse(parameters.price_ReadyMixConcrete[parameters.conc_CM_B_RM + " [m3]"].ToString());
                     concreteBR_CostM = concreteVolume_Total[2] * concreteBR_UnitM;
                     double laborRate = double.Parse(parameters.price_LaborRate_Concreting["BEAM [m3]"].ToString());
@@ -795,6 +834,15 @@ namespace WindowsFormsApp1
                             }
                             concreteVolume_Total[3] = Math.Round(concreteVolume_Total[3], 2);
                             //Cost
+                            double cementCost = cement_Total[0] * double.Parse(parameters.price_CommonMaterials["40 kg Portland Cement [BAGS]"].ToString());
+                            double sandCost = sand_Total[0] * double.Parse(parameters.price_CommonMaterials["Sand [m3]"].ToString());
+                            double gravelCost = gravel_Total[0] * double.Parse(parameters.price_Gravel[parameters.conc_CM_S_SOG_GT].ToString());
+                            concreteFS_CostM = (cementCost * cementFS) + (sandCost * sandFS) + (gravelCost * gravelFS);
+                            concreteSOG_UnitM = cementCost + sandCost + gravelCost;
+                            concreteSOG_CostM = concreteVolume_Total[3] * concreteSOG_UnitM;
+                            double laborRate = double.Parse(parameters.price_LaborRate_Concreting["SLAB ON GRADE [m3]"].ToString());
+                            concreteSOG_CostL = concreteVolume_Total[3] * laborRate;
+                            concreteSOG_costTotal = concreteSOG_CostM + concreteSOG_CostL;
                         }
                         else // Ready Mix
                         {
@@ -803,11 +851,12 @@ namespace WindowsFormsApp1
                                 concreteVolume_Total[3] += solution[0] * floorMultiplier;
                             }
                             concreteVolume_Total[3] = Math.Round(concreteVolume_Total[3], 2);
+                            //Cost
                             concreteSOG_UnitM = double.Parse(parameters.price_ReadyMixConcrete[parameters.conc_CM_S_SOG_RM + " [m3]"].ToString());
                             concreteSOG_CostM = concreteVolume_Total[3] * concreteSOG_UnitM;
                             double laborRate = double.Parse(parameters.price_LaborRate_Concreting["SLAB ON GRADE [m3]"].ToString());
                             concreteSOG_CostL = concreteVolume_Total[3] * laborRate;
-                            concreteSL_costTotal = concreteSOG_CostM + concreteSOG_CostL;
+                            concreteSOG_costTotal = concreteSOG_CostM + concreteSOG_CostL;
                         }
                     }
                     else // SS
@@ -823,6 +872,15 @@ namespace WindowsFormsApp1
                             }
                             concreteVolume_Total[4] = Math.Round(concreteVolume_Total[4], 2);
                             //Cost
+                            double cementCost = cement_Total[0] * double.Parse(parameters.price_CommonMaterials["40 kg Portland Cement [BAGS]"].ToString());
+                            double sandCost = sand_Total[0] * double.Parse(parameters.price_CommonMaterials["Sand [m3]"].ToString());
+                            double gravelCost = gravel_Total[0] * double.Parse(parameters.price_Gravel[parameters.conc_CM_S_SS_GT].ToString());
+                            concreteFS_CostM = (cementCost * cementFS) + (sandCost * sandFS) + (gravelCost * gravelFS);
+                            concreteSS_UnitM = cementCost + sandCost + gravelCost;
+                            concreteSS_CostM = concreteVolume_Total[4] * concreteSS_UnitM;
+                            double laborRate = double.Parse(parameters.price_LaborRate_Concreting["SUSPENDED SLAB [m3]"].ToString());
+                            concreteSS_CostL = concreteVolume_Total[4] * laborRate;
+                            concreteSS_costTotal = concreteSS_CostM + concreteSS_CostL;
                         }
                         else // Ready Mix
                         {
@@ -831,11 +889,12 @@ namespace WindowsFormsApp1
                                 concreteVolume_Total[4] += solution[0] * floorMultiplier;
                             }
                             concreteVolume_Total[4] = Math.Round(concreteVolume_Total[4], 2);
+                            //Cost
                             concreteSS_UnitM = double.Parse(parameters.price_ReadyMixConcrete[parameters.conc_CM_S_SS_RM + " [m3]"].ToString());
                             concreteSS_CostM = concreteVolume_Total[4] * concreteSS_UnitM;
                             double laborRate = double.Parse(parameters.price_LaborRate_Concreting["SUSPENDED SLAB [m3]"].ToString());
                             concreteSS_CostL = concreteVolume_Total[4] * laborRate;
-                            concreteSL_costTotal = concreteSS_CostM + concreteSS_CostL;
+                            concreteSS_costTotal = concreteSS_CostM + concreteSS_CostL;
                         }
                     }
                     i++;
@@ -861,6 +920,15 @@ namespace WindowsFormsApp1
                     }
                     concreteVolume_Total[5] = Math.Round(concreteVolume_Total[5], 2);
                     //Cost
+                    double cementCost = cement_Total[0] * double.Parse(parameters.price_CommonMaterials["40 kg Portland Cement [BAGS]"].ToString());
+                    double sandCost = sand_Total[0] * double.Parse(parameters.price_CommonMaterials["Sand [m3]"].ToString());
+                    double gravelCost = gravel_Total[0] * double.Parse(parameters.price_Gravel[parameters.conc_CM_ST_GT].ToString());
+                    concreteFS_CostM = (cementCost * cementFS) + (sandCost * sandFS) + (gravelCost * gravelFS);
+                    concreteST_UnitM = cementCost + sandCost + gravelCost;
+                    concreteST_CostM = concreteVolume_Total[5] * concreteST_UnitM;
+                    double laborRate = double.Parse(parameters.price_LaborRate_Concreting["STAIRS [m3]"].ToString()); //TODO
+                    concreteST_CostL = concreteVolume_Total[5] * laborRate;
+                    concreteST_costTotal = concreteST_CostM + concreteST_CostL;
                 }
                 else //Ready Mix
                 {
@@ -876,6 +944,7 @@ namespace WindowsFormsApp1
                         i++;
                     }
                     concreteVolume_Total[5] = Math.Round(concreteVolume_Total[5], 2);
+                    //Cost
                     concreteST_UnitM = double.Parse(parameters.price_ReadyMixConcrete[parameters.conc_CM_ST_RM + " [m3]"].ToString());
                     concreteST_CostM = concreteVolume_Total[5] * concreteST_UnitM;
                     double laborRate = double.Parse(parameters.price_LaborRate_Concreting["STAIRS [m3]"].ToString()); //TODO
@@ -885,7 +954,33 @@ namespace WindowsFormsApp1
             }
             if (concreteChecklist[5]) //2.6 Factor of Safety
             {
-
+                value = fos_RMC.Replace(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, "");
+                double readyMixFS = double.Parse(value, System.Globalization.CultureInfo.InvariantCulture) / 100;
+                if (!parameters.conc_cmIsSelected[0]) //Ready Mix, Footing
+                {
+                    concreteFS_CostM = concreteF_CostM * readyMixFS;
+                }
+                if (!parameters.conc_cmIsSelected[1]) //Ready Mix, Column
+                {
+                    concreteFS_CostM += concreteC_CostM * readyMixFS;
+                }
+                if (!parameters.conc_cmIsSelected[2]) //Ready Mix, Beam
+                {
+                    concreteFS_CostM += concreteBR_CostM * readyMixFS;
+                }
+                if (!parameters.conc_cmIsSelected[3]) //Ready Mix, Slab on Grade
+                {
+                    concreteFS_CostM += concreteSOG_CostM * readyMixFS;
+                }
+                if (!parameters.conc_cmIsSelected[4]) //Ready Mix, Suspended Slab
+                {
+                    concreteFS_CostM += concreteSS_CostM * readyMixFS;
+                }
+                if (!parameters.conc_cmIsSelected[5]) //Ready Mix, Stairs
+                {
+                    concreteFS_CostM += concreteST_CostM * readyMixFS;
+                }
+                concreteFS_costTotal = concreteFS_CostM;
             }
             concreteMCost_total = concreteF_CostM + concreteC_CostM + concreteBR_CostM +
                                   concreteSOG_CostM + concreteSS_CostM + concreteST_CostM + concreteFS_CostM;
@@ -920,10 +1015,11 @@ namespace WindowsFormsApp1
             print("SOG Material Unit Cost: " + concreteSOG_UnitM);
             print("SOG Material Total Cost: " + concreteSOG_CostM);
             print("SOG Labor Total Cost: " + concreteSOG_CostL);
+            print("Total Cost: " + concreteSOG_costTotal);
             print("SS Material Unit Cost: " + concreteSS_UnitM);
             print("SS Material Total Cost: " + concreteSS_CostM);
             print("SS Labor Total Cost: " + concreteSS_CostL);
-            print("Total Cost: " + concreteSL_costTotal);
+            print("Total Cost: " + concreteSS_costTotal);
             print("=== Stairs Cost ===");
             print("Material Unit Cost: " + concreteST_UnitM);
             print("Material Total Cost: " + concreteST_CostM);
@@ -1668,36 +1764,41 @@ namespace WindowsFormsApp1
                 //2.0 - Concrete Works -- START
                 found = view_TV1.Nodes.Find("concreteWorksParent", true);
 
-                TreeNode column_newChild1 = new TreeNode("2.1 Footing (₱" + concreteF_costTotal.ToString("#,##0.00") + ")");
+                TreeNode column_newChild1 = new TreeNode("2.1 Footing (₱" + concreteF_CostM.ToString("#,##0.00") + ")");
                 newChild1.Name = "concreting_Footing";
 
-                TreeNode column_newChild2 = new TreeNode("2.2 Column (₱" + concreteC_costTotal.ToString("#,##0.00") + ")");
+                TreeNode column_newChild2 = new TreeNode("2.2 Column (₱" + concreteC_CostM.ToString("#,##0.00") + ")");
                 newChild2.Name = "concreting_Column";
 
-                TreeNode column_newChild3 = new TreeNode("2.3 Beam (₱" + concreteBR_costTotal.ToString("#,##0.00") + ")");
+                TreeNode column_newChild3 = new TreeNode("2.3 Beam (₱" + concreteBR_CostM.ToString("#,##0.00") + ")");
                 newChild3.Name = "concreting_Beam";
 
-                TreeNode column_newChild4 = new TreeNode("2.4 Slab (₱" + concreteSL_costTotal.ToString("#,##0.00") + ")");
+                TreeNode column_newChild4 = new TreeNode("2.4 Slab (₱" + (concreteSOG_CostM + concreteSS_CostM).ToString("#,##0.00") + ")");
                 newChild4.Name = "concreting_Slab";
 
-                TreeNode column_newChild5 = new TreeNode("2.5 Stairs (₱" + concreteST_costTotal.ToString("#,##0.00") + ")");
+                TreeNode column_newChild5 = new TreeNode("2.5 Stairs (₱" + concreteST_CostM.ToString("#,##0.00") + ")");
                 newChild5.Name = "concreting_Stairs";
 
-                TreeNode column_newChild6 = new TreeNode("2.6 Factor of Safety (₱" + concreteFS_costTotal.ToString("#,##0.00") + ")");
+                TreeNode column_newChild6 = new TreeNode("2.6 Factor of Safety (₱" + concreteFS_CostM.ToString("#,##0.00") + ")");
                 column_newChild6.Name = "concreting_FS";
 
-                if (concreteF_costTotal != 0)
+                TreeNode column_newChild7 = new TreeNode("2.7 Labor for Concrete Works (₱" + concreteLCost_total.ToString("#,##0.00") + ")");
+                column_newChild7.Name = "concreting_Labor";
+
+                if (concreteF_CostM != 0)
                     found[0].Nodes.Add(column_newChild1);
-                if (concreteC_costTotal != 0)
+                if (concreteC_CostM != 0)
                     found[0].Nodes.Add(column_newChild2);
-                if (concreteBR_costTotal != 0)
+                if (concreteBR_CostM != 0)
                     found[0].Nodes.Add(column_newChild3);
-                if (concreteSL_costTotal != 0)
+                if ((concreteSOG_CostM + concreteSS_CostM) != 0)
                     found[0].Nodes.Add(column_newChild4);
-                if (concreteST_costTotal != 0)
+                if (concreteST_CostM != 0)
                     found[0].Nodes.Add(column_newChild5);
-                if (concreteFS_costTotal != 0)
+                if (concreteFS_CostM != 0)
                     found[0].Nodes.Add(column_newChild6);
+                if (concreteLCost_total != 0)
+                    found[0].Nodes.Add(column_newChild7);
 
                 //Setting of BOQ     
                 try
@@ -1801,7 +1902,7 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             i++;
                         }
-                        if (concreteSL_costTotal != 0)
+                        if ((concreteSOG_costTotal + concreteSS_costTotal) != 0)
                         {
                             index = this.summ_BOQ_dg.Rows.Add();
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "2." + i;
@@ -1827,6 +1928,8 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + concreteSOG_CostL.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + concreteSOG_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             index = this.summ_BOQ_dg.Rows.Add();
                             PSI = "";
                             if (!parameters.conc_cmIsSelected[4])
@@ -1845,7 +1948,7 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + concreteSS_CostL.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + concreteSL_costTotal.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + concreteSS_costTotal.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             i++;
                         }
