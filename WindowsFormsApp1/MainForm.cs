@@ -143,8 +143,9 @@ namespace WindowsFormsApp1
                       masonMCost_total, //Materials - Total Cost
                       masonLCost_total, //Labor - Total Cost                                           
                       mason_TOTALCOST; // Masonry - OVERALL COST
-                                       // exterior QTY -> masonrysSolutionP1[3]
-                                       // interior QTY -> masonrysSolutionP1[8]
+
+        // exterior QTY -> masonrysSolutionP1[3]
+        // interior QTY -> masonrysSolutionP1[8]
 
         //6.0 Roofings **
         public double rANDp_MCost,// Rafter and Purlins - Material Cost
@@ -5059,6 +5060,140 @@ namespace WindowsFormsApp1
                 e.PaintBackground(r2, true);
                 e.PaintContent(r2);
                 e.Handled = true;
+            }
+        }
+
+        private void summ_Export_btn_Click(object sender, EventArgs e)
+        {
+            //TODODO
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.FileName = summ_P_bx.Text + ".csv";
+            saveDialog.Filter = "CSV files (*.csv)|*.csv|Excel Files|*.xls;*.xlsx";
+            DialogResult result = saveDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                copyAlltoClipboard();
+
+                object misValue = System.Reflection.Missing.Value;
+                Microsoft.Office.Interop.Excel.Application xlexcel = new Microsoft.Office.Interop.Excel.Application();
+
+                xlexcel.DisplayAlerts = false; // Without this you will get two confirm overwrite prompts
+                Microsoft.Office.Interop.Excel.Workbook xlWorkBook = xlexcel.Workbooks.Add(misValue);
+                Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+                // Format column D as text before pasting results, this was required for my data
+                Microsoft.Office.Interop.Excel.Range rng = xlWorkSheet.get_Range("D:D").Cells;
+                rng.NumberFormat = "@";
+
+                // Format Columns 
+                xlWorkSheet.Cells[1, 1] = "ITEM";
+
+                Microsoft.Office.Interop.Excel.Range range = xlWorkSheet.Range["B1", "C1"];
+                range.Value2 = "DESCRIPTION";
+                range.Select();
+                range.Merge();
+
+                xlWorkSheet.Cells[1, 4] = "QTY";
+                xlWorkSheet.Cells[1, 5] = "UNIT";
+
+                Microsoft.Office.Interop.Excel.Range range2 = xlWorkSheet.Range["F1", "G1"];
+                range2.Value2 = "MATERIALS";
+                range2.Select();
+                range2.Merge();
+
+                xlWorkSheet.Cells[2, 6] = "UNIT COST";
+                xlWorkSheet.Cells[2, 7] = "TOTAL";
+
+                Microsoft.Office.Interop.Excel.Range range3 = xlWorkSheet.Range["H1", "I1"];
+                range3.Value2 = "MATERIALS";
+                range3.Select();
+                range3.Merge();
+
+                xlWorkSheet.Cells[2, 8] = "UNIT COST";
+                xlWorkSheet.Cells[2, 9] = "TOTAL";
+
+                xlWorkSheet.Cells[2, 10].Value = "TOTAL COST";
+
+                // Paste clipboard results to worksheet range
+                Microsoft.Office.Interop.Excel.Range CR = (Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Cells[3, 1];
+                CR.Select();
+                xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
+
+                // Excel Style Formatting
+                xlWorkSheet.Columns.AutoFit();
+
+                xlWorkSheet.Columns[1].NumberFormat = "0.0";
+
+                xlWorkSheet.Columns[4].HorizontalAlignment =
+                 Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignRight;
+
+                xlWorkSheet.Columns[6].HorizontalAlignment =
+                 Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignRight;
+
+                xlWorkSheet.Columns[7].HorizontalAlignment =
+                 Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignRight;
+
+                xlWorkSheet.Columns[8].HorizontalAlignment =
+                 Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignRight;
+
+                xlWorkSheet.Columns[9].HorizontalAlignment =
+                 Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignRight;
+
+                xlWorkSheet.Columns[10].HorizontalAlignment =
+                 Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+
+                xlWorkSheet.get_Range("A1", "J2").Cells.HorizontalAlignment =
+                 Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+
+
+                // Save the excel file under the captured location from the SaveFileDialog
+                xlWorkBook.SaveAs(saveDialog.FileName, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                xlexcel.DisplayAlerts = true;
+                xlWorkBook.Close(true, misValue, misValue);
+                xlexcel.Quit();
+
+                releaseObject(xlWorkSheet);
+                releaseObject(xlWorkBook);
+                releaseObject(xlexcel);
+
+                // Clear Clipboard and DataGridView selection
+                Clipboard.Clear();
+                summ_BOQ_dg.ClearSelection();
+
+                // Open the newly saved excel file
+                if (File.Exists(saveDialog.FileName))
+                    System.Diagnostics.Process.Start(saveDialog.FileName);
+            }
+        }
+
+        private void SaveToExcel(String fileName)
+        {
+            
+        }
+        private void copyAlltoClipboard()
+        {
+            summ_BOQ_dg.SelectAll();
+            DataObject dataObj = summ_BOQ_dg.GetClipboardContent();
+            if (dataObj != null)
+                Clipboard.SetDataObject(dataObj);
+        }
+
+        private void releaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                MessageBox.Show("Exception Occurred while releasing object " + ex.ToString());
+            }
+            finally
+            {
+                GC.Collect();
             }
         }
         //Summary functions -- END

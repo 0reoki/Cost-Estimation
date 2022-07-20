@@ -2010,6 +2010,8 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel408 = new System.Windows.Forms.TableLayoutPanel();
             this.summ_BOQ_dg = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel409 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel412 = new System.Windows.Forms.TableLayoutPanel();
+            this.summ_Export_btn = new System.Windows.Forms.Button();
             this.tableLayoutPanel410 = new System.Windows.Forms.TableLayoutPanel();
             this.summ_P_bx = new System.Windows.Forms.TextBox();
             this.summ_S_bx = new System.Windows.Forms.TextBox();
@@ -2481,6 +2483,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel408.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.summ_BOQ_dg)).BeginInit();
             this.tableLayoutPanel409.SuspendLayout();
+            this.tableLayoutPanel412.SuspendLayout();
             this.tableLayoutPanel410.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tableLayoutPanel411.SuspendLayout();
@@ -32896,6 +32899,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel409.ColumnCount = 2;
             this.tableLayoutPanel409.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel409.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel409.Controls.Add(this.tableLayoutPanel412, 0, 0);
             this.tableLayoutPanel409.Controls.Add(this.tableLayoutPanel410, 0, 0);
             this.tableLayoutPanel409.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel409.Location = new System.Drawing.Point(4, 4);
@@ -32904,6 +32908,36 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel409.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel409.Size = new System.Drawing.Size(1213, 207);
             this.tableLayoutPanel409.TabIndex = 10;
+            // 
+            // tableLayoutPanel412
+            // 
+            this.tableLayoutPanel412.ColumnCount = 2;
+            this.tableLayoutPanel412.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel412.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel412.Controls.Add(this.summ_Export_btn, 1, 1);
+            this.tableLayoutPanel412.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel412.Location = new System.Drawing.Point(730, 3);
+            this.tableLayoutPanel412.Name = "tableLayoutPanel412";
+            this.tableLayoutPanel412.RowCount = 2;
+            this.tableLayoutPanel412.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 68.65672F));
+            this.tableLayoutPanel412.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.34328F));
+            this.tableLayoutPanel412.Size = new System.Drawing.Size(480, 201);
+            this.tableLayoutPanel412.TabIndex = 25;
+            // 
+            // summ_Export_btn
+            // 
+            this.summ_Export_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.summ_Export_btn.AutoSize = true;
+            this.summ_Export_btn.Location = new System.Drawing.Point(250, 148);
+            this.summ_Export_btn.Margin = new System.Windows.Forms.Padding(10);
+            this.summ_Export_btn.Name = "summ_Export_btn";
+            this.summ_Export_btn.Size = new System.Drawing.Size(220, 43);
+            this.summ_Export_btn.TabIndex = 11;
+            this.summ_Export_btn.Text = "Export to Excel File";
+            this.summ_Export_btn.UseVisualStyleBackColor = true;
+            this.summ_Export_btn.Click += new System.EventHandler(this.summ_Export_btn_Click);
             // 
             // tableLayoutPanel410
             // 
@@ -34009,6 +34043,8 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel408.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.summ_BOQ_dg)).EndInit();
             this.tableLayoutPanel409.ResumeLayout(false);
+            this.tableLayoutPanel412.ResumeLayout(false);
+            this.tableLayoutPanel412.PerformLayout();
             this.tableLayoutPanel410.ResumeLayout(false);
             this.tableLayoutPanel410.PerformLayout();
             this.tabPage5.ResumeLayout(false);
@@ -36025,6 +36061,8 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.TabPage tab27;
         private System.Windows.Forms.FlowLayoutPanel price_CustomItems_Panel;
         private System.Windows.Forms.TreeView view_TV3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel412;
+        private System.Windows.Forms.Button summ_Export_btn;
     }
 }
 
