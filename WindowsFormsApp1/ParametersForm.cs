@@ -1100,6 +1100,135 @@ namespace WindowsFormsApp1
         }
         //Masonry -- END
 
+        //Stairs -- START
+        private void stair_ResetBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to RESET every parameter in this panel?", "RESET Parameters", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                int i = 0;
+                int j = 0;
+                foreach (Floor floor in costEstimationForm.Floors)
+                {
+                    if (floor.getValues()[1].Equals(stairs_Floor_cbx.SelectedItem.ToString()))
+                    {
+                        foreach (string name in costEstimationForm.structuralMembers.stairsNames[i])
+                        {
+                            if (name.Equals(stairs_Stair_cbx.SelectedItem.ToString()))
+                            {
+                                string type = costEstimationForm.structuralMembers.stairs[i][j][0];
+                                StairParameterUserControl content = new StairParameterUserControl(type);
+                                costEstimationForm.parameters.stair[i][j] = content;
+                                stairs_Panel.Controls.Clear();
+                                stairs_Panel.Controls.Add(content);
+                                break;
+                            }
+                            j++;
+                        }
+                        break;
+                    }
+                    i++;
+                }
+                if (stairs_Stair_cbx.SelectedItem.ToString().Equals("None"))
+                {
+                    stairs_Panel.Controls.Clear();
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //Do nothing
+            }
+        }
+
+        public void setStairsValues()
+        {
+            int lastIndexFloor = stairs_Floor_cbx.SelectedIndex;
+            int lastIndexStair = stairs_Stair_cbx.SelectedIndex;
+            stairs_Floor_cbx.Items.Clear();
+            int j = 0;
+            foreach (Floor floor in costEstimationForm.Floors)
+            {
+                stairs_Floor_cbx.Items.Add(floor.getValues()[1]);
+                j++;
+            }
+            if(lastIndexFloor > stairs_Floor_cbx.Items.Count)
+            {
+                lastIndexFloor = 0;
+                lastIndexStair = 0;
+            }
+            stairs_Floor_cbx.SelectedIndex = lastIndexFloor;
+            stairs_Stair_cbx.SelectedIndex = lastIndexStair;
+        }
+
+        private void stairs_Floor_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int lastIndexStair = stairs_Stair_cbx.SelectedIndex;
+            stairs_Stair_cbx.Items.Clear();
+            int j = 0;
+            foreach (Floor floor in costEstimationForm.Floors)
+            {
+                if (floor.getValues()[1].Equals(stairs_Floor_cbx.SelectedItem.ToString()))
+                {
+                    break;
+                }
+                j++;
+            }
+            try
+            {
+                foreach (string name in costEstimationForm.structuralMembers.stairsNames[j])
+                {
+                    stairs_Stair_cbx.Items.Add(name);
+                }
+                if (stairs_Stair_cbx.Items.Count == 0)
+                {
+                    stairs_Stair_cbx.Items.Add("None");
+                }
+            } 
+            catch(Exception ex)
+            {
+                //
+            }
+            try
+            {
+                stairs_Stair_cbx.SelectedIndex = lastIndexStair;
+            }
+            catch(Exception ex)
+            {
+                lastIndexStair = 0;
+                stairs_Stair_cbx.SelectedIndex = lastIndexStair;
+            }
+        }
+
+        private void stairs_Stair_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int i = 0;
+            int j = 0;
+            foreach (Floor floor in costEstimationForm.Floors)
+            {
+                if (floor.getValues()[1].Equals(stairs_Floor_cbx.SelectedItem.ToString()))
+                {
+                    foreach (string name in costEstimationForm.structuralMembers.stairsNames[i])
+                    {
+                        if (name.Equals(stairs_Stair_cbx.SelectedItem.ToString()))
+                        {
+                            string type = costEstimationForm.structuralMembers.stairs[i][j][0];
+                            stairs_Panel.Controls.Clear();
+                            stairs_Panel.Controls.Add(costEstimationForm.parameters.stair[i][j]);
+                            break;
+                        }
+                        j++;
+                    }
+                    break;
+                }
+                i++;
+            }
+            if (stairs_Stair_cbx.SelectedItem.ToString().Equals("None"))
+            {
+                stairs_Panel.Controls.Clear();
+            }
+        }
+        //Stairs -- END
+
         //Labor and Equipment Functions -- START
         private void labor_MP_AddBtn_Click(object sender, EventArgs e)
         {
@@ -1190,6 +1319,9 @@ namespace WindowsFormsApp1
 
             //Masonry
             setMasonryDefaultValues();
+
+            //Stairs
+            setStairsDefaultValues();
 
             //Labor and Equipment
             setLaborDefaultValues();
@@ -1533,6 +1665,10 @@ namespace WindowsFormsApp1
             mason_RTW_RL_cbx.Text = parameters.mason_RTW_RL;
             mason_RTW_LTW_cbx.Text = parameters.mason_RTW_LTW;
 
+            //Stairs
+            stairs_Floor_cbx.SelectedIndex = 0;
+            stairs_Stair_cbx.SelectedIndex = 0;
+
             //Labor and Equipment
             labor_RD_cbx.Text = parameters.labor_RD;
             if (parameters.labor_MP != null)
@@ -1791,6 +1927,27 @@ namespace WindowsFormsApp1
                 chbUC.Clear();
                 clearCHB();
             }
+        }
+
+        private void setStairsDefaultValues()
+        {
+            stairs_Floor_cbx.Items.Clear();
+            int j = 0;
+            foreach (Floor floor in costEstimationForm.Floors)
+            {
+                stairs_Floor_cbx.Items.Add(floor.getValues()[1]);
+                j++;
+            }
+            if (stairs_Floor_cbx.Items.Count == 0)
+            {
+                stairs_Floor_cbx.Items.Add("GROUND FLOOR");
+            }
+            stairs_Floor_cbx.SelectedIndex = 0;
+            if (stairs_Stair_cbx.Items.Count == 0)
+            {
+                stairs_Stair_cbx.Items.Add("None");
+            }
+            stairs_Stair_cbx.SelectedIndex = 0;
         }
 
         private void setLaborDefaultValues()

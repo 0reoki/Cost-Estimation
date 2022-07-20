@@ -213,6 +213,12 @@
     <Compile Include="SlabScheduleUserControl.Designer.cs">
       <DependentUpon>SlabScheduleUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="StairParameterUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StairParameterUserControl.Designer.cs">
+      <DependentUpon>StairParameterUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="StructuralMembers.cs" />
     <Compile Include="TileAreaUserControl.cs">
       <SubType>UserControl</SubType>
@@ -302,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SlabScheduleUserControl.resx">
       <DependentUpon>SlabScheduleUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StairParameterUserControl.resx">
+      <DependentUpon>StairParameterUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TileAreaUserControl.resx">
       <DependentUpon>TileAreaUserControl.cs</DependentUpon>

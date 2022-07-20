@@ -325,7 +325,7 @@ namespace WindowsFormsApp1.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap LANDING_REBAR {
             get {
-                object obj = ResourceManager.GetObject("LANDING REBAR", resourceCulture);
+                object obj = ResourceManager.GetObject("LANDING_REBAR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

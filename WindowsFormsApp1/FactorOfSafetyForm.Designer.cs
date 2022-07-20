@@ -299,7 +299,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FactorOfSafetyForm";
-            this.Text = "FactorOfSafetyForm";
+            this.Text = "Factor of Safety";
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);

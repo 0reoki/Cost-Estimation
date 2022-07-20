@@ -1540,6 +1540,9 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.stairs[floorCount].Add(members);
                             costEstimationForm.structuralMembers.stairsNames[floorCount].Add(structMemName);
 
+                            StairParameterUserControl content = new StairParameterUserControl(stairs_ST_cbx.Text);
+                            costEstimationForm.parameters.stair[floorCount].Add(content);
+
                             compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
                             this.DialogResult = DialogResult.OK;
                         }
@@ -1579,6 +1582,9 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.stairs[floorCount].Add(members);
                             costEstimationForm.structuralMembers.stairsNames[floorCount].Add(structMemName);
 
+                            StairParameterUserControl content = new StairParameterUserControl(stairs_ST_cbx.Text);
+                            costEstimationForm.parameters.stair[floorCount].Add(content);
+
                             compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
                             this.DialogResult = DialogResult.OK;
                         }
@@ -1615,6 +1621,9 @@ namespace WindowsFormsApp1
 
                             costEstimationForm.structuralMembers.stairs[floorCount].Add(members);
                             costEstimationForm.structuralMembers.stairsNames[floorCount].Add(structMemName);
+
+                            StairParameterUserControl content = new StairParameterUserControl(stairs_ST_cbx.Text);
+                            costEstimationForm.parameters.stair[floorCount].Add(content);
 
                             compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
                             this.DialogResult = DialogResult.OK;

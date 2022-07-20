@@ -30,10 +30,10 @@ namespace WindowsFormsApp1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.paramTabControl = new System.Windows.Forms.TabControl();
             this.earthworksTabPage = new System.Windows.Forms.TabPage();
             this.earthworksPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -421,6 +421,16 @@ namespace WindowsFormsApp1
             this.mason_CHB_EW_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.mason_CHB_EW_AddBtn = new System.Windows.Forms.Button();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel53 = new System.Windows.Forms.TableLayoutPanel();
+            this.stairs_Panel = new System.Windows.Forms.FlowLayoutPanel();
+            this.tableLayoutPanel55 = new System.Windows.Forms.TableLayoutPanel();
+            this.stair_SaveBtn = new System.Windows.Forms.Button();
+            this.stair_ResetBtn = new System.Windows.Forms.Button();
+            this.tableLayoutPanel59 = new System.Windows.Forms.TableLayoutPanel();
+            this.label108 = new System.Windows.Forms.Label();
+            this.stairs_Floor_cbx = new System.Windows.Forms.ComboBox();
+            this.stairs_Stair_cbx = new System.Windows.Forms.ComboBox();
+            this.label109 = new System.Windows.Forms.Label();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
@@ -533,6 +543,10 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel40.SuspendLayout();
             this.tableLayoutPanel42.SuspendLayout();
             this.tableLayoutPanel41.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            this.tableLayoutPanel53.SuspendLayout();
+            this.tableLayoutPanel55.SuspendLayout();
+            this.tableLayoutPanel59.SuspendLayout();
             this.tabPage9.SuspendLayout();
             this.tableLayoutPanel17.SuspendLayout();
             this.tableLayoutPanel20.SuspendLayout();
@@ -3982,14 +3996,14 @@ namespace WindowsFormsApp1
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_W_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_W_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_W_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.rein_W_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_W_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_W_dg.Location = new System.Drawing.Point(397, 50);
@@ -4050,27 +4064,27 @@ namespace WindowsFormsApp1
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_BEH_MB_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_MB_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_MB_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.rein_BEH_MB_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_BEH_MB_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_BEH_MB_dg.Location = new System.Drawing.Point(6, 6);
             this.rein_BEH_MB_dg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_BEH_MB_dg.Name = "rein_BEH_MB_dg";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_MB_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_MB_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.rein_BEH_MB_dg.RowHeadersVisible = false;
             this.rein_BEH_MB_dg.RowHeadersWidth = 62;
             this.rein_BEH_MB_dg.RowTemplate.Height = 28;
@@ -4097,14 +4111,14 @@ namespace WindowsFormsApp1
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_BEH_ST_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_ST_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_ST_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.rein_BEH_ST_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_BEH_ST_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_BEH_ST_dg.Location = new System.Drawing.Point(6, 6);
@@ -6102,6 +6116,7 @@ namespace WindowsFormsApp1
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.tableLayoutPanel53);
             this.tabPage8.Location = new System.Drawing.Point(4, 29);
             this.tabPage8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage8.Name = "tabPage8";
@@ -6109,6 +6124,153 @@ namespace WindowsFormsApp1
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Stairs";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel53
+            // 
+            this.tableLayoutPanel53.ColumnCount = 2;
+            this.tableLayoutPanel53.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.76781F));
+            this.tableLayoutPanel53.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.23219F));
+            this.tableLayoutPanel53.Controls.Add(this.stairs_Panel, 0, 1);
+            this.tableLayoutPanel53.Controls.Add(this.tableLayoutPanel55, 1, 2);
+            this.tableLayoutPanel53.Controls.Add(this.tableLayoutPanel59, 0, 0);
+            this.tableLayoutPanel53.Location = new System.Drawing.Point(5, 6);
+            this.tableLayoutPanel53.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel53.Name = "tableLayoutPanel53";
+            this.tableLayoutPanel53.RowCount = 3;
+            this.tableLayoutPanel53.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.872852F));
+            this.tableLayoutPanel53.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.98969F));
+            this.tableLayoutPanel53.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel53.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel53.Size = new System.Drawing.Size(758, 582);
+            this.tableLayoutPanel53.TabIndex = 6;
+            // 
+            // stairs_Panel
+            // 
+            this.stairs_Panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stairs_Panel.AutoScroll = true;
+            this.tableLayoutPanel53.SetColumnSpan(this.stairs_Panel, 2);
+            this.stairs_Panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.stairs_Panel.Location = new System.Drawing.Point(3, 42);
+            this.stairs_Panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stairs_Panel.Name = "stairs_Panel";
+            this.stairs_Panel.Size = new System.Drawing.Size(752, 479);
+            this.stairs_Panel.TabIndex = 31;
+            this.stairs_Panel.WrapContents = false;
+            // 
+            // tableLayoutPanel55
+            // 
+            this.tableLayoutPanel55.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel55.ColumnCount = 2;
+            this.tableLayoutPanel55.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.01901F));
+            this.tableLayoutPanel55.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.98099F));
+            this.tableLayoutPanel55.Controls.Add(this.stair_SaveBtn, 1, 0);
+            this.tableLayoutPanel55.Controls.Add(this.stair_ResetBtn, 0, 0);
+            this.tableLayoutPanel55.Location = new System.Drawing.Point(493, 528);
+            this.tableLayoutPanel55.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel55.Name = "tableLayoutPanel55";
+            this.tableLayoutPanel55.RowCount = 1;
+            this.tableLayoutPanel55.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel55.Size = new System.Drawing.Size(262, 52);
+            this.tableLayoutPanel55.TabIndex = 28;
+            // 
+            // stair_SaveBtn
+            // 
+            this.stair_SaveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.stair_SaveBtn.Location = new System.Drawing.Point(173, 2);
+            this.stair_SaveBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stair_SaveBtn.Name = "stair_SaveBtn";
+            this.stair_SaveBtn.Size = new System.Drawing.Size(86, 36);
+            this.stair_SaveBtn.TabIndex = 28;
+            this.stair_SaveBtn.Text = "Save";
+            this.stair_SaveBtn.UseVisualStyleBackColor = true;
+            this.stair_SaveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
+            // stair_ResetBtn
+            // 
+            this.stair_ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.stair_ResetBtn.Location = new System.Drawing.Point(79, 2);
+            this.stair_ResetBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stair_ResetBtn.Name = "stair_ResetBtn";
+            this.stair_ResetBtn.Size = new System.Drawing.Size(88, 36);
+            this.stair_ResetBtn.TabIndex = 27;
+            this.stair_ResetBtn.Text = "Reset";
+            this.stair_ResetBtn.UseVisualStyleBackColor = true;
+            this.stair_ResetBtn.Click += new System.EventHandler(this.stair_ResetBtn_Click);
+            // 
+            // tableLayoutPanel59
+            // 
+            this.tableLayoutPanel59.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel59.ColumnCount = 4;
+            this.tableLayoutPanel53.SetColumnSpan(this.tableLayoutPanel59, 2);
+            this.tableLayoutPanel59.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel59.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel59.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel59.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel59.Controls.Add(this.label108, 0, 0);
+            this.tableLayoutPanel59.Controls.Add(this.stairs_Floor_cbx, 1, 0);
+            this.tableLayoutPanel59.Controls.Add(this.stairs_Stair_cbx, 3, 0);
+            this.tableLayoutPanel59.Controls.Add(this.label109, 2, 0);
+            this.tableLayoutPanel59.Location = new System.Drawing.Point(3, 4);
+            this.tableLayoutPanel59.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel59.Name = "tableLayoutPanel59";
+            this.tableLayoutPanel59.RowCount = 1;
+            this.tableLayoutPanel59.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel59.Size = new System.Drawing.Size(752, 34);
+            this.tableLayoutPanel59.TabIndex = 33;
+            // 
+            // label108
+            // 
+            this.label108.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label108.Location = new System.Drawing.Point(1, 0);
+            this.label108.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label108.Name = "label108";
+            this.label108.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label108.Size = new System.Drawing.Size(108, 31);
+            this.label108.TabIndex = 38;
+            this.label108.Text = "Floor:";
+            this.label108.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // stairs_Floor_cbx
+            // 
+            this.stairs_Floor_cbx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stairs_Floor_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stairs_Floor_cbx.FormattingEnabled = true;
+            this.stairs_Floor_cbx.Items.AddRange(new object[] {
+            "GROUND FLOOR"});
+            this.stairs_Floor_cbx.Location = new System.Drawing.Point(115, 2);
+            this.stairs_Floor_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stairs_Floor_cbx.Name = "stairs_Floor_cbx";
+            this.stairs_Floor_cbx.Size = new System.Drawing.Size(257, 28);
+            this.stairs_Floor_cbx.TabIndex = 36;
+            this.stairs_Floor_cbx.SelectedIndexChanged += new System.EventHandler(this.stairs_Floor_cbx_SelectedIndexChanged);
+            // 
+            // stairs_Stair_cbx
+            // 
+            this.stairs_Stair_cbx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stairs_Stair_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stairs_Stair_cbx.FormattingEnabled = true;
+            this.stairs_Stair_cbx.Items.AddRange(new object[] {
+            "None"});
+            this.stairs_Stair_cbx.Location = new System.Drawing.Point(490, 2);
+            this.stairs_Stair_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stairs_Stair_cbx.Name = "stairs_Stair_cbx";
+            this.stairs_Stair_cbx.Size = new System.Drawing.Size(259, 28);
+            this.stairs_Stair_cbx.TabIndex = 37;
+            this.stairs_Stair_cbx.SelectedIndexChanged += new System.EventHandler(this.stairs_Stair_cbx_SelectedIndexChanged);
+            // 
+            // label109
+            // 
+            this.label109.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label109.Location = new System.Drawing.Point(376, 0);
+            this.label109.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label109.Name = "label109";
+            this.label109.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label109.Size = new System.Drawing.Size(84, 31);
+            this.label109.TabIndex = 39;
+            this.label109.Text = "Stair:";
+            this.label109.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tabPage9
             // 
@@ -6634,6 +6796,10 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel40.ResumeLayout(false);
             this.tableLayoutPanel42.ResumeLayout(false);
             this.tableLayoutPanel41.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
+            this.tableLayoutPanel53.ResumeLayout(false);
+            this.tableLayoutPanel55.ResumeLayout(false);
+            this.tableLayoutPanel59.ResumeLayout(false);
             this.tabPage9.ResumeLayout(false);
             this.tableLayoutPanel17.ResumeLayout(false);
             this.tableLayoutPanel20.ResumeLayout(false);
@@ -7067,5 +7233,15 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ComboBox rein_RG_CLT_cbx;
         private System.Windows.Forms.Label label113;
         private System.Windows.Forms.ComboBox rein_RG_BS_cbx;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel53;
+        private System.Windows.Forms.FlowLayoutPanel stairs_Panel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel55;
+        private System.Windows.Forms.Button stair_SaveBtn;
+        private System.Windows.Forms.Button stair_ResetBtn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel59;
+        private System.Windows.Forms.Label label108;
+        private System.Windows.Forms.ComboBox stairs_Floor_cbx;
+        private System.Windows.Forms.ComboBox stairs_Stair_cbx;
+        private System.Windows.Forms.Label label109;
     }
 }

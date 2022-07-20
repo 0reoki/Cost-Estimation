@@ -221,9 +221,9 @@ namespace WindowsFormsApp1
             //Initialize Forms that are single throughout the whole program
             viewInitalized = false;
             saveFileExists = false;
+            structuralMembers = new StructuralMembers(this);
             parameters = new Parameters();
             pf = new ParametersForm(parameters, this);
-            structuralMembers = new StructuralMembers(this);
 
             addFloor();
 
@@ -512,9 +512,11 @@ namespace WindowsFormsApp1
 
                 //Stairs
                 List<List<string>> newList14 = new List<List<string>>();
+                List<StairParameterUserControl> stairParamNewList = new List<StairParameterUserControl>();
                 List<string> newList15 = new List<string>();
                 structuralMembers.stairs.Add(newList14);
                 structuralMembers.stairsNames.Add(newList15);
+                parameters.stair.Add(stairParamNewList);
 
                 //Roof
                 List<List<string>> newList16 = new List<List<string>>();
@@ -568,9 +570,11 @@ namespace WindowsFormsApp1
 
                 //Stairs
                 List<List<string>> newList14 = new List<List<string>>();
+                List<StairParameterUserControl> stairParamNewList = new List<StairParameterUserControl>();
                 List<string> newList15 = new List<string>();
                 structuralMembers.stairs.Add(newList14);
                 structuralMembers.stairsNames.Add(newList15);
+                parameters.stair.Add(stairParamNewList);
 
                 //Roof
                 List<List<string>> newList16 = new List<List<string>>();
@@ -625,6 +629,7 @@ namespace WindowsFormsApp1
 
         private void paraBtn_Click(object sender, EventArgs e)
         {
+            pf.setStairsValues();
             pf.ShowDialog();
         }
 
@@ -933,7 +938,7 @@ namespace WindowsFormsApp1
                     concreteFS_CostM = (cementCost * cementFS) + (sandCost * sandFS) + (gravelCost * gravelFS);
                     concreteST_UnitM = cementCost + sandCost + gravelCost;
                     concreteST_CostM = concreteVolume_Total[5] * concreteST_UnitM;
-                    double laborRate = double.Parse(parameters.price_LaborRate_Concreting["STAIRS [m3]"].ToString()); //TODO
+                    double laborRate = double.Parse(parameters.price_LaborRate_Concreting["STAIRS [m3]"].ToString());
                     concreteST_CostL = concreteVolume_Total[5] * laborRate;
                     concreteST_costTotal = concreteST_CostM + concreteST_CostL;
                 }
@@ -954,7 +959,7 @@ namespace WindowsFormsApp1
                     //Cost
                     concreteST_UnitM = double.Parse(parameters.price_ReadyMixConcrete[parameters.conc_CM_ST_RM + " [m3]"].ToString());
                     concreteST_CostM = concreteVolume_Total[5] * concreteST_UnitM;
-                    double laborRate = double.Parse(parameters.price_LaborRate_Concreting["STAIRS [m3]"].ToString()); //TODO
+                    double laborRate = double.Parse(parameters.price_LaborRate_Concreting["STAIRS [m3]"].ToString());
                     concreteST_CostL = concreteVolume_Total[5] * laborRate;
                     concreteST_costTotal = concreteST_CostM + concreteST_CostL;
                 }
@@ -1848,7 +1853,7 @@ namespace WindowsFormsApp1
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + concreteF_CostM.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Concreting["FOOTING [m3]"].ToString()).ToString("#,##0.00"); // TODO
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Concreting["FOOTING [m3]"].ToString()).ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + concreteF_CostL.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -4873,7 +4878,6 @@ namespace WindowsFormsApp1
 
         private void price_SettingsBtn_Click(object sender, EventArgs e)
         {
-            //TODO PRICE
             FactorOfSafetyForm dlg = new FactorOfSafetyForm(this);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -5350,9 +5354,25 @@ namespace WindowsFormsApp1
             parameters.mason_RTW_RG + "|" + parameters.mason_RTW_BD + "|" +
             parameters.mason_RTW_RL + "|" + parameters.mason_RTW_LTW + "|";
 
-
             //Stairs
-            //stringParam += "\nStairs|\n";
+            stringParam += "\nStairs|\n";
+            j = 0;
+            foreach (List<StairParameterUserControl> floor in parameters.stair)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (StairParameterUserControl stair in floor)
+                {
+                    stringParam += "Stair-" + (k + 1) + "|";
+                    string[] values = stair.getValues();
+                    foreach (string value in values)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
 
             //Labor and Equipment
             stringParam += "\nLabor_and_Equipment|\n" + parameters.labor_RD + "|";
@@ -5856,13 +5876,6 @@ namespace WindowsFormsApp1
                 }
                 j++;
             }
-
-            stringParam += "\nConcreteFS|\n";
-            foreach (double value in structuralMembers.concreteWorkSolutionsFS)
-            {
-                stringParam += value + "|";
-            }
-
             //Solutions -- END
 
             //Totalities -- START
@@ -6145,6 +6158,7 @@ namespace WindowsFormsApp1
 
             structuralMembers.stairsNames.Clear();
             structuralMembers.stairs.Clear();
+            parameters.stair.Clear();
 
             structuralMembers.roofNames.Clear();
             structuralMembers.roof.Clear();
@@ -6687,6 +6701,49 @@ namespace WindowsFormsApp1
             parameters.mason_RTW_BD = tokens[i]; i++;
             parameters.mason_RTW_RL = tokens[i]; i++;
             parameters.mason_RTW_LTW = tokens[i]; i++;
+
+
+            //Stairs TODO
+            i++;
+            j = 0;
+            int l = 0;
+            while (!tokens[i].Equals("Labor_and_Equipment"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("Labor_and_Equipment"))
+                {
+                    List<StairParameterUserControl> floor = new List<StairParameterUserControl>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("Stair-" + (l + 1)) && !tokens[i].Equals("Labor_and_Equipment") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    {
+                        i++;
+                        string type = tokens[i]; i++;
+                        StairParameterUserControl content = new StairParameterUserControl(type); 
+                        List<string> toAdd = new List<string>();
+                        while (!tokens[i].Equals("Stair-" + (l + 2)) && !tokens[i].Equals("Labor_and_Equipment") && !tokens[i].Equals("Floor-" + (j + 2)))
+                        {
+                            toAdd.Add(tokens[i]); i++;
+                        }
+
+                        if (type.Equals("Straight Stairs"))
+                        {
+                            content.setStraightStairsValues(toAdd[0], toAdd[1], toAdd[2], toAdd[3], toAdd[4], toAdd[5], toAdd[6], toAdd[7], toAdd[8], toAdd[9]);
+                        } 
+                        else if (type.Equals("U-Stairs"))
+                        {
+                            content.setUStairsValues(toAdd[0], toAdd[1], toAdd[2], toAdd[3], toAdd[4], toAdd[5], toAdd[6], toAdd[7], toAdd[8], toAdd[9], toAdd[10], toAdd[11], toAdd[12], toAdd[13]);
+                        }
+                        else
+                        {
+                            content.setLStairsValues(toAdd[0], toAdd[1], toAdd[2], toAdd[3], toAdd[4], toAdd[5], toAdd[6], toAdd[7], toAdd[8], toAdd[9], toAdd[10], toAdd[11], toAdd[12], toAdd[13]);
+                        }
+                        l++;
+                        floor.Add(content);
+                    }
+                    parameters.stair.Add(floor);
+                    j++;
+                }
+            }
 
             //Labor and Equipment
             i++;
@@ -7635,7 +7692,7 @@ namespace WindowsFormsApp1
             i++;
 
             int floorIndex = 0;
-            int l = 0;
+            l = 0;
             j = 0;
 
             i++; //Only Ground Floor
@@ -8111,19 +8168,19 @@ namespace WindowsFormsApp1
             i++;
             j = 0;
             l = 0;
-            while (!tokens[i].Equals("ConcreteFS"))
+            while (!tokens[i].Equals("Totalities"))
             {
-                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("ConcreteFS"))
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("Totalities"))
                 {
                     List<List<double>> floor = new List<List<double>>();
                     i++;
                     l = 0;
-                    while (tokens[i].Equals("concreteST-" + (l + 1)) && !tokens[i].Equals("ConcreteFS") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    while (tokens[i].Equals("concreteST-" + (l + 1)) && !tokens[i].Equals("Totalities") && !tokens[i].Equals("Floor-" + (j + 2)))
                     {
                         List<double> toAdd = new List<double>();
                         i++;
 
-                        while (!tokens[i].Equals("concreteST-" + (l + 2)) && !tokens[i].Equals("ConcreteFS") && !tokens[i].Equals("Floor-" + (j + 2)))
+                        while (!tokens[i].Equals("concreteST-" + (l + 2)) && !tokens[i].Equals("Totalities") && !tokens[i].Equals("Floor-" + (j + 2)))
                         {
                             toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
                         }
@@ -8134,9 +8191,6 @@ namespace WindowsFormsApp1
                     j++;
                 }
             }
-
-            //ConcreteFS TODO
-            i++;
 
             //Solutions -- END
 
