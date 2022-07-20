@@ -673,7 +673,7 @@ namespace WindowsFormsApp1
                                    gravelBedding_CostTotal + soilPoisoning_CostM;
 
             //Concreting
-            //Refresh Totalities to 0
+            //Refresh Totalities and Cost to 0
             for (int i = 0; i < cement_Total.Length; i++)
             {
                 cement_Total[i] = 0;
@@ -681,6 +681,42 @@ namespace WindowsFormsApp1
                 gravel_Total[i] = 0;
                 concreteVolume_Total[i] = 0;
             }
+            concreteF_UnitM = 0;
+            concreteF_CostM = 0;
+            concreteF_CostL = 0;
+            concreteF_costTotal = 0;
+
+            concreteC_UnitM = 0;
+            concreteC_CostM = 0;
+            concreteC_CostL = 0;
+            concreteC_costTotal = 0;
+
+            concreteBR_UnitM = 0;
+            concreteBR_CostM = 0;
+            concreteBR_CostL = 0;
+            concreteBR_costTotal = 0;
+
+            concreteSOG_UnitM = 0;
+            concreteSOG_CostM = 0;
+            concreteSOG_CostL = 0;
+            concreteSOG_costTotal = 0;
+
+            concreteSS_UnitM = 0;
+            concreteSS_CostM = 0;
+            concreteSS_CostL = 0;
+            concreteSS_costTotal = 0;
+
+            concreteST_UnitM = 0;
+            concreteST_CostM = 0;
+            concreteST_CostL = 0;
+            concreteST_costTotal = 0;
+
+            concreteFS_CostM = 0;
+            concreteFS_costTotal = 0;
+
+            concreteMCost_total = 0;
+            concreteLCost_total = 0;
+            concrete_TOTALCOST = 0;
 
             string value = fos_Cement.Replace(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, "");
             double cementFS = double.Parse(value, System.Globalization.CultureInfo.InvariantCulture) / 100;
@@ -1626,21 +1662,30 @@ namespace WindowsFormsApp1
                 setTree(nodes1, view_TV1);
 
                 //1.0 - Earthworks -- START
+                int j = 1;
                 TreeNode[] found = view_TV1.Nodes.Find("earthworksParent", true);
 
-                TreeNode newChild1 = new TreeNode("1.1 Excavation (₱" + excavation_CostL.ToString("#,##0.00") + ")");
+                TreeNode newChild1 = new TreeNode("1." + j + " Excavation (₱" + excavation_CostL.ToString("#,##0.00") + ")");
                 newChild1.Name = "excavation_Total";
 
-                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction (₱" + backfillingAndCompaction_CostTotal.ToString("#,##0.00") + ")");
+                if (excavation_CostL != 0) j++;
+
+                TreeNode newChild2 = new TreeNode("1." + j + " Back Filling and Compaction (₱" + backfillingAndCompaction_CostTotal.ToString("#,##0.00") + ")");
                 newChild2.Name = "backfillingAndCompaction_Total";
 
-                TreeNode newChild3 = new TreeNode("1.3 Grading and Compaction (₱" + gradingAndCompaction_CostL.ToString("#,##0.00") + ")");
+                if (backfillingAndCompaction_CostTotal != 0) j++;
+
+                TreeNode newChild3 = new TreeNode("1." + j + " Grading and Compaction (₱" + gradingAndCompaction_CostL.ToString("#,##0.00") + ")");
                 newChild3.Name = "gradingAndCompaction_Total";
 
-                TreeNode newChild4 = new TreeNode("1.4 Gravel Bedding and Compaction (₱" + gravelBedding_CostTotal.ToString("#,##0.00") + ")");
+                if (gradingAndCompaction_CostL != 0) j++;
+
+                TreeNode newChild4 = new TreeNode("1." + j + " Gravel Bedding and Compaction (₱" + gravelBedding_CostTotal.ToString("#,##0.00") + ")");
                 newChild4.Name = "gravelBedding_Total";
 
-                TreeNode newChild5 = new TreeNode("1.5 Soil Poisoning (₱" + soilPoisoning_CostM.ToString("#,##0.00") + ")");
+                if (gravelBedding_CostTotal != 0) j++;
+
+                TreeNode newChild5 = new TreeNode("1." + j + " Soil Poisoning (₱" + soilPoisoning_CostM.ToString("#,##0.00") + ")");
                 newChild5.Name = "soilPoisoning_Total";
 
                 if (excavation_CostL != 0)
@@ -1663,10 +1708,11 @@ namespace WindowsFormsApp1
                     this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "EARTHWORKS";
                     this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
 
+                    int i = 1;
                     if (excavation_CostL != 0)
                     {
                         index = this.summ_BOQ_dg.Rows.Add();
-                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.1";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1." + i;
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                         this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Excavation";
@@ -1680,11 +1726,12 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + excavation_CostL.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        i++;
                     }
                     if (backfillingAndCompaction_CostTotal != 0)
                     {
                         index = this.summ_BOQ_dg.Rows.Add();
-                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.2";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1." + i;
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                         this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Backfilling and Compaction";
@@ -1705,11 +1752,12 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + backfillingAndCompaction_CostTotal.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        i++;
                     }
                     if (gradingAndCompaction_CostL != 0)
                     {
                         index = this.summ_BOQ_dg.Rows.Add();
-                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.3";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1." + i;
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                         this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Grading and Compaction";
@@ -1723,11 +1771,12 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + gradingAndCompaction_CostL.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        i++;
                     }
                     if (gravelBedding_CostTotal != 0)
                     {
                         index = this.summ_BOQ_dg.Rows.Add();
-                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.4";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1." + i;
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                         this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Gravel bedding and Compaction";
@@ -1745,11 +1794,12 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + gravelBedding_CostTotal.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        i++;
                     }
                     if (soilPoisoning_CostM != 0)
                     {
                         index = this.summ_BOQ_dg.Rows.Add();
-                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1.5";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "1." + i;
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                         this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                         this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "Soil Poisoning";
@@ -1763,6 +1813,7 @@ namespace WindowsFormsApp1
                         this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + soilPoisoning_CostM.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        i++;
                     }
 
                     this.summ_BOQ_dg.Rows.Add();
@@ -1783,25 +1834,26 @@ namespace WindowsFormsApp1
                 //2.0 - Concrete Works -- START
                 found = view_TV1.Nodes.Find("concreteWorksParent", true);
 
-                TreeNode column_newChild1 = new TreeNode("2.1 Footing (₱" + concreteF_CostM.ToString("#,##0.00") + ")");
+                j = 1;
+                TreeNode column_newChild1 = new TreeNode("2." + j + " Footing (₱" + concreteF_CostM.ToString("#,##0.00") + ")");
                 newChild1.Name = "concreting_Footing";
-
-                TreeNode column_newChild2 = new TreeNode("2.2 Column (₱" + concreteC_CostM.ToString("#,##0.00") + ")");
+                if (concreteF_CostM != 0) j++;
+                TreeNode column_newChild2 = new TreeNode("2." + j + " Column (₱" + concreteC_CostM.ToString("#,##0.00") + ")");
                 newChild2.Name = "concreting_Column";
-
-                TreeNode column_newChild3 = new TreeNode("2.3 Beam (₱" + concreteBR_CostM.ToString("#,##0.00") + ")");
+                if (concreteC_CostM != 0) j++;
+                TreeNode column_newChild3 = new TreeNode("2." + j + " Beam (₱" + concreteBR_CostM.ToString("#,##0.00") + ")");
                 newChild3.Name = "concreting_Beam";
-
-                TreeNode column_newChild4 = new TreeNode("2.4 Slab (₱" + (concreteSOG_CostM + concreteSS_CostM).ToString("#,##0.00") + ")");
+                if (concreteBR_CostM != 0) j++;
+                TreeNode column_newChild4 = new TreeNode("2." + j + " Slab (₱" + (concreteSOG_CostM + concreteSS_CostM).ToString("#,##0.00") + ")");
                 newChild4.Name = "concreting_Slab";
-
-                TreeNode column_newChild5 = new TreeNode("2.5 Stairs (₱" + concreteST_CostM.ToString("#,##0.00") + ")");
+                if ((concreteSOG_CostM + concreteSS_CostM) != 0) j++;
+                TreeNode column_newChild5 = new TreeNode("2." + j + " Stairs (₱" + concreteST_CostM.ToString("#,##0.00") + ")");
                 newChild5.Name = "concreting_Stairs";
-
-                TreeNode column_newChild6 = new TreeNode("2.6 Factor of Safety (₱" + concreteFS_CostM.ToString("#,##0.00") + ")");
+                if (concreteST_CostM != 0) j++;
+                TreeNode column_newChild6 = new TreeNode("2." + j + " Factor of Safety (₱" + concreteFS_CostM.ToString("#,##0.00") + ")");
                 column_newChild6.Name = "concreting_FS";
-
-                TreeNode column_newChild7 = new TreeNode("2.7 Labor for Concrete Works (₱" + concreteLCost_total.ToString("#,##0.00") + ")");
+                if (concreteFS_CostM != 0) j++;
+                TreeNode column_newChild7 = new TreeNode("2." + j + " Labor for Concrete Works (₱" + concreteLCost_total.ToString("#,##0.00") + ")");
                 column_newChild7.Name = "concreting_Labor";
 
                 if (concreteF_CostM != 0)
@@ -2060,10 +2112,11 @@ namespace WindowsFormsApp1
                 //4.0 - Masonry -- START
                 found = view_TV1.Nodes.Find("masonryParent", true);
 
-                TreeNode M_newChild1 = new TreeNode("4.1 Exterior Walls (₱" + exterior_costTotal.ToString("#,##0.00") + ")");
+                j = 1;
+                TreeNode M_newChild1 = new TreeNode("4." + j + " Exterior Walls (₱" + exterior_costTotal.ToString("#,##0.00") + ")");
                 newChild1.Name = "exterior_Wall_Total";
-
-                TreeNode M_newChild2 = new TreeNode("4.2 Interior Walls (₱" + interior_costTotal.ToString("#,##0.00") + ")");
+                if (exterior_costTotal != 0) j++;
+                TreeNode M_newChild2 = new TreeNode("4." + j + " Interior Walls (₱" + interior_costTotal.ToString("#,##0.00") + ")");
                 newChild2.Name = "interior_Wall_Total";
 
                 if (exterior_costTotal != 0)
@@ -2211,17 +2264,18 @@ namespace WindowsFormsApp1
                 //6.0 - Roofing -- START
                 found = view_TV2.Nodes.Find("roofingParent", true);
 
-                TreeNode roof_newChild1 = new TreeNode("6.1 G.I. and Accessories (₱" + acce_costTotal.ToString("#,##0.00") + ")");
+                j = 1;
+                TreeNode roof_newChild1 = new TreeNode("6." + j + " G.I. and Accessories (₱" + acce_costTotal.ToString("#,##0.00") + ")");
                 roof_newChild1.Name = "GI_and_Accessories_Total";
-
-                TreeNode roof_newChild2 = new TreeNode("6.2 Rafters and Purlins (₱" + rANDp_costTotal.ToString("#,##0.00") + ")");
+                if (acce_costTotal != 0) j++;
+                TreeNode roof_newChild2 = new TreeNode("6." + j + " Rafters and Purlins (₱" + rANDp_costTotal.ToString("#,##0.00") + ")");
                 roof_newChild2.Name = "Rafters_and_Purlins_Total";
-
-                TreeNode roof_newChild3 = new TreeNode("6.3 Tinswork (₱" + tins_costTotal.ToString("#,##0.00") + ")");
+                if (rANDp_costTotal != 0) j++;
+                TreeNode roof_newChild3 = new TreeNode("6." + j + " Tinswork (₱" + tins_costTotal.ToString("#,##0.00") + ")");
                 roof_newChild3.Name = "Tinswork_Total";
 
                 if (acce_costTotal != 0)
-                found[0].Nodes.Add(roof_newChild1);
+                    found[0].Nodes.Add(roof_newChild1);
                 if (rANDp_costTotal != 0)
                     found[0].Nodes.Add(roof_newChild2);
                 if (tins_costTotal != 0)
@@ -2315,10 +2369,11 @@ namespace WindowsFormsApp1
                 //7.0 - Tile Works -- START
                 found = view_TV2.Nodes.Find("tilingParent", true);
 
-                TreeNode tile_newChild1 = new TreeNode("7.1 600 x 600 (₱" + sixhun_costTotal.ToString("#,##0.00") + ")");
+                j = 1;
+                TreeNode tile_newChild1 = new TreeNode("7." + j + " 600 x 600 (₱" + sixhun_costTotal.ToString("#,##0.00") + ")");
                 tile_newChild1.Name = "600_Total";
-
-                TreeNode tile_newChild2 = new TreeNode("7.2 300 x 300 (₱" + threehun_costTotal.ToString("#,##0.00") + ")");
+                if (sixhun_costTotal != 0) j++;
+                TreeNode tile_newChild2 = new TreeNode("7." + j + " 300 x 300 (₱" + threehun_costTotal.ToString("#,##0.00") + ")");
                 tile_newChild2.Name = "300_Total";
 
                 if (sixhun_costTotal != 0)
@@ -2405,16 +2460,17 @@ namespace WindowsFormsApp1
                 //8.0 - Paint Works -- START
                 found = view_TV2.Nodes.Find("paintParent", true);
 
-                TreeNode paint_newChild1 = new TreeNode("8.1 ENAMEL PAINT (₱" + enam_TOTALCOST.ToString("#,##0.00") + ")");
+                j = 1;
+                TreeNode paint_newChild1 = new TreeNode("8." + j + " ENAMEL PAINT (₱" + enam_TOTALCOST.ToString("#,##0.00") + ")");
                 paint_newChild1.Name = "Enamel_Paint_Total";
-
-                TreeNode paint_newChild2 = new TreeNode("8.2 ACRYLIC PAINT (₱" + acry_TOTALCOST.ToString("#,##0.00") + ")");
+                if (enam_TOTALCOST != 0) j++;
+                TreeNode paint_newChild2 = new TreeNode("8." + j + " ACRYLIC PAINT (₱" + acry_TOTALCOST.ToString("#,##0.00") + ")");
                 paint_newChild2.Name = "Acrylic_Paint_Total";
-
-                TreeNode paint_newChild3 = new TreeNode("8.3 LATEX PAINT (₱" + late_TOTALCOST.ToString("#,##0.00") + ")");
+                if (acry_TOTALCOST != 0) j++;
+                TreeNode paint_newChild3 = new TreeNode("8." + j + " LATEX PAINT (₱" + late_TOTALCOST.ToString("#,##0.00") + ")");
                 paint_newChild3.Name = "Latex_Paint_Total";
-
-                TreeNode paint_newChild4 = new TreeNode("8.4 SEMI-GLOSS PAINT (₱" + semi_TOTALCOST.ToString("#,##0.00") + ")");
+                if (late_TOTALCOST != 0) j++;
+                TreeNode paint_newChild4 = new TreeNode("8." + j + " SEMI-GLOSS PAINT (₱" + semi_TOTALCOST.ToString("#,##0.00") + ")");
                 paint_newChild4.Name = "SemiGloss_Paint_Total";
 
                 if (enam_TOTALCOST != 0)
@@ -2563,7 +2619,7 @@ namespace WindowsFormsApp1
                 //9.0 - Miscellaneous Items -- START
                 found = view_TV3.Nodes.Find("miscParent", true);
 
-                int j = 1;
+                j = 1;
                 foreach (string[] data in parameters.misc_CustomItems)
                 {
                     if (bool.Parse(data[3]))
@@ -6045,7 +6101,6 @@ namespace WindowsFormsApp1
             stringParam += paint_lTOTALCOST + "|";
             stringParam += paints_TOTALCOST + "|";
 
-            //9.0 - Misc TODO
             //Totalities
             //Cost
 
@@ -6703,7 +6758,7 @@ namespace WindowsFormsApp1
             parameters.mason_RTW_LTW = tokens[i]; i++;
 
 
-            //Stairs TODO
+            //Stairs
             i++;
             j = 0;
             int l = 0;
@@ -8364,8 +8419,6 @@ namespace WindowsFormsApp1
             paint_mTOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             paint_lTOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             paints_TOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
-
-            //9.0 - Misc TODO
 
             //Totalities -- END
             viewInitalized = false;

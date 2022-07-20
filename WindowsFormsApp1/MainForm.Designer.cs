@@ -2004,6 +2004,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.view_ConfigureBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.view_TV3 = new System.Windows.Forms.TreeView();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel408 = new System.Windows.Forms.TableLayoutPanel();
@@ -2034,7 +2035,6 @@ namespace WindowsFormsApp1
             this.fileMenu6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.fileMenu5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.view_TV3 = new System.Windows.Forms.TreeView();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.rightPanel.SuspendLayout();
@@ -32803,6 +32803,16 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel8.Size = new System.Drawing.Size(403, 613);
             this.tableLayoutPanel8.TabIndex = 10;
             // 
+            // view_TV3
+            // 
+            this.view_TV3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.view_TV3.Location = new System.Drawing.Point(4, 75);
+            this.view_TV3.Name = "view_TV3";
+            this.view_TV3.Size = new System.Drawing.Size(395, 534);
+            this.view_TV3.TabIndex = 12;
+            // 
             // tableLayoutPanel9
             // 
             this.tableLayoutPanel9.ColumnCount = 2;
@@ -33168,16 +33178,6 @@ namespace WindowsFormsApp1
             this.fileMenu5.Size = new System.Drawing.Size(146, 32);
             this.fileMenu5.Text = "Exit";
             this.fileMenu5.Click += new System.EventHandler(this.fileMenu5_Click);
-            // 
-            // view_TV3
-            // 
-            this.view_TV3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.view_TV3.Location = new System.Drawing.Point(4, 75);
-            this.view_TV3.Name = "view_TV3";
-            this.view_TV3.Size = new System.Drawing.Size(395, 534);
-            this.view_TV3.TabIndex = 12;
             // 
             // CostEstimationForm
             // 
