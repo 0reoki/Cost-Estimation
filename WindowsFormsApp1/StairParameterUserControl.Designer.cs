@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1
+﻿namespace KnowEst
 {
     partial class StairParameterUserControl
     {
@@ -491,7 +491,7 @@
             // 
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel2.SetColumnSpan(this.pictureBox3, 2);
-            this.pictureBox3.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_3;
+            this.pictureBox3.Image = KnowEst.Properties.Resources.MAIN_BAR_3;
             this.pictureBox3.Location = new System.Drawing.Point(176, 455);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox3.Name = "pictureBox3";
@@ -504,7 +504,7 @@
             // 
             this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel2.SetColumnSpan(this.pictureBox5, 2);
-            this.pictureBox5.Image = global::WindowsFormsApp1.Properties.Resources.L__BARS;
+            this.pictureBox5.Image = KnowEst.Properties.Resources.L__BARS;
             this.pictureBox5.Location = new System.Drawing.Point(176, 859);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox5.Name = "pictureBox5";
@@ -559,7 +559,7 @@
             // 
             this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel2.SetColumnSpan(this.pictureBox4, 2);
-            this.pictureBox4.Image = global::WindowsFormsApp1.Properties.Resources.DISTRIBUTION_BARS;
+            this.pictureBox4.Image = KnowEst.Properties.Resources.DISTRIBUTION_BARS;
             this.pictureBox4.Location = new System.Drawing.Point(162, 617);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox4.Name = "pictureBox4";
@@ -656,7 +656,7 @@
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel2.SetColumnSpan(this.pictureBox2, 2);
-            this.pictureBox2.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_2;
+            this.pictureBox2.Image = KnowEst.Properties.Resources.MAIN_BAR_2;
             this.pictureBox2.Location = new System.Drawing.Point(176, 261);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
@@ -705,7 +705,7 @@
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel2.SetColumnSpan(this.pictureBox1, 2);
-            this.pictureBox1.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_1;
+            this.pictureBox1.Image = KnowEst.Properties.Resources.MAIN_BAR_1;
             this.pictureBox1.Location = new System.Drawing.Point(195, 67);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
@@ -1143,7 +1143,7 @@
             // 
             this.pictureBox13.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox13, 2);
-            this.pictureBox13.Image = global::WindowsFormsApp1.Properties.Resources.LANDING_REBAR;
+            this.pictureBox13.Image = KnowEst.Properties.Resources.LANDING_REBAR;
             this.pictureBox13.Location = new System.Drawing.Point(149, 1454);
             this.pictureBox13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox13.Name = "pictureBox13";
@@ -1198,7 +1198,7 @@
             // 
             this.pictureBox12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox12, 2);
-            this.pictureBox12.Image = global::WindowsFormsApp1.Properties.Resources.DISTRIBUTION_BARS;
+            this.pictureBox12.Image = KnowEst.Properties.Resources.DISTRIBUTION_BARS;
             this.pictureBox12.Location = new System.Drawing.Point(161, 1186);
             this.pictureBox12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox12.Name = "pictureBox12";
@@ -1253,7 +1253,7 @@
             // 
             this.pictureBox11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox11, 2);
-            this.pictureBox11.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_3;
+            this.pictureBox11.Image = KnowEst.Properties.Resources.MAIN_BAR_3;
             this.pictureBox11.Location = new System.Drawing.Point(176, 1030);
             this.pictureBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox11.Name = "pictureBox11";
@@ -1308,7 +1308,7 @@
             // 
             this.pictureBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox6, 2);
-            this.pictureBox6.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_2;
+            this.pictureBox6.Image = KnowEst.Properties.Resources.MAIN_BAR_2;
             this.pictureBox6.Location = new System.Drawing.Point(176, 836);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox6.Name = "pictureBox6";
@@ -1363,7 +1363,7 @@
             // 
             this.pictureBox7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox7, 2);
-            this.pictureBox7.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_1;
+            this.pictureBox7.Image = KnowEst.Properties.Resources.MAIN_BAR_1;
             this.pictureBox7.Location = new System.Drawing.Point(176, 642);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox7.Name = "pictureBox7";
@@ -1418,7 +1418,7 @@
             // 
             this.pictureBox8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox8, 2);
-            this.pictureBox8.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_3;
+            this.pictureBox8.Image = KnowEst.Properties.Resources.MAIN_BAR_3;
             this.pictureBox8.Location = new System.Drawing.Point(176, 455);
             this.pictureBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox8.Name = "pictureBox8";
@@ -1473,7 +1473,7 @@
             // 
             this.pictureBox9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox9, 2);
-            this.pictureBox9.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_2;
+            this.pictureBox9.Image = KnowEst.Properties.Resources.MAIN_BAR_2;
             this.pictureBox9.Location = new System.Drawing.Point(176, 261);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox9.Name = "pictureBox9";
@@ -1522,7 +1522,7 @@
             // 
             this.pictureBox10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox10, 2);
-            this.pictureBox10.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_1;
+            this.pictureBox10.Image = KnowEst.Properties.Resources.MAIN_BAR_1;
             this.pictureBox10.Location = new System.Drawing.Point(176, 67);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox10.Name = "pictureBox10";
@@ -1601,7 +1601,7 @@
             // 
             this.pictureBox14.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox14, 2);
-            this.pictureBox14.Image = global::WindowsFormsApp1.Properties.Resources.L__BARS;
+            this.pictureBox14.Image = KnowEst.Properties.Resources.L__BARS;
             this.pictureBox14.Location = new System.Drawing.Point(149, 1730);
             this.pictureBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox14.Name = "pictureBox14";
@@ -2050,7 +2050,7 @@
             // 
             this.pictureBox15.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox15, 2);
-            this.pictureBox15.Image = global::WindowsFormsApp1.Properties.Resources.L__BARS;
+            this.pictureBox15.Image = KnowEst.Properties.Resources.L__BARS;
             this.pictureBox15.Location = new System.Drawing.Point(188, 1811);
             this.pictureBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox15.Name = "pictureBox15";
@@ -2105,7 +2105,7 @@
             // 
             this.pictureBox16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox16, 2);
-            this.pictureBox16.Image = global::WindowsFormsApp1.Properties.Resources.L_STAIRS_REBARS;
+            this.pictureBox16.Image = KnowEst.Properties.Resources.L_STAIRS_REBARS;
             this.pictureBox16.Location = new System.Drawing.Point(143, 1454);
             this.pictureBox16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox16.Name = "pictureBox16";
@@ -2160,7 +2160,7 @@
             // 
             this.pictureBox17.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox17, 2);
-            this.pictureBox17.Image = global::WindowsFormsApp1.Properties.Resources.DISTRIBUTION_BARS;
+            this.pictureBox17.Image = KnowEst.Properties.Resources.DISTRIBUTION_BARS;
             this.pictureBox17.Location = new System.Drawing.Point(161, 1186);
             this.pictureBox17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox17.Name = "pictureBox17";
@@ -2215,7 +2215,7 @@
             // 
             this.pictureBox18.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox18, 2);
-            this.pictureBox18.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_3;
+            this.pictureBox18.Image = KnowEst.Properties.Resources.MAIN_BAR_3;
             this.pictureBox18.Location = new System.Drawing.Point(176, 1030);
             this.pictureBox18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox18.Name = "pictureBox18";
@@ -2270,7 +2270,7 @@
             // 
             this.pictureBox19.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox19, 2);
-            this.pictureBox19.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_2;
+            this.pictureBox19.Image = KnowEst.Properties.Resources.MAIN_BAR_2;
             this.pictureBox19.Location = new System.Drawing.Point(176, 836);
             this.pictureBox19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox19.Name = "pictureBox19";
@@ -2325,7 +2325,7 @@
             // 
             this.pictureBox20.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox20, 2);
-            this.pictureBox20.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_1;
+            this.pictureBox20.Image = KnowEst.Properties.Resources.MAIN_BAR_1;
             this.pictureBox20.Location = new System.Drawing.Point(176, 642);
             this.pictureBox20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox20.Name = "pictureBox20";
@@ -2380,7 +2380,7 @@
             // 
             this.pictureBox21.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox21, 2);
-            this.pictureBox21.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_3;
+            this.pictureBox21.Image = KnowEst.Properties.Resources.MAIN_BAR_3;
             this.pictureBox21.Location = new System.Drawing.Point(176, 455);
             this.pictureBox21.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox21.Name = "pictureBox21";
@@ -2435,7 +2435,7 @@
             // 
             this.pictureBox22.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox22, 2);
-            this.pictureBox22.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_2;
+            this.pictureBox22.Image = KnowEst.Properties.Resources.MAIN_BAR_2;
             this.pictureBox22.Location = new System.Drawing.Point(176, 261);
             this.pictureBox22.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox22.Name = "pictureBox22";
@@ -2484,7 +2484,7 @@
             // 
             this.pictureBox23.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox23, 2);
-            this.pictureBox23.Image = global::WindowsFormsApp1.Properties.Resources.MAIN_BAR_1;
+            this.pictureBox23.Image = KnowEst.Properties.Resources.MAIN_BAR_1;
             this.pictureBox23.Location = new System.Drawing.Point(176, 67);
             this.pictureBox23.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox23.Name = "pictureBox23";

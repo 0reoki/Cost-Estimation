@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp1
+namespace KnowEst
 {
     partial class AddStructForm
     {
@@ -43,6 +43,7 @@ namespace WindowsFormsApp1
             this.label2 = new System.Windows.Forms.Label();
             this.foot_FT_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.foot_DeleteBtn = new System.Windows.Forms.Button();
             this.foot_SaveBtn = new System.Windows.Forms.Button();
             this.footingTabControl = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
@@ -127,6 +128,7 @@ namespace WindowsFormsApp1
             this.label62 = new System.Windows.Forms.Label();
             this.footW_FT_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel30 = new System.Windows.Forms.TableLayoutPanel();
+            this.footW_DeleteBtn = new System.Windows.Forms.Button();
             this.footW_SaveBtn = new System.Windows.Forms.Button();
             this.footingWTabControl = new System.Windows.Forms.TabControl();
             this.tabPage8 = new System.Windows.Forms.TabPage();
@@ -208,6 +210,7 @@ namespace WindowsFormsApp1
             this.columnTabPage = new System.Windows.Forms.TabPage();
             this.formworksPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.col_DeleteBtn = new System.Windows.Forms.Button();
             this.col_SaveBtn = new System.Windows.Forms.Button();
             this.colTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -371,6 +374,7 @@ namespace WindowsFormsApp1
             this.label136 = new System.Windows.Forms.Label();
             this.beam_ST_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel57 = new System.Windows.Forms.TableLayoutPanel();
+            this.beam_DeleteBtn = new System.Windows.Forms.Button();
             this.beam_SaveBtn = new System.Windows.Forms.Button();
             this.pictureBox18 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel104 = new System.Windows.Forms.TableLayoutPanel();
@@ -387,6 +391,7 @@ namespace WindowsFormsApp1
             this.slabTabPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel25 = new System.Windows.Forms.TableLayoutPanel();
+            this.slab_DeleteBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.slabTabControl = new System.Windows.Forms.TabControl();
             this.tabPage13 = new System.Windows.Forms.TabPage();
@@ -518,6 +523,7 @@ namespace WindowsFormsApp1
             this.label52 = new System.Windows.Forms.Label();
             this.stairs_ST_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel39 = new System.Windows.Forms.TableLayoutPanel();
+            this.stairs_DeleteBtn = new System.Windows.Forms.Button();
             this.stairsSaveBtn = new System.Windows.Forms.Button();
             this.stairsTabControl = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -672,6 +678,7 @@ namespace WindowsFormsApp1
             this.label244 = new System.Windows.Forms.Label();
             this.roof_PGR_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel93 = new System.Windows.Forms.TableLayoutPanel();
+            this.roof_DeleteBtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.roofTabControl = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
@@ -819,13 +826,6 @@ namespace WindowsFormsApp1
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.foot_DeleteBtn = new System.Windows.Forms.Button();
-            this.footW_DeleteBtn = new System.Windows.Forms.Button();
-            this.col_DeleteBtn = new System.Windows.Forms.Button();
-            this.beam_DeleteBtn = new System.Windows.Forms.Button();
-            this.slab_DeleteBtn = new System.Windows.Forms.Button();
-            this.stairs_DeleteBtn = new System.Windows.Forms.Button();
-            this.roof_DeleteBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel9.SuspendLayout();
             this.addstructTabControl.SuspendLayout();
             this.footingTabPage.SuspendLayout();
@@ -1198,6 +1198,18 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(371, 42);
             this.tableLayoutPanel4.TabIndex = 28;
+            // 
+            // foot_DeleteBtn
+            // 
+            this.foot_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.foot_DeleteBtn.Location = new System.Drawing.Point(190, 2);
+            this.foot_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.foot_DeleteBtn.Name = "foot_DeleteBtn";
+            this.foot_DeleteBtn.Size = new System.Drawing.Size(86, 36);
+            this.foot_DeleteBtn.TabIndex = 29;
+            this.foot_DeleteBtn.Text = "Delete";
+            this.foot_DeleteBtn.UseVisualStyleBackColor = true;
+            this.foot_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
             // 
             // foot_SaveBtn
             // 
@@ -1644,7 +1656,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox3.Image = global::WindowsFormsApp1.Properties.Resources.ISOLATED__FOOTING;
+            this.pictureBox3.Image = global::KnowEst.Properties.Resources.ISOLATED__FOOTING;
             this.pictureBox3.Location = new System.Drawing.Point(456, 23);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox3.MaximumSize = new System.Drawing.Size(240, 240);
@@ -1693,7 +1705,7 @@ namespace WindowsFormsApp1
             this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tableLayoutPanel16.SetColumnSpan(this.pictureBox4, 2);
-            this.pictureBox4.Image = global::WindowsFormsApp1.Properties.Resources.COMB_FOOTING;
+            this.pictureBox4.Image = global::KnowEst.Properties.Resources.COMB_FOOTING;
             this.pictureBox4.Location = new System.Drawing.Point(374, 37);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox4.MaximumSize = new System.Drawing.Size(240, 240);
@@ -2350,6 +2362,18 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel30.Size = new System.Drawing.Size(371, 42);
             this.tableLayoutPanel30.TabIndex = 28;
             // 
+            // footW_DeleteBtn
+            // 
+            this.footW_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.footW_DeleteBtn.Location = new System.Drawing.Point(190, 2);
+            this.footW_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.footW_DeleteBtn.Name = "footW_DeleteBtn";
+            this.footW_DeleteBtn.Size = new System.Drawing.Size(86, 36);
+            this.footW_DeleteBtn.TabIndex = 30;
+            this.footW_DeleteBtn.Text = "Delete";
+            this.footW_DeleteBtn.UseVisualStyleBackColor = true;
+            this.footW_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
+            // 
             // footW_SaveBtn
             // 
             this.footW_SaveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -2416,7 +2440,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox5.Image = global::WindowsFormsApp1.Properties.Resources.WALL_FOOTING;
+            this.pictureBox5.Image = global::KnowEst.Properties.Resources.WALL_FOOTING;
             this.pictureBox5.Location = new System.Drawing.Point(436, 38);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox5.MaximumSize = new System.Drawing.Size(240, 240);
@@ -2909,7 +2933,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox17.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox17.Image = global::WindowsFormsApp1.Properties.Resources.TRAPEZOIDAL__WALL_FOOTING;
+            this.pictureBox17.Image = global::KnowEst.Properties.Resources.TRAPEZOIDAL__WALL_FOOTING;
             this.pictureBox17.Location = new System.Drawing.Point(436, 51);
             this.pictureBox17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox17.MaximumSize = new System.Drawing.Size(240, 240);
@@ -3435,6 +3459,18 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel11.Size = new System.Drawing.Size(371, 42);
             this.tableLayoutPanel11.TabIndex = 28;
+            // 
+            // col_DeleteBtn
+            // 
+            this.col_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.col_DeleteBtn.Location = new System.Drawing.Point(190, 2);
+            this.col_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.col_DeleteBtn.Name = "col_DeleteBtn";
+            this.col_DeleteBtn.Size = new System.Drawing.Size(86, 36);
+            this.col_DeleteBtn.TabIndex = 30;
+            this.col_DeleteBtn.Text = "Delete";
+            this.col_DeleteBtn.UseVisualStyleBackColor = true;
+            this.col_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
             // 
             // col_SaveBtn
             // 
@@ -4239,7 +4275,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel13.SetColumnSpan(this.pictureBox2, 2);
-            this.pictureBox2.Image = global::WindowsFormsApp1.Properties.Resources.COLUMN;
+            this.pictureBox2.Image = global::KnowEst.Properties.Resources.COLUMN;
             this.pictureBox2.Location = new System.Drawing.Point(25, 2);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
@@ -5093,7 +5129,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel90.SetColumnSpan(this.pictureBox12, 2);
-            this.pictureBox12.Image = global::WindowsFormsApp1.Properties.Resources.COLUMN;
+            this.pictureBox12.Image = global::KnowEst.Properties.Resources.COLUMN;
             this.pictureBox12.Location = new System.Drawing.Point(25, 2);
             this.pictureBox12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox12.Name = "pictureBox12";
@@ -5174,7 +5210,7 @@ namespace WindowsFormsApp1
             // pictureBox19
             // 
             this.pictureBox19.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox19.Image = global::WindowsFormsApp1.Properties.Resources.BEAM_PROP_1;
+            this.pictureBox19.Image = global::KnowEst.Properties.Resources.BEAM_PROP_1;
             this.pictureBox19.Location = new System.Drawing.Point(160, 3);
             this.pictureBox19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox19.Name = "pictureBox19";
@@ -5198,7 +5234,7 @@ namespace WindowsFormsApp1
             // pictureBox20
             // 
             this.pictureBox20.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox20.Image = global::WindowsFormsApp1.Properties.Resources.BEAM_PROP_2;
+            this.pictureBox20.Image = global::KnowEst.Properties.Resources.BEAM_PROP_2;
             this.pictureBox20.Location = new System.Drawing.Point(384, 3);
             this.pictureBox20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox20.Name = "pictureBox20";
@@ -5290,7 +5326,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 159F));
             this.tableLayoutPanel112.Controls.Add(this.label280, 8, 0);
             this.tableLayoutPanel112.Controls.Add(this.label279, 7, 0);
             this.tableLayoutPanel112.Controls.Add(this.label278, 6, 0);
@@ -5481,7 +5517,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel47.SetColumnSpan(this.pictureBox16, 2);
-            this.pictureBox16.Image = global::WindowsFormsApp1.Properties.Resources.BEAM_DETAILS;
+            this.pictureBox16.Image = global::KnowEst.Properties.Resources.BEAM_DETAILS;
             this.pictureBox16.Location = new System.Drawing.Point(37, 2);
             this.pictureBox16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox16.Name = "pictureBox16";
@@ -5717,6 +5753,18 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel57.Size = new System.Drawing.Size(297, 48);
             this.tableLayoutPanel57.TabIndex = 37;
             // 
+            // beam_DeleteBtn
+            // 
+            this.beam_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.beam_DeleteBtn.Location = new System.Drawing.Point(134, 2);
+            this.beam_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.beam_DeleteBtn.Name = "beam_DeleteBtn";
+            this.beam_DeleteBtn.Size = new System.Drawing.Size(86, 43);
+            this.beam_DeleteBtn.TabIndex = 31;
+            this.beam_DeleteBtn.Text = "Delete";
+            this.beam_DeleteBtn.UseVisualStyleBackColor = true;
+            this.beam_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
+            // 
             // beam_SaveBtn
             // 
             this.beam_SaveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -5732,7 +5780,7 @@ namespace WindowsFormsApp1
             // pictureBox18
             // 
             this.pictureBox18.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox18.Image = global::WindowsFormsApp1.Properties.Resources.BEAM;
+            this.pictureBox18.Image = global::KnowEst.Properties.Resources.BEAM;
             this.pictureBox18.Location = new System.Drawing.Point(477, 131);
             this.pictureBox18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox18.Name = "pictureBox18";
@@ -5937,6 +5985,18 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel25.Size = new System.Drawing.Size(371, 42);
             this.tableLayoutPanel25.TabIndex = 28;
+            // 
+            // slab_DeleteBtn
+            // 
+            this.slab_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.slab_DeleteBtn.Location = new System.Drawing.Point(190, 2);
+            this.slab_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.slab_DeleteBtn.Name = "slab_DeleteBtn";
+            this.slab_DeleteBtn.Size = new System.Drawing.Size(86, 36);
+            this.slab_DeleteBtn.TabIndex = 31;
+            this.slab_DeleteBtn.Text = "Delete";
+            this.slab_DeleteBtn.UseVisualStyleBackColor = true;
+            this.slab_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
             // 
             // button2
             // 
@@ -6305,7 +6365,7 @@ namespace WindowsFormsApp1
             // pictureBox22
             // 
             this.pictureBox22.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox22.Image = global::WindowsFormsApp1.Properties.Resources.SLAB;
+            this.pictureBox22.Image = global::KnowEst.Properties.Resources.SLAB;
             this.pictureBox22.Location = new System.Drawing.Point(406, 21);
             this.pictureBox22.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox22.Name = "pictureBox22";
@@ -6619,7 +6679,7 @@ namespace WindowsFormsApp1
             // pictureBox15
             // 
             this.pictureBox15.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox15.Image = global::WindowsFormsApp1.Properties.Resources.SLAB;
+            this.pictureBox15.Image = global::KnowEst.Properties.Resources.SLAB;
             this.pictureBox15.Location = new System.Drawing.Point(406, 144);
             this.pictureBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox15.Name = "pictureBox15";
@@ -6913,7 +6973,7 @@ namespace WindowsFormsApp1
             // 
             this.slab_SS_SD_pb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel114.SetColumnSpan(this.slab_SS_SD_pb, 2);
-            this.slab_SS_SD_pb.Image = global::WindowsFormsApp1.Properties.Resources.SLAB_DETAIL;
+            this.slab_SS_SD_pb.Image = global::KnowEst.Properties.Resources.SLAB_DETAIL;
             this.slab_SS_SD_pb.Location = new System.Drawing.Point(3, 131);
             this.slab_SS_SD_pb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.slab_SS_SD_pb.Name = "slab_SS_SD_pb";
@@ -7312,7 +7372,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 141F));
             this.tableLayoutPanel140.Controls.Add(this.label404, 14, 2);
             this.tableLayoutPanel140.Controls.Add(this.label403, 13, 2);
             this.tableLayoutPanel140.Controls.Add(this.label402, 12, 2);
@@ -7742,6 +7802,18 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel39.Size = new System.Drawing.Size(371, 42);
             this.tableLayoutPanel39.TabIndex = 28;
             // 
+            // stairs_DeleteBtn
+            // 
+            this.stairs_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.stairs_DeleteBtn.Location = new System.Drawing.Point(190, 2);
+            this.stairs_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stairs_DeleteBtn.Name = "stairs_DeleteBtn";
+            this.stairs_DeleteBtn.Size = new System.Drawing.Size(86, 36);
+            this.stairs_DeleteBtn.TabIndex = 31;
+            this.stairs_DeleteBtn.Text = "Delete";
+            this.stairs_DeleteBtn.UseVisualStyleBackColor = true;
+            this.stairs_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
+            // 
             // stairsSaveBtn
             // 
             this.stairsSaveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -7812,7 +7884,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox6.Image = global::WindowsFormsApp1.Properties.Resources.ST_STAIRS;
+            this.pictureBox6.Image = global::KnowEst.Properties.Resources.ST_STAIRS;
             this.pictureBox6.Location = new System.Drawing.Point(376, 61);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox6.MaximumSize = new System.Drawing.Size(360, 240);
@@ -8409,7 +8481,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox7.Image = global::WindowsFormsApp1.Properties.Resources.U_STAIRS;
+            this.pictureBox7.Image = global::KnowEst.Properties.Resources.U_STAIRS;
             this.pictureBox7.Location = new System.Drawing.Point(376, 124);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox7.MaximumSize = new System.Drawing.Size(360, 240);
@@ -9184,7 +9256,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox8.Image = global::WindowsFormsApp1.Properties.Resources.L_STAIRS;
+            this.pictureBox8.Image = global::KnowEst.Properties.Resources.L_STAIRS;
             this.pictureBox8.Location = new System.Drawing.Point(376, 97);
             this.pictureBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox8.MaximumSize = new System.Drawing.Size(360, 240);
@@ -9961,6 +10033,18 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel93.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel93.Size = new System.Drawing.Size(371, 42);
             this.tableLayoutPanel93.TabIndex = 28;
+            // 
+            // roof_DeleteBtn
+            // 
+            this.roof_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.roof_DeleteBtn.Location = new System.Drawing.Point(190, 2);
+            this.roof_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.roof_DeleteBtn.Name = "roof_DeleteBtn";
+            this.roof_DeleteBtn.Size = new System.Drawing.Size(86, 36);
+            this.roof_DeleteBtn.TabIndex = 32;
+            this.roof_DeleteBtn.Text = "Delete";
+            this.roof_DeleteBtn.UseVisualStyleBackColor = true;
+            this.roof_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
             // 
             // button1
             // 
@@ -10747,7 +10831,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox11.Image = global::WindowsFormsApp1.Properties.Resources.Rafters_and_Purlins;
+            this.pictureBox11.Image = global::KnowEst.Properties.Resources.Rafters_and_Purlins;
             this.pictureBox11.Location = new System.Drawing.Point(452, 168);
             this.pictureBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox11.MaximumSize = new System.Drawing.Size(240, 240);
@@ -10836,7 +10920,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox13.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox13.Image = global::WindowsFormsApp1.Properties.Resources.G_I_Roof_and_Its_Accessories;
+            this.pictureBox13.Image = global::KnowEst.Properties.Resources.G_I_Roof_and_Its_Accessories;
             this.pictureBox13.Location = new System.Drawing.Point(436, 304);
             this.pictureBox13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox13.MaximumSize = new System.Drawing.Size(240, 240);
@@ -11593,7 +11677,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureBox14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox14.Image = global::WindowsFormsApp1.Properties.Resources.Roof_Accesories__Tinsworks_;
+            this.pictureBox14.Image = global::KnowEst.Properties.Resources.Roof_Accesories__Tinsworks_;
             this.pictureBox14.Location = new System.Drawing.Point(435, 2);
             this.pictureBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox14.MaximumSize = new System.Drawing.Size(240, 240);
@@ -11945,90 +12029,6 @@ namespace WindowsFormsApp1
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 31;
             this.pictureBox1.TabStop = false;
-            // 
-            // foot_DeleteBtn
-            // 
-            this.foot_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.foot_DeleteBtn.Location = new System.Drawing.Point(190, 2);
-            this.foot_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.foot_DeleteBtn.Name = "foot_DeleteBtn";
-            this.foot_DeleteBtn.Size = new System.Drawing.Size(86, 36);
-            this.foot_DeleteBtn.TabIndex = 29;
-            this.foot_DeleteBtn.Text = "Delete";
-            this.foot_DeleteBtn.UseVisualStyleBackColor = true;
-            this.foot_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
-            // 
-            // footW_DeleteBtn
-            // 
-            this.footW_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.footW_DeleteBtn.Location = new System.Drawing.Point(190, 2);
-            this.footW_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.footW_DeleteBtn.Name = "footW_DeleteBtn";
-            this.footW_DeleteBtn.Size = new System.Drawing.Size(86, 36);
-            this.footW_DeleteBtn.TabIndex = 30;
-            this.footW_DeleteBtn.Text = "Delete";
-            this.footW_DeleteBtn.UseVisualStyleBackColor = true;
-            this.footW_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
-            // 
-            // col_DeleteBtn
-            // 
-            this.col_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.col_DeleteBtn.Location = new System.Drawing.Point(190, 2);
-            this.col_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.col_DeleteBtn.Name = "col_DeleteBtn";
-            this.col_DeleteBtn.Size = new System.Drawing.Size(86, 36);
-            this.col_DeleteBtn.TabIndex = 30;
-            this.col_DeleteBtn.Text = "Delete";
-            this.col_DeleteBtn.UseVisualStyleBackColor = true;
-            this.col_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
-            // 
-            // beam_DeleteBtn
-            // 
-            this.beam_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.beam_DeleteBtn.Location = new System.Drawing.Point(134, 2);
-            this.beam_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.beam_DeleteBtn.Name = "beam_DeleteBtn";
-            this.beam_DeleteBtn.Size = new System.Drawing.Size(86, 43);
-            this.beam_DeleteBtn.TabIndex = 31;
-            this.beam_DeleteBtn.Text = "Delete";
-            this.beam_DeleteBtn.UseVisualStyleBackColor = true;
-            this.beam_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
-            // 
-            // slab_DeleteBtn
-            // 
-            this.slab_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.slab_DeleteBtn.Location = new System.Drawing.Point(190, 2);
-            this.slab_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.slab_DeleteBtn.Name = "slab_DeleteBtn";
-            this.slab_DeleteBtn.Size = new System.Drawing.Size(86, 36);
-            this.slab_DeleteBtn.TabIndex = 31;
-            this.slab_DeleteBtn.Text = "Delete";
-            this.slab_DeleteBtn.UseVisualStyleBackColor = true;
-            this.slab_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
-            // 
-            // stairs_DeleteBtn
-            // 
-            this.stairs_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.stairs_DeleteBtn.Location = new System.Drawing.Point(190, 2);
-            this.stairs_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.stairs_DeleteBtn.Name = "stairs_DeleteBtn";
-            this.stairs_DeleteBtn.Size = new System.Drawing.Size(86, 36);
-            this.stairs_DeleteBtn.TabIndex = 31;
-            this.stairs_DeleteBtn.Text = "Delete";
-            this.stairs_DeleteBtn.UseVisualStyleBackColor = true;
-            this.stairs_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
-            // 
-            // roof_DeleteBtn
-            // 
-            this.roof_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.roof_DeleteBtn.Location = new System.Drawing.Point(190, 2);
-            this.roof_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.roof_DeleteBtn.Name = "roof_DeleteBtn";
-            this.roof_DeleteBtn.Size = new System.Drawing.Size(86, 36);
-            this.roof_DeleteBtn.TabIndex = 32;
-            this.roof_DeleteBtn.Text = "Delete";
-            this.roof_DeleteBtn.UseVisualStyleBackColor = true;
-            this.roof_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
             // 
             // AddStructForm
             // 

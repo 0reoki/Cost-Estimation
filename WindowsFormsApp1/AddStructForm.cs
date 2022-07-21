@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace KnowEst
 {
     //TODO: populate combobox ng beam row according kung anong existing + new schedules 
 
@@ -2882,7 +2882,7 @@ namespace WindowsFormsApp1
                 int i = 0;
                 if(slab_SS_SD_cbx.Text == "No. 1")
                 {
-                    var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.SLAB_DETAIL);
+                    var bmp = new Bitmap(KnowEst.Properties.Resources.SLAB_DETAIL);
                     Image picture = (Image)bmp;
                     slab_SS_SD_pb.Image = picture;
 
@@ -2897,7 +2897,7 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.SLAB_DETAIL_2);
+                    var bmp = new Bitmap(KnowEst.Properties.Resources.SLAB_DETAIL_2);
                     Image picture = (Image)bmp;
                     slab_SS_SD_pb.Image = picture;
 
@@ -3214,7 +3214,7 @@ namespace WindowsFormsApp1
         {
             if (col_G_LT_LTC_cbx.SelectedIndex == 0)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_1); 
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_1); 
                 Image picture = (Image)bmp;
                 col_G_LT_pb.Image = picture;
 
@@ -3223,7 +3223,7 @@ namespace WindowsFormsApp1
             }
             else if (col_G_LT_LTC_cbx.SelectedIndex == 1)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_2); 
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_2); 
                 Image picture = (Image)bmp;
                 col_G_LT_pb.Image = picture;
 
@@ -3232,18 +3232,18 @@ namespace WindowsFormsApp1
             }
             else if (col_G_LT_LTC_cbx.SelectedIndex == 2)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_3); 
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_3); 
                 Image picture = (Image)bmp;
                 col_G_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
-                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.INDIGO);
+                var bmp4 = new Bitmap(KnowEst.Properties.Resources.INDIGO);
                 Image picture4 = (Image)bmp4;
-                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.ORANGE);
+                var bmp5 = new Bitmap(KnowEst.Properties.Resources.ORANGE);
                 Image picture5 = (Image)bmp5;
 
                 g_ltUC.Clear();
@@ -3267,18 +3267,18 @@ namespace WindowsFormsApp1
             }
             else if (col_G_LT_LTC_cbx.SelectedIndex == 3)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_4); 
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_4); 
                 Image picture = (Image)bmp;
                 col_G_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
-                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.INDIGO);
+                var bmp4 = new Bitmap(KnowEst.Properties.Resources.INDIGO);
                 Image picture4 = (Image)bmp4;
-                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.ORANGE);
+                var bmp5 = new Bitmap(KnowEst.Properties.Resources.ORANGE);
                 Image picture5 = (Image)bmp5;
 
                 g_ltUC.Clear();
@@ -3302,14 +3302,14 @@ namespace WindowsFormsApp1
             }
             else if (col_G_LT_LTC_cbx.SelectedIndex == 4)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5); 
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_5); 
                 Image picture = (Image)bmp;
                 col_G_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
 
                 g_ltUC.Clear();
@@ -3325,14 +3325,14 @@ namespace WindowsFormsApp1
             }
             else
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6); 
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_6); 
                 Image picture = (Image)bmp;
                 col_G_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
 
                 g_ltUC.Clear();
@@ -3444,7 +3444,7 @@ namespace WindowsFormsApp1
         {
             if(slab_SS_SD_cbx.SelectedIndex == 0)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.SLAB_DETAIL);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.SLAB_DETAIL);
                 Image picture = (Image)bmp;
                 slab_SS_SD_pb.Image = picture;
 
@@ -3455,7 +3455,7 @@ namespace WindowsFormsApp1
             }
             else
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.SLAB_DETAIL_2);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.SLAB_DETAIL_2);
                 Image picture = (Image)bmp;
                 slab_SS_SD_pb.Image = picture;
 
@@ -3638,7 +3638,7 @@ namespace WindowsFormsApp1
         {
             if (col_U_LT_LTC_cbx.SelectedIndex == 0)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_1);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_1);
                 Image picture = (Image)bmp;
                 col_U_LT_pb.Image = picture;
 
@@ -3647,7 +3647,7 @@ namespace WindowsFormsApp1
             }
             else if (col_U_LT_LTC_cbx.SelectedIndex == 1)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_2);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_2);
                 Image picture = (Image)bmp;
                 col_U_LT_pb.Image = picture;
 
@@ -3656,18 +3656,18 @@ namespace WindowsFormsApp1
             }
             else if (col_U_LT_LTC_cbx.SelectedIndex == 2)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_3);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_3);
                 Image picture = (Image)bmp;
                 col_U_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
-                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.INDIGO);
+                var bmp4 = new Bitmap(KnowEst.Properties.Resources.INDIGO);
                 Image picture4 = (Image)bmp4;
-                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.ORANGE);
+                var bmp5 = new Bitmap(KnowEst.Properties.Resources.ORANGE);
                 Image picture5 = (Image)bmp5;
 
                 u_ltUC.Clear();
@@ -3691,18 +3691,18 @@ namespace WindowsFormsApp1
             }
             else if (col_U_LT_LTC_cbx.SelectedIndex == 3)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_4);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_4);
                 Image picture = (Image)bmp;
                 col_U_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
-                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.INDIGO);
+                var bmp4 = new Bitmap(KnowEst.Properties.Resources.INDIGO);
                 Image picture4 = (Image)bmp4;
-                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.ORANGE);
+                var bmp5 = new Bitmap(KnowEst.Properties.Resources.ORANGE);
                 Image picture5 = (Image)bmp5;
 
                 u_ltUC.Clear();
@@ -3726,14 +3726,14 @@ namespace WindowsFormsApp1
             }
             else if (col_U_LT_LTC_cbx.SelectedIndex == 4)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_5);
                 Image picture = (Image)bmp;
                 col_U_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
 
                 u_ltUC.Clear();
@@ -3749,14 +3749,14 @@ namespace WindowsFormsApp1
             }
             else
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_6);
                 Image picture = (Image)bmp;
                 col_U_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
 
                 u_ltUC.Clear();

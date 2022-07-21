@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace KnowEst
 {
     public partial class CostEstimationForm : Form
     {
@@ -218,6 +218,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             InitializeAsync();
+            Icon = Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
             //Initialize Forms that are single throughout the whole program
             viewInitalized = false;
@@ -386,7 +387,7 @@ namespace WindowsFormsApp1
                     if ((myStream = openDialog.OpenFile()) != null)
                     {
                         fileName = openDialog.FileName;
-                        this.Text = "Building Cost Estimation Application - " + Path.GetFileName(fileName);
+                        this.Text = "Know Estimation - " + Path.GetFileName(fileName);
                         saveFileExists = true;
                         using (myStream)
                         {
@@ -428,13 +429,13 @@ namespace WindowsFormsApp1
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
             saveDialog.FileName = "New Estimate.est";
-            saveDialog.Filter = "Know Estimation files (*.est)|*.est";
+            saveDialog.Filter = "KnowEst files (*.est)|*.est";
             DialogResult result = saveDialog.ShowDialog();
 
             if (result == DialogResult.OK)
             {
                 fileName = saveDialog.FileName;
-                this.Text = "Building Cost Estimation Application - " + Path.GetFileName(fileName);
+                this.Text = "Know Estimation - " + Path.GetFileName(fileName);
                 saveFileExists = true;
                 SaveToFile(fileName);
             }
@@ -5273,97 +5274,97 @@ namespace WindowsFormsApp1
             if (help_treeView.SelectedNode.ToString().Equals("TreeNode: EARTHWORKS"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\EARTHWORKS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.EARTHWORKS);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.EARTHWORKS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             } 
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: CONCRETE WORKS"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CONCRETE WORKS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.CONCRETE_WORKS);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.CONCRETE_WORKS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: FORMWORKS"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\FORMWORKS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.FORMWORKS);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.FORMWORKS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: PAINT WORKS"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\PAINT WORKS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.Paint_Works);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.Paint_Works);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: TILE WORKS"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TILE WORKS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.TILE_WORKS);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.TILE_WORKS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: FOOTING REBARS"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\FOOTING REBARS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.FOOTING_REBARS);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.FOOTING_REBARS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: WALLFOOTING REBARS"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\WALLFOOTING REBARS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.WALLFOOTING_REBARS);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.WALLFOOTING_REBARS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: COLUMN MAIN BARS"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\COLUMN MAIN BARS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.COLUMN_MAIN_BARS);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.COLUMN_MAIN_BARS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: COLUMN LATERAL TIES"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\COLUMN LATERAL TIES.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.COLUMN_LATERAL_TIES);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.COLUMN_LATERAL_TIES);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: STAIRS REBARS"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\STAIRS REBARS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.STAIRS_REBARS);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.STAIRS_REBARS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: BEAM MAIN TOP REBARS"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BEAM MAIN TOP REBARS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.BEAM_MAIN_TOP_REBARS);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.BEAM_MAIN_TOP_REBARS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: BEAM REBAR SPACERS"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BEAM REBAR SPACERS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.BEAM_REBAR_SPACERS);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.BEAM_REBAR_SPACERS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: BEAM STIRRUPS"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BEAM STIRRUPS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.BEAM_STIRRUPS);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.BEAM_STIRRUPS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: SLAB REBARS")) //TODO: to follow pdf file
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\SLAB REBARS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.EARTHWORKS);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.EARTHWORKS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: MASONRY"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\MASONRY.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.MASONRY);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.MASONRY);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: ROOFINGS"))
             {
                 String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\ROOFINGS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, global::WindowsFormsApp1.Properties.Resources.Roofings);//the resource automatically creates            
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.Roofings);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
         }
