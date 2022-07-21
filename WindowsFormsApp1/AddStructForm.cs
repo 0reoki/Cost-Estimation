@@ -30,20 +30,24 @@ namespace WindowsFormsApp1
         //Passed Variables
         public string structMemName;
         public string oldStructMemName;
+        public string nodeKey;
         private CostEstimationForm costEstimationForm;
+        private Floor floor;
         private List<TreeNode> nodes;
         private int floorCount;
         private int memberCount, footingCount, wallFootingCount, columnCount, beamCount, slabCount, stairsCount, roofCount;
         public bool isNew, isFooting;
 
-        public AddStructForm(CostEstimationForm costEstimationForm, int floorCount, int footingCount, int wallFootingCount, int columnCount, int beamCount, int slabCount, int stairsCount, int roofCount, List<TreeNode> nodes, bool isNew, int index, string parentNode, bool isFooting)
+        public AddStructForm(CostEstimationForm costEstimationForm, int floorCount, int footingCount, int wallFootingCount, int columnCount, int beamCount, int slabCount, int stairsCount, int roofCount, List<TreeNode> nodes, bool isNew, int index, string parentNode, bool isFooting, Floor floor, string nodeKey)
         {
             InitializeComponent();
 
             //Init variables
             this.costEstimationForm = costEstimationForm;
+            this.floor = floor;
             this.floorCount = floorCount;
             this.nodes = nodes;
+            this.nodeKey = nodeKey;
             this.isNew = isNew;
             this.isFooting = isFooting;
             this.memberCount = index;
@@ -172,6 +176,16 @@ namespace WindowsFormsApp1
                         insertSlabSchedule(schedule);
                     }
                 }
+
+                //Disable Delete
+                foot_DeleteBtn.Enabled = false;
+                footW_DeleteBtn.Enabled = false;
+                col_DeleteBtn.Enabled = false;
+                beam_DeleteBtn.Enabled = false;
+                slab_DeleteBtn.Enabled = false;
+                stairs_DeleteBtn.Enabled = false;
+                roof_DeleteBtn.Enabled = false;
+
                 populateSlabMark();
             }
 
@@ -2044,6 +2058,261 @@ namespace WindowsFormsApp1
                         this.DialogResult = DialogResult.OK;
 
                     }
+                }
+            }
+        }
+
+        private void foot_DeleteBtn_Click(object sender, EventArgs e)
+        {
+            structMemName = addstruct_Name_bx.Text;
+            if (addstruct_cbx.Text.Equals("Footing (Column)"))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to delete this structural member?", "Delete Structural Member", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Remove Structural Member
+                    costEstimationForm.structuralMembers.footingsColumn[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.footingColumnNames.RemoveAt(memberCount);
+
+                    //Find Index Number of Footing Column at memberCount
+                    int i = 0;
+                    int wfC = 0;
+                    foreach (List<double> solution in costEstimationForm.structuralMembers.earthworkSolutions)
+                    {
+                        if (solution[0] == 2)
+                            wfC++;
+
+                        if (memberCount == i - wfC && memberCount <= i)
+                            break;
+                        i++;
+                    }
+
+                    //Remove Solution
+                    costEstimationForm.structuralMembers.earthworkSolutions.RemoveAt(i);
+                    costEstimationForm.structuralMembers.concreteWorkSolutionsF.RemoveAt(i);
+
+                    //Refresh Solutions
+                    compute.refreshSolutions(costEstimationForm);
+
+                    //Remove Structural Member from Floor Tree and reduce count by 1
+                    TreeNode[] found2 = floor.floorTV.Nodes.Find("footingParent", true);
+                    int j = found2[0].Nodes.IndexOfKey(nodeKey);
+                    found2[0].Nodes.RemoveAt(j);
+                    floor.footingCount--;
+
+                    //Close Add Struct Form
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //Do Nothing
+                }
+            }
+            else if (addstruct_cbx.Text.Equals("Footing (Wall)"))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to delete this structural member?", "Delete Structural Member", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Remove Structural Member
+                    costEstimationForm.structuralMembers.footingsWall[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.footingWallNames.RemoveAt(memberCount);
+
+                    //Find Index Number of Wall Footing at memberCount
+                    int i = 0;
+                    int fC = 0;
+                    foreach (List<double> solution in costEstimationForm.structuralMembers.earthworkSolutions)
+                    {
+                        if (solution[0] == 1)
+                            fC++;
+
+                        if (memberCount == i - fC && memberCount <= i)
+                            break;
+                        i++;
+                    }
+
+                    //Remove Solution
+                    costEstimationForm.structuralMembers.earthworkSolutions.RemoveAt(i);
+                    costEstimationForm.structuralMembers.concreteWorkSolutionsF.RemoveAt(i);
+
+                    //Refresh Solutions
+                    compute.refreshSolutions(costEstimationForm);
+
+                    //Remove Structural Member from Floor Tree and reduce count by 1
+                    TreeNode[] found2 = floor.floorTV.Nodes.Find("footingParent", true);
+                    int j = found2[0].Nodes.IndexOfKey(nodeKey);
+                    found2[0].Nodes.RemoveAt(j);
+                    floor.wallFootingCount--;
+
+                    //Close Add Struct Form
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //Do Nothing
+                }                
+            }
+            else if (addstruct_cbx.Text.Equals("Column"))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to delete this structural member?", "Delete Structural Member", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Remove Structural Member
+                    costEstimationForm.structuralMembers.column[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.columnNames[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.columnLateralTies[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.columnSpacing[floorCount].RemoveAt(memberCount);
+
+                    //Remove Solution
+                    costEstimationForm.structuralMembers.concreteWorkSolutionsC[floorCount].RemoveAt(memberCount);
+
+                    //Refresh Solutions
+                    compute.refreshSolutions(costEstimationForm);
+
+                    //Remove Structural Member from Floor Tree and reduce count by 1
+                    TreeNode[] found2 = floor.floorTV.Nodes.Find("columnParent", true);
+                    int j = found2[0].Nodes.IndexOfKey(nodeKey);
+                    found2[0].Nodes.RemoveAt(j);
+                    floor.columnCount--;
+
+                    //Close Add Struct Form
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //Do Nothing
+                }
+            }
+            else if (addstruct_cbx.Text.Equals("Beam"))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to delete this structural member?", "Delete Structural Member", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Remove Structural Member
+                    costEstimationForm.structuralMembers.beam[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.beamNames[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.beamRow[floorCount].RemoveAt(memberCount);
+
+                    //Remove Solution
+                    costEstimationForm.structuralMembers.concreteWorkSolutionsBR[floorCount].RemoveAt(memberCount);
+
+                    //Refresh Solutions
+                    compute.refreshSolutions(costEstimationForm);
+
+                    //Remove Structural Member from Floor Tree and reduce count by 1
+                    TreeNode[] found2 = floor.floorTV.Nodes.Find("beamParent", true);
+                    int j = found2[0].Nodes.IndexOfKey(nodeKey);
+                    found2[0].Nodes.RemoveAt(j);
+                    floor.beamCount--;
+
+                    //If no beams left, remove schedules
+                    if(floor.beamCount == 0)
+                    {
+                        costEstimationForm.structuralMembers.beamSchedule[floorCount].Clear();
+                    }
+
+                    //Close Add Struct Form
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //Do Nothing
+                }
+            }
+            else if (addstruct_cbx.Text.Equals("Slab"))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to delete this structural member?", "Delete Structural Member", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Remove Structural Member
+                    costEstimationForm.structuralMembers.slab[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.slabNames[floorCount].RemoveAt(memberCount);
+
+                    //Remove Solution
+                    costEstimationForm.structuralMembers.concreteWorkSolutionsSL[floorCount].RemoveAt(memberCount);
+
+                    //Refresh Solutions
+                    compute.refreshSolutions(costEstimationForm);
+
+                    //Remove Structural Member from Floor Tree and reduce count by 1
+                    TreeNode[] found2 = floor.floorTV.Nodes.Find("slabParent", true);
+                    int j = found2[0].Nodes.IndexOfKey(nodeKey);
+                    found2[0].Nodes.RemoveAt(j);
+                    floor.slabCount--;
+
+                    //If no slabs left, remove schedules
+                    if (floorCount != 0)
+                    {
+                        if (floor.slabCount == 0)
+                        {
+                            costEstimationForm.structuralMembers.slabSchedule[floorCount - 1].Clear();
+                        }
+                    }
+
+                    //Close Add Struct Form
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //Do Nothing
+                }
+            }
+            else if (addstruct_cbx.Text.Equals("Stairs"))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to delete this structural member?", "Delete Structural Member", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Remove Structural Member
+                    costEstimationForm.structuralMembers.stairs[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.stairsNames[floorCount].RemoveAt(memberCount);
+
+                    //Remove Solution
+                    costEstimationForm.structuralMembers.concreteWorkSolutionsST[floorCount].RemoveAt(memberCount);
+
+                    //Refresh Solutions
+                    compute.refreshSolutions(costEstimationForm);
+
+                    //Remove Structural Member from Floor Tree and reduce count by 1
+                    TreeNode[] found2 = floor.floorTV.Nodes.Find("stairsParent", true);
+                    int j = found2[0].Nodes.IndexOfKey(nodeKey);
+                    found2[0].Nodes.RemoveAt(j);
+                    floor.stairsCount--;
+
+                    //Close Add Struct Form
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //Do Nothing
+                }
+            }
+            else if (addstruct_cbx.Text.Equals("Roofing (Gable)"))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to delete this structural member?", "Delete Structural Member", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Remove Structural Member
+                    costEstimationForm.structuralMembers.roof[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.roofNames[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.roofHRS[floorCount].RemoveAt(memberCount);
+
+                    //Remove Solution
+                    costEstimationForm.structuralMembers.roofSolutions[floorCount].RemoveAt(memberCount);
+
+                    //Refresh Solutions
+                    compute.refreshSolutions(costEstimationForm);
+
+                    //Remove Structural Member from Floor Tree and reduce count by 1
+                    TreeNode[] found2 = floor.floorTV.Nodes.Find("roofParent", true);
+                    int j = found2[0].Nodes.IndexOfKey(nodeKey);
+                    found2[0].Nodes.RemoveAt(j);
+                    floor.roofCount--;
+
+                    //Close Add Struct Form
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //Do Nothing
                 }
             }
         }

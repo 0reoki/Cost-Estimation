@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
     public class Compute 
     {        
         //General Functions -- START
-        private void refreshSolutions(CostEstimationForm cEF)
+        public void refreshSolutions(CostEstimationForm cEF)
         {
             //Earthworks -- START
             cEF.excavation_Total = 0;

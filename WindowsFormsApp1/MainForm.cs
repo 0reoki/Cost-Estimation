@@ -5067,8 +5067,11 @@ namespace WindowsFormsApp1
         {
             //TODODO
             SaveFileDialog saveDialog = new SaveFileDialog();
-            saveDialog.FileName = summ_P_bx.Text + ".csv";
-            saveDialog.Filter = "CSV files (*.csv)|*.csv|Excel Files|*.xls;*.xlsx";
+            if (fileName == null)
+                saveDialog.FileName = "New Estimate.xls"; 
+            else
+                saveDialog.FileName = Path.GetFileNameWithoutExtension(fileName) + ".xls";
+            saveDialog.Filter = "Excel Files|*.xls;*.xlsx";
             DialogResult result = saveDialog.ShowDialog();
 
             if (result == DialogResult.OK)
@@ -5087,36 +5090,46 @@ namespace WindowsFormsApp1
                 rng.NumberFormat = "@";
 
                 // Format Columns 
-                xlWorkSheet.Cells[1, 1] = "ITEM";
+                xlWorkSheet.Cells[1, 1] = "PROJECT:";
+                xlWorkSheet.Cells[2, 1] = "LOCATION:";
+                xlWorkSheet.Cells[3, 1] = "OWNER:";
+                xlWorkSheet.Cells[4, 1] = "SUBJECT:";
+                xlWorkSheet.Cells[1, 2] = summ_P_bx.Text;
+                xlWorkSheet.Cells[2, 2] = summ_L_bx.Text;
+                xlWorkSheet.Cells[3, 2] = summ_O_bx.Text;
+                xlWorkSheet.Cells[4, 2] = summ_S_bx.Text;
 
-                Microsoft.Office.Interop.Excel.Range range = xlWorkSheet.Range["B1", "C1"];
+
+                xlWorkSheet.Cells[6, 1] = "ITEM";
+
+                Microsoft.Office.Interop.Excel.Range range = xlWorkSheet.Range["B6", "C6"];
                 range.Value2 = "DESCRIPTION";
                 range.Select();
                 range.Merge();
 
-                xlWorkSheet.Cells[1, 4] = "QTY";
-                xlWorkSheet.Cells[1, 5] = "UNIT";
+                xlWorkSheet.Cells[6, 4] = "QTY";
+                xlWorkSheet.Cells[6, 5] = "UNIT";
 
-                Microsoft.Office.Interop.Excel.Range range2 = xlWorkSheet.Range["F1", "G1"];
+                Microsoft.Office.Interop.Excel.Range range2 = xlWorkSheet.Range["F6", "G6"];
                 range2.Value2 = "MATERIALS";
                 range2.Select();
                 range2.Merge();
 
-                xlWorkSheet.Cells[2, 6] = "UNIT COST";
-                xlWorkSheet.Cells[2, 7] = "TOTAL";
+                xlWorkSheet.Cells[7, 6] = "UNIT COST";
+                xlWorkSheet.Cells[7, 7] = "TOTAL";
 
-                Microsoft.Office.Interop.Excel.Range range3 = xlWorkSheet.Range["H1", "I1"];
+                Microsoft.Office.Interop.Excel.Range range3 = xlWorkSheet.Range["H6", "I6"];
                 range3.Value2 = "MATERIALS";
                 range3.Select();
                 range3.Merge();
 
-                xlWorkSheet.Cells[2, 8] = "UNIT COST";
-                xlWorkSheet.Cells[2, 9] = "TOTAL";
+                xlWorkSheet.Cells[7, 8] = "UNIT COST";
+                xlWorkSheet.Cells[7, 9] = "TOTAL";
 
-                xlWorkSheet.Cells[2, 10].Value = "TOTAL COST";
+                xlWorkSheet.Cells[7, 10].Value = "TOTAL COST";
 
                 // Paste clipboard results to worksheet range
-                Microsoft.Office.Interop.Excel.Range CR = (Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Cells[3, 1];
+                Microsoft.Office.Interop.Excel.Range CR = (Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Cells[8, 1];
                 CR.Select();
                 xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
 
@@ -5124,6 +5137,8 @@ namespace WindowsFormsApp1
                 xlWorkSheet.Columns.AutoFit();
 
                 xlWorkSheet.Columns[1].NumberFormat = "0.0";
+
+                //xlWorkSheet.Columns[1].Font.Bold = true;
 
                 xlWorkSheet.Columns[4].HorizontalAlignment =
                  Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignRight;
@@ -5143,15 +5158,23 @@ namespace WindowsFormsApp1
                 xlWorkSheet.Columns[10].HorizontalAlignment =
                  Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
 
-                xlWorkSheet.get_Range("A1", "J2").Cells.HorizontalAlignment =
+                xlWorkSheet.get_Range("A6", "J7").Cells.HorizontalAlignment =
                  Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
 
 
                 // Save the excel file under the captured location from the SaveFileDialog
-                xlWorkBook.SaveAs(saveDialog.FileName, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-                xlexcel.DisplayAlerts = true;
-                xlWorkBook.Close(true, misValue, misValue);
-                xlexcel.Quit();
+                try
+                {
+                    xlWorkBook.SaveAs(saveDialog.FileName, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                    xlexcel.DisplayAlerts = true;
+                    xlWorkBook.Close(true, misValue, misValue);
+                    xlexcel.Quit();
+                } 
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.ToString());
+                    return;
+                }
 
                 releaseObject(xlWorkSheet);
                 releaseObject(xlWorkBook);
@@ -5163,7 +5186,18 @@ namespace WindowsFormsApp1
 
                 // Open the newly saved excel file
                 if (File.Exists(saveDialog.FileName))
-                    System.Diagnostics.Process.Start(saveDialog.FileName);
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to open the exported excel file?", "Open Exported Excel File", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(saveDialog.FileName);
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        //Do Nothing
+                    }
+                }
+
             }
         }
 

@@ -819,6 +819,13 @@ namespace WindowsFormsApp1
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.foot_DeleteBtn = new System.Windows.Forms.Button();
+            this.footW_DeleteBtn = new System.Windows.Forms.Button();
+            this.col_DeleteBtn = new System.Windows.Forms.Button();
+            this.beam_DeleteBtn = new System.Windows.Forms.Button();
+            this.slab_DeleteBtn = new System.Windows.Forms.Button();
+            this.stairs_DeleteBtn = new System.Windows.Forms.Button();
+            this.roof_DeleteBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel9.SuspendLayout();
             this.addstructTabControl.SuspendLayout();
             this.footingTabPage.SuspendLayout();
@@ -1182,6 +1189,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.20216F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79784F));
+            this.tableLayoutPanel4.Controls.Add(this.foot_DeleteBtn, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.foot_SaveBtn, 1, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(410, 551);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -2332,6 +2340,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel30.ColumnCount = 2;
             this.tableLayoutPanel30.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.20216F));
             this.tableLayoutPanel30.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79784F));
+            this.tableLayoutPanel30.Controls.Add(this.footW_DeleteBtn, 0, 0);
             this.tableLayoutPanel30.Controls.Add(this.footW_SaveBtn, 1, 0);
             this.tableLayoutPanel30.Location = new System.Drawing.Point(410, 551);
             this.tableLayoutPanel30.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -3417,6 +3426,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel11.ColumnCount = 2;
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.20216F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79784F));
+            this.tableLayoutPanel11.Controls.Add(this.col_DeleteBtn, 0, 0);
             this.tableLayoutPanel11.Controls.Add(this.col_SaveBtn, 1, 0);
             this.tableLayoutPanel11.Location = new System.Drawing.Point(410, 552);
             this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -5280,7 +5290,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 157F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
             this.tableLayoutPanel112.Controls.Add(this.label280, 8, 0);
             this.tableLayoutPanel112.Controls.Add(this.label279, 7, 0);
             this.tableLayoutPanel112.Controls.Add(this.label278, 6, 0);
@@ -5697,6 +5707,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel57.ColumnCount = 2;
             this.tableLayoutPanel57.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.20216F));
             this.tableLayoutPanel57.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79784F));
+            this.tableLayoutPanel57.Controls.Add(this.beam_DeleteBtn, 0, 0);
             this.tableLayoutPanel57.Controls.Add(this.beam_SaveBtn, 1, 0);
             this.tableLayoutPanel57.Location = new System.Drawing.Point(458, 1047);
             this.tableLayoutPanel57.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -5917,6 +5928,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel25.ColumnCount = 2;
             this.tableLayoutPanel25.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.20216F));
             this.tableLayoutPanel25.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79784F));
+            this.tableLayoutPanel25.Controls.Add(this.slab_DeleteBtn, 0, 0);
             this.tableLayoutPanel25.Controls.Add(this.button2, 1, 0);
             this.tableLayoutPanel25.Location = new System.Drawing.Point(410, 552);
             this.tableLayoutPanel25.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -7300,7 +7312,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140F));
             this.tableLayoutPanel140.Controls.Add(this.label404, 14, 2);
             this.tableLayoutPanel140.Controls.Add(this.label403, 13, 2);
             this.tableLayoutPanel140.Controls.Add(this.label402, 12, 2);
@@ -7720,6 +7732,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel39.ColumnCount = 2;
             this.tableLayoutPanel39.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.20216F));
             this.tableLayoutPanel39.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79784F));
+            this.tableLayoutPanel39.Controls.Add(this.stairs_DeleteBtn, 0, 0);
             this.tableLayoutPanel39.Controls.Add(this.stairsSaveBtn, 1, 0);
             this.tableLayoutPanel39.Location = new System.Drawing.Point(410, 551);
             this.tableLayoutPanel39.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -9939,6 +9952,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel93.ColumnCount = 2;
             this.tableLayoutPanel93.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.20216F));
             this.tableLayoutPanel93.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79784F));
+            this.tableLayoutPanel93.Controls.Add(this.roof_DeleteBtn, 0, 0);
             this.tableLayoutPanel93.Controls.Add(this.button1, 1, 0);
             this.tableLayoutPanel93.Location = new System.Drawing.Point(410, 551);
             this.tableLayoutPanel93.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -11932,6 +11946,90 @@ namespace WindowsFormsApp1
             this.pictureBox1.TabIndex = 31;
             this.pictureBox1.TabStop = false;
             // 
+            // foot_DeleteBtn
+            // 
+            this.foot_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.foot_DeleteBtn.Location = new System.Drawing.Point(190, 2);
+            this.foot_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.foot_DeleteBtn.Name = "foot_DeleteBtn";
+            this.foot_DeleteBtn.Size = new System.Drawing.Size(86, 36);
+            this.foot_DeleteBtn.TabIndex = 29;
+            this.foot_DeleteBtn.Text = "Delete";
+            this.foot_DeleteBtn.UseVisualStyleBackColor = true;
+            this.foot_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
+            // 
+            // footW_DeleteBtn
+            // 
+            this.footW_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.footW_DeleteBtn.Location = new System.Drawing.Point(190, 2);
+            this.footW_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.footW_DeleteBtn.Name = "footW_DeleteBtn";
+            this.footW_DeleteBtn.Size = new System.Drawing.Size(86, 36);
+            this.footW_DeleteBtn.TabIndex = 30;
+            this.footW_DeleteBtn.Text = "Delete";
+            this.footW_DeleteBtn.UseVisualStyleBackColor = true;
+            this.footW_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
+            // 
+            // col_DeleteBtn
+            // 
+            this.col_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.col_DeleteBtn.Location = new System.Drawing.Point(190, 2);
+            this.col_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.col_DeleteBtn.Name = "col_DeleteBtn";
+            this.col_DeleteBtn.Size = new System.Drawing.Size(86, 36);
+            this.col_DeleteBtn.TabIndex = 30;
+            this.col_DeleteBtn.Text = "Delete";
+            this.col_DeleteBtn.UseVisualStyleBackColor = true;
+            this.col_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
+            // 
+            // beam_DeleteBtn
+            // 
+            this.beam_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.beam_DeleteBtn.Location = new System.Drawing.Point(134, 2);
+            this.beam_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.beam_DeleteBtn.Name = "beam_DeleteBtn";
+            this.beam_DeleteBtn.Size = new System.Drawing.Size(86, 43);
+            this.beam_DeleteBtn.TabIndex = 31;
+            this.beam_DeleteBtn.Text = "Delete";
+            this.beam_DeleteBtn.UseVisualStyleBackColor = true;
+            this.beam_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
+            // 
+            // slab_DeleteBtn
+            // 
+            this.slab_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.slab_DeleteBtn.Location = new System.Drawing.Point(190, 2);
+            this.slab_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.slab_DeleteBtn.Name = "slab_DeleteBtn";
+            this.slab_DeleteBtn.Size = new System.Drawing.Size(86, 36);
+            this.slab_DeleteBtn.TabIndex = 31;
+            this.slab_DeleteBtn.Text = "Delete";
+            this.slab_DeleteBtn.UseVisualStyleBackColor = true;
+            this.slab_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
+            // 
+            // stairs_DeleteBtn
+            // 
+            this.stairs_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.stairs_DeleteBtn.Location = new System.Drawing.Point(190, 2);
+            this.stairs_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stairs_DeleteBtn.Name = "stairs_DeleteBtn";
+            this.stairs_DeleteBtn.Size = new System.Drawing.Size(86, 36);
+            this.stairs_DeleteBtn.TabIndex = 31;
+            this.stairs_DeleteBtn.Text = "Delete";
+            this.stairs_DeleteBtn.UseVisualStyleBackColor = true;
+            this.stairs_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
+            // 
+            // roof_DeleteBtn
+            // 
+            this.roof_DeleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.roof_DeleteBtn.Location = new System.Drawing.Point(190, 2);
+            this.roof_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.roof_DeleteBtn.Name = "roof_DeleteBtn";
+            this.roof_DeleteBtn.Size = new System.Drawing.Size(86, 36);
+            this.roof_DeleteBtn.TabIndex = 32;
+            this.roof_DeleteBtn.Text = "Delete";
+            this.roof_DeleteBtn.UseVisualStyleBackColor = true;
+            this.roof_DeleteBtn.Click += new System.EventHandler(this.foot_DeleteBtn_Click);
+            // 
             // AddStructForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -12966,5 +13064,12 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label140;
         private System.Windows.Forms.Label label145;
         private System.Windows.Forms.ComboBox col_G_D_SC_cbx;
+        private System.Windows.Forms.Button foot_DeleteBtn;
+        private System.Windows.Forms.Button footW_DeleteBtn;
+        private System.Windows.Forms.Button col_DeleteBtn;
+        private System.Windows.Forms.Button beam_DeleteBtn;
+        private System.Windows.Forms.Button slab_DeleteBtn;
+        private System.Windows.Forms.Button stairs_DeleteBtn;
+        private System.Windows.Forms.Button roof_DeleteBtn;
     }
 }
