@@ -6629,181 +6629,181 @@ namespace KnowEst
             {
                 stringParam += solution + "|";
             }
-            stringParam += "per_wal|\n";
+            stringParam += "\nper_wal|\n";
             foreach (double solution in structuralMembers.per_wal)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "footings_comps|\n";
+            stringParam += "\nfootings_comps|\n";
             foreach (double solution in structuralMembers.footings_comps)
             {
                 stringParam += solution + "|";
             }
             //Columns
-            stringParam += "col_area|\n";
+            stringParam += "\ncol_area|\n";
             foreach (double solution in structuralMembers.col_area)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "col_woods|\n";
+            stringParam += "\ncol_woods|\n";
             foreach (double solution in structuralMembers.col_woods)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "col_post|\n";
+            stringParam += "\ncol_post|\n";
             foreach (double solution in structuralMembers.col_post)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "col_scafV|\n";
+            stringParam += "\ncol_scafV|\n";
             foreach (double solution in structuralMembers.col_scafV)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "col_scafH|\n";
+            stringParam += "\ncol_scafH|\n";
             foreach (double solution in structuralMembers.col_scafH)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "col_scafD|\n";
+            stringParam += "\ncol_scafD|\n";
             foreach (double solution in structuralMembers.col_scafD)
             {
                 stringParam += solution + "|";
             }
             //Beams
-            stringParam += "beams_comps|\n";
+            stringParam += "\nbeams_comps|\n";
             foreach (double solution in structuralMembers.beams_comps)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "beams_tiearea|\n";
+            stringParam += "\nbeams_tiearea|\n";
             foreach (double solution in structuralMembers.beams_tiearea)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "beams_gradarea|\n";
+            stringParam += "\nbeams_gradarea|\n";
             foreach (double solution in structuralMembers.beams_gradarea)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "beams_grade|\n";
+            stringParam += "\nbeams_grade|\n";
             foreach (double solution in structuralMembers.beams_grade)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "beams_gradeFrame|\n";
+            stringParam += "\nbeams_gradeFrame|\n";
             foreach (double solution in structuralMembers.beams_gradeFrame)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "beams_vertical|\n";
+            stringParam += "\nbeams_vertical|\n";
             foreach (double solution in structuralMembers.beams_vertical)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "beams_horizontal|\n";
+            stringParam += "\nbeams_horizontal|\n";
             foreach (double solution in structuralMembers.beams_horizontal)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "beams_RB|\n";
+            stringParam += "\nbeams_RB|\n";
             foreach (double solution in structuralMembers.beams_RB)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "beams_RBarea|\n";
+            stringParam += "\nbeams_RBarea|\n";
             foreach (double solution in structuralMembers.beams_RBarea)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "beams_RBframe|\n";
+            stringParam += "\nbeams_RBframe|\n";
             foreach (double solution in structuralMembers.beams_RBframe)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "beams_RBV|\n";
+            stringParam += "\nbeams_RBV|\n";
             foreach (double solution in structuralMembers.beams_RBV)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "beams_RBH|\n";
+            stringParam += "\nbeams_RBH|\n";
             foreach (double solution in structuralMembers.beams_RBH)
             {
                 stringParam += solution + "|";
             }
             //Slabs
-            stringParam += "slab_area|\n";
+            stringParam += "\nslab_area|\n";
             foreach (double solution in structuralMembers.slab_area)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "slab_form|\n";
+            stringParam += "\nslab_form|\n";
             foreach (double solution in structuralMembers.slab_form)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "slab_scaf|\n";
+            stringParam += "\nslab_scaf|\n";
             foreach (double solution in structuralMembers.slab_scaf)
             {
                 stringParam += solution + "|";
             }
             //Stairs
-            stringParam += "UstairsFORM|\n";
+            stringParam += "\nUstairsFORM|\n";
             foreach (double solution in structuralMembers.UstairsFORM)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "UstairsFRAME|\n";
+            stringParam += "\nUstairsFRAME|\n";
             foreach (double solution in structuralMembers.UstairsFRAME)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "UstairsSCAF|\n";
+            stringParam += "\nUstairsSCAF|\n";
             foreach (double solution in structuralMembers.UstairsSCAF)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "LstairsFORM|\n";
+            stringParam += "\nLstairsFORM|\n";
             foreach (double solution in structuralMembers.LstairsFORM)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "LstairsFRAME|\n";
+            stringParam += "\nLstairsFRAME|\n";
             foreach (double solution in structuralMembers.LstairsFRAME)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "LstairsSCAF|\n";
+            stringParam += "\nLstairsSCAF|\n";
             foreach (double solution in structuralMembers.LstairsSCAF)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "SstairsFORM|\n";
+            stringParam += "\nSstairsFORM|\n";
             foreach (double solution in structuralMembers.SstairsFORM)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "SstairsFRAME|\n";
+            stringParam += "\nSstairsFRAME|\n";
             foreach (double solution in structuralMembers.SstairsFRAME)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "SstairsSCAF|\n";
+            stringParam += "\nSstairsSCAF|\n";
             foreach (double solution in structuralMembers.SstairsSCAF)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "UAREA|\n";
+            stringParam += "\nUAREA|\n";
             foreach (double solution in structuralMembers.UAREA)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "LAREA|\n";
+            stringParam += "\nLAREA|\n";
             foreach (double solution in structuralMembers.LAREA)
             {
                 stringParam += solution + "|";
             }
-            stringParam += "SAREA|\n";
+            stringParam += "\nSAREA|\n";
             foreach (double solution in structuralMembers.SAREA)
             {
                 stringParam += solution + "|";
