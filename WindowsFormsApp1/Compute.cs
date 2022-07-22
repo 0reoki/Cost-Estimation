@@ -1494,38 +1494,6 @@ namespace KnowEst
             {
                 dimIndexer = 1;
             }
-            //Computation -- Formwork
-            double column_area = 0;
-            double col_bdftH = 0;
-            double col_bdftV = 0;
-            double col_bdftD = 0;
-            List<double> holder = new List<double>();
-            List<double> wood_holder = new List<double>();
-            List<double> scaf_holder = new List<double>();
-            List<double> scaf_holder2 = new List<double>();
-            List<double> scaf_holder3 = new List<double>();
-            List<double> holder_post = new List<double>();
-            List<string> scaf_dim = dimensionFilterer(cEF.parameters.form_SM_B_VS);//0 2 4
-            List<string> scaf_dimHORI = dimensionFilterer(cEF.parameters.form_SM_B_HB);//0 2 4
-            List<string> scaf_dimDIA = dimensionFilterer(cEF.parameters.form_SM_B_DB);//0 2 4 CHANGE THIS LATER WHEN UI CHANGE
-            List<string> post_holder = dimensionFilterer(cEF.parameters.form_SM_B_FL);//0 2 4                
-            double[] vertical_col = { 4.70, 7.00, 9.35 };
-            double[] horizontal_col = { 21.00, 31.67, 42.25 };
-            double[] dia_col = { 11.70, 17.50, 23.35 };
-            double[] post_perPLY = { 20.33, 30.50 };
-            int scaf_indexer;
-            int scaf_HorINDEXER;
-            int scaf_diaINDEXER;
-            int dimIndexer;
-
-            if (post_holder[2] == "2")//POST INDEXER
-            {
-                dimIndexer = 0;
-            }
-            else
-            {
-                dimIndexer = 1;
-            }
 
             if (scaf_dim[2] == "2")//SCAF VERT INDEXER
             {
@@ -1568,12 +1536,12 @@ namespace KnowEst
 
             for (int i = 0; i < cEF.structuralMembers.column.Count; i++)//area per floor
             {
-                for (int j = 0; j < cEF.structuralMembers.column[i].Count; j++)
+                for (int l = 0; l < cEF.structuralMembers.column[i].Count; l++)
                 {
-                    column_area += (2 * ((double.Parse(cEF.structuralMembers.column[i][j][1]) / 1000) + (double.Parse(cEF.structuralMembers.column[i][j][2]) / 1000)) + 0.2) * (double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]));
-                    col_bdftV += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * vertical_col[scaf_indexer];
-                    col_bdftH += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * horizontal_col[scaf_HorINDEXER];
-                    col_bdftD += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * dia_col[scaf_diaINDEXER];
+                    column_area += (2 * ((double.Parse(cEF.structuralMembers.column[i][l][1]) / 1000) + (double.Parse(cEF.structuralMembers.column[i][l][2]) / 1000)) + 0.2) * (double.Parse(cEF.structuralMembers.column[i][l][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][l][5]));
+                    col_bdftV += ((double.Parse(cEF.structuralMembers.column[i][l][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][l][5]))) * vertical_col[scaf_indexer];
+                    col_bdftH += ((double.Parse(cEF.structuralMembers.column[i][l][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][l][5]))) * horizontal_col[scaf_HorINDEXER];
+                    col_bdftD += ((double.Parse(cEF.structuralMembers.column[i][l][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][l][5]))) * dia_col[scaf_diaINDEXER];
                 }
                 scaf_holder.Add(rounder(((col_bdftV * 12) / (double.Parse(scaf_dim[0]) * double.Parse(scaf_dim[2]) * double.Parse(scaf_dim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
                 scaf_holder2.Add(rounder(((col_bdftH * 12) / (double.Parse(scaf_dimHORI[0]) * double.Parse(scaf_dimHORI[2]) * double.Parse(scaf_dimHORI[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
@@ -1983,12 +1951,12 @@ namespace KnowEst
 
             for (int i = 0; i < cEF.structuralMembers.column.Count; i++)//area per floor
             {
-                for (int j = 0; j < cEF.structuralMembers.column[i].Count; j++)
+                for (int l = 0; l < cEF.structuralMembers.column[i].Count; l++)
                 {
-                    column_area += (2 * ((double.Parse(cEF.structuralMembers.column[i][j][1]) / 1000) + (double.Parse(cEF.structuralMembers.column[i][j][2]) / 1000)) + 0.2) * (double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]));
-                    col_bdftV += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * vertical_col[scaf_indexer];
-                    col_bdftH += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * horizontal_col[scaf_HorINDEXER];
-                    col_bdftD += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * dia_col[scaf_diaINDEXER];
+                    column_area += (2 * ((double.Parse(cEF.structuralMembers.column[i][l][1]) / 1000) + (double.Parse(cEF.structuralMembers.column[i][l][2]) / 1000)) + 0.2) * (double.Parse(cEF.structuralMembers.column[i][l][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][l][5]));
+                    col_bdftV += ((double.Parse(cEF.structuralMembers.column[i][l][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][l][5]))) * vertical_col[scaf_indexer];
+                    col_bdftH += ((double.Parse(cEF.structuralMembers.column[i][l][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][l][5]))) * horizontal_col[scaf_HorINDEXER];
+                    col_bdftD += ((double.Parse(cEF.structuralMembers.column[i][l][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][l][5]))) * dia_col[scaf_diaINDEXER];
                 }
                 scaf_holder.Add(rounder(((col_bdftV * 12) / (double.Parse(scaf_dim[0]) * double.Parse(scaf_dim[2]) * double.Parse(scaf_dim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
                 scaf_holder2.Add(rounder(((col_bdftH * 12) / (double.Parse(scaf_dimHORI[0]) * double.Parse(scaf_dimHORI[2]) * double.Parse(scaf_dimHORI[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
