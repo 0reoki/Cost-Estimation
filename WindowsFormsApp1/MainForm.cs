@@ -39,6 +39,7 @@ namespace WindowsFormsApp1
 
         //Price Checklists (Show if checklist == true)
         public bool[] earthworksChecklist = { true, true, true, true, true, true }; //1.0
+        public bool[] formworksChecklist = { true, true, true, true , true , true }; //3.0 **
         public bool[] masonryChecklist = { true, true }; //4.0
         public bool[] roofingsChecklist = { true, true, true}; //6.0
         public bool[] tilesChecklist = { true, true }; //7.0
@@ -92,6 +93,46 @@ namespace WindowsFormsApp1
                       gravelBedding_CostM, gravelBedding_CostL, gravelBedding_CostTotal, soilPoisoning_CostM,
                       earthworks_CostTotal;
 
+
+        //3.0 Formworks
+        public double footing_QTY, trap_QTY, //footings - QTY
+                      footing_Munit, trap_Munit, //footings - materials unit
+                      footing_Mcost, trap_Mcost, //footings - materials cost
+                      footing_Lunit, trap_Lunit, //footings - labor unit
+                      footing_Lcost, trap_Lcost, //footings - labor cost
+                      footingMLCOST, trapMLCOST, //footings - MatLab cost
+                      col_Munit, //column - materials unit 
+                      col_Mcost, //column - materials cost
+                      col_Lunit, //column - labor unit
+                      col_Lcost, //column - labor cost
+                      colMLCOST, //column - MatLab cost
+                      col_QTY, //column - QTY
+                      beam_Munit, //beam - materials unit
+                      beam_Mcost, //beam - materials cost
+                      beam_Lunit, //beam - labor unit
+                      beam_Lcost, //beam - labor cost
+                      beamMLCOST,//beam - MatLab cost
+                      beam_QTY, //beam - QTY
+                      sus_Munit, //slab - materials unit
+                      sus_Mcost, //slab - materials cost
+                      sus_Lunit, //slab - labor unit
+                      sus_Lcost, //slab - labor cost
+                      sus_MLCOST,//slab - MatLab cost
+                      sus_QTY, //slab - QTY
+                      stairs_Munit, //stairs - materials unit
+                      stairs_Mcost, //stairs - materials cost
+                      stairs_Lunit, //stairs - labor unit
+                      stairs_Lcost, //stairs - labor cost
+                      stairs_MLCOST,//stairs - MatLab cost
+                      stairs_QTY, //stairs - QTY
+                      nails_Munit, //nails - materials unit
+                      nails_Mcost, //nails - materials cost                      
+                      nailsMLCOST, //nails - MatLab cost
+                      nails_QTY, //nails - QTY
+                      FW_totalMats, //formworks - MATERIALS TOTAL
+                      FW_totalLab, //formworks - LABOR TOTAL
+                      FW_MATOTAL;//formworks - OVERALL TOTAL        
+
         //4.0 Masonry **
         public double exterior_UnitM, //exterior - Materials Unit
                       exterior_CostM, //exterior - Materials Cost
@@ -120,6 +161,7 @@ namespace WindowsFormsApp1
             roof_MTOTAL,// Total Material Cost
             roof_LTOTAL,// Total Labor Cost
             roof_TOTALCOST,// Overall Total Cost    
+            roof_MUNIT,
             roof_QTY;
             
 
@@ -220,6 +262,51 @@ namespace WindowsFormsApp1
             gravelBedding_CostTotal = 0;
             soilPoisoning_CostM = 0;
             earthworks_CostTotal = 0;
+
+            //Formworks **
+            footing_Munit = 0;
+            footing_Mcost = 0;
+            footing_Lunit = 0;
+            footing_Lcost = 0;
+            footingMLCOST = 0;
+            footing_QTY = 0;
+            trap_Munit = 0;
+            trap_Mcost = 0;
+            trap_Lunit = 0;
+            trap_Lcost = 0;
+            trapMLCOST = 0;
+            trap_QTY = 0;
+            col_Munit = 0;
+            col_Mcost = 0;
+            col_Lunit = 0;
+            col_Lcost = 0;
+            colMLCOST = 0;
+            col_QTY = 0;
+            beam_Munit = 0;
+            beam_Mcost = 0;
+            beam_Lunit = 0;
+            beam_Lcost = 0;
+            beamMLCOST = 0;
+            beam_QTY = 0;
+            sus_Munit = 0;
+            sus_Mcost = 0;
+            sus_Lunit = 0;
+            sus_Lcost = 0;
+            sus_MLCOST = 0;
+            sus_QTY = 0;
+            stairs_Munit = 0;
+            stairs_Mcost = 0;
+            stairs_Lunit = 0;
+            stairs_Lcost = 0;
+            stairs_MLCOST = 0;
+            stairs_QTY = 0;
+            nails_Munit = 0;
+            nails_Mcost = 0;            
+            nailsMLCOST = 0;
+            nails_QTY = 0;
+            FW_totalMats = 0;
+            FW_totalLab = 0;
+            FW_MATOTAL = 0;
 
             //Masonry **
             exterior_UnitM = 0; 
@@ -641,6 +728,342 @@ namespace WindowsFormsApp1
                 soilPoisoning_CostM = 0;
             earthworks_CostTotal = excavation_CostL + backfillingAndCompaction_CostL + gradingAndCompaction_CostL +
                                    gravelBedding_CostTotal + soilPoisoning_CostM;
+
+            //Framework **
+
+            if (formworksChecklist[0])//footing
+            {
+                try
+                {
+                    List<string> lumberdim = dimensionFilterer(parameters.form_SM_F_FL);
+                    string strLumber = lumberPriceHelper(lumberdim);
+                    string plyType = plywoodHelper(parameters.form_F_T);
+                    footing_Mcost = (structuralMembers.footings_comps[0] * double.Parse(parameters.price_FormworksAndLumber[plyType].ToString()))
+                        + (structuralMembers.footings_comps[1] * double.Parse(parameters.price_FormworksAndLumber[strLumber].ToString()));
+                    double footarea = 0;
+                    foreach(var a in structuralMembers.per_col)
+                    {
+                        footarea += a;
+                    }
+                    footing_Munit = Math.Round((footing_Mcost / footarea),2);
+                    footing_Lcost = footarea * double.Parse(parameters.price_LaborRate_Formworks["FOOTING [m2]"].ToString());
+                    footing_Lunit = double.Parse(parameters.price_LaborRate_Formworks["FOOTING [m2]"].ToString());
+                    footingMLCOST = footing_Lcost + footing_Mcost;
+                    footing_QTY = footarea;
+                    trap_Mcost = (structuralMembers.footings_comps[2] * double.Parse(parameters.price_FormworksAndLumber[plyType].ToString()));
+                    double wallarea = 0;
+                    foreach(var a in structuralMembers.per_wal)
+                    {
+                        wallarea += a;
+                    }
+                    trap_Munit = Math.Round((trap_Mcost / wallarea), 2);
+                    trap_Lcost = Math.Round((wallarea * double.Parse(parameters.price_LaborRate_Formworks["WALL FOOTING [m2]"].ToString())),2);
+                    trap_Lunit = double.Parse(parameters.price_LaborRate_Formworks["WALL FOOTING [m2]"].ToString());
+                    trapMLCOST = trap_Lcost + trap_Mcost;
+                    trap_QTY = wallarea;
+                }
+                catch{
+                    footing_Munit = 0;
+                    footing_Mcost = 0;
+                    footing_Lunit = 0;
+                    footing_Lcost = 0;
+                    footingMLCOST = 0;
+                    footing_QTY = 0;
+                    trap_Munit = 0;
+                    trap_Mcost = 0;
+                    trap_Lunit = 0;
+                    trap_Lcost = 0;
+                    trapMLCOST = 0;
+                    trap_QTY = 0;
+                }                
+            }
+            else
+            {
+                footing_QTY = 0;
+                footing_Munit = 0;
+                footing_Mcost = 0;
+                footing_Lunit = 0;
+                footing_Lcost = 0;
+                footingMLCOST = 0;                
+                trap_Munit = 0;
+                trap_Mcost = 0;
+                trap_Lunit = 0;
+                trap_Lcost = 0;
+                trapMLCOST = 0;
+                trap_QTY = 0;
+            }
+            if (formworksChecklist[1])//column
+            {
+
+                try
+                {
+                    double totalArea = 0;
+                    double formworkWood = 0;
+                    double frameworkWood = 0;
+                    double Vwood = 0;
+                    double Hwood = 0;
+                    double Dwood = 0;
+                    string plyType = plywoodHelper(parameters.form_F_T);
+                    List<string> lumberdim = dimensionFilterer(parameters.form_SM_B_FL);
+                    List<string> lumberVert = dimensionFilterer(parameters.form_SM_B_VS);
+                    List<string> lumberHori = dimensionFilterer(parameters.form_SM_B_HB);
+                    List<string> lumberDiag = dimensionFilterer(parameters.form_SM_B_DB);                    
+                    string strLumber = lumberPriceHelper(lumberdim);   
+                    string strVert = lumberPriceHelper(lumberVert);
+                    string strHori = lumberPriceHelper(lumberHori);
+                    string strDiag = lumberPriceHelper(lumberDiag);
+                    for (int i = 0; i < Floors.Count; i++)
+                    {
+                        totalArea += structuralMembers.col_area[i] * double.Parse(Floors[i].getValues()[0]);
+                        formworkWood += structuralMembers.col_woods[i] * double.Parse(Floors[i].getValues()[0]);
+                        frameworkWood += structuralMembers.col_post[i] * double.Parse(Floors[i].getValues()[0]);
+                        Vwood += structuralMembers.col_scafV[i] * double.Parse(Floors[i].getValues()[0]);
+                        Hwood += structuralMembers.col_scafH[i] * double.Parse(Floors[i].getValues()[0]);
+                        Dwood += structuralMembers.col_scafD[i] * double.Parse(Floors[i].getValues()[0]);
+                    }
+                    col_QTY = Math.Round(totalArea,2);
+                    col_Mcost = (formworkWood * double.Parse(parameters.price_FormworksAndLumber[plyType].ToString()))
+                        + (frameworkWood * double.Parse(parameters.price_FormworksAndLumber[strLumber].ToString()))
+                        + (Vwood * double.Parse(parameters.price_FormworksAndLumber[strVert].ToString()))
+                        + (Hwood * double.Parse(parameters.price_FormworksAndLumber[strHori].ToString()))
+                        + (Dwood * double.Parse(parameters.price_FormworksAndLumber[strDiag].ToString()));
+                    col_Munit = Math.Round((col_Mcost / totalArea),2);
+                    col_Lcost = totalArea * double.Parse(parameters.price_LaborRate_Formworks["COLUMN [m2]"].ToString());
+                    col_Lunit = double.Parse(parameters.price_LaborRate_Formworks["COLUMN [m2]"].ToString());
+                    colMLCOST = col_Mcost + col_Lcost;
+                }
+                catch
+                {
+                    col_Munit = 0;
+                    col_Mcost = 0;
+                    col_Lunit = 0;
+                    col_Lcost = 0;
+                    colMLCOST = 0;
+                    col_QTY = 0;
+                }
+            }
+            else
+            {
+                col_Munit = 0;
+                col_Mcost = 0;
+                col_Lunit = 0;
+                col_Lcost = 0;
+                colMLCOST = 0;
+                col_QTY = 0;
+            }
+            if (formworksChecklist[2])//beams
+            {
+                try
+                {
+                    string plyType = plywoodHelper(parameters.form_F_T);
+                    List<string> lumberdim = dimensionFilterer(parameters.form_SM_C_FL);
+                    List<string> lumberVert = dimensionFilterer(parameters.form_SM_C_VS);
+                    List<string> lumberHori = dimensionFilterer(parameters.form_SM_C_HB);
+                    string strLumber = lumberPriceHelper(lumberdim);
+                    string strVert = lumberPriceHelper(lumberVert);
+                    string strHori = lumberPriceHelper(lumberHori);
+                    double area = 0;
+                    double form = 0;
+                    double frame = 0;
+                    double vertical = 0;
+                    double horizontal = 0;
+                    for (int i = 0; i < Floors.Count; i++) { 
+                        area += (structuralMembers.beams_tiearea[i] * double.Parse(Floors[i].getValues()[0]))
+                            +(structuralMembers.beams_gradarea[i] * double.Parse(Floors[i].getValues()[0]))
+                            +(structuralMembers.beams_RBarea[i] * double.Parse(Floors[i].getValues()[0]));
+                        form += (structuralMembers.beams_grade[i] * double.Parse(Floors[i].getValues()[0]))
+                            + (structuralMembers.beams_RB[i] * double.Parse(Floors[i].getValues()[0]));
+                        frame += (structuralMembers.beams_gradeFrame[i] * double.Parse(Floors[i].getValues()[0]))
+                            + (structuralMembers.beams_RBframe[i] * double.Parse(Floors[i].getValues()[0]));
+                        vertical += (structuralMembers.beams_vertical[i] * double.Parse(Floors[i].getValues()[0]))
+                            + (structuralMembers.beams_RBV[i] * double.Parse(Floors[i].getValues()[0]));
+                        horizontal += (structuralMembers.beams_horizontal[i] * double.Parse(Floors[i].getValues()[0]))
+                            + (structuralMembers.beams_RBH[i] * double.Parse(Floors[i].getValues()[0]));
+                    }
+                    form += structuralMembers.beams_comps[0];
+                    frame += structuralMembers.beams_comps[1];
+/*                    print("//////////////////////////////////////////");
+                    print("area: " + area);
+                    print("form: " + form);
+                    print("frame: " + frame);
+                    print("vertical: " + vertical);
+                    print("horizontal: " + horizontal);
+                    print("//////////////////////////////////////////");*/
+                    beam_QTY = area;
+                    beam_Mcost = (form * double.Parse(parameters.price_FormworksAndLumber[plyType].ToString()))
+                        + (frame * double.Parse(parameters.price_FormworksAndLumber[strLumber].ToString()))
+                        + (vertical * double.Parse(parameters.price_FormworksAndLumber[strVert].ToString()))
+                        + (horizontal * double.Parse(parameters.price_FormworksAndLumber[strHori].ToString()));
+                    beam_Munit = beam_Mcost/beam_QTY; 
+                    beam_Lunit = double.Parse(parameters.price_LaborRate_Formworks["BEAM [m2]"].ToString());
+                    beam_Lcost = beam_QTY * double.Parse(parameters.price_LaborRate_Formworks["BEAM [m2]"].ToString());
+                    beamMLCOST = beam_Mcost + beam_Lcost;
+                }
+                catch
+                {
+                    beam_Munit = 0;
+                    beam_Mcost = 0;
+                    beam_Lunit = 0;
+                    beam_Lcost = 0;
+                    beamMLCOST = 0;
+                    beam_QTY = 0;
+                }
+            }
+            else
+            {
+                beam_Munit = 0;
+                beam_Mcost = 0;
+                beam_Lunit = 0;
+                beam_Lcost = 0;
+                beamMLCOST = 0;
+                beam_QTY = 0;
+            }
+            if (formworksChecklist[3])//slab
+            {
+                try
+                {
+                    List<string> scafDim = dimensionFilterer(parameters.form_SM_HS_VS);
+                    string strscafdim = lumberPriceHelper(scafDim);
+                    string plyType = plywoodHelper(parameters.form_F_T);
+                    double area = 0;
+                    double form = 0;
+                    double scaf = 0;                                        
+                    for (int i = 0; i < Floors.Count; i++)
+                    {
+                        area += structuralMembers.slab_area[i] * double.Parse(Floors[i].getValues()[0]);
+                        form += structuralMembers.slab_form[i] * double.Parse(Floors[i].getValues()[0]);
+                        scaf += structuralMembers.slab_scaf[i] * double.Parse(Floors[i].getValues()[0]);
+                        /*print("track");
+                        print((structuralMembers.slab_form[i] * double.Parse(Floors[i].getValues()[0])).ToString());*/
+                    }                    
+                    sus_QTY = area;
+                    sus_Mcost = (form * double.Parse(parameters.price_FormworksAndLumber[plyType].ToString())) + (scaf * double.Parse(parameters.price_FormworksAndLumber[strscafdim].ToString()));
+                    sus_Munit = sus_Mcost / sus_QTY;
+                    sus_Lunit = double.Parse(parameters.price_LaborRate_Formworks["SUSPENDED SLAB [m2]"].ToString());
+                    sus_Lcost = sus_QTY * double.Parse(parameters.price_LaborRate_Formworks["SUSPENDED SLAB [m2]"].ToString());
+                    sus_MLCOST = sus_Mcost + sus_Lcost;
+                    /*print(form + " - form");
+                    print(scaf + " - scaf");*/                    
+                }
+                catch
+                {
+                    sus_QTY = 0;
+                    sus_Munit = 0;
+                    sus_Mcost = 0;
+                    sus_Lunit = 0;
+                    sus_Lcost = 0;
+                    sus_MLCOST = 0;
+                }
+            }
+            else
+            {
+                sus_QTY = 0;
+                sus_Munit = 0;
+                sus_Mcost = 0;
+                sus_Lunit = 0;
+                sus_Lcost = 0;
+                sus_MLCOST = 0;
+            }
+            if (formworksChecklist[4])//stairs
+            {
+                try
+                {
+                    List<string> stairsLumber = dimensionFilterer(parameters.form_SM_ST_FL);
+                    List<string> stairsScaf = dimensionFilterer(parameters.form_SM_ST_VS);
+                    string strLumber = lumberPriceHelper(stairsLumber);
+                    string strScaf = lumberPriceHelper(stairsScaf);
+                    string plyType = plywoodHelper(parameters.form_F_T);
+                    double forms = 0;
+                    double frames = 0;
+                    double scafs = 0;
+                    double area = 0;
+                    for(int i = 0; i < Floors.Count; i++)
+                    {
+                        forms += (structuralMembers.UstairsFORM[i] + structuralMembers.LstairsFORM[i] + structuralMembers.SstairsFORM[i]) * double.Parse(Floors[i].getValues()[0]);
+                        frames += (structuralMembers.UstairsFRAME[i] + structuralMembers.LstairsFRAME[i] + structuralMembers.SstairsFRAME[i]) * double.Parse(Floors[i].getValues()[0]);
+                        scafs += (structuralMembers.UstairsSCAF[i] + structuralMembers.LstairsSCAF[i] + structuralMembers.SstairsSCAF[i]) * double.Parse(Floors[i].getValues()[0]);
+                        area += (structuralMembers.UAREA[i] + structuralMembers.LAREA[i] + structuralMembers.SAREA[i]) * double.Parse(Floors[i].getValues()[0]);
+                    }
+                    print(forms + " - ");
+                    print(frames + " - ");
+                    print(scafs + " - ");
+                    print(area + " - ");
+                    stairs_QTY = Math.Round(area,2);
+                    stairs_Mcost = Math.Round(((forms * double.Parse(parameters.price_FormworksAndLumber[plyType].ToString()))
+                        +(frames * double.Parse(parameters.price_FormworksAndLumber[strLumber].ToString()))
+                        +(scafs * double.Parse(parameters.price_FormworksAndLumber[strScaf].ToString()))),2);
+                    stairs_Munit = Math.Round((stairs_Mcost/stairs_QTY),2);                    
+                    stairs_Lunit = Math.Round((double.Parse(parameters.price_LaborRate_Formworks["STAIRS [m2]"].ToString())),2); 
+                    stairs_Lcost = double.Parse(parameters.price_LaborRate_Formworks["STAIRS [m2]"].ToString()) * stairs_QTY;
+                    stairs_MLCOST = Math.Round((stairs_Mcost + stairs_Lcost),2);
+                }                                
+                catch
+                {
+                    stairs_QTY = 0;
+                    stairs_Munit = 0;
+                    stairs_Mcost = 0;
+                    stairs_Lunit = 0;
+                    stairs_Lcost = 0;
+                    stairs_MLCOST = 0;
+                }
+            }
+            else
+            {
+                stairs_QTY = 0;
+                stairs_Munit = 0;
+                stairs_Mcost = 0;
+                stairs_Lunit = 0;
+                stairs_Lcost = 0;
+                stairs_MLCOST = 0;
+            }
+            if (formworksChecklist[5])//nails
+            {
+                try
+                {
+                    double totalarea = footing_QTY + trap_QTY + col_QTY + beam_QTY + sus_QTY + stairs_QTY;
+                    List<string> dimhandle = steelFilterer(parameters.form_F_N);
+                    string dimnails = "";
+                    foreach(char a in parameters.form_F_N)
+                    {
+                        if (Char.IsDigit(a) || a.Equals('.'))
+                        {
+                            dimnails += a;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }                    
+                    nails_Mcost = (totalarea * double.Parse(dimnails)) * double.Parse(parameters.price_CommonMaterials["Common Nail [KG]"].ToString());
+                    nails_Munit = double.Parse(parameters.price_CommonMaterials["Common Nail [KG]"].ToString());
+                    nails_QTY = (totalarea * double.Parse(dimnails));
+                    nailsMLCOST = nails_Mcost;
+                }
+                catch
+                {
+                    nails_Mcost = 0;
+                    nails_Munit = 0;
+                    nails_QTY = 0;
+                    nailsMLCOST = 0;
+                }
+                
+            }
+            else
+            {
+                nails_Mcost = 0;
+                nails_Munit = 0;
+                nails_QTY = 0;
+                nailsMLCOST = 0;
+            }
+            print("========== FORMWORKS ==============");
+            print("FOOTINGS -> " + "QTY:" + footing_QTY + " MU:" + footing_Munit + " MC:" + footing_Mcost + " LU" + footing_Lunit + " LC:" + footing_Lcost + " TOTAL: " + footingMLCOST);
+            print("TRAPEZOID -> " + "QTY:" + trap_QTY + " MU:" + trap_Munit + " MC:" + trap_Mcost + " LU" + trap_Lunit + " LC:" + trap_Lcost + " TOTAL: " + trapMLCOST);
+            print("COLUMN -> " + "QTY:" + col_QTY + " MU:" + col_Munit + " MC:" + col_Mcost + " LU" + col_Lunit + " LC:" + col_Lcost + " TOTAL: " + colMLCOST);
+            print("BEAM -> " + "QTY:" + beam_QTY + " MU:" + beam_Munit + " MC:" + beam_Mcost + " LU" + beam_Lunit + " LC:" + beam_Lcost + " TOTAL: " + beamMLCOST);
+            print("SLAB -> " + "QTY:" + sus_QTY + " MU:" + sus_Munit + " MC:" + sus_Mcost + " LU" + sus_Lunit + " LC:" + sus_Lcost + " TOTAL: " + sus_MLCOST);
+            print("STAIRS -> " + "QTY:" + stairs_QTY + " MU:" + stairs_Munit + " MC:" + stairs_Mcost + " LU" + stairs_Lunit + " LC:" + stairs_Lcost + " TOTAL: " + stairs_MLCOST);
+            print("FOOTINGS -> " + "QTY:" + nails_QTY + " MU:" + nails_Munit + " MC:" + nails_Mcost +" TOTAL: " + nailsMLCOST);
+
             //Masonry
             string strCHB;
             if (masonryChecklist[0])
@@ -913,6 +1336,7 @@ namespace WindowsFormsApp1
                 acce_MCost = corrugated + ginails + rivets + giwashers + leadwashers + umbnails + plain;
                 acce_LCost = roof_LTOTAL;
                 acce_costTotal = acce_MCost + acce_LCost;
+                roof_MUNIT = acce_MCost / roof_QTY;
             }
             else
             {
@@ -6821,6 +7245,59 @@ namespace WindowsFormsApp1
             }
             dims.Add(retStr);
             return dims;
+        }
+
+        public static List<string> dimensionFilterer(string str)
+        {
+            List<string> dims = new List<string>();
+            string retStr = "";
+            foreach (char c in str)
+            {
+                if (Char.IsDigit(c))
+                {
+                    retStr += c;
+                }
+                else
+                {
+                    if (!Char.IsWhiteSpace(c))
+                    {
+                        dims.Add(retStr);
+                        retStr = "";
+                    }
+                }
+            }
+            dims.Add(retStr);
+            return dims;
+        }
+
+        public string lumberPriceHelper(List<string> dim)
+        {
+            string strLumber;
+            if (dim[2] == "2")
+            {
+                strLumber = "Lumber [" + dim[0] + "”x " + dim[2] + "” x " + dim[4] + "']";
+            }
+            else
+            {
+                strLumber = "Lumber [" + dim[0] + "”x " + dim[2] + "”x " + dim[4] + "']";
+            }
+            return strLumber;
+        }
+
+        public string plywoodHelper(string str)
+        {
+            if(str == "Plywood")
+            {                
+                return "PLYWOOD 1/2” [1.22m x 2.44m]";
+            }
+            else if (str == "Ecoboard")
+            {                
+                return "ECOBOARD 1/2”[1.22m x 2.44m]";
+            }
+            else
+            {                
+                return "PHENOLIC BOARD- 1/2” [1.22m x 2.44m]";
+            }
         }
         //Extra Functions -- END
     }
