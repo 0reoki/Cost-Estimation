@@ -6620,8 +6620,196 @@ namespace KnowEst
             //stringParam += "\nConcrete|\n";
             //Totalities
             //Cost
+            
+            //3.0 - Formworks
+            stringParam += "\nFormworks|\n";
+            //Footings
+            stringParam += "per_col|\n";
+            foreach (double solution in structuralMembers.per_col)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "per_wal|\n";
+            foreach (double solution in structuralMembers.per_wal)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "footings_comps|\n";
+            foreach (double solution in structuralMembers.footings_comps)
+            {
+                stringParam += solution + "|";
+            }
+            //Columns
+            stringParam += "col_area|\n";
+            foreach (double solution in structuralMembers.col_area)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "col_woods|\n";
+            foreach (double solution in structuralMembers.col_woods)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "col_post|\n";
+            foreach (double solution in structuralMembers.col_post)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "col_scafV|\n";
+            foreach (double solution in structuralMembers.col_scafV)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "col_scafH|\n";
+            foreach (double solution in structuralMembers.col_scafH)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "col_scafD|\n";
+            foreach (double solution in structuralMembers.col_scafD)
+            {
+                stringParam += solution + "|";
+            }
+            //Beams
+            stringParam += "beams_comps|\n";
+            foreach (double solution in structuralMembers.beams_comps)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "beams_tiearea|\n";
+            foreach (double solution in structuralMembers.beams_tiearea)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "beams_gradarea|\n";
+            foreach (double solution in structuralMembers.beams_gradarea)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "beams_grade|\n";
+            foreach (double solution in structuralMembers.beams_grade)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "beams_gradeFrame|\n";
+            foreach (double solution in structuralMembers.beams_gradeFrame)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "beams_vertical|\n";
+            foreach (double solution in structuralMembers.beams_vertical)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "beams_horizontal|\n";
+            foreach (double solution in structuralMembers.beams_horizontal)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "beams_RB|\n";
+            foreach (double solution in structuralMembers.beams_RB)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "beams_RBarea|\n";
+            foreach (double solution in structuralMembers.beams_RBarea)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "beams_RBframe|\n";
+            foreach (double solution in structuralMembers.beams_RBframe)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "beams_RBV|\n";
+            foreach (double solution in structuralMembers.beams_RBV)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "beams_RBH|\n";
+            foreach (double solution in structuralMembers.beams_RBH)
+            {
+                stringParam += solution + "|";
+            }
+            //Slabs
+            stringParam += "slab_area|\n";
+            foreach (double solution in structuralMembers.slab_area)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "slab_form|\n";
+            foreach (double solution in structuralMembers.slab_form)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "slab_scaf|\n";
+            foreach (double solution in structuralMembers.slab_scaf)
+            {
+                stringParam += solution + "|";
+            }
+            //Stairs
+            stringParam += "UstairsFORM|\n";
+            foreach (double solution in structuralMembers.UstairsFORM)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "UstairsFRAME|\n";
+            foreach (double solution in structuralMembers.UstairsFRAME)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "UstairsSCAF|\n";
+            foreach (double solution in structuralMembers.UstairsSCAF)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "LstairsFORM|\n";
+            foreach (double solution in structuralMembers.LstairsFORM)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "LstairsFRAME|\n";
+            foreach (double solution in structuralMembers.LstairsFRAME)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "LstairsSCAF|\n";
+            foreach (double solution in structuralMembers.LstairsSCAF)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "SstairsFORM|\n";
+            foreach (double solution in structuralMembers.SstairsFORM)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "SstairsFRAME|\n";
+            foreach (double solution in structuralMembers.SstairsFRAME)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "SstairsSCAF|\n";
+            foreach (double solution in structuralMembers.SstairsSCAF)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "UAREA|\n";
+            foreach (double solution in structuralMembers.UAREA)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "LAREA|\n";
+            foreach (double solution in structuralMembers.LAREA)
+            {
+                stringParam += solution + "|";
+            }
+            stringParam += "SAREA|\n";
+            foreach (double solution in structuralMembers.SAREA)
+            {
+                stringParam += solution + "|";
+            }
 
-            //4.0 - Masonry (DITO SIMULA NG SAVE FILE FUNCTION)
+            //4.0 - Masonry 
             stringParam += "\nMasonry|\n";
             //Totalities
             stringParam += "\nSolutionP1|\n";
@@ -6888,6 +7076,48 @@ namespace KnowEst
             structuralMembers.concreteWorkSolutionsSL.Clear();
             structuralMembers.concreteWorkSolutionsSLSM.Clear();
             structuralMembers.concreteWorkSolutionsST.Clear();
+
+            //footings
+            structuralMembers.per_col.Clear();
+            structuralMembers.per_wal.Clear();
+            structuralMembers.footings_comps.Clear();// formworkFC - frameworkFC - formworkWF [FOOTINGS]
+            //columns
+            structuralMembers.col_area.Clear();
+            structuralMembers.col_woods.Clear();
+            structuralMembers.col_post.Clear();
+            structuralMembers.col_scafV.Clear();
+            structuralMembers.col_scafH.Clear();
+            structuralMembers.col_scafD.Clear();
+            //beams
+            structuralMembers.beams_comps.Clear();//tieForm - tieFrame  --
+            structuralMembers.beams_tiearea.Clear();//tie area
+            structuralMembers.beams_gradarea.Clear();//beam area
+            structuralMembers.beams_grade.Clear();//grade form
+            structuralMembers.beams_gradeFrame.Clear();//grade frame
+            structuralMembers.beams_vertical.Clear();//grade vertical
+            structuralMembers.beams_horizontal.Clear();//grade horizontal
+            structuralMembers.beams_RB.Clear();//roof form
+            structuralMembers.beams_RBarea.Clear();//roof area
+            structuralMembers.beams_RBframe.Clear();//roof frame
+            structuralMembers.beams_RBV.Clear();//roof vertical
+            structuralMembers.beams_RBH.Clear();//roof horizontal
+            //slab
+            structuralMembers.slab_area.Clear();
+            structuralMembers.slab_form.Clear();
+            structuralMembers.slab_scaf.Clear();
+            //stairs
+            structuralMembers.UstairsFORM.Clear();
+            structuralMembers.UstairsFRAME.Clear();
+            structuralMembers.UstairsSCAF.Clear();
+            structuralMembers.LstairsFORM.Clear();
+            structuralMembers.LstairsFRAME.Clear();
+            structuralMembers.LstairsSCAF.Clear();
+            structuralMembers.SstairsFORM.Clear();
+            structuralMembers.SstairsFRAME.Clear();
+            structuralMembers.SstairsSCAF.Clear();
+            structuralMembers.UAREA.Clear();
+            structuralMembers.LAREA.Clear();
+            structuralMembers.SAREA.Clear();
 
             masonrysSolutionP1.Clear();
             masonrysSolutionP2.Clear();
@@ -8930,6 +9160,194 @@ namespace KnowEst
             gravelBedding_CostTotal = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             soilPoisoning_CostM = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             earthworks_CostTotal = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+
+            //3.0 - Formworks
+            i++;
+            //Footings
+            i++;
+            while (!tokens[i].Equals("per_wal"))
+            {
+                structuralMembers.per_col.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("footings_comps"))
+            {
+                structuralMembers.per_wal.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("col_area"))
+            {
+                structuralMembers.footings_comps.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            //Columns
+            i++;
+            while (!tokens[i].Equals("col_woods"))
+            {
+                structuralMembers.col_area.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("col_post"))
+            {
+                structuralMembers.col_woods.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("col_scafV"))
+            {
+                structuralMembers.col_post.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("col_scafH"))
+            {
+                structuralMembers.col_scafV.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("col_scafD"))
+            {
+                structuralMembers.col_scafH.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("beams_comps"))
+            {
+                structuralMembers.col_scafD.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            //Beams
+            i++;
+            while (!tokens[i].Equals("beams_tiearea"))
+            {
+                structuralMembers.beams_comps.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("beams_gradarea"))
+            {
+                structuralMembers.beams_tiearea.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("beams_grade"))
+            {
+                structuralMembers.beams_gradarea.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("beams_gradeFrame"))
+            {
+                structuralMembers.beams_grade.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("beams_vertical"))
+            {
+                structuralMembers.beams_gradeFrame.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("beams_horizontal"))
+            {
+                structuralMembers.beams_vertical.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("beams_RB"))
+            {
+                structuralMembers.beams_horizontal.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("beams_RBarea"))
+            {
+                structuralMembers.beams_RB.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("beams_RBframe"))
+            {
+                structuralMembers.beams_RBarea.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("beams_RBV"))
+            {
+                structuralMembers.beams_RBframe.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("beams_RBH"))
+            {
+                structuralMembers.beams_RBV.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("slab_area"))
+            {
+                structuralMembers.beams_RBH.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            //Slabs
+            i++;
+            while (!tokens[i].Equals("slab_form"))
+            {
+                structuralMembers.slab_area.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("slab_scaf"))
+            {
+                structuralMembers.slab_form.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("UstairsFORM"))
+            {
+                structuralMembers.slab_scaf.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            //Stairs
+            i++;
+            while (!tokens[i].Equals("UstairsFRAME"))
+            {
+                structuralMembers.UstairsFORM.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("UstairsSCAF"))
+            {
+                structuralMembers.UstairsFRAME.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("LstairsFORM"))
+            {
+                structuralMembers.UstairsSCAF.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("LstairsFRAME"))
+            {
+                structuralMembers.LstairsFORM.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("LstairsSCAF"))
+            {
+                structuralMembers.LstairsFRAME.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("SstairsFORM"))
+            {
+                structuralMembers.LstairsSCAF.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("SstairsFRAME"))
+            {
+                structuralMembers.SstairsFORM.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("SstairsSCAF"))
+            {
+                structuralMembers.SstairsFRAME.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("UAREA"))
+            {
+                structuralMembers.SstairsSCAF.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("LAREA"))
+            {
+                structuralMembers.UAREA.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("SAREA"))
+            {
+                structuralMembers.LAREA.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
+            i++;
+            while (!tokens[i].Equals("Masonry"))
+            {
+                structuralMembers.SAREA.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+            }
 
             //4.0 - Masonry (DITO SIMULA NG OPEN FILE FUNCTION) 
             i++;
