@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace KnowEst
 {
     public partial class ParametersForm : Form
     {
@@ -147,6 +147,7 @@ namespace WindowsFormsApp1
             conc_CM_C_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_C_RM_cbx);
             conc_CM_B_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_B_RM_cbx);
             conc_CM_S_SOG_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_S_SOG_RM_cbx);
+            conc_CM_S_SS_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_S_SS_RM_cbx);
             conc_CM_ST_RM_cbx.DropDownWidth = DropDownWidth(conc_CM_ST_RM_cbx);
         }
 
@@ -429,6 +430,11 @@ namespace WindowsFormsApp1
         private void conc_CM_S_RM_cbx_MouseHover(object sender, EventArgs e)
         {
             toolTip1.Show(conc_CM_S_SOG_RM_cbx.SelectedItem.ToString(), conc_CM_S_SOG_RM_cbx);
+        }
+
+        private void conc_CM_S_SS_RM_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show(conc_CM_S_SS_RM_cbx.SelectedItem.ToString(), conc_CM_S_SS_RM_cbx);
         }
 
         private void conc_CM_ST_RM_cbx_MouseHover(object sender, EventArgs e)
@@ -1094,6 +1100,135 @@ namespace WindowsFormsApp1
         }
         //Masonry -- END
 
+        //Stairs -- START
+        private void stair_ResetBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to RESET every parameter in this panel?", "RESET Parameters", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                int i = 0;
+                int j = 0;
+                foreach (Floor floor in costEstimationForm.Floors)
+                {
+                    if (floor.getValues()[1].Equals(stairs_Floor_cbx.SelectedItem.ToString()))
+                    {
+                        foreach (string name in costEstimationForm.structuralMembers.stairsNames[i])
+                        {
+                            if (name.Equals(stairs_Stair_cbx.SelectedItem.ToString()))
+                            {
+                                string type = costEstimationForm.structuralMembers.stairs[i][j][0];
+                                StairParameterUserControl content = new StairParameterUserControl(type);
+                                costEstimationForm.parameters.stair[i][j] = content;
+                                stairs_Panel.Controls.Clear();
+                                stairs_Panel.Controls.Add(content);
+                                break;
+                            }
+                            j++;
+                        }
+                        break;
+                    }
+                    i++;
+                }
+                if (stairs_Stair_cbx.SelectedItem.ToString().Equals("None"))
+                {
+                    stairs_Panel.Controls.Clear();
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //Do nothing
+            }
+        }
+
+        public void setStairsValues()
+        {
+            int lastIndexFloor = stairs_Floor_cbx.SelectedIndex;
+            int lastIndexStair = stairs_Stair_cbx.SelectedIndex;
+            stairs_Floor_cbx.Items.Clear();
+            int j = 0;
+            foreach (Floor floor in costEstimationForm.Floors)
+            {
+                stairs_Floor_cbx.Items.Add(floor.getValues()[1]);
+                j++;
+            }
+            if(lastIndexFloor > stairs_Floor_cbx.Items.Count)
+            {
+                lastIndexFloor = 0;
+                lastIndexStair = 0;
+            }
+            stairs_Floor_cbx.SelectedIndex = lastIndexFloor;
+            stairs_Stair_cbx.SelectedIndex = lastIndexStair;
+        }
+
+        private void stairs_Floor_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int lastIndexStair = stairs_Stair_cbx.SelectedIndex;
+            stairs_Stair_cbx.Items.Clear();
+            int j = 0;
+            foreach (Floor floor in costEstimationForm.Floors)
+            {
+                if (floor.getValues()[1].Equals(stairs_Floor_cbx.SelectedItem.ToString()))
+                {
+                    break;
+                }
+                j++;
+            }
+            try
+            {
+                foreach (string name in costEstimationForm.structuralMembers.stairsNames[j])
+                {
+                    stairs_Stair_cbx.Items.Add(name);
+                }
+                if (stairs_Stair_cbx.Items.Count == 0)
+                {
+                    stairs_Stair_cbx.Items.Add("None");
+                }
+            } 
+            catch(Exception ex)
+            {
+                //
+            }
+            try
+            {
+                stairs_Stair_cbx.SelectedIndex = lastIndexStair;
+            }
+            catch(Exception ex)
+            {
+                lastIndexStair = 0;
+                stairs_Stair_cbx.SelectedIndex = lastIndexStair;
+            }
+        }
+
+        private void stairs_Stair_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int i = 0;
+            int j = 0;
+            foreach (Floor floor in costEstimationForm.Floors)
+            {
+                if (floor.getValues()[1].Equals(stairs_Floor_cbx.SelectedItem.ToString()))
+                {
+                    foreach (string name in costEstimationForm.structuralMembers.stairsNames[i])
+                    {
+                        if (name.Equals(stairs_Stair_cbx.SelectedItem.ToString()))
+                        {
+                            string type = costEstimationForm.structuralMembers.stairs[i][j][0];
+                            stairs_Panel.Controls.Clear();
+                            stairs_Panel.Controls.Add(costEstimationForm.parameters.stair[i][j]);
+                            break;
+                        }
+                        j++;
+                    }
+                    break;
+                }
+                i++;
+            }
+            if (stairs_Stair_cbx.SelectedItem.ToString().Equals("None"))
+            {
+                stairs_Panel.Controls.Clear();
+            }
+        }
+        //Stairs -- END
+
         //Labor and Equipment Functions -- START
         private void labor_MP_AddBtn_Click(object sender, EventArgs e)
         {
@@ -1104,6 +1239,7 @@ namespace WindowsFormsApp1
             content.set_mpUC_qty = "1";
             content.set_mpUC_hrs = "8";
             content.set_mpUC_days = "7";
+            content.checkList = true;
             labor_MP_Panel.Controls.Add(content);
         }
 
@@ -1116,6 +1252,7 @@ namespace WindowsFormsApp1
             content.set_eqUC_qty = "1";
             content.set_eqUC_hrs = "8";
             content.set_eqUC_days = "7";
+            content.checkList = true;
             labor_EQP_Panel.Controls.Add(content);
         }
 
@@ -1141,6 +1278,7 @@ namespace WindowsFormsApp1
             //Default Values
             content.set_ciUC_cbx = "Cyclone Wire (Gauge#10, 2”x2”, 3ft x 10m) [ROLL] - Common Materials";
             content.set_ciUC_qty = "3";
+            content.checkList = true;
             misc_Panel.Controls.Add(content);
         }
 
@@ -1181,6 +1319,9 @@ namespace WindowsFormsApp1
 
             //Masonry
             setMasonryDefaultValues();
+
+            //Stairs
+            setStairsDefaultValues();
 
             //Labor and Equipment
             setLaborDefaultValues();
@@ -1524,6 +1665,10 @@ namespace WindowsFormsApp1
             mason_RTW_RL_cbx.Text = parameters.mason_RTW_RL;
             mason_RTW_LTW_cbx.Text = parameters.mason_RTW_LTW;
 
+            //Stairs
+            stairs_Floor_cbx.SelectedIndex = 0;
+            stairs_Stair_cbx.SelectedIndex = 0;
+
             //Labor and Equipment
             labor_RD_cbx.Text = parameters.labor_RD;
             if (parameters.labor_MP != null)
@@ -1535,6 +1680,7 @@ namespace WindowsFormsApp1
                     content.set_mpUC_qty = parameters.labor_MP[i][1];
                     content.set_mpUC_hrs = parameters.labor_MP[i][2];
                     content.set_mpUC_days = parameters.labor_MP[i][3];
+                    content.checkList = bool.Parse(parameters.labor_MP[i][4]);
                     MpUC.Add(content);
                     labor_MP_Panel.Controls.Add(MpUC[i]);
                 }
@@ -1548,6 +1694,7 @@ namespace WindowsFormsApp1
                     content.set_eqUC_qty = parameters.labor_EQP[i][1];
                     content.set_eqUC_hrs = parameters.labor_EQP[i][2];
                     content.set_eqUC_days = parameters.labor_EQP[i][3];
+                    content.checkList = bool.Parse(parameters.labor_EQP[i][4]);
                     EqUC.Add(content);
                     labor_EQP_Panel.Controls.Add(EqUC[i]);
                 }
@@ -1562,6 +1709,7 @@ namespace WindowsFormsApp1
                     content.set_ciUC_cbx = parameters.misc_CustomItems[i][0];
                     content.set_ciUC_qty = parameters.misc_CustomItems[i][1];
                     content.set_ciUC_price = parameters.misc_CustomItems[i][2];
+                    content.checkList = bool.Parse(parameters.misc_CustomItems[i][3]);
                     CiUC.Add(content);
                     misc_Panel.Controls.Add(CiUC[i]);
                 }
@@ -1781,6 +1929,27 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void setStairsDefaultValues()
+        {
+            stairs_Floor_cbx.Items.Clear();
+            int j = 0;
+            foreach (Floor floor in costEstimationForm.Floors)
+            {
+                stairs_Floor_cbx.Items.Add(floor.getValues()[1]);
+                j++;
+            }
+            if (stairs_Floor_cbx.Items.Count == 0)
+            {
+                stairs_Floor_cbx.Items.Add("GROUND FLOOR");
+            }
+            stairs_Floor_cbx.SelectedIndex = 0;
+            if (stairs_Stair_cbx.Items.Count == 0)
+            {
+                stairs_Stair_cbx.Items.Add("None");
+            }
+            stairs_Stair_cbx.SelectedIndex = 0;
+        }
+
         private void setLaborDefaultValues()
         {
             labor_RD_cbx.Text = "Manila Rate";
@@ -1867,7 +2036,7 @@ namespace WindowsFormsApp1
 
             //Concrete
             bool[] cmIsSelected = { conc_CM_F_CG_rb.Checked, conc_CM_C_CG_rb.Checked,
-                    conc_CM_C_CG_rb.Checked, conc_CM_S_SOG_CG_rb.Checked, conc_CM_S_SS_CG_rb.Checked, 
+                    conc_CM_B_CG_rb.Checked, conc_CM_S_SOG_CG_rb.Checked, conc_CM_S_SS_CG_rb.Checked, 
                     conc_CM_ST_CG_rb.Checked };
             parameters.setConcreteParameters(
                 cmIsSelected,
@@ -2026,13 +2195,13 @@ namespace WindowsFormsApp1
             List<string[]> labor_MP = new List<string[]>();
             for (int i = 0; i < mpUC.Count; i++)
             {
-                string[] toAdd = { mpUC[i].set_mpUC_cbx, mpUC[i].set_mpUC_qty, mpUC[i].set_mpUC_hrs, mpUC[i].set_mpUC_days };
+                string[] toAdd = { mpUC[i].set_mpUC_cbx, mpUC[i].set_mpUC_qty, mpUC[i].set_mpUC_hrs, mpUC[i].set_mpUC_days, mpUC[i].checkList.ToString() };
                 labor_MP.Add(toAdd);
             }
             List<string[]> labor_EQP = new List<string[]>();
             for (int i = 0; i < eqUC.Count; i++)
             {
-                string[] toAdd = { eqUC[i].set_eqUC_cbx, eqUC[i].set_eqUC_qty, eqUC[i].set_eqUC_hrs, eqUC[i].set_eqUC_days };
+                string[] toAdd = { eqUC[i].set_eqUC_cbx, eqUC[i].set_eqUC_qty, eqUC[i].set_eqUC_hrs, eqUC[i].set_eqUC_days, eqUC[i].checkList.ToString() };
                 labor_EQP.Add(toAdd);
             }
             parameters.setLaborParameters(
@@ -2043,7 +2212,7 @@ namespace WindowsFormsApp1
             List<string[]> misc_CustomItems = new List<string[]>();
             for (int i = 0; i < ciUC.Count; i++)
             {
-                string[] toAdd = { ciUC[i].set_ciUC_cbx, ciUC[i].set_ciUC_qty, ciUC[i].set_ciUC_price };
+                string[] toAdd = { ciUC[i].set_ciUC_cbx, ciUC[i].set_ciUC_qty, ciUC[i].set_ciUC_price, ciUC[i].checkList.ToString() };
                 misc_CustomItems.Add(toAdd);
             }
             parameters.setMiscParameters(misc_CustomItems);
@@ -2099,6 +2268,7 @@ namespace WindowsFormsApp1
             earth_WF_TY_cbx.SelectedIndex = earth_SG_TY_cbx.SelectedIndex;
             earth_WF_TY_cbx.SelectedIndex = earth_SG_TY_cbx.SelectedIndex;
         }
+
         //Extra Functions -- END
     }
 }

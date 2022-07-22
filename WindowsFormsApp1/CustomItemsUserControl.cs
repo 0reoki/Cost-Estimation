@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace KnowEst
 {
     public partial class CustomItemsUserControl : UserControl
     {
         ParametersForm parametersForm;
         Parameters parameters;
+        public bool checkList;
 
         public CustomItemsUserControl(ParametersForm parametersForm, Parameters parameters)
         {
@@ -25,6 +26,8 @@ namespace WindowsFormsApp1
             ciUC_cbx.Items.AddRange(parameters.customItemsList.ToArray());
 
             ciUC_cbx.DropDownWidth = DropDownWidth(ciUC_cbx);
+
+            checkList = true;
         }
 
         public string set_ciUC_cbx

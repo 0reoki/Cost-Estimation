@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApp1
+namespace KnowEst
 {
     public class Parameters
     {
@@ -78,6 +78,9 @@ namespace WindowsFormsApp1
         public string labor_RD;
         public List<string[]> labor_MP = new List<string[]>();
         public List<string[]> labor_EQP = new List<string[]>();
+
+        //Parameters for Stairs
+        public List<List<StairParameterUserControl>> stair = new List<List<StairParameterUserControl>>();
 
         //Parameters for Misc
         public List<string[]> misc_CustomItems = new List<string[]>();

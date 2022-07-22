@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace KnowEst
 {
     //TODO: populate combobox ng beam row according kung anong existing + new schedules 
 
@@ -30,20 +30,24 @@ namespace WindowsFormsApp1
         //Passed Variables
         public string structMemName;
         public string oldStructMemName;
+        public string nodeKey;
         private CostEstimationForm costEstimationForm;
+        private Floor floor;
         private List<TreeNode> nodes;
         private int floorCount;
         private int memberCount, footingCount, wallFootingCount, columnCount, beamCount, slabCount, stairsCount, roofCount;
         public bool isNew, isFooting;
 
-        public AddStructForm(CostEstimationForm costEstimationForm, int floorCount, int footingCount, int wallFootingCount, int columnCount, int beamCount, int slabCount, int stairsCount, int roofCount, List<TreeNode> nodes, bool isNew, int index, string parentNode, bool isFooting)
+        public AddStructForm(CostEstimationForm costEstimationForm, int floorCount, int footingCount, int wallFootingCount, int columnCount, int beamCount, int slabCount, int stairsCount, int roofCount, List<TreeNode> nodes, bool isNew, int index, string parentNode, bool isFooting, Floor floor, string nodeKey)
         {
             InitializeComponent();
 
             //Init variables
             this.costEstimationForm = costEstimationForm;
+            this.floor = floor;
             this.floorCount = floorCount;
             this.nodes = nodes;
+            this.nodeKey = nodeKey;
             this.isNew = isNew;
             this.isFooting = isFooting;
             this.memberCount = index;
@@ -97,7 +101,7 @@ namespace WindowsFormsApp1
                 footW_T_LR_HT_cbx.SelectedIndex = footW_T_TR_HT_cbx.SelectedIndex = 0;
 
             //Init Column Combo Boxes
-            col_G_D_CB_cbx.SelectedIndex = col_G_LT_LTC_cbx.SelectedIndex = col_U_LT_LTC_cbx.SelectedIndex = 
+            col_G_D_CB_cbx.SelectedIndex = col_G_D_SC_cbx.SelectedIndex = col_G_LT_LTC_cbx.SelectedIndex = col_U_LT_LTC_cbx.SelectedIndex = 
                 col_G_ST_cbx.SelectedIndex = col_U_ST_cbx.SelectedIndex = 0;
 
             //Init Beam Combo Boxes
@@ -126,7 +130,8 @@ namespace WindowsFormsApp1
 
             setDefaultStructMemName();
             populateColumnConnectionBelow();
-            
+            populateColumnSlabConnection();
+
             //existing node?
             if (!isNew)
             {
@@ -171,6 +176,16 @@ namespace WindowsFormsApp1
                         insertSlabSchedule(schedule);
                     }
                 }
+
+                //Disable Delete
+                foot_DeleteBtn.Enabled = false;
+                footW_DeleteBtn.Enabled = false;
+                col_DeleteBtn.Enabled = false;
+                beam_DeleteBtn.Enabled = false;
+                slab_DeleteBtn.Enabled = false;
+                stairs_DeleteBtn.Enabled = false;
+                roof_DeleteBtn.Enabled = false;
+
                 populateSlabMark();
             }
 
@@ -656,6 +671,7 @@ namespace WindowsFormsApp1
                             members.Add(col_G_D_CH_bx.Text);
                             members.Add(col_G_D_Q_bx.Text);
                             members.Add(col_G_D_CB_cbx.Text);
+                            members.Add(col_G_D_SC_cbx.Text);
 
                             members.Add(col_G_MR_D_bx.Text);
                             members.Add(col_G_MR_Q_bx.Text);
@@ -787,21 +803,22 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.column[floorCount][memberCount][4] = col_G_D_CH_bx.Text;
                             costEstimationForm.structuralMembers.column[floorCount][memberCount][5] = col_G_D_Q_bx.Text;
                             costEstimationForm.structuralMembers.column[floorCount][memberCount][6] = col_G_D_CB_cbx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][7] = col_G_D_SC_cbx.Text;
 
-                            costEstimationForm.structuralMembers.column[floorCount][memberCount][7] = col_G_MR_D_bx.Text;
-                            costEstimationForm.structuralMembers.column[floorCount][memberCount][8] = col_G_MR_Q_bx.Text;
-                            costEstimationForm.structuralMembers.column[floorCount][memberCount][9] = col_G_ST_cbx.Text;
-                            costEstimationForm.structuralMembers.column[floorCount][memberCount][10] = col_G_JT_D_bx.Text;
-                            costEstimationForm.structuralMembers.column[floorCount][memberCount][11] = col_G_JT_S_bx.Text;
-                            costEstimationForm.structuralMembers.column[floorCount][memberCount][12] = col_G_CLT_D_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][8] = col_G_MR_D_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][9] = col_G_MR_Q_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][10] = col_G_ST_cbx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][11] = col_G_JT_D_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][12] = col_G_JT_S_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][13] = col_G_CLT_D_bx.Text;
 
-                            costEstimationForm.structuralMembers.column[floorCount][memberCount][13] = col_G_CLT_S_Rest_bx.Text;
-                            costEstimationForm.structuralMembers.column[floorCount][memberCount][14] = col_G_CLT_S_Rest2_bx.Text;
-                            costEstimationForm.structuralMembers.column[floorCount][memberCount][15] = col_G_CLT_S_Rest3_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][14] = col_G_CLT_S_Rest_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][15] = col_G_CLT_S_Rest2_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][16] = col_G_CLT_S_Rest3_bx.Text;
 
-                            costEstimationForm.structuralMembers.column[floorCount][memberCount][16] = col_G_LT_D_bx.Text;
-                            costEstimationForm.structuralMembers.column[floorCount][memberCount][17] = col_G_LT_LTC_cbx.Text;
-                            costEstimationForm.structuralMembers.column[floorCount][memberCount][18] = col_G_S_S_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][17] = col_G_LT_D_bx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][18] = col_G_LT_LTC_cbx.Text;
+                            costEstimationForm.structuralMembers.column[floorCount][memberCount][19] = col_G_S_S_bx.Text;
 
                             List<string> ltMember = new List<string>();
                             foreach (ColumnLateralTiesUserControl lt in g_ltUC)
@@ -1537,6 +1554,9 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.stairs[floorCount].Add(members);
                             costEstimationForm.structuralMembers.stairsNames[floorCount].Add(structMemName);
 
+                            StairParameterUserControl content = new StairParameterUserControl(stairs_ST_cbx.Text);
+                            costEstimationForm.parameters.stair[floorCount].Add(content);
+
                             compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
                             this.DialogResult = DialogResult.OK;
                         }
@@ -1576,6 +1596,9 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.stairs[floorCount].Add(members);
                             costEstimationForm.structuralMembers.stairsNames[floorCount].Add(structMemName);
 
+                            StairParameterUserControl content = new StairParameterUserControl(stairs_ST_cbx.Text);
+                            costEstimationForm.parameters.stair[floorCount].Add(content);
+
                             compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
                             this.DialogResult = DialogResult.OK;
                         }
@@ -1612,6 +1635,9 @@ namespace WindowsFormsApp1
 
                             costEstimationForm.structuralMembers.stairs[floorCount].Add(members);
                             costEstimationForm.structuralMembers.stairsNames[floorCount].Add(structMemName);
+
+                            StairParameterUserControl content = new StairParameterUserControl(stairs_ST_cbx.Text);
+                            costEstimationForm.parameters.stair[floorCount].Add(content);
 
                             compute.AddStairsWorks(costEstimationForm, floorCount, stairsCount);
                             this.DialogResult = DialogResult.OK;
@@ -2036,6 +2062,261 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void foot_DeleteBtn_Click(object sender, EventArgs e)
+        {
+            structMemName = addstruct_Name_bx.Text;
+            if (addstruct_cbx.Text.Equals("Footing (Column)"))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to delete this structural member?", "Delete Structural Member", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Remove Structural Member
+                    costEstimationForm.structuralMembers.footingsColumn[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.footingColumnNames.RemoveAt(memberCount);
+
+                    //Find Index Number of Footing Column at memberCount
+                    int i = 0;
+                    int wfC = 0;
+                    foreach (List<double> solution in costEstimationForm.structuralMembers.earthworkSolutions)
+                    {
+                        if (solution[0] == 2)
+                            wfC++;
+
+                        if (memberCount == i - wfC && memberCount <= i)
+                            break;
+                        i++;
+                    }
+
+                    //Remove Solution
+                    costEstimationForm.structuralMembers.earthworkSolutions.RemoveAt(i);
+                    costEstimationForm.structuralMembers.concreteWorkSolutionsF.RemoveAt(i);
+
+                    //Refresh Solutions
+                    compute.refreshSolutions(costEstimationForm);
+
+                    //Remove Structural Member from Floor Tree and reduce count by 1
+                    TreeNode[] found2 = floor.floorTV.Nodes.Find("footingParent", true);
+                    int j = found2[0].Nodes.IndexOfKey(nodeKey);
+                    found2[0].Nodes.RemoveAt(j);
+                    floor.footingCount--;
+
+                    //Close Add Struct Form
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //Do Nothing
+                }
+            }
+            else if (addstruct_cbx.Text.Equals("Footing (Wall)"))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to delete this structural member?", "Delete Structural Member", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Remove Structural Member
+                    costEstimationForm.structuralMembers.footingsWall[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.footingWallNames.RemoveAt(memberCount);
+
+                    //Find Index Number of Wall Footing at memberCount
+                    int i = 0;
+                    int fC = 0;
+                    foreach (List<double> solution in costEstimationForm.structuralMembers.earthworkSolutions)
+                    {
+                        if (solution[0] == 1)
+                            fC++;
+
+                        if (memberCount == i - fC && memberCount <= i)
+                            break;
+                        i++;
+                    }
+
+                    //Remove Solution
+                    costEstimationForm.structuralMembers.earthworkSolutions.RemoveAt(i);
+                    costEstimationForm.structuralMembers.concreteWorkSolutionsF.RemoveAt(i);
+
+                    //Refresh Solutions
+                    compute.refreshSolutions(costEstimationForm);
+
+                    //Remove Structural Member from Floor Tree and reduce count by 1
+                    TreeNode[] found2 = floor.floorTV.Nodes.Find("footingParent", true);
+                    int j = found2[0].Nodes.IndexOfKey(nodeKey);
+                    found2[0].Nodes.RemoveAt(j);
+                    floor.wallFootingCount--;
+
+                    //Close Add Struct Form
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //Do Nothing
+                }                
+            }
+            else if (addstruct_cbx.Text.Equals("Column"))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to delete this structural member?", "Delete Structural Member", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Remove Structural Member
+                    costEstimationForm.structuralMembers.column[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.columnNames[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.columnLateralTies[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.columnSpacing[floorCount].RemoveAt(memberCount);
+
+                    //Remove Solution
+                    costEstimationForm.structuralMembers.concreteWorkSolutionsC[floorCount].RemoveAt(memberCount);
+
+                    //Refresh Solutions
+                    compute.refreshSolutions(costEstimationForm);
+
+                    //Remove Structural Member from Floor Tree and reduce count by 1
+                    TreeNode[] found2 = floor.floorTV.Nodes.Find("columnParent", true);
+                    int j = found2[0].Nodes.IndexOfKey(nodeKey);
+                    found2[0].Nodes.RemoveAt(j);
+                    floor.columnCount--;
+
+                    //Close Add Struct Form
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //Do Nothing
+                }
+            }
+            else if (addstruct_cbx.Text.Equals("Beam"))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to delete this structural member?", "Delete Structural Member", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Remove Structural Member
+                    costEstimationForm.structuralMembers.beam[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.beamNames[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.beamRow[floorCount].RemoveAt(memberCount);
+
+                    //Remove Solution
+                    costEstimationForm.structuralMembers.concreteWorkSolutionsBR[floorCount].RemoveAt(memberCount);
+
+                    //Refresh Solutions
+                    compute.refreshSolutions(costEstimationForm);
+
+                    //Remove Structural Member from Floor Tree and reduce count by 1
+                    TreeNode[] found2 = floor.floorTV.Nodes.Find("beamParent", true);
+                    int j = found2[0].Nodes.IndexOfKey(nodeKey);
+                    found2[0].Nodes.RemoveAt(j);
+                    floor.beamCount--;
+
+                    //If no beams left, remove schedules
+                    if(floor.beamCount == 0)
+                    {
+                        costEstimationForm.structuralMembers.beamSchedule[floorCount].Clear();
+                    }
+
+                    //Close Add Struct Form
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //Do Nothing
+                }
+            }
+            else if (addstruct_cbx.Text.Equals("Slab"))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to delete this structural member?", "Delete Structural Member", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Remove Structural Member
+                    costEstimationForm.structuralMembers.slab[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.slabNames[floorCount].RemoveAt(memberCount);
+
+                    //Remove Solution
+                    costEstimationForm.structuralMembers.concreteWorkSolutionsSL[floorCount].RemoveAt(memberCount);
+
+                    //Refresh Solutions
+                    compute.refreshSolutions(costEstimationForm);
+
+                    //Remove Structural Member from Floor Tree and reduce count by 1
+                    TreeNode[] found2 = floor.floorTV.Nodes.Find("slabParent", true);
+                    int j = found2[0].Nodes.IndexOfKey(nodeKey);
+                    found2[0].Nodes.RemoveAt(j);
+                    floor.slabCount--;
+
+                    //If no slabs left, remove schedules
+                    if (floorCount != 0)
+                    {
+                        if (floor.slabCount == 0)
+                        {
+                            costEstimationForm.structuralMembers.slabSchedule[floorCount - 1].Clear();
+                        }
+                    }
+
+                    //Close Add Struct Form
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //Do Nothing
+                }
+            }
+            else if (addstruct_cbx.Text.Equals("Stairs"))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to delete this structural member?", "Delete Structural Member", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Remove Structural Member
+                    costEstimationForm.structuralMembers.stairs[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.stairsNames[floorCount].RemoveAt(memberCount);
+
+                    //Remove Solution
+                    costEstimationForm.structuralMembers.concreteWorkSolutionsST[floorCount].RemoveAt(memberCount);
+
+                    //Refresh Solutions
+                    compute.refreshSolutions(costEstimationForm);
+
+                    //Remove Structural Member from Floor Tree and reduce count by 1
+                    TreeNode[] found2 = floor.floorTV.Nodes.Find("stairsParent", true);
+                    int j = found2[0].Nodes.IndexOfKey(nodeKey);
+                    found2[0].Nodes.RemoveAt(j);
+                    floor.stairsCount--;
+
+                    //Close Add Struct Form
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //Do Nothing
+                }
+            }
+            else if (addstruct_cbx.Text.Equals("Roofing (Gable)"))
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you really want to delete this structural member?", "Delete Structural Member", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //Remove Structural Member
+                    costEstimationForm.structuralMembers.roof[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.roofNames[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.roofHRS[floorCount].RemoveAt(memberCount);
+
+                    //Remove Solution
+                    costEstimationForm.structuralMembers.roofSolutions[floorCount].RemoveAt(memberCount);
+
+                    //Refresh Solutions
+                    compute.refreshSolutions(costEstimationForm);
+
+                    //Remove Structural Member from Floor Tree and reduce count by 1
+                    TreeNode[] found2 = floor.floorTV.Nodes.Find("roofParent", true);
+                    int j = found2[0].Nodes.IndexOfKey(nodeKey);
+                    found2[0].Nodes.RemoveAt(j);
+                    floor.roofCount--;
+
+                    //Close Add Struct Form
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //Do Nothing
+                }
+            }
+        }
+
         //Getters and Setters
         public string structuralMemberType
         {
@@ -2260,21 +2541,22 @@ namespace WindowsFormsApp1
                 col_G_D_CH_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][4];
                 col_G_D_Q_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][5];
                 col_G_D_CB_cbx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][6];
+                col_G_D_SC_cbx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][7];
 
-                col_G_MR_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][7];
-                col_G_MR_Q_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][8];
-                col_G_ST_cbx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][9];
-                col_G_JT_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][10];
-                col_G_JT_S_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][11];
-                col_G_CLT_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][12];
+                col_G_MR_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][8];
+                col_G_MR_Q_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][9];
+                col_G_ST_cbx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][10];
+                col_G_JT_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][11];
+                col_G_JT_S_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][12];
+                col_G_CLT_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][13];
 
-                col_G_CLT_S_Rest_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][13];
-                col_G_CLT_S_Rest2_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][14];
-                col_G_CLT_S_Rest3_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][15];
+                col_G_CLT_S_Rest_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][14];
+                col_G_CLT_S_Rest2_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][15];
+                col_G_CLT_S_Rest3_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][16];
 
-                col_G_LT_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][16];
-                col_G_LT_LTC_cbx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][17];
-                col_G_S_S_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][18];
+                col_G_LT_D_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][17];
+                col_G_LT_LTC_cbx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][18];
+                col_G_S_S_bx.Text = costEstimationForm.structuralMembers.column[floorCount][memberCount][19];
 
                 int i = 0;
                 foreach(string value in costEstimationForm.structuralMembers.columnLateralTies[floorCount][memberCount])
@@ -2377,6 +2659,20 @@ namespace WindowsFormsApp1
                     col_G_D_CB_cbx.Items.Add(name);
                 }
                 col_G_D_CB_cbx.SelectedIndex = 0;
+            }
+        }
+
+        public void populateColumnSlabConnection()
+        {
+            if (floorCount == 0)
+            {
+                col_G_D_SC_cbx.Items.Clear();
+                col_G_D_SC_cbx.Items.Add("None");
+                foreach (string name in costEstimationForm.structuralMembers.slabNames[0])
+                {
+                    col_G_D_SC_cbx.Items.Add(name);
+                }
+                col_G_D_SC_cbx.SelectedIndex = 0;
             }
         }
 
@@ -2586,7 +2882,7 @@ namespace WindowsFormsApp1
                 int i = 0;
                 if(slab_SS_SD_cbx.Text == "No. 1")
                 {
-                    var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.SLAB_DETAIL);
+                    var bmp = new Bitmap(KnowEst.Properties.Resources.SLAB_DETAIL);
                     Image picture = (Image)bmp;
                     slab_SS_SD_pb.Image = picture;
 
@@ -2601,7 +2897,7 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.SLAB_DETAIL_2);
+                    var bmp = new Bitmap(KnowEst.Properties.Resources.SLAB_DETAIL_2);
                     Image picture = (Image)bmp;
                     slab_SS_SD_pb.Image = picture;
 
@@ -2918,7 +3214,7 @@ namespace WindowsFormsApp1
         {
             if (col_G_LT_LTC_cbx.SelectedIndex == 0)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_1); 
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_1); 
                 Image picture = (Image)bmp;
                 col_G_LT_pb.Image = picture;
 
@@ -2927,7 +3223,7 @@ namespace WindowsFormsApp1
             }
             else if (col_G_LT_LTC_cbx.SelectedIndex == 1)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_2); 
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_2); 
                 Image picture = (Image)bmp;
                 col_G_LT_pb.Image = picture;
 
@@ -2936,18 +3232,18 @@ namespace WindowsFormsApp1
             }
             else if (col_G_LT_LTC_cbx.SelectedIndex == 2)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_3); 
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_3); 
                 Image picture = (Image)bmp;
                 col_G_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
-                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.INDIGO);
+                var bmp4 = new Bitmap(KnowEst.Properties.Resources.INDIGO);
                 Image picture4 = (Image)bmp4;
-                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.ORANGE);
+                var bmp5 = new Bitmap(KnowEst.Properties.Resources.ORANGE);
                 Image picture5 = (Image)bmp5;
 
                 g_ltUC.Clear();
@@ -2971,18 +3267,18 @@ namespace WindowsFormsApp1
             }
             else if (col_G_LT_LTC_cbx.SelectedIndex == 3)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_4); 
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_4); 
                 Image picture = (Image)bmp;
                 col_G_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
-                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.INDIGO);
+                var bmp4 = new Bitmap(KnowEst.Properties.Resources.INDIGO);
                 Image picture4 = (Image)bmp4;
-                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.ORANGE);
+                var bmp5 = new Bitmap(KnowEst.Properties.Resources.ORANGE);
                 Image picture5 = (Image)bmp5;
 
                 g_ltUC.Clear();
@@ -3006,14 +3302,14 @@ namespace WindowsFormsApp1
             }
             else if (col_G_LT_LTC_cbx.SelectedIndex == 4)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5); 
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_5); 
                 Image picture = (Image)bmp;
                 col_G_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
 
                 g_ltUC.Clear();
@@ -3029,14 +3325,14 @@ namespace WindowsFormsApp1
             }
             else
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6); 
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_6); 
                 Image picture = (Image)bmp;
                 col_G_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
 
                 g_ltUC.Clear();
@@ -3148,7 +3444,7 @@ namespace WindowsFormsApp1
         {
             if(slab_SS_SD_cbx.SelectedIndex == 0)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.SLAB_DETAIL);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.SLAB_DETAIL);
                 Image picture = (Image)bmp;
                 slab_SS_SD_pb.Image = picture;
 
@@ -3159,7 +3455,7 @@ namespace WindowsFormsApp1
             }
             else
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.SLAB_DETAIL_2);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.SLAB_DETAIL_2);
                 Image picture = (Image)bmp;
                 slab_SS_SD_pb.Image = picture;
 
@@ -3342,7 +3638,7 @@ namespace WindowsFormsApp1
         {
             if (col_U_LT_LTC_cbx.SelectedIndex == 0)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_1);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_1);
                 Image picture = (Image)bmp;
                 col_U_LT_pb.Image = picture;
 
@@ -3351,7 +3647,7 @@ namespace WindowsFormsApp1
             }
             else if (col_U_LT_LTC_cbx.SelectedIndex == 1)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_2);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_2);
                 Image picture = (Image)bmp;
                 col_U_LT_pb.Image = picture;
 
@@ -3360,18 +3656,18 @@ namespace WindowsFormsApp1
             }
             else if (col_U_LT_LTC_cbx.SelectedIndex == 2)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_3);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_3);
                 Image picture = (Image)bmp;
                 col_U_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
-                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.INDIGO);
+                var bmp4 = new Bitmap(KnowEst.Properties.Resources.INDIGO);
                 Image picture4 = (Image)bmp4;
-                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.ORANGE);
+                var bmp5 = new Bitmap(KnowEst.Properties.Resources.ORANGE);
                 Image picture5 = (Image)bmp5;
 
                 u_ltUC.Clear();
@@ -3395,18 +3691,18 @@ namespace WindowsFormsApp1
             }
             else if (col_U_LT_LTC_cbx.SelectedIndex == 3)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_4);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_4);
                 Image picture = (Image)bmp;
                 col_U_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
-                var bmp4 = new Bitmap(WindowsFormsApp1.Properties.Resources.INDIGO);
+                var bmp4 = new Bitmap(KnowEst.Properties.Resources.INDIGO);
                 Image picture4 = (Image)bmp4;
-                var bmp5 = new Bitmap(WindowsFormsApp1.Properties.Resources.ORANGE);
+                var bmp5 = new Bitmap(KnowEst.Properties.Resources.ORANGE);
                 Image picture5 = (Image)bmp5;
 
                 u_ltUC.Clear();
@@ -3430,14 +3726,14 @@ namespace WindowsFormsApp1
             }
             else if (col_U_LT_LTC_cbx.SelectedIndex == 4)
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_5);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_5);
                 Image picture = (Image)bmp;
                 col_U_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
 
                 u_ltUC.Clear();
@@ -3453,14 +3749,14 @@ namespace WindowsFormsApp1
             }
             else
             {
-                var bmp = new Bitmap(WindowsFormsApp1.Properties.Resources.LT_CONFIG_6);
+                var bmp = new Bitmap(KnowEst.Properties.Resources.LT_CONFIG_6);
                 Image picture = (Image)bmp;
                 col_U_LT_pb.Image = picture;
 
                 //Add Lateral Ties Quantity
-                var bmp2 = new Bitmap(WindowsFormsApp1.Properties.Resources.RED);
+                var bmp2 = new Bitmap(KnowEst.Properties.Resources.RED);
                 Image picture2 = (Image)bmp2;
-                var bmp3 = new Bitmap(WindowsFormsApp1.Properties.Resources.GREEN);
+                var bmp3 = new Bitmap(KnowEst.Properties.Resources.GREEN);
                 Image picture3 = (Image)bmp3;
 
                 u_ltUC.Clear();

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApp1
+namespace KnowEst
 {
     public class StructuralMembers
     {
@@ -109,6 +109,9 @@ namespace WindowsFormsApp1
         public List<double> SAREA = new List<double>();
 
         //Constant variables
+        //Cement
+        //Sand
+        //Gravel
         public List<List<double>> concreteProportion = new List<List<double>>();
 
         public StructuralMembers(CostEstimationForm cEF)

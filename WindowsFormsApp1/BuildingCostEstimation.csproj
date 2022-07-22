@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{70096C2C-9F01-4DF9-946C-354F82CB13B3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WindowsFormsApp1</RootNamespace>
-    <AssemblyName>WindowsFormsApp1</AssemblyName>
+    <RootNamespace>KnowEst</RootNamespace>
+    <AssemblyName>KnowEst</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,7 +34,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>MAIN LOGO.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.1245.22, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1245.22\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
     </Reference>
@@ -213,6 +220,12 @@
     <Compile Include="SlabScheduleUserControl.Designer.cs">
       <DependentUpon>SlabScheduleUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="StairParameterUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StairParameterUserControl.Designer.cs">
+      <DependentUpon>StairParameterUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="StructuralMembers.cs" />
     <Compile Include="TileAreaUserControl.cs">
       <SubType>UserControl</SubType>
@@ -303,6 +316,9 @@
     <EmbeddedResource Include="SlabScheduleUserControl.resx">
       <DependentUpon>SlabScheduleUserControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StairParameterUserControl.resx">
+      <DependentUpon>StairParameterUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TileAreaUserControl.resx">
       <DependentUpon>TileAreaUserControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -378,6 +394,7 @@
     <None Include="Resources\Column\COLUMN.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MAIN LOGO.ico" />
     <Content Include="Resources\Beam\BEAM DETAILS.PNG" />
     <Content Include="Resources\Beam\BEAM PROP 1.PNG" />
     <Content Include="Resources\Beam\BEAM PROP 2.PNG" />
@@ -405,7 +422,35 @@
     <Content Include="Resources\Slab\SLAB.PNG" />
     <Content Include="Resources\Stairs\L STAIRS REBARS.PNG" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel1">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.1245.22\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.1245.22\build\Microsoft.Web.WebView2.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

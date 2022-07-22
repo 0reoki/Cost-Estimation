@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace KnowEst
 {
     public partial class Floor : UserControl
     {
@@ -177,7 +177,7 @@ namespace WindowsFormsApp1
 
         private void addStrMemBtn_Click(object sender, EventArgs e)
         {
-            AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, footingCount, wallFootingCount, columnCount, beamCount, slabCount, stairsCount, roofCount, nodes, true, -1, "NEW", false);
+            AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, footingCount, wallFootingCount, columnCount, beamCount, slabCount, stairsCount, roofCount, nodes, true, -1, "NEW", false, this, "");
             if (asForm.ShowDialog() == DialogResult.OK)
             {
                 //TODO add other structural members
@@ -307,76 +307,37 @@ namespace WindowsFormsApp1
             costEstimationForm.Floors.Remove(this);
 
             //Remove Lists when this Floor is deleted
-            if (floorCount == 0)//Ground Floor
-            {
-                //Footings
-                costEstimationForm.structuralMembers.footingsColumn.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.footingsWall.RemoveAt(floorCount);
+            //Columns
+            costEstimationForm.structuralMembers.columnNames.RemoveAt(floorCount);
+            costEstimationForm.structuralMembers.column.RemoveAt(floorCount);
+            costEstimationForm.structuralMembers.columnLateralTies.RemoveAt(floorCount);
+            costEstimationForm.structuralMembers.columnSpacing.RemoveAt(floorCount);
 
-                //Columns
-                costEstimationForm.structuralMembers.columnNames.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.column.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.columnLateralTies.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.columnSpacing.RemoveAt(floorCount);
+            //Beams
+            costEstimationForm.structuralMembers.beam.RemoveAt(floorCount);
+            costEstimationForm.structuralMembers.beamRow.RemoveAt(floorCount);
+            costEstimationForm.structuralMembers.beamSchedule.RemoveAt(floorCount);
 
-                //Beams
-                costEstimationForm.structuralMembers.beam.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.beamRow.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.beamSchedule.RemoveAt(floorCount);
+            //Slabs
+            costEstimationForm.structuralMembers.slabNames.RemoveAt(floorCount);
+            costEstimationForm.structuralMembers.slab.RemoveAt(floorCount);
 
-                //Slabs
-                costEstimationForm.structuralMembers.slabNames.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.slab.RemoveAt(floorCount);
+            //Stairs
+            costEstimationForm.structuralMembers.stairs.RemoveAt(floorCount);
+            costEstimationForm.parameters.stair.RemoveAt(floorCount);
+            costEstimationForm.structuralMembers.stairsNames.RemoveAt(floorCount);
 
-                //Stairs
-                costEstimationForm.structuralMembers.stairs.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.stairsNames.RemoveAt(floorCount);
+            //Roof
+            costEstimationForm.structuralMembers.roof.RemoveAt(floorCount);
+            costEstimationForm.structuralMembers.roofHRS.RemoveAt(floorCount);
+            costEstimationForm.structuralMembers.roofNames.RemoveAt(floorCount);
 
-                //Roof
-                List<string> newList18 = new List<string>();
-                costEstimationForm.structuralMembers.roof.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.roofHRS.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.roofNames.RemoveAt(floorCount);
-
-                //Solution Variables
-                costEstimationForm.structuralMembers.concreteWorkSolutionsC.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.concreteWorkSolutionsBR.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.concreteWorkSolutionsSL.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.concreteWorkSolutionsST.RemoveAt(floorCount);
-            }
-            else //Upper Floors
-            {
-                //Columns
-                costEstimationForm.structuralMembers.columnNames.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.column.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.columnLateralTies.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.columnSpacing.RemoveAt(floorCount);
-
-                //Beams
-                costEstimationForm.structuralMembers.beam.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.beamRow.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.beamSchedule.RemoveAt(floorCount);
-
-                //Slabs
-                costEstimationForm.structuralMembers.slabNames.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.slab.RemoveAt(floorCount);
-
-                //Stairs
-                costEstimationForm.structuralMembers.stairs.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.stairsNames.RemoveAt(floorCount);
-
-                //Roof
-                List<string> newList18 = new List<string>();
-                costEstimationForm.structuralMembers.roof.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.roofHRS.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.roofNames.RemoveAt(floorCount);
-
-                //Solution Variables
-                costEstimationForm.structuralMembers.concreteWorkSolutionsC.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.concreteWorkSolutionsBR.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.concreteWorkSolutionsSL.RemoveAt(floorCount);
-                costEstimationForm.structuralMembers.concreteWorkSolutionsST.RemoveAt(floorCount);
-            }
+            //Solution Variables
+            costEstimationForm.structuralMembers.concreteWorkSolutionsC.RemoveAt(floorCount);
+            costEstimationForm.structuralMembers.concreteWorkSolutionsBR.RemoveAt(floorCount);
+            costEstimationForm.structuralMembers.concreteWorkSolutionsSL.RemoveAt(floorCount);
+            costEstimationForm.structuralMembers.concreteWorkSolutionsST.RemoveAt(floorCount);
+            
             costEstimationForm.refreshFloors();
         }
 
@@ -395,6 +356,18 @@ namespace WindowsFormsApp1
             if (e.KeyChar == (char)13)
             {
                 floorLbl.ReadOnly = true;
+            }
+        }
+
+        public TreeView floorTV
+        {
+            get
+            {
+                return floorTreeView;
+            }
+            set
+            {
+                floorTreeView = value;
             }
         }
 
@@ -425,7 +398,7 @@ namespace WindowsFormsApp1
                                 {
                                     if (member.Text.Equals(info.Node.Text))
                                     {
-                                        AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.beamCount, this.slabCount, this.stairsCount, this.roofCount, nodes, false, footingCount, "FOOTINGS", true);
+                                        AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.beamCount, this.slabCount, this.stairsCount, this.roofCount, nodes, false, footingCount, "FOOTINGS", true, this, info.Node.Name);
                                         if (asForm.ShowDialog() == DialogResult.OK)
                                         {
                                             if (asForm.structuralMemberType.Equals("Footing (Column)"))
@@ -448,7 +421,7 @@ namespace WindowsFormsApp1
                                 {
                                     if (member.Text.Equals(info.Node.Text))
                                     {
-                                        AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.beamCount, this.slabCount, this.stairsCount, this.roofCount, nodes, false, wallFootingCount, "FOOTINGS", false);
+                                        AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.beamCount, this.slabCount, this.stairsCount, this.roofCount, nodes, false, wallFootingCount, "FOOTINGS", false, this, info.Node.Name);
                                         if (asForm.ShowDialog() == DialogResult.OK)
                                         {
                                             if (asForm.structuralMemberType.Equals("Footing (Wall)"))
@@ -486,7 +459,7 @@ namespace WindowsFormsApp1
 
                                 if (member.Text.Equals(info.Node.Text))
                                 {
-                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.beamCount, this.slabCount, this.stairsCount, this.roofCount, nodes, false, columnCount, "COLUMNS", false);
+                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.beamCount, this.slabCount, this.stairsCount, this.roofCount, nodes, false, columnCount, "COLUMNS", false, this, info.Node.Name);
                                     if (asForm.ShowDialog() == DialogResult.OK)
                                     {
                                         if (asForm.structuralMemberType.Equals("Column"))
@@ -523,7 +496,7 @@ namespace WindowsFormsApp1
 
                                 if (member.Text.Equals(info.Node.Text))
                                 {
-                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.beamCount, this.slabCount, this.stairsCount, this.roofCount, nodes, false, beamsCount, "BEAMS", false);
+                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.beamCount, this.slabCount, this.stairsCount, this.roofCount, nodes, false, beamsCount, "BEAMS", false, this, info.Node.Name);
                                     if (asForm.ShowDialog() == DialogResult.OK)
                                     {
                                         if (asForm.structuralMemberType.Equals("Beam"))
@@ -560,7 +533,7 @@ namespace WindowsFormsApp1
 
                                 if (member.Text.Equals(info.Node.Text))
                                 {
-                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.beamCount, this.slabCount, this.stairsCount, this.roofCount, nodes, false, slabCount, "SLABS", false);
+                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.beamCount, this.slabCount, this.stairsCount, this.roofCount, nodes, false, slabCount, "SLABS", false, this, info.Node.Name);
                                     if (asForm.ShowDialog() == DialogResult.OK)
                                     {
                                         if (asForm.structuralMemberType.Equals("Slab"))
@@ -597,7 +570,7 @@ namespace WindowsFormsApp1
 
                                 if (member.Text.Equals(info.Node.Text))
                                 {
-                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.beamCount, this.slabCount, this.stairsCount, this.roofCount, nodes, false, stairsCount, "STAIRS", false);
+                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.beamCount, this.slabCount, this.stairsCount, this.roofCount, nodes, false, stairsCount, "STAIRS", false, this, info.Node.Name);
                                     if (asForm.ShowDialog() == DialogResult.OK)
                                     {
                                         if (asForm.structuralMemberType.Equals("Stairs"))
@@ -634,7 +607,7 @@ namespace WindowsFormsApp1
 
                                 if (member.Text.Equals(info.Node.Text))
                                 {
-                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.beamCount, this.slabCount, this.stairsCount, this.roofCount, nodes, false, roofCount, "ROOF", false);
+                                    AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, this.footingCount, this.wallFootingCount, this.columnCount, this.beamCount, this.slabCount, this.stairsCount, this.roofCount, nodes, false, roofCount, "ROOF", false, this, info.Node.Name);
                                     if (asForm.ShowDialog() == DialogResult.OK)
                                     {
                                         if (asForm.structuralMemberType.Equals("Roofing (Gable)"))

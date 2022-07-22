@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp1
+namespace KnowEst
 {
     partial class ParametersForm
     {
@@ -30,10 +30,10 @@ namespace WindowsFormsApp1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.paramTabControl = new System.Windows.Forms.TabControl();
             this.earthworksTabPage = new System.Windows.Forms.TabPage();
             this.earthworksPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -181,14 +181,27 @@ namespace WindowsFormsApp1
             this.conc_CM_B_GT_cbx = new System.Windows.Forms.ComboBox();
             this.conc_CM_B_RM_cbx = new System.Windows.Forms.ComboBox();
             this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
+            this.label148 = new System.Windows.Forms.Label();
+            this.conc_CM_S_SOG_CG_rb = new System.Windows.Forms.RadioButton();
             this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.conc_CM_S_SOG_RM_rb = new System.Windows.Forms.RadioButton();
             this.conc_CM_S_SOG_CG_cbx = new System.Windows.Forms.ComboBox();
+            this.conc_CM_S_SOG_RM_rb = new System.Windows.Forms.RadioButton();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
             this.conc_CM_S_SOG_GT_cbx = new System.Windows.Forms.ComboBox();
             this.conc_CM_S_SOG_RM_cbx = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanel58 = new System.Windows.Forms.TableLayoutPanel();
+            this.label149 = new System.Windows.Forms.Label();
+            this.conc_CM_S_SS_CG_rb = new System.Windows.Forms.RadioButton();
+            this.label150 = new System.Windows.Forms.Label();
+            this.conc_CM_S_SS_CG_cbx = new System.Windows.Forms.ComboBox();
+            this.conc_CM_S_SS_RM_rb = new System.Windows.Forms.RadioButton();
+            this.label151 = new System.Windows.Forms.Label();
+            this.label152 = new System.Windows.Forms.Label();
+            this.conc_CM_S_SS_GT_cbx = new System.Windows.Forms.ComboBox();
+            this.conc_CM_S_SS_RM_cbx = new System.Windows.Forms.ComboBox();
             this.tabPage13 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.conc_CM_W_MIW_CM_cbx = new System.Windows.Forms.ComboBox();
@@ -261,6 +274,14 @@ namespace WindowsFormsApp1
             this.rein_BEH_addBtn = new System.Windows.Forms.Button();
             this.label104 = new System.Windows.Forms.Label();
             this.tableLayoutPanel51 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel50 = new System.Windows.Forms.TableLayoutPanel();
+            this.label111 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel52 = new System.Windows.Forms.TableLayoutPanel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.rein_RG_CLT_cbx = new System.Windows.Forms.ComboBox();
+            this.label113 = new System.Windows.Forms.Label();
+            this.rein_RG_BS_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel54 = new System.Windows.Forms.TableLayoutPanel();
             this.rein_RG_SL_cbx = new System.Windows.Forms.ComboBox();
             this.label106 = new System.Windows.Forms.Label();
@@ -400,6 +421,16 @@ namespace WindowsFormsApp1
             this.mason_CHB_EW_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.mason_CHB_EW_AddBtn = new System.Windows.Forms.Button();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel53 = new System.Windows.Forms.TableLayoutPanel();
+            this.stairs_Panel = new System.Windows.Forms.FlowLayoutPanel();
+            this.tableLayoutPanel55 = new System.Windows.Forms.TableLayoutPanel();
+            this.stair_SaveBtn = new System.Windows.Forms.Button();
+            this.stair_ResetBtn = new System.Windows.Forms.Button();
+            this.tableLayoutPanel59 = new System.Windows.Forms.TableLayoutPanel();
+            this.label108 = new System.Windows.Forms.Label();
+            this.stairs_Floor_cbx = new System.Windows.Forms.ComboBox();
+            this.stairs_Stair_cbx = new System.Windows.Forms.ComboBox();
+            this.label109 = new System.Windows.Forms.Label();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
@@ -429,27 +460,6 @@ namespace WindowsFormsApp1
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.conc_CM_S_SOG_CG_rb = new System.Windows.Forms.RadioButton();
-            this.label148 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.tableLayoutPanel58 = new System.Windows.Forms.TableLayoutPanel();
-            this.label149 = new System.Windows.Forms.Label();
-            this.conc_CM_S_SS_CG_rb = new System.Windows.Forms.RadioButton();
-            this.label150 = new System.Windows.Forms.Label();
-            this.conc_CM_S_SS_CG_cbx = new System.Windows.Forms.ComboBox();
-            this.conc_CM_S_SS_RM_rb = new System.Windows.Forms.RadioButton();
-            this.label151 = new System.Windows.Forms.Label();
-            this.label152 = new System.Windows.Forms.Label();
-            this.conc_CM_S_SS_GT_cbx = new System.Windows.Forms.ComboBox();
-            this.conc_CM_S_SS_RM_cbx = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel50 = new System.Windows.Forms.TableLayoutPanel();
-            this.label111 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel52 = new System.Windows.Forms.TableLayoutPanel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.rein_RG_CLT_cbx = new System.Windows.Forms.ComboBox();
-            this.label113 = new System.Windows.Forms.Label();
-            this.rein_RG_BS_cbx = new System.Windows.Forms.ComboBox();
             this.paramTabControl.SuspendLayout();
             this.earthworksTabPage.SuspendLayout();
             this.earthworksPanel.SuspendLayout();
@@ -486,7 +496,9 @@ namespace WindowsFormsApp1
             this.tabPage11.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             this.tabPage12.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
+            this.tableLayoutPanel58.SuspendLayout();
             this.tabPage13.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tabPage14.SuspendLayout();
@@ -512,6 +524,8 @@ namespace WindowsFormsApp1
             ((System.ComponentModel.ISupportInitialize)(this.rein_BEH_ST_dg)).BeginInit();
             this.tableLayoutPanel49.SuspendLayout();
             this.tableLayoutPanel51.SuspendLayout();
+            this.tableLayoutPanel50.SuspendLayout();
+            this.tableLayoutPanel52.SuspendLayout();
             this.tableLayoutPanel54.SuspendLayout();
             this.tableLayoutPanel56.SuspendLayout();
             this.tableLayoutPanel57.SuspendLayout();
@@ -529,6 +543,10 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel40.SuspendLayout();
             this.tableLayoutPanel42.SuspendLayout();
             this.tableLayoutPanel41.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            this.tableLayoutPanel53.SuspendLayout();
+            this.tableLayoutPanel55.SuspendLayout();
+            this.tableLayoutPanel59.SuspendLayout();
             this.tabPage9.SuspendLayout();
             this.tableLayoutPanel17.SuspendLayout();
             this.tableLayoutPanel20.SuspendLayout();
@@ -539,10 +557,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel21.SuspendLayout();
             this.tableLayoutPanel22.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel58.SuspendLayout();
-            this.tableLayoutPanel50.SuspendLayout();
-            this.tableLayoutPanel52.SuspendLayout();
             this.SuspendLayout();
             // 
             // paramTabControl
@@ -1473,7 +1487,7 @@ namespace WindowsFormsApp1
             this.tabPage16.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage16.Size = new System.Drawing.Size(357, 430);
             this.tabPage16.TabIndex = 1;
-            this.tabPage16.Text = "Columns";
+            this.tabPage16.Text = "Beams";
             this.tabPage16.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel33
@@ -1635,7 +1649,7 @@ namespace WindowsFormsApp1
             this.tabPage17.Name = "tabPage17";
             this.tabPage17.Size = new System.Drawing.Size(357, 430);
             this.tabPage17.TabIndex = 2;
-            this.tabPage17.Text = "Beams";
+            this.tabPage17.Text = "Columns";
             this.tabPage17.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel32
@@ -2765,6 +2779,16 @@ namespace WindowsFormsApp1
             this.tabPage12.Text = "Slabs";
             this.tabPage12.UseVisualStyleBackColor = true;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel14);
+            this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel58);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(357, 430);
+            this.flowLayoutPanel1.TabIndex = 4;
+            // 
             // tableLayoutPanel14
             // 
             this.tableLayoutPanel14.ColumnCount = 3;
@@ -2796,6 +2820,34 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel14.Size = new System.Drawing.Size(351, 210);
             this.tableLayoutPanel14.TabIndex = 3;
             // 
+            // label148
+            // 
+            this.tableLayoutPanel14.SetColumnSpan(this.label148, 3);
+            this.label148.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.label148.Location = new System.Drawing.Point(1, 0);
+            this.label148.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label148.Name = "label148";
+            this.label148.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label148.Size = new System.Drawing.Size(281, 31);
+            this.label148.TabIndex = 25;
+            this.label148.Text = "Slab on Grade";
+            this.label148.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // conc_CM_S_SOG_CG_rb
+            // 
+            this.conc_CM_S_SOG_CG_rb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.conc_CM_S_SOG_CG_rb.AutoSize = true;
+            this.conc_CM_S_SOG_CG_rb.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.conc_CM_S_SOG_CG_rb.Location = new System.Drawing.Point(3, 33);
+            this.conc_CM_S_SOG_CG_rb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.conc_CM_S_SOG_CG_rb.Name = "conc_CM_S_SOG_CG_rb";
+            this.conc_CM_S_SOG_CG_rb.Size = new System.Drawing.Size(21, 28);
+            this.conc_CM_S_SOG_CG_rb.TabIndex = 20;
+            this.conc_CM_S_SOG_CG_rb.TabStop = true;
+            this.conc_CM_S_SOG_CG_rb.UseVisualStyleBackColor = true;
+            this.conc_CM_S_SOG_CG_rb.CheckedChanged += new System.EventHandler(this.conc_CM_rb_CheckedChanged);
+            // 
             // label53
             // 
             this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2808,29 +2860,20 @@ namespace WindowsFormsApp1
             this.label53.Text = "Concrete Grade:";
             this.label53.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label54
+            // conc_CM_S_SOG_CG_cbx
             // 
-            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.Location = new System.Drawing.Point(28, 63);
-            this.label54.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label54.Name = "label54";
-            this.label54.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label54.Size = new System.Drawing.Size(151, 31);
-            this.label54.TabIndex = 12;
-            this.label54.Text = "Gravel Type:";
-            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label55
-            // 
-            this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label55.Location = new System.Drawing.Point(28, 95);
-            this.label55.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label55.Name = "label55";
-            this.label55.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label55.Size = new System.Drawing.Size(151, 31);
-            this.label55.TabIndex = 13;
-            this.label55.Text = "Ready Mix";
-            this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.conc_CM_S_SOG_CG_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.conc_CM_S_SOG_CG_cbx.FormattingEnabled = true;
+            this.conc_CM_S_SOG_CG_cbx.Items.AddRange(new object[] {
+            "CLASS AA",
+            "CLASS A",
+            "CLASS B",
+            "CLASS C"});
+            this.conc_CM_S_SOG_CG_cbx.Location = new System.Drawing.Point(189, 33);
+            this.conc_CM_S_SOG_CG_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.conc_CM_S_SOG_CG_cbx.Name = "conc_CM_S_SOG_CG_cbx";
+            this.conc_CM_S_SOG_CG_cbx.Size = new System.Drawing.Size(152, 28);
+            this.conc_CM_S_SOG_CG_cbx.TabIndex = 22;
             // 
             // conc_CM_S_SOG_RM_rb
             // 
@@ -2847,20 +2890,29 @@ namespace WindowsFormsApp1
             this.conc_CM_S_SOG_RM_rb.UseVisualStyleBackColor = true;
             this.conc_CM_S_SOG_RM_rb.CheckedChanged += new System.EventHandler(this.conc_CM_rb_CheckedChanged);
             // 
-            // conc_CM_S_SOG_CG_cbx
+            // label55
             // 
-            this.conc_CM_S_SOG_CG_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.conc_CM_S_SOG_CG_cbx.FormattingEnabled = true;
-            this.conc_CM_S_SOG_CG_cbx.Items.AddRange(new object[] {
-            "CLASS AA",
-            "CLASS A",
-            "CLASS B",
-            "CLASS C"});
-            this.conc_CM_S_SOG_CG_cbx.Location = new System.Drawing.Point(189, 33);
-            this.conc_CM_S_SOG_CG_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.conc_CM_S_SOG_CG_cbx.Name = "conc_CM_S_SOG_CG_cbx";
-            this.conc_CM_S_SOG_CG_cbx.Size = new System.Drawing.Size(152, 28);
-            this.conc_CM_S_SOG_CG_cbx.TabIndex = 22;
+            this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(28, 95);
+            this.label55.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label55.Name = "label55";
+            this.label55.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label55.Size = new System.Drawing.Size(151, 31);
+            this.label55.TabIndex = 13;
+            this.label55.Text = "Ready Mix";
+            this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label54
+            // 
+            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Location = new System.Drawing.Point(28, 63);
+            this.label54.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label54.Name = "label54";
+            this.label54.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label54.Size = new System.Drawing.Size(151, 31);
+            this.label54.TabIndex = 12;
+            this.label54.Text = "Gravel Type:";
+            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // conc_CM_S_SOG_GT_cbx
             // 
@@ -2901,6 +2953,171 @@ namespace WindowsFormsApp1
             this.conc_CM_S_SOG_RM_cbx.Size = new System.Drawing.Size(152, 28);
             this.conc_CM_S_SOG_RM_cbx.TabIndex = 24;
             this.conc_CM_S_SOG_RM_cbx.MouseHover += new System.EventHandler(this.conc_CM_S_RM_cbx_MouseHover);
+            // 
+            // tableLayoutPanel58
+            // 
+            this.tableLayoutPanel58.ColumnCount = 3;
+            this.tableLayoutPanel58.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel58.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.37107F));
+            this.tableLayoutPanel58.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.62893F));
+            this.tableLayoutPanel58.Controls.Add(this.label149, 0, 0);
+            this.tableLayoutPanel58.Controls.Add(this.conc_CM_S_SS_CG_rb, 0, 1);
+            this.tableLayoutPanel58.Controls.Add(this.label150, 1, 1);
+            this.tableLayoutPanel58.Controls.Add(this.conc_CM_S_SS_CG_cbx, 2, 1);
+            this.tableLayoutPanel58.Controls.Add(this.conc_CM_S_SS_RM_rb, 0, 3);
+            this.tableLayoutPanel58.Controls.Add(this.label151, 1, 3);
+            this.tableLayoutPanel58.Controls.Add(this.label152, 1, 2);
+            this.tableLayoutPanel58.Controls.Add(this.conc_CM_S_SS_GT_cbx, 2, 2);
+            this.tableLayoutPanel58.Controls.Add(this.conc_CM_S_SS_RM_cbx, 2, 3);
+            this.tableLayoutPanel58.Location = new System.Drawing.Point(3, 216);
+            this.tableLayoutPanel58.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel58.Name = "tableLayoutPanel58";
+            this.tableLayoutPanel58.RowCount = 9;
+            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel58.Size = new System.Drawing.Size(351, 210);
+            this.tableLayoutPanel58.TabIndex = 4;
+            // 
+            // label149
+            // 
+            this.tableLayoutPanel58.SetColumnSpan(this.label149, 3);
+            this.label149.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.label149.Location = new System.Drawing.Point(1, 0);
+            this.label149.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label149.Name = "label149";
+            this.label149.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label149.Size = new System.Drawing.Size(281, 31);
+            this.label149.TabIndex = 25;
+            this.label149.Text = "Suspended Slab";
+            this.label149.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // conc_CM_S_SS_CG_rb
+            // 
+            this.conc_CM_S_SS_CG_rb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.conc_CM_S_SS_CG_rb.AutoSize = true;
+            this.conc_CM_S_SS_CG_rb.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.conc_CM_S_SS_CG_rb.Location = new System.Drawing.Point(3, 33);
+            this.conc_CM_S_SS_CG_rb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.conc_CM_S_SS_CG_rb.Name = "conc_CM_S_SS_CG_rb";
+            this.conc_CM_S_SS_CG_rb.Size = new System.Drawing.Size(21, 28);
+            this.conc_CM_S_SS_CG_rb.TabIndex = 20;
+            this.conc_CM_S_SS_CG_rb.TabStop = true;
+            this.conc_CM_S_SS_CG_rb.UseVisualStyleBackColor = true;
+            this.conc_CM_S_SS_CG_rb.CheckedChanged += new System.EventHandler(this.conc_CM_rb_CheckedChanged);
+            // 
+            // label150
+            // 
+            this.label150.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label150.Location = new System.Drawing.Point(28, 31);
+            this.label150.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label150.Name = "label150";
+            this.label150.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label150.Size = new System.Drawing.Size(151, 31);
+            this.label150.TabIndex = 11;
+            this.label150.Text = "Concrete Grade:";
+            this.label150.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // conc_CM_S_SS_CG_cbx
+            // 
+            this.conc_CM_S_SS_CG_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.conc_CM_S_SS_CG_cbx.FormattingEnabled = true;
+            this.conc_CM_S_SS_CG_cbx.Items.AddRange(new object[] {
+            "CLASS AA",
+            "CLASS A",
+            "CLASS B",
+            "CLASS C"});
+            this.conc_CM_S_SS_CG_cbx.Location = new System.Drawing.Point(189, 33);
+            this.conc_CM_S_SS_CG_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.conc_CM_S_SS_CG_cbx.Name = "conc_CM_S_SS_CG_cbx";
+            this.conc_CM_S_SS_CG_cbx.Size = new System.Drawing.Size(152, 28);
+            this.conc_CM_S_SS_CG_cbx.TabIndex = 22;
+            // 
+            // conc_CM_S_SS_RM_rb
+            // 
+            this.conc_CM_S_SS_RM_rb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.conc_CM_S_SS_RM_rb.AutoSize = true;
+            this.conc_CM_S_SS_RM_rb.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.conc_CM_S_SS_RM_rb.Location = new System.Drawing.Point(3, 97);
+            this.conc_CM_S_SS_RM_rb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.conc_CM_S_SS_RM_rb.Name = "conc_CM_S_SS_RM_rb";
+            this.conc_CM_S_SS_RM_rb.Size = new System.Drawing.Size(21, 28);
+            this.conc_CM_S_SS_RM_rb.TabIndex = 21;
+            this.conc_CM_S_SS_RM_rb.TabStop = true;
+            this.conc_CM_S_SS_RM_rb.UseVisualStyleBackColor = true;
+            this.conc_CM_S_SS_RM_rb.CheckedChanged += new System.EventHandler(this.conc_CM_rb_CheckedChanged);
+            // 
+            // label151
+            // 
+            this.label151.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label151.Location = new System.Drawing.Point(28, 95);
+            this.label151.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label151.Name = "label151";
+            this.label151.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label151.Size = new System.Drawing.Size(151, 31);
+            this.label151.TabIndex = 13;
+            this.label151.Text = "Ready Mix";
+            this.label151.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label152
+            // 
+            this.label152.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label152.Location = new System.Drawing.Point(28, 63);
+            this.label152.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label152.Name = "label152";
+            this.label152.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label152.Size = new System.Drawing.Size(151, 31);
+            this.label152.TabIndex = 12;
+            this.label152.Text = "Gravel Type:";
+            this.label152.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // conc_CM_S_SS_GT_cbx
+            // 
+            this.conc_CM_S_SS_GT_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.conc_CM_S_SS_GT_cbx.FormattingEnabled = true;
+            this.conc_CM_S_SS_GT_cbx.Items.AddRange(new object[] {
+            "GRAVEL G1 [m3]",
+            "GRAVEL G2 [m3]",
+            "GRAVEL G1- ½” [m3]",
+            "GRAVEL G2- ½” [m3]",
+            "GRAVEL ¾” [m3]"});
+            this.conc_CM_S_SS_GT_cbx.Location = new System.Drawing.Point(189, 65);
+            this.conc_CM_S_SS_GT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.conc_CM_S_SS_GT_cbx.Name = "conc_CM_S_SS_GT_cbx";
+            this.conc_CM_S_SS_GT_cbx.Size = new System.Drawing.Size(152, 28);
+            this.conc_CM_S_SS_GT_cbx.TabIndex = 23;
+            // 
+            // conc_CM_S_SS_RM_cbx
+            // 
+            this.conc_CM_S_SS_RM_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.conc_CM_S_SS_RM_cbx.FormattingEnabled = true;
+            this.conc_CM_S_SS_RM_cbx.Items.AddRange(new object[] {
+            "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 28 Days",
+            "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 14 Days",
+            "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 7 Days",
+            "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 3 Days",
+            "Ready Mix Concrete, 3500PSI (24.1 Mpa) @ 28 Days",
+            "Ready Mix Concrete, 3500PSI (24.1 Mpa) @ 14 Days",
+            "Ready Mix Concrete, 3500PSI (24.1 Mpa) @ 7 Days",
+            "Ready Mix Concrete, 3500PSI (24.1 Mpa) @ 3 Days",
+            "Ready Mix Concrete, 4000PSI (27.6 Mpa) @ 28 Days",
+            "Ready Mix Concrete, 4000PSI (27.6 Mpa) @ 14 Days",
+            "Ready Mix Concrete, 4500PSI (31 Mpa) @ 28 Days",
+            "Ready Mix Concrete, 5000PSI (34.5 Mpa) @ 28 Days"});
+            this.conc_CM_S_SS_RM_cbx.Location = new System.Drawing.Point(189, 97);
+            this.conc_CM_S_SS_RM_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.conc_CM_S_SS_RM_cbx.Name = "conc_CM_S_SS_RM_cbx";
+            this.conc_CM_S_SS_RM_cbx.Size = new System.Drawing.Size(152, 28);
+            this.conc_CM_S_SS_RM_cbx.TabIndex = 24;
+            this.conc_CM_S_SS_RM_cbx.MouseHover += new System.EventHandler(this.conc_CM_S_SS_RM_cbx_MouseHover);
             // 
             // tabPage13
             // 
@@ -3779,14 +3996,14 @@ namespace WindowsFormsApp1
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_W_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_W_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_W_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.rein_W_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_W_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_W_dg.Location = new System.Drawing.Point(397, 50);
@@ -3847,27 +4064,27 @@ namespace WindowsFormsApp1
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_BEH_MB_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_MB_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_MB_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.rein_BEH_MB_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_BEH_MB_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_BEH_MB_dg.Location = new System.Drawing.Point(6, 6);
             this.rein_BEH_MB_dg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_BEH_MB_dg.Name = "rein_BEH_MB_dg";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_MB_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_MB_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.rein_BEH_MB_dg.RowHeadersVisible = false;
             this.rein_BEH_MB_dg.RowHeadersWidth = 62;
             this.rein_BEH_MB_dg.RowTemplate.Height = 28;
@@ -3894,14 +4111,14 @@ namespace WindowsFormsApp1
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_BEH_ST_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_ST_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_ST_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.rein_BEH_ST_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_BEH_ST_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_BEH_ST_dg.Location = new System.Drawing.Point(6, 6);
@@ -3969,6 +4186,127 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel51.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel51.Size = new System.Drawing.Size(497, 288);
             this.tableLayoutPanel51.TabIndex = 32;
+            // 
+            // tableLayoutPanel50
+            // 
+            this.tableLayoutPanel50.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel50.ColumnCount = 2;
+            this.tableLayoutPanel50.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.91743F));
+            this.tableLayoutPanel50.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.08257F));
+            this.tableLayoutPanel50.Controls.Add(this.label111, 0, 1);
+            this.tableLayoutPanel50.Controls.Add(this.tableLayoutPanel52, 0, 7);
+            this.tableLayoutPanel50.Controls.Add(this.rein_RG_CLT_cbx, 1, 1);
+            this.tableLayoutPanel50.Controls.Add(this.label113, 0, 2);
+            this.tableLayoutPanel50.Controls.Add(this.rein_RG_BS_cbx, 1, 2);
+            this.tableLayoutPanel50.Location = new System.Drawing.Point(228, 2);
+            this.tableLayoutPanel50.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel50.Name = "tableLayoutPanel50";
+            this.tableLayoutPanel50.RowCount = 9;
+            this.tableLayoutPanel51.SetRowSpan(this.tableLayoutPanel50, 2);
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 198F));
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel50.Size = new System.Drawing.Size(266, 284);
+            this.tableLayoutPanel50.TabIndex = 34;
+            // 
+            // label111
+            // 
+            this.label111.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label111.Location = new System.Drawing.Point(1, 40);
+            this.label111.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label111.Name = "label111";
+            this.label111.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label111.Size = new System.Drawing.Size(126, 40);
+            this.label111.TabIndex = 38;
+            this.label111.Text = "Columns (Lateral Ties):";
+            this.label111.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tableLayoutPanel52
+            // 
+            this.tableLayoutPanel52.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel52.ColumnCount = 2;
+            this.tableLayoutPanel50.SetColumnSpan(this.tableLayoutPanel52, 2);
+            this.tableLayoutPanel52.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.11712F));
+            this.tableLayoutPanel52.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.88288F));
+            this.tableLayoutPanel52.Controls.Add(this.button2, 1, 0);
+            this.tableLayoutPanel52.Controls.Add(this.button5, 0, 0);
+            this.tableLayoutPanel52.Location = new System.Drawing.Point(51, 462);
+            this.tableLayoutPanel52.Margin = new System.Windows.Forms.Padding(3, 12, 3, 2);
+            this.tableLayoutPanel52.Name = "tableLayoutPanel52";
+            this.tableLayoutPanel52.RowCount = 1;
+            this.tableLayoutPanel52.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel52.Size = new System.Drawing.Size(212, 56);
+            this.tableLayoutPanel52.TabIndex = 37;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(146, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(63, 36);
+            this.button2.TabIndex = 28;
+            this.button2.Text = "Save";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.Location = new System.Drawing.Point(51, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(88, 36);
+            this.button5.TabIndex = 27;
+            this.button5.Text = "Reset";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // rein_RG_CLT_cbx
+            // 
+            this.rein_RG_CLT_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.rein_RG_CLT_cbx.FormattingEnabled = true;
+            this.rein_RG_CLT_cbx.Items.AddRange(new object[] {
+            "Grade 33",
+            "Grade 40",
+            "Grade 60"});
+            this.rein_RG_CLT_cbx.Location = new System.Drawing.Point(138, 42);
+            this.rein_RG_CLT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_RG_CLT_cbx.Name = "rein_RG_CLT_cbx";
+            this.rein_RG_CLT_cbx.Size = new System.Drawing.Size(125, 28);
+            this.rein_RG_CLT_cbx.TabIndex = 25;
+            // 
+            // label113
+            // 
+            this.label113.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label113.Location = new System.Drawing.Point(1, 80);
+            this.label113.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label113.Name = "label113";
+            this.label113.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label113.Size = new System.Drawing.Size(126, 40);
+            this.label113.TabIndex = 40;
+            this.label113.Text = "Beams (Stirrups):";
+            this.label113.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // rein_RG_BS_cbx
+            // 
+            this.rein_RG_BS_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.rein_RG_BS_cbx.FormattingEnabled = true;
+            this.rein_RG_BS_cbx.Items.AddRange(new object[] {
+            "Grade 33",
+            "Grade 40",
+            "Grade 60"});
+            this.rein_RG_BS_cbx.Location = new System.Drawing.Point(138, 82);
+            this.rein_RG_BS_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_RG_BS_cbx.Name = "rein_RG_BS_cbx";
+            this.rein_RG_BS_cbx.Size = new System.Drawing.Size(125, 28);
+            this.rein_RG_BS_cbx.TabIndex = 27;
             // 
             // tableLayoutPanel54
             // 
@@ -5778,6 +6116,7 @@ namespace WindowsFormsApp1
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.tableLayoutPanel53);
             this.tabPage8.Location = new System.Drawing.Point(4, 29);
             this.tabPage8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage8.Name = "tabPage8";
@@ -5785,6 +6124,153 @@ namespace WindowsFormsApp1
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Stairs";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel53
+            // 
+            this.tableLayoutPanel53.ColumnCount = 2;
+            this.tableLayoutPanel53.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.76781F));
+            this.tableLayoutPanel53.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.23219F));
+            this.tableLayoutPanel53.Controls.Add(this.stairs_Panel, 0, 1);
+            this.tableLayoutPanel53.Controls.Add(this.tableLayoutPanel55, 1, 2);
+            this.tableLayoutPanel53.Controls.Add(this.tableLayoutPanel59, 0, 0);
+            this.tableLayoutPanel53.Location = new System.Drawing.Point(5, 6);
+            this.tableLayoutPanel53.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel53.Name = "tableLayoutPanel53";
+            this.tableLayoutPanel53.RowCount = 3;
+            this.tableLayoutPanel53.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.872852F));
+            this.tableLayoutPanel53.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.98969F));
+            this.tableLayoutPanel53.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel53.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel53.Size = new System.Drawing.Size(758, 582);
+            this.tableLayoutPanel53.TabIndex = 6;
+            // 
+            // stairs_Panel
+            // 
+            this.stairs_Panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stairs_Panel.AutoScroll = true;
+            this.tableLayoutPanel53.SetColumnSpan(this.stairs_Panel, 2);
+            this.stairs_Panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.stairs_Panel.Location = new System.Drawing.Point(3, 42);
+            this.stairs_Panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stairs_Panel.Name = "stairs_Panel";
+            this.stairs_Panel.Size = new System.Drawing.Size(752, 479);
+            this.stairs_Panel.TabIndex = 31;
+            this.stairs_Panel.WrapContents = false;
+            // 
+            // tableLayoutPanel55
+            // 
+            this.tableLayoutPanel55.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel55.ColumnCount = 2;
+            this.tableLayoutPanel55.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.01901F));
+            this.tableLayoutPanel55.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.98099F));
+            this.tableLayoutPanel55.Controls.Add(this.stair_SaveBtn, 1, 0);
+            this.tableLayoutPanel55.Controls.Add(this.stair_ResetBtn, 0, 0);
+            this.tableLayoutPanel55.Location = new System.Drawing.Point(493, 528);
+            this.tableLayoutPanel55.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel55.Name = "tableLayoutPanel55";
+            this.tableLayoutPanel55.RowCount = 1;
+            this.tableLayoutPanel55.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel55.Size = new System.Drawing.Size(262, 52);
+            this.tableLayoutPanel55.TabIndex = 28;
+            // 
+            // stair_SaveBtn
+            // 
+            this.stair_SaveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.stair_SaveBtn.Location = new System.Drawing.Point(173, 2);
+            this.stair_SaveBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stair_SaveBtn.Name = "stair_SaveBtn";
+            this.stair_SaveBtn.Size = new System.Drawing.Size(86, 36);
+            this.stair_SaveBtn.TabIndex = 28;
+            this.stair_SaveBtn.Text = "Save";
+            this.stair_SaveBtn.UseVisualStyleBackColor = true;
+            this.stair_SaveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
+            // stair_ResetBtn
+            // 
+            this.stair_ResetBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.stair_ResetBtn.Location = new System.Drawing.Point(79, 2);
+            this.stair_ResetBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stair_ResetBtn.Name = "stair_ResetBtn";
+            this.stair_ResetBtn.Size = new System.Drawing.Size(88, 36);
+            this.stair_ResetBtn.TabIndex = 27;
+            this.stair_ResetBtn.Text = "Reset";
+            this.stair_ResetBtn.UseVisualStyleBackColor = true;
+            this.stair_ResetBtn.Click += new System.EventHandler(this.stair_ResetBtn_Click);
+            // 
+            // tableLayoutPanel59
+            // 
+            this.tableLayoutPanel59.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel59.ColumnCount = 4;
+            this.tableLayoutPanel53.SetColumnSpan(this.tableLayoutPanel59, 2);
+            this.tableLayoutPanel59.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel59.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel59.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel59.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel59.Controls.Add(this.label108, 0, 0);
+            this.tableLayoutPanel59.Controls.Add(this.stairs_Floor_cbx, 1, 0);
+            this.tableLayoutPanel59.Controls.Add(this.stairs_Stair_cbx, 3, 0);
+            this.tableLayoutPanel59.Controls.Add(this.label109, 2, 0);
+            this.tableLayoutPanel59.Location = new System.Drawing.Point(3, 4);
+            this.tableLayoutPanel59.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel59.Name = "tableLayoutPanel59";
+            this.tableLayoutPanel59.RowCount = 1;
+            this.tableLayoutPanel59.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel59.Size = new System.Drawing.Size(752, 34);
+            this.tableLayoutPanel59.TabIndex = 33;
+            // 
+            // label108
+            // 
+            this.label108.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label108.Location = new System.Drawing.Point(1, 0);
+            this.label108.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label108.Name = "label108";
+            this.label108.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label108.Size = new System.Drawing.Size(108, 31);
+            this.label108.TabIndex = 38;
+            this.label108.Text = "Floor:";
+            this.label108.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // stairs_Floor_cbx
+            // 
+            this.stairs_Floor_cbx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stairs_Floor_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stairs_Floor_cbx.FormattingEnabled = true;
+            this.stairs_Floor_cbx.Items.AddRange(new object[] {
+            "GROUND FLOOR"});
+            this.stairs_Floor_cbx.Location = new System.Drawing.Point(115, 2);
+            this.stairs_Floor_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stairs_Floor_cbx.Name = "stairs_Floor_cbx";
+            this.stairs_Floor_cbx.Size = new System.Drawing.Size(257, 28);
+            this.stairs_Floor_cbx.TabIndex = 36;
+            this.stairs_Floor_cbx.SelectedIndexChanged += new System.EventHandler(this.stairs_Floor_cbx_SelectedIndexChanged);
+            // 
+            // stairs_Stair_cbx
+            // 
+            this.stairs_Stair_cbx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stairs_Stair_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stairs_Stair_cbx.FormattingEnabled = true;
+            this.stairs_Stair_cbx.Items.AddRange(new object[] {
+            "None"});
+            this.stairs_Stair_cbx.Location = new System.Drawing.Point(490, 2);
+            this.stairs_Stair_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stairs_Stair_cbx.Name = "stairs_Stair_cbx";
+            this.stairs_Stair_cbx.Size = new System.Drawing.Size(259, 28);
+            this.stairs_Stair_cbx.TabIndex = 37;
+            this.stairs_Stair_cbx.SelectedIndexChanged += new System.EventHandler(this.stairs_Stair_cbx_SelectedIndexChanged);
+            // 
+            // label109
+            // 
+            this.label109.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label109.Location = new System.Drawing.Point(376, 0);
+            this.label109.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label109.Name = "label109";
+            this.label109.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label109.Size = new System.Drawing.Size(84, 31);
+            this.label109.TabIndex = 39;
+            this.label109.Text = "Stair:";
+            this.label109.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tabPage9
             // 
@@ -6196,329 +6682,6 @@ namespace WindowsFormsApp1
             this.toolTip1.InitialDelay = 500;
             this.toolTip1.ReshowDelay = 0;
             // 
-            // conc_CM_S_SOG_CG_rb
-            // 
-            this.conc_CM_S_SOG_CG_rb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.conc_CM_S_SOG_CG_rb.AutoSize = true;
-            this.conc_CM_S_SOG_CG_rb.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.conc_CM_S_SOG_CG_rb.Location = new System.Drawing.Point(3, 33);
-            this.conc_CM_S_SOG_CG_rb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.conc_CM_S_SOG_CG_rb.Name = "conc_CM_S_SOG_CG_rb";
-            this.conc_CM_S_SOG_CG_rb.Size = new System.Drawing.Size(21, 28);
-            this.conc_CM_S_SOG_CG_rb.TabIndex = 20;
-            this.conc_CM_S_SOG_CG_rb.TabStop = true;
-            this.conc_CM_S_SOG_CG_rb.UseVisualStyleBackColor = true;
-            this.conc_CM_S_SOG_CG_rb.CheckedChanged += new System.EventHandler(this.conc_CM_rb_CheckedChanged);
-            // 
-            // label148
-            // 
-            this.tableLayoutPanel14.SetColumnSpan(this.label148, 3);
-            this.label148.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.label148.Location = new System.Drawing.Point(1, 0);
-            this.label148.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label148.Name = "label148";
-            this.label148.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label148.Size = new System.Drawing.Size(281, 31);
-            this.label148.TabIndex = 25;
-            this.label148.Text = "Slab on Grade";
-            this.label148.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel14);
-            this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel58);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(357, 430);
-            this.flowLayoutPanel1.TabIndex = 4;
-            // 
-            // tableLayoutPanel58
-            // 
-            this.tableLayoutPanel58.ColumnCount = 3;
-            this.tableLayoutPanel58.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel58.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.37107F));
-            this.tableLayoutPanel58.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.62893F));
-            this.tableLayoutPanel58.Controls.Add(this.label149, 0, 0);
-            this.tableLayoutPanel58.Controls.Add(this.conc_CM_S_SS_CG_rb, 0, 1);
-            this.tableLayoutPanel58.Controls.Add(this.label150, 1, 1);
-            this.tableLayoutPanel58.Controls.Add(this.conc_CM_S_SS_CG_cbx, 2, 1);
-            this.tableLayoutPanel58.Controls.Add(this.conc_CM_S_SS_RM_rb, 0, 3);
-            this.tableLayoutPanel58.Controls.Add(this.label151, 1, 3);
-            this.tableLayoutPanel58.Controls.Add(this.label152, 1, 2);
-            this.tableLayoutPanel58.Controls.Add(this.conc_CM_S_SS_GT_cbx, 2, 2);
-            this.tableLayoutPanel58.Controls.Add(this.conc_CM_S_SS_RM_cbx, 2, 3);
-            this.tableLayoutPanel58.Location = new System.Drawing.Point(3, 216);
-            this.tableLayoutPanel58.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tableLayoutPanel58.Name = "tableLayoutPanel58";
-            this.tableLayoutPanel58.RowCount = 9;
-            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel58.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel58.Size = new System.Drawing.Size(351, 210);
-            this.tableLayoutPanel58.TabIndex = 4;
-            // 
-            // label149
-            // 
-            this.tableLayoutPanel58.SetColumnSpan(this.label149, 3);
-            this.label149.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.label149.Location = new System.Drawing.Point(1, 0);
-            this.label149.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label149.Name = "label149";
-            this.label149.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label149.Size = new System.Drawing.Size(281, 31);
-            this.label149.TabIndex = 25;
-            this.label149.Text = "Suspended Slab";
-            this.label149.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // conc_CM_S_SS_CG_rb
-            // 
-            this.conc_CM_S_SS_CG_rb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.conc_CM_S_SS_CG_rb.AutoSize = true;
-            this.conc_CM_S_SS_CG_rb.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.conc_CM_S_SS_CG_rb.Location = new System.Drawing.Point(3, 33);
-            this.conc_CM_S_SS_CG_rb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.conc_CM_S_SS_CG_rb.Name = "conc_CM_S_SS_CG_rb";
-            this.conc_CM_S_SS_CG_rb.Size = new System.Drawing.Size(21, 28);
-            this.conc_CM_S_SS_CG_rb.TabIndex = 20;
-            this.conc_CM_S_SS_CG_rb.TabStop = true;
-            this.conc_CM_S_SS_CG_rb.UseVisualStyleBackColor = true;
-            this.conc_CM_S_SS_CG_rb.CheckedChanged += new System.EventHandler(this.conc_CM_rb_CheckedChanged);
-            // 
-            // label150
-            // 
-            this.label150.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label150.Location = new System.Drawing.Point(28, 31);
-            this.label150.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label150.Name = "label150";
-            this.label150.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label150.Size = new System.Drawing.Size(151, 31);
-            this.label150.TabIndex = 11;
-            this.label150.Text = "Concrete Grade:";
-            this.label150.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // conc_CM_S_SS_CG_cbx
-            // 
-            this.conc_CM_S_SS_CG_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.conc_CM_S_SS_CG_cbx.FormattingEnabled = true;
-            this.conc_CM_S_SS_CG_cbx.Items.AddRange(new object[] {
-            "CLASS AA",
-            "CLASS A",
-            "CLASS B",
-            "CLASS C"});
-            this.conc_CM_S_SS_CG_cbx.Location = new System.Drawing.Point(189, 33);
-            this.conc_CM_S_SS_CG_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.conc_CM_S_SS_CG_cbx.Name = "conc_CM_S_SS_CG_cbx";
-            this.conc_CM_S_SS_CG_cbx.Size = new System.Drawing.Size(152, 28);
-            this.conc_CM_S_SS_CG_cbx.TabIndex = 22;
-            // 
-            // conc_CM_S_SS_RM_rb
-            // 
-            this.conc_CM_S_SS_RM_rb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.conc_CM_S_SS_RM_rb.AutoSize = true;
-            this.conc_CM_S_SS_RM_rb.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.conc_CM_S_SS_RM_rb.Location = new System.Drawing.Point(3, 97);
-            this.conc_CM_S_SS_RM_rb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.conc_CM_S_SS_RM_rb.Name = "conc_CM_S_SS_RM_rb";
-            this.conc_CM_S_SS_RM_rb.Size = new System.Drawing.Size(21, 28);
-            this.conc_CM_S_SS_RM_rb.TabIndex = 21;
-            this.conc_CM_S_SS_RM_rb.TabStop = true;
-            this.conc_CM_S_SS_RM_rb.UseVisualStyleBackColor = true;
-            this.conc_CM_S_SS_RM_rb.CheckedChanged += new System.EventHandler(this.conc_CM_rb_CheckedChanged);
-            // 
-            // label151
-            // 
-            this.label151.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label151.Location = new System.Drawing.Point(28, 95);
-            this.label151.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label151.Name = "label151";
-            this.label151.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label151.Size = new System.Drawing.Size(151, 31);
-            this.label151.TabIndex = 13;
-            this.label151.Text = "Ready Mix";
-            this.label151.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label152
-            // 
-            this.label152.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label152.Location = new System.Drawing.Point(28, 63);
-            this.label152.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label152.Name = "label152";
-            this.label152.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label152.Size = new System.Drawing.Size(151, 31);
-            this.label152.TabIndex = 12;
-            this.label152.Text = "Gravel Type:";
-            this.label152.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // conc_CM_S_SS_GT_cbx
-            // 
-            this.conc_CM_S_SS_GT_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.conc_CM_S_SS_GT_cbx.FormattingEnabled = true;
-            this.conc_CM_S_SS_GT_cbx.Items.AddRange(new object[] {
-            "GRAVEL G1 [m3]",
-            "GRAVEL G2 [m3]",
-            "GRAVEL G1- ½” [m3]",
-            "GRAVEL G2- ½” [m3]",
-            "GRAVEL ¾” [m3]"});
-            this.conc_CM_S_SS_GT_cbx.Location = new System.Drawing.Point(189, 65);
-            this.conc_CM_S_SS_GT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.conc_CM_S_SS_GT_cbx.Name = "conc_CM_S_SS_GT_cbx";
-            this.conc_CM_S_SS_GT_cbx.Size = new System.Drawing.Size(152, 28);
-            this.conc_CM_S_SS_GT_cbx.TabIndex = 23;
-            // 
-            // conc_CM_S_SS_RM_cbx
-            // 
-            this.conc_CM_S_SS_RM_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.conc_CM_S_SS_RM_cbx.FormattingEnabled = true;
-            this.conc_CM_S_SS_RM_cbx.Items.AddRange(new object[] {
-            "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 28 Days",
-            "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 14 Days",
-            "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 7 Days",
-            "Ready Mix Concrete, 3000PSI (20.7 Mpa) @ 3 Days",
-            "Ready Mix Concrete, 3500PSI (24.1 Mpa) @ 28 Days",
-            "Ready Mix Concrete, 3500PSI (24.1 Mpa) @ 14 Days",
-            "Ready Mix Concrete, 3500PSI (24.1 Mpa) @ 7 Days",
-            "Ready Mix Concrete, 3500PSI (24.1 Mpa) @ 3 Days",
-            "Ready Mix Concrete, 4000PSI (27.6 Mpa) @ 28 Days",
-            "Ready Mix Concrete, 4000PSI (27.6 Mpa) @ 14 Days",
-            "Ready Mix Concrete, 4500PSI (31 Mpa) @ 28 Days",
-            "Ready Mix Concrete, 5000PSI (34.5 Mpa) @ 28 Days"});
-            this.conc_CM_S_SS_RM_cbx.Location = new System.Drawing.Point(189, 97);
-            this.conc_CM_S_SS_RM_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.conc_CM_S_SS_RM_cbx.Name = "conc_CM_S_SS_RM_cbx";
-            this.conc_CM_S_SS_RM_cbx.Size = new System.Drawing.Size(152, 28);
-            this.conc_CM_S_SS_RM_cbx.TabIndex = 24;
-            // 
-            // tableLayoutPanel50
-            // 
-            this.tableLayoutPanel50.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel50.ColumnCount = 2;
-            this.tableLayoutPanel50.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.91743F));
-            this.tableLayoutPanel50.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.08257F));
-            this.tableLayoutPanel50.Controls.Add(this.label111, 0, 1);
-            this.tableLayoutPanel50.Controls.Add(this.tableLayoutPanel52, 0, 7);
-            this.tableLayoutPanel50.Controls.Add(this.rein_RG_CLT_cbx, 1, 1);
-            this.tableLayoutPanel50.Controls.Add(this.label113, 0, 2);
-            this.tableLayoutPanel50.Controls.Add(this.rein_RG_BS_cbx, 1, 2);
-            this.tableLayoutPanel50.Location = new System.Drawing.Point(228, 2);
-            this.tableLayoutPanel50.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tableLayoutPanel50.Name = "tableLayoutPanel50";
-            this.tableLayoutPanel50.RowCount = 9;
-            this.tableLayoutPanel51.SetRowSpan(this.tableLayoutPanel50, 2);
-            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 198F));
-            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
-            this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel50.Size = new System.Drawing.Size(266, 284);
-            this.tableLayoutPanel50.TabIndex = 34;
-            // 
-            // label111
-            // 
-            this.label111.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label111.Location = new System.Drawing.Point(1, 40);
-            this.label111.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label111.Name = "label111";
-            this.label111.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label111.Size = new System.Drawing.Size(126, 40);
-            this.label111.TabIndex = 38;
-            this.label111.Text = "Columns (Lateral Ties):";
-            this.label111.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tableLayoutPanel52
-            // 
-            this.tableLayoutPanel52.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel52.ColumnCount = 2;
-            this.tableLayoutPanel50.SetColumnSpan(this.tableLayoutPanel52, 2);
-            this.tableLayoutPanel52.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.11712F));
-            this.tableLayoutPanel52.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.88288F));
-            this.tableLayoutPanel52.Controls.Add(this.button2, 1, 0);
-            this.tableLayoutPanel52.Controls.Add(this.button5, 0, 0);
-            this.tableLayoutPanel52.Location = new System.Drawing.Point(51, 462);
-            this.tableLayoutPanel52.Margin = new System.Windows.Forms.Padding(3, 12, 3, 2);
-            this.tableLayoutPanel52.Name = "tableLayoutPanel52";
-            this.tableLayoutPanel52.RowCount = 1;
-            this.tableLayoutPanel52.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel52.Size = new System.Drawing.Size(212, 56);
-            this.tableLayoutPanel52.TabIndex = 37;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(146, 2);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(63, 36);
-            this.button2.TabIndex = 28;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(51, 2);
-            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(88, 36);
-            this.button5.TabIndex = 27;
-            this.button5.Text = "Reset";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // rein_RG_CLT_cbx
-            // 
-            this.rein_RG_CLT_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.rein_RG_CLT_cbx.FormattingEnabled = true;
-            this.rein_RG_CLT_cbx.Items.AddRange(new object[] {
-            "Grade 33",
-            "Grade 40",
-            "Grade 60"});
-            this.rein_RG_CLT_cbx.Location = new System.Drawing.Point(138, 42);
-            this.rein_RG_CLT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_RG_CLT_cbx.Name = "rein_RG_CLT_cbx";
-            this.rein_RG_CLT_cbx.Size = new System.Drawing.Size(125, 28);
-            this.rein_RG_CLT_cbx.TabIndex = 25;
-            // 
-            // label113
-            // 
-            this.label113.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label113.Location = new System.Drawing.Point(1, 80);
-            this.label113.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label113.Name = "label113";
-            this.label113.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label113.Size = new System.Drawing.Size(126, 40);
-            this.label113.TabIndex = 40;
-            this.label113.Text = "Beams (Stirrups):";
-            this.label113.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // rein_RG_BS_cbx
-            // 
-            this.rein_RG_BS_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.rein_RG_BS_cbx.FormattingEnabled = true;
-            this.rein_RG_BS_cbx.Items.AddRange(new object[] {
-            "Grade 33",
-            "Grade 40",
-            "Grade 60"});
-            this.rein_RG_BS_cbx.Location = new System.Drawing.Point(138, 82);
-            this.rein_RG_BS_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_RG_BS_cbx.Name = "rein_RG_BS_cbx";
-            this.rein_RG_BS_cbx.Size = new System.Drawing.Size(125, 28);
-            this.rein_RG_BS_cbx.TabIndex = 27;
-            // 
             // ParametersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -6580,8 +6743,11 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel13.ResumeLayout(false);
             this.tableLayoutPanel13.PerformLayout();
             this.tabPage12.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel14.PerformLayout();
+            this.tableLayoutPanel58.ResumeLayout(false);
+            this.tableLayoutPanel58.PerformLayout();
             this.tabPage13.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tabPage14.ResumeLayout(false);
@@ -6609,6 +6775,8 @@ namespace WindowsFormsApp1
             ((System.ComponentModel.ISupportInitialize)(this.rein_BEH_ST_dg)).EndInit();
             this.tableLayoutPanel49.ResumeLayout(false);
             this.tableLayoutPanel51.ResumeLayout(false);
+            this.tableLayoutPanel50.ResumeLayout(false);
+            this.tableLayoutPanel52.ResumeLayout(false);
             this.tableLayoutPanel54.ResumeLayout(false);
             this.tableLayoutPanel56.ResumeLayout(false);
             this.tableLayoutPanel57.ResumeLayout(false);
@@ -6628,6 +6796,10 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel40.ResumeLayout(false);
             this.tableLayoutPanel42.ResumeLayout(false);
             this.tableLayoutPanel41.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
+            this.tableLayoutPanel53.ResumeLayout(false);
+            this.tableLayoutPanel55.ResumeLayout(false);
+            this.tableLayoutPanel59.ResumeLayout(false);
             this.tabPage9.ResumeLayout(false);
             this.tableLayoutPanel17.ResumeLayout(false);
             this.tableLayoutPanel20.ResumeLayout(false);
@@ -6639,11 +6811,6 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel22.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel58.ResumeLayout(false);
-            this.tableLayoutPanel58.PerformLayout();
-            this.tableLayoutPanel50.ResumeLayout(false);
-            this.tableLayoutPanel52.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -7066,5 +7233,15 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ComboBox rein_RG_CLT_cbx;
         private System.Windows.Forms.Label label113;
         private System.Windows.Forms.ComboBox rein_RG_BS_cbx;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel53;
+        private System.Windows.Forms.FlowLayoutPanel stairs_Panel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel55;
+        private System.Windows.Forms.Button stair_SaveBtn;
+        private System.Windows.Forms.Button stair_ResetBtn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel59;
+        private System.Windows.Forms.Label label108;
+        private System.Windows.Forms.ComboBox stairs_Floor_cbx;
+        private System.Windows.Forms.ComboBox stairs_Stair_cbx;
+        private System.Windows.Forms.Label label109;
     }
 }

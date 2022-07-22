@@ -8,16 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace KnowEst
 {
     public partial class ManPowerUserControl : UserControl
     {
         ParametersForm parametersForm;
+        public bool checkList;
 
         public ManPowerUserControl(ParametersForm parametersForm)
         {
             InitializeComponent();
             this.parametersForm = parametersForm;
+            checkList = true;
         }
 
         public string set_mpUC_cbx

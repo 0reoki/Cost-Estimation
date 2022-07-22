@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp1
+namespace KnowEst
 {
     partial class CostEstimationForm
     {
@@ -30,8 +30,8 @@ namespace WindowsFormsApp1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -2004,12 +2004,14 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.view_ConfigureBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.view_10_Panel = new System.Windows.Forms.FlowLayoutPanel();
+            this.view_TV3 = new System.Windows.Forms.TreeView();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel408 = new System.Windows.Forms.TableLayoutPanel();
             this.summ_BOQ_dg = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel409 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel412 = new System.Windows.Forms.TableLayoutPanel();
+            this.summ_Export_btn = new System.Windows.Forms.Button();
             this.tableLayoutPanel410 = new System.Windows.Forms.TableLayoutPanel();
             this.summ_P_bx = new System.Windows.Forms.TextBox();
             this.summ_S_bx = new System.Windows.Forms.TextBox();
@@ -2481,6 +2483,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel408.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.summ_BOQ_dg)).BeginInit();
             this.tableLayoutPanel409.SuspendLayout();
+            this.tableLayoutPanel412.SuspendLayout();
             this.tableLayoutPanel410.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tableLayoutPanel411.SuspendLayout();
@@ -32791,7 +32794,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel8.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel8.ColumnCount = 1;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Controls.Add(this.view_10_Panel, 0, 1);
+            this.tableLayoutPanel8.Controls.Add(this.view_TV3, 0, 1);
             this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel9, 0, 0);
             this.tableLayoutPanel8.Location = new System.Drawing.Point(815, 2);
             this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -32803,18 +32806,15 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel8.Size = new System.Drawing.Size(403, 613);
             this.tableLayoutPanel8.TabIndex = 10;
             // 
-            // view_10_Panel
+            // view_TV3
             // 
-            this.view_10_Panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.view_TV3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.view_10_Panel.AutoScroll = true;
-            this.view_10_Panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.view_10_Panel.Location = new System.Drawing.Point(4, 75);
-            this.view_10_Panel.Name = "view_10_Panel";
-            this.view_10_Panel.Size = new System.Drawing.Size(395, 534);
-            this.view_10_Panel.TabIndex = 33;
-            this.view_10_Panel.WrapContents = false;
+            this.view_TV3.Location = new System.Drawing.Point(4, 75);
+            this.view_TV3.Name = "view_TV3";
+            this.view_TV3.Size = new System.Drawing.Size(395, 534);
+            this.view_TV3.TabIndex = 12;
             // 
             // tableLayoutPanel9
             // 
@@ -32866,27 +32866,28 @@ namespace WindowsFormsApp1
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.summ_BOQ_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.summ_BOQ_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.summ_BOQ_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.summ_BOQ_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.summ_BOQ_dg.Cursor = System.Windows.Forms.Cursors.Default;
             this.summ_BOQ_dg.GridColor = System.Drawing.SystemColors.Control;
             this.summ_BOQ_dg.Location = new System.Drawing.Point(4, 218);
             this.summ_BOQ_dg.Name = "summ_BOQ_dg";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.summ_BOQ_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.summ_BOQ_dg.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.summ_BOQ_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.summ_BOQ_dg.RowHeadersVisible = false;
             this.summ_BOQ_dg.RowHeadersWidth = 62;
             this.summ_BOQ_dg.RowTemplate.Height = 28;
@@ -32898,6 +32899,7 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel409.ColumnCount = 2;
             this.tableLayoutPanel409.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel409.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel409.Controls.Add(this.tableLayoutPanel412, 0, 0);
             this.tableLayoutPanel409.Controls.Add(this.tableLayoutPanel410, 0, 0);
             this.tableLayoutPanel409.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel409.Location = new System.Drawing.Point(4, 4);
@@ -32906,6 +32908,36 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel409.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel409.Size = new System.Drawing.Size(1213, 207);
             this.tableLayoutPanel409.TabIndex = 10;
+            // 
+            // tableLayoutPanel412
+            // 
+            this.tableLayoutPanel412.ColumnCount = 2;
+            this.tableLayoutPanel412.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel412.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel412.Controls.Add(this.summ_Export_btn, 1, 1);
+            this.tableLayoutPanel412.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel412.Location = new System.Drawing.Point(730, 3);
+            this.tableLayoutPanel412.Name = "tableLayoutPanel412";
+            this.tableLayoutPanel412.RowCount = 2;
+            this.tableLayoutPanel412.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 68.65672F));
+            this.tableLayoutPanel412.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.34328F));
+            this.tableLayoutPanel412.Size = new System.Drawing.Size(480, 201);
+            this.tableLayoutPanel412.TabIndex = 25;
+            // 
+            // summ_Export_btn
+            // 
+            this.summ_Export_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.summ_Export_btn.AutoSize = true;
+            this.summ_Export_btn.Location = new System.Drawing.Point(250, 148);
+            this.summ_Export_btn.Margin = new System.Windows.Forms.Padding(10);
+            this.summ_Export_btn.Name = "summ_Export_btn";
+            this.summ_Export_btn.Size = new System.Drawing.Size(220, 43);
+            this.summ_Export_btn.TabIndex = 11;
+            this.summ_Export_btn.Text = "Export to Excel File";
+            this.summ_Export_btn.UseVisualStyleBackColor = true;
+            this.summ_Export_btn.Click += new System.EventHandler(this.summ_Export_btn_Click);
             // 
             // tableLayoutPanel410
             // 
@@ -33190,7 +33222,7 @@ namespace WindowsFormsApp1
             this.MinimumSize = new System.Drawing.Size(640, 320);
             this.Name = "CostEstimationForm";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Text = "Building Cost Estimation Application";
+            this.Text = "Know Estimation";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CostEstimationForm_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -34011,6 +34043,8 @@ namespace WindowsFormsApp1
             this.tableLayoutPanel408.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.summ_BOQ_dg)).EndInit();
             this.tableLayoutPanel409.ResumeLayout(false);
+            this.tableLayoutPanel412.ResumeLayout(false);
+            this.tableLayoutPanel412.PerformLayout();
             this.tableLayoutPanel410.ResumeLayout(false);
             this.tableLayoutPanel410.PerformLayout();
             this.tabPage5.ResumeLayout(false);
@@ -36019,7 +36053,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label1133;
         private System.Windows.Forms.Label label1135;
         private System.Windows.Forms.DataGridView summ_BOQ_dg;
-        private System.Windows.Forms.FlowLayoutPanel view_10_Panel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel411;
         private System.Windows.Forms.Panel panel1;
         private Microsoft.Web.WebView2.WinForms.WebView2 help_webView;
@@ -36027,6 +36060,9 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.TreeView help_treeView;
         private System.Windows.Forms.TabPage tab27;
         private System.Windows.Forms.FlowLayoutPanel price_CustomItems_Panel;
+        private System.Windows.Forms.TreeView view_TV3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel412;
+        private System.Windows.Forms.Button summ_Export_btn;
     }
 }
 

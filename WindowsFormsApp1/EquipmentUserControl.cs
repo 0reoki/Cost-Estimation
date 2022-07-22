@@ -8,16 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace KnowEst
 {
     public partial class EquipmentUserControl : UserControl
     {
         ParametersForm parametersForm;
+        public bool checkList;
 
         public EquipmentUserControl(ParametersForm parametersForm)
         {
             InitializeComponent();
             this.parametersForm = parametersForm;
+            checkList = true;
         }
 
         public string set_eqUC_cbx
