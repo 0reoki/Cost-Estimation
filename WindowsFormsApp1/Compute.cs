@@ -120,7 +120,7 @@ namespace KnowEst
                 cEF.structuralMembers.earthworkSolutions[footingCount + wallFootingCount].Add(2);
                 cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(2);
             }
-            footingWorks(cEF, footingCount, wallFootingCount, isFooting);
+            footingWorks(cEF, footingCount, wallFootingCount, isFooting);            
         }
 
         public void ModifyFootingWorks(CostEstimationForm cEF, int structMemCount, int count, bool isFooting)
@@ -245,9 +245,9 @@ namespace KnowEst
                     {
                         cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                             ((length * width * thickness) / 1000000000) * quantity);
-                    }
-                    //Computation -- Formworks ** 
-                    cEF.structuralMembers.per_col[footingCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;          
+                    }                    
+                    //Computation -- Formworks **                                     
+                    cEF.structuralMembers.per_col[footingCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;                    
                 }
                 else //Combined Footing
                 {
@@ -366,7 +366,7 @@ namespace KnowEst
                             ((length * width * thickness) / 1000000000) * quantity);
                     }
                     //Computation -- Formworks **                    
-                    cEF.structuralMembers.per_col[footingCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity; 
+                    cEF.structuralMembers.per_col[footingCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;                    
                 }
                 
             }
@@ -485,7 +485,7 @@ namespace KnowEst
                     {
                         cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                             ((length * wfBase * thickness) / 1000000000) * quantity);
-                    }
+                    }                                        
                 }
                 else //Trapezoidal
                 {
@@ -520,9 +520,9 @@ namespace KnowEst
                     trQuantity = double.Parse(cEF.structuralMembers.footingsWall[0][wallFootingCount][13], System.Globalization.CultureInfo.InvariantCulture);
                     trSpacing = double.Parse(cEF.structuralMembers.footingsWall[0][wallFootingCount][14], System.Globalization.CultureInfo.InvariantCulture);
                     trHookType = double.Parse(cEF.structuralMembers.footingsWall[0][wallFootingCount][15], System.Globalization.CultureInfo.InvariantCulture);
-
+                    
+                    
                     //Computation -- Earth Works
-
                     //Excavation
                     cEF.structuralMembers.earthworkSolutions[footingCount + wallFootingCount].Add(
                         (lengthF2F + formworkAllowance * 2) * (wfBaseT + formworkAllowance * 2) * (depth + gravelBedding) * quantity);
@@ -654,7 +654,7 @@ namespace KnowEst
             passer.Add(ply_wal);
             cEF.structuralMembers.footings_comps = passer;
             refreshSolutions(cEF);
-        }
+        }        
         //Modify
         public void modifyFootingWorks(CostEstimationForm cEF, int structMemCount, int count, bool isFooting)
         {
@@ -1029,7 +1029,7 @@ namespace KnowEst
                     {
                         cEF.structuralMembers.concreteWorkSolutionsF[i][1] =
                             ((length * wfBase * thickness) / 1000000000) * quantity;
-                    }
+                    }                    
                 }
                 else //Trapezoidal
                 {
@@ -1205,7 +1205,6 @@ namespace KnowEst
             cEF.structuralMembers.footings_comps = passer;
             refreshSolutions(cEF);
         }
-                    
         public void recomputeFW_Footings(CostEstimationForm cEF)
         {
             try
@@ -1462,6 +1461,38 @@ namespace KnowEst
                     cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
                         ((baseC * depth * height) / 1000000000) * quantity);
                 }
+            }
+            //Computation -- Formwork
+            double column_area = 0;
+            double col_bdftH = 0;
+            double col_bdftV = 0;
+            double col_bdftD = 0;
+            List<double> holder = new List<double>();
+            List<double> wood_holder = new List<double>();
+            List<double> scaf_holder = new List<double>();
+            List<double> scaf_holder2 = new List<double>();
+            List<double> scaf_holder3 = new List<double>();
+            List<double> holder_post = new List<double>();
+            List<string> scaf_dim = dimensionFilterer(cEF.parameters.form_SM_B_VS);//0 2 4
+            List<string> scaf_dimHORI = dimensionFilterer(cEF.parameters.form_SM_B_HB);//0 2 4
+            List<string> scaf_dimDIA = dimensionFilterer(cEF.parameters.form_SM_B_DB);//0 2 4 CHANGE THIS LATER WHEN UI CHANGE
+            List<string> post_holder = dimensionFilterer(cEF.parameters.form_SM_B_FL);//0 2 4                
+            double[] vertical_col = { 4.70, 7.00, 9.35 };
+            double[] horizontal_col = { 21.00, 31.67, 42.25 };
+            double[] dia_col = { 11.70, 17.50, 23.35 };
+            double[] post_perPLY = { 20.33, 30.50 };
+            int scaf_indexer;
+            int scaf_HorINDEXER;
+            int scaf_diaINDEXER;
+            int dimIndexer;
+
+            if (post_holder[2] == "2")//POST INDEXER
+            {
+                dimIndexer = 0;
+            }
+            else
+            {
+                dimIndexer = 1;
             }
             //Computation -- Formwork
             double column_area = 0;
@@ -2024,7 +2055,7 @@ namespace KnowEst
             //Init variables from StructMem
             foreach (List<string> beamRow in cEF.structuralMembers.beamRow[floorCount][beamCount])
             {
-                foreach(List<string> schedule in cEF.structuralMembers.beamSchedule[floorCount])
+                foreach (List<string> schedule in cEF.structuralMembers.beamSchedule[floorCount])
                 {
                     if (beamType.Equals(schedule[0]))
                     {
@@ -2093,7 +2124,6 @@ namespace KnowEst
                                 cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][0] +=
                                     ((baseB * depth * length) / 1000000000) * quantity;
                             }
-
                         }
                     }
                 }
@@ -3340,11 +3370,11 @@ namespace KnowEst
                     {
                         double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[0][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[0][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[0][2] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
@@ -3352,11 +3382,11 @@ namespace KnowEst
                     {
                         double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[1][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[1][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[1][2] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
@@ -3364,11 +3394,11 @@ namespace KnowEst
                     {
                         double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[2][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[2][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[2][2] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
@@ -3376,11 +3406,11 @@ namespace KnowEst
                     {
                         double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[3][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[3][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[3][2] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
@@ -3433,11 +3463,11 @@ namespace KnowEst
                     {
                         double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[0][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[0][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[0][2] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
@@ -3445,11 +3475,11 @@ namespace KnowEst
                     {
                         double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[1][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[1][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[1][2] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
@@ -3457,11 +3487,11 @@ namespace KnowEst
                     {
                         double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[2][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[2][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[2][2] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
@@ -3469,11 +3499,11 @@ namespace KnowEst
                     {
                         double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[3][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[3][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[3][2] * quantity;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
@@ -3541,7 +3571,7 @@ namespace KnowEst
             stairsWorks(cEF, floorCount, stairsCount);
         }
 
-        public void stairsWorks(CostEstimationForm cEF, int floorCount, int stairsCount)
+        public async void stairsWorks(CostEstimationForm cEF, int floorCount, int stairsCount)
         {
             if (cEF.structuralMembers.stairs[floorCount][stairsCount][0].Equals("Straight Stairs"))
             {
@@ -5008,7 +5038,7 @@ namespace KnowEst
             else
             {
                 print("same floor");
-            }
+            }            
             roofWorks(cEF, floorCount, roofCount);
         }
 
@@ -5029,7 +5059,7 @@ namespace KnowEst
                     double totB = rafB + purB;
                     outputs.Add(1);//rafter and purlians
                     outputs.Add(1);//wood
-                    outputs.Add(totB);//total
+                    outputs.Add(totB);//total                    
                 }
                 else if (cEF.structuralMembers.roof[floorCount][roofCount][1] == "Steel - Tubular")
                 {
@@ -5138,7 +5168,7 @@ namespace KnowEst
                 outputs.Add(2);
                 if (cEF.structuralMembers.roof[floorCount][roofCount].Contains("Corrugated G.I Sheet"))
                 {
-                outputs.Add(rounder(corrSheets));
+                    outputs.Add(rounder(corrSheets));
                 }
                 else
                 {
@@ -5185,7 +5215,7 @@ namespace KnowEst
                     double totB = rafB + purB;
                     outputs.Add(1);//rafter and purlians
                     outputs.Add(1);//wood
-                    outputs.Add(totB);//total
+                    outputs.Add(totB);//total                   
                 }
                 else if (cEF.structuralMembers.roof[floorCount][index][1] == "Steel - Tubular")
                 {
@@ -5246,8 +5276,8 @@ namespace KnowEst
                 double umbNails = 0;
                 double plain_sheets = 0;
                 List<double> materials = new List<double>();
-                // corr - ginail - girivet - giwash - leadwash - umbnails - strap               
-                corrSheets = rounder(double.Parse(cEF.structuralMembers.roof[floorCount][index][1]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][2])) * 2;
+                // corr - ginail - girivet - giwash - leadwash - umbnails - strap                             
+                corrSheets = rounder(double.Parse(cEF.structuralMembers.roof[floorCount][index][1]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][2])) * 2;                
                 if (cEF.structuralMembers.roof[floorCount][index].Contains("G.I Roof Nails"))
                 {
                     foreach (string str in cEF.structuralMembers.roofHRS[floorCount][index])
@@ -5294,7 +5324,7 @@ namespace KnowEst
                 outputs.Add(2);
                 if (cEF.structuralMembers.roof[floorCount][index].Contains("Corrugated G.I Sheet"))
                 {
-                outputs.Add(rounder(corrSheets));
+                    outputs.Add(rounder(corrSheets));
                 }
                 else
                 {
@@ -5317,21 +5347,7 @@ namespace KnowEst
                 outputs.Add(3);
                 outputs.Add(gutter + flashing + ridge + valley + hipped);
             }
-            cEF.structuralMembers.roofSolutions[floorCount][index]= outputs;
-            int x = 1;
-            foreach (var c in cEF.structuralMembers.roofSolutions)
-            {
-                print("FLOOR: " + x);
-                foreach (var k in c)
-                {
-                    foreach (var o in k)
-                    {
-                        print(o + "");
-                    }
-                    print("--other roof same floor--");
-                }
-                x++;
-            }
+            cEF.structuralMembers.roofSolutions[floorCount][index]= outputs;            
         }
         //Roof Computation Functions -- END
 
@@ -5797,8 +5813,8 @@ namespace KnowEst
 
 
         //FormworksWORK -- END
-       
-        
+
+
 
         //Helper functions --- START
         public void print(string str)

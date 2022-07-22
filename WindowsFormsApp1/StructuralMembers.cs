@@ -65,13 +65,54 @@ namespace KnowEst
         //Solution Roof        
         public List<List<List<double>>> roofSolutions = new List<List<List<double>>>();
 
+        //Solution Formworks
+        //footings
+        public List<double> per_col = new List<double>();
+        public List<double> per_wal = new List<double>();
+        public List<double> footings_comps = new List<double>();// formworkFC - frameworkFC - formworkWF [FOOTINGS]
+        //columns
+        public List<double> col_area = new List<double>();
+        public List<double> col_woods = new List<double>();
+        public List<double> col_post = new List<double>();
+        public List<double> col_scafV = new List<double>();
+        public List<double> col_scafH = new List<double>();
+        public List<double> col_scafD = new List<double>();
+        //beams
+        public List<double> beams_comps = new List<double>();//tieForm - tieFrame  --
+        public List<double> beams_tiearea = new List<double>();//tie area
+        public List<double> beams_gradarea = new List<double>();//beam area
+        public List<double> beams_grade = new List<double>();//grade form
+        public List<double> beams_gradeFrame = new List<double>();//grade frame
+        public List<double> beams_vertical = new List<double>();//grade vertical
+        public List<double> beams_horizontal = new List<double>();//grade horizontal
+        public List<double> beams_RB = new List<double>();//roof form
+        public List<double> beams_RBarea = new List<double>();//roof area
+        public List<double> beams_RBframe = new List<double>();//roof frame
+        public List<double> beams_RBV = new List<double>();//roof vertical
+        public List<double> beams_RBH = new List<double>();//roof horizontal
+        //slab
+        public List<double> slab_area = new List<double>();
+        public List<double> slab_form = new List<double>();
+        public List<double> slab_scaf = new List<double>();
+        //stairs
+        public List<double> UstairsFORM= new List<double>();
+        public List<double> UstairsFRAME = new List<double>();
+        public List<double> UstairsSCAF = new List<double>();
+        public List<double> LstairsFORM = new List<double>();
+        public List<double> LstairsFRAME = new List<double>();
+        public List<double> LstairsSCAF = new List<double>();
+        public List<double> SstairsFORM = new List<double>();
+        public List<double> SstairsFRAME = new List<double>();
+        public List<double> SstairsSCAF = new List<double>();
+        public List<double> UAREA = new List<double>();
+        public List<double> LAREA = new List<double>();
+        public List<double> SAREA = new List<double>();
+
         //Constant variables
         //Cement
         //Sand
         //Gravel
         public List<List<double>> concreteProportion = new List<List<double>>();
-
-        //Roof Solution
 
         public StructuralMembers(CostEstimationForm cEF)
         {
@@ -152,7 +193,13 @@ namespace KnowEst
             //Masonry function call            
             cEF.masonrysSolutionP1 = cEF.compute.computeMasonry(cEF, cEF.parameters.mason_exteriorWall, cEF.parameters.mason_exteriorWindow, cEF.parameters.mason_exteriorDoor, cEF.parameters.mason_interiorWall, cEF.parameters.mason_interiorWindow, cEF.parameters.mason_interiorDoor, cEF.parameters.mason_CHB_EW, cEF.parameters.mason_CHB_IW);
             cEF.masonrysSolutionP2 = cEF.compute.computeConcreteWall_mortar(cEF, cEF.parameters.conc_CM_W_MEW_CM, cEF.parameters.conc_CM_W_MIW_CM, cEF.parameters.conc_CM_W_P_CM, cEF.parameters.conc_CM_W_P_PT);
-            cEF.masonrysSolutionP3 = cEF.compute.computeCHB_reinforcement(cEF.masonrysSolutionP1[3], cEF.masonrysSolutionP1[8], cEF.parameters.mason_RTW_VS, cEF.parameters.mason_RTW_HSL, cEF.parameters.mason_RTW_RG, cEF.parameters.mason_RTW_BD, cEF.parameters.mason_RTW_RL, cEF.parameters.mason_RTW_LTW);            
+            cEF.masonrysSolutionP3 = cEF.compute.computeCHB_reinforcement(cEF.masonrysSolutionP1[3], cEF.masonrysSolutionP1[8], cEF.parameters.mason_RTW_VS, cEF.parameters.mason_RTW_HSL, cEF.parameters.mason_RTW_RG, cEF.parameters.mason_RTW_BD, cEF.parameters.mason_RTW_RL, cEF.parameters.mason_RTW_LTW);
+            cEF.compute.recomputeFW_Footings(cEF);
+            cEF.compute.recomputeFW_Column(cEF);
+            cEF.compute.recomputeFW_Beam(cEF);
+            cEF.compute.recomputeFW_slabs(cEF);
+            cEF.compute.recomputeFW_stairs(cEF);
+
         }
     }
 }
