@@ -121,7 +121,7 @@ namespace WindowsFormsApp1
                 cEF.structuralMembers.earthworkSolutions[footingCount + wallFootingCount].Add(2);
                 cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(2);
             }
-            footingWorks(cEF, footingCount, wallFootingCount, isFooting);
+            footingWorks(cEF, footingCount, wallFootingCount, isFooting);            
         }
 
         public void ModifyFootingWorks(CostEstimationForm cEF, int structMemCount, int count, bool isFooting)
@@ -132,6 +132,8 @@ namespace WindowsFormsApp1
         //Add 
         public void footingWorks(CostEstimationForm cEF, int footingCount, int wallFootingCount, bool isFooting)
         {
+            cEF.structuralMembers.per_col.Add(0);
+            cEF.structuralMembers.per_wal.Add(0);
             if (isFooting)
             {
                 if (cEF.structuralMembers.footingsColumn[0][footingCount][0].Equals("Isolated Footing"))
@@ -236,9 +238,9 @@ namespace WindowsFormsApp1
                     {
                         cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                             ((length * width * thickness) / 1000000000) * quantity);
-                    }
-
-                    refreshSolutions(cEF);
+                    }                    
+                    //Computation -- Formworks **                                     
+                    cEF.structuralMembers.per_col[footingCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;                    
                 }
                 else //Combined Footing
                 {
@@ -348,9 +350,10 @@ namespace WindowsFormsApp1
                         cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                             ((length * width * thickness) / 1000000000) * quantity);
                     }
-
-                    refreshSolutions(cEF);
+                    //Computation -- Formworks **                    
+                    cEF.structuralMembers.per_col[footingCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;                    
                 }
+                
             }
             else // Wall Footing
             {
@@ -459,9 +462,7 @@ namespace WindowsFormsApp1
                     {
                         cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                             ((length * wfBase * thickness) / 1000000000) * quantity);
-                    }
-
-                    refreshSolutions(cEF);
+                    }                                        
                 }
                 else //Trapezoidal
                 {
@@ -496,9 +497,9 @@ namespace WindowsFormsApp1
                     trQuantity = double.Parse(cEF.structuralMembers.footingsWall[0][wallFootingCount][13], System.Globalization.CultureInfo.InvariantCulture);
                     trSpacing = double.Parse(cEF.structuralMembers.footingsWall[0][wallFootingCount][14], System.Globalization.CultureInfo.InvariantCulture);
                     trHookType = double.Parse(cEF.structuralMembers.footingsWall[0][wallFootingCount][15], System.Globalization.CultureInfo.InvariantCulture);
-
+                    
+                    
                     //Computation -- Earth Works
-
                     //Excavation
                     cEF.structuralMembers.earthworkSolutions[footingCount + wallFootingCount].Add(
                         (lengthF2F + formworkAllowance * 2) * (wfBaseT + formworkAllowance * 2) * (depth + gravelBedding) * quantity);
@@ -570,13 +571,59 @@ namespace WindowsFormsApp1
                         cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(
                             ((length * ((wfBaseT + wfBaseU) / 2) * thickness) / 1000000000) * quantity);
                     }
-
-                    refreshSolutions(cEF);
+                    //Computation -- Formworks **                    
+                    double c = Math.Sqrt(Math.Pow((((wfBaseT / 1000) - (wfBaseU / 1000)) / 2), 2) + Math.Pow((thickness / 1000), 2));                    
+                    cEF.structuralMembers.per_wal[wallFootingCount] = ((((c * (length / 1000)) + 0.2) + ((((wfBaseT / 1000) + (wfBaseU / 1000)) / 2) * (thickness / 1000))) * 2) * quantity;                                        
                 }
             }
-        }
-        
-
+            //Computation -- Formworks **
+            double footingC = 0;
+            double footingW = 0;
+            double frame_Biggest = 0;
+            int index_Biggest = 0;
+            foreach (var x in cEF.structuralMembers.per_col)
+            {
+                if (frame_Biggest < x)
+                {
+                    frame_Biggest = x;
+                    index_Biggest = cEF.structuralMembers.per_col.IndexOf(x);
+                }
+                footingC += x;
+            }            
+            foreach(var x in cEF.structuralMembers.per_wal)
+            {                
+                footingW += x;
+            }                        
+            List<string> fW_dim = dimensionFilterer(cEF.parameters.form_SM_F_FL);            
+            double framework_L = Math.Round(((4 * (double.Parse(fW_dim[0]) * double.Parse(fW_dim[2]) * (((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][1])/1000) + 0.1) * 3.28)))/12),2);
+            double framework_W = Math.Round(((4 * (double.Parse(fW_dim[0]) * double.Parse(fW_dim[2]) * (((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][2]) / 1000)) * 3.28))) / 12),2);
+            double framework_vertical1st = rounder(((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][1]) / 1000) + 0.1) / 0.7 + 1) * 2;
+            double framework_vertical2nd = rounder(((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][2]) / 1000)) / 0.7 + 1) * 2;
+            double framework_verTOTAL = framework_vertical2nd + framework_vertical1st;
+            double multip;
+            if (double.Parse(fW_dim[2]) == 2)
+            {
+                multip = 0.1;
+            }
+            else
+            {
+                multip = 0.15;
+            }
+            double framework_c = (double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][3]) / 1000) - (multip);
+            double framework_bdft = Math.Round(((framework_verTOTAL * (double.Parse(fW_dim[0]) * double.Parse(fW_dim[2]) * (framework_c * 3.28))) / 12),2);
+            double total_BDFT = framework_L + framework_W + framework_bdft;
+            double framework_Multi = Math.Round(total_BDFT/((((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][1]) / 1000) + 0.1) * (double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][3]) / 1000) * 2) + ((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][2]) / 1000)* (double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][3]) / 1000) * 2)),2);
+            double framework_TOTALBOARD = (framework_Multi * footingC) * (1 / double.Parse(cEF.parameters.form_F_NU));
+            double framework_WOOD = rounder((framework_TOTALBOARD * 12) / (double.Parse(fW_dim[0]) * double.Parse(fW_dim[2]) * double.Parse(fW_dim[4])));            
+            double ply_col = rounder((footingC / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+            double ply_wal = rounder((footingW / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+            List<double> passer = new List<double>();
+            passer.Add(ply_col);
+            passer.Add(framework_WOOD);
+            passer.Add(ply_wal);
+            cEF.structuralMembers.footings_comps = passer;
+            refreshSolutions(cEF);
+        }        
         //Modify
         public void modifyFootingWorks(CostEstimationForm cEF, int structMemCount, int count, bool isFooting)
         {
@@ -698,8 +745,8 @@ namespace WindowsFormsApp1
                         cEF.structuralMembers.concreteWorkSolutionsF[i][1] =
                             ((length * width * thickness) / 1000000000) * quantity;
                     }
-
-                    refreshSolutions(cEF);
+                    //Computation -- Formworks **                                                            
+                    cEF.structuralMembers.per_col[structMemCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;                    
                 }
                 else //Combined Footing
                 {
@@ -820,8 +867,8 @@ namespace WindowsFormsApp1
                         cEF.structuralMembers.concreteWorkSolutionsF[i][1] =
                             ((length * width * thickness) / 1000000000) * quantity;
                     }
-
-                    refreshSolutions(cEF);
+                    //Computation -- Formworks **
+                    cEF.structuralMembers.per_col[structMemCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;                    
                 }
             }
             else // Wall Footing
@@ -943,9 +990,7 @@ namespace WindowsFormsApp1
                     {
                         cEF.structuralMembers.concreteWorkSolutionsF[i][1] =
                             ((length * wfBase * thickness) / 1000000000) * quantity;
-                    }
-
-                    refreshSolutions(cEF);
+                    }                    
                 }
                 else //Trapezoidal
                 {
@@ -1064,10 +1109,116 @@ namespace WindowsFormsApp1
                         cEF.structuralMembers.concreteWorkSolutionsF[i][1] =
                             ((length * ((wfBaseT + wfBaseU) / 2) * thickness) / 1000000000) * quantity;
                     }
-
-                    refreshSolutions(cEF);
+                    //Computation -- Formworks **                    
+                    double c = Math.Sqrt(Math.Pow((((wfBaseT / 1000) - (wfBaseU / 1000)) / 2), 2) + Math.Pow((thickness / 1000), 2));                    
+                    cEF.structuralMembers.per_wal[structMemCount] = ((((c * (length / 1000)) + 0.2) + ((((wfBaseT / 1000) + (wfBaseU / 1000)) / 2) * (thickness / 1000))) * 2) * quantity;                    
                 }
             }
+            //Computation -- Formworks **
+            double footingC = 0;
+            double footingW = 0;
+            double frame_Biggest = 0;
+            int index_Biggest = 0;
+            foreach (var x in cEF.structuralMembers.per_col)
+            {
+                if (frame_Biggest < x)
+                {
+                    frame_Biggest = x;
+                    index_Biggest = cEF.structuralMembers.per_col.IndexOf(x);
+                }
+                footingC += x;
+            }
+            foreach (var x in cEF.structuralMembers.per_wal)
+            {
+                footingW += x;
+            }
+            List<string> fW_dim = dimensionFilterer(cEF.parameters.form_SM_F_FL);
+            double framework_L = Math.Round(((4 * (double.Parse(fW_dim[0]) * double.Parse(fW_dim[2]) * (((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][1]) / 1000) + 0.1) * 3.28))) / 12), 2);
+            double framework_W = Math.Round(((4 * (double.Parse(fW_dim[0]) * double.Parse(fW_dim[2]) * (((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][2]) / 1000)) * 3.28))) / 12), 2);
+            double framework_vertical1st = rounder(((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][1]) / 1000) + 0.1) / 0.7 + 1) * 2;
+            double framework_vertical2nd = rounder(((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][2]) / 1000)) / 0.7 + 1) * 2;
+            double framework_verTOTAL = framework_vertical2nd + framework_vertical1st;
+            double multip;
+            if (double.Parse(fW_dim[2]) == 2)
+            {
+                multip = 0.1;
+            }
+            else
+            {
+                multip = 0.15;
+            }
+            double framework_c = (double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][3]) / 1000) - (multip);
+            double framework_bdft = Math.Round(((framework_verTOTAL * (double.Parse(fW_dim[0]) * double.Parse(fW_dim[2]) * (framework_c * 3.28))) / 12), 2);
+            double total_BDFT = framework_L + framework_W + framework_bdft;
+            double framework_Multi = Math.Round(total_BDFT / ((((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][1]) / 1000) + 0.1) * (double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][3]) / 1000) * 2) + ((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][2]) / 1000) * (double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][3]) / 1000) * 2)), 2);
+            double framework_TOTALBOARD = (framework_Multi * footingC) * (1 / double.Parse(cEF.parameters.form_F_NU));
+            double framework_WOOD = rounder((framework_TOTALBOARD * 12) / (double.Parse(fW_dim[0]) * double.Parse(fW_dim[2]) * double.Parse(fW_dim[4])));
+            double ply_col = rounder((footingC / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+            double ply_wal = rounder((footingW / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+            List<double> passer = new List<double>();
+            passer.Add(ply_col);
+            passer.Add(framework_WOOD);
+            passer.Add(ply_wal);
+            cEF.structuralMembers.footings_comps = passer;
+            refreshSolutions(cEF);
+        }
+
+        public void recomputeFW_Footings(CostEstimationForm cEF)
+        {
+            try
+            {
+                double footingC = 0;
+                double footingW = 0;
+                double frame_Biggest = 0;
+                int index_Biggest = 0;
+                foreach (var x in cEF.structuralMembers.per_col)
+                {
+                    if (frame_Biggest < x)
+                    {
+                        frame_Biggest = x;
+                        index_Biggest = cEF.structuralMembers.per_col.IndexOf(x);
+                    }
+                    footingC += x;
+                }
+                foreach (var x in cEF.structuralMembers.per_wal)
+                {
+                    footingW += x;
+                }
+                List<string> fW_dim = dimensionFilterer(cEF.parameters.form_SM_F_FL);
+                double framework_L = Math.Round(((4 * (double.Parse(fW_dim[0]) * double.Parse(fW_dim[2]) * (((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][1]) / 1000) + 0.1) * 3.28))) / 12), 2);
+                double framework_W = Math.Round(((4 * (double.Parse(fW_dim[0]) * double.Parse(fW_dim[2]) * (((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][2]) / 1000)) * 3.28))) / 12), 2);
+                double framework_vertical1st = rounder(((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][1]) / 1000) + 0.1) / 0.7 + 1) * 2;
+                double framework_vertical2nd = rounder(((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][2]) / 1000)) / 0.7 + 1) * 2;
+                double framework_verTOTAL = framework_vertical2nd + framework_vertical1st;
+                double multip;
+                if (double.Parse(fW_dim[2]) == 2)
+                {
+                    multip = 0.1;
+                }
+                else
+                {
+                    multip = 0.15;
+                }
+                double framework_c = (double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][3]) / 1000) - (multip);
+                double framework_bdft = Math.Round(((framework_verTOTAL * (double.Parse(fW_dim[0]) * double.Parse(fW_dim[2]) * (framework_c * 3.28))) / 12), 2);
+                double total_BDFT = framework_L + framework_W + framework_bdft;
+                double framework_Multi = Math.Round(total_BDFT / ((((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][1]) / 1000) + 0.1) * (double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][3]) / 1000) * 2) + ((double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][2]) / 1000) * (double.Parse(cEF.structuralMembers.footingsColumn[0][index_Biggest][3]) / 1000) * 2)), 2);
+                double framework_TOTALBOARD = (framework_Multi * footingC) * (1 / double.Parse(cEF.parameters.form_F_NU));
+                double framework_WOOD = rounder((framework_TOTALBOARD * 12) / (double.Parse(fW_dim[0]) * double.Parse(fW_dim[2]) * double.Parse(fW_dim[4])));
+                double ply_col = rounder((footingC / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                double ply_wal = rounder((footingW / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                List<double> passer = new List<double>();
+                passer.Add(ply_col);
+                passer.Add(framework_WOOD);
+                passer.Add(ply_wal);
+                cEF.structuralMembers.footings_comps = passer;
+                refreshSolutions(cEF);
+            }
+            catch
+            {
+                print("Null catcher footings");
+            }
+            
         }
         //Footing Computation Functions  -- END
 
@@ -1150,7 +1301,112 @@ namespace WindowsFormsApp1
                 cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(
                     ((baseC * depth * height) / 1000000000) * quantity);
             }
+            //Computation -- Formwork
+            double column_area = 0;
+            double col_bdftH = 0;
+            double col_bdftV = 0;
+            double col_bdftD = 0;
+            List<double> holder = new List<double>();
+            List<double> wood_holder = new List<double>();
+            List<double> scaf_holder = new List<double>();
+            List<double> scaf_holder2 = new List<double>();
+            List<double> scaf_holder3 = new List<double>();
+            List<double> holder_post = new List<double>();
+            List<string> scaf_dim = dimensionFilterer(cEF.parameters.form_SM_B_VS);//0 2 4
+            List<string> scaf_dimHORI = dimensionFilterer(cEF.parameters.form_SM_B_HB);//0 2 4
+            List<string> scaf_dimDIA = dimensionFilterer(cEF.parameters.form_SM_B_DB);//0 2 4 CHANGE THIS LATER WHEN UI CHANGE
+            List<string> post_holder = dimensionFilterer(cEF.parameters.form_SM_B_FL);//0 2 4                
+            double[] vertical_col = { 4.70, 7.00, 9.35 };
+            double[] horizontal_col = { 21.00, 31.67, 42.25 };
+            double[] dia_col = { 11.70, 17.50, 23.35 };
+            double[] post_perPLY = { 20.33, 30.50 };
+            int scaf_indexer;
+            int scaf_HorINDEXER;
+            int scaf_diaINDEXER;
+            int dimIndexer;
 
+            if (post_holder[2] == "2")//POST INDEXER
+            {
+                dimIndexer = 0;
+            }
+            else
+            {
+                dimIndexer = 1;
+            }
+
+            if (scaf_dim[2] == "2")//SCAF VERT INDEXER
+            {
+                scaf_indexer = 0;
+            }
+            else if (scaf_dim[2] == "3")
+            {
+                scaf_indexer = 1;
+            }
+            else
+            {
+                scaf_indexer = 2;
+            }
+
+            if (scaf_dimHORI[2] == "2")//SCAF HORI INDEXER
+            {
+                scaf_HorINDEXER = 0;
+            }
+            else if (scaf_dimHORI[2] == "3")
+            {
+                scaf_HorINDEXER = 1;
+            }
+            else
+            {
+                scaf_HorINDEXER = 2;
+            }
+
+            if (scaf_dimDIA[2] == "2")//SCAF DIA INDEXER
+            {
+                scaf_diaINDEXER = 0;
+            }
+            else if (scaf_dimDIA[2] == "3")
+            {
+                scaf_diaINDEXER = 1;
+            }
+            else
+            {
+                scaf_diaINDEXER = 2;
+            }
+
+            for (int i = 0; i < cEF.structuralMembers.column.Count; i++)//area per floor
+            {
+                for (int j = 0; j < cEF.structuralMembers.column[i].Count; j++)
+                {
+                    column_area += (2 * ((double.Parse(cEF.structuralMembers.column[i][j][1]) / 1000) + (double.Parse(cEF.structuralMembers.column[i][j][2]) / 1000)) + 0.2) * (double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]));
+                    col_bdftV += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * vertical_col[scaf_indexer];
+                    col_bdftH += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * horizontal_col[scaf_HorINDEXER];
+                    col_bdftD += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * dia_col[scaf_diaINDEXER];
+                }
+                scaf_holder.Add(rounder(((col_bdftV * 12) / (double.Parse(scaf_dim[0]) * double.Parse(scaf_dim[2]) * double.Parse(scaf_dim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                scaf_holder2.Add(rounder(((col_bdftH * 12) / (double.Parse(scaf_dimHORI[0]) * double.Parse(scaf_dimHORI[2]) * double.Parse(scaf_dimHORI[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                scaf_holder3.Add(rounder(((col_bdftD * 12) / (double.Parse(scaf_dimDIA[0]) * double.Parse(scaf_dimDIA[2]) * double.Parse(scaf_dimDIA[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                holder.Add(column_area);
+                col_bdftH = 0;
+                col_bdftV = 0;
+                col_bdftD = 0;
+                column_area = 0;
+            }
+
+            
+            cEF.structuralMembers.col_scafV = scaf_holder;
+            cEF.structuralMembers.col_scafH = scaf_holder2;
+            cEF.structuralMembers.col_scafD = scaf_holder3;
+            cEF.structuralMembers.col_area = holder;
+            foreach (var a in cEF.structuralMembers.col_area)//woods per floor
+            {                                
+                wood_holder.Add(rounder(((a / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)))));                
+            }
+            cEF.structuralMembers.col_woods = wood_holder;
+            foreach (var wood in cEF.structuralMembers.col_woods)//Post
+            {
+                holder_post.Add(rounder(((wood * post_perPLY[dimIndexer]) * 12) / (double.Parse(post_holder[0]) * double.Parse(post_holder[2]) * double.Parse(post_holder[4]))));
+            }
+            cEF.structuralMembers.col_post = holder_post;
             refreshSolutions(cEF);
 
 
@@ -1165,6 +1421,124 @@ namespace WindowsFormsApp1
 
             }
             */
+
+        }
+
+        public void recomputeFW_Column(CostEstimationForm cEF)
+        {
+            try
+            {
+                double column_area = 0;
+                double col_bdftH = 0;
+                double col_bdftV = 0;
+                double col_bdftD = 0;
+                List<double> holder = new List<double>();
+                List<double> wood_holder = new List<double>();
+                List<double> scaf_holder = new List<double>();
+                List<double> scaf_holder2 = new List<double>();
+                List<double> scaf_holder3 = new List<double>();
+                List<double> holder_post = new List<double>();
+                List<string> scaf_dim = dimensionFilterer(cEF.parameters.form_SM_B_VS);//0 2 4
+                List<string> scaf_dimHORI = dimensionFilterer(cEF.parameters.form_SM_B_HB);//0 2 4
+                List<string> scaf_dimDIA = dimensionFilterer(cEF.parameters.form_SM_B_DB);//0 2 4 CHANGE THIS LATER WHEN UI CHANGE
+                List<string> post_holder = dimensionFilterer(cEF.parameters.form_SM_B_FL);//0 2 4                
+                double[] vertical_col = { 4.70, 7.00, 9.35 };
+                double[] horizontal_col = { 21.00, 31.67, 42.25 };
+                double[] dia_col = { 11.70, 17.50, 23.35 };
+                double[] post_perPLY = { 20.33, 30.50 };
+                int scaf_indexer;
+                int scaf_HorINDEXER;
+                int scaf_diaINDEXER;
+                int dimIndexer;
+
+                if (post_holder[2] == "2")//POST INDEXER
+                {
+                    dimIndexer = 0;
+                }
+                else
+                {
+                    dimIndexer = 1;
+                }
+
+                if (scaf_dim[2] == "2")//SCAF VERT INDEXER
+                {
+                    scaf_indexer = 0;
+                }
+                else if (scaf_dim[2] == "3")
+                {
+                    scaf_indexer = 1;
+                }
+                else
+                {
+                    scaf_indexer = 2;
+                }
+
+                if (scaf_dimHORI[2] == "2")//SCAF HORI INDEXER
+                {
+                    scaf_HorINDEXER = 0;
+                }
+                else if (scaf_dimHORI[2] == "3")
+                {
+                    scaf_HorINDEXER = 1;
+                }
+                else
+                {
+                    scaf_HorINDEXER = 2;
+                }
+
+                if (scaf_dimDIA[2] == "2")//SCAF DIA INDEXER
+                {
+                    scaf_diaINDEXER = 0;
+                }
+                else if (scaf_dimDIA[2] == "3")
+                {
+                    scaf_diaINDEXER = 1;
+                }
+                else
+                {
+                    scaf_diaINDEXER = 2;
+                }
+
+                for (int i = 0; i < cEF.structuralMembers.column.Count; i++)//area per floor
+                {
+                    for (int j = 0; j < cEF.structuralMembers.column[i].Count; j++)
+                    {
+                        column_area += (2 * ((double.Parse(cEF.structuralMembers.column[i][j][1]) / 1000) + (double.Parse(cEF.structuralMembers.column[i][j][2]) / 1000)) + 0.2) * (double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]));
+                        col_bdftV += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * vertical_col[scaf_indexer];
+                        col_bdftH += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * horizontal_col[scaf_HorINDEXER];
+                        col_bdftD += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * dia_col[scaf_diaINDEXER];
+                    }
+                    scaf_holder.Add(rounder(((col_bdftV * 12) / (double.Parse(scaf_dim[0]) * double.Parse(scaf_dim[2]) * double.Parse(scaf_dim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                    scaf_holder2.Add(rounder(((col_bdftH * 12) / (double.Parse(scaf_dimHORI[0]) * double.Parse(scaf_dimHORI[2]) * double.Parse(scaf_dimHORI[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                    scaf_holder3.Add(rounder(((col_bdftD * 12) / (double.Parse(scaf_dimDIA[0]) * double.Parse(scaf_dimDIA[2]) * double.Parse(scaf_dimDIA[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                    holder.Add(column_area);
+                    col_bdftH = 0;
+                    col_bdftV = 0;
+                    col_bdftD = 0;
+                    column_area = 0;
+                }
+
+
+                cEF.structuralMembers.col_scafV = scaf_holder;
+                cEF.structuralMembers.col_scafH = scaf_holder2;
+                cEF.structuralMembers.col_scafD = scaf_holder3;
+                cEF.structuralMembers.col_area = holder;
+                foreach (var a in cEF.structuralMembers.col_area)//woods per floor
+                {
+                    wood_holder.Add(rounder(((a / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)))));
+                }
+                cEF.structuralMembers.col_woods = wood_holder;
+                foreach (var wood in cEF.structuralMembers.col_woods)//Post
+                {
+                    holder_post.Add(rounder(((wood * post_perPLY[dimIndexer]) * 12) / (double.Parse(post_holder[0]) * double.Parse(post_holder[2]) * double.Parse(post_holder[4]))));
+                }
+                cEF.structuralMembers.col_post = holder_post;
+                refreshSolutions(cEF);
+            }
+            catch
+            {
+                print("Null catcher COLUMN");
+            }
         }
 
         //Modify
@@ -1240,6 +1614,112 @@ namespace WindowsFormsApp1
                     ((baseC * depth * height) / 1000000000) * quantity;
             }
 
+            //Computation - formworks
+            double column_area = 0;
+            double col_bdftH = 0;
+            double col_bdftV = 0;
+            double col_bdftD = 0;
+            List<double> holder = new List<double>();
+            List<double> wood_holder = new List<double>();
+            List<double> scaf_holder = new List<double>();
+            List<double> scaf_holder2 = new List<double>();
+            List<double> scaf_holder3 = new List<double>();
+            List<double> holder_post = new List<double>();
+            List<string> scaf_dim = dimensionFilterer(cEF.parameters.form_SM_B_VS);//0 2 4
+            List<string> scaf_dimHORI = dimensionFilterer(cEF.parameters.form_SM_B_HB);//0 2 4
+            List<string> scaf_dimDIA = dimensionFilterer(cEF.parameters.form_SM_B_DB);//0 2 4 CHANGE THIS LATER WHEN UI CHANGE
+            List<string> post_holder = dimensionFilterer(cEF.parameters.form_SM_B_FL);//0 2 4                
+            double[] vertical_col = { 4.70, 7.00, 9.35 };
+            double[] horizontal_col = { 21.00, 31.67, 42.25 };
+            double[] dia_col = { 11.70, 17.50, 23.35 };
+            double[] post_perPLY = { 20.33, 30.50 };
+            int scaf_indexer;
+            int scaf_HorINDEXER;
+            int scaf_diaINDEXER;
+            int dimIndexer;
+
+            if (post_holder[2] == "2")//POST INDEXER
+            {
+                dimIndexer = 0;
+            }
+            else
+            {
+                dimIndexer = 1;
+            }
+
+            if (scaf_dim[2] == "2")//SCAF VERT INDEXER
+            {
+                scaf_indexer = 0;
+            }
+            else if (scaf_dim[2] == "3")
+            {
+                scaf_indexer = 1;
+            }
+            else
+            {
+                scaf_indexer = 2;
+            }
+
+            if (scaf_dimHORI[2] == "2")//SCAF HORI INDEXER
+            {
+                scaf_HorINDEXER = 0;
+            }
+            else if (scaf_dimHORI[2] == "3")
+            {
+                scaf_HorINDEXER = 1;
+            }
+            else
+            {
+                scaf_HorINDEXER = 2;
+            }
+
+            if (scaf_dimDIA[2] == "2")//SCAF DIA INDEXER
+            {
+                scaf_diaINDEXER = 0;
+            }
+            else if (scaf_dimDIA[2] == "3")
+            {
+                scaf_diaINDEXER = 1;
+            }
+            else
+            {
+                scaf_diaINDEXER = 2;
+            }
+
+            for (int i = 0; i < cEF.structuralMembers.column.Count; i++)//area per floor
+            {
+                for (int j = 0; j < cEF.structuralMembers.column[i].Count; j++)
+                {
+                    column_area += (2 * ((double.Parse(cEF.structuralMembers.column[i][j][1]) / 1000) + (double.Parse(cEF.structuralMembers.column[i][j][2]) / 1000)) + 0.2) * (double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]));
+                    col_bdftV += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * vertical_col[scaf_indexer];
+                    col_bdftH += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * horizontal_col[scaf_HorINDEXER];
+                    col_bdftD += ((double.Parse(cEF.structuralMembers.column[i][j][3]) / 1000) * (double.Parse(cEF.structuralMembers.column[i][j][5]))) * dia_col[scaf_diaINDEXER];
+                }
+                scaf_holder.Add(rounder(((col_bdftV * 12) / (double.Parse(scaf_dim[0]) * double.Parse(scaf_dim[2]) * double.Parse(scaf_dim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                scaf_holder2.Add(rounder(((col_bdftH * 12) / (double.Parse(scaf_dimHORI[0]) * double.Parse(scaf_dimHORI[2]) * double.Parse(scaf_dimHORI[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                scaf_holder3.Add(rounder(((col_bdftD * 12) / (double.Parse(scaf_dimDIA[0]) * double.Parse(scaf_dimDIA[2]) * double.Parse(scaf_dimDIA[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                holder.Add(column_area);
+                col_bdftH = 0;
+                col_bdftV = 0;
+                col_bdftD = 0;
+                column_area = 0;
+            }
+
+
+            cEF.structuralMembers.col_scafV = scaf_holder;
+            cEF.structuralMembers.col_scafH = scaf_holder2;
+            cEF.structuralMembers.col_scafD = scaf_holder3;
+            cEF.structuralMembers.col_area = holder;
+            foreach (var a in cEF.structuralMembers.col_area)//woods per floor
+            {
+                wood_holder.Add(rounder(((a / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)))));
+            }
+            cEF.structuralMembers.col_woods = wood_holder;
+            foreach (var wood in cEF.structuralMembers.col_woods)//Post
+            {
+                holder_post.Add(rounder(((wood * post_perPLY[dimIndexer]) * 12) / (double.Parse(post_holder[0]) * double.Parse(post_holder[2]) * double.Parse(post_holder[4]))));
+            }
+            cEF.structuralMembers.col_post = holder_post;
             refreshSolutions(cEF);
 
 
@@ -1284,9 +1764,9 @@ namespace WindowsFormsApp1
             double baseB, depth, length, quantity;
 
             //Init variables from StructMem
-            foreach(List<string> beamRow in cEF.structuralMembers.beamRow[floorCount][beamCount])
+            foreach (List<string> beamRow in cEF.structuralMembers.beamRow[floorCount][beamCount])
             {
-                foreach(List<string> schedule in cEF.structuralMembers.beamSchedule[floorCount])
+                foreach (List<string> schedule in cEF.structuralMembers.beamSchedule[floorCount])
                 {
                     if (beamType.Equals(schedule[0]))
                     {
@@ -1351,12 +1831,245 @@ namespace WindowsFormsApp1
                                 cEF.structuralMembers.concreteWorkSolutionsBR[floorCount][beamCount][0] +=
                                     ((baseB * depth * length) / 1000000000) * quantity;
                             }
-
                             refreshSolutions(cEF);
                         }
                     }
                 }
             }
+            //Computation -- Formworks
+            double vertTracker = 0;
+            double total_ftbArea = 0;
+            double RB_vertTracker = 0;
+            double RB_total_gradeArea = 0;
+            double total_gradeArea = 0;
+            double RB_form = 0;
+            double tie_form = 0;
+            double tie_frame = 0;
+            double grade_form = 0;
+            double grade_frame = 0;
+            double vertical_beam = 0;
+            double horizontal_beam = 0;
+            double RB_horizontal_beam = 0;
+            double RB_vertical_beam = 0;
+            double tiehand = 0;
+            double[] equi_vert = { 4.00, 6.00, 8.00 };
+            double[] equi_hori = { 4.70, 7.00, 9.35 };
+            List<string> vertDim = dimensionFilterer(cEF.parameters.form_SM_C_VS);
+            List<string> horiDim = dimensionFilterer(cEF.parameters.form_SM_C_HB);
+            List<double> beam_handler = new List<double>();
+            List<double> grade_handler = new List<double>();
+            List<double> vertical_handler = new List<double>();
+            List<double> horizontal_handler = new List<double>();
+            List<double> RB_handler = new List<double>();
+            List<double> RB_vertical_handler = new List<double>();
+            List<double> RB_horizontal_handler = new List<double>();
+            List<double> tiearea = new List<double>();
+            List<double> gradearea = new List<double>();
+            List<double> rbarea = new List<double>();            
+            for (int i = 0; i < cEF.structuralMembers.beam.Count; i++)
+            {
+                tiearea.Add(0);
+                gradearea.Add(0);
+                rbarea.Add(0);
+                grade_handler.Add(0);
+                vertical_handler.Add(0);
+                horizontal_handler.Add(0);
+                RB_handler.Add(0);
+                RB_horizontal_handler.Add(0);
+                RB_vertical_handler.Add(0);
+                double ftb_area = 0;
+                for (int j = 0; j < cEF.structuralMembers.beam[i].Count; j++)
+                {
+                    if (cEF.structuralMembers.beam[i][j][0] == "Footing Tie Beam")//Beams connected to Footings beam
+                    {
+
+                        List<List<string>> sched_gatherer = new List<List<string>>();
+                        foreach (var sched in cEF.structuralMembers.beamSchedule[i])
+                        {
+
+                            if (sched[0] == "Footing Tie Beam")//Sched connected to footing beam
+                            {
+                                List<string> gatherer = new List<string>();
+                                gatherer.Add(sched[1]);//Sched Name
+                                gatherer.Add(sched[2]);//Base
+                                gatherer.Add(sched[3]);//Depth                                
+                                sched_gatherer.Add(gatherer);
+                            }
+                        }
+                        double qty = double.Parse(cEF.structuralMembers.beam[i][j][2]);
+                        foreach (List<string> rows in cEF.structuralMembers.beamRow[i][j])//Rows connected to footing beam
+                        {
+                            string r_name = rows[0];
+                            double r_quantity = double.Parse(rows[1]);
+                            double r_length = double.Parse(rows[2]);
+                            ftb_area = 0;
+                            foreach (List<string> gatheredSched in sched_gatherer)
+                            {
+                                if (gatheredSched[0] == r_name)
+                                {
+                                    ftb_area += ((2 * (double.Parse(gatheredSched[2]) / 1000) + (double.Parse(gatheredSched[1]) / 1000) + 0.1) * (r_quantity * (r_length / 1000))) * qty;
+                                }
+                            }
+                            total_ftbArea += ftb_area;
+                            tiehand = total_ftbArea;
+                        }
+                    }
+                    //
+                    else if (cEF.structuralMembers.beam[i][j][0] == "Grade Beam" || cEF.structuralMembers.beam[i][j][0] == "Suspended Beam")//Beams connected to GRADE BEAM
+                    {
+                        List<List<string>> sched_gatherer = new List<List<string>>();
+                        foreach (var sched in cEF.structuralMembers.beamSchedule[i])
+                        {
+                            if (sched[0] == "Grade Beam" || sched[0] == "Suspended Beam")//Sched connected to footing beam
+                            {
+                                List<string> gatherer = new List<string>();
+                                gatherer.Add(sched[1]);//Sched Name
+                                gatherer.Add(sched[2]);//Base
+                                gatherer.Add(sched[3]);//Depth                                
+                                sched_gatherer.Add(gatherer);
+                            }
+                        }
+                        double qty = double.Parse(cEF.structuralMembers.beam[i][j][2]);
+                        foreach (List<string> rows in cEF.structuralMembers.beamRow[i][j])//Rows connected to footing beam
+                        {
+                            string r_name = rows[0];
+                            double r_quantity = double.Parse(rows[1]);
+                            double r_length = double.Parse(rows[2]);
+                            ftb_area = 0;
+                            foreach (List<string> gatheredSched in sched_gatherer)
+                            {
+                                if (gatheredSched[0] == r_name)
+                                {
+                                    vertTracker += (r_quantity * (r_length / 1000)) * qty;
+                                    ftb_area += ((2 * (double.Parse(gatheredSched[2]) / 1000) + (double.Parse(gatheredSched[1]) / 1000) + 0.1) * (r_quantity * (r_length / 1000))) * qty;
+                                }
+                            }
+                            total_gradeArea += ftb_area;
+                        }
+                    }
+                    //
+                    else if (cEF.structuralMembers.beam[i][j][0] == "Roof Beam")//roof beam
+                    {
+                        List<List<string>> sched_gatherer = new List<List<string>>();
+                        foreach (var sched in cEF.structuralMembers.beamSchedule[i])
+                        {
+                            if (sched[0] == "Roof Beam")//Sched connected to footing beam
+                            {
+                                List<string> gatherer = new List<string>();
+                                gatherer.Add(sched[1]);//Sched Name
+                                gatherer.Add(sched[2]);//Base
+                                gatherer.Add(sched[3]);//Depth                                
+                                sched_gatherer.Add(gatherer);
+                            }
+                        }
+                        double qty = double.Parse(cEF.structuralMembers.beam[i][j][2]);
+                        foreach (List<string> rows in cEF.structuralMembers.beamRow[i][j])//Rows connected to footing beam
+                        {
+                            string r_name = rows[0];
+                            double r_quantity = double.Parse(rows[1]);
+                            double r_length = double.Parse(rows[2]);
+                            ftb_area = 0;
+                            foreach (List<string> gatheredSched in sched_gatherer)
+                            {
+                                if (gatheredSched[0] == r_name)
+                                {
+                                    RB_vertTracker += (r_quantity * (r_length / 1000)) * qty;
+                                    ftb_area += ((2 * (double.Parse(gatheredSched[2]) / 1000) + (double.Parse(gatheredSched[1]) / 1000) + 0.1) * (r_quantity * (r_length / 1000))) * qty;
+                                }
+                            }
+                            RB_total_gradeArea += ftb_area;
+                        }
+                    }
+                }
+                //VERT
+                double vertindex;
+                double horiindex;
+                if (vertDim[2] == "2")
+                {
+                    vertindex = equi_vert[0];
+                }
+                else if (vertDim[2] == "3")
+                {
+                    vertindex = equi_vert[1];
+                }
+                else
+                {
+                    vertindex = equi_vert[2];
+                }
+                //HORI
+                if (horiDim[2] == "2")
+                {
+                    horiindex = equi_hori[0];
+                }
+                else if (horiDim[2] == "3")
+                {
+                    horiindex = equi_hori[1];
+                }
+                else
+                {
+                    horiindex = equi_hori[2];
+                }
+                horizontal_beam = rounder((((vertTracker * horiindex) * 12) / (double.Parse(horiDim[0]) * double.Parse(horiDim[2]) * double.Parse(horiDim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                vertical_beam = rounder((((vertTracker * vertindex) * 12) / (double.Parse(vertDim[0]) * double.Parse(vertDim[2]) * double.Parse(vertDim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                RB_horizontal_beam = rounder((((RB_vertTracker * horiindex) * 12) / (double.Parse(horiDim[0]) * double.Parse(horiDim[2]) * double.Parse(horiDim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                RB_vertical_beam = rounder((((RB_vertTracker * vertindex) * 12) / (double.Parse(vertDim[0]) * double.Parse(vertDim[2]) * double.Parse(vertDim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                grade_form = rounder((total_gradeArea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU))); ;
+                RB_form = rounder((RB_total_gradeArea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU))); ;
+                grade_handler[i] = grade_form;
+                RB_handler[i] = RB_form;
+                vertical_handler[i] = vertical_beam;
+                horizontal_handler[i] = horizontal_beam;
+                RB_vertical_handler[i] = RB_vertical_beam;
+                RB_horizontal_handler[i] = RB_horizontal_beam;
+                gradearea[i] = total_gradeArea;                
+                tiearea[i] = tiehand;
+                rbarea[i] = RB_total_gradeArea;
+                total_gradeArea = 0;
+                vertTracker = 0;
+                RB_vertTracker = 0;
+                RB_total_gradeArea = 0;
+                tiehand = 0;
+            }
+            //
+            List<string> beam_lumber = dimensionFilterer(cEF.parameters.form_SM_C_FL);
+            double[] beam_frame = { 18.66, 28.00 };
+            double frame;
+            if (beam_lumber[2] == "2")
+            {
+                frame = beam_frame[0];
+            }
+            else
+            {
+                frame = beam_frame[1];
+            }
+            tie_form = rounder((total_ftbArea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+            tie_frame = rounder(((tie_form * frame) * 12) / (double.Parse(beam_lumber[0]) * double.Parse(beam_lumber[2]) * double.Parse(beam_lumber[4])));
+            beam_handler.Add(tie_form);//formwork footing
+            beam_handler.Add(tie_frame);//framework footing                                                                                 
+            cEF.structuralMembers.beams_comps = beam_handler;
+            cEF.structuralMembers.beams_grade = grade_handler;
+            cEF.structuralMembers.beams_RB = RB_handler;
+            cEF.structuralMembers.beams_vertical = vertical_handler;
+            cEF.structuralMembers.beams_horizontal = horizontal_handler;
+            cEF.structuralMembers.beams_RBV = RB_vertical_handler;
+            cEF.structuralMembers.beams_RBH = RB_horizontal_handler;
+            cEF.structuralMembers.beams_tiearea = tiearea;
+            cEF.structuralMembers.beams_gradarea = gradearea;
+            cEF.structuralMembers.beams_RBarea = rbarea;
+
+            List<double> beamFRAME = new List<double>();
+            foreach (var grade in cEF.structuralMembers.beams_grade)
+            {
+                beamFRAME.Add(rounder(((grade * frame) * 12) / (double.Parse(beam_lumber[0]) * double.Parse(beam_lumber[2]) * double.Parse(beam_lumber[4]))));
+            }
+            List<double> roofFRAME = new List<double>();
+            foreach (var grade in cEF.structuralMembers.beams_RB)
+            {
+                roofFRAME.Add(rounder(((grade * frame) * 12) / (double.Parse(beam_lumber[0]) * double.Parse(beam_lumber[2]) * double.Parse(beam_lumber[4]))));
+            }
+            cEF.structuralMembers.beams_gradeFrame = beamFRAME;
+            cEF.structuralMembers.beams_RBframe = roofFRAME;
+            refreshSolutions(cEF);
         }
 
         //Modify
@@ -1448,6 +2161,485 @@ namespace WindowsFormsApp1
                     }
                 }
             }
+            //Computation -- Formworks
+            double vertTracker = 0;
+            double total_ftbArea = 0;
+            double RB_vertTracker = 0;
+            double RB_total_gradeArea = 0;
+            double total_gradeArea = 0;
+            double RB_form = 0;
+            double tie_form = 0;
+            double tie_frame = 0;
+            double grade_form = 0;
+            double grade_frame = 0;
+            double vertical_beam = 0;
+            double horizontal_beam = 0;
+            double RB_horizontal_beam = 0;
+            double RB_vertical_beam = 0;
+            double tiehand = 0;
+            double[] equi_vert = { 4.00, 6.00, 8.00 };
+            double[] equi_hori = { 4.70, 7.00, 9.35 };
+            List<string> vertDim = dimensionFilterer(cEF.parameters.form_SM_C_VS);
+            List<string> horiDim = dimensionFilterer(cEF.parameters.form_SM_C_HB);
+            List<double> beam_handler = new List<double>();
+            List<double> grade_handler = new List<double>();
+            List<double> vertical_handler = new List<double>();
+            List<double> horizontal_handler = new List<double>();
+            List<double> RB_handler = new List<double>();
+            List<double> RB_vertical_handler = new List<double>();
+            List<double> RB_horizontal_handler = new List<double>();
+            List<double> tiearea = new List<double>();
+            List<double> gradearea = new List<double>();
+            List<double> rbarea = new List<double>();
+            for (int i = 0; i < cEF.structuralMembers.beam.Count; i++)
+            {
+                tiearea.Add(0);
+                gradearea.Add(0);
+                rbarea.Add(0);
+                grade_handler.Add(0);
+                vertical_handler.Add(0);
+                horizontal_handler.Add(0);
+                RB_handler.Add(0);
+                RB_horizontal_handler.Add(0);
+                RB_vertical_handler.Add(0);
+                double ftb_area = 0;
+                for (int j = 0; j < cEF.structuralMembers.beam[i].Count; j++)
+                {
+                    if (cEF.structuralMembers.beam[i][j][0] == "Footing Tie Beam")//Beams connected to Footings beam
+                    {
+
+                        List<List<string>> sched_gatherer = new List<List<string>>();
+                        foreach (var sched in cEF.structuralMembers.beamSchedule[i])
+                        {
+
+                            if (sched[0] == "Footing Tie Beam")//Sched connected to footing beam
+                            {
+                                List<string> gatherer = new List<string>();
+                                gatherer.Add(sched[1]);//Sched Name
+                                gatherer.Add(sched[2]);//Base
+                                gatherer.Add(sched[3]);//Depth                                
+                                sched_gatherer.Add(gatherer);
+                            }
+                        }
+                        double qty = double.Parse(cEF.structuralMembers.beam[i][j][2]);
+                        foreach (List<string> rows in cEF.structuralMembers.beamRow[i][j])//Rows connected to footing beam
+                        {
+                            string r_name = rows[0];
+                            double r_quantity = double.Parse(rows[1]);
+                            double r_length = double.Parse(rows[2]);
+                            ftb_area = 0;
+                            foreach (List<string> gatheredSched in sched_gatherer)
+                            {
+                                if (gatheredSched[0] == r_name)
+                                {
+                                    ftb_area += ((2 * (double.Parse(gatheredSched[2]) / 1000) + (double.Parse(gatheredSched[1]) / 1000) + 0.1) * (r_quantity * (r_length / 1000))) * qty;
+                                }
+                            }
+                            total_ftbArea += ftb_area;
+                            tiehand = total_ftbArea;
+                        }
+                    }
+                    //
+                    else if (cEF.structuralMembers.beam[i][j][0] == "Grade Beam" || cEF.structuralMembers.beam[i][j][0] == "Suspended Beam")//Beams connected to GRADE BEAM
+                    {
+                        List<List<string>> sched_gatherer = new List<List<string>>();
+                        foreach (var sched in cEF.structuralMembers.beamSchedule[i])
+                        {
+                            if (sched[0] == "Grade Beam" || sched[0] == "Suspended Beam")//Sched connected to footing beam
+                            {
+                                List<string> gatherer = new List<string>();
+                                gatherer.Add(sched[1]);//Sched Name
+                                gatherer.Add(sched[2]);//Base
+                                gatherer.Add(sched[3]);//Depth                                
+                                sched_gatherer.Add(gatherer);
+                            }
+                        }
+                        double qty = double.Parse(cEF.structuralMembers.beam[i][j][2]);
+                        foreach (List<string> rows in cEF.structuralMembers.beamRow[i][j])//Rows connected to footing beam
+                        {
+                            string r_name = rows[0];
+                            double r_quantity = double.Parse(rows[1]);
+                            double r_length = double.Parse(rows[2]);
+                            ftb_area = 0;
+                            foreach (List<string> gatheredSched in sched_gatherer)
+                            {
+                                if (gatheredSched[0] == r_name)
+                                {
+                                    vertTracker += (r_quantity * (r_length / 1000)) * qty;
+                                    ftb_area += ((2 * (double.Parse(gatheredSched[2]) / 1000) + (double.Parse(gatheredSched[1]) / 1000) + 0.1) * (r_quantity * (r_length / 1000))) * qty;
+                                }
+                            }
+                            total_gradeArea += ftb_area;
+                        }
+                    }
+                    //
+                    else if (cEF.structuralMembers.beam[i][j][0] == "Roof Beam")//roof beam
+                    {
+                        List<List<string>> sched_gatherer = new List<List<string>>();
+                        foreach (var sched in cEF.structuralMembers.beamSchedule[i])
+                        {
+                            if (sched[0] == "Roof Beam")//Sched connected to footing beam
+                            {
+                                List<string> gatherer = new List<string>();
+                                gatherer.Add(sched[1]);//Sched Name
+                                gatherer.Add(sched[2]);//Base
+                                gatherer.Add(sched[3]);//Depth                                
+                                sched_gatherer.Add(gatherer);
+                            }
+                        }
+                        double qty = double.Parse(cEF.structuralMembers.beam[i][j][2]);
+                        foreach (List<string> rows in cEF.structuralMembers.beamRow[i][j])//Rows connected to footing beam
+                        {
+                            string r_name = rows[0];
+                            double r_quantity = double.Parse(rows[1]);
+                            double r_length = double.Parse(rows[2]);
+                            ftb_area = 0;
+                            foreach (List<string> gatheredSched in sched_gatherer)
+                            {
+                                if (gatheredSched[0] == r_name)
+                                {
+                                    RB_vertTracker += (r_quantity * (r_length / 1000)) * qty;
+                                    ftb_area += ((2 * (double.Parse(gatheredSched[2]) / 1000) + (double.Parse(gatheredSched[1]) / 1000) + 0.1) * (r_quantity * (r_length / 1000))) * qty;
+                                }
+                            }
+                            RB_total_gradeArea += ftb_area;
+                        }
+                    }
+                }
+                //VERT
+                double vertindex;
+                double horiindex;
+                if (vertDim[2] == "2")
+                {
+                    vertindex = equi_vert[0];
+                }
+                else if (vertDim[2] == "3")
+                {
+                    vertindex = equi_vert[1];
+                }
+                else
+                {
+                    vertindex = equi_vert[2];
+                }
+                //HORI
+                if (horiDim[2] == "2")
+                {
+                    horiindex = equi_hori[0];
+                }
+                else if (horiDim[2] == "3")
+                {
+                    horiindex = equi_hori[1];
+                }
+                else
+                {
+                    horiindex = equi_hori[2];
+                }
+                horizontal_beam = rounder((((vertTracker * horiindex) * 12) / (double.Parse(horiDim[0]) * double.Parse(horiDim[2]) * double.Parse(horiDim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                vertical_beam = rounder((((vertTracker * vertindex) * 12) / (double.Parse(vertDim[0]) * double.Parse(vertDim[2]) * double.Parse(vertDim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                RB_horizontal_beam = rounder((((RB_vertTracker * horiindex) * 12) / (double.Parse(horiDim[0]) * double.Parse(horiDim[2]) * double.Parse(horiDim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                RB_vertical_beam = rounder((((RB_vertTracker * vertindex) * 12) / (double.Parse(vertDim[0]) * double.Parse(vertDim[2]) * double.Parse(vertDim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                grade_form = rounder((total_gradeArea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU))); ;
+                RB_form = rounder((RB_total_gradeArea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU))); ;
+                grade_handler[i] = grade_form;
+                RB_handler[i] = RB_form;
+                vertical_handler[i] = vertical_beam;
+                horizontal_handler[i] = horizontal_beam;
+                RB_vertical_handler[i] = RB_vertical_beam;
+                RB_horizontal_handler[i] = RB_horizontal_beam;
+                gradearea[i] = total_gradeArea;
+                tiearea[i] = tiehand;
+                rbarea[i] = RB_total_gradeArea;
+                total_gradeArea = 0;
+                vertTracker = 0;
+                RB_vertTracker = 0;
+                RB_total_gradeArea = 0;
+                tiehand = 0;
+            }
+            //
+            List<string> beam_lumber = dimensionFilterer(cEF.parameters.form_SM_C_FL);
+            double[] beam_frame = { 18.66, 28.00 };
+            double frame;
+            if (beam_lumber[2] == "2")
+            {
+                frame = beam_frame[0];
+            }
+            else
+            {
+                frame = beam_frame[1];
+            }
+            tie_form = rounder((total_ftbArea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+            tie_frame = rounder(((tie_form * frame) * 12) / (double.Parse(beam_lumber[0]) * double.Parse(beam_lumber[2]) * double.Parse(beam_lumber[4])));
+            beam_handler.Add(tie_form);//formwork footing
+            beam_handler.Add(tie_frame);//framework footing                                                                                 
+            cEF.structuralMembers.beams_comps = beam_handler;
+            cEF.structuralMembers.beams_grade = grade_handler;
+            cEF.structuralMembers.beams_RB = RB_handler;
+            cEF.structuralMembers.beams_vertical = vertical_handler;
+            cEF.structuralMembers.beams_horizontal = horizontal_handler;
+            cEF.structuralMembers.beams_RBV = RB_vertical_handler;
+            cEF.structuralMembers.beams_RBH = RB_horizontal_handler;
+            cEF.structuralMembers.beams_tiearea = tiearea;
+            cEF.structuralMembers.beams_gradarea = gradearea;
+            cEF.structuralMembers.beams_RBarea = rbarea;
+
+            List<double> beamFRAME = new List<double>();
+            foreach (var grade in cEF.structuralMembers.beams_grade)
+            {
+                beamFRAME.Add(rounder(((grade * frame) * 12) / (double.Parse(beam_lumber[0]) * double.Parse(beam_lumber[2]) * double.Parse(beam_lumber[4]))));
+            }
+            List<double> roofFRAME = new List<double>();
+            foreach (var grade in cEF.structuralMembers.beams_RB)
+            {
+                roofFRAME.Add(rounder(((grade * frame) * 12) / (double.Parse(beam_lumber[0]) * double.Parse(beam_lumber[2]) * double.Parse(beam_lumber[4]))));
+            }
+            cEF.structuralMembers.beams_gradeFrame = beamFRAME;
+            cEF.structuralMembers.beams_RBframe = roofFRAME;
+            refreshSolutions(cEF);
+        }
+
+        public void recomputeFW_Beam(CostEstimationForm cEF)
+        {
+            try
+            {
+                double vertTracker = 0;
+                double total_ftbArea = 0;
+                double RB_vertTracker = 0;
+                double RB_total_gradeArea = 0;
+                double total_gradeArea = 0;
+                double RB_form = 0;
+                double tie_form = 0;
+                double tie_frame = 0;
+                double grade_form = 0;
+                double grade_frame = 0;
+                double vertical_beam = 0;
+                double horizontal_beam = 0;
+                double RB_horizontal_beam = 0;
+                double RB_vertical_beam = 0;
+                double tiehand = 0;
+                double[] equi_vert = { 4.00, 6.00, 8.00 };
+                double[] equi_hori = { 4.70, 7.00, 9.35 };
+                List<string> vertDim = dimensionFilterer(cEF.parameters.form_SM_C_VS);
+                List<string> horiDim = dimensionFilterer(cEF.parameters.form_SM_C_HB);
+                List<double> beam_handler = new List<double>();
+                List<double> grade_handler = new List<double>();
+                List<double> vertical_handler = new List<double>();
+                List<double> horizontal_handler = new List<double>();
+                List<double> RB_handler = new List<double>();
+                List<double> RB_vertical_handler = new List<double>();
+                List<double> RB_horizontal_handler = new List<double>();
+                List<double> tiearea = new List<double>();
+                List<double> gradearea = new List<double>();
+                List<double> rbarea = new List<double>();
+                for (int i = 0; i < cEF.structuralMembers.beam.Count; i++)
+                {
+                    tiearea.Add(0);
+                    gradearea.Add(0);
+                    rbarea.Add(0);
+                    grade_handler.Add(0);
+                    vertical_handler.Add(0);
+                    horizontal_handler.Add(0);
+                    RB_handler.Add(0);
+                    RB_horizontal_handler.Add(0);
+                    RB_vertical_handler.Add(0);
+                    double ftb_area = 0;
+                    for (int j = 0; j < cEF.structuralMembers.beam[i].Count; j++)
+                    {
+                        if (cEF.structuralMembers.beam[i][j][0] == "Footing Tie Beam")//Beams connected to Footings beam
+                        {
+
+                            List<List<string>> sched_gatherer = new List<List<string>>();
+                            foreach (var sched in cEF.structuralMembers.beamSchedule[i])
+                            {
+
+                                if (sched[0] == "Footing Tie Beam")//Sched connected to footing beam
+                                {
+                                    List<string> gatherer = new List<string>();
+                                    gatherer.Add(sched[1]);//Sched Name
+                                    gatherer.Add(sched[2]);//Base
+                                    gatherer.Add(sched[3]);//Depth                                
+                                    sched_gatherer.Add(gatherer);
+                                }
+                            }
+                            double qty = double.Parse(cEF.structuralMembers.beam[i][j][2]);
+                            foreach (List<string> rows in cEF.structuralMembers.beamRow[i][j])//Rows connected to footing beam
+                            {
+                                string r_name = rows[0];
+                                double r_quantity = double.Parse(rows[1]);
+                                double r_length = double.Parse(rows[2]);
+                                ftb_area = 0;
+                                foreach (List<string> gatheredSched in sched_gatherer)
+                                {
+                                    if (gatheredSched[0] == r_name)
+                                    {
+                                        ftb_area += ((2 * (double.Parse(gatheredSched[2]) / 1000) + (double.Parse(gatheredSched[1]) / 1000) + 0.1) * (r_quantity * (r_length / 1000))) * qty;
+                                    }
+                                }
+                                total_ftbArea += ftb_area;
+                                tiehand = total_ftbArea;
+                            }
+                        }
+                        //
+                        else if (cEF.structuralMembers.beam[i][j][0] == "Grade Beam" || cEF.structuralMembers.beam[i][j][0] == "Suspended Beam")//Beams connected to GRADE BEAM
+                        {
+                            List<List<string>> sched_gatherer = new List<List<string>>();
+                            foreach (var sched in cEF.structuralMembers.beamSchedule[i])
+                            {
+                                if (sched[0] == "Grade Beam" || sched[0] == "Suspended Beam")//Sched connected to footing beam
+                                {
+                                    List<string> gatherer = new List<string>();
+                                    gatherer.Add(sched[1]);//Sched Name
+                                    gatherer.Add(sched[2]);//Base
+                                    gatherer.Add(sched[3]);//Depth                                
+                                    sched_gatherer.Add(gatherer);
+                                }
+                            }
+                            double qty = double.Parse(cEF.structuralMembers.beam[i][j][2]);
+                            foreach (List<string> rows in cEF.structuralMembers.beamRow[i][j])//Rows connected to footing beam
+                            {
+                                string r_name = rows[0];
+                                double r_quantity = double.Parse(rows[1]);
+                                double r_length = double.Parse(rows[2]);
+                                ftb_area = 0;
+                                foreach (List<string> gatheredSched in sched_gatherer)
+                                {
+                                    if (gatheredSched[0] == r_name)
+                                    {
+                                        vertTracker += (r_quantity * (r_length / 1000)) * qty;
+                                        ftb_area += ((2 * (double.Parse(gatheredSched[2]) / 1000) + (double.Parse(gatheredSched[1]) / 1000) + 0.1) * (r_quantity * (r_length / 1000))) * qty;
+                                    }
+                                }
+                                total_gradeArea += ftb_area;
+                            }
+                        }
+                        //
+                        else if (cEF.structuralMembers.beam[i][j][0] == "Roof Beam")//roof beam
+                        {
+                            List<List<string>> sched_gatherer = new List<List<string>>();
+                            foreach (var sched in cEF.structuralMembers.beamSchedule[i])
+                            {
+                                if (sched[0] == "Roof Beam")//Sched connected to footing beam
+                                {
+                                    List<string> gatherer = new List<string>();
+                                    gatherer.Add(sched[1]);//Sched Name
+                                    gatherer.Add(sched[2]);//Base
+                                    gatherer.Add(sched[3]);//Depth                                
+                                    sched_gatherer.Add(gatherer);
+                                }
+                            }
+                            double qty = double.Parse(cEF.structuralMembers.beam[i][j][2]);
+                            foreach (List<string> rows in cEF.structuralMembers.beamRow[i][j])//Rows connected to footing beam
+                            {
+                                string r_name = rows[0];
+                                double r_quantity = double.Parse(rows[1]);
+                                double r_length = double.Parse(rows[2]);
+                                ftb_area = 0;
+                                foreach (List<string> gatheredSched in sched_gatherer)
+                                {
+                                    if (gatheredSched[0] == r_name)
+                                    {
+                                        RB_vertTracker += (r_quantity * (r_length / 1000)) * qty;
+                                        ftb_area += ((2 * (double.Parse(gatheredSched[2]) / 1000) + (double.Parse(gatheredSched[1]) / 1000) + 0.1) * (r_quantity * (r_length / 1000))) * qty;
+                                    }
+                                }
+                                RB_total_gradeArea += ftb_area;
+                            }
+                        }
+                    }
+                    //VERT
+                    double vertindex;
+                    double horiindex;
+                    if (vertDim[2] == "2")
+                    {
+                        vertindex = equi_vert[0];
+                    }
+                    else if (vertDim[2] == "3")
+                    {
+                        vertindex = equi_vert[1];
+                    }
+                    else
+                    {
+                        vertindex = equi_vert[2];
+                    }
+                    //HORI
+                    if (horiDim[2] == "2")
+                    {
+                        horiindex = equi_hori[0];
+                    }
+                    else if (horiDim[2] == "3")
+                    {
+                        horiindex = equi_hori[1];
+                    }
+                    else
+                    {
+                        horiindex = equi_hori[2];
+                    }
+                    horizontal_beam = rounder((((vertTracker * horiindex) * 12) / (double.Parse(horiDim[0]) * double.Parse(horiDim[2]) * double.Parse(horiDim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                    vertical_beam = rounder((((vertTracker * vertindex) * 12) / (double.Parse(vertDim[0]) * double.Parse(vertDim[2]) * double.Parse(vertDim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                    RB_horizontal_beam = rounder((((RB_vertTracker * horiindex) * 12) / (double.Parse(horiDim[0]) * double.Parse(horiDim[2]) * double.Parse(horiDim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                    RB_vertical_beam = rounder((((RB_vertTracker * vertindex) * 12) / (double.Parse(vertDim[0]) * double.Parse(vertDim[2]) * double.Parse(vertDim[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                    grade_form = rounder((total_gradeArea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU))); ;
+                    RB_form = rounder((RB_total_gradeArea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU))); ;
+                    grade_handler[i] = grade_form;
+                    RB_handler[i] = RB_form;
+                    vertical_handler[i] = vertical_beam;
+                    horizontal_handler[i] = horizontal_beam;
+                    RB_vertical_handler[i] = RB_vertical_beam;
+                    RB_horizontal_handler[i] = RB_horizontal_beam;
+                    gradearea[i] = total_gradeArea;
+                    tiearea[i] = tiehand;
+                    rbarea[i] = RB_total_gradeArea;
+                    total_gradeArea = 0;
+                    vertTracker = 0;
+                    RB_vertTracker = 0;
+                    RB_total_gradeArea = 0;
+                    tiehand = 0;
+                }
+                //
+                List<string> beam_lumber = dimensionFilterer(cEF.parameters.form_SM_C_FL);
+                double[] beam_frame = { 18.66, 28.00 };
+                double frame;
+                if (beam_lumber[2] == "2")
+                {
+                    frame = beam_frame[0];
+                }
+                else
+                {
+                    frame = beam_frame[1];
+                }
+                tie_form = rounder((total_ftbArea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                tie_frame = rounder(((tie_form * frame) * 12) / (double.Parse(beam_lumber[0]) * double.Parse(beam_lumber[2]) * double.Parse(beam_lumber[4])));
+                beam_handler.Add(tie_form);//formwork footing
+                beam_handler.Add(tie_frame);//framework footing                                                                                 
+                cEF.structuralMembers.beams_comps = beam_handler;
+                cEF.structuralMembers.beams_grade = grade_handler;
+                cEF.structuralMembers.beams_RB = RB_handler;
+                cEF.structuralMembers.beams_vertical = vertical_handler;
+                cEF.structuralMembers.beams_horizontal = horizontal_handler;
+                cEF.structuralMembers.beams_RBV = RB_vertical_handler;
+                cEF.structuralMembers.beams_RBH = RB_horizontal_handler;
+                cEF.structuralMembers.beams_tiearea = tiearea;
+                cEF.structuralMembers.beams_gradarea = gradearea;
+                cEF.structuralMembers.beams_RBarea = rbarea;
+
+                List<double> beamFRAME = new List<double>();
+                foreach (var grade in cEF.structuralMembers.beams_grade)
+                {
+                    beamFRAME.Add(rounder(((grade * frame) * 12) / (double.Parse(beam_lumber[0]) * double.Parse(beam_lumber[2]) * double.Parse(beam_lumber[4]))));
+                }
+                List<double> roofFRAME = new List<double>();
+                foreach (var grade in cEF.structuralMembers.beams_RB)
+                {
+                    roofFRAME.Add(rounder(((grade * frame) * 12) / (double.Parse(beam_lumber[0]) * double.Parse(beam_lumber[2]) * double.Parse(beam_lumber[4]))));
+                }
+                cEF.structuralMembers.beams_gradeFrame = beamFRAME;
+                cEF.structuralMembers.beams_RBframe = roofFRAME;
+                refreshSolutions(cEF);
+            }
+            catch
+            {
+                print("Null catcher beam");
+            }
+            
         }
         //Beam Computation Functions -- END
 
@@ -1470,58 +2662,22 @@ namespace WindowsFormsApp1
                 concreteGrade = cEF.parameters.conc_CM_S_SOG_CG;
 
                 //Variables from StructMem
-                double quantity, thickness, customLengthTop, customLengthBot, customLengthLeft, customLengthRight;
-                string topBeamRow, topAtBeam, botBeamRow, botAtBeam, leftBeamRow, leftAtBeam, rightBeamRow, rightAtBeam;
+                double quantity, thickness, lengthTop, lengthBot, lengthLeft, lengthRight;
 
                 //Init variables from StructMem
                 quantity = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][1], System.Globalization.CultureInfo.InvariantCulture);
                 thickness = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][2], System.Globalization.CultureInfo.InvariantCulture);
-
-                topBeamRow = cEF.structuralMembers.slab[floorCount][slabCount][13];
-                topAtBeam = cEF.structuralMembers.slab[floorCount][slabCount][14];
-                customLengthTop = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][15], System.Globalization.CultureInfo.InvariantCulture);
-
-                botBeamRow = cEF.structuralMembers.slab[floorCount][slabCount][16];
-                botAtBeam = cEF.structuralMembers.slab[floorCount][slabCount][17];
-                customLengthBot = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][18], System.Globalization.CultureInfo.InvariantCulture);
-
-                leftBeamRow = cEF.structuralMembers.slab[floorCount][slabCount][19];
-                leftAtBeam = cEF.structuralMembers.slab[floorCount][slabCount][20];
-                customLengthLeft = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][21], System.Globalization.CultureInfo.InvariantCulture);
-
-                rightBeamRow = cEF.structuralMembers.slab[floorCount][slabCount][22];
-                rightAtBeam = cEF.structuralMembers.slab[floorCount][slabCount][23];
-                customLengthRight = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][24], System.Globalization.CultureInfo.InvariantCulture);
-
-                if (topBeamRow.Equals("None") || topAtBeam.Equals("None") || botBeamRow.Equals("None") || botAtBeam.Equals("None") ||
-                    leftBeamRow.Equals("None") || leftAtBeam.Equals("None") || rightBeamRow.Equals("None") || rightAtBeam.Equals("None"))
-                {
-                    return;
-                }
-
-                if(customLengthTop <= 0)
-                {
-                    customLengthTop = slabCustomLengthSOG(cEF, floorCount, topBeamRow, topAtBeam);
-                }
-                if (customLengthBot <= 0)
-                {
-                    customLengthBot = slabCustomLengthSOG(cEF, floorCount, botBeamRow, botAtBeam);
-                }
-                if (customLengthLeft <= 0)
-                {
-                    customLengthLeft = slabCustomLengthSOG(cEF, floorCount, leftBeamRow, leftAtBeam);
-                }
-                if (customLengthRight <= 0)
-                {
-                    customLengthRight = slabCustomLengthSOG(cEF, floorCount, rightBeamRow, rightAtBeam);
-                }
+                lengthTop = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][11], System.Globalization.CultureInfo.InvariantCulture);
+                lengthBot = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][13], System.Globalization.CultureInfo.InvariantCulture);
+                lengthLeft = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][15], System.Globalization.CultureInfo.InvariantCulture);
+                lengthRight = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][17], System.Globalization.CultureInfo.InvariantCulture);
 
                 //Computation -- Concrete Works
-                if (cEF.parameters.conc_cmIsSelected[0])
+                if (cEF.parameters.conc_cmIsSelected[3])
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[0][0] * quantity);
@@ -1529,10 +2685,12 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[0][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[0][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                     else if (concreteGrade.Equals("CLASS A"))
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[1][0] * quantity);
@@ -1540,10 +2698,12 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[1][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[1][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[2][0] * quantity);
@@ -1551,10 +2711,12 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[2][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[2][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                     else
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[3][0] * quantity);
@@ -1562,15 +2724,15 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[3][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[3][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                 }
                 else
                 {
                     cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
-                        ((((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness) / 1000000000) * quantity);
+                        ((((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness) / 1000000000) * quantity);
                 }
-
-                refreshSolutions(cEF);
             }
             else // Suspended Slab
             {
@@ -1581,8 +2743,8 @@ namespace WindowsFormsApp1
                 concreteGrade = cEF.parameters.conc_CM_S_SS_CG;
 
                 //Variables from StructMem
-                double quantity, thickness, customLengthTop, customLengthBot, customLengthLeft, customLengthRight;
-                string slabMark, topBeamRow, topAtBeam, botBeamRow, botAtBeam, leftBeamRow, leftAtBeam, rightBeamRow, rightAtBeam;
+                double quantity, thickness, lengthTop, lengthBot, lengthLeft, lengthRight;
+                string slabMark;
 
                 //Init variables from StructMem
 
@@ -1592,8 +2754,8 @@ namespace WindowsFormsApp1
                     i++;
                 }
 
+                quantity = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][2], System.Globalization.CultureInfo.InvariantCulture);
                 slabMark = cEF.structuralMembers.slab[floorCount][slabCount][1];
-                quantity = 0; //TODO: dont know where kukunin
                 thickness = 0;
                 foreach (List<string> schedule in cEF.structuralMembers.slabSchedule[floorCount - 1])
                 {
@@ -1602,55 +2764,17 @@ namespace WindowsFormsApp1
                         thickness = double.Parse(schedule[1], System.Globalization.CultureInfo.InvariantCulture);
                     }
                 }
-
-                topBeamRow = cEF.structuralMembers.slab[floorCount][slabCount][11 - i];
-                topAtBeam = cEF.structuralMembers.slab[floorCount][slabCount][12 - i];
-                customLengthTop = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][13 - i], System.Globalization.CultureInfo.InvariantCulture);
-
-                botBeamRow = cEF.structuralMembers.slab[floorCount][slabCount][14 - i];
-                botAtBeam = cEF.structuralMembers.slab[floorCount][slabCount][15 - i];
-                customLengthBot = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][16 - i], System.Globalization.CultureInfo.InvariantCulture);
-
-                leftBeamRow = cEF.structuralMembers.slab[floorCount][slabCount][17 - i];
-                leftAtBeam = cEF.structuralMembers.slab[floorCount][slabCount][18 - i];
-                customLengthLeft = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][19 - i], System.Globalization.CultureInfo.InvariantCulture);
-
-                rightBeamRow = cEF.structuralMembers.slab[floorCount][slabCount][20 - i];
-                rightAtBeam = cEF.structuralMembers.slab[floorCount][slabCount][21 - i];
-                customLengthRight = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][22 - i], System.Globalization.CultureInfo.InvariantCulture);
-
-                if (topBeamRow.Equals("None") || topAtBeam.Equals("None") || botBeamRow.Equals("None") || botAtBeam.Equals("None") ||
-                    leftBeamRow.Equals("None") || leftAtBeam.Equals("None") || rightBeamRow.Equals("None") || rightAtBeam.Equals("None") ||
-                    slabMark.Equals("None"))
-                {
-                    return;
-                }
-
-                if (customLengthTop <= 0)
-                {
-                    customLengthTop = slabCustomLengthSS(cEF, floorCount, topBeamRow, topAtBeam);
-                }
-                if (customLengthBot <= 0)
-                {
-                    customLengthBot = slabCustomLengthSS(cEF, floorCount, botBeamRow, botAtBeam);
-                }
-                if (customLengthLeft <= 0)
-                {
-                    customLengthLeft = slabCustomLengthSS(cEF, floorCount, leftBeamRow, leftAtBeam);
-                }
-                if (customLengthRight <= 0)
-                {
-                    customLengthRight = slabCustomLengthSS(cEF, floorCount, rightBeamRow, rightAtBeam);
-                }
-                Console.WriteLine("NICE2: " + customLengthTop + " " + customLengthBot
-                    + " " + customLengthLeft + " " + customLengthRight);
+                lengthTop = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][13 - i], System.Globalization.CultureInfo.InvariantCulture);
+                lengthBot = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][15 - i], System.Globalization.CultureInfo.InvariantCulture);
+                lengthLeft = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][17 - i], System.Globalization.CultureInfo.InvariantCulture);
+                lengthRight = double.Parse(cEF.structuralMembers.slab[floorCount][slabCount][19 - i], System.Globalization.CultureInfo.InvariantCulture);
 
                 //Computation -- Concrete Works
-                if (cEF.parameters.conc_cmIsSelected[0])
+                if (cEF.parameters.conc_cmIsSelected[4])
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[0][0] * quantity);
@@ -1658,10 +2782,12 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[0][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[0][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                     else if (concreteGrade.Equals("CLASS A"))
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[1][0] * quantity);
@@ -1669,10 +2795,12 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[1][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[1][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[2][0] * quantity);
@@ -1680,10 +2808,12 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[2][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[2][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                     else
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[3][0] * quantity);
@@ -1691,15 +2821,118 @@ namespace WindowsFormsApp1
                             volume * cEF.structuralMembers.concreteProportion[3][1] * quantity);
                         cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
                             volume * cEF.structuralMembers.concreteProportion[3][2] * quantity);
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
+                            volume * quantity);
                     }
                 }
                 else
                 {
                     cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][slabCount].Add(
-                        ((((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness) / 1000000000) * quantity);
+                        ((((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness) / 1000000000) * quantity);
                 }
 
+            }
+            //Slabform
+            List<double> area = new List<double>();
+            List<double> form = new List<double>();
+            List<double> scaf = new List<double>();
+            List<string> scafDim_h = dimensionFilterer(cEF.parameters.form_SM_HS_VS);
+            area.Add(0);
+            form.Add(0);
+            scaf.Add(0);
+            for (int i = 1; i < cEF.structuralMembers.slab.Count; i++)
+            {
+                double totalarea = 0;
+                area.Add(0);
+                form.Add(0);
+                scaf.Add(0);
+                for (int j = 0; j < cEF.structuralMembers.slab[i].Count; j++)
+                {
+                    if (cEF.structuralMembers.slab[i][j][0] == "Suspended Slab")
+                    {
+                        double quantity = double.Parse(cEF.structuralMembers.slab[i][j][2]);
+                        double top = double.Parse(cEF.structuralMembers.slab[i][j][13]) / 1000;
+                        double left = double.Parse(cEF.structuralMembers.slab[i][j][17]) / 1000;
+                        print(((top * left) * quantity).ToString());
+                        totalarea += (top * left) * quantity;
+                    }
+                }
+                double multip;
+                if (scafDim_h[2] == "2")
+                {
+                    multip = 6.1;
+                }
+                else if (scafDim_h[2] == "3")
+                {
+                    multip = 9.1;
+                }
+                else
+                {
+                    multip = 12.1;
+                }
+                area[i] = totalarea;
+                form[i] = rounder((totalarea / (1.2 * 2.4)));
+                scaf[i] = rounder(((totalarea * multip) * 12) / (double.Parse(scafDim_h[0]) * double.Parse(scafDim_h[2]) * double.Parse(scafDim_h[4])));
+            }
+            cEF.structuralMembers.slab_area = area;
+            cEF.structuralMembers.slab_form = form;
+            cEF.structuralMembers.slab_scaf = scaf;
+            refreshSolutions(cEF);
+        }
+
+        public void recomputeFW_slabs(CostEstimationForm cEF)
+        {
+            try
+            {
+                List<double> area = new List<double>();
+                List<double> form = new List<double>();
+                List<double> scaf = new List<double>();
+                List<string> scafDim_h = dimensionFilterer(cEF.parameters.form_SM_HS_VS);
+                area.Add(0);
+                form.Add(0);
+                scaf.Add(0);
+                for (int i = 1; i < cEF.structuralMembers.slab.Count; i++)
+                {
+                    double totalarea = 0;
+                    area.Add(0);
+                    form.Add(0);
+                    scaf.Add(0);
+                    for (int j = 0; j < cEF.structuralMembers.slab[i].Count; j++)
+                    {
+                        if (cEF.structuralMembers.slab[i][j][0] == "Suspended Slab")
+                        {
+                            double quantity = double.Parse(cEF.structuralMembers.slab[i][j][2]);
+                            double top = double.Parse(cEF.structuralMembers.slab[i][j][13]) / 1000;
+                            double left = double.Parse(cEF.structuralMembers.slab[i][j][17]) / 1000;
+                            print(((top * left) * quantity).ToString());
+                            totalarea += (top * left) * quantity;
+                        }
+                    }
+                    double multip;
+                    if (scafDim_h[2] == "2")
+                    {
+                        multip = 6.1;
+                    }
+                    else if (scafDim_h[2] == "3")
+                    {
+                        multip = 9.1;
+                    }
+                    else
+                    {
+                        multip = 12.1;
+                    }
+                    area[i] = totalarea;
+                    form[i] = rounder((totalarea / (1.2 * 2.4)));
+                    scaf[i] = rounder(((totalarea * multip) * 12) / (double.Parse(scafDim_h[0]) * double.Parse(scafDim_h[2]) * double.Parse(scafDim_h[4])));
+                }
+                cEF.structuralMembers.slab_area = area;
+                cEF.structuralMembers.slab_form = form;
+                cEF.structuralMembers.slab_scaf = scaf;
                 refreshSolutions(cEF);
+            }
+            catch
+            {
+                print("Null catcher slabs");
             }
         }
 
@@ -1790,107 +3023,73 @@ namespace WindowsFormsApp1
                 concreteGrade = cEF.parameters.conc_CM_S_SOG_CG;
 
                 //Variables from StructMem
-                double quantity, thickness, customLengthTop, customLengthBot, customLengthLeft, customLengthRight;
-                string topBeamRow, topAtBeam, botBeamRow, botAtBeam, leftBeamRow, leftAtBeam, rightBeamRow, rightAtBeam;
+                double quantity, thickness, lengthTop, lengthBot, lengthLeft, lengthRight;
 
                 //Init variables from StructMem
                 quantity = double.Parse(cEF.structuralMembers.slab[floorCount][index][1], System.Globalization.CultureInfo.InvariantCulture);
                 thickness = double.Parse(cEF.structuralMembers.slab[floorCount][index][2], System.Globalization.CultureInfo.InvariantCulture);
-
-                topBeamRow = cEF.structuralMembers.slab[floorCount][index][13];
-                topAtBeam = cEF.structuralMembers.slab[floorCount][index][14];
-                customLengthTop = double.Parse(cEF.structuralMembers.slab[floorCount][index][15], System.Globalization.CultureInfo.InvariantCulture);
-
-                botBeamRow = cEF.structuralMembers.slab[floorCount][index][16];
-                botAtBeam = cEF.structuralMembers.slab[floorCount][index][17];
-                customLengthBot = double.Parse(cEF.structuralMembers.slab[floorCount][index][18], System.Globalization.CultureInfo.InvariantCulture);
-
-                leftBeamRow = cEF.structuralMembers.slab[floorCount][index][19];
-                leftAtBeam = cEF.structuralMembers.slab[floorCount][index][20];
-                customLengthLeft = double.Parse(cEF.structuralMembers.slab[floorCount][index][21], System.Globalization.CultureInfo.InvariantCulture);
-
-                rightBeamRow = cEF.structuralMembers.slab[floorCount][index][22];
-                rightAtBeam = cEF.structuralMembers.slab[floorCount][index][23];
-                customLengthRight = double.Parse(cEF.structuralMembers.slab[floorCount][index][24], System.Globalization.CultureInfo.InvariantCulture);
-
-                if (topBeamRow.Equals("None") || topAtBeam.Equals("None") || botBeamRow.Equals("None") || botAtBeam.Equals("None") ||
-                    leftBeamRow.Equals("None") || leftAtBeam.Equals("None") || rightBeamRow.Equals("None") || rightAtBeam.Equals("None"))
-                {
-                    return;
-                }
-
-                if (customLengthTop <= 0)
-                {
-                    customLengthTop = slabCustomLengthSOG(cEF, floorCount, topBeamRow, topAtBeam);
-                }
-                if (customLengthBot <= 0)
-                {
-                    customLengthBot = slabCustomLengthSOG(cEF, floorCount, botBeamRow, botAtBeam);
-                }
-                if (customLengthLeft <= 0)
-                {
-                    customLengthLeft = slabCustomLengthSOG(cEF, floorCount, leftBeamRow, leftAtBeam);
-                }
-                if (customLengthRight <= 0)
-                {
-                    customLengthRight = slabCustomLengthSOG(cEF, floorCount, rightBeamRow, rightAtBeam);
-                }
+                lengthTop = double.Parse(cEF.structuralMembers.slab[floorCount][index][11], System.Globalization.CultureInfo.InvariantCulture);
+                lengthBot = double.Parse(cEF.structuralMembers.slab[floorCount][index][13], System.Globalization.CultureInfo.InvariantCulture);
+                lengthLeft = double.Parse(cEF.structuralMembers.slab[floorCount][index][15], System.Globalization.CultureInfo.InvariantCulture);
+                lengthRight = double.Parse(cEF.structuralMembers.slab[floorCount][index][17], System.Globalization.CultureInfo.InvariantCulture);
 
                 //Computation -- Concrete Works
-                if (cEF.parameters.conc_cmIsSelected[0])
+                if (cEF.parameters.conc_cmIsSelected[3])
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[0][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[0][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[0][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                     else if (concreteGrade.Equals("CLASS A"))
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[1][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[1][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[1][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[2][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[2][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[2][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                     else
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[3][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[3][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[3][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                 }
                 else
                 {
-                    cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
-                        ((((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness) / 1000000000) * quantity;
-                }
-
-                refreshSolutions(cEF);
+                    cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
+                        ((((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness) / 1000000000) * quantity;
+                }                
             }
             else // Suspended Slab
             {
@@ -1901,8 +3100,8 @@ namespace WindowsFormsApp1
                 concreteGrade = cEF.parameters.conc_CM_S_SS_CG;
 
                 //Variables from StructMem
-                double quantity, thickness, customLengthTop, customLengthBot, customLengthLeft, customLengthRight;
-                string slabMark, topBeamRow, topAtBeam, botBeamRow, botAtBeam, leftBeamRow, leftAtBeam, rightBeamRow, rightAtBeam;
+                double quantity, thickness, lengthTop, lengthBot, lengthLeft, lengthRight;
+                string slabMark;
 
                 //Init variables from StructMem
 
@@ -1912,8 +3111,8 @@ namespace WindowsFormsApp1
                     i++;
                 }
 
+                quantity = double.Parse(cEF.structuralMembers.slab[floorCount][index][2], System.Globalization.CultureInfo.InvariantCulture);
                 slabMark = cEF.structuralMembers.slab[floorCount][index][1];
-                quantity = 0; //TODO: dont know where kukunin
                 thickness = 0;
                 foreach (List<string> schedule in cEF.structuralMembers.slabSchedule[floorCount - 1])
                 {
@@ -1922,105 +3121,115 @@ namespace WindowsFormsApp1
                         thickness = double.Parse(schedule[1], System.Globalization.CultureInfo.InvariantCulture);
                     }
                 }
-
-                topBeamRow = cEF.structuralMembers.slab[floorCount][index][11 - i];
-                topAtBeam = cEF.structuralMembers.slab[floorCount][index][12 - i];
-                customLengthTop = double.Parse(cEF.structuralMembers.slab[floorCount][index][13 - i], System.Globalization.CultureInfo.InvariantCulture);
-
-                botBeamRow = cEF.structuralMembers.slab[floorCount][index][14 - i];
-                botAtBeam = cEF.structuralMembers.slab[floorCount][index][15 - i];
-                customLengthBot = double.Parse(cEF.structuralMembers.slab[floorCount][index][16 - i], System.Globalization.CultureInfo.InvariantCulture);
-
-                leftBeamRow = cEF.structuralMembers.slab[floorCount][index][17 - i];
-                leftAtBeam = cEF.structuralMembers.slab[floorCount][index][18 - i];
-                customLengthLeft = double.Parse(cEF.structuralMembers.slab[floorCount][index][19 - i], System.Globalization.CultureInfo.InvariantCulture);
-
-                rightBeamRow = cEF.structuralMembers.slab[floorCount][index][20 - i];
-                rightAtBeam = cEF.structuralMembers.slab[floorCount][index][21 - i];
-                customLengthRight = double.Parse(cEF.structuralMembers.slab[floorCount][index][22 - i], System.Globalization.CultureInfo.InvariantCulture);
-
-                if (topBeamRow.Equals("None") || topAtBeam.Equals("None") || botBeamRow.Equals("None") || botAtBeam.Equals("None") ||
-                    leftBeamRow.Equals("None") || leftAtBeam.Equals("None") || rightBeamRow.Equals("None") || rightAtBeam.Equals("None") ||
-                    slabMark.Equals("None"))
-                {
-                    return;
-                }
-
-                if (customLengthTop <= 0)
-                {
-                    customLengthTop = slabCustomLengthSS(cEF, floorCount, topBeamRow, topAtBeam);
-                }
-                if (customLengthBot <= 0)
-                {
-                    customLengthBot = slabCustomLengthSS(cEF, floorCount, botBeamRow, botAtBeam);
-                }
-                if (customLengthLeft <= 0)
-                {
-                    customLengthLeft = slabCustomLengthSS(cEF, floorCount, leftBeamRow, leftAtBeam);
-                }
-                if (customLengthRight <= 0)
-                {
-                    customLengthRight = slabCustomLengthSS(cEF, floorCount, rightBeamRow, rightAtBeam);
-                }
-                Console.WriteLine("NICE2: " + customLengthTop + " " + customLengthBot
-                    + " " + customLengthLeft + " " + customLengthRight);
+                lengthTop = double.Parse(cEF.structuralMembers.slab[floorCount][index][13 - i], System.Globalization.CultureInfo.InvariantCulture);
+                lengthBot = double.Parse(cEF.structuralMembers.slab[floorCount][index][15 - i], System.Globalization.CultureInfo.InvariantCulture);
+                lengthLeft = double.Parse(cEF.structuralMembers.slab[floorCount][index][17 - i], System.Globalization.CultureInfo.InvariantCulture);
+                lengthRight = double.Parse(cEF.structuralMembers.slab[floorCount][index][19 - i], System.Globalization.CultureInfo.InvariantCulture);
 
                 //Computation -- Concrete Works
-                if (cEF.parameters.conc_cmIsSelected[0])
+                if (cEF.parameters.conc_cmIsSelected[4])
                 {
                     if (concreteGrade.Equals("CLASS AA"))
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[0][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[0][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[0][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                     else if (concreteGrade.Equals("CLASS A"))
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[1][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[1][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[1][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                     else if (concreteGrade.Equals("CLASS B"))
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[2][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[2][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[2][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                     else
                     {
-                        double volume = ((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness;
+                        double volume = ((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness;
                         volume /= 1000000000;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
                             volume * cEF.structuralMembers.concreteProportion[3][0] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][1] =
                             volume * cEF.structuralMembers.concreteProportion[3][1] * quantity;
-                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] = 
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][2] =
                             volume * cEF.structuralMembers.concreteProportion[3][2] * quantity;
+                        cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][3] = volume * quantity;
                     }
                 }
                 else
                 {
-                    cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] = 
-                        ((((customLengthTop + customLengthBot) / 2) * ((customLengthLeft + customLengthRight) / 2) * thickness) / 1000000000) * quantity;
-                }
-
-                refreshSolutions(cEF);
+                    cEF.structuralMembers.concreteWorkSolutionsSL[floorCount][index][0] =
+                        ((((lengthTop + lengthBot) / 2) * ((lengthLeft + lengthRight) / 2) * thickness) / 1000000000) * quantity;
+                }                
             }
+            //Slabform
+            List<double> area = new List<double>();
+            List<double> form = new List<double>();
+            List<double> scaf = new List<double>();
+            List<string> scafDim_h = dimensionFilterer(cEF.parameters.form_SM_HS_VS);
+            area.Add(0);
+            form.Add(0);
+            scaf.Add(0);
+            for (int i = 1; i < cEF.structuralMembers.slab.Count; i++)
+            {
+                double totalarea = 0;
+                area.Add(0);
+                form.Add(0);
+                scaf.Add(0);
+                for (int j = 0; j < cEF.structuralMembers.slab[i].Count; j++)
+                {
+                    if (cEF.structuralMembers.slab[i][j][0] == "Suspended Slab")
+                    {
+                        double quantity = double.Parse(cEF.structuralMembers.slab[i][j][2]);
+                        double top = double.Parse(cEF.structuralMembers.slab[i][j][13]) / 1000;
+                        double left = double.Parse(cEF.structuralMembers.slab[i][j][17]) / 1000;
+                        print(((top * left) * quantity).ToString());
+                        totalarea += (top * left) * quantity;
+                    }
+                }
+                double multip;
+                if (scafDim_h[2] == "2")
+                {
+                    multip = 6.1;
+                }
+                else if (scafDim_h[2] == "3")
+                {
+                    multip = 9.1;
+                }
+                else
+                {
+                    multip = 12.1;
+                }
+                area[i] = totalarea;
+                form[i] = rounder((totalarea / (1.2 * 2.4)));
+                scaf[i] = rounder(((totalarea * multip) * 12) / (double.Parse(scafDim_h[0]) * double.Parse(scafDim_h[2]) * double.Parse(scafDim_h[4])));
+            }
+            cEF.structuralMembers.slab_area = area;
+            cEF.structuralMembers.slab_form = form;
+            cEF.structuralMembers.slab_scaf = scaf;
+            refreshSolutions(cEF);
         }
         //Slab Computation Functions -- END
 
@@ -2032,7 +3241,7 @@ namespace WindowsFormsApp1
             stairsWorks(cEF, floorCount, stairsCount);
         }
 
-        public void stairsWorks(CostEstimationForm cEF, int floorCount, int stairsCount)
+        public async void stairsWorks(CostEstimationForm cEF, int floorCount, int stairsCount)
         {
             if (cEF.structuralMembers.stairs[floorCount][stairsCount][0].Equals("Straight Stairs"))
             {
@@ -2452,8 +3661,381 @@ namespace WindowsFormsApp1
                         volume);
                 }
             }
+            //Computation -- Formworks
+            List<string> stairsLumber = dimensionFilterer(cEF.parameters.form_SM_ST_FL);
+            List<string> stairsScaf = dimensionFilterer(cEF.parameters.form_SM_ST_VS);
+            List<double> Uform_h = new List<double>();
+            List<double> Uframe_h = new List<double>();
+            List<double> Uscaf_h = new List<double>();
+            List<double> Lform_h = new List<double>();
+            List<double> Lframe_h = new List<double>();
+            List<double> Lscaf_h = new List<double>();
+            List<double> Sform_h = new List<double>();
+            List<double> Sframe_h = new List<double>();
+            List<double> Sscaf_h = new List<double>();
+            List<double> UAREA_h = new List<double>();
+            List<double> LAREA_h = new List<double>();
+            List<double> SAREA_h = new List<double>();
+            for (int i = 0; i < cEF.structuralMembers.stairs.Count; i++)
+            {
+                //USTAIRS                
+                double UfirstFlightL = 0;
+                double UfirstFlightarea = 0;
+                double UfirstRB = 0;
+                double UsecondFlightL = 0;
+                double UsecondFlightarea = 0;
+                double UsecondRB = 0;
+                double UlandingFW = 0;
+                double UstepsFW = 0;
+                double Utotalsteps = 0;
+                double UFRAME = 0;
+                double USCAF = 0;
+                double Utotalarea = 0;
+                //USTAIRS
 
-            refreshSolutions(cEF);
+                //LSTAIRS
+                double LfirstFlightL = 0;
+                double LfirstFlightarea = 0;
+                double LfirstRB = 0;
+                double LsecondFlightL = 0;
+                double LsecondFlightarea = 0;
+                double LsecondRB = 0;
+                double LlandingFW = 0;
+                double LstepsFW = 0;
+                double Ltotalsteps = 0;
+                double LFRAME = 0;
+                double LSCAF = 0;
+                double Ltotalarea = 0;
+                //LSTAIRS
+
+                //SSTAIRS
+                double SfirstFlightL = 0;
+                double SfirstFlightarea = 0;
+                double SfirstRB = 0;
+                double SstepsFW = 0;
+                double SFRAME = 0;
+                double SSCAF = 0;
+                double Stotalarea = 0;
+                //SSTAIRS
+                Uform_h.Add(0);
+                Uframe_h.Add(0);
+                Uscaf_h.Add(0);
+                Lform_h.Add(0);
+                Lframe_h.Add(0);
+                Lscaf_h.Add(0);
+                Sform_h.Add(0);
+                Sframe_h.Add(0);
+                Sscaf_h.Add(0);
+                UAREA_h.Add(0);
+                LAREA_h.Add(0);
+                SAREA_h.Add(0);
+                for (int j = 0; j < cEF.structuralMembers.stairs[i].Count; j++)
+                {
+                    if (cEF.structuralMembers.stairs[i][j][0] == "U-Stairs")
+                    {
+                        double quantity = double.Parse(cEF.structuralMembers.stairs[i][j][1]);
+                        double stepsFF = double.Parse(cEF.structuralMembers.stairs[i][j][2]);
+                        double steps2FF = double.Parse(cEF.structuralMembers.stairs[i][j][3]);
+                        double SL = double.Parse(cEF.structuralMembers.stairs[i][j][4]) / 1000;
+                        double riser = double.Parse(cEF.structuralMembers.stairs[i][j][5]) / 1000;
+                        double tread = double.Parse(cEF.structuralMembers.stairs[i][j][6]) / 1000;
+                        double wsThc = double.Parse(cEF.structuralMembers.stairs[i][j][7]) / 1000;
+                        double landingW = double.Parse(cEF.structuralMembers.stairs[i][j][8]) / 1000;
+                        double gap = double.Parse(cEF.structuralMembers.stairs[i][j][9]) / 1000;
+                        double landingThc = double.Parse(cEF.structuralMembers.stairs[i][j][10]) / 1000;
+                        Utotalsteps = stepsFF + steps2FF;
+                        UfirstFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * stepsFF), 2) + (Math.Pow(((tread) * stepsFF), 2)))), 3));
+                        UfirstFlightarea = UfirstFlightL * SL;
+                        UfirstRB = (UfirstFlightL * (riser + 0.1)) * 2;
+                        UsecondFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * steps2FF), 2) + (Math.Pow(((tread) * steps2FF), 2)))),3));
+                        UsecondFlightarea = UsecondFlightL * SL;
+                        UsecondRB = (UsecondFlightL * (riser + 0.1)) * 2;
+                        UlandingFW =
+                            (((SL * 2) + gap) * landingW) +
+                            (2 * (landingW * landingThc)) +
+                            (((SL * 2) + gap) * landingThc);
+                        UstepsFW = (SL * riser) * (stepsFF + steps2FF);
+                        double Uframe_first = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (UfirstFlightL * 3.28))) / 12;
+                        double Uframe_second = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (UsecondFlightL * 3.28))) / 12;
+                        double Uframe_brace = ((Utotalsteps * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (3.28)))) / 12) * rounder(SL / 0.6);
+                        double Uback_first = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (UfirstFlightL * 3.28))) / 12;
+                        double Uback_second = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (UsecondFlightL * 3.28))) / 12;
+                        double Uback_brace = ((2 * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SL * 3.28)))) / 12) * Utotalsteps;
+                        UFRAME += (Uframe_first + Uframe_second + Uframe_brace + Uback_first + Uback_second + Uback_brace) * quantity;
+                        USCAF += ((UfirstFlightL + SL * 2 + gap + UsecondFlightL) * 12) * quantity;
+                        Utotalarea += (UfirstFlightarea + UfirstRB + UsecondFlightarea + UsecondRB + UlandingFW + UstepsFW) * quantity;
+                    }
+                    else if (cEF.structuralMembers.stairs[i][j][0] == "L-Stairs")
+                    {
+                        double quantity = double.Parse(cEF.structuralMembers.stairs[i][j][1]);
+                        double stepsFF = double.Parse(cEF.structuralMembers.stairs[i][j][2]);
+                        double steps2FF = double.Parse(cEF.structuralMembers.stairs[i][j][3]);
+                        double SL = double.Parse(cEF.structuralMembers.stairs[i][j][4]) / 1000;
+                        double riser = double.Parse(cEF.structuralMembers.stairs[i][j][5]) / 1000;
+                        double tread = double.Parse(cEF.structuralMembers.stairs[i][j][6]) / 1000;
+                        double wsThc = double.Parse(cEF.structuralMembers.stairs[i][j][7]) / 1000;
+                        double landingThc = double.Parse(cEF.structuralMembers.stairs[i][j][8]) / 1000;
+                        Ltotalsteps = stepsFF + steps2FF;
+                        LfirstFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * stepsFF), 2) + (Math.Pow(((tread) * stepsFF), 2)))),3));
+                        LfirstFlightarea = LfirstFlightL * SL;
+                        LfirstRB = (LfirstFlightL * (riser + 0.1)) * 2;
+                        LsecondFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * steps2FF), 2) + (Math.Pow(((tread) * steps2FF), 2)))),3));
+                        LsecondFlightarea = LsecondFlightL * SL;
+                        LsecondRB = (LsecondFlightL * (riser + 0.1)) * 2;
+                        LlandingFW = Math.Pow(SL, 2) + (3 * (landingThc * SL));
+                        LstepsFW = (SL * riser) * (stepsFF + steps2FF);
+                        double Lframe_first = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (LfirstFlightL * 3.28))) / 12;
+                        double Lframe_second = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (LsecondFlightL * 3.28))) / 12;
+                        double Lframe_brace = ((Ltotalsteps * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (3.28)))) / 12) * rounder(SL / 0.6);
+                        double Lback_first = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (LfirstFlightL * 3.28))) / 12;
+                        double Lback_second = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (LsecondFlightL * 3.28))) / 12;
+                        double Lback_brace = ((2 * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SL * 3.28)))) / 12) * Ltotalsteps;
+                        LFRAME += (Lframe_first + Lframe_second + Lframe_brace + Lback_first + Lback_second + Lback_brace) * quantity;
+                        LSCAF += ((LfirstFlightL + SL + LsecondFlightL) * 12) * quantity;
+                        Ltotalarea += (LfirstFlightarea + LfirstRB + LsecondFlightarea + LsecondRB + LlandingFW + LstepsFW) * quantity;
+                    }
+                    else
+                    {
+                        double quantity = double.Parse(cEF.structuralMembers.stairs[i][j][1]);
+                        double steps = double.Parse(cEF.structuralMembers.stairs[i][j][2]);
+                        double SL = double.Parse(cEF.structuralMembers.stairs[i][j][3]) / 1000;
+                        double riser = double.Parse(cEF.structuralMembers.stairs[i][j][4]) / 1000;
+                        double tread = double.Parse(cEF.structuralMembers.stairs[i][j][5]) / 1000;
+                        double Thc = double.Parse(cEF.structuralMembers.stairs[i][j][6]) / 1000;
+                        SfirstFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * steps), 2) + (Math.Pow(((tread) * steps), 2)))),3));
+                        SfirstFlightarea = SfirstFlightL * SL;
+                        SfirstRB = (SfirstFlightL * (riser + 0.1)) * 2;
+                        SstepsFW = (SL * riser) * (steps);
+                        Stotalarea += (SfirstFlightarea + SfirstRB + SstepsFW) * quantity;
+                        double Sframe_first = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SfirstFlightL * 3.28))) / 12;
+                        double Sframe_brace = ((steps * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (3.28)))) / 12) * rounder(SL / 0.6);
+                        double Sback_first = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SfirstFlightL * 3.28))) / 12;
+                        double Sback_brace = ((2 * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SL * 3.28)))) / 12) * steps;
+                        SFRAME += (Sframe_first + Sframe_brace + Sback_first + Sback_brace) * quantity;
+                        SSCAF += ((SfirstFlightL) * 12) * quantity;
+                        Stotalarea += (SfirstFlightarea + SfirstRB + SstepsFW) * quantity;
+                    }
+
+                }
+                Uform_h[i] = rounder((Utotalarea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                Uframe_h[i] = rounder(((UFRAME * 12) / (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * double.Parse(stairsLumber[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                Uscaf_h[i] = rounder((((USCAF * 12) / (double.Parse(stairsScaf[0]) * double.Parse(stairsScaf[2]) * double.Parse(stairsScaf[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                Lform_h[i] = rounder((Ltotalarea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                Lframe_h[i] = rounder(((LFRAME * 12) / (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * double.Parse(stairsLumber[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                Lscaf_h[i] = rounder((((LSCAF * 12) / (double.Parse(stairsScaf[0]) * double.Parse(stairsScaf[2]) * double.Parse(stairsScaf[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                Sform_h[i] = rounder((Stotalarea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                Sframe_h[i] = rounder(((SFRAME * 12) / (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * double.Parse(stairsLumber[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                Sscaf_h[i] = rounder((((SSCAF * 12) / (double.Parse(stairsScaf[0]) * double.Parse(stairsScaf[2]) * double.Parse(stairsScaf[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                UAREA_h[i] = Utotalarea;
+                LAREA_h[i] = Ltotalarea;
+                SAREA_h[i] = Stotalarea;
+            }
+            cEF.structuralMembers.UstairsFORM = Uform_h;
+            cEF.structuralMembers.UstairsFRAME = Uframe_h;
+            cEF.structuralMembers.UstairsSCAF = Uscaf_h;
+            cEF.structuralMembers.LstairsFORM = Lform_h;
+            cEF.structuralMembers.LstairsFRAME = Lframe_h;
+            cEF.structuralMembers.LstairsSCAF = Lscaf_h;
+            cEF.structuralMembers.SstairsFORM = Sform_h;
+            cEF.structuralMembers.SstairsFRAME = Sframe_h;
+            cEF.structuralMembers.SstairsSCAF = Sscaf_h;
+            cEF.structuralMembers.UAREA = UAREA_h;
+            cEF.structuralMembers.LAREA = LAREA_h;
+            cEF.structuralMembers.SAREA = SAREA_h;
+            refreshSolutions(cEF);            
+        }
+
+        public void recomputeFW_stairs(CostEstimationForm cEF)
+        {
+            try
+            {
+                List<string> stairsLumber = dimensionFilterer(cEF.parameters.form_SM_ST_FL);
+                List<string> stairsScaf = dimensionFilterer(cEF.parameters.form_SM_ST_VS);
+                List<double> Uform_h = new List<double>();
+                List<double> Uframe_h = new List<double>();
+                List<double> Uscaf_h = new List<double>();
+                List<double> Lform_h = new List<double>();
+                List<double> Lframe_h = new List<double>();
+                List<double> Lscaf_h = new List<double>();
+                List<double> Sform_h = new List<double>();
+                List<double> Sframe_h = new List<double>();
+                List<double> Sscaf_h = new List<double>();
+                List<double> UAREA_h = new List<double>();
+                List<double> LAREA_h = new List<double>();
+                List<double> SAREA_h = new List<double>();
+                for (int i = 0; i < cEF.structuralMembers.stairs.Count; i++)
+                {
+                    //USTAIRS                
+                    double UfirstFlightL = 0;
+                    double UfirstFlightarea = 0;
+                    double UfirstRB = 0;
+                    double UsecondFlightL = 0;
+                    double UsecondFlightarea = 0;
+                    double UsecondRB = 0;
+                    double UlandingFW = 0;
+                    double UstepsFW = 0;
+                    double Utotalsteps = 0;
+                    double UFRAME = 0;
+                    double USCAF = 0;
+                    double Utotalarea = 0;
+                    //USTAIRS
+
+                    //LSTAIRS
+                    double LfirstFlightL = 0;
+                    double LfirstFlightarea = 0;
+                    double LfirstRB = 0;
+                    double LsecondFlightL = 0;
+                    double LsecondFlightarea = 0;
+                    double LsecondRB = 0;
+                    double LlandingFW = 0;
+                    double LstepsFW = 0;
+                    double Ltotalsteps = 0;
+                    double LFRAME = 0;
+                    double LSCAF = 0;
+                    double Ltotalarea = 0;
+                    //LSTAIRS
+
+                    //SSTAIRS
+                    double SfirstFlightL = 0;
+                    double SfirstFlightarea = 0;
+                    double SfirstRB = 0;
+                    double SstepsFW = 0;
+                    double SFRAME = 0;
+                    double SSCAF = 0;
+                    double Stotalarea = 0;
+                    //SSTAIRS
+                    Uform_h.Add(0);
+                    Uframe_h.Add(0);
+                    Uscaf_h.Add(0);
+                    Lform_h.Add(0);
+                    Lframe_h.Add(0);
+                    Lscaf_h.Add(0);
+                    Sform_h.Add(0);
+                    Sframe_h.Add(0);
+                    Sscaf_h.Add(0);
+                    UAREA_h.Add(0);
+                    LAREA_h.Add(0);
+                    SAREA_h.Add(0);
+                    for (int j = 0; j < cEF.structuralMembers.stairs[i].Count; j++)
+                    {
+                        if (cEF.structuralMembers.stairs[i][j][0] == "U-Stairs")
+                        {
+                            double quantity = double.Parse(cEF.structuralMembers.stairs[i][j][1]);
+                            double stepsFF = double.Parse(cEF.structuralMembers.stairs[i][j][2]);
+                            double steps2FF = double.Parse(cEF.structuralMembers.stairs[i][j][3]);
+                            double SL = double.Parse(cEF.structuralMembers.stairs[i][j][4]) / 1000;
+                            double riser = double.Parse(cEF.structuralMembers.stairs[i][j][5]) / 1000;
+                            double tread = double.Parse(cEF.structuralMembers.stairs[i][j][6]) / 1000;
+                            double wsThc = double.Parse(cEF.structuralMembers.stairs[i][j][7]) / 1000;
+                            double landingW = double.Parse(cEF.structuralMembers.stairs[i][j][8]) / 1000;
+                            double gap = double.Parse(cEF.structuralMembers.stairs[i][j][9]) / 1000;
+                            double landingThc = double.Parse(cEF.structuralMembers.stairs[i][j][10]) / 1000;
+                            Utotalsteps = stepsFF + steps2FF;
+
+                            UfirstFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * stepsFF), 2) + (Math.Pow(((tread) * stepsFF), 2)))), 3));
+                            UfirstFlightarea = UfirstFlightL * SL;
+                            UfirstRB = (UfirstFlightL * (riser + 0.1)) * 2;
+                            UsecondFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * steps2FF), 2) + (Math.Pow(((tread) * steps2FF), 2)))), 3));
+                            UsecondFlightarea = UsecondFlightL * SL;
+                            UsecondRB = (UsecondFlightL * (riser + 0.1)) * 2;
+                            UlandingFW =
+                                (((SL * 2) + gap) * landingW) +
+                                (2 * (landingW * landingThc)) +
+                                (((SL * 2) + gap) * landingThc);
+                            UstepsFW = (SL * riser) * (stepsFF + steps2FF);
+                            double Uframe_first = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (UfirstFlightL * 3.28))) / 12;
+                            double Uframe_second = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (UsecondFlightL * 3.28))) / 12;
+                            double Uframe_brace = ((Utotalsteps * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (3.28)))) / 12) * rounder(SL / 0.6);
+                            double Uback_first = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (UfirstFlightL * 3.28))) / 12;
+                            double Uback_second = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (UsecondFlightL * 3.28))) / 12;
+                            double Uback_brace = ((2 * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SL * 3.28)))) / 12) * Utotalsteps;
+                            UFRAME += (Uframe_first + Uframe_second + Uframe_brace + Uback_first + Uback_second + Uback_brace) * quantity;
+                            USCAF += ((UfirstFlightL + SL * 2 + gap + UsecondFlightL) * 12) * quantity;
+                            Utotalarea += (UfirstFlightarea + UfirstRB + UsecondFlightarea + UsecondRB + UlandingFW + UstepsFW) * quantity;
+                        }
+                        else if (cEF.structuralMembers.stairs[i][j][0] == "L-Stairs")
+                        {
+                            double quantity = double.Parse(cEF.structuralMembers.stairs[i][j][1]);
+                            double stepsFF = double.Parse(cEF.structuralMembers.stairs[i][j][2]);
+                            double steps2FF = double.Parse(cEF.structuralMembers.stairs[i][j][3]);
+                            double SL = double.Parse(cEF.structuralMembers.stairs[i][j][4]) / 1000;
+                            double riser = double.Parse(cEF.structuralMembers.stairs[i][j][5]) / 1000;
+                            double tread = double.Parse(cEF.structuralMembers.stairs[i][j][6]) / 1000;
+                            double wsThc = double.Parse(cEF.structuralMembers.stairs[i][j][7]) / 1000;
+                            double landingThc = double.Parse(cEF.structuralMembers.stairs[i][j][8]) / 1000;
+                            Ltotalsteps = stepsFF + steps2FF;
+                            LfirstFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * stepsFF), 2) + (Math.Pow(((tread) * stepsFF), 2)))), 3));
+                            LfirstFlightarea = LfirstFlightL * SL;
+                            LfirstRB = (LfirstFlightL * (riser + 0.1)) * 2;
+                            LsecondFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * steps2FF), 2) + (Math.Pow(((tread) * steps2FF), 2)))), 3));
+                            LsecondFlightarea = LsecondFlightL * SL;
+                            LsecondRB = (LsecondFlightL * (riser + 0.1)) * 2;
+                            LlandingFW = Math.Pow(SL, 2) + (3 * (landingThc * SL));
+                            LstepsFW = (SL * riser) * (stepsFF + steps2FF);
+                            double Lframe_first = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (LfirstFlightL * 3.28))) / 12;
+                            double Lframe_second = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (LsecondFlightL * 3.28))) / 12;
+                            double Lframe_brace = ((Ltotalsteps * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (3.28)))) / 12) * rounder(SL / 0.6);
+                            double Lback_first = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (LfirstFlightL * 3.28))) / 12;
+                            double Lback_second = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (LsecondFlightL * 3.28))) / 12;
+                            double Lback_brace = ((2 * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SL * 3.28)))) / 12) * Ltotalsteps;
+                            LFRAME += (Lframe_first + Lframe_second + Lframe_brace + Lback_first + Lback_second + Lback_brace) * quantity;
+                            LSCAF += ((LfirstFlightL + SL + LsecondFlightL) * 12) * quantity;
+                            Ltotalarea += (LfirstFlightarea + LfirstRB + LsecondFlightarea + LsecondRB + LlandingFW + LstepsFW) * quantity;
+                        }
+                        else
+                        {
+                            double quantity = double.Parse(cEF.structuralMembers.stairs[i][j][1]);
+                            double steps = double.Parse(cEF.structuralMembers.stairs[i][j][2]);
+                            double SL = double.Parse(cEF.structuralMembers.stairs[i][j][3]) / 1000;
+                            double riser = double.Parse(cEF.structuralMembers.stairs[i][j][4]) / 1000;
+                            double tread = double.Parse(cEF.structuralMembers.stairs[i][j][5]) / 1000;
+                            double Thc = double.Parse(cEF.structuralMembers.stairs[i][j][6]) / 1000;
+                            SfirstFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * steps), 2) + (Math.Pow(((tread) * steps), 2)))), 3));
+                            SfirstFlightarea = SfirstFlightL * SL;
+                            SfirstRB = (SfirstFlightL * (riser + 0.1)) * 2;
+                            SstepsFW = (SL * riser) * (steps);
+                            Stotalarea += (SfirstFlightarea + SfirstRB + SstepsFW) * quantity;
+                            double Sframe_first = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SfirstFlightL * 3.28))) / 12;
+                            double Sframe_brace = ((steps * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (3.28)))) / 12) * rounder(SL / 0.6);
+                            double Sback_first = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SfirstFlightL * 3.28))) / 12;
+                            double Sback_brace = ((2 * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SL * 3.28)))) / 12) * steps;
+                            SFRAME += (Sframe_first + Sframe_brace + Sback_first + Sback_brace) * quantity;
+                            SSCAF += ((SfirstFlightL) * 12) * quantity;
+                            Stotalarea += (SfirstFlightarea + SfirstRB + SstepsFW) * quantity;
+                        }
+
+                    }
+                    Uform_h[i] = rounder((Utotalarea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                    Uframe_h[i] = rounder(((UFRAME * 12) / (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * double.Parse(stairsLumber[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                    Uscaf_h[i] = rounder((((USCAF * 12) / (double.Parse(stairsScaf[0]) * double.Parse(stairsScaf[2]) * double.Parse(stairsScaf[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                    Lform_h[i] = rounder((Ltotalarea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                    Lframe_h[i] = rounder(((LFRAME * 12) / (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * double.Parse(stairsLumber[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                    Lscaf_h[i] = rounder((((LSCAF * 12) / (double.Parse(stairsScaf[0]) * double.Parse(stairsScaf[2]) * double.Parse(stairsScaf[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                    Sform_h[i] = rounder((Stotalarea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                    Sframe_h[i] = rounder(((SFRAME * 12) / (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * double.Parse(stairsLumber[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                    Sscaf_h[i] = rounder((((SSCAF * 12) / (double.Parse(stairsScaf[0]) * double.Parse(stairsScaf[2]) * double.Parse(stairsScaf[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                    UAREA_h[i] = Utotalarea;
+                    LAREA_h[i] = Ltotalarea;
+                    SAREA_h[i] = Stotalarea;
+                }
+                cEF.structuralMembers.UstairsFORM = Uform_h;
+                cEF.structuralMembers.UstairsFRAME = Uframe_h;
+                cEF.structuralMembers.UstairsSCAF = Uscaf_h;
+                cEF.structuralMembers.LstairsFORM = Lform_h;
+                cEF.structuralMembers.LstairsFRAME = Lframe_h;
+                cEF.structuralMembers.LstairsSCAF = Lscaf_h;
+                cEF.structuralMembers.SstairsFORM = Sform_h;
+                cEF.structuralMembers.SstairsFRAME = Sframe_h;
+                cEF.structuralMembers.SstairsSCAF = Sscaf_h;
+                cEF.structuralMembers.UAREA = UAREA_h;
+                cEF.structuralMembers.LAREA = LAREA_h;
+                cEF.structuralMembers.SAREA = SAREA_h;
+                refreshSolutions(cEF);
+            }
+            catch
+            {
+                print("Null catcher Stairs");
+            }
         }
 
         public void ModifyStairsWorks(CostEstimationForm cEF, int floorCount, int index)
@@ -2876,7 +4458,198 @@ namespace WindowsFormsApp1
                         volume;
                 }
             }
+            //stairs form
+            List<string> stairsLumber = dimensionFilterer(cEF.parameters.form_SM_ST_FL);
+            List<string> stairsScaf = dimensionFilterer(cEF.parameters.form_SM_ST_VS);
+            List<double> Uform_h = new List<double>();
+            List<double> Uframe_h = new List<double>();
+            List<double> Uscaf_h = new List<double>();
+            List<double> Lform_h = new List<double>();
+            List<double> Lframe_h = new List<double>();
+            List<double> Lscaf_h = new List<double>();
+            List<double> Sform_h = new List<double>();
+            List<double> Sframe_h = new List<double>();
+            List<double> Sscaf_h = new List<double>();
+            List<double> UAREA_h = new List<double>();
+            List<double> LAREA_h = new List<double>();
+            List<double> SAREA_h = new List<double>();
+            for (int i = 0; i < cEF.structuralMembers.stairs.Count; i++)
+            {
+                //USTAIRS                
+                double UfirstFlightL = 0;
+                double UfirstFlightarea = 0;
+                double UfirstRB = 0;
+                double UsecondFlightL = 0;
+                double UsecondFlightarea = 0;
+                double UsecondRB = 0;
+                double UlandingFW = 0;
+                double UstepsFW = 0;
+                double Utotalsteps = 0;
+                double UFRAME = 0;
+                double USCAF = 0;
+                double Utotalarea = 0;
+                //USTAIRS
 
+                //LSTAIRS
+                double LfirstFlightL = 0;
+                double LfirstFlightarea = 0;
+                double LfirstRB = 0;
+                double LsecondFlightL = 0;
+                double LsecondFlightarea = 0;
+                double LsecondRB = 0;
+                double LlandingFW = 0;
+                double LstepsFW = 0;
+                double Ltotalsteps = 0;
+                double LFRAME = 0;
+                double LSCAF = 0;
+                double Ltotalarea = 0;
+                //LSTAIRS
+
+                //SSTAIRS
+                double SfirstFlightL = 0;
+                double SfirstFlightarea = 0;
+                double SfirstRB = 0;
+                double SstepsFW = 0;
+                double SFRAME = 0;
+                double SSCAF = 0;
+                double Stotalarea = 0;
+                //SSTAIRS
+                Uform_h.Add(0);
+                Uframe_h.Add(0);
+                Uscaf_h.Add(0);
+                Lform_h.Add(0);
+                Lframe_h.Add(0);
+                Lscaf_h.Add(0);
+                Sform_h.Add(0);
+                Sframe_h.Add(0);
+                Sscaf_h.Add(0);
+                UAREA_h.Add(0);
+                LAREA_h.Add(0);
+                SAREA_h.Add(0);
+                for (int j = 0; j < cEF.structuralMembers.stairs[i].Count; j++)
+                {
+                    if (cEF.structuralMembers.stairs[i][j][0] == "U-Stairs")
+                    {
+                        double quantity = double.Parse(cEF.structuralMembers.stairs[i][j][1]);
+                        double stepsFF = double.Parse(cEF.structuralMembers.stairs[i][j][2]);
+                        double steps2FF = double.Parse(cEF.structuralMembers.stairs[i][j][3]);
+                        double SL = double.Parse(cEF.structuralMembers.stairs[i][j][4]) / 1000;
+                        double riser = double.Parse(cEF.structuralMembers.stairs[i][j][5]) / 1000;
+                        double tread = double.Parse(cEF.structuralMembers.stairs[i][j][6]) / 1000;
+                        double wsThc = double.Parse(cEF.structuralMembers.stairs[i][j][7]) / 1000;
+                        double landingW = double.Parse(cEF.structuralMembers.stairs[i][j][8]) / 1000;
+                        double gap = double.Parse(cEF.structuralMembers.stairs[i][j][9]) / 1000;
+                        double landingThc = double.Parse(cEF.structuralMembers.stairs[i][j][10]) / 1000;
+                        Utotalsteps = stepsFF + steps2FF;
+
+                        UfirstFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * stepsFF), 2) + (Math.Pow(((tread) * stepsFF), 2)))), 3));
+                        print(UfirstFlightL.ToString() + " :1st flightL");
+                        UfirstFlightarea = UfirstFlightL * SL;
+                        print(UfirstFlightarea.ToString() + " :1st flightA");
+                        UfirstRB = (UfirstFlightL * (riser + 0.1)) * 2;
+                        print(UfirstRB.ToString() + " :1st RB");
+
+                        UsecondFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * steps2FF), 2) + (Math.Pow(((tread) * steps2FF), 2)))), 3));
+                        print(UsecondFlightL.ToString() + " :2nd flightL");
+                        UsecondFlightarea = UsecondFlightL * SL;
+                        print(UsecondFlightarea.ToString() + " :2nd flightA");
+                        UsecondRB = (UsecondFlightL * (riser + 0.1)) * 2;
+                        print(UsecondRB + " :2nd RB");
+
+                        UlandingFW =
+                            (((SL * 2) + gap) * landingW) +
+                            (2 * (landingW * landingThc)) +
+                            (((SL * 2) + gap) * landingThc);
+                        UstepsFW = (SL * riser) * (stepsFF + steps2FF);
+                        print(UlandingFW + " : landing");
+                        print(UstepsFW + " :steps");
+                        double Uframe_first = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (UfirstFlightL * 3.28))) / 12;
+                        double Uframe_second = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (UsecondFlightL * 3.28))) / 12;
+                        double Uframe_brace = ((Utotalsteps * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (3.28)))) / 12) * rounder(SL / 0.6);
+                        double Uback_first = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (UfirstFlightL * 3.28))) / 12;
+                        double Uback_second = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (UsecondFlightL * 3.28))) / 12;
+                        double Uback_brace = ((2 * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SL * 3.28)))) / 12) * Utotalsteps;
+                        UFRAME += (Uframe_first + Uframe_second + Uframe_brace + Uback_first + Uback_second + Uback_brace) * quantity;
+                        USCAF += ((UfirstFlightL + SL * 2 + gap + UsecondFlightL) * 12) * quantity;
+                        Utotalarea += (UfirstFlightarea + UfirstRB + UsecondFlightarea + UsecondRB + UlandingFW + UstepsFW) * quantity;
+                    }
+                    else if (cEF.structuralMembers.stairs[i][j][0] == "L-Stairs")
+                    {
+                        double quantity = double.Parse(cEF.structuralMembers.stairs[i][j][1]);
+                        double stepsFF = double.Parse(cEF.structuralMembers.stairs[i][j][2]);
+                        double steps2FF = double.Parse(cEF.structuralMembers.stairs[i][j][3]);
+                        double SL = double.Parse(cEF.structuralMembers.stairs[i][j][4]) / 1000;
+                        double riser = double.Parse(cEF.structuralMembers.stairs[i][j][5]) / 1000;
+                        double tread = double.Parse(cEF.structuralMembers.stairs[i][j][6]) / 1000;
+                        double wsThc = double.Parse(cEF.structuralMembers.stairs[i][j][7]) / 1000;
+                        double landingThc = double.Parse(cEF.structuralMembers.stairs[i][j][8]) / 1000;
+                        Ltotalsteps = stepsFF + steps2FF;
+                        LfirstFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * stepsFF), 2) + (Math.Pow(((tread) * stepsFF), 2)))), 3));
+                        LfirstFlightarea = LfirstFlightL * SL;
+                        LfirstRB = (LfirstFlightL * (riser + 0.1)) * 2;
+                        LsecondFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * steps2FF), 2) + (Math.Pow(((tread) * steps2FF), 2)))), 3));
+                        LsecondFlightarea = LsecondFlightL * SL;
+                        LsecondRB = (LsecondFlightL * (riser + 0.1)) * 2;
+                        LlandingFW = Math.Pow(SL, 2) + (3 * (landingThc * SL));
+                        LstepsFW = (SL * riser) * (stepsFF + steps2FF);
+                        double Lframe_first = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (LfirstFlightL * 3.28))) / 12;
+                        double Lframe_second = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (LsecondFlightL * 3.28))) / 12;
+                        double Lframe_brace = ((Ltotalsteps * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (3.28)))) / 12) * rounder(SL / 0.6);
+                        double Lback_first = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (LfirstFlightL * 3.28))) / 12;
+                        double Lback_second = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (LsecondFlightL * 3.28))) / 12;
+                        double Lback_brace = ((2 * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SL * 3.28)))) / 12) * Ltotalsteps;
+                        LFRAME += (Lframe_first + Lframe_second + Lframe_brace + Lback_first + Lback_second + Lback_brace) * quantity;
+                        LSCAF += ((LfirstFlightL + SL + LsecondFlightL) * 12) * quantity;
+                        Ltotalarea += (LfirstFlightarea + LfirstRB + LsecondFlightarea + LsecondRB + LlandingFW + LstepsFW) * quantity;
+                    }
+                    else
+                    {
+                        double quantity = double.Parse(cEF.structuralMembers.stairs[i][j][1]);
+                        double steps = double.Parse(cEF.structuralMembers.stairs[i][j][2]);
+                        double SL = double.Parse(cEF.structuralMembers.stairs[i][j][3]) / 1000;
+                        double riser = double.Parse(cEF.structuralMembers.stairs[i][j][4]) / 1000;
+                        double tread = double.Parse(cEF.structuralMembers.stairs[i][j][5]) / 1000;
+                        double Thc = double.Parse(cEF.structuralMembers.stairs[i][j][6]) / 1000;
+                        SfirstFlightL = stairsRounder(Math.Round((Math.Sqrt(Math.Pow(((riser) * steps), 2) + (Math.Pow(((tread) * steps), 2)))), 3));
+                        SfirstFlightarea = SfirstFlightL * SL;
+                        SfirstRB = (SfirstFlightL * (riser + 0.1)) * 2;
+                        SstepsFW = (SL * riser) * (steps);
+                        Stotalarea += (SfirstFlightarea + SfirstRB + SstepsFW) * quantity;
+                        double Sframe_first = (rounder(SL / 0.6) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SfirstFlightL * 3.28))) / 12;
+                        double Sframe_brace = ((steps * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (3.28)))) / 12) * rounder(SL / 0.6);
+                        double Sback_first = (rounder(SL / 0.3) * (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SfirstFlightL * 3.28))) / 12;
+                        double Sback_brace = ((2 * ((double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * (SL * 3.28)))) / 12) * steps;
+                        SFRAME += (Sframe_first + Sframe_brace + Sback_first + Sback_brace) * quantity;
+                        SSCAF += ((SfirstFlightL) * 12) * quantity;
+                        Stotalarea += (SfirstFlightarea + SfirstRB + SstepsFW) * quantity;
+                    }
+
+                }
+                Uform_h[i] = rounder((Utotalarea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                Uframe_h[i] = rounder(((UFRAME * 12) / (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * double.Parse(stairsLumber[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                Uscaf_h[i] = rounder((((USCAF * 12) / (double.Parse(stairsScaf[0]) * double.Parse(stairsScaf[2]) * double.Parse(stairsScaf[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                Lform_h[i] = rounder((Ltotalarea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                Lframe_h[i] = rounder(((LFRAME * 12) / (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * double.Parse(stairsLumber[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                Lscaf_h[i] = rounder((((LSCAF * 12) / (double.Parse(stairsScaf[0]) * double.Parse(stairsScaf[2]) * double.Parse(stairsScaf[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                Sform_h[i] = rounder((Stotalarea / (1.2 * 2.4)) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                Sframe_h[i] = rounder(((SFRAME * 12) / (double.Parse(stairsLumber[0]) * double.Parse(stairsLumber[2]) * double.Parse(stairsLumber[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU)));
+                Sscaf_h[i] = rounder((((SSCAF * 12) / (double.Parse(stairsScaf[0]) * double.Parse(stairsScaf[2]) * double.Parse(stairsScaf[4]))) * (1 / double.Parse(cEF.parameters.form_F_NU))));
+                UAREA_h[i] = Utotalarea;
+                LAREA_h[i] = Ltotalarea;
+                SAREA_h[i] = Stotalarea;
+            }
+            cEF.structuralMembers.UstairsFORM = Uform_h;
+            cEF.structuralMembers.UstairsFRAME = Uframe_h;
+            cEF.structuralMembers.UstairsSCAF = Uscaf_h;
+            cEF.structuralMembers.LstairsFORM = Lform_h;
+            cEF.structuralMembers.LstairsFRAME = Lframe_h;
+            cEF.structuralMembers.LstairsSCAF = Lscaf_h;
+            cEF.structuralMembers.SstairsFORM = Sform_h;
+            cEF.structuralMembers.SstairsFRAME = Sframe_h;
+            cEF.structuralMembers.SstairsSCAF = Sscaf_h;
+            cEF.structuralMembers.UAREA = UAREA_h;
+            cEF.structuralMembers.LAREA = LAREA_h;
+            cEF.structuralMembers.SAREA = SAREA_h;
             refreshSolutions(cEF);
         }
         //Stairs Computation Functions -- END
@@ -2896,18 +4669,13 @@ namespace WindowsFormsApp1
             else
             {
                 print("same floor");
-            }
-            print(cEF.structuralMembers.roofSolutions.Count + " :FLOOR" );
+            }            
             roofWorks(cEF, floorCount, roofCount);
         }
 
         public void roofWorks(CostEstimationForm cEF, int floorCount, int roofCount)
         {
             List<double> outputs = new List<double>();
-            foreach(var c in cEF.structuralMembers.roof[floorCount][roofCount])
-            {
-                print(c + " ---");
-            }
             if (cEF.structuralMembers.roof[floorCount][roofCount][0] == "Rafter and Purlins")
             {
                 if (cEF.structuralMembers.roof[floorCount][roofCount][1] == "Wood")
@@ -2922,8 +4690,7 @@ namespace WindowsFormsApp1
                     double totB = rafB + purB;
                     outputs.Add(1);//rafter and purlians
                     outputs.Add(1);//wood
-                    outputs.Add(totB);//total
-                    print(totB + " TOTAL");
+                    outputs.Add(totB);//total                    
                 }
                 else if (cEF.structuralMembers.roof[floorCount][roofCount][1] == "Steel - Tubular")
                 {
@@ -2938,8 +4705,6 @@ namespace WindowsFormsApp1
                     outputs.Add(2);                    
                     outputs.Add(sixLenR);
                     outputs.Add(sixLenP);                    
-                    print(sixLenR + " 6m Com Raft");
-                    print(sixLenP + " 6m Com Purl");
                 }
                 else
                 {
@@ -2953,8 +4718,6 @@ namespace WindowsFormsApp1
                     outputs.Add(3);
                     outputs.Add(sixLenR);
                     outputs.Add(sixLenP);
-                    print(sixLenR + " 6m Com Raft");
-                    print(sixLenP + " 6m Com Purl");
                 }
             }
             else if (cEF.structuralMembers.roof[floorCount][roofCount][0] == "G.I Roof and Its Accessories")
@@ -2989,10 +4752,7 @@ namespace WindowsFormsApp1
                 double plain_sheets = 0;                
                 List<double> materials = new List<double>();                
                 // corr - ginail - girivet - giwash - leadwash - umbnails - strap               
-                //if (roofs.Contains("Corrugated G.I Sheet"))
-                //{
                 corrSheets = rounder(double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][1]) / double.Parse(cEF.structuralMembers.roof[floorCount][roofCount][2])) * 2;
-                //}
                 if (cEF.structuralMembers.roof[floorCount][roofCount].Contains("G.I Roof Nails"))
                 {
                     foreach (string str in cEF.structuralMembers.roofHRS[floorCount][roofCount])
@@ -3037,7 +4797,14 @@ namespace WindowsFormsApp1
                     plain_sheets = plain_sheets / double.Parse(table3[cEF.structuralMembers.roof[floorCount][roofCount][cEF.structuralMembers.roof[floorCount][roofCount].Count - 1]].ToString());
                 }
                 outputs.Add(2);
-                outputs.Add(rounder(corrSheets));
+                if (cEF.structuralMembers.roof[floorCount][roofCount].Contains("Corrugated G.I Sheet"))
+                {
+                    outputs.Add(rounder(corrSheets));
+                }
+                else
+                {
+                    outputs.Add(0);
+                }                    
                 outputs.Add(rounder(giNails));
                 outputs.Add(rounder(rivets));
                 outputs.Add(rounder(giWashers));
@@ -3056,29 +4823,15 @@ namespace WindowsFormsApp1
                 outputs.Add(gutter + flashing + ridge + valley + hipped);
             }
             cEF.structuralMembers.roofSolutions[floorCount].Add(outputs);
-            int x = 1;
-            foreach (var c in cEF.structuralMembers.roofSolutions)
-            {
-                print("FLOOR: " + x);
-                foreach (var k in c)
-                {
-                    foreach (var o in k)
-                    {
-                        print(o + "");
-                    }
-                    print("--other roof same floor--");
-                }
-                x++;
-            }
         }
 
         public void ModifyRoofWorks(CostEstimationForm cEF, int floorCount, int index)
         {
             List<double> outputs = new List<double>();
-            foreach (var c in cEF.structuralMembers.roof[floorCount][index])
+            /*foreach (var c in cEF.structuralMembers.roof[floorCount][index])
             {
                 print(c + " ---");
-            }
+            }*/
             if (cEF.structuralMembers.roof[floorCount][index][0] == "Rafter and Purlins")
             {
                 if (cEF.structuralMembers.roof[floorCount][index][1] == "Wood")
@@ -3093,8 +4846,7 @@ namespace WindowsFormsApp1
                     double totB = rafB + purB;
                     outputs.Add(1);//rafter and purlians
                     outputs.Add(1);//wood
-                    outputs.Add(totB);//total
-                    print(totB + " TOTAL");
+                    outputs.Add(totB);//total                   
                 }
                 else if (cEF.structuralMembers.roof[floorCount][index][1] == "Steel - Tubular")
                 {
@@ -3109,8 +4861,6 @@ namespace WindowsFormsApp1
                     outputs.Add(2);
                     outputs.Add(sixLenR);
                     outputs.Add(sixLenP);
-                    print(sixLenR + " 6m Com Raft");
-                    print(sixLenP + " 6m Com Purl");
                 }
                 else
                 {
@@ -3124,8 +4874,6 @@ namespace WindowsFormsApp1
                     outputs.Add(3);
                     outputs.Add(sixLenR);
                     outputs.Add(sixLenP);
-                    print(sixLenR + " 6m Com Raft");
-                    print(sixLenP + " 6m Com Purl");
                 }
             }
             else if (cEF.structuralMembers.roof[floorCount][index][0] == "G.I Roof and Its Accessories")
@@ -3159,11 +4907,8 @@ namespace WindowsFormsApp1
                 double umbNails = 0;
                 double plain_sheets = 0;
                 List<double> materials = new List<double>();
-                // corr - ginail - girivet - giwash - leadwash - umbnails - strap               
-                //if (roofs.Contains("Corrugated G.I Sheet"))
-                //{
-                corrSheets = rounder(double.Parse(cEF.structuralMembers.roof[floorCount][index][1]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][2])) * 2;
-                //}
+                // corr - ginail - girivet - giwash - leadwash - umbnails - strap                             
+                corrSheets = rounder(double.Parse(cEF.structuralMembers.roof[floorCount][index][1]) / double.Parse(cEF.structuralMembers.roof[floorCount][index][2])) * 2;                
                 if (cEF.structuralMembers.roof[floorCount][index].Contains("G.I Roof Nails"))
                 {
                     foreach (string str in cEF.structuralMembers.roofHRS[floorCount][index])
@@ -3208,7 +4953,14 @@ namespace WindowsFormsApp1
                     plain_sheets = plain_sheets / double.Parse(table3[cEF.structuralMembers.roof[floorCount][index][cEF.structuralMembers.roof[floorCount][index].Count - 1]].ToString());
                 }
                 outputs.Add(2);
-                outputs.Add(rounder(corrSheets));
+                if (cEF.structuralMembers.roof[floorCount][index].Contains("Corrugated G.I Sheet"))
+                {
+                    outputs.Add(rounder(corrSheets));
+                }
+                else
+                {
+                    outputs.Add(0);
+                }
                 outputs.Add(rounder(giNails));
                 outputs.Add(rounder(rivets));
                 outputs.Add(rounder(giWashers));
@@ -3226,21 +4978,7 @@ namespace WindowsFormsApp1
                 outputs.Add(3);
                 outputs.Add(gutter + flashing + ridge + valley + hipped);
             }
-            cEF.structuralMembers.roofSolutions[floorCount][index]= outputs;
-            int x = 1;
-            foreach (var c in cEF.structuralMembers.roofSolutions)
-            {
-                print("FLOOR: " + x);
-                foreach (var k in c)
-                {
-                    foreach (var o in k)
-                    {
-                        print(o + "");
-                    }
-                    print("--other roof same floor--");
-                }
-                x++;
-            }
+            cEF.structuralMembers.roofSolutions[floorCount][index]= outputs;            
         }
         //Roof Computation Functions -- END
 
@@ -3702,147 +5440,12 @@ namespace WindowsFormsApp1
         }
         //Paints computataion function -- END
 
-        //roofings -- START
-        public void addRoofings(List<string> roofs, params string [] val)
-        {
-            foreach(var c in roofs)
-            {
-                print(c+" -");
-            }
-            if (roofs[0] == "Rafter and Purlins")
-            {
-                if (roofs[1] == "Wood")
-                {
-                    //kind - wodsandshts -// 2 Lraft - Lpurl - spaceR - spaceP
-                    double raft = rounder(((double.Parse(roofs[3]) / double.Parse(roofs[4])) + 1))*2;
-                    double lenRaft = rounder(double.Parse(roofs[2]) * 3.28);
-                    double purl = (rounder((double.Parse(roofs[2]) / double.Parse(roofs[5])) + 1))*2;
-                    double lenPurl = rounder(double.Parse(roofs[3]) * 3.28);
-                    double rafB = rounder(raft * ((2 * 6 * (lenRaft)) / 12));
-                    double purB = rounder(purl * ((2 * 2 * (lenPurl)) / 12));
-                    double totB = rafB + purB;
-                    print(totB + " TOTAL");
-                }
-                else if (roofs[1] == "Steel - Tubular")
-                {
-                    //2 Lraft(SW) - Lraft - Lpurl - spaceR - spaceP - CommR - CommP
-                    double raft = rounder(((double.Parse(roofs[2]) / double.Parse(roofs[5]))+1)*2);
-                    double lenRaft = rounder((raft) * (double.Parse(roofs[3])));
-                    double sixLenR = rounder(lenRaft/6);
-                    double purl = rounder(((double.Parse(roofs[3]) / double.Parse(roofs[6]))+1)*2);
-                    double lenPurl = rounder(purl * double.Parse(roofs[4]));
-                    double sixLenP = rounder(lenPurl/6);
-                    print(sixLenR+" 6m Com Raft");
-                    print(sixLenP + " 6m Com Purl");
-                }
-                else
-                {
-                    double raft = rounder(((double.Parse(roofs[2]) / double.Parse(roofs[5])) + 1) * 2);
-                    double lenRaft = rounder((raft) * (double.Parse(roofs[3])));
-                    double sixLenR = rounder(lenRaft / 6);
-                    double purl = rounder(((double.Parse(roofs[3]) / double.Parse(roofs[6])) + 1) * 2);
-                    double lenPurl = rounder(purl * double.Parse(roofs[4]));
-                    double sixLenP = rounder(lenPurl / 6);
-                    print(sixLenR + " 6m Com Raft");
-                    print(sixLenP + " 6m Com Purl");
-                }
-            }
-            else if (roofs[0] == "G.I Roof and Its Accessories")
-            {                
-                ListDictionary table1 = new ListDictionary();
-                table1.Add("1.50", 14);
-                table1.Add("1.80", 14);
-                table1.Add("2.10", 18);
-                table1.Add("2.40", 18);
-                table1.Add("2.70", 22);
-                table1.Add("3.00", 22);
-                table1.Add("3.60", 26);
-                ListDictionary table2 = new ListDictionary();
-                table2.Add("1.50", 28);
-                table2.Add("1.80", 28);
-                table2.Add("2.10", 36);
-                table2.Add("2.40", 36);
-                table2.Add("2.70", 44);
-                table2.Add("3.00", 44);
-                table2.Add("3.60", 52);
-                ListDictionary table3 = new ListDictionary();
-                table3.Add("2\" x 3\"", 384);
-                table3.Add("2\" x 4\"", 342);
-                table3.Add("2\" x 5\"", 312);
-                table3.Add("2\" x 6\"", 288);
-                double corrSheets = 0;
-                double giNails = 0;
-                double rivets = 0;
-                double giWashers = 0;
-                double leadWashers = 0;
-                double umbNails = 0;
-                double plain_sheets = 0;                
-                List<double> materials = new List<double>();
-                // corr - ginail - girivet - giwash - leadwash - umbnails - strap               
-                //if (roofs.Contains("Corrugated G.I Sheet"))
-                //{
-                    corrSheets = rounder(double.Parse(roofs[1]) / double.Parse(roofs[2]))*2;          
-                //}
-                if (roofs.Contains("G.I Roof Nails"))
-                {
-                    foreach (string str in val)
-                    {
-                        giNails += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 120;
-                    }
-                }
-                if (roofs.Contains("G.I Rivets"))
-                {
-                    foreach (string str in val)
-                    {
-                        rivets += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 180;
-                    }
-                }
-                if (roofs.Contains("G.I Washers"))
-                {
-                    foreach (string str in val)
-                    {
-                        giWashers += (corrSheets * double.Parse(table2[double.Parse(str).ToString("F")].ToString())) / 126;
-                    }
-                }
-                if (roofs.Contains("Lead Washers"))
-                {
-                    foreach (string str in val)
-                    {
-                        leadWashers += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 75;
-                    }
-                }
-                if (roofs.Contains("Umbrella Nails"))
-                {
-                    foreach (string str in val)
-                    {
-                        umbNails += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString())) / 120;
-                    }
-                }
-                if (roofs.Contains("Plain G.I Strap"))
-                {
-                    foreach (string str in val)
-                    {
-                        plain_sheets += (corrSheets * double.Parse(table1[double.Parse(str).ToString("F")].ToString()));
-                    }
-                    plain_sheets = plain_sheets / double.Parse(table3[roofs[roofs.Count-1]].ToString());
-                }
-                materials.Add(rounder(corrSheets));
-                materials.Add(rounder(giNails));
-                materials.Add(rounder(rivets)); 
-                materials.Add(rounder(giWashers));
-                materials.Add(rounder(leadWashers));
-                materials.Add(rounder(umbNails));
-                materials.Add(rounder(plain_sheets));
-            }
-            else
-            {
-                print("sheesh");
-            }
-        }
+        //FormworksWORK -- START
 
-        //roofings -- END
-       
-        
+
+        //FormworksWORK -- END
+
+
 
         //Helper functions --- START
         public void print(string str)
@@ -3916,5 +5519,27 @@ namespace WindowsFormsApp1
             }            
         }
         //Helper functions -- END
+
+        public double stairsRounder(double x)
+        {
+            x = x * 1000;
+            print(x + " lol");
+            if ((x % 5) == 0)
+            {
+                return x;
+            }
+            else
+            {
+                for (; ;x++)
+                {                    
+                    if ((x % 5) == 0)
+                    {
+                        x = x / 1000;
+                        break;
+                    }
+                }                
+                return x;
+            }
+        }
     }   
 }

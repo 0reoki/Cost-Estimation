@@ -1245,7 +1245,7 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.slab[floorCount].Add(members);
                             costEstimationForm.structuralMembers.slabNames[floorCount].Add(structMemName);
 
-                            //compute.AddSlabWorks(costEstimationForm, floorCount, slabCount);
+                            compute.AddSlabWorks(costEstimationForm, floorCount, slabCount);
                             this.DialogResult = DialogResult.OK;
                         }
                         else // Suspended Slab
@@ -1331,7 +1331,7 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.slab[floorCount].Add(members);
                             costEstimationForm.structuralMembers.slabNames[floorCount].Add(structMemName);
 
-                            //compute.AddSlabWorks(costEstimationForm, floorCount, slabCount);
+                            compute.AddSlabWorks(costEstimationForm, floorCount, slabCount);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
@@ -1416,7 +1416,7 @@ namespace WindowsFormsApp1
                         costEstimationForm.structuralMembers.slab[floorCount][memberCount][16] = slab_SOG_SB_R_L_bx.Text;
                         costEstimationForm.structuralMembers.slab[floorCount][memberCount][17] = slab_SOG_SB_R_CL_bx.Text;
 
-                        //compute.ModifySlabWorks(costEstimationForm, floorCount, memberCount);
+                        compute.ModifySlabWorks(costEstimationForm, floorCount, memberCount);
                         this.DialogResult = DialogResult.OK;
                     }
                     else // Suspended Slab
@@ -1497,7 +1497,7 @@ namespace WindowsFormsApp1
                             costEstimationForm.structuralMembers.slabSchedule[floorCount - 1].Add(ssMember);
                         }
 
-                        //compute.ModifySlabWorks(costEstimationForm, floorCount, memberCount);
+                        compute.ModifySlabWorks(costEstimationForm, floorCount, memberCount);
                         this.DialogResult = DialogResult.OK;
                     }
                 }
