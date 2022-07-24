@@ -791,6 +791,11 @@ namespace KnowEst
         //View Functions -- START
         private void initializeView()
         {
+            compute.recomputeFW_Footings(this);
+            compute.recomputeFW_Column(this);
+            compute.recomputeFW_Beam(this);
+            compute.recomputeFW_slabs(this);
+            compute.recomputeFW_stairs(this);
             //Cost Computation - START
 
             //Earthworks
