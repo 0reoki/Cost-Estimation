@@ -10,8 +10,6 @@ using System.Windows.Forms;
 
 namespace KnowEst
 {
-    //TODO: populate combobox ng beam row according kung anong existing + new schedules 
-
     public partial class AddStructForm : Form
     {
         //Local Variables
@@ -2366,7 +2364,6 @@ namespace KnowEst
             setDefaultStructMemName();
         }
 
-        //TODO add other structural members
         private void setDefaultStructMemName()
         {
             if(floorCount == 0) //Ground Floor
@@ -2425,7 +2422,6 @@ namespace KnowEst
             }
         }
 
-        //TODO add other structural members from opened node
         private void setFootingValues()
         {
             if (isFooting)

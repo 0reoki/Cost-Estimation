@@ -62,9 +62,8 @@ namespace KnowEst
                 string toLabel3 = "•Soil Grading Cut\nExcavated Volume: " + value3 + " m³";
                 double value4 = cf.excavation_Total; 
                 string toLabel4 = "Total Excavated Volume: " + value4.ToString() + " m³";
-                double value5 = 0; //TODO
-                string toLabel5 = "Labor Cost per Cubic Meter: " + " ₱" + value5.ToString();
-                double value6 = 0; //TODO 
+                string toLabel5 = "Labor Cost per Cubic Meter: " + " ₱" + double.Parse(cf.parameters.price_LaborRate_Earthworks["Excavation [m3]"].ToString()).ToString("#,##0.00");
+                double value6 = cf.excavation_CostL;
                 string toLabel6 = "Total Cost: " + " ₱" + value6.ToString();
 
                 Label label3 = new Label();
@@ -133,20 +132,18 @@ namespace KnowEst
 
                 double value5 = cf.backfillingAndCompaction_Total;
                 string toLabel5 = "Total Volume: " + value5.ToString() + " m³";
-                double value6 = 0; //TODO
-                string toLabel6 = "Labor Cost per Cubic Meter: " + " ₱" + value6.ToString();
-                double value7 = 0; //TODO 
-                string toLabel7 = "Total Cost: " + " ₱" + value7.ToString();
+                string toLabel6 = "Labor Cost per Cubic Meter: " + " ₱" + double.Parse(cf.parameters.price_LaborRate_Earthworks["Backfilling and Compaction [m3]"].ToString()).ToString("#,##0.00");
+                string toLabel7 = "Total Cost: " + " ₱" + cf.backfillingAndCompaction_CostTotal.ToString("#,##0.00");
 
                 Label label5 = new Label();
-                label4.Text = toLabel4;
-                label4.AutoSize = true;
-                Label label6 = new Label();
                 label5.Text = toLabel5;
                 label5.AutoSize = true;
-                Label label7 = new Label();
+                Label label6 = new Label();
                 label6.Text = toLabel6;
                 label6.AutoSize = true;
+                Label label7 = new Label();
+                label7.Text = toLabel7;
+                label7.AutoSize = true;
                 panelView.Controls.Add(label5);
                 panelView.Controls.Add(label6);
                 panelView.Controls.Add(label7);
@@ -192,10 +189,8 @@ namespace KnowEst
                 string toLabel3 = "•Slab on Grade\nArea: " + cf.parameters.earth_SG_AS + " m²";
                 double value4 = cf.gradingAndCompaction_Total;
                 string toLabel4 = "Total Area for Compaction: " + value4.ToString() + " m²";
-                double value5 = 0; //TODO
-                string toLabel5 = "Labor Cost per Cubic Meter: " + " ₱" + value5.ToString();
-                double value6 = 0; //TODO 
-                string toLabel6 = "Total Cost: " + " ₱" + value6.ToString();
+                string toLabel5 = "Labor Cost per Cubic Meter: " + " ₱" + double.Parse(cf.parameters.price_LaborRate_Earthworks["Grading and Compaction [m3]"].ToString()).ToString("#,##0.00");
+                string toLabel6 = "Total Cost: " + " ₱" + cf.gradingAndCompaction_CostL.ToString("#,##0.00");
 
                 Label label3 = new Label();
                 label3.Text = toLabel3;
@@ -255,11 +250,9 @@ namespace KnowEst
                 double value3 = sm.extraEarthworkSolutions[1]; //recompute or get from Compute.cs into structuralMembers
                 string toLabel3 = "•Slab on Grade\nVolume of Gravel: " + value3.ToString() + " m³";
                 double value4 = cf.gravelBedding_Total;
-                string toLabel4 = "Total Volume of Gravel Needed (w/5% Factor of Safety): " + value4.ToString() + " m³";
-                double value5 = 0; //TODO
-                string toLabel5 = "Cost of [Gravel per M3 (G-1): " + " ₱" + value5.ToString();
-                double value6 = 0; //TODO 
-                string toLabel6 = "Total Cost: " + " ₱" + value6.ToString();
+                string toLabel4 = "Total Volume of Gravel Needed: " + value4.ToString() + " m³";
+                string toLabel5 = "Cost of [Gravel per M3 (G-1): " + " ₱" + double.Parse(cf.parameters.price_Gravel[cf.parameters.earth_CF_TY].ToString()).ToString("#,##0.00");
+                string toLabel6 = "Total Cost: " + " ₱" + cf.gravelBedding_CostTotal.ToString("#,##0.00");
 
                 Label label3 = new Label();
                 label3.Text = toLabel3;
@@ -284,10 +277,8 @@ namespace KnowEst
                 double value1 = cf.soilPoisoning_Total; //recompute or get from Compute.cs into structuralMembers
                 string toLabel1 = "•Area Needed for Soil Poisoning " +
                                   "\nVolume: " + value1.ToString() + " m²";
-                double value2 = 0; //TODO
-                string toLabel2 = "•Cost of Soil Poison per square meter: ₱" + value2;
-                double value3 = 0; //TODO
-                string toLabel3 = "•Total Cost: ₱" + value3;
+                string toLabel2 = "•Cost of Soil Poison per square meter: ₱" + double.Parse(cf.parameters.price_LaborRate_Earthworks["Soil Poisoning [m2]"].ToString()).ToString("#,##0.00");
+                string toLabel3 = "•Total Cost: ₱" + cf.soilPoisoning_CostM.ToString("#,##0.00");
 
                 Label label1 = new Label();
                 label1.Text = toLabel1;

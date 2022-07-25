@@ -3241,7 +3241,7 @@ namespace KnowEst
                     double volumeSteps = (riser * tread) / 2 * SL * steps;
                     double volume = volumeWSF + volumeSteps;
                     volume /= 1000000000;
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][stairsCount].Add(
+                    cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
                         volume * quantity);
                 }
             }
@@ -3687,7 +3687,7 @@ namespace KnowEst
                     double volumeSteps = (riser * tread) / 2 * SL * steps;
                     double volume = volumeWSF + volumeSteps;
                     volume /= 1000000000;
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
+                    cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] =
                         volume * quantity;
                 }
             }
