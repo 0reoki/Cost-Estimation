@@ -782,8 +782,15 @@ namespace KnowEst
 
         private void paraBtn_Click(object sender, EventArgs e)
         {
-            pf.setStairsValues();
-            pf.ShowDialog();
+            try
+            {
+                pf.setStairsValues();
+                pf.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                print("Catched: " + ex);
+            }
         }
 
         //Home Functions -- END
