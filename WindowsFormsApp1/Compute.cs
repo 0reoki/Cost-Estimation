@@ -2816,6 +2816,9 @@ namespace KnowEst
                     cEF.structuralMembers.concreteWorkSolutionsC[floorCount][stairsCount].Add(
                         volume * quantity);
                 }
+
+                //Computation - Rebars -- START KEVIN STRAIGHT STAIRS
+                //double D = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][7], System.Globalization.CultureInfo.InvariantCulture);
             }
             else if (cEF.structuralMembers.stairs[floorCount][stairsCount][0].Equals("L-Stairs"))
             {
@@ -2976,6 +2979,8 @@ namespace KnowEst
                     cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
                         volume * quantity);
                 }
+
+                //Computation - Rebars -- START KEVIN L-STAIRS
             }
             else
             {
@@ -3138,6 +3143,8 @@ namespace KnowEst
                     cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
                         volume * quantity);
                 }
+
+                //Computation - Rebars -- START KEVIN U-STAIRS
             }
             //Computation -- add Formworks [STAIRS]
             recomputeFW_stairs(cEF);
