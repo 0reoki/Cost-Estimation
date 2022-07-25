@@ -83,9 +83,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] BEAM_MAIN_TOP_REBARS {
+        internal static byte[] Beam_Main_Rebars {
             get {
-                object obj = ResourceManager.GetObject("BEAM_MAIN_TOP_REBARS", resourceCulture);
+                object obj = ResourceManager.GetObject("Beam_Main_Rebars", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -113,19 +113,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] BEAM_REBAR_SPACERS {
+        internal static byte[] Beam_Stirrups {
             get {
-                object obj = ResourceManager.GetObject("BEAM_REBAR_SPACERS", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] BEAM_STIRRUPS {
-            get {
-                object obj = ResourceManager.GetObject("BEAM_STIRRUPS", resourceCulture);
+                object obj = ResourceManager.GetObject("Beam_Stirrups", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -143,9 +133,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] COLUMN_LATERAL_TIES {
+        internal static byte[] Column_Lateral_Ties {
             get {
-                object obj = ResourceManager.GetObject("COLUMN_LATERAL_TIES", resourceCulture);
+                object obj = ResourceManager.GetObject("Column_Lateral_Ties", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -153,9 +143,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] COLUMN_MAIN_BARS {
+        internal static byte[] Column_Main_Bars {
             get {
-                object obj = ResourceManager.GetObject("COLUMN_MAIN_BARS", resourceCulture);
+                object obj = ResourceManager.GetObject("Column_Main_Bars", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -173,9 +163,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] CONCRETE_WORKS {
+        internal static byte[] Concrete_works {
             get {
-                object obj = ResourceManager.GetObject("CONCRETE_WORKS", resourceCulture);
+                object obj = ResourceManager.GetObject("Concrete_works", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -233,9 +223,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] FOOTING_REBARS {
+        internal static byte[] Footing_Rebars {
             get {
-                object obj = ResourceManager.GetObject("FOOTING_REBARS", resourceCulture);
+                object obj = ResourceManager.GetObject("Footing_Rebars", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -243,9 +233,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] FORMWORKS {
+        internal static byte[] Formworks {
             get {
-                object obj = ResourceManager.GetObject("FORMWORKS", resourceCulture);
+                object obj = ResourceManager.GetObject("Formworks", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -423,10 +413,20 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] MASONRY {
+        internal static byte[] MASONRY_AND_WALL_REBARS {
             get {
-                object obj = ResourceManager.GetObject("MASONRY", resourceCulture);
+                object obj = ResourceManager.GetObject("MASONRY_AND_WALL_REBARS", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NEW_SLAB_ON_GRADE {
+            get {
+                object obj = ResourceManager.GetObject("NEW_SLAB_ON_GRADE", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -521,6 +521,16 @@ namespace KnowEst.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Slab_on_Grade {
+            get {
+                object obj = ResourceManager.GetObject("Slab_on_Grade", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ST_STAIRS {
@@ -536,6 +546,16 @@ namespace KnowEst.Properties {
         internal static byte[] STAIRS_REBARS {
             get {
                 object obj = ResourceManager.GetObject("STAIRS_REBARS", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Suspended_Slab {
+            get {
+                object obj = ResourceManager.GetObject("Suspended_Slab", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -583,9 +603,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] WALLFOOTING_REBARS {
+        internal static byte[] Wall_Footing_Rebars {
             get {
-                object obj = ResourceManager.GetObject("WALLFOOTING_REBARS", resourceCulture);
+                object obj = ResourceManager.GetObject("Wall_Footing_Rebars", resourceCulture);
                 return ((byte[])(obj));
             }
         }
