@@ -2090,7 +2090,9 @@ namespace KnowEst
                     //Remove Solution
                     costEstimationForm.structuralMembers.earthworkSolutions.RemoveAt(i);
                     costEstimationForm.structuralMembers.concreteWorkSolutionsF.RemoveAt(i);
+                    costEstimationForm.structuralMembers.per_col.RemoveAt(memberCount);
 
+                    compute.recomputeFW_Footings(costEstimationForm);
                     //Refresh Solutions
                     compute.refreshSolutions(costEstimationForm);
 
@@ -2133,7 +2135,8 @@ namespace KnowEst
                     //Remove Solution
                     costEstimationForm.structuralMembers.earthworkSolutions.RemoveAt(i);
                     costEstimationForm.structuralMembers.concreteWorkSolutionsF.RemoveAt(i);
-
+                    costEstimationForm.structuralMembers.per_wal.RemoveAt(memberCount);
+                    compute.recomputeFW_Footings(costEstimationForm);
                     //Refresh Solutions
                     compute.refreshSolutions(costEstimationForm);
 
