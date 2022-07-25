@@ -1313,8 +1313,7 @@ namespace KnowEst
                     volume /= 1000000000;
                     cEF.structuralMembers.concreteWorkSolutionsC[floorCount][columnCount].Add(volume);
                 }
-                
-            } 
+            }
             else
             {
                 if (cEF.parameters.conc_cmIsSelected[1])
@@ -1376,6 +1375,9 @@ namespace KnowEst
             }
             //Computation -- add formwork [COLUMN]
             recomputeFW_Column(cEF);
+
+            //Computation -- Rebars KEVIN [ground AND upper floors column]
+            //start
             refreshSolutions(cEF);
         }        
 
