@@ -10,8 +10,6 @@ using System.Windows.Forms;
 
 namespace KnowEst
 {
-    //TODO: populate combobox ng beam row according kung anong existing + new schedules 
-
     public partial class AddStructForm : Form
     {
         //Local Variables
@@ -2090,7 +2088,9 @@ namespace KnowEst
                     //Remove Solution
                     costEstimationForm.structuralMembers.earthworkSolutions.RemoveAt(i);
                     costEstimationForm.structuralMembers.concreteWorkSolutionsF.RemoveAt(i);
+                    costEstimationForm.structuralMembers.per_col.RemoveAt(memberCount);
 
+                    compute.recomputeFW_Footings(costEstimationForm);
                     //Refresh Solutions
                     compute.refreshSolutions(costEstimationForm);
 
@@ -2133,7 +2133,8 @@ namespace KnowEst
                     //Remove Solution
                     costEstimationForm.structuralMembers.earthworkSolutions.RemoveAt(i);
                     costEstimationForm.structuralMembers.concreteWorkSolutionsF.RemoveAt(i);
-
+                    costEstimationForm.structuralMembers.per_wal.RemoveAt(memberCount);
+                    compute.recomputeFW_Footings(costEstimationForm);
                     //Refresh Solutions
                     compute.refreshSolutions(costEstimationForm);
 
@@ -2363,7 +2364,6 @@ namespace KnowEst
             setDefaultStructMemName();
         }
 
-        //TODO add other structural members
         private void setDefaultStructMemName()
         {
             if(floorCount == 0) //Ground Floor
@@ -2422,7 +2422,6 @@ namespace KnowEst
             }
         }
 
-        //TODO add other structural members from opened node
         private void setFootingValues()
         {
             if (isFooting)

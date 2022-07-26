@@ -180,7 +180,6 @@ namespace KnowEst
             AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, footingCount, wallFootingCount, columnCount, beamCount, slabCount, stairsCount, roofCount, nodes, true, -1, "NEW", false, this, "");
             if (asForm.ShowDialog() == DialogResult.OK)
             {
-                //TODO add other structural members
                 if (asForm.structuralMemberType.Equals("Footing (Column)"))
                 {
                     footingCount++;
@@ -337,8 +336,8 @@ namespace KnowEst
             costEstimationForm.structuralMembers.concreteWorkSolutionsBR.RemoveAt(floorCount);
             costEstimationForm.structuralMembers.concreteWorkSolutionsSL.RemoveAt(floorCount);
             costEstimationForm.structuralMembers.concreteWorkSolutionsST.RemoveAt(floorCount);
-            
-            costEstimationForm.refreshFloors();
+
+        costEstimationForm.refreshFloors();
         }
 
         private void floorLbl_DoubleClick(object sender, EventArgs e)
