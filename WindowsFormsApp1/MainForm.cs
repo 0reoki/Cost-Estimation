@@ -20,7 +20,7 @@ namespace KnowEst
         public ParametersForm pf;
         public Parameters parameters;
         public StructuralMembers structuralMembers;
-        private List<Floor> floors = new List<Floor>();
+        public List<Floor> floors = new List<Floor>();
 
         //Passed Variables
 
@@ -42,6 +42,7 @@ namespace KnowEst
         public bool[] concreteChecklist = { true, true, true, true, true, true }; //2.0
         public bool[] formworksChecklist = { true, true, true, true , true , true }; //3.0 **
         public bool[] masonryChecklist = { true, true }; //4.0
+        public bool[] rebarsChecklist = { true, true, true, true, true, true, true, true, true };//5.0**
         public bool[] roofingsChecklist = { true, true, true}; //6.0
         public bool[] tilesChecklist = { true, true }; //7.0
         public bool[] paintsChecklist = { true, true, true, true }; //8.0
@@ -187,6 +188,26 @@ namespace KnowEst
 
         // exterior QTY -> masonrysSolutionP1[3]
         // interior QTY -> masonrysSolutionP1[8]
+
+        //5.0 Rebars **
+        public double Rbeam_qty, // BEAM
+                      Rbeam_Munit,
+                      Rbeam_Mcost,
+                      Rbeam_Lunit,
+                      Rbeam_Lcost,
+                      Rbeam_TOTALCOST,
+                      RSOG_qty, // SLAB ON GRADE
+                      RSOG_Munit,
+                      RSOG_Mcost,
+                      RSOG_Lunit,
+                      RSOG_Lcost,
+                      RSOG_TOTALCOST,
+                      RCOL_qty, //COLUMN
+                      RCOL_Munit,
+                      RCOL_Mcost,
+                      RCOL_Lunit,
+                      RCOL_Lcost,
+                      RCOL_TOTALCOST;  
 
         //6.0 Roofings **
         public double rANDp_MCost,// Rafter and Purlins - Material Cost
@@ -363,6 +384,26 @@ namespace KnowEst
             masonMCost_total = 0; 
             masonLCost_total = 0;                                            
             mason_TOTALCOST = 0;
+
+            //Reinforcement steel **
+            Rbeam_qty = 0;
+            Rbeam_Munit = 0;
+            Rbeam_Mcost = 0;
+            Rbeam_Lunit = 0;
+            Rbeam_Lcost = 0;
+            Rbeam_TOTALCOST = 0;
+            RSOG_qty = 0; 
+            RSOG_Munit = 0;
+            RSOG_Mcost = 0;
+            RSOG_Lunit = 0;
+            RSOG_Lcost = 0;
+            RSOG_TOTALCOST = 0;
+            RCOL_qty = 0;
+            RCOL_Munit = 0;
+            RCOL_Mcost = 0;
+            RCOL_Lunit = 0;
+            RCOL_Lcost = 0;
+            RCOL_TOTALCOST = 0;
 
             //Roofings **
             rANDp_MCost = 0; 
@@ -1398,7 +1439,7 @@ namespace KnowEst
                     }
                     form += structuralMembers.beams_comps[0];
                     frame += structuralMembers.beams_comps[1];
-/*                    print("//////////////////////////////////////////");
+/*                  print("//////////////////////////////////////////");
                     print("area: " + area);
                     print("form: " + form);
                     print("frame: " + frame);
@@ -1675,6 +1716,417 @@ namespace KnowEst
             print("L_total: " + masonLCost_total);
             print("TOTAL COST: " + mason_TOTALCOST);
             //Masonry -- END
+
+            //Rebars START
+            if (rebarsChecklist[0])
+            {
+
+            }
+            else
+            {
+
+            }
+            if (rebarsChecklist[1])
+            {
+
+            }
+            else
+            {
+
+            }
+            if (rebarsChecklist[2])
+            {
+                
+            }
+            else
+            {
+
+            }
+            if (rebarsChecklist[3]) // COLUMNS
+            {
+                double columnMainPrice = 0;
+                double laterTiesPrice = 0;
+                try
+                {                    
+                    for (int i = 0; i < structuralMembers.Column_mainRebar.Count; i++)
+                    {
+                        for (int j = 0; j < structuralMembers.Column_mainRebar[i].Count; j++)
+                        {
+                            List<string> grade = gradefilterer(parameters.rein_RG_C);
+                            string dia = structuralMembers.Column_mainRebar[i][j][2];
+                            string ms = structuralMembers.Column_mainRebar[i][j][0];
+                            string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
+                            if (ms != "0")
+                            {
+                                if (grade[1] == "33")
+                                {
+                                    columnMainPrice += (double.Parse(parameters.price_RebarGrade33[price_name].ToString())
+                                        * double.Parse(structuralMembers.Column_mainRebar[i][j][1])) * double.Parse(Floors[i].getValues()[0]);
+                                }
+                                else if (grade[1] == "40")
+                                {
+                                    columnMainPrice += (double.Parse(parameters.price_RebarGrade40[price_name].ToString())
+                                        * double.Parse(structuralMembers.Column_mainRebar[i][j][1])) * double.Parse(Floors[i].getValues()[0]);
+                                }
+                                else if (grade[1] == "60")
+                                {
+                                    columnMainPrice += (double.Parse(parameters.price_RebarGrade60[price_name].ToString())
+                                        * double.Parse(structuralMembers.Column_mainRebar[i][j][1])) * double.Parse(Floors[i].getValues()[0]);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    print("Column Main" + ex);
+                }
+                try
+                {
+                    for (int i = 0; i < structuralMembers.Column_lateralRebar.Count; i++)
+                    {                        
+                        for (int j = 0; j < structuralMembers.Column_lateralRebar[i].Count; j++)
+                        {
+                            for (int n = 0; n < structuralMembers.Column_lateralRebar[i][j].Count; n++)
+                            {
+                                List<string> grade = gradefilterer(parameters.rein_RG_CLT);
+                                string dia = structuralMembers.Column_lateralRebar[i][j][n][2];
+                                string ms = structuralMembers.Column_lateralRebar[i][j][n][0];
+                                double qty = double.Parse(structuralMembers.Column_lateralRebar[i][j][n][1]);
+                                string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
+                                if (ms != "0")
+                                {
+                                    if (grade[1] == "33")
+                                    {
+                                        laterTiesPrice += (double.Parse(parameters.price_RebarGrade33[price_name].ToString())
+                                            * qty) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                    else if (grade[1] == "40")
+                                    {
+                                        laterTiesPrice += (double.Parse(parameters.price_RebarGrade40[price_name].ToString())
+                                            * qty) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                    else if (grade[1] == "60")
+                                    {
+                                        laterTiesPrice += (double.Parse(parameters.price_RebarGrade60[price_name].ToString())
+                                            * qty) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    print("Column Lateral: " + ex);
+                }
+                double columnMain_Labor = structuralMembers.totalweightkgm_Colmain * double.Parse(parameters.price_LaborRate_Rebar["COLUMN [KG]"].ToString());// -- //
+                double columnLats_Labor = structuralMembers.totalweightkgm_Colties * double.Parse(parameters.price_LaborRate_Rebar["COLUMN [KG]"].ToString());// -- //                
+                RCOL_qty = structuralMembers.totalweightkgm_Colmain + structuralMembers.totalweightkgm_Colties;
+                RCOL_Mcost = columnMainPrice + laterTiesPrice;
+                RCOL_Munit = RCOL_Mcost / RCOL_Mcost;
+                RCOL_Lunit = double.Parse(parameters.price_LaborRate_Rebar["COLUMN [KG]"].ToString());
+                RCOL_Lcost = columnMain_Labor + columnLats_Labor;
+                RCOL_TOTALCOST = RCOL_Mcost + RCOL_Lcost;
+                print("Main weight: " + structuralMembers.totalweightkgm_Colmain);
+                print("Ties weight: " + structuralMembers.totalweightkgm_Colties);
+                print("============== COLUMN ===========");
+                print("QTY: " + RCOL_qty);
+                print("Munit: " + RCOL_Munit);
+                print("Mcost: " + RCOL_Mcost);
+                print("Lunit: " + RCOL_Lunit);
+                print("Lcost: " + RCOL_Lcost);
+                print("TOTAL COST: " + RCOL_TOTALCOST);
+                print("============== COLUMN (EACH) ===========");
+                print("COLUMN MAIN PRICE: " + columnMainPrice);
+                print("COLUM MAIN LABOR: " + columnMain_Labor);
+                print("COLUMN LATERAL PRICE: " + laterTiesPrice);
+                print("COLUMN LATERAL LABOR: " + columnLats_Labor);
+            }
+            else
+            {
+                RCOL_qty = 0;
+                RCOL_Munit = 0;
+                RCOL_Mcost = 0;
+                RCOL_Lunit = 0;
+                RCOL_Lcost = 0;
+                RCOL_TOTALCOST = 0;
+            }
+            if (rebarsChecklist[4])//BEAM
+            {
+                double mainbeamPrice = 0; // -- //
+                double stirRebarPrice = 0;// -- //
+                double webRebarPrice = 0;// -- //
+                try
+                {
+                    for (int i = 0; i < structuralMembers.Beam_mainRebar.Count; i++)
+                    {
+                        for (int j = 0; j < structuralMembers.Beam_mainRebar[i].Count; j++)
+                        {
+                            for (int n = 0; n < structuralMembers.Beam_mainRebar[i][j].Count; n++)
+                            {
+                                //part 1
+                                List<string> grade = gradefilterer(parameters.rein_RG_B);
+                                string dia = structuralMembers.beamdias[i][j][7];
+                                string ms = structuralMembers.Beam_mainRebar[i][j][n][0];
+                                string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
+                                if (ms != "0")
+                                {
+                                    if (grade[1] == "33")
+                                    {
+                                        mainbeamPrice += (double.Parse(parameters.price_RebarGrade33[price_name].ToString())
+                                            * double.Parse(structuralMembers.Beam_mainRebar[i][j][n][1])) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                    else if (grade[1] == "40")
+                                    {
+                                        mainbeamPrice += (double.Parse(parameters.price_RebarGrade40[price_name].ToString())
+                                            * double.Parse(structuralMembers.Beam_mainRebar[i][j][n][1])) * double.Parse(Floors[i].getValues()[0]); 
+                                    }
+                                    else if (grade[1] == "60")
+                                    {
+                                        mainbeamPrice += (double.Parse(parameters.price_RebarGrade60[price_name].ToString())
+                                            * double.Parse(structuralMembers.Beam_mainRebar[i][j][n][1])) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                }
+                                //part2
+                                dia = structuralMembers.beamdias[i][j][8];
+                                ms = structuralMembers.Beam_mainRebar[i][j][n][2];
+                                price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
+                                if (ms != "0")
+                                {
+                                    if (grade[1] == "33")
+                                    {
+                                        mainbeamPrice += (double.Parse(parameters.price_RebarGrade33[price_name].ToString())
+                                            * double.Parse(structuralMembers.Beam_mainRebar[i][j][n][3])) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                    else if (grade[1] == "40")
+                                    {
+                                        mainbeamPrice += (double.Parse(parameters.price_RebarGrade40[price_name].ToString())
+                                            * double.Parse(structuralMembers.Beam_mainRebar[i][j][n][3])) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                    else if (grade[1] == "60")
+                                    {
+                                        mainbeamPrice += (double.Parse(parameters.price_RebarGrade60[price_name].ToString())
+                                            * double.Parse(structuralMembers.Beam_mainRebar[i][j][n][3])) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    print("Beam main: " + ex);
+                }
+
+                try
+                {
+                    for (int i = 0; i < structuralMembers.Beam_stirRebar.Count; i++)
+                    {
+                        for (int j = 0; j < structuralMembers.Beam_stirRebar[i].Count; j++)
+                        {
+                            for (int n = 0; n < structuralMembers.Beam_stirRebar[i][j].Count; n++)
+                            {
+                                //part 1
+                                List<string> grade = gradefilterer(parameters.rein_RG_BS);
+                                string dia = structuralMembers.Beam_stirRebar[i][j][n][2];
+                                string ms = structuralMembers.Beam_stirRebar[i][j][n][0];
+                                string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
+                                if (ms != "0")
+                                {
+                                    if (grade[1] == "33")
+                                    {
+                                        stirRebarPrice += (double.Parse(parameters.price_RebarGrade33[price_name].ToString())
+                                            * double.Parse(structuralMembers.Beam_stirRebar[i][j][n][1])) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                    else if (grade[1] == "40")
+                                    {
+                                        stirRebarPrice += (double.Parse(parameters.price_RebarGrade40[price_name].ToString())
+                                            * double.Parse(structuralMembers.Beam_stirRebar[i][j][n][1])) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                    else if (grade[1] == "60")
+                                    {
+                                        stirRebarPrice += (double.Parse(parameters.price_RebarGrade60[price_name].ToString())
+                                            * double.Parse(structuralMembers.Beam_stirRebar[i][j][n][1])) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }   
+                catch(Exception ex)
+                {
+                    print("Beam stirups: " + ex);
+                }
+
+                try
+                {
+                    for (int i = 0; i < structuralMembers.Beam_webRebar.Count; i++)
+                    {
+                        for (int j = 0; j < structuralMembers.Beam_webRebar[i].Count; j++)
+                        {
+                            for (int n = 0; n < structuralMembers.Beam_webRebar[i][j].Count; n++)
+                            {
+                                //part 1
+                                List<string> grade = gradefilterer(parameters.rein_RG_B);
+                                string dia = structuralMembers.Beam_webRebar[i][j][n][2];
+                                string ms = structuralMembers.Beam_webRebar[i][j][n][0];
+                                string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
+                                if (ms != "0")
+                                {
+                                    if (grade[1] == "33")
+                                    {
+                                        webRebarPrice += (double.Parse(parameters.price_RebarGrade33[price_name].ToString())
+                                            * double.Parse(structuralMembers.Beam_webRebar[i][j][n][1])) * double.Parse(Floors[i].getValues()[0]); 
+                                    }
+                                    else if (grade[1] == "40")
+                                    {
+                                        webRebarPrice += (double.Parse(parameters.price_RebarGrade40[price_name].ToString())
+                                            * double.Parse(structuralMembers.Beam_webRebar[i][j][n][1])) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                    else if (grade[1] == "60")
+                                    {
+                                        webRebarPrice += (double.Parse(parameters.price_RebarGrade60[price_name].ToString())
+                                            * double.Parse(structuralMembers.Beam_webRebar[i][j][n][1])) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    print("Beam web: " + ex);
+                }
+                double mainrebarlabor = structuralMembers.totalweightkgm_main * double.Parse(parameters.price_LaborRate_Rebar["BEAM [KG]"].ToString());// -- //
+                double stirLabor = structuralMembers.totalweightkgm_stir * double.Parse(parameters.price_LaborRate_Rebar["BEAM [KG]"].ToString());// -- //
+                double webLabor = structuralMembers.totalweightkgm_web * double.Parse(parameters.price_LaborRate_Rebar["BEAM [KG]"].ToString());// -- //
+                Rbeam_qty = structuralMembers.totalweightkgm_main
+                        + structuralMembers.totalweightkgm_stir
+                        + structuralMembers.totalweightkgm_web;
+                Rbeam_Mcost = mainbeamPrice + stirRebarPrice + webRebarPrice;
+                Rbeam_Munit = Rbeam_Mcost / Rbeam_qty;
+                Rbeam_Lcost = mainrebarlabor + stirLabor + webRebarPrice + webLabor;
+                Rbeam_Lunit = double.Parse(parameters.price_LaborRate_Rebar["BEAM [KG]"].ToString());
+                print("========= BEAM REBARS =========");
+                print("MQTY: " + Rbeam_qty);
+                print("Munit: " + Rbeam_Munit);
+                print("Mcost: " + Rbeam_Mcost);
+                print("Lunit: " + Rbeam_Lunit);
+                print("Lcost: " + Rbeam_Lcost);
+                print("========= BEAM REBARS (EACH) =========");
+                print("MAIN: " + mainbeamPrice);
+                print("STIR: " + stirRebarPrice);
+                print("WEB: " + webRebarPrice);
+                print("MAI L: " + mainrebarlabor);
+                print("STIR L: " + stirLabor);
+                print("WEB L: " + webLabor);
+            }
+            else
+            {
+                Rbeam_qty = 0;
+                Rbeam_Munit = 0;
+                Rbeam_Mcost = 0;
+                Rbeam_Lunit = 0;
+                Rbeam_Lcost = 0;
+                Rbeam_TOTALCOST = 0;
+            }
+            if (rebarsChecklist[5]) // Slab on grade
+            {
+                double slabOGprice = 0;
+                try
+                {                    
+                    for(int i = 0; i < structuralMembers.Slab_ongradeRebar.Count; i++)
+                    {
+                        for(int j = 0; j < structuralMembers.Slab_ongradeRebar[i].Count; j++)
+                        {
+                            List<string> grade = gradefilterer(parameters.rein_RG_SL);
+                            string dia = structuralMembers.Slab_ongradeRebar[i][j][4];
+                            string ms = structuralMembers.Slab_ongradeRebar[i][j][0];
+                            string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
+                            if (ms != "0")
+                            {
+                                if (grade[1] == "33")
+                                {
+                                    slabOGprice += double.Parse(parameters.price_RebarGrade33[price_name].ToString())
+                                        * double.Parse(structuralMembers.Slab_ongradeRebar[i][j][1]);
+                                }
+                                else if (grade[1] == "40")
+                                {
+                                    slabOGprice += double.Parse(parameters.price_RebarGrade40[price_name].ToString())
+                                        * double.Parse(structuralMembers.Slab_ongradeRebar[i][j][1]);
+                                }
+                                else if (grade[1] == "60")
+                                {
+                                    slabOGprice += double.Parse(parameters.price_RebarGrade60[price_name].ToString())
+                                        * double.Parse(structuralMembers.Slab_ongradeRebar[i][j][1]);
+                                }
+                            }
+                            dia = structuralMembers.Slab_ongradeRebar[i][j][5];
+                            ms = structuralMembers.Slab_ongradeRebar[i][j][2];
+                            price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
+                            if (ms != "0")
+                            {
+                                if (grade[1] == "33")
+                                {
+                                    slabOGprice += double.Parse(parameters.price_RebarGrade33[price_name].ToString())
+                                        * double.Parse(structuralMembers.Slab_ongradeRebar[i][j][3]);
+                                }
+                                else if (grade[1] == "40")
+                                {
+                                    slabOGprice += double.Parse(parameters.price_RebarGrade40[price_name].ToString())
+                                        * double.Parse(structuralMembers.Slab_ongradeRebar[i][j][3]);
+                                }
+                                else if (grade[1] == "60")
+                                {
+                                    slabOGprice += double.Parse(parameters.price_RebarGrade60[price_name].ToString())
+                                        * double.Parse(structuralMembers.Slab_ongradeRebar[i][j][3]);
+                                }
+                            }                            
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    print("Slab on grade: " + ex);
+                }
+                double slabongradeLABOR = structuralMembers.totalweightkgm_slabongrade * double.Parse(parameters.price_LaborRate_Rebar["SLAB ON GRADE [KG]"].ToString());
+            }
+            else
+            {
+                RSOG_qty = 0;
+                RSOG_Munit = 0;
+                RSOG_Mcost = 0;
+                RSOG_Lunit = 0;
+                RSOG_Lcost = 0;
+                RSOG_TOTALCOST = 0;
+            }
+            if (rebarsChecklist[6])
+            {
+
+            }
+            else
+            {
+
+            }
+            if (rebarsChecklist[7])
+            {
+
+            }
+            else
+            {
+
+            }
+            if (rebarsChecklist[8])
+            {
+
+            }
+            else
+            {
+
+            }
+            //Rebars END
 
             //Roofings -- START
             double labor_holder = 0;
@@ -9638,6 +10090,26 @@ namespace KnowEst
             {                
                 return "PHENOLIC BOARD- 1/2” [1.22m x 2.44m]";
             }
+        }
+
+        public List<string> gradefilterer(string grade)
+        {
+            List<string> passgrade = new List<string>();
+            string iter = "";
+            foreach(char a in grade)
+            {
+                if (Char.IsWhiteSpace(a))
+                {
+                    passgrade.Add(iter);
+                    iter = "";
+                }
+                else
+                {
+                    iter += a;
+                }
+            }
+            passgrade.Add(iter);
+            return passgrade;
         }
         //Extra Functions -- END
     }
