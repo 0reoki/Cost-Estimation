@@ -3249,6 +3249,53 @@ namespace KnowEst
 
                 //Computation - Rebars -- START KEVIN STRAIGHT STAIRS
                 //double D = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][7], System.Globalization.CultureInfo.InvariantCulture);
+                double WaistSlab1, WaistSlab2, WaistSlab3, WaistSlab4, TempBars, Landing,
+                       WS_BarNumber,LShaped_num, LShaped_Length, NoseBar;
+                       
+                double Lapping, Length;
+                double LapLength, HookLength, WS_Diameter, Riser, Tread, Steps,
+                       WidthLanding, WS_Spacing, StairWidth, BeamWidth
+                       ;
+
+                string[] stairParameterValues = cEF.parameters.stair[floorCount][stairsCount].getValues();
+                LapLength = double.Parse(stairParameterValues[1]);
+                HookLength = double.Parse(stairParameterValues[2]);
+                WS_Diameter = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][7], System.Globalization.CultureInfo.InvariantCulture);
+                Riser = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][4], System.Globalization.CultureInfo.InvariantCulture);
+                Tread = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][5], System.Globalization.CultureInfo.InvariantCulture);
+                Steps = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][2], System.Globalization.CultureInfo.InvariantCulture);
+                WS_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][8], System.Globalization.CultureInfo.InvariantCulture);
+                StairWidth = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][3], System.Globalization.CultureInfo.InvariantCulture);
+                BeamWidth = double.Parse(stairParameterValues[3]);
+                //==========Calculation===========
+                Lapping = LapLength * WS_Diameter;
+                Length = nearestValue(Math.Sqrt(Math.Pow(Riser * Steps, 2) + Math.Pow(Tread * Steps, 2)), 25);
+                WaistSlab1 = nearestValue(Lapping + Length + (HookLength * WS_Diameter), 25);
+                WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + StairWidth + Length, 25);
+                WaistSlab3 = nearestValue((HookLength * WS_Diameter) + StairWidth + BeamWidth + (LapLength * 10), 25);
+                WaistSlab4 = nearestValue(2 * ((Length / WS_Spacing) + 1), 1);
+                //Steps Rebar
+                LShaped_num = (StairWidth / WS_Spacing) + 1;
+                LShaped_Length = Tread + Riser;
+                NoseBar = StairWidth;
+
+                Console.WriteLine();
+                Console.WriteLine(WaistSlab2);
+                Console.WriteLine(WaistSlab3);
+                Console.WriteLine(WaistSlab4);
+                Console.WriteLine();
+
+                /*
+                Lapping = LapLength * WS_Diameter;
+                F_Length = nearestValue(Math.Sqrt(Math.Pow(Riser * F_Steps, 2) + Math.Pow(Tread * F_Steps, 2)), 25);
+                F_WaistSlab1 = nearestValue(Lapping + F_Length + (HookLength * WS_Diameter), 25);
+                F_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + WidthLanding + F_Length, 25);
+                F_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + WidthLanding + BeamWidth + (LapLength * 10), 25);
+                F_WS_BarNumber = (WidthLanding / WS_Spacing) + 1;
+                F_TempBars = nearestValue(2 * ((F_Length / TB_Spacing) + 1), 1);
+                F_Landing = (StairWidth * 2) + Gap;
+                F_L_BarNumber = (StairWidth / L_Spacing) + 1;*/
+
             }
             else if (cEF.structuralMembers.stairs[floorCount][stairsCount][0].Equals("L-Stairs"))
             {
@@ -3411,6 +3458,62 @@ namespace KnowEst
                 }
 
                 //Computation - Rebars -- START KEVIN L-STAIRS
+
+                double F_WaistSlab1, F_WaistSlab2, F_WaistSlab3, F_WaistSlab4, TempBars, 
+                       Landing_Length, Landing_Number, Landing_Spacing,TB_Spacing,
+                       F_WS_BarNumber,
+                       S_WaistSlab1, S_WaistSlab2, S_WaistSlab3, S_WaistSlab4,
+                       S_WS_BarNumber, CB_Length, CB_Number;
+                double Lapping, F_Length, S_Length;
+                double LapLength, HookLength, WS_Diameter,
+                       Tread, Riser, F_Steps, S_Steps,
+                       WidthLanding, StairWidth, BeamWidth,
+                       WS_Spacing, CB_Spacing;
+
+                string[] stairParameterValues = cEF.parameters.stair[floorCount][stairsCount].getValues();
+
+
+                LapLength = double.Parse(stairParameterValues[1]);
+                WS_Diameter = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][9], System.Globalization.CultureInfo.InvariantCulture);
+                Riser = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][5], System.Globalization.CultureInfo.InvariantCulture);
+                Tread = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][6], System.Globalization.CultureInfo.InvariantCulture);
+                F_Steps = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][2], System.Globalization.CultureInfo.InvariantCulture);
+                S_Steps = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][3], System.Globalization.CultureInfo.InvariantCulture);
+                HookLength = double.Parse(stairParameterValues[2]);
+                StairWidth = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][4], System.Globalization.CultureInfo.InvariantCulture);
+                BeamWidth = double.Parse(stairParameterValues[3]);
+                WS_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][10], System.Globalization.CultureInfo.InvariantCulture);
+                Landing_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][14], System.Globalization.CultureInfo.InvariantCulture);
+                CB_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][16], System.Globalization.CultureInfo.InvariantCulture);
+                TB_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][12], System.Globalization.CultureInfo.InvariantCulture);
+                //==========FIRST FLIGHT===========
+                Lapping = LapLength * WS_Diameter;
+                F_Length = nearestValue(Math.Sqrt(Math.Pow(Riser * F_Steps, 2) + Math.Pow(Tread * F_Steps, 2)), 25);
+                F_WaistSlab1 = nearestValue(Lapping + F_Length + (HookLength * WS_Diameter), 25);
+                F_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + StairWidth + F_Length, 25);
+                F_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + StairWidth + BeamWidth + (LapLength * WS_Diameter), 25);
+                F_WS_BarNumber = (StairWidth / WS_Spacing) + 1;
+                F_WaistSlab4 = nearestValue(2 * ((F_Length / TB_Spacing) + 1), 1);
+                Landing_Length = StairWidth;
+                Landing_Number = (StairWidth / Landing_Spacing)+1;
+
+                //=========SECOND FLIGHT===========
+                S_Length = nearestValue(Math.Sqrt(Math.Pow(Riser * S_Steps, 2) + Math.Pow(Tread * S_Steps, 2)), 25);
+                S_WaistSlab1 = nearestValue(Lapping + S_Length + (HookLength * WS_Diameter), 25);
+                S_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + StairWidth + S_Length, 25);
+                S_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + StairWidth + BeamWidth + (LapLength * WS_Diameter ), 25);
+                S_WS_BarNumber = (StairWidth / WS_Spacing) + 1;
+                S_WaistSlab4 = nearestValue(2 * ((S_Length / TB_Spacing) + 1), 1);
+                CB_Length = Tread + Riser;
+                CB_Number = F_Steps + S_Steps;
+
+              
+
+
+
+
+
+
             }
             else
             {
@@ -3575,6 +3678,95 @@ namespace KnowEst
                 }
 
                 //Computation - Rebars -- START KEVIN U-STAIRS
+                //Vars
+
+                double F_WaistSlab1, F_WaistSlab2, F_WaistSlab3, F_TempBars, F_Landing,
+                       F_WS_BarNumber, F_L_BarNumber,
+                       S_WaistSlab1, S_WaistSlab2, S_WaistSlab3, S_TempBars, S_Landing,
+                       S_WS_BarNumber, S_ChairBarsLength, S_ChairBarNumber,
+                       S_NoseBar;
+                double Lapping, F_Length, S_Length;
+
+                string[] stairParameterValues = cEF.parameters.stair[floorCount][stairsCount].getValues();
+
+
+                double Riser,F_Steps, S_Steps,Tread,
+                       LapLength,
+                       HookLength, WS_Diameter, WS_Spacing,
+                       WidthLanding,
+                       BeamWidth,
+                       StairWidth, TB_Spacing,
+                       Gap,
+                       L_MainBars, L_Spacing,
+                       C_Spacing
+                       ;
+                
+                //ParameterValues
+                HookLength = double.Parse(stairParameterValues[2]);
+                LapLength = double.Parse(stairParameterValues[1]);
+                BeamWidth = double.Parse(stairParameterValues[3]);
+
+                //AddStructValues
+                WS_Diameter = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][11], System.Globalization.CultureInfo.InvariantCulture);
+                WS_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][12], System.Globalization.CultureInfo.InvariantCulture);
+                WidthLanding = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][8], System.Globalization.CultureInfo.InvariantCulture);
+                Riser = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][5], System.Globalization.CultureInfo.InvariantCulture);
+                Tread = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][6], System.Globalization.CultureInfo.InvariantCulture);
+                F_Steps = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][2], System.Globalization.CultureInfo.InvariantCulture);
+                S_Steps = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][3], System.Globalization.CultureInfo.InvariantCulture);
+                StairWidth = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][4], System.Globalization.CultureInfo.InvariantCulture);
+                TB_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][14], System.Globalization.CultureInfo.InvariantCulture);
+                Gap = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][9], System.Globalization.CultureInfo.InvariantCulture);
+                L_MainBars = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][15], System.Globalization.CultureInfo.InvariantCulture);
+                L_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][16], System.Globalization.CultureInfo.InvariantCulture);
+                C_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][18], System.Globalization.CultureInfo.InvariantCulture);
+                //===============FIRST FLIGHT =============================//
+                //CalculatedValues 1 -> 5
+                Lapping = LapLength * WS_Diameter;
+                F_Length = nearestValue(Math.Sqrt(Math.Pow(Riser * F_Steps, 2) + Math.Pow(Tread * F_Steps, 2)), 25);
+                
+                F_WaistSlab1 = nearestValue(Lapping + F_Length + (HookLength * WS_Diameter), 25);
+                F_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + WidthLanding + F_Length,25) ;
+                F_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + WidthLanding + BeamWidth + (LapLength * WS_Diameter),25);
+                F_WS_BarNumber = (WidthLanding / WS_Spacing) + 1;
+                F_TempBars = nearestValue(2 * ((F_Length / TB_Spacing) + 1), 1);
+                F_Landing = (StairWidth * 2) + Gap;
+                F_L_BarNumber = (StairWidth / L_Spacing) + 1;
+
+                //===============SECOND FLIGHT =============================//
+                //CalculatedValues 6 -> n
+                S_Length = nearestValue(Math.Sqrt(Math.Pow(Riser * S_Steps, 2) + Math.Pow(Tread * S_Steps, 2)), 25);
+
+                S_WaistSlab1 = nearestValue(Lapping + S_Length + (HookLength * WS_Diameter), 25);
+                S_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + WidthLanding + S_Length, 25);
+                S_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + WidthLanding + BeamWidth + (LapLength * WS_Diameter), 25);
+                S_WS_BarNumber = (WidthLanding / WS_Spacing) + 1;
+                S_TempBars = nearestValue(2 * ((S_Length / TB_Spacing) + 1), 1);
+
+                //===========Steps========================
+                S_ChairBarsLength = Tread + Riser;
+                S_ChairBarNumber = ((StairWidth / C_Spacing) + 1) * (F_Steps + S_Steps);
+                S_NoseBar = (F_Steps + S_Steps);
+
+                Console.WriteLine();
+                Console.WriteLine(F_WaistSlab1);
+                Console.WriteLine(F_WaistSlab2);
+                Console.WriteLine(F_WaistSlab3);
+                Console.WriteLine(F_WS_BarNumber);
+                Console.WriteLine(F_TempBars);
+                Console.WriteLine(F_Landing);
+                Console.WriteLine(F_L_BarNumber);
+                Console.WriteLine();
+                Console.WriteLine(S_WaistSlab1);
+                Console.WriteLine(S_WaistSlab2);
+                Console.WriteLine(S_WaistSlab3);
+                Console.WriteLine(S_WS_BarNumber);
+                Console.WriteLine(S_TempBars);
+                Console.WriteLine(S_ChairBarsLength);
+                Console.WriteLine(S_ChairBarNumber);
+                Console.WriteLine(S_ChairBarNumber);
+                Console.WriteLine();
+
             }
             //Computation -- add Formworks [STAIRS]
             recomputeFW_stairs(cEF);
@@ -5013,6 +5205,11 @@ namespace KnowEst
         public void print(string str)
         {
             Console.WriteLine(str);
+        }
+        public double nearestValue(double val, int multiple)
+        {
+            double roundedValue = (multiple * (Math.Truncate(val / multiple))) + multiple;
+            return roundedValue;
         }
         public double rounder(double val)
         {
