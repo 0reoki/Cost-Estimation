@@ -834,7 +834,7 @@ namespace KnowEst
                             costEstimationForm.structuralMembers.columnLateralTies[floorCount][memberCount] = ltMember;
                             costEstimationForm.structuralMembers.columnSpacing[floorCount][memberCount] = sMember;
 
-                            //compute.ModifyColumnWorks(costEstimationForm, memberCount, columnCount);
+                            compute.ModifyColumnWorks(costEstimationForm, memberCount, memberCount);
                             this.DialogResult = DialogResult.OK;
                         }
                         else //Upper
@@ -871,7 +871,7 @@ namespace KnowEst
                             costEstimationForm.structuralMembers.columnLateralTies[floorCount][memberCount] = ltMember;
                             costEstimationForm.structuralMembers.columnSpacing[floorCount][memberCount] = sMember;
 
-                            //compute.ModifyColumnWorks(costEstimationForm, memberCount, columnCount);
+                            compute.ModifyColumnWorks(costEstimationForm, memberCount, memberCount);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
