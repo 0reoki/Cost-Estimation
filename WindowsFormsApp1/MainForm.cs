@@ -2647,8 +2647,8 @@ namespace KnowEst
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = (footing_QTY + trap_QTY).ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
-                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + (footing_Munit + trap_Munit).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + ((footing_Mcost + trap_Mcost) / (footing_QTY + trap_QTY)).ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + (footing_Mcost + trap_Mcost).ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -2670,7 +2670,7 @@ namespace KnowEst
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = col_QTY.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + col_Munit.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + col_Mcost.ToString("#,##0.00");
@@ -2693,7 +2693,7 @@ namespace KnowEst
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = beam_QTY.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + beam_Munit.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + beam_Mcost.ToString("#,##0.00");
@@ -2716,7 +2716,7 @@ namespace KnowEst
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = sus_QTY.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + sus_Munit.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + sus_Mcost.ToString("#,##0.00");
@@ -2739,7 +2739,7 @@ namespace KnowEst
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = stairs_QTY.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + stairs_Munit.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + stairs_Mcost.ToString("#,##0.00");
@@ -2762,7 +2762,7 @@ namespace KnowEst
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = nails_QTY.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + nails_Munit.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + nails_Mcost.ToString("#,##0.00");
@@ -6321,7 +6321,11 @@ namespace KnowEst
             {
                 stringParam += checkMark + "|";
             }
-            foreach(bool checkMark in masonryChecklist)
+            foreach (bool checkMark in formworksChecklist)
+            {
+                stringParam += checkMark + "|";
+            }
+            foreach (bool checkMark in masonryChecklist)
             {
                 stringParam += checkMark + "|";
             }
@@ -7936,6 +7940,12 @@ namespace KnowEst
             concreteChecklist[3] = bool.Parse(tokens[i]); i++;
             concreteChecklist[4] = bool.Parse(tokens[i]); i++;
             concreteChecklist[5] = bool.Parse(tokens[i]); i++;
+            formworksChecklist[0] = bool.Parse(tokens[i]); i++;
+            formworksChecklist[1] = bool.Parse(tokens[i]); i++;
+            formworksChecklist[2] = bool.Parse(tokens[i]); i++;
+            formworksChecklist[3] = bool.Parse(tokens[i]); i++;
+            formworksChecklist[4] = bool.Parse(tokens[i]); i++;
+            formworksChecklist[5] = bool.Parse(tokens[i]); i++;
             masonryChecklist[0] = bool.Parse(tokens[i]); i++;
             masonryChecklist[1] = bool.Parse(tokens[i]); i++;
             roofingsChecklist[0] = bool.Parse(tokens[i]); i++;
