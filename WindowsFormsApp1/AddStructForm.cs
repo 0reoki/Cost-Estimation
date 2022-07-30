@@ -3626,6 +3626,11 @@ namespace KnowEst
 
         }
 
+        private void stairs_US_WS_MBS_bx_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void roof_GI_D_HRS_AddBtn_Click(object sender, EventArgs e)
         {
             RoofHRSUserControl content = new RoofHRSUserControl();
