@@ -2089,6 +2089,7 @@ namespace KnowEst
                     costEstimationForm.structuralMembers.earthworkSolutions.RemoveAt(i);
                     costEstimationForm.structuralMembers.concreteWorkSolutionsF.RemoveAt(i);
                     costEstimationForm.structuralMembers.per_col.RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.footingReinforcements.RemoveAt(memberCount);
 
                     compute.recomputeFW_Footings(costEstimationForm);
                     //Refresh Solutions

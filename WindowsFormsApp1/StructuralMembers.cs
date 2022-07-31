@@ -108,6 +108,11 @@ namespace KnowEst
         public List<double> LAREA = new List<double>();
         public List<double> SAREA = new List<double>();
 
+        //Reinforcements Solutions
+
+        //Lm -> QTY[X] -> LB of QTY[X] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
+        public List<List<List<double>>> footingReinforcements = new List<List<List<double>>>();
+
         //Constant variables
         //Cement
         //Sand
