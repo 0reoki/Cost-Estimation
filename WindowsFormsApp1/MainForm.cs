@@ -188,6 +188,16 @@ namespace KnowEst
         // exterior QTY -> masonrysSolutionP1[3]
         // interior QTY -> masonrysSolutionP1[8]
 
+        //5.0 Reinforcements
+        public double reinF_UnitM,      //Reinforcements Footing - Materials Unit
+                      reinF_CostM,      //Reinforcements Footing - Materials Cost
+                      reinF_CostL,      //Reinforcements Footing - Labor Cost
+                      reinF_TotalCost,  //Reinforcements Footing - TOTAL COST
+                      reinWF_UnitM,      //Reinforcements Wall Footing - Materials Unit
+                      reinWF_CostM,      //Reinforcements Wall Footing - Materials Cost
+                      reinWF_CostL,      //Reinforcements Wall Footing - Labor Cost
+                      reinWF_TotalCost;  //Reinforcements Wall Footing - TOTAL COST
+
         //6.0 Roofings **
         public double rANDp_MCost,// Rafter and Purlins - Material Cost
             rANDp_LCost,// Rafter and Purlins - Labor Cost
@@ -363,6 +373,16 @@ namespace KnowEst
             masonMCost_total = 0; 
             masonLCost_total = 0;                                            
             mason_TOTALCOST = 0;
+
+            //Reinforcements
+            reinF_UnitM = 0;
+            reinF_CostM = 0;
+            reinF_CostL = 0;
+            reinF_TotalCost = 0;
+            reinWF_UnitM = 0;
+            reinWF_CostM = 0;
+            reinWF_CostL = 0;
+            reinWF_TotalCost = 0;
 
             //Roofings **
             rANDp_MCost = 0; 
@@ -1679,6 +1699,57 @@ namespace KnowEst
             print("TOTAL COST: " + mason_TOTALCOST);
             //Masonry -- END
 
+            //Reinforcements -- START
+
+            //Footing TODO add checklist
+            //Reset cost variables
+            reinF_UnitM = 0;
+            reinF_CostM = 0;
+            reinF_CostL = 0;
+            reinF_TotalCost = 0;
+            //4
+            string rebarGrade = parameters.rein_RG_F;
+            rebarGrade = rebarGrade.ToUpper();
+            print("================== Footing Reinforcements ===================");
+            foreach (List<List<double>> footing in structuralMembers.footingReinforcements)
+            {
+                foreach(List<double> chosenML in footing)
+                {
+                    double unitCost = 0;
+                    if (rebarGrade.Contains("33"))
+                        unitCost = double.Parse(parameters.price_RebarGrade33["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                    else if (rebarGrade.Contains("40"))
+                        unitCost = double.Parse(parameters.price_RebarGrade40["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                    else
+                        unitCost = double.Parse(parameters.price_RebarGrade60["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                    reinF_CostM += (chosenML[4] * unitCost);
+                }
+            }
+            print("Material Cost: " + reinF_CostM);
+            //6
+            //parameters.price_LaborRate_Rebar["FOOTING [KG]"]
+            foreach (List<List<double>> footing in structuralMembers.footingReinforcements)
+            {
+                foreach (List<double> chosenML in footing)
+                {
+                    double unitCost = 0;
+                    unitCost = double.Parse(parameters.price_LaborRate_Rebar["FOOTING [KG]"].ToString());
+                    reinF_CostL += (chosenML[9] * unitCost);
+                }
+            }
+            print("Labor Cost: " + reinF_CostL);
+            reinF_TotalCost = reinF_CostM + reinF_CostL;
+            print("Total Cost: " + reinF_TotalCost);
+
+            //Wall Footing TODO
+            //Reset cost variables
+            reinWF_UnitM = 0;
+            reinWF_CostM = 0;
+            reinWF_CostL = 0;
+            reinWF_TotalCost = 0;
+
+            //Reinforcements -- END
+
             //Roofings -- START
             double labor_holder = 0;
             double sqm_roof = 0;
@@ -2896,48 +2967,74 @@ namespace KnowEst
 
                 setTree(nodes2, view_TV2);
 
-                /*
+
                 //5.0 - Reinforcement Steel -- START
-                TreeNode[] found = view_TV2.Nodes.Find("reinParent", true);
+                found = view_TV2.Nodes.Find("reinParent", true);
 
-                TreeNode newChild1 = new TreeNode("1.1 Excavation (₱" + excavation_CostL.ToString("#,##0.00") + ")");
-                newChild1.Name = "excavation_Total";
+                j = 1;
+                TreeNode R_newChild1 = new TreeNode("5." + j + " Footing (₱" + reinF_TotalCost.ToString("#,##0.00") + ")");
+                R_newChild1.Name = "exterior_Wall_Total";
+                if (reinF_TotalCost != 0) j++;
+                TreeNode R_newChild2 = new TreeNode("5." + j + " Wall Footing (₱" + reinWF_TotalCost.ToString("#,##0.00") + ")");
+                R_newChild2.Name = "interior_Wall_Total";
 
-                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction (₱" + backfillingAndCompaction_CostL.ToString("#,##0.00") + ")");
-                newChild2.Name = "backfillingAndCompaction_Total";
+                if (reinF_TotalCost != 0)
+                    found[0].Nodes.Add(R_newChild1);
 
-                TreeNode newChild3 = new TreeNode("1.3 Grading and Compaction (₱" + gradingAndCompaction_CostL.ToString("#,##0.00") + ")");
-                newChild3.Name = "gradingAndCompaction_Total";
+                //Setting of BOQ     
+                try
+                {
+                    if (reinF_TotalCost != 0) //TODO palitan ng total cost ng buong reinforcements
+                    {
+                        var index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "5.0";
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "REINFORCEMENT STEEL";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
 
-                TreeNode newChild4 = new TreeNode("1.4 Gravel Bedding and Compaction (₱" + gravelBedding_CostTotal.ToString("#,##0.00") + ")");
-                newChild4.Name = "gravelBedding_Total";
+                        int i = 1;
+                        if (reinF_TotalCost != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "5." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "FOOTING";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = masonrysSolutionP1[3].ToString("#,##0.00"); //TODO
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "kg";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + exterior_UnitM.ToString("#,##0.00"); //TODO
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + reinF_CostM.ToString("#,##0.00"); 
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Rebar["FOOTING [KG]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + reinF_CostL.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + reinF_TotalCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        /*
+                        this.summ_BOQ_dg.Rows.Add();
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + masonMCost_total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + masonLCost_total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + mason_TOTALCOST.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
+                        */
+                    }
+                }
+                catch (Exception ex)
+                {
 
-                TreeNode newChild5 = new TreeNode("1.5 Soil Poisoning (₱" + soilPoisoning_CostM.ToString("#,##0.00") + ")");
-                newChild5.Name = "soilPoisoning_Total";
-
-                found[0].Nodes.Add(newChild1);
-                found[0].Nodes.Add(newChild2);
-                found[0].Nodes.Add(newChild3);
-                found[0].Nodes.Add(newChild4);
-                found[0].Nodes.Add(newChild5);
+                }
                 //5.0 - Reinforcement Steel -- END
 
-                //6.0 Roofings **
-                public double rANDp_MCost,// Rafter and Purlins - Material Cost
-                            rANDp_LCost,// Rafter and Purlins - Labor Cost
-                            rANDp_costTotal,// Rafter and Purlins - TOTAL COST
-                            acce_MCost, // G.I Roof and Its Accessories - Material Cost
-                            acce_LCost,// G.I Roof and Its Accessories - Labor Cost
-                            acce_costTotal,// G.I Roof and Its Accessories - TOTAL COST
-                            tins_MCost,// Tinswork - Material Cost
-                            tins_LCost,// Tinswork - Labor Cost
-                            tins_costTotal,// Tinswork - TOTAL COST
-                            roof_MTOTAL,// Total Material Cost
-                            roof_LTOTAL,// Total Labor Cost
-                            roof_TOTALCOST;// Overall Total Cost   
-
-                roofingsChecklist
-                */
 
                 //6.0 - Roofing -- START
                 found = view_TV2.Nodes.Find("roofingParent", true);
@@ -9356,7 +9453,6 @@ namespace KnowEst
             soilPoisoning_CostM = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             earthworks_CostTotal = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
 
-            // DITO2
             //3.0 - Formworks
             i++;
             //Footings
