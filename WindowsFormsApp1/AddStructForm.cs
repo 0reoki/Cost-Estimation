@@ -10,8 +10,6 @@ using System.Windows.Forms;
 
 namespace KnowEst
 {
-    //TODO: populate combobox ng beam row according kung anong existing + new schedules 
-
     public partial class AddStructForm : Form
     {
         //Local Variables
@@ -836,7 +834,7 @@ namespace KnowEst
                             costEstimationForm.structuralMembers.columnLateralTies[floorCount][memberCount] = ltMember;
                             costEstimationForm.structuralMembers.columnSpacing[floorCount][memberCount] = sMember;
 
-                            //compute.ModifyColumnWorks(costEstimationForm, memberCount, columnCount);
+                            compute.ModifyColumnWorks(costEstimationForm, memberCount, memberCount);
                             this.DialogResult = DialogResult.OK;
                         }
                         else //Upper
@@ -873,7 +871,7 @@ namespace KnowEst
                             costEstimationForm.structuralMembers.columnLateralTies[floorCount][memberCount] = ltMember;
                             costEstimationForm.structuralMembers.columnSpacing[floorCount][memberCount] = sMember;
 
-                            //compute.ModifyColumnWorks(costEstimationForm, memberCount, columnCount);
+                            compute.ModifyColumnWorks(costEstimationForm, memberCount, memberCount);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
@@ -2091,6 +2089,7 @@ namespace KnowEst
                     costEstimationForm.structuralMembers.earthworkSolutions.RemoveAt(i);
                     costEstimationForm.structuralMembers.concreteWorkSolutionsF.RemoveAt(i);
                     costEstimationForm.structuralMembers.per_col.RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.footingReinforcements.RemoveAt(memberCount);
 
                     compute.recomputeFW_Footings(costEstimationForm);
                     //Refresh Solutions
@@ -2366,7 +2365,6 @@ namespace KnowEst
             setDefaultStructMemName();
         }
 
-        //TODO add other structural members
         private void setDefaultStructMemName()
         {
             if(floorCount == 0) //Ground Floor
@@ -2425,7 +2423,6 @@ namespace KnowEst
             }
         }
 
-        //TODO add other structural members from opened node
         private void setFootingValues()
         {
             if (isFooting)

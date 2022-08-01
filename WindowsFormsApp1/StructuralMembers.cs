@@ -109,6 +109,9 @@ namespace KnowEst
         public List<double> SAREA = new List<double>();
 
         //steel reinforcements
+        //----- FOOTING ------//
+        //Lm -> QTY[X] -> LB of QTY[X] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
+        public List<List<List<double>>> footingReinforcements = new List<List<List<double>>>();
         //----- COLUMN MAIN ------//
         public List<List<List<string>>> Column_mainRebar = new List<List<List<string>>>();
         public double totalweightkgm_Colmain = 0;
@@ -131,6 +134,7 @@ namespace KnowEst
         ///----- SUSPENDED SLAB ------//        
         public List<List<List<double>>> Slab_suspendedRebar = new List<List<List<double>>>();
         public double totalweightkgm_suspendedslab = 0;
+
         //Constant variables
         //Cement
         //Sand

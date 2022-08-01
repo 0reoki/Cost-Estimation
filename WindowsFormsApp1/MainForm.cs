@@ -190,6 +190,15 @@ namespace KnowEst
         // interior QTY -> masonrysSolutionP1[8]
 
         //5.0 Rebars **
+        public double reinF_UnitM,      //Reinforcements Footing - Materials Unit
+                      reinF_CostM,      //Reinforcements Footing - Materials Cost
+                      reinF_CostL,      //Reinforcements Footing - Labor Cost
+                      reinF_TotalCost,  //Reinforcements Footing - TOTAL COST
+                      reinWF_UnitM,      //Reinforcements Wall Footing - Materials Unit
+                      reinWF_CostM,      //Reinforcements Wall Footing - Materials Cost
+                      reinWF_CostL,      //Reinforcements Wall Footing - Labor Cost
+                      reinWF_TotalCost;  //Reinforcements Wall Footing - TOTAL COST
+                      
         public double Rbeam_qty, // BEAM
                       Rbeam_Munit,
                       Rbeam_Mcost,
@@ -392,6 +401,15 @@ namespace KnowEst
             mason_TOTALCOST = 0;
 
             //Reinforcement steel **
+            reinF_UnitM = 0;
+            reinF_CostM = 0;
+            reinF_CostL = 0;
+            reinF_TotalCost = 0;
+            reinWF_UnitM = 0;
+            reinWF_CostM = 0;
+            reinWF_CostL = 0;
+            reinWF_TotalCost = 0;
+
             Rbeam_qty = 0;
             Rbeam_Munit = 0;
             Rbeam_Mcost = 0;
@@ -1173,8 +1191,7 @@ namespace KnowEst
                     int i = 0;
                     foreach (List<List<double>> floor in structuralMembers.concreteWorkSolutionsST)
                     {
-                        //int floorMultiplier = int.Parse(floors[i].getValues()[0]);
-                        int floorMultiplier = 1;
+                        int floorMultiplier = int.Parse(floors[i].getValues()[0]);
                         foreach (List<double> solution in floor)
                         {
                             cement_Total[5] += solution[0] * floorMultiplier;
@@ -1201,8 +1218,7 @@ namespace KnowEst
                     int i = 0;
                     foreach (List<List<double>> floor in structuralMembers.concreteWorkSolutionsST)
                     {
-                        //int floorMultiplier = int.Parse(floors[i].getValues()[0]);
-                        int floorMultiplier = 1;
+                        int floorMultiplier = int.Parse(floors[i].getValues()[0]);
                         foreach (List<double> solution in floor)
                         {
                             concreteVolume_Total[5] += solution[0] * floorMultiplier;
@@ -1624,6 +1640,11 @@ namespace KnowEst
                 nails_QTY = 0;
                 nailsMLCOST = 0;
             }
+            //Total Cost Compu
+
+            FW_totalMats = footing_Mcost + trap_Mcost + col_Mcost + beam_Mcost + sus_Mcost + stairs_Mcost + nails_Mcost;
+            FW_totalLab = footing_Lcost + trap_Lcost + col_Lcost + beam_Lcost + sus_Lcost + stairs_Lcost;
+            FW_MATOTAL = FW_totalMats + FW_totalLab;
             print("========== FORMWORKS ==============");
             print("FOOTINGS -> " + "QTY:" + footing_QTY + " MU:" + footing_Munit + " MC:" + footing_Mcost + " LU" + footing_Lunit + " LC:" + footing_Lcost + " TOTAL: " + footingMLCOST);
             print("TRAPEZOID -> " + "QTY:" + trap_QTY + " MU:" + trap_Munit + " MC:" + trap_Mcost + " LU" + trap_Lunit + " LC:" + trap_Lcost + " TOTAL: " + trapMLCOST);
@@ -1732,7 +1753,52 @@ namespace KnowEst
             //Rebars START
             if (rebarsChecklist[0])
             {
+                //Footing TODO add checklist
+                //Reset cost variables
+                reinF_UnitM = 0;
+                reinF_CostM = 0;
+                reinF_CostL = 0;
+                reinF_TotalCost = 0;
+                //4
+                string rebarGrade = parameters.rein_RG_F;
+                rebarGrade = rebarGrade.ToUpper();
+                print("================== Footing Reinforcements ===================");
+                foreach (List<List<double>> footing in structuralMembers.footingReinforcements)
+                {
+                    foreach(List<double> chosenML in footing)
+                    {
+                        double unitCost = 0;
+                        if (rebarGrade.Contains("33"))
+                            unitCost = double.Parse(parameters.price_RebarGrade33["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                        else if (rebarGrade.Contains("40"))
+                            unitCost = double.Parse(parameters.price_RebarGrade40["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                        else
+                            unitCost = double.Parse(parameters.price_RebarGrade60["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                        reinF_CostM += (chosenML[4] * unitCost);
+                    }
+                }
+                print("Material Cost: " + reinF_CostM);
+                //6
+                //parameters.price_LaborRate_Rebar["FOOTING [KG]"]
+                foreach (List<List<double>> footing in structuralMembers.footingReinforcements)
+                {
+                    foreach (List<double> chosenML in footing)
+                    {
+                        double unitCost = 0;
+                        unitCost = double.Parse(parameters.price_LaborRate_Rebar["FOOTING [KG]"].ToString());
+                        reinF_CostL += (chosenML[9] * unitCost);
+                    }
+                }
+                print("Labor Cost: " + reinF_CostL);
+                reinF_TotalCost = reinF_CostM + reinF_CostL;
+                print("Total Cost: " + reinF_TotalCost);
 
+                //Wall Footing TODO
+                //Reset cost variables
+                reinWF_UnitM = 0;
+                reinWF_CostM = 0;
+                reinWF_CostL = 0;
+                reinWF_TotalCost = 0;
             }
             else
             {
@@ -2676,7 +2742,7 @@ namespace KnowEst
                 TreeNode tn2 = new TreeNode("2.0 Concrete Works (₱" + concrete_TOTALCOST.ToString("#,##0.00") + ")");
                 tn2.Name = "concreteWorksParent";
 
-                TreeNode tn3 = new TreeNode("3.0 Form Works");
+                TreeNode tn3 = new TreeNode("3.0 Form Works (₱" + FW_MATOTAL.ToString("#,##0.00") + ")");
                 tn3.Name = "formWorksParent";
 
                 TreeNode tn4 = new TreeNode("4.0 Masonry (₱" + mason_TOTALCOST.ToString("#,##0.00") + ")");
@@ -2808,7 +2874,7 @@ namespace KnowEst
                         this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                         this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = gravelBedding_Total.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m.";
+                        this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "cu. m."; 
                         this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + double.Parse(parameters.price_Gravel[earthworks_gravelBeddingType].ToString()).ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                         this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + gravelBedding_CostM.ToString("#,##0.00");
@@ -3106,34 +3172,204 @@ namespace KnowEst
 
                 }
                 //2.0 - Concrete Works -- END
-                /*
+
                 //3.0 - Formworks -- START
-                TreeNode[] found = view_TV1.Nodes.Find("earthworksParent", true);
+                found = view_TV1.Nodes.Find("formWorksParent", true);
 
-                TreeNode newChild1 = new TreeNode("1.1 Excavation (₱" + excavation_CostL.ToString("#,##0.00") + ")");
-                newChild1.Name = "excavation_Total";
+                j = 1;
+                TreeNode fw_newChild1 = new TreeNode("3." + j + " Footing (₱" + (footingMLCOST + trapMLCOST).ToString("#,##0.00") + ")");
+                newChild1.Name = "fw_Footing";
+                if ((footingMLCOST + trapMLCOST) != 0) j++;
+                TreeNode fw_newChild2 = new TreeNode("3." + j + " Column (₱" + colMLCOST.ToString("#,##0.00") + ")");
+                newChild2.Name = "fw_Column";
+                if (concreteC_CostM != 0) j++;
+                TreeNode fw_newChild3 = new TreeNode("3." + j + " Beams (₱" + beamMLCOST.ToString("#,##0.00") + ")");
+                newChild3.Name = "fw_Beams";
+                if (concreteBR_CostM != 0) j++;
+                TreeNode fw_newChild4 = new TreeNode("3." + j + " Suspended Slab (₱" + sus_MLCOST.ToString("#,##0.00") + ")");
+                newChild4.Name = "fw_Slab";
+                if (sus_MLCOST != 0) j++;
+                TreeNode fw_newChild5 = new TreeNode("3." + j + " Stairs (₱" + stairs_MLCOST.ToString("#,##0.00") + ")");
+                newChild5.Name = "fw_Stairs";
+                if (stairs_MLCOST != 0) j++;
+                TreeNode fw_newChild6 = new TreeNode("3." + j + " Nails (₱" + nailsMLCOST.ToString("#,##0.00") + ")");
+                fw_newChild6.Name = "fw_Nails";
 
-                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction (₱" + backfillingAndCompaction_CostL.ToString("#,##0.00") + ")");
-                newChild2.Name = "backfillingAndCompaction_Total";
+                if ((footingMLCOST + trapMLCOST) != 0)
+                    found[0].Nodes.Add(fw_newChild1);
+                if (colMLCOST != 0)
+                    found[0].Nodes.Add(fw_newChild2);
+                if (beamMLCOST != 0)
+                    found[0].Nodes.Add(fw_newChild3);
+                if (sus_MLCOST != 0)
+                    found[0].Nodes.Add(fw_newChild4);
+                if (stairs_MLCOST != 0)
+                    found[0].Nodes.Add(fw_newChild5);
+                if (nailsMLCOST != 0)
+                    found[0].Nodes.Add(fw_newChild6);
 
-                TreeNode newChild3 = new TreeNode("1.3 Grading and Compaction (₱" + gradingAndCompaction_CostL.ToString("#,##0.00") + ")");
-                newChild3.Name = "gradingAndCompaction_Total";
+                //Setting of BOQ     
+                try
+                {
+                    if (FW_MATOTAL != 0)
+                    {
+                        var index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "3.0";
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "FORM WORKS";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
 
-                TreeNode newChild4 = new TreeNode("1.4 Gravel Bedding and Compaction (₱" + gravelBedding_CostTotal.ToString("#,##0.00") + ")");
-                newChild4.Name = "gravelBedding_Total";
+                        int i = 1;
+                        if ((footingMLCOST + trapMLCOST) != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "3." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "FOOTING";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = (footing_QTY + trap_QTY).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + ((footing_Mcost + trap_Mcost) / (footing_QTY + trap_QTY)).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + (footing_Mcost + trap_Mcost).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + footing_Lunit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + (footing_Lcost + trap_Lcost).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + (footingMLCOST + trapMLCOST).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (colMLCOST != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "3." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "COLUMN";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = col_QTY.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + col_Munit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + col_Mcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + col_Lunit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + col_Lcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + colMLCOST.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (beamMLCOST != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "3." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "BEAMS";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = beam_QTY.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + beam_Munit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + beam_Mcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + beam_Lunit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + beam_Lcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + beamMLCOST.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (sus_MLCOST != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "3." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "SUSPENDED SLAB";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = sus_QTY.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + sus_Munit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + sus_Mcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + sus_Lunit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + sus_Lcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + sus_MLCOST.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (stairs_MLCOST != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "3." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "STAIRS";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = stairs_QTY.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + stairs_Munit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + stairs_Mcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + stairs_Lunit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + stairs_Lcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + stairs_MLCOST.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (nailsMLCOST != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "3." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "NAILS";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = nails_QTY.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + nails_Munit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + nails_Mcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + nailsMLCOST.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + FW_totalMats.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + FW_totalLab.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + FW_MATOTAL.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
+                    }
+                }
+                catch (Exception ex)
+                {
 
-                TreeNode newChild5 = new TreeNode("1.5 Soil Poisoning (₱" + soilPoisoning_CostM.ToString("#,##0.00") + ")");
-                newChild5.Name = "soilPoisoning_Total";
-
-                found[0].Nodes.Add(newChild1);
-                found[0].Nodes.Add(newChild2);
-                found[0].Nodes.Add(newChild3);
-                found[0].Nodes.Add(newChild4);
-                found[0].Nodes.Add(newChild5);
-
+                }
                 //3.0 - Formworks -- END
-                */
-
+                //*/
                 //4.0 - Masonry -- START
                 found = view_TV1.Nodes.Find("masonryParent", true);
 
@@ -3243,48 +3479,74 @@ namespace KnowEst
 
                 setTree(nodes2, view_TV2);
 
-                /*
+
                 //5.0 - Reinforcement Steel -- START
-                TreeNode[] found = view_TV2.Nodes.Find("reinParent", true);
+                found = view_TV2.Nodes.Find("reinParent", true);
 
-                TreeNode newChild1 = new TreeNode("1.1 Excavation (₱" + excavation_CostL.ToString("#,##0.00") + ")");
-                newChild1.Name = "excavation_Total";
+                j = 1;
+                TreeNode R_newChild1 = new TreeNode("5." + j + " Footing (₱" + reinF_TotalCost.ToString("#,##0.00") + ")");
+                R_newChild1.Name = "exterior_Wall_Total";
+                if (reinF_TotalCost != 0) j++;
+                TreeNode R_newChild2 = new TreeNode("5." + j + " Wall Footing (₱" + reinWF_TotalCost.ToString("#,##0.00") + ")");
+                R_newChild2.Name = "interior_Wall_Total";
 
-                TreeNode newChild2 = new TreeNode("1.2 Back Filling and Compaction (₱" + backfillingAndCompaction_CostL.ToString("#,##0.00") + ")");
-                newChild2.Name = "backfillingAndCompaction_Total";
+                if (reinF_TotalCost != 0)
+                    found[0].Nodes.Add(R_newChild1);
 
-                TreeNode newChild3 = new TreeNode("1.3 Grading and Compaction (₱" + gradingAndCompaction_CostL.ToString("#,##0.00") + ")");
-                newChild3.Name = "gradingAndCompaction_Total";
+                //Setting of BOQ     
+                try
+                {
+                    if (reinF_TotalCost != 0) //TODO palitan ng total cost ng buong reinforcements
+                    {
+                        var index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "5.0";
+                        this.summ_BOQ_dg.Rows[index].Cells["item1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "REINFORCEMENT STEEL";
+                        this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
 
-                TreeNode newChild4 = new TreeNode("1.4 Gravel Bedding and Compaction (₱" + gravelBedding_CostTotal.ToString("#,##0.00") + ")");
-                newChild4.Name = "gravelBedding_Total";
+                        int i = 1;
+                        if (reinF_TotalCost != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "5." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "FOOTING";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = masonrysSolutionP1[3].ToString("#,##0.00"); //TODO
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "kg";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + exterior_UnitM.ToString("#,##0.00"); //TODO
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + reinF_CostM.ToString("#,##0.00"); 
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Rebar["FOOTING [KG]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + reinF_CostL.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + reinF_TotalCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        /*
+                        this.summ_BOQ_dg.Rows.Add();
+                        index = this.summ_BOQ_dg.Rows.Add();
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + masonMCost_total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + masonLCost_total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + mason_TOTALCOST.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
+                        */
+                    }
+                }
+                catch (Exception ex)
+                {
 
-                TreeNode newChild5 = new TreeNode("1.5 Soil Poisoning (₱" + soilPoisoning_CostM.ToString("#,##0.00") + ")");
-                newChild5.Name = "soilPoisoning_Total";
-
-                found[0].Nodes.Add(newChild1);
-                found[0].Nodes.Add(newChild2);
-                found[0].Nodes.Add(newChild3);
-                found[0].Nodes.Add(newChild4);
-                found[0].Nodes.Add(newChild5);
+                }
                 //5.0 - Reinforcement Steel -- END
 
-                //6.0 Roofings **
-                public double rANDp_MCost,// Rafter and Purlins - Material Cost
-                            rANDp_LCost,// Rafter and Purlins - Labor Cost
-                            rANDp_costTotal,// Rafter and Purlins - TOTAL COST
-                            acce_MCost, // G.I Roof and Its Accessories - Material Cost
-                            acce_LCost,// G.I Roof and Its Accessories - Labor Cost
-                            acce_costTotal,// G.I Roof and Its Accessories - TOTAL COST
-                            tins_MCost,// Tinswork - Material Cost
-                            tins_LCost,// Tinswork - Labor Cost
-                            tins_costTotal,// Tinswork - TOTAL COST
-                            roof_MTOTAL,// Total Material Cost
-                            roof_LTOTAL,// Total Labor Cost
-                            roof_TOTALCOST;// Overall Total Cost   
-
-                roofingsChecklist
-                */
 
                 //6.0 - Roofing -- START
                 found = view_TV2.Nodes.Find("roofingParent", true);
@@ -3326,10 +3588,10 @@ namespace KnowEst
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "G.I. and ACCESSORIES";
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
-                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = acce_MCost.ToString("#,##0.00"); // TODO
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = roof_QTY.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
-                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + acce_MCost.ToString("#,##0.00"); // TODO
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + roof_MUNIT.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + acce_MCost.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -6089,7 +6351,6 @@ namespace KnowEst
 
         private void summ_Export_btn_Click(object sender, EventArgs e)
         {
-            //TODODO
             SaveFileDialog saveDialog = new SaveFileDialog();
             if (fileName == null)
                 saveDialog.FileName = "New Estimate.xls"; 
@@ -6270,11 +6531,11 @@ namespace KnowEst
             TreeNode tn8 = new TreeNode("COLUMN MAIN BARS");
             TreeNode tn9 = new TreeNode("COLUMN LATERAL TIES");
             TreeNode tn10 = new TreeNode("STAIRS REBARS");
-            TreeNode tn11 = new TreeNode("BEAM MAIN TOP REBARS");
-            TreeNode tn12 = new TreeNode("BEAM REBAR SPACERS");
-            TreeNode tn13 = new TreeNode("BEAM STIRRUPS");
-            TreeNode tn14 = new TreeNode("SLAB REBARS");
-            TreeNode tn15 = new TreeNode("MASONRY");
+            TreeNode tn11 = new TreeNode("BEAM MAIN REBARS");
+            TreeNode tn12 = new TreeNode("BEAM STIRRUPS");
+            TreeNode tn13 = new TreeNode("SLAB ON GRADE");
+            TreeNode tn14 = new TreeNode("SUSPENDED SLAB");
+            TreeNode tn15 = new TreeNode("MASONRY AND WALL REBARS");
             TreeNode tn16 = new TreeNode("ROOFINGS");
 
 
@@ -6294,99 +6555,100 @@ namespace KnowEst
 
         private void help_treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            /*Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)*/
             if (help_treeView.SelectedNode.ToString().Equals("TreeNode: EARTHWORKS"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\EARTHWORKS.pdf";//PDF Doc name
+                String openPDFFile = Path.GetTempPath() + @"\EARTHWORKS.pdf";//PDF Doc name
                 System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.EARTHWORKS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             } 
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: CONCRETE WORKS"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CONCRETE WORKS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.CONCRETE_WORKS);//the resource automatically creates            
+                String openPDFFile = Path.GetTempPath() + @"\CONCRETE WORKS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.Concrete_works);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: FORMWORKS"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\FORMWORKS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.FORMWORKS);//the resource automatically creates            
+                String openPDFFile = Path.GetTempPath() + @"\FORMWORKS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.Formworks);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: PAINT WORKS"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\PAINT WORKS.pdf";//PDF Doc name
+                String openPDFFile = Path.GetTempPath() + @"\PAINT WORKS.pdf";//PDF Doc name
                 System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.Paint_Works);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: TILE WORKS"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TILE WORKS.pdf";//PDF Doc name
+                String openPDFFile = Path.GetTempPath() + @"\TILE WORKS.pdf";//PDF Doc name
                 System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.TILE_WORKS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: FOOTING REBARS"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\FOOTING REBARS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.FOOTING_REBARS);//the resource automatically creates            
+                String openPDFFile = Path.GetTempPath() + @"\FOOTING REBARS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.Footing_Rebars);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: WALLFOOTING REBARS"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\WALLFOOTING REBARS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.WALLFOOTING_REBARS);//the resource automatically creates            
+                String openPDFFile = Path.GetTempPath() + @"\WALLFOOTING REBARS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.Wall_Footing_Rebars);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: COLUMN MAIN BARS"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\COLUMN MAIN BARS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.COLUMN_MAIN_BARS);//the resource automatically creates            
+                String openPDFFile = Path.GetTempPath() + @"\COLUMN MAIN BARS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.Column_Main_Bars);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: COLUMN LATERAL TIES"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\COLUMN LATERAL TIES.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.COLUMN_LATERAL_TIES);//the resource automatically creates            
+                String openPDFFile = Path.GetTempPath() + @"\COLUMN LATERAL TIES.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.Column_Lateral_Ties);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: STAIRS REBARS"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\STAIRS REBARS.pdf";//PDF Doc name
+                String openPDFFile = Path.GetTempPath() + @"\STAIRS REBARS.pdf";//PDF Doc name
                 System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.STAIRS_REBARS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
-            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: BEAM MAIN TOP REBARS"))
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: BEAM MAIN REBARS"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BEAM MAIN TOP REBARS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.BEAM_MAIN_TOP_REBARS);//the resource automatically creates            
-                help_webView.CoreWebView2.Navigate(openPDFFile);
-            }
-            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: BEAM REBAR SPACERS"))
-            {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BEAM REBAR SPACERS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.BEAM_REBAR_SPACERS);//the resource automatically creates            
+                String openPDFFile = Path.GetTempPath() + @"\BEAM MAIN REBARS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.Beam_Main_Rebars);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: BEAM STIRRUPS"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BEAM STIRRUPS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.BEAM_STIRRUPS);//the resource automatically creates            
+                String openPDFFile = Path.GetTempPath() + @"\BEAM STIRRUPS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.Beam_Stirrups);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
-            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: SLAB REBARS")) //TODO: to follow pdf file
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: SLAB ON GRADE"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\SLAB REBARS.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.EARTHWORKS);//the resource automatically creates            
+                String openPDFFile = Path.GetTempPath() + @"\SLAB ON GRADE.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.Slab_on_Grade);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
-            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: MASONRY"))
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: SUSPENDED SLAB"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\MASONRY.pdf";//PDF Doc name
-                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.MASONRY);//the resource automatically creates            
+                String openPDFFile = Path.GetTempPath() + @"\SUSPENDED SLAB.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.Suspended_Slab);//the resource automatically creates            
+                help_webView.CoreWebView2.Navigate(openPDFFile);
+            }
+            else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: MASONRY AND WALL REBARS"))
+            {
+                String openPDFFile = Path.GetTempPath() + @"\MASONRY AND WALL REBARS.pdf";//PDF Doc name
+                System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.MASONRY_AND_WALL_REBARS);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
             else if (help_treeView.SelectedNode.ToString().Equals("TreeNode: ROOFINGS"))
             {
-                String openPDFFile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\ROOFINGS.pdf";//PDF Doc name
+                String openPDFFile = Path.GetTempPath() + @"\ROOFINGS.pdf";//PDF Doc name
                 System.IO.File.WriteAllBytes(openPDFFile, KnowEst.Properties.Resources.Roofings);//the resource automatically creates            
                 help_webView.CoreWebView2.Navigate(openPDFFile);
             }
@@ -6668,7 +6930,11 @@ namespace KnowEst
             {
                 stringParam += checkMark + "|";
             }
-            foreach(bool checkMark in masonryChecklist)
+            foreach (bool checkMark in formworksChecklist)
+            {
+                stringParam += checkMark + "|";
+            }
+            foreach (bool checkMark in masonryChecklist)
             {
                 stringParam += checkMark + "|";
             }
@@ -8283,6 +8549,12 @@ namespace KnowEst
             concreteChecklist[3] = bool.Parse(tokens[i]); i++;
             concreteChecklist[4] = bool.Parse(tokens[i]); i++;
             concreteChecklist[5] = bool.Parse(tokens[i]); i++;
+            formworksChecklist[0] = bool.Parse(tokens[i]); i++;
+            formworksChecklist[1] = bool.Parse(tokens[i]); i++;
+            formworksChecklist[2] = bool.Parse(tokens[i]); i++;
+            formworksChecklist[3] = bool.Parse(tokens[i]); i++;
+            formworksChecklist[4] = bool.Parse(tokens[i]); i++;
+            formworksChecklist[5] = bool.Parse(tokens[i]); i++;
             masonryChecklist[0] = bool.Parse(tokens[i]); i++;
             masonryChecklist[1] = bool.Parse(tokens[i]); i++;
             roofingsChecklist[0] = bool.Parse(tokens[i]); i++;
@@ -9880,8 +10152,8 @@ namespace KnowEst
             {
                 structuralMembers.SAREA.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
             }
-
-            //4.0 - Masonry (DITO SIMULA NG OPEN FILE FUNCTION) 
+            //*/
+            //4.0 - Masonry
             i++;
             //Totalities
             i++;

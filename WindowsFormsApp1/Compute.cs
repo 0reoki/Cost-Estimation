@@ -112,10 +112,12 @@ namespace KnowEst
             cEF.structuralMembers.earthworkSolutions.Add(newList);
             List<double> newList2 = new List<double>();
             cEF.structuralMembers.concreteWorkSolutionsF.Add(newList2);
+            List<List<double>> newList3 = new List<List<double>>();
             if (isFooting)
             {
                 cEF.structuralMembers.earthworkSolutions[footingCount + wallFootingCount].Add(1);
                 cEF.structuralMembers.concreteWorkSolutionsF[footingCount + wallFootingCount].Add(1);
+                cEF.structuralMembers.footingReinforcements.Add(newList3);
             }
             else
             {
@@ -140,8 +142,9 @@ namespace KnowEst
                 if (cEF.structuralMembers.footingsColumn[0][footingCount][0].Equals("Isolated Footing"))
                 {
                     //Variables from Parameters
-                    double gravelBedding, formworkAllowance, compactionAllowance;
+                    double gravelBedding, formworkAllowance, compactionAllowance, ccF;
                     string concreteGrade;
+                    bool[] manufacturedLength = new bool[7];
 
                     //Init variables from Parameters
                     gravelBedding = double.Parse(cEF.parameters.earth_CF_TH, System.Globalization.CultureInfo.InvariantCulture);
@@ -149,11 +152,14 @@ namespace KnowEst
                     string value = cEF.parameters.earth_CF_CF.Replace(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, "");
                     compactionAllowance = double.Parse(value, System.Globalization.CultureInfo.InvariantCulture) / 100;
                     concreteGrade = cEF.parameters.conc_CM_F_CG;
+                    ccF = double.Parse(cEF.parameters.conc_CC_F, System.Globalization.CultureInfo.InvariantCulture);
+                    for (int i = 0; i < 7; i++)
+                        manufacturedLength[i] = cEF.parameters.rein_mfIsSelected[0, i];
 
                     //Variables from StructMem
                     double length, width, thickness, quantity, depth, lrDiameter, lrQuantity, lrHookType,
                        trDiameter, trQuantity, trHookType;
-
+                    
                     //Init variables from StructMem
                     length = double.Parse(cEF.structuralMembers.footingsColumn[0][footingCount][1], System.Globalization.CultureInfo.InvariantCulture);
                     width = double.Parse(cEF.structuralMembers.footingsColumn[0][footingCount][2], System.Globalization.CultureInfo.InvariantCulture);
@@ -249,13 +255,210 @@ namespace KnowEst
                             ((length * width * thickness) / 1000000000) * quantity);
                     }                    
                     //Computation -- Formworks **                                     
-                    cEF.structuralMembers.per_col[footingCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;                    
+                    cEF.structuralMembers.per_col[footingCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;
+
+                    //Computation -- Rebars
+                    //1
+                    double qtyL = quantity * lrQuantity;
+                    double qtyT = quantity * trQuantity;
+
+                    //2
+                    double hl_L = 0;
+                    double hl_T = 0;
+                    for (int i = 0; i < cEF.parameters.rein_BEH_MB_dt.Rows.Count; i++)
+                    {
+                        if (lrHookType == 90.0)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (lrHookType == 135.0)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][2].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (lrHookType == 180.0)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][3].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                        if (trHookType == 90.0)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (trHookType == 135.0)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][2].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (trHookType == 180.0)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][3].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                    }
+                    double LB_qtyL = length - (2 * ccF) + (2 * hl_L);
+                    double LB_qtyT = width - (2 * ccF) + (2 * hl_T);
+                    LB_qtyL /= 1000;
+                    LB_qtyT /= 1000;
+                    //3
+                    //Temporary variables
+                    double qtyP = 0;
+                    double Lm = 0;
+                    double qtyM = 0;
+                    double Le = 0;
+                    double Lw = 0;
+
+                    double totalWaste_L = 0;
+                    double previousTotalWaste_L = 0;
+
+                    double totalWaste_T = 0;
+                    double previousTotalWaste_T = 0;
+
+                    //Lm -> QTY[L] -> LB of QTY[L] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter ->  Weight
+                    List<double> chosenML_L = new List<double>();
+
+                    //Lm -> QTY[T] -> LB of QTY[T] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
+                    List<double> chosenML_T = new List<double>();
+
+                    for (int i = 0; i < 7; i++)
+                    {
+                        previousTotalWaste_L = totalWaste_L;
+                        previousTotalWaste_T = totalWaste_T;
+                        Lm = 6 + (i * 1.5);
+                        if (manufacturedLength[i])
+                        {
+                            //Longitudinal
+                            qtyP = Lm / LB_qtyL;
+                            qtyM = qtyL / Math.Floor(qtyP);
+                            Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                            if (qtyP < 1)
+                            {
+                                Lw = 0;
+                            }
+                            else 
+                            {
+                                Lw = Lm - LB_qtyL * Math.Floor(qtyP);
+                            }
+                            totalWaste_L = Le + Lw * Math.Floor(qtyM);
+                            if ((previousTotalWaste_L != 0 || Double.IsNaN(previousTotalWaste_L)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                            {
+                                if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
+                                {
+                                    chosenML_L.Clear();
+                                    chosenML_L.Add(Lm);
+                                    chosenML_L.Add(qtyL);
+                                    chosenML_L.Add(LB_qtyL);
+                                    chosenML_L.Add(qtyP);
+                                    chosenML_L.Add(qtyM);
+                                    chosenML_L.Add(Lw);
+                                    chosenML_L.Add(Le);
+                                    chosenML_L.Add(totalWaste_L);
+                                    chosenML_L.Add(lrDiameter);
+                                }
+                            }
+
+                            //Transverse
+                            qtyP = Lm / LB_qtyT;
+                            qtyM = qtyT / Math.Floor(qtyP);
+                            Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                            if (qtyP < 1)
+                            {
+                                Lw = 0;
+                            }
+                            else
+                            {
+                                Lw = Lm - LB_qtyT * Math.Floor(qtyP);
+                            }
+                            totalWaste_T = Le + Lw * Math.Floor(qtyM);
+                            if ((previousTotalWaste_T != 0 || Double.IsNaN(previousTotalWaste_T)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                            {
+                                if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
+                                {
+                                    chosenML_T.Clear();
+                                    chosenML_T.Add(Lm);
+                                    chosenML_T.Add(qtyT);
+                                    chosenML_T.Add(LB_qtyT);
+                                    chosenML_T.Add(qtyP);
+                                    chosenML_T.Add(qtyM);
+                                    chosenML_T.Add(Lw);
+                                    chosenML_T.Add(Le);
+                                    chosenML_T.Add(totalWaste_T);
+                                    chosenML_T.Add(trDiameter);
+                                }
+                            }
+                        }
+                    }
+                    //4 -> Costing of material -> in MainForm.cs function initializeView()
+                    //5
+                    //Temporary variables
+                    double weight = 0;
+                    double Wd = 0;
+
+                    //If no chosen ml, computation is wrong and set proper list
+                    if (!chosenML_L.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_L.Add(0);
+                        }
+                    }
+                    if (!chosenML_T.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_T.Add(0);
+                        }
+                    }
+
+                    //Longitudinal
+                    for (int i = 0; i < cEF.parameters.rein_W_dt.Rows.Count; i++)
+                    {
+                        if (cEF.parameters.rein_W_dt.Rows[i][0].ToString().Equals(lrDiameter + "mm"))
+                        {
+                            Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                    weight = chosenML_L[0] * chosenML_L[4] * Wd;
+                    chosenML_L.Add(weight);
+
+                    //Transverse
+                    for (int i = 0; i < cEF.parameters.rein_W_dt.Rows.Count; i++)
+                    {
+                        if (cEF.parameters.rein_W_dt.Rows[i][0].ToString().Equals(trDiameter + "mm"))
+                        {
+                            Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                    weight = chosenML_T[0] * chosenML_T[4] * Wd;
+                    chosenML_T.Add(weight);
+
+                    //6 -> Costing of Labor -> in MainForm.cs function initializeView()
+                    cEF.structuralMembers.footingReinforcements[footingCount].Add(chosenML_L);
+                    cEF.structuralMembers.footingReinforcements[footingCount].Add(chosenML_T);
                 }
                 else //Combined Footing
                 {
                     //Variables from Parameters
-                    double gravelBedding, formworkAllowance, compactionAllowance;
+                    double gravelBedding, formworkAllowance, compactionAllowance, ccF;
                     string concreteGrade;
+                    bool[] manufacturedLength = new bool[7];
 
                     //Init variables from Parameters
                     gravelBedding = double.Parse(cEF.parameters.earth_CF_TH, System.Globalization.CultureInfo.InvariantCulture);
@@ -263,6 +466,9 @@ namespace KnowEst
                     string value = cEF.parameters.earth_CF_CF.Replace(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, "");
                     compactionAllowance = double.Parse(value, System.Globalization.CultureInfo.InvariantCulture) / 100;
                     concreteGrade = cEF.parameters.conc_CM_F_CG;
+                    ccF = double.Parse(cEF.parameters.conc_CC_F, System.Globalization.CultureInfo.InvariantCulture);
+                    for(int i = 0; i < 7; i++)
+                        manufacturedLength[i] = cEF.parameters.rein_mfIsSelected[0, i];
 
                     double length, width, thickness, quantity, depth, lrDiameter, lrQuantity, lrSpacing, lrHookType,
                        trDiameter, trQuantity, trSpacing, trHookType, urDiameter, urQuantity, urSpacing, urHookType;
@@ -368,9 +574,474 @@ namespace KnowEst
                             ((length * width * thickness) / 1000000000) * quantity);
                     }
                     //Computation -- Formworks **                   
-                    cEF.structuralMembers.per_col[footingCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;                    
+                    cEF.structuralMembers.per_col[footingCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;
+
+                    //Computation -- Rebars
+                    //1
+                    double qtyL = 0;
+                    double qtyU = 0;
+                    double qtyT = 0;
+                    if (lrQuantity == 0)
+                        qtyL = quantity * (Math.Ceiling((width - (2 * ccF)) / lrSpacing + 1));
+                    else
+                        qtyL = quantity * lrQuantity;
+                    if (urQuantity == 0)
+                        qtyU = quantity * (Math.Ceiling((width - (2 * ccF)) / urSpacing + 1));
+                    else
+                        qtyU = quantity * urQuantity;
+                    if (trQuantity == 0)
+                        qtyT = quantity * (Math.Ceiling((length - (2 * ccF)) / trSpacing + 1));
+                    else
+                        qtyT = quantity * trQuantity;
+
+                    //2
+                    double hl_L = 0;
+                    double hl_U = 0;
+                    double hl_T = 0;
+                    for (int i = 0; i < cEF.parameters.rein_BEH_MB_dt.Rows.Count; i++)
+                    {
+                        if (lrHookType == 90)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        } 
+                        else if (lrHookType == 135)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][2].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (lrHookType == 180)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][3].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                        if (urHookType == 90)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(urDiameter.ToString()))
+                            {
+                                hl_U = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (urHookType == 135)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(urDiameter.ToString()))
+                            {
+                                hl_U = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][2].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (urHookType == 180)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(urDiameter.ToString()))
+                            {
+                                hl_U = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][3].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                        if (trHookType == 90)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (trHookType == 135)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][2].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (trHookType == 180)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[i][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[i][3].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                    }
+                    double LB_qtyL = length - (2 * ccF) + (2 * hl_L);
+                    double LB_qtyU = length - (2 * ccF) + (2 * hl_U);
+                    double LB_qtyT = width - (2 * ccF) + (2 * hl_T);
+                    LB_qtyL /= 1000;
+                    LB_qtyU /= 1000;
+                    LB_qtyT /= 1000;
+
+                    //3
+                    double largestML = 0;
+                    for(int i = 6; i >= 0; i--)
+                    {
+                        if (manufacturedLength[i])
+                        {
+                            switch (i)
+                            {
+                                case 0:
+                                    largestML = 6; break;
+                                case 1:
+                                    largestML = 7.5; break;
+                                case 2:
+                                    largestML = 9.0; break;
+                                case 3:
+                                    largestML = 10.5; break;
+                                case 4:
+                                    largestML = 12.0; break;
+                                case 5:
+                                    largestML = 13.5; break;
+                                case 6:
+                                    largestML = 15.0; break;
+                                default:
+                                    largestML = 0; break;
+                            }
+                            break;
+                        }
+                    }
+                    //Temporary variables
+                    double qtyP = 0;
+                    double Lm = 0;
+                    double qtyM = 0;
+                    double Le = 0;
+                    double Lw = 0;
+
+                    double totalWaste_L = 0;
+                    double previousTotalWaste_L = 0;
+
+                    double totalWaste_U = 0;
+                    double previousTotalWaste_U = 0;
+
+                    double totalWaste_LU = 0;
+                    double previousTotalWaste_LU = 0;
+
+                    double totalWaste_T = 0;
+                    double previousTotalWaste_T = 0;
+
+                    //Lm -> QTY[L] -> LB of QTY[L] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
+                    List<double> chosenML_L = new List<double>();
+
+                    //Lm -> QTY[U] -> LB of QTY[U] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
+                    List<double> chosenML_U = new List<double>();
+
+                    //Lm -> QTY[T] -> LB of QTY[T] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
+                    List<double> chosenML_T = new List<double>();
+
+                    for (int i = 0; i < 7; i++) 
+                    {
+                        previousTotalWaste_L = totalWaste_L;
+                        previousTotalWaste_U = totalWaste_U;
+                        previousTotalWaste_LU = totalWaste_LU;
+                        previousTotalWaste_T = totalWaste_T;
+                        Lm = 6 + (i * 1.5);
+                        if (manufacturedLength[i])
+                        {
+                            if ((LB_qtyL + LB_qtyT) <= largestML && lrDiameter == urDiameter && lrDiameter == trDiameter) //a)
+                            {
+                                if ((qtyL + qtyU) < qtyT) //Case 1
+                                {
+                                    //(Longitudinal + Upper)
+                                    qtyP = Lm / (LB_qtyL + LB_qtyT);
+                                    qtyM = (qtyL + qtyU) / Math.Floor(qtyP);
+                                    Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                    if (qtyP < 1)
+                                    {
+                                        Lw = 0;
+                                    }
+                                    else
+                                    {
+                                        Lw = Lm - LB_qtyL * Math.Floor(qtyP);
+                                    }
+                                    totalWaste_LU = Le + Lw * Math.Floor(qtyM);
+                                    if ((previousTotalWaste_LU != 0 || Double.IsNaN(previousTotalWaste_LU)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                    {
+                                        if (totalWaste_LU < previousTotalWaste_LU || (Double.IsNaN(previousTotalWaste_LU) && !Double.IsNaN(totalWaste_LU)))
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL + qtyU);
+                                            chosenML_L.Add(LB_qtyL + LB_qtyT);
+                                            chosenML_L.Add(qtyP);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(Lw);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_LU);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
+                                    }
+
+                                    //Transverse
+                                    qtyP = Lm / LB_qtyT;
+                                    qtyM = (qtyT - qtyL - qtyU) / Math.Floor(qtyP);
+                                    Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                    if (qtyP < 1)
+                                    {
+                                        Lw = 0;
+                                    }
+                                    else
+                                    {
+                                        Lw = Lm - (LB_qtyL + LB_qtyT) * Math.Floor(qtyP);
+                                    }
+                                    totalWaste_T = Le + Lw * Math.Floor(qtyM);
+                                    if ((previousTotalWaste_T != 0 || Double.IsNaN(previousTotalWaste_T)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                    {
+                                        if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
+                                        {
+                                            chosenML_T.Clear();
+                                            chosenML_T.Add(Lm);
+                                            chosenML_T.Add(qtyT - qtyL - qtyU);
+                                            chosenML_T.Add(LB_qtyT);
+                                            chosenML_T.Add(qtyP);
+                                            chosenML_T.Add(qtyM);
+                                            chosenML_T.Add(Lw);
+                                            chosenML_T.Add(Le);
+                                            chosenML_T.Add(totalWaste_T);
+                                            chosenML_T.Add(trDiameter);
+                                        }
+                                    }
+                                }
+                                else if (qtyL + qtyU >= qtyT) //Case 2
+                                {
+                                    //(Longitudinal + Upper)
+                                    qtyP = Lm / LB_qtyL;
+                                    qtyM = (qtyL + qtyU - qtyT) / Math.Floor(qtyP);
+                                    Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                    if (qtyP < 1)
+                                    {
+                                        Lw = 0;
+                                    }
+                                    else
+                                    {
+                                        Lw = Lm - LB_qtyL * Math.Floor(qtyP);
+                                    }
+                                    totalWaste_LU = Le + Lw * Math.Floor(qtyM);
+                                    if ((previousTotalWaste_LU != 0 || Double.IsNaN(previousTotalWaste_LU)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                    {
+                                        if (totalWaste_LU < previousTotalWaste_LU || (Double.IsNaN(previousTotalWaste_LU) && !Double.IsNaN(totalWaste_LU)))
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL + qtyU - qtyT);
+                                            chosenML_L.Add(LB_qtyL);
+                                            chosenML_L.Add(qtyP);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(Lw);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_LU);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
+                                    }
+
+                                    //Transverse
+                                    qtyP = Lm / (LB_qtyL + LB_qtyT);
+                                    qtyM = qtyT / Math.Floor(qtyP);
+                                    Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                    if (qtyP < 1)
+                                    {
+                                        Lw = 0;
+                                    }
+                                    else
+                                    {
+                                        Lw = Lm - (LB_qtyL + LB_qtyT) * Math.Floor(qtyP);
+                                    }
+                                    totalWaste_T = Le + Lw * Math.Floor(qtyM);
+                                    if ((previousTotalWaste_T != 0 || Double.IsNaN(previousTotalWaste_T)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                    {
+                                        if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
+                                        {
+                                            chosenML_T.Clear();
+                                            chosenML_T.Add(Lm);
+                                            chosenML_T.Add(qtyT);
+                                            chosenML_T.Add(LB_qtyL + LB_qtyT);
+                                            chosenML_T.Add(qtyP);
+                                            chosenML_T.Add(qtyM);
+                                            chosenML_T.Add(Lw);
+                                            chosenML_T.Add(Le);
+                                            chosenML_T.Add(totalWaste_T);
+                                            chosenML_T.Add(trDiameter);
+                                        }
+                                    }
+                                }
+                            }
+                            else if (LB_qtyL + LB_qtyT > largestML || lrDiameter != urDiameter || lrDiameter != trDiameter) //b)
+                            {
+                                //(Longitudinal
+                                qtyP = Lm / LB_qtyL;
+                                qtyM = qtyL / Math.Floor(qtyP);
+                                Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                if (qtyP < 1)
+                                {
+                                    Lw = 0;
+                                }
+                                else
+                                {
+                                    Lw = Lm - LB_qtyL * Math.Floor(qtyP);
+                                }
+                                totalWaste_L = Le + Lw * Math.Floor(qtyM);
+                                if ((previousTotalWaste_L != 0 || Double.IsNaN(previousTotalWaste_L)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                {
+                                    if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
+                                    {
+                                        chosenML_L.Clear();
+                                        chosenML_L.Add(Lm);
+                                        chosenML_L.Add(qtyL);
+                                        chosenML_L.Add(LB_qtyL);
+                                        chosenML_L.Add(qtyP);
+                                        chosenML_L.Add(qtyM);
+                                        chosenML_L.Add(Lw);
+                                        chosenML_L.Add(Le);
+                                        chosenML_L.Add(totalWaste_L);
+                                        chosenML_L.Add(lrDiameter);
+                                    }
+                                }
+
+                                //Upper
+                                qtyP = Lm / LB_qtyU;
+                                qtyM = qtyU / Math.Floor(qtyP);
+                                Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                if (qtyP < 1)
+                                {
+                                    Lw = 0;
+                                }
+                                else
+                                {
+                                    Lw = Lm - LB_qtyU * Math.Floor(qtyP);
+                                }
+                                totalWaste_U = Le + Lw * Math.Floor(qtyM);
+                                if ((previousTotalWaste_U != 0 || Double.IsNaN(previousTotalWaste_U)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                {
+                                    if (totalWaste_U < previousTotalWaste_U || (Double.IsNaN(previousTotalWaste_U) && !Double.IsNaN(totalWaste_U)))
+                                    {
+                                        chosenML_U.Clear();
+                                        chosenML_U.Add(Lm);
+                                        chosenML_U.Add(qtyU);
+                                        chosenML_U.Add(LB_qtyU);
+                                        chosenML_U.Add(qtyP);
+                                        chosenML_U.Add(qtyM);
+                                        chosenML_U.Add(Lw);
+                                        chosenML_U.Add(Le);
+                                        chosenML_U.Add(totalWaste_U);
+                                        chosenML_U.Add(urDiameter);
+                                    }
+                                }
+
+                                //Transverse
+                                qtyP = Lm / LB_qtyT;
+                                qtyM = qtyT / Math.Floor(qtyP);
+                                Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                if (qtyP < 1)
+                                {
+                                    Lw = 0;
+                                }
+                                else
+                                {
+                                    Lw = Lm - LB_qtyT * Math.Floor(qtyP);
+                                }
+                                totalWaste_T = Le + Lw * Math.Floor(qtyM);
+                                if ((previousTotalWaste_T != 0 || Double.IsNaN(previousTotalWaste_T)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                {
+                                    if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
+                                    {
+                                        chosenML_T.Clear();
+                                        chosenML_T.Add(Lm);
+                                        chosenML_T.Add(qtyT);
+                                        chosenML_T.Add(LB_qtyT);
+                                        chosenML_T.Add(qtyP);
+                                        chosenML_T.Add(qtyM);
+                                        chosenML_T.Add(Lw);
+                                        chosenML_T.Add(Le);
+                                        chosenML_T.Add(totalWaste_T);
+                                        chosenML_T.Add(trDiameter);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    //4 -> Costing of material -> in MainForm.cs function initializeView()
+                    //5
+                    //Temporary variables
+                    double weight = 0;
+                    double Wd = 0;
+
+                    //If no chosen ml, computation is wrong and set proper list
+                    if (!chosenML_L.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_L.Add(0);
+                        }
+                    }
+                    if (!chosenML_T.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_T.Add(0);
+                        }
+                    }
+
+                    //Longitudinal and Upper
+                    //If upper is not empty, then it is case b which produces 3 chosen manufactured length
+                    if (chosenML_U.Any())
+                    {
+                        //Longitudinal
+                        for (int i = 0; i < cEF.parameters.rein_W_dt.Rows.Count; i++)
+                        {
+                            if (cEF.parameters.rein_W_dt.Rows[i][0].ToString().Equals(lrDiameter + "mm"))
+                            {
+                                Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                        weight = chosenML_L[0] * chosenML_L[4] * Wd;
+                        chosenML_L.Add(weight);
+
+                        //Upper
+                        for (int i = 0; i < cEF.parameters.rein_W_dt.Rows.Count; i++)
+                        {
+                            if (cEF.parameters.rein_W_dt.Rows[i][0].ToString().Equals(urDiameter + "mm"))
+                            {
+                                Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                        weight = chosenML_U[0] * chosenML_U[4] * Wd;
+                        chosenML_U.Add(weight);
+                    }
+                    else
+                    {
+                        //Longitudinal and Upper
+                        for (int i = 0; i < cEF.parameters.rein_W_dt.Rows.Count; i++)
+                        {
+                            if (cEF.parameters.rein_W_dt.Rows[i][0].ToString().Equals(lrDiameter + "mm"))
+                            {
+                                Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                        weight = chosenML_L[0] * chosenML_L[4] * Wd;
+                        chosenML_L.Add(weight);
+                    }
+
+                    //Transverse
+                    for (int i = 0; i < cEF.parameters.rein_W_dt.Rows.Count; i++)
+                    {
+                        if (cEF.parameters.rein_W_dt.Rows[i][0].ToString().Equals(trDiameter + "mm"))
+                        {
+                            Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                    weight = chosenML_T[0] * chosenML_T[4] * Wd;
+                    chosenML_T.Add(weight);
+
+                    //6 -> Costing of Labor -> in MainForm.cs function initializeView()
+                    cEF.structuralMembers.footingReinforcements[footingCount].Add(chosenML_L);
+                    if(chosenML_U.Any())
+                        cEF.structuralMembers.footingReinforcements[footingCount].Add(chosenML_U);
+                    cEF.structuralMembers.footingReinforcements[footingCount].Add(chosenML_T);
                 }
-                
             }
             else // Wall Footing
             {
@@ -621,8 +1292,9 @@ namespace KnowEst
                 if (cEF.structuralMembers.footingsColumn[0][structMemCount][0].Equals("Isolated Footing"))
                 {
                     //Variables from Parameters
-                    double gravelBedding, formworkAllowance, compactionAllowance;
+                    double gravelBedding, formworkAllowance, compactionAllowance, ccF;
                     string concreteGrade;
+                    bool[] manufacturedLength = new bool[7];
 
                     //Init variables from Parameters
                     gravelBedding = double.Parse(cEF.parameters.earth_CF_TH, System.Globalization.CultureInfo.InvariantCulture);
@@ -630,6 +1302,9 @@ namespace KnowEst
                     string value = cEF.parameters.earth_CF_CF.Replace(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, "");
                     compactionAllowance = double.Parse(value, System.Globalization.CultureInfo.InvariantCulture) / 100;
                     concreteGrade = cEF.parameters.conc_CM_F_CG;
+                    ccF = double.Parse(cEF.parameters.conc_CC_F, System.Globalization.CultureInfo.InvariantCulture);
+                    for (int j = 0; j < 7; j++)
+                        manufacturedLength[j] = cEF.parameters.rein_mfIsSelected[0, j];
 
                     //Variables from StructMem
                     double length, width, thickness, quantity, depth, lrDiameter, lrQuantity, lrHookType,
@@ -737,13 +1412,211 @@ namespace KnowEst
                             ((length * width * thickness) / 1000000000) * quantity;
                     }
                     //Computation -- Formworks **                                                            
-                    cEF.structuralMembers.per_col[structMemCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;                    
+                    cEF.structuralMembers.per_col[structMemCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;
+
+                    //Computation -- Rebars
+                    //1
+                    double qtyL = quantity * lrQuantity;
+                    double qtyT = quantity * trQuantity;
+
+                    //2
+                    double hl_L = 0;
+                    double hl_T = 0;
+                    for (int j = 0; j < cEF.parameters.rein_BEH_MB_dt.Rows.Count; j++)
+                    {
+                        if (lrHookType == 90.0)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (lrHookType == 135.0)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][2].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (lrHookType == 180.0)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][3].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                        if (trHookType == 90.0)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (trHookType == 135.0)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][2].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (trHookType == 180.0)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][3].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                    }
+                    double LB_qtyL = length - (2 * ccF) + (2 * hl_L);
+                    double LB_qtyT = width - (2 * ccF) + (2 * hl_T);
+                    LB_qtyL /= 1000;
+                    LB_qtyT /= 1000;
+                    //3
+                    //Temporary variables
+                    double qtyP = 0;
+                    double Lm = 0;
+                    double qtyM = 0;
+                    double Le = 0;
+                    double Lw = 0;
+
+                    double totalWaste_L = 0;
+                    double previousTotalWaste_L = 0;
+
+                    double totalWaste_T = 0;
+                    double previousTotalWaste_T = 0;
+
+                    //Lm -> QTY[L] -> LB of QTY[L] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter ->  Weight
+                    List<double> chosenML_L = new List<double>();
+
+                    //Lm -> QTY[T] -> LB of QTY[T] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
+                    List<double> chosenML_T = new List<double>();
+
+                    for (int j = 0; j < 7; j++)
+                    {
+                        previousTotalWaste_L = totalWaste_L;
+                        previousTotalWaste_T = totalWaste_T;
+                        Lm = 6 + (j * 1.5);
+                        if (manufacturedLength[j])
+                        {
+                            //Longitudinal
+                            qtyP = Lm / LB_qtyL;
+                            qtyM = qtyL / Math.Floor(qtyP);
+                            Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                            if (qtyP < 1)
+                            {
+                                Lw = 0;
+                            }
+                            else
+                            {
+                                Lw = Lm - LB_qtyL * Math.Floor(qtyP);
+                            }
+                            totalWaste_L = Le + Lw * Math.Floor(qtyM);
+                            if ((previousTotalWaste_L != 0 || Double.IsNaN(previousTotalWaste_L)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                            {
+                                if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
+                                {
+                                    chosenML_L.Clear();
+                                    chosenML_L.Add(Lm);
+                                    chosenML_L.Add(qtyL);
+                                    chosenML_L.Add(LB_qtyL);
+                                    chosenML_L.Add(qtyP);
+                                    chosenML_L.Add(qtyM);
+                                    chosenML_L.Add(Lw);
+                                    chosenML_L.Add(Le);
+                                    chosenML_L.Add(totalWaste_L);
+                                    chosenML_L.Add(lrDiameter);
+                                }
+                            }
+
+                            //Transverse
+                            qtyP = Lm / LB_qtyT;
+                            qtyM = qtyT / Math.Floor(qtyP);
+                            Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                            if (qtyP < 1)
+                            {
+                                Lw = 0;
+                            }
+                            else
+                            {
+                                Lw = Lm - LB_qtyT * Math.Floor(qtyP);
+                            }
+                            totalWaste_T = Le + Lw * Math.Floor(qtyM);
+                            if ((previousTotalWaste_T != 0 || Double.IsNaN(previousTotalWaste_T)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                            {
+                                if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
+                                {
+                                    chosenML_T.Clear();
+                                    chosenML_T.Add(Lm);
+                                    chosenML_T.Add(qtyT);
+                                    chosenML_T.Add(LB_qtyT);
+                                    chosenML_T.Add(qtyP);
+                                    chosenML_T.Add(qtyM);
+                                    chosenML_T.Add(Lw);
+                                    chosenML_T.Add(Le);
+                                    chosenML_T.Add(totalWaste_T);
+                                    chosenML_T.Add(trDiameter);
+                                }
+                            }
+                        }
+                    }
+                    //4 -> Costing of material -> in MainForm.cs function initializeView()
+                    //5
+                    //Temporary variables
+                    double weight = 0;
+                    double Wd = 0;
+
+                    //If no chosen ml, computation is wrong and set proper list
+                    if (!chosenML_L.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_L.Add(0);
+                        }
+                    }
+                    if (!chosenML_T.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_T.Add(0);
+                        }
+                    }
+
+                    //Longitudinal
+                    for (int j = 0; j < cEF.parameters.rein_W_dt.Rows.Count; j++)
+                    {
+                        if (cEF.parameters.rein_W_dt.Rows[j][0].ToString().Equals(lrDiameter + "mm"))
+                        {
+                            Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                    weight = chosenML_L[0] * chosenML_L[4] * Wd;
+                    chosenML_L.Add(weight);
+
+                    //Transverse
+                    for (int j = 0; j < cEF.parameters.rein_W_dt.Rows.Count; j++)
+                    {
+                        if (cEF.parameters.rein_W_dt.Rows[j][0].ToString().Equals(trDiameter + "mm"))
+                        {
+                            Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                    weight = chosenML_T[0] * chosenML_T[4] * Wd;
+                    chosenML_T.Add(weight);
+
+                    //6 -> Costing of Labor -> in MainForm.cs function initializeView()
+                    cEF.structuralMembers.footingReinforcements[structMemCount].Clear();
+                    cEF.structuralMembers.footingReinforcements[structMemCount].Add(chosenML_L);
+                    cEF.structuralMembers.footingReinforcements[structMemCount].Add(chosenML_T);
                 }
                 else //Combined Footing
                 {
                     //Variables from Parameters
-                    double gravelBedding, formworkAllowance, compactionAllowance;
+                    double gravelBedding, formworkAllowance, compactionAllowance, ccF;
                     string concreteGrade;
+                    bool[] manufacturedLength = new bool[7];
 
                     //Init variables from Parameters
                     gravelBedding = double.Parse(cEF.parameters.earth_CF_TH, System.Globalization.CultureInfo.InvariantCulture);
@@ -751,6 +1624,9 @@ namespace KnowEst
                     string value = cEF.parameters.earth_CF_CF.Replace(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, "");
                     compactionAllowance = double.Parse(value, System.Globalization.CultureInfo.InvariantCulture) / 100;
                     concreteGrade = cEF.parameters.conc_CM_F_CG;
+                    ccF = double.Parse(cEF.parameters.conc_CC_F, System.Globalization.CultureInfo.InvariantCulture);
+                    for (int j = 0; j < 7; j++)
+                        manufacturedLength[j] = cEF.parameters.rein_mfIsSelected[0, j];
 
                     double length, width, thickness, quantity, depth, lrDiameter, lrQuantity, lrSpacing, lrHookType,
                        trDiameter, trQuantity, trSpacing, trHookType, urDiameter, urQuantity, urSpacing, urHookType;
@@ -863,7 +1739,474 @@ namespace KnowEst
                             ((length * width * thickness) / 1000000000) * quantity;
                     }
                     //Computation -- Formworks **
-                    cEF.structuralMembers.per_col[structMemCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;                    
+                    cEF.structuralMembers.per_col[structMemCount] = (2 * ((length / 1000) + (width / 1000)) + 0.2) * (thickness / 1000) * quantity;
+
+                    //Computation -- Rebars
+                    //1
+                    double qtyL = 0;
+                    double qtyU = 0;
+                    double qtyT = 0;
+                    if (lrQuantity == 0)
+                        qtyL = quantity * (Math.Ceiling((width - (2 * ccF)) / lrSpacing + 1));
+                    else
+                        qtyL = quantity * lrQuantity;
+                    if (urQuantity == 0)
+                        qtyU = quantity * (Math.Ceiling((width - (2 * ccF)) / urSpacing + 1));
+                    else
+                        qtyU = quantity * urQuantity;
+                    if (trQuantity == 0)
+                        qtyT = quantity * (Math.Ceiling((length - (2 * ccF)) / trSpacing + 1));
+                    else
+                        qtyT = quantity * trQuantity;
+
+                    //2
+                    double hl_L = 0;
+                    double hl_U = 0;
+                    double hl_T = 0;
+                    for (int j = 0; j < cEF.parameters.rein_BEH_MB_dt.Rows.Count; j++)
+                    {
+                        if (lrHookType == 90)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (lrHookType == 135)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][2].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (lrHookType == 180)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][3].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                        if (urHookType == 90)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(urDiameter.ToString()))
+                            {
+                                hl_U = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (urHookType == 135)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(urDiameter.ToString()))
+                            {
+                                hl_U = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][2].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (urHookType == 180)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(urDiameter.ToString()))
+                            {
+                                hl_U = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][3].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                        if (trHookType == 90)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (trHookType == 135)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][2].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (trHookType == 180)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][3].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                    }
+                    double LB_qtyL = length - (2 * ccF) + (2 * hl_L);
+                    double LB_qtyU = length - (2 * ccF) + (2 * hl_U);
+                    double LB_qtyT = width - (2 * ccF) + (2 * hl_T);
+                    LB_qtyL /= 1000;
+                    LB_qtyU /= 1000;
+                    LB_qtyT /= 1000;
+
+                    //3
+                    double largestML = 0;
+                    for (int j = 6; j >= 0; j--)
+                    {
+                        if (manufacturedLength[j])
+                        {
+                            switch (j)
+                            {
+                                case 0:
+                                    largestML = 6; break;
+                                case 1:
+                                    largestML = 7.5; break;
+                                case 2:
+                                    largestML = 9.0; break;
+                                case 3:
+                                    largestML = 10.5; break;
+                                case 4:
+                                    largestML = 12.0; break;
+                                case 5:
+                                    largestML = 13.5; break;
+                                case 6:
+                                    largestML = 15.0; break;
+                                default:
+                                    largestML = 0; break;
+                            }
+                            break;
+                        }
+                    }
+                    //Temporary variables
+                    double qtyP = 0;
+                    double Lm = 0;
+                    double qtyM = 0;
+                    double Le = 0;
+                    double Lw = 0;
+
+                    double totalWaste_L = 0;
+                    double previousTotalWaste_L = 0;
+
+                    double totalWaste_U = 0;
+                    double previousTotalWaste_U = 0;
+
+                    double totalWaste_LU = 0;
+                    double previousTotalWaste_LU = 0;
+
+                    double totalWaste_T = 0;
+                    double previousTotalWaste_T = 0;
+
+                    //Lm -> QTY[L] -> LB of QTY[L] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
+                    List<double> chosenML_L = new List<double>();
+
+                    //Lm -> QTY[U] -> LB of QTY[U] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
+                    List<double> chosenML_U = new List<double>();
+
+                    //Lm -> QTY[T] -> LB of QTY[T] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
+                    List<double> chosenML_T = new List<double>();
+
+                    for (int j = 0; j < 7; j++)
+                    {
+                        previousTotalWaste_L = totalWaste_L;
+                        previousTotalWaste_U = totalWaste_U;
+                        previousTotalWaste_LU = totalWaste_LU;
+                        previousTotalWaste_T = totalWaste_T;
+                        Lm = 6 + (j * 1.5);
+                        if (manufacturedLength[j])
+                        {
+                            if ((LB_qtyL + LB_qtyT) <= largestML && lrDiameter == urDiameter && lrDiameter == trDiameter) //a)
+                            {
+                                if ((qtyL + qtyU) < qtyT) //Case 1
+                                {
+                                    //(Longitudinal + Upper)
+                                    qtyP = Lm / (LB_qtyL + LB_qtyT);
+                                    qtyM = (qtyL + qtyU) / Math.Floor(qtyP);
+                                    Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                    if (qtyP < 1)
+                                    {
+                                        Lw = 0;
+                                    }
+                                    else
+                                    {
+                                        Lw = Lm - LB_qtyL * Math.Floor(qtyP);
+                                    }
+                                    totalWaste_LU = Le + Lw * Math.Floor(qtyM);
+                                    if ((previousTotalWaste_LU != 0 || Double.IsNaN(previousTotalWaste_LU)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                    {
+                                        if (totalWaste_LU < previousTotalWaste_LU || (Double.IsNaN(previousTotalWaste_LU) && !Double.IsNaN(totalWaste_LU)))
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL + qtyU);
+                                            chosenML_L.Add(LB_qtyL + LB_qtyT);
+                                            chosenML_L.Add(qtyP);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(Lw);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_LU);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
+                                    }
+
+                                    //Transverse
+                                    qtyP = Lm / LB_qtyT;
+                                    qtyM = (qtyT - qtyL - qtyU) / Math.Floor(qtyP);
+                                    Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                    if (qtyP < 1)
+                                    {
+                                        Lw = 0;
+                                    }
+                                    else
+                                    {
+                                        Lw = Lm - (LB_qtyL + LB_qtyT) * Math.Floor(qtyP);
+                                    }
+                                    totalWaste_T = Le + Lw * Math.Floor(qtyM);
+                                    if ((previousTotalWaste_T != 0 || Double.IsNaN(previousTotalWaste_T)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                    {
+                                        if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
+                                        {
+                                            chosenML_T.Clear();
+                                            chosenML_T.Add(Lm);
+                                            chosenML_T.Add(qtyT - qtyL - qtyU);
+                                            chosenML_T.Add(LB_qtyT);
+                                            chosenML_T.Add(qtyP);
+                                            chosenML_T.Add(qtyM);
+                                            chosenML_T.Add(Lw);
+                                            chosenML_T.Add(Le);
+                                            chosenML_T.Add(totalWaste_T);
+                                            chosenML_T.Add(trDiameter);
+                                        }
+                                    }
+                                }
+                                else if (qtyL + qtyU >= qtyT) //Case 2
+                                {
+                                    //(Longitudinal + Upper)
+                                    qtyP = Lm / LB_qtyL;
+                                    qtyM = (qtyL + qtyU - qtyT) / Math.Floor(qtyP);
+                                    Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                    if (qtyP < 1)
+                                    {
+                                        Lw = 0;
+                                    }
+                                    else
+                                    {
+                                        Lw = Lm - LB_qtyL * Math.Floor(qtyP);
+                                    }
+                                    totalWaste_LU = Le + Lw * Math.Floor(qtyM);
+                                    if ((previousTotalWaste_LU != 0 || Double.IsNaN(previousTotalWaste_LU)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                    {
+                                        if (totalWaste_LU < previousTotalWaste_LU || (Double.IsNaN(previousTotalWaste_LU) && !Double.IsNaN(totalWaste_LU)))
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL + qtyU - qtyT);
+                                            chosenML_L.Add(LB_qtyL);
+                                            chosenML_L.Add(qtyP);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(Lw);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_LU);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
+                                    }
+
+                                    //Transverse
+                                    qtyP = Lm / (LB_qtyL + LB_qtyT);
+                                    qtyM = qtyT / Math.Floor(qtyP);
+                                    Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                    if (qtyP < 1)
+                                    {
+                                        Lw = 0;
+                                    }
+                                    else
+                                    {
+                                        Lw = Lm - (LB_qtyL + LB_qtyT) * Math.Floor(qtyP);
+                                    }
+                                    totalWaste_T = Le + Lw * Math.Floor(qtyM);
+                                    if ((previousTotalWaste_T != 0 || Double.IsNaN(previousTotalWaste_T)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                    {
+                                        if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
+                                        {
+                                            chosenML_T.Clear();
+                                            chosenML_T.Add(Lm);
+                                            chosenML_T.Add(qtyT);
+                                            chosenML_T.Add(LB_qtyL + LB_qtyT);
+                                            chosenML_T.Add(qtyP);
+                                            chosenML_T.Add(qtyM);
+                                            chosenML_T.Add(Lw);
+                                            chosenML_T.Add(Le);
+                                            chosenML_T.Add(totalWaste_T);
+                                            chosenML_T.Add(trDiameter);
+                                        }
+                                    }
+                                }
+                            }
+                            else if (LB_qtyL + LB_qtyT > largestML || lrDiameter != urDiameter || lrDiameter != trDiameter) //b)
+                            {
+                                //(Longitudinal
+                                qtyP = Lm / LB_qtyL;
+                                qtyM = qtyL / Math.Floor(qtyP);
+                                Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                if (qtyP < 1)
+                                {
+                                    Lw = 0;
+                                }
+                                else
+                                {
+                                    Lw = Lm - LB_qtyL * Math.Floor(qtyP);
+                                }
+                                totalWaste_L = Le + Lw * Math.Floor(qtyM);
+                                if ((previousTotalWaste_L != 0 || Double.IsNaN(previousTotalWaste_L)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                {
+                                    if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
+                                    {
+                                        chosenML_L.Clear();
+                                        chosenML_L.Add(Lm);
+                                        chosenML_L.Add(qtyL);
+                                        chosenML_L.Add(LB_qtyL);
+                                        chosenML_L.Add(qtyP);
+                                        chosenML_L.Add(qtyM);
+                                        chosenML_L.Add(Lw);
+                                        chosenML_L.Add(Le);
+                                        chosenML_L.Add(totalWaste_L);
+                                        chosenML_L.Add(lrDiameter);
+                                    }
+                                }
+
+                                //Upper
+                                qtyP = Lm / LB_qtyU;
+                                qtyM = qtyU / Math.Floor(qtyP);
+                                Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                if (qtyP < 1)
+                                {
+                                    Lw = 0;
+                                }
+                                else
+                                {
+                                    Lw = Lm - LB_qtyU * Math.Floor(qtyP);
+                                }
+                                totalWaste_U = Le + Lw * Math.Floor(qtyM);
+                                if ((previousTotalWaste_U != 0 || Double.IsNaN(previousTotalWaste_U)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                {
+                                    if (totalWaste_U < previousTotalWaste_U || (Double.IsNaN(previousTotalWaste_U) && !Double.IsNaN(totalWaste_U)))
+                                    {
+                                        chosenML_U.Clear();
+                                        chosenML_U.Add(Lm);
+                                        chosenML_U.Add(qtyU);
+                                        chosenML_U.Add(LB_qtyU);
+                                        chosenML_U.Add(qtyP);
+                                        chosenML_U.Add(qtyM);
+                                        chosenML_U.Add(Lw);
+                                        chosenML_U.Add(Le);
+                                        chosenML_U.Add(totalWaste_U);
+                                        chosenML_U.Add(urDiameter);
+                                    }
+                                }
+
+                                //Transverse
+                                qtyP = Lm / LB_qtyT;
+                                qtyM = qtyT / Math.Floor(qtyP);
+                                Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                if (qtyP < 1)
+                                {
+                                    Lw = 0;
+                                }
+                                else
+                                {
+                                    Lw = Lm - LB_qtyT * Math.Floor(qtyP);
+                                }
+                                totalWaste_T = Le + Lw * Math.Floor(qtyM);
+                                if ((previousTotalWaste_T != 0 || Double.IsNaN(previousTotalWaste_T)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                {
+                                    if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
+                                    {
+                                        chosenML_T.Clear();
+                                        chosenML_T.Add(Lm);
+                                        chosenML_T.Add(qtyT);
+                                        chosenML_T.Add(LB_qtyT);
+                                        chosenML_T.Add(qtyP);
+                                        chosenML_T.Add(qtyM);
+                                        chosenML_T.Add(Lw);
+                                        chosenML_T.Add(Le);
+                                        chosenML_T.Add(totalWaste_T);
+                                        chosenML_T.Add(trDiameter);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    //4 -> Costing of material -> in MainForm.cs function initializeView()
+                    //5
+                    //Temporary variables
+                    double weight = 0;
+                    double Wd = 0;
+
+                    //If no chosen ml, computation is wrong and set proper list
+                    if (!chosenML_L.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_L.Add(0);
+                        }
+                    }
+                    if (!chosenML_T.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_T.Add(0);
+                        }
+                    }
+
+                    //Longitudinal and Upper
+                    //If upper is not empty, then it is case b which produces 3 chosen manufactured length
+                    if (chosenML_U.Any())
+                    {
+                        //Longitudinal
+                        for (int j = 0; j < cEF.parameters.rein_W_dt.Rows.Count; j++)
+                        {
+                            if (cEF.parameters.rein_W_dt.Rows[j][0].ToString().Equals(lrDiameter + "mm"))
+                            {
+                                Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                        weight = chosenML_L[0] * chosenML_L[4] * Wd;
+                        chosenML_L.Add(weight);
+
+                        //Upper
+                        for (int j = 0; j < cEF.parameters.rein_W_dt.Rows.Count; j++)
+                        {
+                            if (cEF.parameters.rein_W_dt.Rows[j][0].ToString().Equals(urDiameter + "mm"))
+                            {
+                                Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                        weight = chosenML_U[0] * chosenML_U[4] * Wd;
+                        chosenML_U.Add(weight);
+                    }
+                    else
+                    {
+                        //Longitudinal and Upper
+                        for (int j = 0; j < cEF.parameters.rein_W_dt.Rows.Count; j++)
+                        {
+                            if (cEF.parameters.rein_W_dt.Rows[j][0].ToString().Equals(lrDiameter + "mm"))
+                            {
+                                Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                        weight = chosenML_L[0] * chosenML_L[4] * Wd;
+                        chosenML_L.Add(weight);
+                    }
+
+                    //Transverse
+                    for (int j = 0; j < cEF.parameters.rein_W_dt.Rows.Count; j++)
+                    {
+                        if (cEF.parameters.rein_W_dt.Rows[j][0].ToString().Equals(trDiameter + "mm"))
+                        {
+                            Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                    weight = chosenML_T[0] * chosenML_T[4] * Wd;
+                    chosenML_T.Add(weight);
+
+                    //6 -> Costing of Labor -> in MainForm.cs function initializeView()
+                    cEF.structuralMembers.footingReinforcements[structMemCount].Clear();
+                    cEF.structuralMembers.footingReinforcements[structMemCount].Add(chosenML_L);
+                    if (chosenML_U.Any())
+                        cEF.structuralMembers.footingReinforcements[structMemCount].Add(chosenML_U);
+                    cEF.structuralMembers.footingReinforcements[structMemCount].Add(chosenML_T);
                 }
             }
             else // Wall Footing
@@ -5161,7 +6504,7 @@ namespace KnowEst
                     double volumeSteps = (riser * tread) / 2 * SL * steps;
                     double volume = volumeWSF + volumeSteps;
                     volume /= 1000000000;
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][stairsCount].Add(
+                    cEF.structuralMembers.concreteWorkSolutionsST[floorCount][stairsCount].Add(
                         volume * quantity);
                 }
             }
@@ -5607,7 +6950,7 @@ namespace KnowEst
                     double volumeSteps = (riser * tread) / 2 * SL * steps;
                     double volume = volumeWSF + volumeSteps;
                     volume /= 1000000000;
-                    cEF.structuralMembers.concreteWorkSolutionsC[floorCount][index][0] =
+                    cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] =
                         volume * quantity;
                 }
             }
