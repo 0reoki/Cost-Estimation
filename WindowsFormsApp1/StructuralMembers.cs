@@ -112,6 +112,7 @@ namespace KnowEst
 
         //Lm -> QTY[X] -> LB of QTY[X] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
         public List<List<List<double>>> footingReinforcements = new List<List<List<double>>>();
+        public List<List<List<double>>> wallFootingReinforcements = new List<List<List<double>>>();
 
         //Constant variables
         //Cement

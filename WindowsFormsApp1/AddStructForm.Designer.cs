@@ -2508,7 +2508,8 @@ namespace KnowEst
             this.footW_R_TR_HT_cbx.Items.AddRange(new object[] {
             "90",
             "135",
-            "180"});
+            "180",
+            "0"});
             this.footW_R_TR_HT_cbx.Location = new System.Drawing.Point(185, 143);
             this.footW_R_TR_HT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.footW_R_TR_HT_cbx.Name = "footW_R_TR_HT_cbx";
@@ -2642,7 +2643,8 @@ namespace KnowEst
             this.footW_R_LR_HT_cbx.Items.AddRange(new object[] {
             "90",
             "135",
-            "180"});
+            "180",
+            "0"});
             this.footW_R_LR_HT_cbx.Location = new System.Drawing.Point(185, 143);
             this.footW_R_LR_HT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.footW_R_LR_HT_cbx.Name = "footW_R_LR_HT_cbx";
@@ -3001,7 +3003,8 @@ namespace KnowEst
             this.footW_T_TR_HT_cbx.Items.AddRange(new object[] {
             "90",
             "135",
-            "180"});
+            "180",
+            "0"});
             this.footW_T_TR_HT_cbx.Location = new System.Drawing.Point(185, 143);
             this.footW_T_TR_HT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.footW_T_TR_HT_cbx.Name = "footW_T_TR_HT_cbx";
@@ -3135,7 +3138,8 @@ namespace KnowEst
             this.footW_T_LR_HT_cbx.Items.AddRange(new object[] {
             "90",
             "135",
-            "180"});
+            "180",
+            "0"});
             this.footW_T_LR_HT_cbx.Location = new System.Drawing.Point(185, 143);
             this.footW_T_LR_HT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.footW_T_LR_HT_cbx.Name = "footW_T_LR_HT_cbx";
@@ -5326,7 +5330,7 @@ namespace KnowEst
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 167F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
             this.tableLayoutPanel112.Controls.Add(this.label280, 8, 0);
             this.tableLayoutPanel112.Controls.Add(this.label279, 7, 0);
             this.tableLayoutPanel112.Controls.Add(this.label278, 6, 0);
@@ -7372,7 +7376,7 @@ namespace KnowEst
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 149F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
             this.tableLayoutPanel140.Controls.Add(this.label404, 14, 2);
             this.tableLayoutPanel140.Controls.Add(this.label403, 13, 2);
             this.tableLayoutPanel140.Controls.Add(this.label402, 12, 2);
