@@ -202,6 +202,12 @@ namespace KnowEst
                       RSOG_Lunit,
                       RSOG_Lcost,
                       RSOG_TOTALCOST,
+                      RSS_qty, // SUSPENDED SLAB
+                      RSS_Munit,
+                      RSS_Mcost,
+                      RSS_Lunit,
+                      RSS_Lcost,
+                      RSS_TOTALCOST,
                       RCOL_qty, //COLUMN
                       RCOL_Munit,
                       RCOL_Mcost,
@@ -404,6 +410,12 @@ namespace KnowEst
             RCOL_Lunit = 0;
             RCOL_Lcost = 0;
             RCOL_TOTALCOST = 0;
+            RSS_qty = 0;
+            RSS_Munit = 0;
+            RSS_Mcost = 0;
+            RSS_Lunit = 0;
+            RSS_Lcost = 0;
+            RSS_TOTALCOST = 0;
 
             //Roofings **
             rANDp_MCost = 0; 
@@ -2090,13 +2102,32 @@ namespace KnowEst
                 catch (Exception ex)
                 {
                     print("Slab on grade: " + ex);
-                }
+                }                
+                double slabongradeLABOR = structuralMembers.totalweightkgm_slabongrade * double.Parse(parameters.price_LaborRate_Rebar["SLAB ON GRADE [KG]"].ToString());                
+                RSOG_qty = structuralMembers.totalweightkgm_slabongrade;
+                RSOG_Munit = slabOGprice/RSOG_qty;
+                RSOG_Mcost = slabOGprice;
+                RSOG_Lunit = double.Parse(parameters.price_LaborRate_Rebar["SLAB ON GRADE [KG]"].ToString());
+                RSOG_Lcost = slabongradeLABOR;
+                RSOG_TOTALCOST = RSOG_Mcost + RSOG_Lcost;
+            }
+            else
+            {
+                RSOG_qty = 0;
+                RSOG_Munit = 0;
+                RSOG_Mcost = 0;
+                RSOG_Lunit = 0;
+                RSOG_Lcost = 0;
+                RSOG_TOTALCOST = 0;                
+            }
+            if (rebarsChecklist[6])
+            {
                 double suspendedSlabPrice = 0;
                 try
                 {
                     for (int i = 0; i < structuralMembers.Slab_suspendedRebar.Count; i++)
                     {
-                        for (int j = 0; j < structuralMembers.Slab_suspendedRebar[i].Count; j+=2)
+                        for (int j = 0; j < structuralMembers.Slab_suspendedRebar[i].Count; j += 2)
                         {
                             List<string> grade = gradefilterer(parameters.rein_RG_SL);
                             string dia = structuralMembers.Slab_suspendedRebar[i][j][0].ToString();
@@ -2109,46 +2140,43 @@ namespace KnowEst
                                     if (grade[1] == "33")
                                     {
                                         suspendedSlabPrice += (double.Parse(parameters.price_RebarGrade33[price_name].ToString())
-                                            * structuralMembers.Slab_suspendedRebar[i][j][n+1]) * double.Parse(Floors[i].getValues()[0]);
+                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[i].getValues()[0]);
                                     }
                                     else if (grade[1] == "40")
                                     {
                                         suspendedSlabPrice += (double.Parse(parameters.price_RebarGrade40[price_name].ToString())
-                                            * structuralMembers.Slab_suspendedRebar[i][j][n+1]) * double.Parse(Floors[i].getValues()[0]);
+                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[i].getValues()[0]);
                                     }
                                     else if (grade[1] == "60")
                                     {
                                         suspendedSlabPrice += (double.Parse(parameters.price_RebarGrade60[price_name].ToString())
-                                            * structuralMembers.Slab_suspendedRebar[i][j][n+1]) * double.Parse(Floors[i].getValues()[0]);
+                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[i].getValues()[0]);
                                     }
                                 }
-                            }                             
+                            }
                         }
-                    }
+                    }                    
                 }
                 catch (Exception ex)
                 {
                     print("Suspended slab: " + ex);
                 }
-                double slabongradeLABOR = structuralMembers.totalweightkgm_slabongrade * double.Parse(parameters.price_LaborRate_Rebar["SLAB ON GRADE [KG]"].ToString());
-                double suspendedslabLABOR = structuralMembers.totalweightkgm_suspendedslab * double.Parse(parameters.price_LaborRate_Rebar["SLAB ON GRADE [KG]"].ToString());
+                double suspendedslabLABOR = structuralMembers.totalweightkgm_suspendedslab * double.Parse(parameters.price_LaborRate_Rebar["SUSPENDED SLAB [KG]"].ToString());
+                RSS_qty = structuralMembers.totalweightkgm_suspendedslab;
+                RSS_Mcost = suspendedSlabPrice;
+                RSS_Munit = RSS_Mcost / RSS_qty;                
+                RSS_Lunit = double.Parse(parameters.price_LaborRate_Rebar["SUSPENDED SLAB [KG]"].ToString());
+                RSS_Lcost = double.Parse(parameters.price_LaborRate_Rebar["SUSPENDED SLAB [KG]"].ToString()) * RSS_qty;
+                RSS_TOTALCOST = RSS_Mcost + RSS_Lcost;
             }
             else
             {
-                RSOG_qty = 0;
-                RSOG_Munit = 0;
-                RSOG_Mcost = 0;
-                RSOG_Lunit = 0;
-                RSOG_Lcost = 0;
-                RSOG_TOTALCOST = 0;
-            }
-            if (rebarsChecklist[6])
-            {
-
-            }
-            else
-            {
-
+                RSS_qty = 0;
+                RSS_Munit = 0;
+                RSS_Mcost = 0;
+                RSS_Lunit = 0;
+                RSS_Lcost = 0;
+                RSS_TOTALCOST = 0;
             }
             if (rebarsChecklist[7])
             {
