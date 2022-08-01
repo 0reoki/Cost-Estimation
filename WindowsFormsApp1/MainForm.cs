@@ -94,6 +94,7 @@ namespace KnowEst
         public double excavation_CostL, backfillingAndCompaction_CostL, backfillingAndCompaction_CostM, backfillingAndCompaction_CostTotal,
                       gradingAndCompaction_CostL, gravelBedding_CostM, gravelBedding_CostL, gravelBedding_CostTotal,
                       soilPoisoning_CostM, earthworks_CostTotal;
+        public double earthworks_TotalCostM, earthworks_TotalCostL;
 
         //2.0 Concrete 
         public double concreteF_UnitM,      //Concrete Footing - Materials Unit
@@ -2802,20 +2803,20 @@ namespace KnowEst
             //Setting View -- START
             if (!viewInitalized)
             {
-                double earthworks1_TotalCostM = backfillingAndCompaction_CostM + gravelBedding_CostM + soilPoisoning_CostM;
-                double earthworks1_TotalCostL = excavation_CostL + backfillingAndCompaction_CostL + gradingAndCompaction_CostL + gravelBedding_CostL;
-                double earthworks1_TotalCost = earthworks1_TotalCostM + earthworks1_TotalCostL;
+                earthworks_TotalCostM = backfillingAndCompaction_CostM + gravelBedding_CostM + soilPoisoning_CostM;
+                earthworks_TotalCostL = excavation_CostL + backfillingAndCompaction_CostL + gradingAndCompaction_CostL + gravelBedding_CostL;
+                earthworks_CostTotal = earthworks_TotalCostM + earthworks_TotalCostL;
 
                 //Computation of Total Cost fos_LC_Type, fos_LC_Percentage
                 if (fos_LC_Type.Equals("Rate"))
                 {
-                    TOTALCOST = earthworks1_TotalCost + concrete_TOTALCOST + FW_MATOTAL + mason_TOTALCOST +
+                    TOTALCOST = earthworks_CostTotal + concrete_TOTALCOST + FW_MATOTAL + mason_TOTALCOST +
                                 rein_TotalCost + roof_TOTALCOST + tiles_TOTALCOST + paints_TOTALCOST +
                                 misc_TOTALCOST + laborAndEqpt_TOTALCOST;
                 }  
                 else if (fos_LC_Type.Equals("Percentage"))
                 {
-                    TOTALCOST = earthworks1_TotalCostM + concreteMCost_total + FW_totalMats + masonMCost_total +
+                    TOTALCOST = earthworks_TotalCostM + concreteMCost_total + FW_totalMats + masonMCost_total +
                                 rein_MCost + roof_MTOTAL + tiles_mTOTALCOST + paint_mTOTALCOST +
                                 misc_TOTALCOST + laborAndEqpt_TOTALCOST;
                     string percentString = fos_LC_Percentage.Replace(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, "");
@@ -2824,10 +2825,88 @@ namespace KnowEst
                 }
                 else
                 {
-                    TOTALCOST = earthworks1_TotalCostM + concreteMCost_total + FW_totalMats + masonMCost_total +
+                    TOTALCOST = earthworks_TotalCostM + concreteMCost_total + FW_totalMats + masonMCost_total +
                                 rein_MCost + roof_MTOTAL + tiles_mTOTALCOST + paint_mTOTALCOST +
                                 misc_TOTALCOST + laborAndEqpt_TOTALCOST;
                 }
+
+                //Set Labels total cost
+                totalcostLbl.Text = "(₱" + TOTALCOST.ToString("#,##0.00") + ")";
+
+                //Set Total Costs - Labor Cost depending on Labor Costing Type
+                if (!fos_LC_Type.Equals("Rate"))
+                {
+                    //BOQ Hide
+                    this.summ_BOQ_dg.Columns["labor1"].Visible = false;
+                    this.summ_BOQ_dg.Columns["labor2"].Visible = false;
+
+                    //1.0 - Earthworks
+                    excavation_CostL = 0;
+                    backfillingAndCompaction_CostTotal = backfillingAndCompaction_CostTotal - backfillingAndCompaction_CostL;
+                    gravelBedding_CostTotal = gravelBedding_CostTotal - gravelBedding_CostL;
+                    gradingAndCompaction_CostL = 0;
+                    earthworks_CostTotal = earthworks_CostTotal - earthworks_TotalCostL;
+
+                    //2.0 - Concrete
+                    concreteF_costTotal -= concreteF_CostL;
+                    concreteC_costTotal -= concreteC_CostL;
+                    concreteBR_costTotal -= concreteBR_CostL;
+                    concreteSOG_costTotal -= concreteSOG_CostL;
+                    concreteSS_costTotal -= concreteSS_CostL;
+                    concreteST_costTotal -= concreteST_CostL;
+                    concrete_TOTALCOST -= concreteLCost_total;
+
+                    //3.0 - Formworks
+                    footingMLCOST -= footing_Lcost;
+                    trapMLCOST -= trap_Lcost;
+                    colMLCOST -= col_Lcost;
+                    beamMLCOST -= beam_Lcost;
+                    sus_MLCOST -= sus_Lcost;
+                    stairs_MLCOST -= stairs_Lcost;
+                    FW_MATOTAL -= FW_totalLab;
+
+                    //4.0 - Masonry
+                    exterior_costTotal -= exterior_CostL;
+                    interior_costTotal -= interior_CostL;
+                    mason_TOTALCOST -= masonLCost_total;
+
+                    //5.0 - Rebars TODO STAIRS
+                    reinF_TotalCost -= reinF_CostL;
+                    reinWF_TotalCost -= reinWF_CostL;
+                    Rbeam_TOTALCOST -= Rbeam_Lcost;
+                    RSOG_TOTALCOST -= RSOG_Lcost;
+                    RSS_TOTALCOST -= RSS_Lcost;
+                    RCOL_TOTALCOST -= RCOL_Lcost;
+                    rein_TotalCost -= rein_LCost;
+
+                    //6.0 - Roofings
+                    rANDp_costTotal -= rANDp_LCost;
+                    acce_costTotal -= reinWF_CostL;
+                    tins_costTotal -= tins_LCost;
+                    roof_TOTALCOST -= roof_LTOTAL;
+
+                    //7.0 - Tiles
+                    sixhun_costTotal -= sixhun_LCost;
+                    threehun_costTotal -= threehun_LCost;
+                    tiles_TOTALCOST -= tiles_lTOTALCOST;
+
+                    //8.0 - Paint
+                    enam_TOTALCOST -= enam_LCost;
+                    acry_TOTALCOST -= acry_LCost;
+                    late_TOTALCOST -= late_LCost;
+                    semi_TOTALCOST -= semi_LCost;
+                    paints_TOTALCOST -= paint_lTOTALCOST;
+
+                    //10.0 - Additional Labor and Equipment
+                    laborAndEqpt_TOTALCOST = 0;
+                }
+                else
+                {
+                    //BOQ Show
+                    this.summ_BOQ_dg.Columns["labor1"].Visible = true;
+                    this.summ_BOQ_dg.Columns["labor2"].Visible = true;
+                }
+
                 //For refresh
                 view_TV1.Nodes.Clear();
                 view_TV2.Nodes.Clear();
@@ -3009,14 +3088,11 @@ namespace KnowEst
 
                     this.summ_BOQ_dg.Rows.Add();
                     index = this.summ_BOQ_dg.Rows.Add();
-                    double earthworks_TotalCostM = backfillingAndCompaction_CostM + gravelBedding_CostM + soilPoisoning_CostM;
-                    double earthworks_TotalCostL = excavation_CostL + backfillingAndCompaction_CostL + gradingAndCompaction_CostL + gravelBedding_CostL;
-                    double earthworks_TotalCost = earthworks_TotalCostM + earthworks_TotalCostL;
                     this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + earthworks_TotalCostM.ToString("#,##0.00");
                     this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                     this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + earthworks_TotalCostL.ToString("#,##0.00");
                     this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + earthworks_TotalCost.ToString("#,##0.00");
+                    this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + earthworks_CostTotal.ToString("#,##0.00");
                     this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
                 }
@@ -3445,7 +3521,7 @@ namespace KnowEst
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = nails_QTY.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "sq. m.";
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "kg";
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + nails_Munit.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + nails_Mcost.ToString("#,##0.00");
@@ -4391,7 +4467,15 @@ namespace KnowEst
 
                 }
                 //10.0 - Additional Labor and Equipment -- END
-                
+
+                //BOQ FINAL COST
+                this.summ_BOQ_dg.Rows.Add();
+                int index2 = this.summ_BOQ_dg.Rows.Add();
+                this.summ_BOQ_dg.Rows[index2].Cells["totalcost1"].Value = "₱" + TOTALCOST.ToString("#,##0.00");
+                this.summ_BOQ_dg.Rows[index2].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                this.summ_BOQ_dg.Rows[index2].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
+                this.summ_BOQ_dg.Rows[index2].Cells["totalcost1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+
                 //Setting BOQ Cell Autosize to True
                 this.summ_BOQ_dg.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 this.summ_BOQ_dg.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
