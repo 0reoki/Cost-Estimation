@@ -335,13 +335,6 @@ namespace KnowEst
             this.rein_ML_WF_9_chk = new System.Windows.Forms.CheckBox();
             this.rein_ML_WF_75_chk = new System.Windows.Forms.CheckBox();
             this.rein_ML_WF_6_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_FT_15_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_FT_135_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_FT_12_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_FT_105_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_FT_9_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_FT_75_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_FT_6_chk = new System.Windows.Forms.CheckBox();
             this.rein_ML_CF_15_chk = new System.Windows.Forms.CheckBox();
             this.rein_ML_CF_135_chk = new System.Windows.Forms.CheckBox();
             this.rein_ML_CF_12_chk = new System.Windows.Forms.CheckBox();
@@ -357,7 +350,6 @@ namespace KnowEst
             this.label137 = new System.Windows.Forms.Label();
             this.label138 = new System.Windows.Forms.Label();
             this.label139 = new System.Windows.Forms.Label();
-            this.label140 = new System.Windows.Forms.Label();
             this.label141 = new System.Windows.Forms.Label();
             this.label142 = new System.Windows.Forms.Label();
             this.label143 = new System.Windows.Forms.Label();
@@ -4601,41 +4593,33 @@ namespace KnowEst
             this.tableLayoutPanel57.Controls.Add(this.rein_ML_WF_9_chk, 3, 3);
             this.tableLayoutPanel57.Controls.Add(this.rein_ML_WF_75_chk, 2, 3);
             this.tableLayoutPanel57.Controls.Add(this.rein_ML_WF_6_chk, 1, 3);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_FT_15_chk, 7, 2);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_FT_135_chk, 6, 2);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_FT_12_chk, 5, 2);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_FT_105_chk, 4, 2);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_FT_9_chk, 3, 2);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_FT_75_chk, 2, 2);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_FT_6_chk, 1, 2);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_15_chk, 7, 1);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_135_chk, 6, 1);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_12_chk, 5, 1);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_105_chk, 4, 1);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_9_chk, 3, 1);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_75_chk, 2, 1);
             this.tableLayoutPanel57.Controls.Add(this.label145, 0, 7);
-            this.tableLayoutPanel57.Controls.Add(this.label132, 1, 0);
-            this.tableLayoutPanel57.Controls.Add(this.label133, 2, 0);
-            this.tableLayoutPanel57.Controls.Add(this.label134, 3, 0);
-            this.tableLayoutPanel57.Controls.Add(this.label135, 4, 0);
-            this.tableLayoutPanel57.Controls.Add(this.label136, 5, 0);
-            this.tableLayoutPanel57.Controls.Add(this.label137, 6, 0);
-            this.tableLayoutPanel57.Controls.Add(this.label138, 7, 0);
-            this.tableLayoutPanel57.Controls.Add(this.label139, 0, 1);
-            this.tableLayoutPanel57.Controls.Add(this.label140, 0, 2);
             this.tableLayoutPanel57.Controls.Add(this.label141, 0, 3);
             this.tableLayoutPanel57.Controls.Add(this.label142, 0, 4);
             this.tableLayoutPanel57.Controls.Add(this.label143, 0, 5);
             this.tableLayoutPanel57.Controls.Add(this.label144, 0, 6);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_6_chk, 1, 1);
+            this.tableLayoutPanel57.Controls.Add(this.label139, 0, 2);
+            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_6_chk, 1, 2);
+            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_75_chk, 2, 2);
+            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_9_chk, 3, 2);
+            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_105_chk, 4, 2);
+            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_12_chk, 5, 2);
+            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_135_chk, 6, 2);
+            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_15_chk, 7, 2);
+            this.tableLayoutPanel57.Controls.Add(this.label132, 1, 1);
+            this.tableLayoutPanel57.Controls.Add(this.label133, 2, 1);
+            this.tableLayoutPanel57.Controls.Add(this.label134, 3, 1);
+            this.tableLayoutPanel57.Controls.Add(this.label135, 4, 1);
+            this.tableLayoutPanel57.Controls.Add(this.label136, 5, 1);
+            this.tableLayoutPanel57.Controls.Add(this.label137, 6, 1);
+            this.tableLayoutPanel57.Controls.Add(this.label138, 7, 1);
             this.tableLayoutPanel57.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel57.Location = new System.Drawing.Point(627, 296);
             this.tableLayoutPanel57.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel57.Name = "tableLayoutPanel57";
             this.tableLayoutPanel57.RowCount = 8;
-            this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.357143F));
+            this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.21428F));
             this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
@@ -4995,80 +4979,10 @@ namespace KnowEst
             this.rein_ML_WF_6_chk.TabIndex = 73;
             this.rein_ML_WF_6_chk.UseVisualStyleBackColor = true;
             // 
-            // rein_ML_FT_15_chk
-            // 
-            this.rein_ML_FT_15_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_FT_15_chk.Location = new System.Drawing.Point(453, 50);
-            this.rein_ML_FT_15_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_FT_15_chk.Name = "rein_ML_FT_15_chk";
-            this.rein_ML_FT_15_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_FT_15_chk.TabIndex = 72;
-            this.rein_ML_FT_15_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_FT_135_chk
-            // 
-            this.rein_ML_FT_135_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_FT_135_chk.Location = new System.Drawing.Point(403, 50);
-            this.rein_ML_FT_135_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_FT_135_chk.Name = "rein_ML_FT_135_chk";
-            this.rein_ML_FT_135_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_FT_135_chk.TabIndex = 71;
-            this.rein_ML_FT_135_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_FT_12_chk
-            // 
-            this.rein_ML_FT_12_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_FT_12_chk.Location = new System.Drawing.Point(353, 50);
-            this.rein_ML_FT_12_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_FT_12_chk.Name = "rein_ML_FT_12_chk";
-            this.rein_ML_FT_12_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_FT_12_chk.TabIndex = 70;
-            this.rein_ML_FT_12_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_FT_105_chk
-            // 
-            this.rein_ML_FT_105_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_FT_105_chk.Location = new System.Drawing.Point(303, 50);
-            this.rein_ML_FT_105_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_FT_105_chk.Name = "rein_ML_FT_105_chk";
-            this.rein_ML_FT_105_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_FT_105_chk.TabIndex = 69;
-            this.rein_ML_FT_105_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_FT_9_chk
-            // 
-            this.rein_ML_FT_9_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_FT_9_chk.Location = new System.Drawing.Point(253, 50);
-            this.rein_ML_FT_9_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_FT_9_chk.Name = "rein_ML_FT_9_chk";
-            this.rein_ML_FT_9_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_FT_9_chk.TabIndex = 68;
-            this.rein_ML_FT_9_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_FT_75_chk
-            // 
-            this.rein_ML_FT_75_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_FT_75_chk.Location = new System.Drawing.Point(203, 50);
-            this.rein_ML_FT_75_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_FT_75_chk.Name = "rein_ML_FT_75_chk";
-            this.rein_ML_FT_75_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_FT_75_chk.TabIndex = 67;
-            this.rein_ML_FT_75_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_FT_6_chk
-            // 
-            this.rein_ML_FT_6_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_FT_6_chk.Location = new System.Drawing.Point(153, 50);
-            this.rein_ML_FT_6_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_FT_6_chk.Name = "rein_ML_FT_6_chk";
-            this.rein_ML_FT_6_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_FT_6_chk.TabIndex = 66;
-            this.rein_ML_FT_6_chk.UseVisualStyleBackColor = true;
-            // 
             // rein_ML_CF_15_chk
             // 
             this.rein_ML_CF_15_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_15_chk.Location = new System.Drawing.Point(453, 26);
+            this.rein_ML_CF_15_chk.Location = new System.Drawing.Point(453, 50);
             this.rein_ML_CF_15_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_ML_CF_15_chk.Name = "rein_ML_CF_15_chk";
             this.rein_ML_CF_15_chk.Size = new System.Drawing.Size(43, 18);
@@ -5078,7 +4992,7 @@ namespace KnowEst
             // rein_ML_CF_135_chk
             // 
             this.rein_ML_CF_135_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_135_chk.Location = new System.Drawing.Point(403, 26);
+            this.rein_ML_CF_135_chk.Location = new System.Drawing.Point(403, 50);
             this.rein_ML_CF_135_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_ML_CF_135_chk.Name = "rein_ML_CF_135_chk";
             this.rein_ML_CF_135_chk.Size = new System.Drawing.Size(43, 18);
@@ -5088,7 +5002,7 @@ namespace KnowEst
             // rein_ML_CF_12_chk
             // 
             this.rein_ML_CF_12_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_12_chk.Location = new System.Drawing.Point(353, 26);
+            this.rein_ML_CF_12_chk.Location = new System.Drawing.Point(353, 50);
             this.rein_ML_CF_12_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_ML_CF_12_chk.Name = "rein_ML_CF_12_chk";
             this.rein_ML_CF_12_chk.Size = new System.Drawing.Size(43, 18);
@@ -5098,7 +5012,7 @@ namespace KnowEst
             // rein_ML_CF_105_chk
             // 
             this.rein_ML_CF_105_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_105_chk.Location = new System.Drawing.Point(303, 26);
+            this.rein_ML_CF_105_chk.Location = new System.Drawing.Point(303, 50);
             this.rein_ML_CF_105_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_ML_CF_105_chk.Name = "rein_ML_CF_105_chk";
             this.rein_ML_CF_105_chk.Size = new System.Drawing.Size(43, 18);
@@ -5108,7 +5022,7 @@ namespace KnowEst
             // rein_ML_CF_9_chk
             // 
             this.rein_ML_CF_9_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_9_chk.Location = new System.Drawing.Point(253, 26);
+            this.rein_ML_CF_9_chk.Location = new System.Drawing.Point(253, 50);
             this.rein_ML_CF_9_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_ML_CF_9_chk.Name = "rein_ML_CF_9_chk";
             this.rein_ML_CF_9_chk.Size = new System.Drawing.Size(43, 18);
@@ -5118,7 +5032,7 @@ namespace KnowEst
             // rein_ML_CF_75_chk
             // 
             this.rein_ML_CF_75_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_75_chk.Location = new System.Drawing.Point(203, 26);
+            this.rein_ML_CF_75_chk.Location = new System.Drawing.Point(203, 50);
             this.rein_ML_CF_75_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_ML_CF_75_chk.Name = "rein_ML_CF_75_chk";
             this.rein_ML_CF_75_chk.Size = new System.Drawing.Size(43, 18);
@@ -5139,92 +5053,85 @@ namespace KnowEst
             // 
             // label132
             // 
-            this.label132.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label132.Location = new System.Drawing.Point(151, 0);
+            this.label132.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label132.Location = new System.Drawing.Point(151, 9);
             this.label132.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label132.Name = "label132";
-            this.label132.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label132.Size = new System.Drawing.Size(45, 24);
+            this.label132.Size = new System.Drawing.Size(45, 39);
             this.label132.TabIndex = 44;
             this.label132.Text = "6.0";
-            this.label132.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label132.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label133
             // 
-            this.label133.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label133.Location = new System.Drawing.Point(201, 0);
+            this.label133.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label133.Location = new System.Drawing.Point(201, 9);
             this.label133.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label133.Name = "label133";
-            this.label133.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label133.Size = new System.Drawing.Size(45, 24);
+            this.label133.Size = new System.Drawing.Size(45, 39);
             this.label133.TabIndex = 45;
             this.label133.Text = "7.5";
-            this.label133.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label133.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label134
             // 
-            this.label134.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label134.Location = new System.Drawing.Point(251, 0);
+            this.label134.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label134.Location = new System.Drawing.Point(251, 9);
             this.label134.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label134.Name = "label134";
-            this.label134.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label134.Size = new System.Drawing.Size(45, 24);
+            this.label134.Size = new System.Drawing.Size(45, 39);
             this.label134.TabIndex = 46;
             this.label134.Text = "9.0";
-            this.label134.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label134.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label135
             // 
-            this.label135.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label135.Location = new System.Drawing.Point(301, 0);
+            this.label135.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label135.Location = new System.Drawing.Point(301, 9);
             this.label135.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label135.Name = "label135";
-            this.label135.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label135.Size = new System.Drawing.Size(45, 24);
+            this.label135.Size = new System.Drawing.Size(45, 39);
             this.label135.TabIndex = 47;
             this.label135.Text = "10.5";
-            this.label135.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label135.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label136
             // 
-            this.label136.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label136.Location = new System.Drawing.Point(351, 0);
+            this.label136.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label136.Location = new System.Drawing.Point(351, 9);
             this.label136.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label136.Name = "label136";
-            this.label136.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label136.Size = new System.Drawing.Size(45, 24);
+            this.label136.Size = new System.Drawing.Size(45, 39);
             this.label136.TabIndex = 48;
             this.label136.Text = "12.0";
-            this.label136.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label136.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label137
             // 
-            this.label137.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label137.Location = new System.Drawing.Point(401, 0);
+            this.label137.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label137.Location = new System.Drawing.Point(401, 9);
             this.label137.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label137.Name = "label137";
-            this.label137.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label137.Size = new System.Drawing.Size(45, 24);
+            this.label137.Size = new System.Drawing.Size(45, 39);
             this.label137.TabIndex = 49;
             this.label137.Text = "13.5";
-            this.label137.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label137.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label138
             // 
-            this.label138.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label138.Location = new System.Drawing.Point(451, 0);
+            this.label138.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label138.Location = new System.Drawing.Point(451, 9);
             this.label138.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label138.Name = "label138";
-            this.label138.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label138.Size = new System.Drawing.Size(45, 24);
+            this.label138.Size = new System.Drawing.Size(45, 39);
             this.label138.TabIndex = 50;
             this.label138.Text = "15.0";
-            this.label138.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label138.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label139
             // 
             this.label139.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label139.Location = new System.Drawing.Point(1, 24);
+            this.label139.Location = new System.Drawing.Point(1, 48);
             this.label139.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label139.Name = "label139";
             this.label139.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -5232,18 +5139,6 @@ namespace KnowEst
             this.label139.TabIndex = 51;
             this.label139.Text = "Column Footing:";
             this.label139.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label140
-            // 
-            this.label140.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label140.Location = new System.Drawing.Point(1, 48);
-            this.label140.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label140.Name = "label140";
-            this.label140.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label140.Size = new System.Drawing.Size(145, 24);
-            this.label140.TabIndex = 52;
-            this.label140.Text = "Footing Tie Beam:";
-            this.label140.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label141
             // 
@@ -5296,7 +5191,7 @@ namespace KnowEst
             // rein_ML_CF_6_chk
             // 
             this.rein_ML_CF_6_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_6_chk.Location = new System.Drawing.Point(153, 26);
+            this.rein_ML_CF_6_chk.Location = new System.Drawing.Point(153, 50);
             this.rein_ML_CF_6_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_ML_CF_6_chk.Name = "rein_ML_CF_6_chk";
             this.rein_ML_CF_6_chk.Size = new System.Drawing.Size(43, 18);
@@ -7155,7 +7050,6 @@ namespace KnowEst
         private System.Windows.Forms.Label label137;
         private System.Windows.Forms.Label label138;
         private System.Windows.Forms.Label label139;
-        private System.Windows.Forms.Label label140;
         private System.Windows.Forms.Label label141;
         private System.Windows.Forms.Label label142;
         private System.Windows.Forms.Label label143;
@@ -7196,13 +7090,6 @@ namespace KnowEst
         private System.Windows.Forms.CheckBox rein_ML_WF_9_chk;
         private System.Windows.Forms.CheckBox rein_ML_WF_75_chk;
         private System.Windows.Forms.CheckBox rein_ML_WF_6_chk;
-        private System.Windows.Forms.CheckBox rein_ML_FT_15_chk;
-        private System.Windows.Forms.CheckBox rein_ML_FT_135_chk;
-        private System.Windows.Forms.CheckBox rein_ML_FT_12_chk;
-        private System.Windows.Forms.CheckBox rein_ML_FT_105_chk;
-        private System.Windows.Forms.CheckBox rein_ML_FT_9_chk;
-        private System.Windows.Forms.CheckBox rein_ML_FT_75_chk;
-        private System.Windows.Forms.CheckBox rein_ML_FT_6_chk;
         private System.Windows.Forms.CheckBox rein_ML_CF_15_chk;
         private System.Windows.Forms.CheckBox rein_ML_CF_135_chk;
         private System.Windows.Forms.CheckBox rein_ML_CF_12_chk;

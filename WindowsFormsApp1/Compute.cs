@@ -1324,7 +1324,7 @@ namespace KnowEst
                     {
                         if (cEF.parameters.rein_LSL_TB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
                         {
-                            sl = double.Parse(cEF.parameters.rein_LSL_TB_dt.Rows[j][k].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            sl = double.Parse(cEF.parameters.rein_LSL_TB_dt.Rows[j][k + 1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
                             break;
                         }
                     }
@@ -1616,7 +1616,7 @@ namespace KnowEst
                         }
                     }
                     double LB_qtyL = length - (2 * ccWF) + (2 * hl_L);
-                    double LB_qtyT = (wfBaseU - 2 * ccWF * Math.Tan(22.5)) + 600 + ((wfBaseT - wfBaseU) * Math.Sqrt(2)) + (2 * hl_T); //Math.Tan(22.5) inaccurate
+                    double LB_qtyT = (wfBaseU - 2 * ccWF * 0.4142135624) + 600 + ((wfBaseT - wfBaseU) * Math.Sqrt(2)) + (2 * hl_T); //Math.Tan(22.5) inaccurate
                     LB_qtyL /= 1000;
                     LB_qtyT /= 1000;
 
@@ -1710,7 +1710,7 @@ namespace KnowEst
                     {
                         if (cEF.parameters.rein_LSL_TB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
                         {
-                            sl = double.Parse(cEF.parameters.rein_LSL_TB_dt.Rows[j][k].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            sl = double.Parse(cEF.parameters.rein_LSL_TB_dt.Rows[j][k + 1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
                             break;
                         }
                     }
