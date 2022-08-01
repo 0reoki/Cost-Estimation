@@ -190,10 +190,12 @@ namespace KnowEst
         // interior QTY -> masonrysSolutionP1[8]
 
         //5.0 Rebars **
-        public double reinF_UnitM,      //Reinforcements Footing - Materials Unit
-                      reinF_CostM,      //Reinforcements Footing - Materials Cost
-                      reinF_CostL,      //Reinforcements Footing - Labor Cost
-                      reinF_TotalCost,  //Reinforcements Footing - TOTAL COST
+        public double reinF_QTY,         //Reinforcements Footing - Quantity
+                      reinF_UnitM,       //Reinforcements Footing - Materials Unit
+                      reinF_CostM,       //Reinforcements Footing - Materials Cost
+                      reinF_CostL,       //Reinforcements Footing - Labor Cost
+                      reinF_TotalCost,   //Reinforcements Footing - TOTAL COST
+                      reinWF_QTY,        //Reinforcements Wall Footing - Quantity
                       reinWF_UnitM,      //Reinforcements Wall Footing - Materials Unit
                       reinWF_CostM,      //Reinforcements Wall Footing - Materials Cost
                       reinWF_CostL,      //Reinforcements Wall Footing - Labor Cost
@@ -222,7 +224,11 @@ namespace KnowEst
                       RCOL_Mcost,
                       RCOL_Lunit,
                       RCOL_Lcost,
-                      RCOL_TOTALCOST;  
+                      RCOL_TOTALCOST;
+
+        public double rein_MCost,        //Reinforcements - Total Material Cost
+                      rein_LCost,        //Reinforcements - Total Labor Cost
+                      rein_TotalCost;    //Reinforcements - Total Cost
 
         //6.0 Roofings **
         public double rANDp_MCost,// Rafter and Purlins - Material Cost
@@ -1753,8 +1759,9 @@ namespace KnowEst
             //Rebars START
             if (rebarsChecklist[0])
             {
-                //Footing TODO add checklist
+                //Footing
                 //Reset cost variables
+                reinF_QTY = 0;
                 reinF_UnitM = 0;
                 reinF_CostM = 0;
                 reinF_CostL = 0;
@@ -1787,30 +1794,74 @@ namespace KnowEst
                         double unitCost = 0;
                         unitCost = double.Parse(parameters.price_LaborRate_Rebar["FOOTING [KG]"].ToString());
                         reinF_CostL += (chosenML[9] * unitCost);
+                        reinF_QTY += chosenML[9];
                     }
                 }
                 print("Labor Cost: " + reinF_CostL);
                 reinF_TotalCost = reinF_CostM + reinF_CostL;
                 print("Total Cost: " + reinF_TotalCost);
-
-                //Wall Footing TODO
+            }
+            else
+            {
                 //Reset cost variables
+                reinF_QTY = 0;
+                reinF_UnitM = 0;
+                reinF_CostM = 0;
+                reinF_CostL = 0;
+                reinF_TotalCost = 0;
+            }
+            if (rebarsChecklist[1])
+            {
+                //Wall Footing
+                //Reset cost variables
+                reinWF_QTY = 0;
                 reinWF_UnitM = 0;
                 reinWF_CostM = 0;
                 reinWF_CostL = 0;
                 reinWF_TotalCost = 0;
+                //5
+                string rebarGrade = parameters.rein_RG_SL;
+                rebarGrade = rebarGrade.ToUpper();
+                print("================== Wall Footing Reinforcements ===================");
+                foreach (List<List<double>> wallFooting in structuralMembers.wallFootingReinforcements)
+                {
+                    foreach (List<double> chosenML in wallFooting)
+                    {
+                        double unitCost = 0;
+                        if (rebarGrade.Contains("33"))
+                            unitCost = double.Parse(parameters.price_RebarGrade33["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                        else if (rebarGrade.Contains("40"))
+                            unitCost = double.Parse(parameters.price_RebarGrade40["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                        else
+                            unitCost = double.Parse(parameters.price_RebarGrade60["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                        reinWF_CostM += (Math.Ceiling(chosenML[4]) * unitCost);
+                    }
+                }
+                print("Material Cost: " + reinWF_CostM);
+                //7 - 8 
+                foreach (List<List<double>> wallFooting in structuralMembers.wallFootingReinforcements)
+                {
+                    foreach (List<double> chosenML in wallFooting)
+                    {
+                        double unitCost = 0;
+                        unitCost = double.Parse(parameters.price_LaborRate_Rebar["WALL FOOTING [KG]"].ToString());
+                        reinWF_CostL += (chosenML[9] * unitCost);
+                        reinWF_QTY += chosenML[9];
+                    }
+                }
+                print("Labor Cost: " + reinWF_CostL);
+                print("KG: " + reinWF_QTY);
+                reinWF_TotalCost = reinWF_CostM + reinWF_CostL;
+                print("Total Cost: " + reinWF_TotalCost);
             }
             else
             {
-
-            }
-            if (rebarsChecklist[1])
-            {
-
-            }
-            else
-            {
-
+                //Reset cost variables
+                reinWF_QTY = 0;
+                reinWF_UnitM = 0;
+                reinWF_CostM = 0;
+                reinWF_CostL = 0;
+                reinWF_TotalCost = 0;
             }
             if (rebarsChecklist[2])
             {
@@ -3485,18 +3536,50 @@ namespace KnowEst
 
                 j = 1;
                 TreeNode R_newChild1 = new TreeNode("5." + j + " Footing (₱" + reinF_TotalCost.ToString("#,##0.00") + ")");
-                R_newChild1.Name = "exterior_Wall_Total";
+                R_newChild1.Name = "reinF_Total";
                 if (reinF_TotalCost != 0) j++;
                 TreeNode R_newChild2 = new TreeNode("5." + j + " Wall Footing (₱" + reinWF_TotalCost.ToString("#,##0.00") + ")");
-                R_newChild2.Name = "interior_Wall_Total";
+                R_newChild2.Name = "reinWF_Total";
+                if (reinWF_TotalCost != 0) j++;
+                TreeNode R_newChild3 = new TreeNode("5." + j + " Column (₱" + RCOL_TOTALCOST.ToString("#,##0.00") + ")");
+                R_newChild3.Name = "reinC_Total";
+                if (RCOL_TOTALCOST != 0) j++;
+                TreeNode R_newChild4 = new TreeNode("5." + j + " Beam (₱" + Rbeam_TOTALCOST.ToString("#,##0.00") + ")");
+                R_newChild4.Name = "reinB_Total";
+                if (Rbeam_TOTALCOST != 0) j++;
+                TreeNode R_newChild5 = new TreeNode("5." + j + " Slab on Grade (₱" + RSOG_TOTALCOST.ToString("#,##0.00") + ")");
+                R_newChild5.Name = "reinSOG_Total";
+                if (RSOG_TOTALCOST != 0) j++;
+                TreeNode R_newChild6 = new TreeNode("5." + j + " Suspended Slab (₱" + RSS_TOTALCOST.ToString("#,##0.00") + ")");
+                R_newChild6.Name = "reinSS_Total";
+                if (RSS_TOTALCOST != 0) j++;
+                TreeNode R_newChild7 = new TreeNode("5." + j + " Stairs (₱" + reinWF_TotalCost.ToString("#,##0.00") + ")"); //TODO
+                R_newChild7.Name = "reinST_Total";
+                if (reinF_TotalCost != 0) j++; //TODO
+                TreeNode R_newChild8 = new TreeNode("5." + j + " Walls (₱" + reinWF_TotalCost.ToString("#,##0.00") + ")"); //TODO
+                R_newChild8.Name = "reinW_Total";
 
                 if (reinF_TotalCost != 0)
                     found[0].Nodes.Add(R_newChild1);
+                if (reinWF_TotalCost != 0)
+                    found[0].Nodes.Add(R_newChild2);
+                if (RCOL_TOTALCOST != 0)
+                    found[0].Nodes.Add(R_newChild3);
+                if (Rbeam_TOTALCOST != 0)
+                    found[0].Nodes.Add(R_newChild4);
+                if (RSOG_TOTALCOST != 0)
+                    found[0].Nodes.Add(R_newChild5);
+                if (RSS_TOTALCOST != 0)
+                    found[0].Nodes.Add(R_newChild6);
+                if (reinWF_TotalCost != 0)          //TODO
+                    found[0].Nodes.Add(R_newChild7); 
+                if (reinWF_TotalCost != 0)          //TODO
+                    found[0].Nodes.Add(R_newChild8);
 
                 //Setting of BOQ     
                 try
                 {
-                    if (reinF_TotalCost != 0) //TODO palitan ng total cost ng buong reinforcements
+                    if (rein_TotalCost != 0) //TODO palitan ng total cost ng buong reinforcements
                     {
                         var index = this.summ_BOQ_dg.Rows.Add();
                         this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "5.0";
@@ -3513,10 +3596,10 @@ namespace KnowEst
                             this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "FOOTING";
                             this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
-                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = masonrysSolutionP1[3].ToString("#,##0.00"); //TODO
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = reinF_QTY.ToString("#,##0.00"); 
                             this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "kg";
-                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + exterior_UnitM.ToString("#,##0.00"); //TODO
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + (reinF_CostM / reinF_QTY).ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + reinF_CostM.ToString("#,##0.00"); 
                             this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -3528,17 +3611,130 @@ namespace KnowEst
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             i++;
                         }
-                        /*
+                        if (reinWF_TotalCost != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "5." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "WALL FOOTING";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = reinWF_QTY.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "kg";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + (reinWF_CostM / reinWF_QTY).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + reinWF_CostM.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + double.Parse(parameters.price_LaborRate_Rebar["WALL FOOTING [KG]"].ToString()).ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + reinWF_CostL.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + reinWF_TotalCost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (RCOL_TOTALCOST != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "5." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "COLUMN";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = RCOL_qty.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "kg";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + RCOL_Munit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + RCOL_Mcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + RCOL_Lunit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + RCOL_Lcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + RCOL_TOTALCOST.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (Rbeam_TOTALCOST != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "5." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "BEAM";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = Rbeam_qty.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "kg";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + Rbeam_Munit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + Rbeam_Mcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + Rbeam_Lunit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + Rbeam_Lcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + Rbeam_TOTALCOST.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (RSOG_TOTALCOST != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "5." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "SLAB ON GRADE";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = RSOG_qty.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "kg";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + RSOG_Munit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + RSOG_Mcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + RSOG_Lunit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + RSOG_Lcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + RSOG_TOTALCOST.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        }
+                        if (RSS_TOTALCOST != 0)
+                        {
+                            index = this.summ_BOQ_dg.Rows.Add();
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Value = "5." + i;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["description1"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Value = "SUSPENDED SLAB";
+                            this.summ_BOQ_dg.Rows[index].Cells["description2"].Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Value = RSS_qty.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["qty1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["unit1"].Value = "kg";
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Value = "₱" + RSS_Munit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + RSS_Mcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Value = "₱" + RSS_Lunit.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor1"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + RSS_Lcost.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + RSS_TOTALCOST.ToString("#,##0.00");
+                            this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            i++;
+                        } // TODO STAIRS AND WALLS
                         this.summ_BOQ_dg.Rows.Add();
                         index = this.summ_BOQ_dg.Rows.Add();
-                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + masonMCost_total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + rein_MCost.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["materials2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + masonLCost_total.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["labor2"].Value = "₱" + rein_LCost.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["labor2"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + mason_TOTALCOST.ToString("#,##0.00");
+                        this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + rein_TotalCost.ToString("#,##0.00");
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.BackColor = Color.LightGreen;
-                        */
                     }
                 }
                 catch (Exception ex)
@@ -3546,7 +3742,6 @@ namespace KnowEst
 
                 }
                 //5.0 - Reinforcement Steel -- END
-
 
                 //6.0 - Roofing -- START
                 found = view_TV2.Nodes.Find("roofingParent", true);
@@ -7641,6 +7836,8 @@ namespace KnowEst
             stringParam += masonLCost_total + "|";
             stringParam += mason_TOTALCOST + "|";
 
+            //5.0 - Rebars TODO
+
             //6.0 - Roofings
             stringParam += "\nRoofings|\n";
             //Totalities
@@ -10186,6 +10383,8 @@ namespace KnowEst
             masonMCost_total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             masonLCost_total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             mason_TOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+
+            //5.0 - Rebars TODO
 
             //6.0 - Roofings
             i++;

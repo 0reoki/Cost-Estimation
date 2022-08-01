@@ -360,17 +360,49 @@ namespace KnowEst
                             {
                                 if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
                                 {
-                                    chosenML_L.Clear();
-                                    chosenML_L.Add(Lm);
-                                    chosenML_L.Add(qtyL);
-                                    chosenML_L.Add(LB_qtyL);
-                                    chosenML_L.Add(qtyP);
-                                    chosenML_L.Add(qtyM);
-                                    chosenML_L.Add(Lw);
-                                    chosenML_L.Add(Le);
-                                    chosenML_L.Add(totalWaste_L);
-                                    chosenML_L.Add(lrDiameter);
+                                    if (chosenML_L.Any())
+                                    {
+                                        if(totalWaste_L < chosenML_L[7])
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL);
+                                            chosenML_L.Add(LB_qtyL);
+                                            chosenML_L.Add(qtyP);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(Lw);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_L);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        chosenML_L.Clear();
+                                        chosenML_L.Add(Lm);
+                                        chosenML_L.Add(qtyL);
+                                        chosenML_L.Add(LB_qtyL);
+                                        chosenML_L.Add(qtyP);
+                                        chosenML_L.Add(qtyM);
+                                        chosenML_L.Add(Lw);
+                                        chosenML_L.Add(Le);
+                                        chosenML_L.Add(totalWaste_L);
+                                        chosenML_L.Add(lrDiameter);
+                                    }
                                 }
+                            }
+                            else if (previousTotalWaste_L == 0)
+                            {
+                                chosenML_L.Clear();
+                                chosenML_L.Add(Lm);
+                                chosenML_L.Add(qtyL);
+                                chosenML_L.Add(LB_qtyL);
+                                chosenML_L.Add(qtyP);
+                                chosenML_L.Add(qtyM);
+                                chosenML_L.Add(Lw);
+                                chosenML_L.Add(Le);
+                                chosenML_L.Add(totalWaste_L);
+                                chosenML_L.Add(lrDiameter);
                             }
 
                             //Transverse
@@ -390,17 +422,49 @@ namespace KnowEst
                             {
                                 if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
                                 {
-                                    chosenML_T.Clear();
-                                    chosenML_T.Add(Lm);
-                                    chosenML_T.Add(qtyT);
-                                    chosenML_T.Add(LB_qtyT);
-                                    chosenML_T.Add(qtyP);
-                                    chosenML_T.Add(qtyM);
-                                    chosenML_T.Add(Lw);
-                                    chosenML_T.Add(Le);
-                                    chosenML_T.Add(totalWaste_T);
-                                    chosenML_T.Add(trDiameter);
+                                    if (chosenML_T.Any())
+                                    {
+                                        if (totalWaste_T < chosenML_T[7])
+                                        {
+                                            chosenML_T.Clear();
+                                            chosenML_T.Add(Lm);
+                                            chosenML_T.Add(qtyT);
+                                            chosenML_T.Add(LB_qtyT);
+                                            chosenML_T.Add(qtyP);
+                                            chosenML_T.Add(qtyM);
+                                            chosenML_T.Add(Lw);
+                                            chosenML_T.Add(Le);
+                                            chosenML_T.Add(totalWaste_T);
+                                            chosenML_T.Add(trDiameter);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        chosenML_T.Clear();
+                                        chosenML_T.Add(Lm);
+                                        chosenML_T.Add(qtyT);
+                                        chosenML_T.Add(LB_qtyT);
+                                        chosenML_T.Add(qtyP);
+                                        chosenML_T.Add(qtyM);
+                                        chosenML_T.Add(Lw);
+                                        chosenML_T.Add(Le);
+                                        chosenML_T.Add(totalWaste_T);
+                                        chosenML_T.Add(trDiameter);
+                                    }
                                 }
+                            }
+                            else if (previousTotalWaste_T == 0)
+                            {
+                                chosenML_T.Clear();
+                                chosenML_T.Add(Lm);
+                                chosenML_T.Add(qtyT);
+                                chosenML_T.Add(LB_qtyT);
+                                chosenML_T.Add(qtyP);
+                                chosenML_T.Add(qtyM);
+                                chosenML_T.Add(Lw);
+                                chosenML_T.Add(Le);
+                                chosenML_T.Add(totalWaste_T);
+                                chosenML_T.Add(trDiameter);
                             }
                         }
                     }
@@ -760,17 +824,49 @@ namespace KnowEst
                                     {
                                         if (totalWaste_LU < previousTotalWaste_LU || (Double.IsNaN(previousTotalWaste_LU) && !Double.IsNaN(totalWaste_LU)))
                                         {
-                                            chosenML_L.Clear();
-                                            chosenML_L.Add(Lm);
-                                            chosenML_L.Add(qtyL + qtyU);
-                                            chosenML_L.Add(LB_qtyL + LB_qtyT);
-                                            chosenML_L.Add(qtyP);
-                                            chosenML_L.Add(qtyM);
-                                            chosenML_L.Add(Lw);
-                                            chosenML_L.Add(Le);
-                                            chosenML_L.Add(totalWaste_LU);
-                                            chosenML_L.Add(lrDiameter);
+                                            if (chosenML_L.Any())
+                                            {
+                                                if (totalWaste_LU < chosenML_L[7])
+                                                {
+                                                    chosenML_L.Clear();
+                                                    chosenML_L.Add(Lm);
+                                                    chosenML_L.Add(qtyL + qtyU);
+                                                    chosenML_L.Add(LB_qtyL + LB_qtyT);
+                                                    chosenML_L.Add(qtyP);
+                                                    chosenML_L.Add(qtyM);
+                                                    chosenML_L.Add(Lw);
+                                                    chosenML_L.Add(Le);
+                                                    chosenML_L.Add(totalWaste_LU);
+                                                    chosenML_L.Add(lrDiameter);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                chosenML_L.Clear();
+                                                chosenML_L.Add(Lm);
+                                                chosenML_L.Add(qtyL + qtyU);
+                                                chosenML_L.Add(LB_qtyL + LB_qtyT);
+                                                chosenML_L.Add(qtyP);
+                                                chosenML_L.Add(qtyM);
+                                                chosenML_L.Add(Lw);
+                                                chosenML_L.Add(Le);
+                                                chosenML_L.Add(totalWaste_LU);
+                                                chosenML_L.Add(lrDiameter);
+                                            }
                                         }
+                                    }
+                                    else if (previousTotalWaste_LU == 0)
+                                    {
+                                        chosenML_L.Clear();
+                                        chosenML_L.Add(Lm);
+                                        chosenML_L.Add(qtyL + qtyU);
+                                        chosenML_L.Add(LB_qtyL + LB_qtyT);
+                                        chosenML_L.Add(qtyP);
+                                        chosenML_L.Add(qtyM);
+                                        chosenML_L.Add(Lw);
+                                        chosenML_L.Add(Le);
+                                        chosenML_L.Add(totalWaste_LU);
+                                        chosenML_L.Add(lrDiameter);
                                     }
 
                                     //Transverse
@@ -790,17 +886,49 @@ namespace KnowEst
                                     {
                                         if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
                                         {
-                                            chosenML_T.Clear();
-                                            chosenML_T.Add(Lm);
-                                            chosenML_T.Add(qtyT - qtyL - qtyU);
-                                            chosenML_T.Add(LB_qtyT);
-                                            chosenML_T.Add(qtyP);
-                                            chosenML_T.Add(qtyM);
-                                            chosenML_T.Add(Lw);
-                                            chosenML_T.Add(Le);
-                                            chosenML_T.Add(totalWaste_T);
-                                            chosenML_T.Add(trDiameter);
+                                            if (chosenML_T.Any())
+                                            {
+                                                if (totalWaste_T < chosenML_T[7])
+                                                {
+                                                    chosenML_T.Clear();
+                                                    chosenML_T.Add(Lm);
+                                                    chosenML_T.Add(qtyT - qtyL - qtyU);
+                                                    chosenML_T.Add(LB_qtyT);
+                                                    chosenML_T.Add(qtyP);
+                                                    chosenML_T.Add(qtyM);
+                                                    chosenML_T.Add(Lw);
+                                                    chosenML_T.Add(Le);
+                                                    chosenML_T.Add(totalWaste_T);
+                                                    chosenML_T.Add(trDiameter);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                chosenML_T.Clear();
+                                                chosenML_T.Add(Lm);
+                                                chosenML_T.Add(qtyT - qtyL - qtyU);
+                                                chosenML_T.Add(LB_qtyT);
+                                                chosenML_T.Add(qtyP);
+                                                chosenML_T.Add(qtyM);
+                                                chosenML_T.Add(Lw);
+                                                chosenML_T.Add(Le);
+                                                chosenML_T.Add(totalWaste_T);
+                                                chosenML_T.Add(trDiameter);
+                                            }
                                         }
+                                    }
+                                    else if (previousTotalWaste_T == 0)
+                                    {
+                                        chosenML_T.Clear();
+                                        chosenML_T.Add(Lm);
+                                        chosenML_T.Add(qtyT - qtyL - qtyU);
+                                        chosenML_T.Add(LB_qtyT);
+                                        chosenML_T.Add(qtyP);
+                                        chosenML_T.Add(qtyM);
+                                        chosenML_T.Add(Lw);
+                                        chosenML_T.Add(Le);
+                                        chosenML_T.Add(totalWaste_T);
+                                        chosenML_T.Add(trDiameter);
                                     }
                                 }
                                 else if (qtyL + qtyU >= qtyT) //Case 2
@@ -822,17 +950,49 @@ namespace KnowEst
                                     {
                                         if (totalWaste_LU < previousTotalWaste_LU || (Double.IsNaN(previousTotalWaste_LU) && !Double.IsNaN(totalWaste_LU)))
                                         {
-                                            chosenML_L.Clear();
-                                            chosenML_L.Add(Lm);
-                                            chosenML_L.Add(qtyL + qtyU - qtyT);
-                                            chosenML_L.Add(LB_qtyL);
-                                            chosenML_L.Add(qtyP);
-                                            chosenML_L.Add(qtyM);
-                                            chosenML_L.Add(Lw);
-                                            chosenML_L.Add(Le);
-                                            chosenML_L.Add(totalWaste_LU);
-                                            chosenML_L.Add(lrDiameter);
+                                            if (chosenML_L.Any())
+                                            {
+                                                if (totalWaste_LU < chosenML_L[7])
+                                                {
+                                                    chosenML_L.Clear();
+                                                    chosenML_L.Add(Lm);
+                                                    chosenML_L.Add(qtyL + qtyU - qtyT);
+                                                    chosenML_L.Add(LB_qtyL);
+                                                    chosenML_L.Add(qtyP);
+                                                    chosenML_L.Add(qtyM);
+                                                    chosenML_L.Add(Lw);
+                                                    chosenML_L.Add(Le);
+                                                    chosenML_L.Add(totalWaste_LU);
+                                                    chosenML_L.Add(lrDiameter);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                chosenML_L.Clear();
+                                                chosenML_L.Add(Lm);
+                                                chosenML_L.Add(qtyL + qtyU - qtyT);
+                                                chosenML_L.Add(LB_qtyL);
+                                                chosenML_L.Add(qtyP);
+                                                chosenML_L.Add(qtyM);
+                                                chosenML_L.Add(Lw);
+                                                chosenML_L.Add(Le);
+                                                chosenML_L.Add(totalWaste_LU);
+                                                chosenML_L.Add(lrDiameter);
+                                            }
                                         }
+                                    }
+                                    else if (previousTotalWaste_LU == 0)
+                                    {
+                                        chosenML_L.Clear();
+                                        chosenML_L.Add(Lm);
+                                        chosenML_L.Add(qtyL + qtyU - qtyT);
+                                        chosenML_L.Add(LB_qtyL);
+                                        chosenML_L.Add(qtyP);
+                                        chosenML_L.Add(qtyM);
+                                        chosenML_L.Add(Lw);
+                                        chosenML_L.Add(Le);
+                                        chosenML_L.Add(totalWaste_LU);
+                                        chosenML_L.Add(lrDiameter);
                                     }
 
                                     //Transverse
@@ -852,17 +1012,49 @@ namespace KnowEst
                                     {
                                         if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
                                         {
-                                            chosenML_T.Clear();
-                                            chosenML_T.Add(Lm);
-                                            chosenML_T.Add(qtyT);
-                                            chosenML_T.Add(LB_qtyL + LB_qtyT);
-                                            chosenML_T.Add(qtyP);
-                                            chosenML_T.Add(qtyM);
-                                            chosenML_T.Add(Lw);
-                                            chosenML_T.Add(Le);
-                                            chosenML_T.Add(totalWaste_T);
-                                            chosenML_T.Add(trDiameter);
+                                            if (chosenML_T.Any())
+                                            {
+                                                if (totalWaste_T < chosenML_T[7])
+                                                {
+                                                    chosenML_T.Clear();
+                                                    chosenML_T.Add(Lm);
+                                                    chosenML_T.Add(qtyT);
+                                                    chosenML_T.Add(LB_qtyL + LB_qtyT);
+                                                    chosenML_T.Add(qtyP);
+                                                    chosenML_T.Add(qtyM);
+                                                    chosenML_T.Add(Lw);
+                                                    chosenML_T.Add(Le);
+                                                    chosenML_T.Add(totalWaste_T);
+                                                    chosenML_T.Add(trDiameter);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                chosenML_T.Clear();
+                                                chosenML_T.Add(Lm);
+                                                chosenML_T.Add(qtyT);
+                                                chosenML_T.Add(LB_qtyL + LB_qtyT);
+                                                chosenML_T.Add(qtyP);
+                                                chosenML_T.Add(qtyM);
+                                                chosenML_T.Add(Lw);
+                                                chosenML_T.Add(Le);
+                                                chosenML_T.Add(totalWaste_T);
+                                                chosenML_T.Add(trDiameter);
+                                            }
                                         }
+                                    }
+                                    else if (previousTotalWaste_T == 0)
+                                    {
+                                        chosenML_T.Clear();
+                                        chosenML_T.Add(Lm);
+                                        chosenML_T.Add(qtyT);
+                                        chosenML_T.Add(LB_qtyL + LB_qtyT);
+                                        chosenML_T.Add(qtyP);
+                                        chosenML_T.Add(qtyM);
+                                        chosenML_T.Add(Lw);
+                                        chosenML_T.Add(Le);
+                                        chosenML_T.Add(totalWaste_T);
+                                        chosenML_T.Add(trDiameter);
                                     }
                                 }
                             }
@@ -885,17 +1077,49 @@ namespace KnowEst
                                 {
                                     if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
                                     {
-                                        chosenML_L.Clear();
-                                        chosenML_L.Add(Lm);
-                                        chosenML_L.Add(qtyL);
-                                        chosenML_L.Add(LB_qtyL);
-                                        chosenML_L.Add(qtyP);
-                                        chosenML_L.Add(qtyM);
-                                        chosenML_L.Add(Lw);
-                                        chosenML_L.Add(Le);
-                                        chosenML_L.Add(totalWaste_L);
-                                        chosenML_L.Add(lrDiameter);
+                                        if (chosenML_L.Any())
+                                        {
+                                            if (totalWaste_L < chosenML_L[7])
+                                            {
+                                                chosenML_L.Clear();
+                                                chosenML_L.Add(Lm);
+                                                chosenML_L.Add(qtyL);
+                                                chosenML_L.Add(LB_qtyL);
+                                                chosenML_L.Add(qtyP);
+                                                chosenML_L.Add(qtyM);
+                                                chosenML_L.Add(Lw);
+                                                chosenML_L.Add(Le);
+                                                chosenML_L.Add(totalWaste_L);
+                                                chosenML_L.Add(lrDiameter);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL);
+                                            chosenML_L.Add(LB_qtyL);
+                                            chosenML_L.Add(qtyP);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(Lw);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_L);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
                                     }
+                                }
+                                else if (previousTotalWaste_L == 0)
+                                {
+                                    chosenML_L.Clear();
+                                    chosenML_L.Add(Lm);
+                                    chosenML_L.Add(qtyL);
+                                    chosenML_L.Add(LB_qtyL);
+                                    chosenML_L.Add(qtyP);
+                                    chosenML_L.Add(qtyM);
+                                    chosenML_L.Add(Lw);
+                                    chosenML_L.Add(Le);
+                                    chosenML_L.Add(totalWaste_L);
+                                    chosenML_L.Add(lrDiameter);
                                 }
 
                                 //Upper
@@ -915,17 +1139,49 @@ namespace KnowEst
                                 {
                                     if (totalWaste_U < previousTotalWaste_U || (Double.IsNaN(previousTotalWaste_U) && !Double.IsNaN(totalWaste_U)))
                                     {
-                                        chosenML_U.Clear();
-                                        chosenML_U.Add(Lm);
-                                        chosenML_U.Add(qtyU);
-                                        chosenML_U.Add(LB_qtyU);
-                                        chosenML_U.Add(qtyP);
-                                        chosenML_U.Add(qtyM);
-                                        chosenML_U.Add(Lw);
-                                        chosenML_U.Add(Le);
-                                        chosenML_U.Add(totalWaste_U);
-                                        chosenML_U.Add(urDiameter);
+                                        if (chosenML_U.Any())
+                                        {
+                                            if (totalWaste_U < chosenML_U[7])
+                                            {
+                                                chosenML_U.Clear();
+                                                chosenML_U.Add(Lm);
+                                                chosenML_U.Add(qtyU);
+                                                chosenML_U.Add(LB_qtyU);
+                                                chosenML_U.Add(qtyP);
+                                                chosenML_U.Add(qtyM);
+                                                chosenML_U.Add(Lw);
+                                                chosenML_U.Add(Le);
+                                                chosenML_U.Add(totalWaste_U);
+                                                chosenML_U.Add(urDiameter);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenML_U.Clear();
+                                            chosenML_U.Add(Lm);
+                                            chosenML_U.Add(qtyU);
+                                            chosenML_U.Add(LB_qtyU);
+                                            chosenML_U.Add(qtyP);
+                                            chosenML_U.Add(qtyM);
+                                            chosenML_U.Add(Lw);
+                                            chosenML_U.Add(Le);
+                                            chosenML_U.Add(totalWaste_U);
+                                            chosenML_U.Add(urDiameter);
+                                        }
                                     }
+                                }
+                                else if (previousTotalWaste_U == 0)
+                                {
+                                    chosenML_U.Clear();
+                                    chosenML_U.Add(Lm);
+                                    chosenML_U.Add(qtyU);
+                                    chosenML_U.Add(LB_qtyU);
+                                    chosenML_U.Add(qtyP);
+                                    chosenML_U.Add(qtyM);
+                                    chosenML_U.Add(Lw);
+                                    chosenML_U.Add(Le);
+                                    chosenML_U.Add(totalWaste_U);
+                                    chosenML_U.Add(urDiameter);
                                 }
 
                                 //Transverse
@@ -945,17 +1201,49 @@ namespace KnowEst
                                 {
                                     if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
                                     {
-                                        chosenML_T.Clear();
-                                        chosenML_T.Add(Lm);
-                                        chosenML_T.Add(qtyT);
-                                        chosenML_T.Add(LB_qtyT);
-                                        chosenML_T.Add(qtyP);
-                                        chosenML_T.Add(qtyM);
-                                        chosenML_T.Add(Lw);
-                                        chosenML_T.Add(Le);
-                                        chosenML_T.Add(totalWaste_T);
-                                        chosenML_T.Add(trDiameter);
+                                        if (chosenML_T.Any())
+                                        {
+                                            if (totalWaste_T < chosenML_T[7])
+                                            {
+                                                chosenML_T.Clear();
+                                                chosenML_T.Add(Lm);
+                                                chosenML_T.Add(qtyT);
+                                                chosenML_T.Add(LB_qtyT);
+                                                chosenML_T.Add(qtyP);
+                                                chosenML_T.Add(qtyM);
+                                                chosenML_T.Add(Lw);
+                                                chosenML_T.Add(Le);
+                                                chosenML_T.Add(totalWaste_T);
+                                                chosenML_T.Add(trDiameter);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenML_T.Clear();
+                                            chosenML_T.Add(Lm);
+                                            chosenML_T.Add(qtyT);
+                                            chosenML_T.Add(LB_qtyT);
+                                            chosenML_T.Add(qtyP);
+                                            chosenML_T.Add(qtyM);
+                                            chosenML_T.Add(Lw);
+                                            chosenML_T.Add(Le);
+                                            chosenML_T.Add(totalWaste_T);
+                                            chosenML_T.Add(trDiameter);
+                                        }
                                     }
+                                }
+                                else if (previousTotalWaste_T == 0)
+                                {
+                                    chosenML_T.Clear();
+                                    chosenML_T.Add(Lm);
+                                    chosenML_T.Add(qtyT);
+                                    chosenML_T.Add(LB_qtyT);
+                                    chosenML_T.Add(qtyP);
+                                    chosenML_T.Add(qtyM);
+                                    chosenML_T.Add(Lw);
+                                    chosenML_T.Add(Le);
+                                    chosenML_T.Add(totalWaste_T);
+                                    chosenML_T.Add(trDiameter);
                                 }
                             }
                         }
@@ -1061,7 +1349,7 @@ namespace KnowEst
                     concreteGrade = cEF.parameters.conc_CM_F_CG;
                     ccWF = double.Parse(cEF.parameters.conc_CC_SG, System.Globalization.CultureInfo.InvariantCulture);
                     for (int i = 0; i < 7; i++)
-                        manufacturedLength[i] = cEF.parameters.rein_mfIsSelected[1, i];
+                        manufacturedLength[i] = cEF.parameters.rein_mfIsSelected[2, i];
 
                     //Variables from StructMem
                     double length, lengthF2F, wfBase, thickness, depth, quantity, lrDiameter, lrQuantity, lrSpacing, lrHookType,
@@ -1352,24 +1640,56 @@ namespace KnowEst
                                 {
                                     if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
                                     {
-                                        chosenML_L.Clear();
-                                        chosenML_L.Add(Lm);
-                                        chosenML_L.Add(qtyL);
-                                        chosenML_L.Add(LB_qtyL);
-                                        chosenML_L.Add(qtyP);
-                                        chosenML_L.Add(qtyM);
-                                        chosenML_L.Add(Lw);
-                                        chosenML_L.Add(Le);
-                                        chosenML_L.Add(totalWaste_L);
-                                        chosenML_L.Add(lrDiameter);
+                                        if (chosenML_L.Any())
+                                        {
+                                            if (totalWaste_L < chosenML_L[7])
+                                            {
+                                                chosenML_L.Clear();
+                                                chosenML_L.Add(Lm);
+                                                chosenML_L.Add(qtyL);
+                                                chosenML_L.Add(LB_qtyL);
+                                                chosenML_L.Add(qtyP);
+                                                chosenML_L.Add(qtyM);
+                                                chosenML_L.Add(Lw);
+                                                chosenML_L.Add(Le);
+                                                chosenML_L.Add(totalWaste_L);
+                                                chosenML_L.Add(lrDiameter);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL);
+                                            chosenML_L.Add(LB_qtyL);
+                                            chosenML_L.Add(qtyP);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(Lw);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_L);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
                                     }
+                                }
+                                else if (previousTotalWaste_L == 0)
+                                {
+                                    chosenML_L.Clear();
+                                    chosenML_L.Add(Lm);
+                                    chosenML_L.Add(qtyL);
+                                    chosenML_L.Add(LB_qtyL);
+                                    chosenML_L.Add(qtyP);
+                                    chosenML_L.Add(qtyM);
+                                    chosenML_L.Add(Lw);
+                                    chosenML_L.Add(Le);
+                                    chosenML_L.Add(totalWaste_L);
+                                    chosenML_L.Add(lrDiameter);
                                 }
                             }
                             else 
                             {
                                 //Longitudinal Reinforcement
                                 qtyM = LB_qtyL / (Lm - sl);
-                                Lx = (Math.Ceiling(qtyM) - qtyM) * (Lm - sl);
+                                Lx = (qtyM - Math.Floor(qtyM)) * (Lm - sl);
                                 Le = Lm - Lx;
                                 totalWaste_L = Le * qtyL;
                                 qtyCM = qtyL * Math.Ceiling(qtyM);
@@ -1377,17 +1697,49 @@ namespace KnowEst
                                 {
                                     if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
                                     {
-                                        chosenML_L.Clear();
-                                        chosenML_L.Add(Lm);
-                                        chosenML_L.Add(qtyL);
-                                        chosenML_L.Add(sl);
-                                        chosenML_L.Add(qtyM);
-                                        chosenML_L.Add(Lx);
-                                        chosenML_L.Add(Le);
-                                        chosenML_L.Add(qtyCM);
-                                        chosenML_L.Add(totalWaste_L);
-                                        chosenML_L.Add(lrDiameter);
+                                        if (chosenML_L.Any())
+                                        {
+                                            if (totalWaste_L < chosenML_L[7])
+                                            {
+                                                chosenML_L.Clear();
+                                                chosenML_L.Add(Lm);
+                                                chosenML_L.Add(qtyL);
+                                                chosenML_L.Add(sl);
+                                                chosenML_L.Add(qtyM);
+                                                chosenML_L.Add(qtyCM);
+                                                chosenML_L.Add(Lx);
+                                                chosenML_L.Add(Le);
+                                                chosenML_L.Add(totalWaste_L);
+                                                chosenML_L.Add(lrDiameter);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL);
+                                            chosenML_L.Add(sl);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(qtyCM);
+                                            chosenML_L.Add(Lx);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_L);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
                                     }
+                                }
+                                else if (previousTotalWaste_L == 0)
+                                {
+                                    chosenML_L.Clear();
+                                    chosenML_L.Add(Lm);
+                                    chosenML_L.Add(qtyL);
+                                    chosenML_L.Add(sl);
+                                    chosenML_L.Add(qtyM);
+                                    chosenML_L.Add(qtyCM);
+                                    chosenML_L.Add(Lx);
+                                    chosenML_L.Add(Le);
+                                    chosenML_L.Add(totalWaste_L);
+                                    chosenML_L.Add(lrDiameter);
                                 }
                             }
                             //Transverse Reinforcement
@@ -1403,30 +1755,104 @@ namespace KnowEst
                             {
                                 if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
                                 {
-                                    chosenML_T.Clear();
-                                    chosenML_T.Add(Lm);
-                                    chosenML_T.Add(qtyT);
-                                    chosenML_T.Add(LB_qtyT);
-                                    chosenML_T.Add(qtyP);
-                                    chosenML_T.Add(qtyM);
-                                    chosenML_T.Add(Lw);
-                                    chosenML_T.Add(Le);
-                                    chosenML_T.Add(totalWaste_T);
-                                    chosenML_T.Add(trDiameter);
+                                    if (chosenML_T.Any())
+                                    {
+                                        if (totalWaste_T < chosenML_T[7])
+                                        {
+                                            chosenML_T.Clear();
+                                            chosenML_T.Add(Lm);
+                                            chosenML_T.Add(qtyT);
+                                            chosenML_T.Add(LB_qtyT);
+                                            chosenML_T.Add(qtyP);
+                                            chosenML_T.Add(qtyM);
+                                            chosenML_T.Add(Lw);
+                                            chosenML_T.Add(Le);
+                                            chosenML_T.Add(totalWaste_T);
+                                            chosenML_T.Add(trDiameter);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        chosenML_T.Clear();
+                                        chosenML_T.Add(Lm);
+                                        chosenML_T.Add(qtyT);
+                                        chosenML_T.Add(LB_qtyT);
+                                        chosenML_T.Add(qtyP);
+                                        chosenML_T.Add(qtyM);
+                                        chosenML_T.Add(Lw);
+                                        chosenML_T.Add(Le);
+                                        chosenML_T.Add(totalWaste_T);
+                                        chosenML_T.Add(trDiameter);
+                                    }
                                 }
                             }
-                            print("============ Longitudinal ============");
-                            foreach(double datum in chosenML_L)
+                            else if (previousTotalWaste_T == 0)
                             {
-                                print("nice: " + datum);
-                            }
-                            print("============ Transverse ============");
-                            foreach (double datum in chosenML_T)
-                            {
-                                print("nice: " + datum);
+                                chosenML_T.Clear();
+                                chosenML_T.Add(Lm);
+                                chosenML_T.Add(qtyT);
+                                chosenML_T.Add(LB_qtyT);
+                                chosenML_T.Add(qtyP);
+                                chosenML_T.Add(qtyM);
+                                chosenML_T.Add(Lw);
+                                chosenML_T.Add(Le);
+                                chosenML_T.Add(totalWaste_T);
+                                chosenML_T.Add(trDiameter);
                             }
                         }
                     }
+
+                    //5 -> Costing of material -> in MainForm.cs function initializeView()
+                    //6
+                    //Temporary variables
+                    double weight = 0;
+                    double Wd = 0;
+
+                    //If no chosen ml, computation is wrong and set proper list
+                    if (!chosenML_L.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_L.Add(0);
+                        }
+                    }
+                    if (!chosenML_T.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_T.Add(0);
+                        }
+                    }
+
+                    //Longitudinal
+                    for (int i = 0; i < cEF.parameters.rein_W_dt.Rows.Count; i++)
+                    {
+                        if (cEF.parameters.rein_W_dt.Rows[i][0].ToString().Equals(lrDiameter + "mm"))
+                        {
+                            Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                    weight = chosenML_L[0] * Math.Ceiling(chosenML_L[4]) * Wd;
+                    chosenML_L.Add(weight);
+
+                    print("Weight L: " + weight + " and WD: " + Wd + " and LM: " + chosenML_L[0] + " and QTYM: " + chosenML_L[4]);
+
+                    //Transverse
+                    for (int i = 0; i < cEF.parameters.rein_W_dt.Rows.Count; i++)
+                    {
+                        if (cEF.parameters.rein_W_dt.Rows[i][0].ToString().Equals(trDiameter + "mm"))
+                        {
+                            Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                    weight = chosenML_T[0] * Math.Ceiling(chosenML_T[4]) * Wd;
+                    chosenML_T.Add(weight);
+
+                    //7 - 8 -> Costing of Labor -> in MainForm.cs function initializeView()
+                    cEF.structuralMembers.wallFootingReinforcements[wallFootingCount].Add(chosenML_L);
+                    cEF.structuralMembers.wallFootingReinforcements[wallFootingCount].Add(chosenML_T);
                 }
                 else //Trapezoidal
                 {
@@ -1443,7 +1869,7 @@ namespace KnowEst
                     concreteGrade = cEF.parameters.conc_CM_F_CG;
                     ccWF = double.Parse(cEF.parameters.conc_CC_SG, System.Globalization.CultureInfo.InvariantCulture);
                     for (int i = 0; i < 7; i++)
-                        manufacturedLength[i] = cEF.parameters.rein_mfIsSelected[1, i];
+                        manufacturedLength[i] = cEF.parameters.rein_mfIsSelected[2, i];
 
                     //Variables from StructMem
                     double length, lengthF2F, wfBaseT, wfBaseU, thickness, depth, quantity, lrDiameter, lrQuantity, lrSpacing, lrHookType,
@@ -1566,6 +1992,9 @@ namespace KnowEst
                     else
                         qtyT = quantity * trQuantity;
 
+                    print("qtyL: " + qtyL);
+                    print("qtyT: " + qtyT);
+
                     //3
                     double hl_L = 0;
                     double hl_T = 0;
@@ -1619,6 +2048,9 @@ namespace KnowEst
                     double LB_qtyT = (wfBaseU - 2 * ccWF * 0.4142135624) + 600 + ((wfBaseT - wfBaseU) * Math.Sqrt(2)) + (2 * hl_T); //Math.Tan(22.5) inaccurate
                     LB_qtyL /= 1000;
                     LB_qtyT /= 1000;
+
+                    print("LB_qtyL: " + LB_qtyL);
+                    print("LB_qtyT: " + LB_qtyT);
 
                     //4
                     double largestML = 0;
@@ -1738,24 +2170,67 @@ namespace KnowEst
                                 {
                                     if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
                                     {
-                                        chosenML_L.Clear();
-                                        chosenML_L.Add(Lm);
-                                        chosenML_L.Add(qtyL);
-                                        chosenML_L.Add(LB_qtyL);
-                                        chosenML_L.Add(qtyP);
-                                        chosenML_L.Add(qtyM);
-                                        chosenML_L.Add(Lw);
-                                        chosenML_L.Add(Le);
-                                        chosenML_L.Add(totalWaste_L);
-                                        chosenML_L.Add(lrDiameter);
+                                        if (chosenML_L.Any())
+                                        {
+                                            if (totalWaste_L < chosenML_L[7])
+                                            {
+                                                chosenML_L.Clear();
+                                                chosenML_L.Add(Lm);
+                                                chosenML_L.Add(qtyL);
+                                                chosenML_L.Add(LB_qtyL);
+                                                chosenML_L.Add(qtyP);
+                                                chosenML_L.Add(qtyM);
+                                                chosenML_L.Add(Lw);
+                                                chosenML_L.Add(Le);
+                                                chosenML_L.Add(totalWaste_L);
+                                                chosenML_L.Add(lrDiameter);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL);
+                                            chosenML_L.Add(LB_qtyL);
+                                            chosenML_L.Add(qtyP);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(Lw);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_L);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
                                     }
                                 }
+                                else if (previousTotalWaste_L == 0)
+                                {
+                                    chosenML_L.Clear();
+                                    chosenML_L.Add(Lm);
+                                    chosenML_L.Add(qtyL);
+                                    chosenML_L.Add(LB_qtyL);
+                                    chosenML_L.Add(qtyP);
+                                    chosenML_L.Add(qtyM);
+                                    chosenML_L.Add(Lw);
+                                    chosenML_L.Add(Le);
+                                    chosenML_L.Add(totalWaste_L);
+                                    chosenML_L.Add(lrDiameter);
+                                }
+
+                                print("============ Longitudinal ============");
+                                print("Lm: " + Lm);
+                                print("qtyL: " + qtyL);
+                                print("LB_qtyL: " + LB_qtyL);
+                                print("qtyP: " + qtyP);
+                                print("qtyM: " + qtyM);
+                                print("Le: " + Le);
+                                print("Lw: " + Lw);
+                                print("totalWaste_L: " + totalWaste_L);
+                                print("previousTotalWaste_L: " + previousTotalWaste_L);
                             }
                             else
                             {
                                 //Longitudinal Reinforcement
                                 qtyM = LB_qtyL / (Lm - sl);
-                                Lx = (Math.Ceiling(qtyM) - qtyM) * (Lm - sl);
+                                Lx = (qtyM - Math.Floor(qtyM)) * (Lm - sl);
                                 Le = Lm - Lx;
                                 totalWaste_L = Le * qtyL;
                                 qtyCM = qtyL * Math.Ceiling(qtyM);
@@ -1763,18 +2238,62 @@ namespace KnowEst
                                 {
                                     if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
                                     {
-                                        chosenML_L.Clear();
-                                        chosenML_L.Add(Lm);
-                                        chosenML_L.Add(qtyL);
-                                        chosenML_L.Add(sl);
-                                        chosenML_L.Add(qtyM);
-                                        chosenML_L.Add(Lx);
-                                        chosenML_L.Add(Le);
-                                        chosenML_L.Add(qtyCM);
-                                        chosenML_L.Add(totalWaste_L);
-                                        chosenML_L.Add(lrDiameter);
+                                        if (chosenML_L.Any())
+                                        {
+                                            if (totalWaste_L < chosenML_L[7])
+                                            {
+                                                chosenML_L.Clear();
+                                                chosenML_L.Add(Lm);
+                                                chosenML_L.Add(qtyL);
+                                                chosenML_L.Add(sl);
+                                                chosenML_L.Add(qtyM);
+                                                chosenML_L.Add(qtyCM);
+                                                chosenML_L.Add(Lx);
+                                                chosenML_L.Add(Le);
+                                                chosenML_L.Add(totalWaste_L);
+                                                chosenML_L.Add(lrDiameter);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL);
+                                            chosenML_L.Add(sl);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(qtyCM);
+                                            chosenML_L.Add(Lx);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_L);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
                                     }
                                 }
+                                else if (previousTotalWaste_L == 0)
+                                {
+                                    chosenML_L.Clear();
+                                    chosenML_L.Add(Lm);
+                                    chosenML_L.Add(qtyL);
+                                    chosenML_L.Add(sl);
+                                    chosenML_L.Add(qtyM);
+                                    chosenML_L.Add(qtyCM);
+                                    chosenML_L.Add(Lx);
+                                    chosenML_L.Add(Le);
+                                    chosenML_L.Add(totalWaste_L);
+                                    chosenML_L.Add(lrDiameter);
+                                }
+
+                                print("============ Longitudinal ============");
+                                print("Lm: " + Lm);
+                                print("qtyL: " + qtyL);
+                                print("LB_qtyL: " + LB_qtyL);
+                                print("SL: " + sl);
+                                print("qtyM: " + qtyM);
+                                print("Lx: " + Lx);
+                                print("Le: " + Le);
+                                print("qtyCM: " + qtyCM);
+                                print("totalWaste_L: " + totalWaste_L);
+                                print("previousTotalWaste_L: " + previousTotalWaste_L);
                             }
                             //Transverse Reinforcement
                             qtyP = Lm / LB_qtyT;
@@ -1789,30 +2308,115 @@ namespace KnowEst
                             {
                                 if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
                                 {
-                                    chosenML_T.Clear();
-                                    chosenML_T.Add(Lm);
-                                    chosenML_T.Add(qtyT);
-                                    chosenML_T.Add(LB_qtyT);
-                                    chosenML_T.Add(qtyP);
-                                    chosenML_T.Add(qtyM);
-                                    chosenML_T.Add(Lw);
-                                    chosenML_T.Add(Le);
-                                    chosenML_T.Add(totalWaste_T);
-                                    chosenML_T.Add(trDiameter);
+                                    if (chosenML_T.Any())
+                                    {
+                                        if (totalWaste_T < chosenML_T[7])
+                                        {
+                                            chosenML_T.Clear();
+                                            chosenML_T.Add(Lm);
+                                            chosenML_T.Add(qtyT);
+                                            chosenML_T.Add(LB_qtyT);
+                                            chosenML_T.Add(qtyP);
+                                            chosenML_T.Add(qtyM);
+                                            chosenML_T.Add(Lw);
+                                            chosenML_T.Add(Le);
+                                            chosenML_T.Add(totalWaste_T);
+                                            chosenML_T.Add(trDiameter);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        chosenML_T.Clear();
+                                        chosenML_T.Add(Lm);
+                                        chosenML_T.Add(qtyT);
+                                        chosenML_T.Add(LB_qtyT);
+                                        chosenML_T.Add(qtyP);
+                                        chosenML_T.Add(qtyM);
+                                        chosenML_T.Add(Lw);
+                                        chosenML_T.Add(Le);
+                                        chosenML_T.Add(totalWaste_T);
+                                        chosenML_T.Add(trDiameter);
+                                    }
                                 }
                             }
-                            print("============ Longitudinal ============");
-                            foreach (double datum in chosenML_L)
+                            else if (previousTotalWaste_T == 0)
                             {
-                                print("nice: " + datum);
+                                chosenML_T.Clear();
+                                chosenML_T.Add(Lm);
+                                chosenML_T.Add(qtyT);
+                                chosenML_T.Add(LB_qtyT);
+                                chosenML_T.Add(qtyP);
+                                chosenML_T.Add(qtyM);
+                                chosenML_T.Add(Lw);
+                                chosenML_T.Add(Le);
+                                chosenML_T.Add(totalWaste_T);
+                                chosenML_T.Add(trDiameter);
                             }
+
                             print("============ Transverse ============");
-                            foreach (double datum in chosenML_T)
-                            {
-                                print("nice: " + datum);
-                            }
+                            print("Lm: " + Lm);
+                            print("qtyT: " + qtyT);
+                            print("LB_qtyT: " + LB_qtyT);
+                            print("qtyP: " + qtyP);
+                            print("qtyM: " + qtyM);
+                            print("Le: " + Le);
+                            print("Lw: " + Lw);
+                            print("totalWaste_T: " + totalWaste_T);
+                            print("previousTotalWaste_T: " + previousTotalWaste_T);
                         }
                     }
+
+                    //5 -> Costing of material -> in MainForm.cs function initializeView()
+                    //6
+                    //Temporary variables
+                    double weight = 0;
+                    double Wd = 0;
+
+                    //If no chosen ml, computation is wrong and set proper list
+                    if (!chosenML_L.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_L.Add(0);
+                        }
+                    }
+                    if (!chosenML_T.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_T.Add(0);
+                        }
+                    }
+                    
+                    //Longitudinal
+                    for (int i = 0; i < cEF.parameters.rein_W_dt.Rows.Count; i++)
+                    {
+                        if (cEF.parameters.rein_W_dt.Rows[i][0].ToString().Equals(lrDiameter + "mm"))
+                        {
+                            Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                    weight = chosenML_L[0] * Math.Ceiling(chosenML_L[4]) * Wd;
+                    chosenML_L.Add(weight);
+
+                    print("Weight L: " + weight + " and WD: " + Wd + " and LM: " + chosenML_L[0] + " and QTYM: " + chosenML_L[4]);
+
+                    //Transverse
+                    for (int i = 0; i < cEF.parameters.rein_W_dt.Rows.Count; i++)
+                    {
+                        if (cEF.parameters.rein_W_dt.Rows[i][0].ToString().Equals(trDiameter + "mm"))
+                        {
+                            Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[i][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                    weight = chosenML_T[0] * Math.Ceiling(chosenML_T[4]) * Wd;
+                    chosenML_T.Add(weight);
+
+                    //7 - 8 -> Costing of Labor -> in MainForm.cs function initializeView()
+                    cEF.structuralMembers.wallFootingReinforcements[wallFootingCount].Add(chosenML_L);
+                    cEF.structuralMembers.wallFootingReinforcements[wallFootingCount].Add(chosenML_T);
                 }
             }
             //Computation -- add formworks [FOOTING]
@@ -2051,17 +2655,49 @@ namespace KnowEst
                             {
                                 if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
                                 {
-                                    chosenML_L.Clear();
-                                    chosenML_L.Add(Lm);
-                                    chosenML_L.Add(qtyL);
-                                    chosenML_L.Add(LB_qtyL);
-                                    chosenML_L.Add(qtyP);
-                                    chosenML_L.Add(qtyM);
-                                    chosenML_L.Add(Lw);
-                                    chosenML_L.Add(Le);
-                                    chosenML_L.Add(totalWaste_L);
-                                    chosenML_L.Add(lrDiameter);
+                                    if (chosenML_L.Any())
+                                    {
+                                        if (totalWaste_L < chosenML_L[7])
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL);
+                                            chosenML_L.Add(LB_qtyL);
+                                            chosenML_L.Add(qtyP);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(Lw);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_L);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        chosenML_L.Clear();
+                                        chosenML_L.Add(Lm);
+                                        chosenML_L.Add(qtyL);
+                                        chosenML_L.Add(LB_qtyL);
+                                        chosenML_L.Add(qtyP);
+                                        chosenML_L.Add(qtyM);
+                                        chosenML_L.Add(Lw);
+                                        chosenML_L.Add(Le);
+                                        chosenML_L.Add(totalWaste_L);
+                                        chosenML_L.Add(lrDiameter);
+                                    }
                                 }
+                            }
+                            else if (previousTotalWaste_L == 0)
+                            {
+                                chosenML_L.Clear();
+                                chosenML_L.Add(Lm);
+                                chosenML_L.Add(qtyL);
+                                chosenML_L.Add(LB_qtyL);
+                                chosenML_L.Add(qtyP);
+                                chosenML_L.Add(qtyM);
+                                chosenML_L.Add(Lw);
+                                chosenML_L.Add(Le);
+                                chosenML_L.Add(totalWaste_L);
+                                chosenML_L.Add(lrDiameter);
                             }
 
                             //Transverse
@@ -2081,17 +2717,49 @@ namespace KnowEst
                             {
                                 if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
                                 {
-                                    chosenML_T.Clear();
-                                    chosenML_T.Add(Lm);
-                                    chosenML_T.Add(qtyT);
-                                    chosenML_T.Add(LB_qtyT);
-                                    chosenML_T.Add(qtyP);
-                                    chosenML_T.Add(qtyM);
-                                    chosenML_T.Add(Lw);
-                                    chosenML_T.Add(Le);
-                                    chosenML_T.Add(totalWaste_T);
-                                    chosenML_T.Add(trDiameter);
+                                    if (chosenML_T.Any())
+                                    {
+                                        if (totalWaste_T < chosenML_T[7])
+                                        {
+                                            chosenML_T.Clear();
+                                            chosenML_T.Add(Lm);
+                                            chosenML_T.Add(qtyT);
+                                            chosenML_T.Add(LB_qtyT);
+                                            chosenML_T.Add(qtyP);
+                                            chosenML_T.Add(qtyM);
+                                            chosenML_T.Add(Lw);
+                                            chosenML_T.Add(Le);
+                                            chosenML_T.Add(totalWaste_T);
+                                            chosenML_T.Add(trDiameter);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        chosenML_T.Clear();
+                                        chosenML_T.Add(Lm);
+                                        chosenML_T.Add(qtyT);
+                                        chosenML_T.Add(LB_qtyT);
+                                        chosenML_T.Add(qtyP);
+                                        chosenML_T.Add(qtyM);
+                                        chosenML_T.Add(Lw);
+                                        chosenML_T.Add(Le);
+                                        chosenML_T.Add(totalWaste_T);
+                                        chosenML_T.Add(trDiameter);
+                                    }
                                 }
+                            }
+                            else if (previousTotalWaste_T == 0)
+                            {
+                                chosenML_T.Clear();
+                                chosenML_T.Add(Lm);
+                                chosenML_T.Add(qtyT);
+                                chosenML_T.Add(LB_qtyT);
+                                chosenML_T.Add(qtyP);
+                                chosenML_T.Add(qtyM);
+                                chosenML_T.Add(Lw);
+                                chosenML_T.Add(Le);
+                                chosenML_T.Add(totalWaste_T);
+                                chosenML_T.Add(trDiameter);
                             }
                         }
                     }
@@ -2459,17 +3127,49 @@ namespace KnowEst
                                     {
                                         if (totalWaste_LU < previousTotalWaste_LU || (Double.IsNaN(previousTotalWaste_LU) && !Double.IsNaN(totalWaste_LU)))
                                         {
-                                            chosenML_L.Clear();
-                                            chosenML_L.Add(Lm);
-                                            chosenML_L.Add(qtyL + qtyU);
-                                            chosenML_L.Add(LB_qtyL + LB_qtyT);
-                                            chosenML_L.Add(qtyP);
-                                            chosenML_L.Add(qtyM);
-                                            chosenML_L.Add(Lw);
-                                            chosenML_L.Add(Le);
-                                            chosenML_L.Add(totalWaste_LU);
-                                            chosenML_L.Add(lrDiameter);
+                                            if (chosenML_L.Any())
+                                            {
+                                                if (totalWaste_LU < chosenML_L[7])
+                                                {
+                                                    chosenML_L.Clear();
+                                                    chosenML_L.Add(Lm);
+                                                    chosenML_L.Add(qtyL + qtyU);
+                                                    chosenML_L.Add(LB_qtyL + LB_qtyT);
+                                                    chosenML_L.Add(qtyP);
+                                                    chosenML_L.Add(qtyM);
+                                                    chosenML_L.Add(Lw);
+                                                    chosenML_L.Add(Le);
+                                                    chosenML_L.Add(totalWaste_LU);
+                                                    chosenML_L.Add(lrDiameter);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                chosenML_L.Clear();
+                                                chosenML_L.Add(Lm);
+                                                chosenML_L.Add(qtyL + qtyU);
+                                                chosenML_L.Add(LB_qtyL + LB_qtyT);
+                                                chosenML_L.Add(qtyP);
+                                                chosenML_L.Add(qtyM);
+                                                chosenML_L.Add(Lw);
+                                                chosenML_L.Add(Le);
+                                                chosenML_L.Add(totalWaste_LU);
+                                                chosenML_L.Add(lrDiameter);
+                                            }
                                         }
+                                    }
+                                    else if (previousTotalWaste_LU == 0)
+                                    {
+                                        chosenML_L.Clear();
+                                        chosenML_L.Add(Lm);
+                                        chosenML_L.Add(qtyL + qtyU);
+                                        chosenML_L.Add(LB_qtyL + LB_qtyT);
+                                        chosenML_L.Add(qtyP);
+                                        chosenML_L.Add(qtyM);
+                                        chosenML_L.Add(Lw);
+                                        chosenML_L.Add(Le);
+                                        chosenML_L.Add(totalWaste_LU);
+                                        chosenML_L.Add(lrDiameter);
                                     }
 
                                     //Transverse
@@ -2489,17 +3189,49 @@ namespace KnowEst
                                     {
                                         if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
                                         {
-                                            chosenML_T.Clear();
-                                            chosenML_T.Add(Lm);
-                                            chosenML_T.Add(qtyT - qtyL - qtyU);
-                                            chosenML_T.Add(LB_qtyT);
-                                            chosenML_T.Add(qtyP);
-                                            chosenML_T.Add(qtyM);
-                                            chosenML_T.Add(Lw);
-                                            chosenML_T.Add(Le);
-                                            chosenML_T.Add(totalWaste_T);
-                                            chosenML_T.Add(trDiameter);
+                                            if (chosenML_T.Any())
+                                            {
+                                                if (totalWaste_T < chosenML_T[7])
+                                                {
+                                                    chosenML_T.Clear();
+                                                    chosenML_T.Add(Lm);
+                                                    chosenML_T.Add(qtyT - qtyL - qtyU);
+                                                    chosenML_T.Add(LB_qtyT);
+                                                    chosenML_T.Add(qtyP);
+                                                    chosenML_T.Add(qtyM);
+                                                    chosenML_T.Add(Lw);
+                                                    chosenML_T.Add(Le);
+                                                    chosenML_T.Add(totalWaste_T);
+                                                    chosenML_T.Add(trDiameter);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                chosenML_T.Clear();
+                                                chosenML_T.Add(Lm);
+                                                chosenML_T.Add(qtyT - qtyL - qtyU);
+                                                chosenML_T.Add(LB_qtyT);
+                                                chosenML_T.Add(qtyP);
+                                                chosenML_T.Add(qtyM);
+                                                chosenML_T.Add(Lw);
+                                                chosenML_T.Add(Le);
+                                                chosenML_T.Add(totalWaste_T);
+                                                chosenML_T.Add(trDiameter);
+                                            }
                                         }
+                                    }
+                                    else if (previousTotalWaste_T == 0)
+                                    {
+                                        chosenML_T.Clear();
+                                        chosenML_T.Add(Lm);
+                                        chosenML_T.Add(qtyT - qtyL - qtyU);
+                                        chosenML_T.Add(LB_qtyT);
+                                        chosenML_T.Add(qtyP);
+                                        chosenML_T.Add(qtyM);
+                                        chosenML_T.Add(Lw);
+                                        chosenML_T.Add(Le);
+                                        chosenML_T.Add(totalWaste_T);
+                                        chosenML_T.Add(trDiameter);
                                     }
                                 }
                                 else if (qtyL + qtyU >= qtyT) //Case 2
@@ -2521,17 +3253,49 @@ namespace KnowEst
                                     {
                                         if (totalWaste_LU < previousTotalWaste_LU || (Double.IsNaN(previousTotalWaste_LU) && !Double.IsNaN(totalWaste_LU)))
                                         {
-                                            chosenML_L.Clear();
-                                            chosenML_L.Add(Lm);
-                                            chosenML_L.Add(qtyL + qtyU - qtyT);
-                                            chosenML_L.Add(LB_qtyL);
-                                            chosenML_L.Add(qtyP);
-                                            chosenML_L.Add(qtyM);
-                                            chosenML_L.Add(Lw);
-                                            chosenML_L.Add(Le);
-                                            chosenML_L.Add(totalWaste_LU);
-                                            chosenML_L.Add(lrDiameter);
+                                            if (chosenML_L.Any())
+                                            {
+                                                if (totalWaste_LU < chosenML_L[7])
+                                                {
+                                                    chosenML_L.Clear();
+                                                    chosenML_L.Add(Lm);
+                                                    chosenML_L.Add(qtyL + qtyU - qtyT);
+                                                    chosenML_L.Add(LB_qtyL);
+                                                    chosenML_L.Add(qtyP);
+                                                    chosenML_L.Add(qtyM);
+                                                    chosenML_L.Add(Lw);
+                                                    chosenML_L.Add(Le);
+                                                    chosenML_L.Add(totalWaste_LU);
+                                                    chosenML_L.Add(lrDiameter);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                chosenML_L.Clear();
+                                                chosenML_L.Add(Lm);
+                                                chosenML_L.Add(qtyL + qtyU - qtyT);
+                                                chosenML_L.Add(LB_qtyL);
+                                                chosenML_L.Add(qtyP);
+                                                chosenML_L.Add(qtyM);
+                                                chosenML_L.Add(Lw);
+                                                chosenML_L.Add(Le);
+                                                chosenML_L.Add(totalWaste_LU);
+                                                chosenML_L.Add(lrDiameter);
+                                            }
                                         }
+                                    }
+                                    else if (previousTotalWaste_LU == 0)
+                                    {
+                                        chosenML_L.Clear();
+                                        chosenML_L.Add(Lm);
+                                        chosenML_L.Add(qtyL + qtyU - qtyT);
+                                        chosenML_L.Add(LB_qtyL);
+                                        chosenML_L.Add(qtyP);
+                                        chosenML_L.Add(qtyM);
+                                        chosenML_L.Add(Lw);
+                                        chosenML_L.Add(Le);
+                                        chosenML_L.Add(totalWaste_LU);
+                                        chosenML_L.Add(lrDiameter);
                                     }
 
                                     //Transverse
@@ -2551,17 +3315,49 @@ namespace KnowEst
                                     {
                                         if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
                                         {
-                                            chosenML_T.Clear();
-                                            chosenML_T.Add(Lm);
-                                            chosenML_T.Add(qtyT);
-                                            chosenML_T.Add(LB_qtyL + LB_qtyT);
-                                            chosenML_T.Add(qtyP);
-                                            chosenML_T.Add(qtyM);
-                                            chosenML_T.Add(Lw);
-                                            chosenML_T.Add(Le);
-                                            chosenML_T.Add(totalWaste_T);
-                                            chosenML_T.Add(trDiameter);
+                                            if (chosenML_T.Any())
+                                            {
+                                                if (totalWaste_T < chosenML_T[7])
+                                                {
+                                                    chosenML_T.Clear();
+                                                    chosenML_T.Add(Lm);
+                                                    chosenML_T.Add(qtyT);
+                                                    chosenML_T.Add(LB_qtyL + LB_qtyT);
+                                                    chosenML_T.Add(qtyP);
+                                                    chosenML_T.Add(qtyM);
+                                                    chosenML_T.Add(Lw);
+                                                    chosenML_T.Add(Le);
+                                                    chosenML_T.Add(totalWaste_T);
+                                                    chosenML_T.Add(trDiameter);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                chosenML_T.Clear();
+                                                chosenML_T.Add(Lm);
+                                                chosenML_T.Add(qtyT);
+                                                chosenML_T.Add(LB_qtyL + LB_qtyT);
+                                                chosenML_T.Add(qtyP);
+                                                chosenML_T.Add(qtyM);
+                                                chosenML_T.Add(Lw);
+                                                chosenML_T.Add(Le);
+                                                chosenML_T.Add(totalWaste_T);
+                                                chosenML_T.Add(trDiameter);
+                                            }
                                         }
+                                    }
+                                    else if (previousTotalWaste_T == 0)
+                                    {
+                                        chosenML_T.Clear();
+                                        chosenML_T.Add(Lm);
+                                        chosenML_T.Add(qtyT);
+                                        chosenML_T.Add(LB_qtyL + LB_qtyT);
+                                        chosenML_T.Add(qtyP);
+                                        chosenML_T.Add(qtyM);
+                                        chosenML_T.Add(Lw);
+                                        chosenML_T.Add(Le);
+                                        chosenML_T.Add(totalWaste_T);
+                                        chosenML_T.Add(trDiameter);
                                     }
                                 }
                             }
@@ -2584,17 +3380,49 @@ namespace KnowEst
                                 {
                                     if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
                                     {
-                                        chosenML_L.Clear();
-                                        chosenML_L.Add(Lm);
-                                        chosenML_L.Add(qtyL);
-                                        chosenML_L.Add(LB_qtyL);
-                                        chosenML_L.Add(qtyP);
-                                        chosenML_L.Add(qtyM);
-                                        chosenML_L.Add(Lw);
-                                        chosenML_L.Add(Le);
-                                        chosenML_L.Add(totalWaste_L);
-                                        chosenML_L.Add(lrDiameter);
+                                        if (chosenML_L.Any())
+                                        {
+                                            if (totalWaste_L < chosenML_L[7])
+                                            {
+                                                chosenML_L.Clear();
+                                                chosenML_L.Add(Lm);
+                                                chosenML_L.Add(qtyL);
+                                                chosenML_L.Add(LB_qtyL);
+                                                chosenML_L.Add(qtyP);
+                                                chosenML_L.Add(qtyM);
+                                                chosenML_L.Add(Lw);
+                                                chosenML_L.Add(Le);
+                                                chosenML_L.Add(totalWaste_L);
+                                                chosenML_L.Add(lrDiameter);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL);
+                                            chosenML_L.Add(LB_qtyL);
+                                            chosenML_L.Add(qtyP);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(Lw);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_L);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
                                     }
+                                }
+                                else if (previousTotalWaste_L == 0)
+                                {
+                                    chosenML_L.Clear();
+                                    chosenML_L.Add(Lm);
+                                    chosenML_L.Add(qtyL);
+                                    chosenML_L.Add(LB_qtyL);
+                                    chosenML_L.Add(qtyP);
+                                    chosenML_L.Add(qtyM);
+                                    chosenML_L.Add(Lw);
+                                    chosenML_L.Add(Le);
+                                    chosenML_L.Add(totalWaste_L);
+                                    chosenML_L.Add(lrDiameter);
                                 }
 
                                 //Upper
@@ -2614,17 +3442,49 @@ namespace KnowEst
                                 {
                                     if (totalWaste_U < previousTotalWaste_U || (Double.IsNaN(previousTotalWaste_U) && !Double.IsNaN(totalWaste_U)))
                                     {
-                                        chosenML_U.Clear();
-                                        chosenML_U.Add(Lm);
-                                        chosenML_U.Add(qtyU);
-                                        chosenML_U.Add(LB_qtyU);
-                                        chosenML_U.Add(qtyP);
-                                        chosenML_U.Add(qtyM);
-                                        chosenML_U.Add(Lw);
-                                        chosenML_U.Add(Le);
-                                        chosenML_U.Add(totalWaste_U);
-                                        chosenML_U.Add(urDiameter);
+                                        if (chosenML_U.Any())
+                                        {
+                                            if (totalWaste_U < chosenML_U[7])
+                                            {
+                                                chosenML_U.Clear();
+                                                chosenML_U.Add(Lm);
+                                                chosenML_U.Add(qtyU);
+                                                chosenML_U.Add(LB_qtyU);
+                                                chosenML_U.Add(qtyP);
+                                                chosenML_U.Add(qtyM);
+                                                chosenML_U.Add(Lw);
+                                                chosenML_U.Add(Le);
+                                                chosenML_U.Add(totalWaste_U);
+                                                chosenML_U.Add(urDiameter);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenML_U.Clear();
+                                            chosenML_U.Add(Lm);
+                                            chosenML_U.Add(qtyU);
+                                            chosenML_U.Add(LB_qtyU);
+                                            chosenML_U.Add(qtyP);
+                                            chosenML_U.Add(qtyM);
+                                            chosenML_U.Add(Lw);
+                                            chosenML_U.Add(Le);
+                                            chosenML_U.Add(totalWaste_U);
+                                            chosenML_U.Add(urDiameter);
+                                        }
                                     }
+                                }
+                                else if (previousTotalWaste_U == 0)
+                                {
+                                    chosenML_U.Clear();
+                                    chosenML_U.Add(Lm);
+                                    chosenML_U.Add(qtyU);
+                                    chosenML_U.Add(LB_qtyU);
+                                    chosenML_U.Add(qtyP);
+                                    chosenML_U.Add(qtyM);
+                                    chosenML_U.Add(Lw);
+                                    chosenML_U.Add(Le);
+                                    chosenML_U.Add(totalWaste_U);
+                                    chosenML_U.Add(urDiameter);
                                 }
 
                                 //Transverse
@@ -2644,17 +3504,49 @@ namespace KnowEst
                                 {
                                     if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
                                     {
-                                        chosenML_T.Clear();
-                                        chosenML_T.Add(Lm);
-                                        chosenML_T.Add(qtyT);
-                                        chosenML_T.Add(LB_qtyT);
-                                        chosenML_T.Add(qtyP);
-                                        chosenML_T.Add(qtyM);
-                                        chosenML_T.Add(Lw);
-                                        chosenML_T.Add(Le);
-                                        chosenML_T.Add(totalWaste_T);
-                                        chosenML_T.Add(trDiameter);
+                                        if (chosenML_T.Any())
+                                        {
+                                            if (totalWaste_T < chosenML_T[7])
+                                            {
+                                                chosenML_T.Clear();
+                                                chosenML_T.Add(Lm);
+                                                chosenML_T.Add(qtyT);
+                                                chosenML_T.Add(LB_qtyT);
+                                                chosenML_T.Add(qtyP);
+                                                chosenML_T.Add(qtyM);
+                                                chosenML_T.Add(Lw);
+                                                chosenML_T.Add(Le);
+                                                chosenML_T.Add(totalWaste_T);
+                                                chosenML_T.Add(trDiameter);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenML_T.Clear();
+                                            chosenML_T.Add(Lm);
+                                            chosenML_T.Add(qtyT);
+                                            chosenML_T.Add(LB_qtyT);
+                                            chosenML_T.Add(qtyP);
+                                            chosenML_T.Add(qtyM);
+                                            chosenML_T.Add(Lw);
+                                            chosenML_T.Add(Le);
+                                            chosenML_T.Add(totalWaste_T);
+                                            chosenML_T.Add(trDiameter);
+                                        }
                                     }
+                                }
+                                else if (previousTotalWaste_T == 0)
+                                {
+                                    chosenML_T.Clear();
+                                    chosenML_T.Add(Lm);
+                                    chosenML_T.Add(qtyT);
+                                    chosenML_T.Add(LB_qtyT);
+                                    chosenML_T.Add(qtyP);
+                                    chosenML_T.Add(qtyM);
+                                    chosenML_T.Add(Lw);
+                                    chosenML_T.Add(Le);
+                                    chosenML_T.Add(totalWaste_T);
+                                    chosenML_T.Add(trDiameter);
                                 }
                             }
                         }
@@ -2749,8 +3641,9 @@ namespace KnowEst
                 if (cEF.structuralMembers.footingsWall[0][structMemCount][0].Equals("Rectangular"))
                 {
                     //Variables from Parameters
-                    double gravelBedding, formworkAllowance, compactionAllowance;
+                    double gravelBedding, formworkAllowance, compactionAllowance, ccWF;
                     string concreteGrade;
+                    bool[] manufacturedLength = new bool[7];
 
                     //Init variables from Parameters
                     gravelBedding = double.Parse(cEF.parameters.earth_WF_TH, System.Globalization.CultureInfo.InvariantCulture);
@@ -2758,6 +3651,9 @@ namespace KnowEst
                     string value = cEF.parameters.earth_WF_CF.Replace(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, "");
                     compactionAllowance = double.Parse(value, System.Globalization.CultureInfo.InvariantCulture) / 100;
                     concreteGrade = cEF.parameters.conc_CM_F_CG;
+                    ccWF = double.Parse(cEF.parameters.conc_CC_SG, System.Globalization.CultureInfo.InvariantCulture);
+                    for (int j = 0; j < 7; j++)
+                        manufacturedLength[j] = cEF.parameters.rein_mfIsSelected[2, j];
 
                     //Variables from StructMem
                     double length, lengthF2F, wfBase, thickness, depth, quantity, lrDiameter, lrQuantity, lrSpacing, lrHookType,
@@ -2865,13 +3761,417 @@ namespace KnowEst
                     {
                         cEF.structuralMembers.concreteWorkSolutionsF[i][1] =
                             ((length * wfBase * thickness) / 1000000000) * quantity;
-                    }                    
+                    }
+
+
+                    //Computation -- Rebars
+                    //1 -> determine ccWF
+
+                    //2
+                    double qtyL = 0;
+                    double qtyT = 0;
+                    if (lrQuantity == 0)
+                        qtyL = quantity * (Math.Ceiling((wfBase - (2 * ccWF)) / lrSpacing + 1));
+                    else
+                        qtyL = quantity * lrQuantity;
+                    if (trQuantity == 0)
+                        qtyT = quantity * (Math.Ceiling((length - (2 * ccWF)) / trSpacing + 1));
+                    else
+                        qtyT = quantity * trQuantity;
+
+                    //3
+                    double hl_L = 0;
+                    double hl_T = 0;
+                    for (int j = 0; j < cEF.parameters.rein_BEH_MB_dt.Rows.Count; j++)
+                    {
+                        if (lrHookType == 90)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (lrHookType == 135)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][2].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (lrHookType == 180)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][3].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                        if (trHookType == 90)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (trHookType == 135)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][2].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (trHookType == 180)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][3].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                    }
+                    double LB_qtyL = length - (2 * ccWF) + (2 * hl_L);
+                    double LB_qtyT = wfBase - (2 * ccWF) + (2 * hl_T);
+                    LB_qtyL /= 1000;
+                    LB_qtyT /= 1000;
+
+                    //4
+                    double largestML = 0;
+                    for (int j = 6; j >= 0; j--)
+                    {
+                        if (manufacturedLength[j])
+                        {
+                            switch (j)
+                            {
+                                case 0:
+                                    largestML = 6; break;
+                                case 1:
+                                    largestML = 7.5; break;
+                                case 2:
+                                    largestML = 9.0; break;
+                                case 3:
+                                    largestML = 10.5; break;
+                                case 4:
+                                    largestML = 12.0; break;
+                                case 5:
+                                    largestML = 13.5; break;
+                                case 6:
+                                    largestML = 15.0; break;
+                                default:
+                                    largestML = 0; break;
+                            }
+                            break;
+                        }
+                    }
+                    //Temporary variables
+                    double qtyP = 0;
+                    double Lm = 0;
+                    double qtyM = 0;
+                    double qtyCM = 0;
+                    double Le = 0;
+                    double Lw = 0;
+                    double Lx = 0;
+
+                    double totalWaste_L = 0;
+                    double previousTotalWaste_L = 0;
+
+                    double totalWaste_T = 0;
+                    double previousTotalWaste_T = 0;
+
+                    //Lm -> QTY[L] -> LB of QTY[L] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
+                    List<double> chosenML_L = new List<double>();
+
+                    //Lm -> QTY[T] -> LB of QTY[T] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
+                    List<double> chosenML_T = new List<double>();
+
+                    //Capture SL base on MPa selected by user
+                    double MPa = 0;
+                    double sl = 0;
+                    if (cEF.parameters.conc_cmIsSelected[0])
+                    {
+                        if (concreteGrade.Equals("CLASS AA"))
+                        {
+                            MPa = 27.579;
+                        }
+                        else if (concreteGrade.Equals("CLASS A"))
+                        {
+                            MPa = 24.1316;
+                        }
+                        else if (concreteGrade.Equals("CLASS B"))
+                        {
+                            MPa = 17.236;
+                        }
+                        else
+                        {
+                            MPa = 13.789;
+                        }
+                    }
+                    else
+                    {
+                        string selectedReadyMix = cEF.parameters.conc_CM_F_RM;
+                        string stringMPa = selectedReadyMix.Substring(29, 4);
+                        if (stringMPa.Contains("M"))
+                            stringMPa = stringMPa.Substring(0, 2);
+                        MPa = double.Parse(stringMPa, System.Globalization.CultureInfo.InvariantCulture);
+                    }
+                    int k = 0;
+                    foreach (string Fc in cEF.parameters.rein_LSL_TB_fc_list)
+                    {
+                        if (Fc.Equals(MPa.ToString()))
+                            break;
+                        k++;
+                    }
+                    for (int j = 0; j < cEF.parameters.rein_LSL_TB_dt.Rows.Count; j++)
+                    {
+                        if (cEF.parameters.rein_LSL_TB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
+                        {
+                            sl = double.Parse(cEF.parameters.rein_LSL_TB_dt.Rows[j][k + 1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            break;
+                        }
+                    }
+                    sl /= 1000;
+
+                    for (int j = 0; j < 7; j++)
+                    {
+                        previousTotalWaste_L = totalWaste_L;
+                        previousTotalWaste_T = totalWaste_T;
+                        Lm = 6 + (j * 1.5);
+                        if (manufacturedLength[j])
+                        {
+                            if (LB_qtyL < largestML)
+                            {
+                                //Longitudinal Reinforcement
+                                qtyP = Lm / LB_qtyL;
+                                qtyM = qtyL / Math.Floor(qtyP);
+                                Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                if (qtyP < 1)
+                                    Lw = 0;
+                                else
+                                    Lw = Lm - (LB_qtyL) * Math.Floor(qtyP);
+                                totalWaste_L = Le + Lw * Math.Floor(qtyM);
+                                if ((previousTotalWaste_L != 0 || Double.IsNaN(previousTotalWaste_L)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                {
+                                    if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
+                                    {
+                                        if (chosenML_L.Any())
+                                        {
+                                            if (totalWaste_L < chosenML_L[7])
+                                            {
+                                                chosenML_L.Clear();
+                                                chosenML_L.Add(Lm);
+                                                chosenML_L.Add(qtyL);
+                                                chosenML_L.Add(LB_qtyL);
+                                                chosenML_L.Add(qtyP);
+                                                chosenML_L.Add(qtyM);
+                                                chosenML_L.Add(Lw);
+                                                chosenML_L.Add(Le);
+                                                chosenML_L.Add(totalWaste_L);
+                                                chosenML_L.Add(lrDiameter);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL);
+                                            chosenML_L.Add(LB_qtyL);
+                                            chosenML_L.Add(qtyP);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(Lw);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_L);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
+                                    }
+                                }
+                                else if (previousTotalWaste_L == 0)
+                                {
+                                    chosenML_L.Clear();
+                                    chosenML_L.Add(Lm);
+                                    chosenML_L.Add(qtyL);
+                                    chosenML_L.Add(LB_qtyL);
+                                    chosenML_L.Add(qtyP);
+                                    chosenML_L.Add(qtyM);
+                                    chosenML_L.Add(Lw);
+                                    chosenML_L.Add(Le);
+                                    chosenML_L.Add(totalWaste_L);
+                                    chosenML_L.Add(lrDiameter);
+                                }
+                            }
+                            else
+                            {
+                                //Longitudinal Reinforcement
+                                qtyM = LB_qtyL / (Lm - sl);
+                                Lx = (qtyM - Math.Floor(qtyM)) * (Lm - sl);
+                                Le = Lm - Lx;
+                                totalWaste_L = Le * qtyL;
+                                qtyCM = qtyL * Math.Ceiling(qtyM);
+                                if ((previousTotalWaste_L != 0 || Double.IsNaN(previousTotalWaste_L)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                {
+                                    if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
+                                    {
+                                        if (chosenML_L.Any())
+                                        {
+                                            if (totalWaste_L < chosenML_L[7])
+                                            {
+                                                chosenML_L.Clear();
+                                                chosenML_L.Add(Lm);
+                                                chosenML_L.Add(qtyL);
+                                                chosenML_L.Add(sl);
+                                                chosenML_L.Add(qtyM);
+                                                chosenML_L.Add(qtyCM);
+                                                chosenML_L.Add(Lx);
+                                                chosenML_L.Add(Le);
+                                                chosenML_L.Add(totalWaste_L);
+                                                chosenML_L.Add(lrDiameter);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL);
+                                            chosenML_L.Add(sl);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(qtyCM);
+                                            chosenML_L.Add(Lx);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_L);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
+                                    }
+                                }
+                                else if (previousTotalWaste_L == 0)
+                                {
+                                    chosenML_L.Clear();
+                                    chosenML_L.Add(Lm);
+                                    chosenML_L.Add(qtyL);
+                                    chosenML_L.Add(sl);
+                                    chosenML_L.Add(qtyM);
+                                    chosenML_L.Add(qtyCM);
+                                    chosenML_L.Add(Lx);
+                                    chosenML_L.Add(Le);
+                                    chosenML_L.Add(totalWaste_L);
+                                    chosenML_L.Add(lrDiameter);
+                                }
+                            }
+                            //Transverse Reinforcement
+                            qtyP = Lm / LB_qtyT;
+                            qtyM = qtyT / Math.Floor(qtyP);
+                            Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                            if (qtyP < 1)
+                                Lw = 0;
+                            else
+                                Lw = Lm - (LB_qtyT) * Math.Floor(qtyP);
+                            totalWaste_T = Le + Lw * Math.Floor(qtyM);
+                            if ((previousTotalWaste_T != 0 || Double.IsNaN(previousTotalWaste_T)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                            {
+                                if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
+                                {
+                                    if (chosenML_T.Any())
+                                    {
+                                        if (totalWaste_T < chosenML_T[7])
+                                        {
+                                            chosenML_T.Clear();
+                                            chosenML_T.Add(Lm);
+                                            chosenML_T.Add(qtyT);
+                                            chosenML_T.Add(LB_qtyT);
+                                            chosenML_T.Add(qtyP);
+                                            chosenML_T.Add(qtyM);
+                                            chosenML_T.Add(Lw);
+                                            chosenML_T.Add(Le);
+                                            chosenML_T.Add(totalWaste_T);
+                                            chosenML_T.Add(trDiameter);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        chosenML_T.Clear();
+                                        chosenML_T.Add(Lm);
+                                        chosenML_T.Add(qtyT);
+                                        chosenML_T.Add(LB_qtyT);
+                                        chosenML_T.Add(qtyP);
+                                        chosenML_T.Add(qtyM);
+                                        chosenML_T.Add(Lw);
+                                        chosenML_T.Add(Le);
+                                        chosenML_T.Add(totalWaste_T);
+                                        chosenML_T.Add(trDiameter);
+                                    }
+                                }
+                            }
+                            else if (previousTotalWaste_T == 0)
+                            {
+                                chosenML_T.Clear();
+                                chosenML_T.Add(Lm);
+                                chosenML_T.Add(qtyT);
+                                chosenML_T.Add(LB_qtyT);
+                                chosenML_T.Add(qtyP);
+                                chosenML_T.Add(qtyM);
+                                chosenML_T.Add(Lw);
+                                chosenML_T.Add(Le);
+                                chosenML_T.Add(totalWaste_T);
+                                chosenML_T.Add(trDiameter);
+                            }
+                        }
+                    }
+
+                    //5 -> Costing of material -> in MainForm.cs function initializeView()
+                    //6
+                    //Temporary variables
+                    double weight = 0;
+                    double Wd = 0;
+
+                    //If no chosen ml, computation is wrong and set proper list
+                    if (!chosenML_L.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_L.Add(0);
+                        }
+                    }
+                    if (!chosenML_T.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_T.Add(0);
+                        }
+                    }
+
+                    //Longitudinal
+                    for (int j = 0; i < cEF.parameters.rein_W_dt.Rows.Count; i++)
+                    {
+                        if (cEF.parameters.rein_W_dt.Rows[j][0].ToString().Equals(lrDiameter + "mm"))
+                        {
+                            Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                    weight = chosenML_L[0] * Math.Ceiling(chosenML_L[4]) * Wd;
+                    chosenML_L.Add(weight);
+
+                    print("Weight L: " + weight + " and WD: " + Wd + " and LM: " + chosenML_L[0] + " and QTYM: " + chosenML_L[4]);
+
+                    //Transverse
+                    for (int j = 0; i < cEF.parameters.rein_W_dt.Rows.Count; i++)
+                    {
+                        if (cEF.parameters.rein_W_dt.Rows[j][0].ToString().Equals(trDiameter + "mm"))
+                        {
+                            Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                    weight = chosenML_T[0] * Math.Ceiling(chosenML_T[4]) * Wd;
+                    chosenML_T.Add(weight);
+
+                    //7 - 8 -> Costing of Labor -> in MainForm.cs function initializeView()
+                    cEF.structuralMembers.wallFootingReinforcements[structMemCount].Clear();
+                    cEF.structuralMembers.wallFootingReinforcements[structMemCount].Add(chosenML_L);
+                    cEF.structuralMembers.wallFootingReinforcements[structMemCount].Add(chosenML_T);
                 }
                 else //Trapezoidal
                 {
                     //Variables from Parameters
-                    double gravelBedding, formworkAllowance, compactionAllowance;
+                    double gravelBedding, formworkAllowance, compactionAllowance, ccWF;
                     string concreteGrade;
+                    bool[] manufacturedLength = new bool[7];
 
                     //Init variables from Parameters
                     gravelBedding = double.Parse(cEF.parameters.earth_WF_TH, System.Globalization.CultureInfo.InvariantCulture);
@@ -2879,6 +4179,9 @@ namespace KnowEst
                     string value = cEF.parameters.earth_WF_CF.Replace(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, "");
                     compactionAllowance = double.Parse(value, System.Globalization.CultureInfo.InvariantCulture) / 100;
                     concreteGrade = cEF.parameters.conc_CM_F_CG;
+                    ccWF = double.Parse(cEF.parameters.conc_CC_SG, System.Globalization.CultureInfo.InvariantCulture);
+                    for (int j = 0; j < 7; j++)
+                        manufacturedLength[j] = cEF.parameters.rein_mfIsSelected[2, j];
 
                     //Variables from StructMem
                     double length, lengthF2F, wfBaseT, wfBaseU, thickness, depth, quantity, lrDiameter, lrQuantity, lrSpacing, lrHookType,
@@ -2990,7 +4293,449 @@ namespace KnowEst
                     }
                     //Computation -- Formworks **                    
                     double c = Math.Sqrt(Math.Pow((((wfBaseT / 1000) - (wfBaseU / 1000)) / 2), 2) + Math.Pow((thickness / 1000), 2));                    
-                    cEF.structuralMembers.per_wal[structMemCount] = ((((c * (length / 1000)) + 0.2) + ((((wfBaseT / 1000) + (wfBaseU / 1000)) / 2) * (thickness / 1000))) * 2) * quantity;                    
+                    cEF.structuralMembers.per_wal[structMemCount] = ((((c * (length / 1000)) + 0.2) + ((((wfBaseT / 1000) + (wfBaseU / 1000)) / 2) * (thickness / 1000))) * 2) * quantity;
+
+                    //Computation -- Rebars
+                    //1 -> determine ccWF
+
+                    //2
+                    double qtyL = 0;
+                    double qtyT = 0;
+                    if (lrQuantity == 0)
+                        qtyL = quantity * (Math.Ceiling((wfBaseT - (2 * ccWF)) / lrSpacing + 1));
+                    else
+                        qtyL = quantity * lrQuantity;
+                    if (trQuantity == 0)
+                        qtyT = quantity * (Math.Ceiling((length - (2 * ccWF)) / trSpacing + 1));
+                    else
+                        qtyT = quantity * trQuantity;
+
+                    print("qtyL: " + qtyL);
+                    print("qtyT: " + qtyT);
+
+                    //3
+                    double hl_L = 0;
+                    double hl_T = 0;
+                    for (int j = 0; j < cEF.parameters.rein_BEH_MB_dt.Rows.Count; j++)
+                    {
+                        if (lrHookType == 90)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (lrHookType == 135)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][2].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (lrHookType == 180)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
+                            {
+                                hl_L = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][3].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+
+                        if (trHookType == 90)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (trHookType == 135)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][2].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                        else if (trHookType == 180)
+                        {
+                            if (cEF.parameters.rein_BEH_MB_dt.Rows[j][0].Equals(trDiameter.ToString()))
+                            {
+                                hl_T = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[j][3].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                        }
+                    }
+                    double LB_qtyL = length - (2 * ccWF) + (2 * hl_L);
+                    double LB_qtyT = (wfBaseU - 2 * ccWF * 0.4142135624) + 600 + ((wfBaseT - wfBaseU) * Math.Sqrt(2)) + (2 * hl_T); //Math.Tan(22.5) inaccurate
+                    LB_qtyL /= 1000;
+                    LB_qtyT /= 1000;
+
+                    print("LB_qtyL: " + LB_qtyL);
+                    print("LB_qtyT: " + LB_qtyT);
+
+                    //4
+                    double largestML = 0;
+                    for (int j = 6; j >= 0; j--)
+                    {
+                        if (manufacturedLength[j])
+                        {
+                            switch (j)
+                            {
+                                case 0:
+                                    largestML = 6; break;
+                                case 1:
+                                    largestML = 7.5; break;
+                                case 2:
+                                    largestML = 9.0; break;
+                                case 3:
+                                    largestML = 10.5; break;
+                                case 4:
+                                    largestML = 12.0; break;
+                                case 5:
+                                    largestML = 13.5; break;
+                                case 6:
+                                    largestML = 15.0; break;
+                                default:
+                                    largestML = 0; break;
+                            }
+                            break;
+                        }
+                    }
+                    //Temporary variables
+                    double qtyP = 0;
+                    double Lm = 0;
+                    double qtyM = 0;
+                    double qtyCM = 0;
+                    double Le = 0;
+                    double Lw = 0;
+                    double Lx = 0;
+
+                    double totalWaste_L = 0;
+                    double previousTotalWaste_L = 0;
+
+                    double totalWaste_T = 0;
+                    double previousTotalWaste_T = 0;
+
+                    //Lm -> QTY[L] -> LB of QTY[L] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
+                    List<double> chosenML_L = new List<double>();
+
+                    //Lm -> QTY[T] -> LB of QTY[T] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
+                    List<double> chosenML_T = new List<double>();
+
+                    //Capture SL base on MPa selected by user
+                    double MPa = 0;
+                    double sl = 0;
+                    if (cEF.parameters.conc_cmIsSelected[0])
+                    {
+                        if (concreteGrade.Equals("CLASS AA"))
+                        {
+                            MPa = 27.579;
+                        }
+                        else if (concreteGrade.Equals("CLASS A"))
+                        {
+                            MPa = 24.1316;
+                        }
+                        else if (concreteGrade.Equals("CLASS B"))
+                        {
+                            MPa = 17.236;
+                        }
+                        else
+                        {
+                            MPa = 13.789;
+                        }
+                    }
+                    else
+                    {
+                        string selectedReadyMix = cEF.parameters.conc_CM_F_RM;
+                        string stringMPa = selectedReadyMix.Substring(29, 4);
+                        if (stringMPa.Contains("M"))
+                            stringMPa = stringMPa.Substring(0, 2);
+                        MPa = double.Parse(stringMPa, System.Globalization.CultureInfo.InvariantCulture);
+                    }
+                    int k = 0;
+                    foreach (string Fc in cEF.parameters.rein_LSL_TB_fc_list)
+                    {
+                        if (Fc.Equals(MPa.ToString()))
+                            break;
+                        k++;
+                    }
+                    for (int j = 0; j < cEF.parameters.rein_LSL_TB_dt.Rows.Count; j++)
+                    {
+                        if (cEF.parameters.rein_LSL_TB_dt.Rows[j][0].Equals(lrDiameter.ToString()))
+                        {
+                            sl = double.Parse(cEF.parameters.rein_LSL_TB_dt.Rows[j][k + 1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                            break;
+                        }
+                    }
+                    sl /= 1000;
+
+                    for (int j = 0; j < 7; j++)
+                    {
+                        previousTotalWaste_L = totalWaste_L;
+                        previousTotalWaste_T = totalWaste_T;
+                        Lm = 6 + (j * 1.5);
+                        if (manufacturedLength[j])
+                        {
+                            if (LB_qtyL < largestML)
+                            {
+                                //Longitudinal Reinforcement
+                                qtyP = Lm / LB_qtyL;
+                                qtyM = qtyL / Math.Floor(qtyP);
+                                Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                                if (qtyP < 1)
+                                    Lw = 0;
+                                else
+                                    Lw = Lm - (LB_qtyL) * Math.Floor(qtyP);
+                                totalWaste_L = Le + Lw * Math.Floor(qtyM);
+                                if ((previousTotalWaste_L != 0 || Double.IsNaN(previousTotalWaste_L)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                {
+                                    if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
+                                    {
+                                        if (chosenML_L.Any())
+                                        {
+                                            if (totalWaste_L < chosenML_L[7])
+                                            {
+                                                chosenML_L.Clear();
+                                                chosenML_L.Add(Lm);
+                                                chosenML_L.Add(qtyL);
+                                                chosenML_L.Add(LB_qtyL);
+                                                chosenML_L.Add(qtyP);
+                                                chosenML_L.Add(qtyM);
+                                                chosenML_L.Add(Lw);
+                                                chosenML_L.Add(Le);
+                                                chosenML_L.Add(totalWaste_L);
+                                                chosenML_L.Add(lrDiameter);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL);
+                                            chosenML_L.Add(LB_qtyL);
+                                            chosenML_L.Add(qtyP);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(Lw);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_L);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
+                                    }
+                                }
+                                else if (previousTotalWaste_L == 0)
+                                {
+                                    chosenML_L.Clear();
+                                    chosenML_L.Add(Lm);
+                                    chosenML_L.Add(qtyL);
+                                    chosenML_L.Add(LB_qtyL);
+                                    chosenML_L.Add(qtyP);
+                                    chosenML_L.Add(qtyM);
+                                    chosenML_L.Add(Lw);
+                                    chosenML_L.Add(Le);
+                                    chosenML_L.Add(totalWaste_L);
+                                    chosenML_L.Add(lrDiameter);
+                                }
+
+                                print("============ Longitudinal ============");
+                                print("Lm: " + Lm);
+                                print("qtyL: " + qtyL);
+                                print("LB_qtyL: " + LB_qtyL);
+                                print("qtyP: " + qtyP);
+                                print("qtyM: " + qtyM);
+                                print("Le: " + Le);
+                                print("Lw: " + Lw);
+                                print("totalWaste_L: " + totalWaste_L);
+                                print("previousTotalWaste_L: " + previousTotalWaste_L);
+                            }
+                            else
+                            {
+                                //Longitudinal Reinforcement
+                                qtyM = LB_qtyL / (Lm - sl);
+                                Lx = (qtyM - Math.Floor(qtyM)) * (Lm - sl);
+                                Le = Lm - Lx;
+                                totalWaste_L = Le * qtyL;
+                                qtyCM = qtyL * Math.Ceiling(qtyM);
+                                if ((previousTotalWaste_L != 0 || Double.IsNaN(previousTotalWaste_L)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                                {
+                                    if (totalWaste_L < previousTotalWaste_L || (Double.IsNaN(previousTotalWaste_L) && !Double.IsNaN(totalWaste_L)))
+                                    {
+                                        if (chosenML_L.Any())
+                                        {
+                                            if (totalWaste_L < chosenML_L[7])
+                                            {
+                                                chosenML_L.Clear();
+                                                chosenML_L.Add(Lm);
+                                                chosenML_L.Add(qtyL);
+                                                chosenML_L.Add(sl);
+                                                chosenML_L.Add(qtyM);
+                                                chosenML_L.Add(qtyCM);
+                                                chosenML_L.Add(Lx);
+                                                chosenML_L.Add(Le);
+                                                chosenML_L.Add(totalWaste_L);
+                                                chosenML_L.Add(lrDiameter);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            chosenML_L.Clear();
+                                            chosenML_L.Add(Lm);
+                                            chosenML_L.Add(qtyL);
+                                            chosenML_L.Add(sl);
+                                            chosenML_L.Add(qtyM);
+                                            chosenML_L.Add(qtyCM);
+                                            chosenML_L.Add(Lx);
+                                            chosenML_L.Add(Le);
+                                            chosenML_L.Add(totalWaste_L);
+                                            chosenML_L.Add(lrDiameter);
+                                        }
+                                    }
+                                }
+                                else if (previousTotalWaste_L == 0)
+                                {
+                                    chosenML_L.Clear();
+                                    chosenML_L.Add(Lm);
+                                    chosenML_L.Add(qtyL);
+                                    chosenML_L.Add(sl);
+                                    chosenML_L.Add(qtyM);
+                                    chosenML_L.Add(qtyCM);
+                                    chosenML_L.Add(Lx);
+                                    chosenML_L.Add(Le);
+                                    chosenML_L.Add(totalWaste_L);
+                                    chosenML_L.Add(lrDiameter);
+                                }
+
+                                print("============ Longitudinal ============");
+                                print("Lm: " + Lm);
+                                print("qtyL: " + qtyL);
+                                print("LB_qtyL: " + LB_qtyL);
+                                print("SL: " + sl);
+                                print("qtyM: " + qtyM);
+                                print("Lx: " + Lx);
+                                print("Le: " + Le);
+                                print("qtyCM: " + qtyCM);
+                                print("totalWaste_L: " + totalWaste_L);
+                                print("previousTotalWaste_L: " + previousTotalWaste_L);
+                            }
+                            //Transverse Reinforcement
+                            qtyP = Lm / LB_qtyT;
+                            qtyM = qtyT / Math.Floor(qtyP);
+                            Le = (Math.Ceiling(qtyM) - qtyM) * Lm;
+                            if (qtyP < 1)
+                                Lw = 0;
+                            else
+                                Lw = Lm - (LB_qtyT) * Math.Floor(qtyP);
+                            totalWaste_T = Le + Lw * Math.Floor(qtyM);
+                            if ((previousTotalWaste_T != 0 || Double.IsNaN(previousTotalWaste_T)) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
+                            {
+                                if (totalWaste_T < previousTotalWaste_T || (Double.IsNaN(previousTotalWaste_T) && !Double.IsNaN(totalWaste_T)))
+                                {
+                                    if (chosenML_T.Any())
+                                    {
+                                        if (totalWaste_T < chosenML_T[7])
+                                        {
+                                            chosenML_T.Clear();
+                                            chosenML_T.Add(Lm);
+                                            chosenML_T.Add(qtyT);
+                                            chosenML_T.Add(LB_qtyT);
+                                            chosenML_T.Add(qtyP);
+                                            chosenML_T.Add(qtyM);
+                                            chosenML_T.Add(Lw);
+                                            chosenML_T.Add(Le);
+                                            chosenML_T.Add(totalWaste_T);
+                                            chosenML_T.Add(trDiameter);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        chosenML_T.Clear();
+                                        chosenML_T.Add(Lm);
+                                        chosenML_T.Add(qtyT);
+                                        chosenML_T.Add(LB_qtyT);
+                                        chosenML_T.Add(qtyP);
+                                        chosenML_T.Add(qtyM);
+                                        chosenML_T.Add(Lw);
+                                        chosenML_T.Add(Le);
+                                        chosenML_T.Add(totalWaste_T);
+                                        chosenML_T.Add(trDiameter);
+                                    }
+                                }
+                            }
+                            else if (previousTotalWaste_T == 0)
+                            {
+                                chosenML_T.Clear();
+                                chosenML_T.Add(Lm);
+                                chosenML_T.Add(qtyT);
+                                chosenML_T.Add(LB_qtyT);
+                                chosenML_T.Add(qtyP);
+                                chosenML_T.Add(qtyM);
+                                chosenML_T.Add(Lw);
+                                chosenML_T.Add(Le);
+                                chosenML_T.Add(totalWaste_T);
+                                chosenML_T.Add(trDiameter);
+                            }
+
+                            print("============ Transverse ============");
+                            print("Lm: " + Lm);
+                            print("qtyT: " + qtyT);
+                            print("LB_qtyT: " + LB_qtyT);
+                            print("qtyP: " + qtyP);
+                            print("qtyM: " + qtyM);
+                            print("Le: " + Le);
+                            print("Lw: " + Lw);
+                            print("totalWaste_T: " + totalWaste_T);
+                            print("previousTotalWaste_T: " + previousTotalWaste_T);
+                        }
+                    }
+
+                    //5 -> Costing of material -> in MainForm.cs function initializeView()
+                    //6
+                    //Temporary variables
+                    double weight = 0;
+                    double Wd = 0;
+
+                    //If no chosen ml, computation is wrong and set proper list
+                    if (!chosenML_L.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_L.Add(0);
+                        }
+                    }
+                    if (!chosenML_T.Any())
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            chosenML_T.Add(0);
+                        }
+                    }
+
+                    //Longitudinal
+                    for (int j = 0; j < cEF.parameters.rein_W_dt.Rows.Count; j++)
+                    {
+                        if (cEF.parameters.rein_W_dt.Rows[j][0].ToString().Equals(lrDiameter + "mm"))
+                        {
+                            Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                    weight = chosenML_L[0] * Math.Ceiling(chosenML_L[4]) * Wd;
+                    chosenML_L.Add(weight);
+
+                    print("Weight L: " + weight + " and WD: " + Wd + " and LM: " + chosenML_L[0] + " and QTYM: " + chosenML_L[4]);
+
+                    //Transverse
+                    for (int j = 0; j < cEF.parameters.rein_W_dt.Rows.Count; j++)
+                    {
+                        if (cEF.parameters.rein_W_dt.Rows[j][0].ToString().Equals(trDiameter + "mm"))
+                        {
+                            Wd = double.Parse(cEF.parameters.rein_W_dt.Rows[j][1].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                    }
+
+                    weight = chosenML_T[0] * Math.Ceiling(chosenML_T[4]) * Wd;
+                    chosenML_T.Add(weight);
+
+                    //7 - 8 -> Costing of Labor -> in MainForm.cs function initializeView()
+                    cEF.structuralMembers.wallFootingReinforcements[structMemCount].Clear();
+                    cEF.structuralMembers.wallFootingReinforcements[structMemCount].Add(chosenML_L);
+                    cEF.structuralMembers.wallFootingReinforcements[structMemCount].Add(chosenML_T);
                 }
             }
             //Computation -- modify formworks [FOOTINGS]            
