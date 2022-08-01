@@ -4089,8 +4089,12 @@ namespace KnowEst
                 F_WaistSlab1 = nearestValue(Lapping + F_Length + (HookLength * WS_Diameter), 25);
                 F_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + WidthLanding + F_Length,25) ;
                 F_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + WidthLanding + BeamWidth + (LapLength * WS_Diameter),25);
-                F_WS_BarNumber = (WidthLanding / WS_Spacing) + 1;
-                F_TempBars = nearestValue(2 * ((F_Length / TB_Spacing) + 1), 1);
+                F_WS_BarNumber = (StairWidth / WS_Spacing) + 1;
+                if (F_WS_BarNumber % 1 != 0)
+                    F_WS_BarNumber = nearestValue((StairWidth / WS_Spacing) + 1, 1);
+                F_TempBars = 2 * ((F_Length / TB_Spacing) + 1);
+                if (F_TempBars % 1 != 0)
+                    F_TempBars = nearestValue(2 * ((F_Length / TB_Spacing) + 1), 1);
                 F_Landing = (StairWidth * 2) + Gap;
                 F_L_BarNumber = (StairWidth / L_Spacing) + 1;
 
@@ -4101,12 +4105,15 @@ namespace KnowEst
                 S_WaistSlab1 = nearestValue(Lapping + S_Length + (HookLength * WS_Diameter), 25);
                 S_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + WidthLanding + S_Length, 25);
                 S_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + WidthLanding + BeamWidth + (LapLength * WS_Diameter), 25);
-                S_WS_BarNumber = (WidthLanding / WS_Spacing) + 1;
-                S_TempBars = nearestValue(2 * ((S_Length / TB_Spacing) + 1), 1);
-
+                S_WS_BarNumber = (StairWidth / WS_Spacing) + 1;
+                if (S_WS_BarNumber % 1 != 0)
+                    S_WS_BarNumber = nearestValue((StairWidth / WS_Spacing) + 1, 1);
+                S_TempBars = 2 * ((S_Length / TB_Spacing) + 1);
+                if (S_TempBars % 1 != 0)
+                    S_TempBars = nearestValue(2 * ((S_Length / TB_Spacing) + 1), 1);
                 //===========Steps========================
                 S_ChairBarsLength = Tread + Riser;
-                S_ChairBarNumber = ((StairWidth / C_Spacing) + 1) * (F_Steps + S_Steps);
+                S_ChairBarNumber = nearestValue(((StairWidth / C_Spacing) + 1), 1) * (F_Steps + S_Steps);
                 S_NoseBar = (F_Steps + S_Steps);
 
                 Console.WriteLine();
@@ -4125,8 +4132,15 @@ namespace KnowEst
                 Console.WriteLine(S_TempBars);
                 Console.WriteLine(S_ChairBarsLength);
                 Console.WriteLine(S_ChairBarNumber);
-                Console.WriteLine(S_ChairBarNumber);
+                Console.WriteLine(S_NoseBar);
                 Console.WriteLine();
+                Console.WriteLine(F_Length);
+                Console.WriteLine(Riser);
+                Console.WriteLine(Tread);
+                Console.WriteLine(F_Steps);
+                Console.WriteLine();
+               // F_Length = nearestValue(Math.Sqrt(Math.Pow(Riser * F_Steps, 2) + Math.Pow(Tread * F_Steps, 2)), 25);
+                //S_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + WidthLanding + BeamWidth + (LapLength * WS_Diameter), 25);
 
             }
             //Computation -- add Formworks [STAIRS]
