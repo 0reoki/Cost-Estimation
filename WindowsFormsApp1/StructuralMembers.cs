@@ -108,11 +108,34 @@ namespace KnowEst
         public List<double> LAREA = new List<double>();
         public List<double> SAREA = new List<double>();
 
-        //Reinforcements Solutions
-
+        //steel reinforcements
+        //----- FOOTING ------//
         //Lm -> QTY[X] -> LB of QTY[X] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
         public List<List<List<double>>> footingReinforcements = new List<List<List<double>>>();
+        //----- WALL FOOTING ------//
         public List<List<List<double>>> wallFootingReinforcements = new List<List<List<double>>>();
+        //----- COLUMN MAIN ------//
+        public List<List<List<string>>> Column_mainRebar = new List<List<List<string>>>();
+        public double totalweightkgm_Colmain = 0;
+        //----- COLUMN LATERAL TIES ------//
+        public List<List<List<List<string>>>> Column_lateralRebar = new List<List<List<List<string>>>>();        
+        public double totalweightkgm_Colties = 0;
+        //----- BEAM MAIN ------//
+        public List<List<List<string>>> beamdias = new List<List<List<string>>>();
+        public double totalweightkgm_main = 0;
+        public List<List<List<List<string>>>> Beam_mainRebar = new List<List<List<List<string>>>>();
+        //----- BEAM STIRRUPS ------//
+        public double totalweightkgm_stir = 0;
+        public List<List<List<List<string>>>> Beam_stirRebar = new List<List<List<List<string>>>>();
+        //----- BEAM WEB ------//
+        public List<List<List<List<string>>>> Beam_webRebar = new List<List<List<List<string>>>>();
+        public double totalweightkgm_web = 0;
+        ///----- SLAB GRADE ------//
+        public List<List<List<string>>> Slab_ongradeRebar = new List<List<List<string>>>();
+        public double totalweightkgm_slabongrade = 0;
+        ///----- SUSPENDED SLAB ------//        
+        public List<List<List<double>>> Slab_suspendedRebar = new List<List<List<double>>>();
+        public double totalweightkgm_suspendedslab = 0;
 
         //Constant variables
         //Cement
