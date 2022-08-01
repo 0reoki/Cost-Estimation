@@ -128,6 +128,9 @@ namespace KnowEst
         ///----- SLAB GRADE ------//
         public List<List<List<string>>> Slab_ongradeRebar = new List<List<List<string>>>();
         public double totalweightkgm_slabongrade = 0;
+        ///----- SUSPENDED SLAB ------//
+        public List<List<List<string>>> Slab_suspendedRebar = new List<List<List<string>>>();
+        public double totalweightkgm_suspendedslab = 0;
         //Constant variables
         //Cement
         //Sand

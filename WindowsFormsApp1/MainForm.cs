@@ -2091,7 +2091,47 @@ namespace KnowEst
                 {
                     print("Slab on grade: " + ex);
                 }
+                double suspendedSlabPrice = 0;
+                try
+                {
+                    for (int i = 0; i < structuralMembers.Slab_suspendedRebar.Count; i++)
+                    {
+                        for (int j = 0; j < structuralMembers.Slab_suspendedRebar[i].Count; j+=2)
+                        {
+                            List<string> grade = gradefilterer(parameters.rein_RG_SL);
+                            string dia = structuralMembers.Slab_suspendedRebar[i][j][0].ToString();
+                            for (int n = 1; n < structuralMembers.Slab_suspendedRebar[i][j].Count; n += 2)
+                            {
+                                string ms = structuralMembers.Slab_suspendedRebar[i][j][n].ToString();
+                                string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
+                                if (ms != "0")
+                                {
+                                    if (grade[1] == "33")
+                                    {
+                                        suspendedSlabPrice += (double.Parse(parameters.price_RebarGrade33[price_name].ToString())
+                                            * structuralMembers.Slab_suspendedRebar[i][j][n+1]) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                    else if (grade[1] == "40")
+                                    {
+                                        suspendedSlabPrice += (double.Parse(parameters.price_RebarGrade40[price_name].ToString())
+                                            * structuralMembers.Slab_suspendedRebar[i][j][n+1]) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                    else if (grade[1] == "60")
+                                    {
+                                        suspendedSlabPrice += (double.Parse(parameters.price_RebarGrade60[price_name].ToString())
+                                            * structuralMembers.Slab_suspendedRebar[i][j][n+1]) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                }
+                            }                             
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    print("Suspended slab: " + ex);
+                }
                 double slabongradeLABOR = structuralMembers.totalweightkgm_slabongrade * double.Parse(parameters.price_LaborRate_Rebar["SLAB ON GRADE [KG]"].ToString());
+                double suspendedslabLABOR = structuralMembers.totalweightkgm_suspendedslab * double.Parse(parameters.price_LaborRate_Rebar["SLAB ON GRADE [KG]"].ToString());
             }
             else
             {
