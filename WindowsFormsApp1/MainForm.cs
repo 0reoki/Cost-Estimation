@@ -2140,17 +2140,17 @@ namespace KnowEst
                                     if (grade[1] == "33")
                                     {
                                         suspendedSlabPrice += (double.Parse(parameters.price_RebarGrade33[price_name].ToString())
-                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[i].getValues()[0]);
+                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[i+1].getValues()[0]);
                                     }
                                     else if (grade[1] == "40")
                                     {
                                         suspendedSlabPrice += (double.Parse(parameters.price_RebarGrade40[price_name].ToString())
-                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[i].getValues()[0]);
+                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[i+1].getValues()[0]);
                                     }
                                     else if (grade[1] == "60")
                                     {
                                         suspendedSlabPrice += (double.Parse(parameters.price_RebarGrade60[price_name].ToString())
-                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[i].getValues()[0]);
+                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[i+1].getValues()[0]);
                                     }
                                 }
                             }
