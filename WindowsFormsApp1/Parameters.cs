@@ -47,10 +47,10 @@ namespace KnowEst
         public DataTable rein_W_dt = new DataTable();
         public string rein_RG_C, rein_RG_CLT, rein_RG_F, rein_RG_B, rein_RG_BS, rein_RG_ST, rein_RG_W, rein_RG_SL;
         public bool[,] rein_mfIsSelected = new bool[,]  {
-                                                            { true, true, true, true, true, true, true },
-                                                            { true, true, true, true, true, true, true },
-                                                            { true, true, true, true, true, true, true },
-                                                            { true, true, true, true, true, true, true },
+                                                            { true, true, true, true, true, true, true },// 0 - 6
+                                                            { true, true, true, true, true, true, true },//11 - 13
+                                                            { true, true, true, true, true, true, true },//14 - 20
+                                                            { true, true, true, true, true, true, true },//21 - 27
                                                             { true, true, true, true, true, true, true },
                                                             { true, true, true, true, true, true, true },
                                                             { true, true, true, true, true, true, true },
