@@ -30,6 +30,7 @@
         {
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.pcl_102_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.pcl_10_cb = new System.Windows.Forms.CheckBox();
             this.pcl_101_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
@@ -88,7 +89,6 @@
             this.pcl_22_cb = new System.Windows.Forms.CheckBox();
             this.pcl_2_cb = new System.Windows.Forms.CheckBox();
             this.pcl_21_cb = new System.Windows.Forms.CheckBox();
-            this.pcl_102_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
@@ -167,6 +167,16 @@
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel11.Size = new System.Drawing.Size(471, 277);
             this.tableLayoutPanel11.TabIndex = 94;
+            // 
+            // pcl_102_Panel
+            // 
+            this.pcl_102_Panel.AutoScroll = true;
+            this.pcl_102_Panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.pcl_102_Panel.Location = new System.Drawing.Point(3, 159);
+            this.pcl_102_Panel.Name = "pcl_102_Panel";
+            this.pcl_102_Panel.Size = new System.Drawing.Size(468, 115);
+            this.pcl_102_Panel.TabIndex = 81;
+            this.pcl_102_Panel.WrapContents = false;
             // 
             // pcl_10_cb
             // 
@@ -485,6 +495,7 @@
             this.pcl_58_cb.TabIndex = 87;
             this.pcl_58_cb.Text = "5.8 Walls";
             this.pcl_58_cb.UseVisualStyleBackColor = true;
+            this.pcl_58_cb.CheckedChanged += new System.EventHandler(this.pcl_58_cb_CheckedChanged);
             // 
             // pcl_57_cb
             // 
@@ -496,6 +507,7 @@
             this.pcl_57_cb.TabIndex = 86;
             this.pcl_57_cb.Text = "5.7 Stairs";
             this.pcl_57_cb.UseVisualStyleBackColor = true;
+            this.pcl_57_cb.CheckedChanged += new System.EventHandler(this.pcl_57_cb_CheckedChanged);
             // 
             // pcl_56_cb
             // 
@@ -507,6 +519,7 @@
             this.pcl_56_cb.TabIndex = 85;
             this.pcl_56_cb.Text = "5.6 Suspended Slab";
             this.pcl_56_cb.UseVisualStyleBackColor = true;
+            this.pcl_56_cb.CheckedChanged += new System.EventHandler(this.pcl_56_cb_CheckedChanged);
             // 
             // pcl_55_cb
             // 
@@ -518,6 +531,7 @@
             this.pcl_55_cb.TabIndex = 83;
             this.pcl_55_cb.Text = "5.5 Slab on Grade";
             this.pcl_55_cb.UseVisualStyleBackColor = true;
+            this.pcl_55_cb.CheckedChanged += new System.EventHandler(this.pcl_55_cb_CheckedChanged);
             // 
             // pcl_54_cb
             // 
@@ -529,6 +543,7 @@
             this.pcl_54_cb.TabIndex = 82;
             this.pcl_54_cb.Text = "5.4 Beam";
             this.pcl_54_cb.UseVisualStyleBackColor = true;
+            this.pcl_54_cb.CheckedChanged += new System.EventHandler(this.pcl_54_cb_CheckedChanged);
             // 
             // pcl_53_cb
             // 
@@ -540,6 +555,7 @@
             this.pcl_53_cb.TabIndex = 81;
             this.pcl_53_cb.Text = "5.3 Column";
             this.pcl_53_cb.UseVisualStyleBackColor = true;
+            this.pcl_53_cb.CheckedChanged += new System.EventHandler(this.pcl_53_cb_CheckedChanged);
             // 
             // pcl_52_cb
             // 
@@ -551,6 +567,7 @@
             this.pcl_52_cb.TabIndex = 80;
             this.pcl_52_cb.Text = "5.2 Wall Footing";
             this.pcl_52_cb.UseVisualStyleBackColor = true;
+            this.pcl_52_cb.CheckedChanged += new System.EventHandler(this.pcl_52_cb_CheckedChanged);
             // 
             // pcl_5_cb
             // 
@@ -574,6 +591,7 @@
             this.pcl_51_cb.TabIndex = 78;
             this.pcl_51_cb.Text = "5.1 Footing";
             this.pcl_51_cb.UseVisualStyleBackColor = true;
+            this.pcl_51_cb.CheckedChanged += new System.EventHandler(this.pcl_51_cb_CheckedChanged);
             // 
             // tableLayoutPanel4
             // 
@@ -669,6 +687,7 @@
             this.pcl_36_cb.TabIndex = 85;
             this.pcl_36_cb.Text = "3.6 Nails";
             this.pcl_36_cb.UseVisualStyleBackColor = true;
+            this.pcl_36_cb.CheckedChanged += new System.EventHandler(this.pcl_36_cb_CheckedChanged);
             // 
             // pcl_35_cb
             // 
@@ -680,6 +699,7 @@
             this.pcl_35_cb.TabIndex = 83;
             this.pcl_35_cb.Text = "3.5 Stairs";
             this.pcl_35_cb.UseVisualStyleBackColor = true;
+            this.pcl_35_cb.CheckedChanged += new System.EventHandler(this.pcl_35_cb_CheckedChanged);
             // 
             // pcl_34_cb
             // 
@@ -691,6 +711,7 @@
             this.pcl_34_cb.TabIndex = 82;
             this.pcl_34_cb.Text = "3.4 Suspended Slab";
             this.pcl_34_cb.UseVisualStyleBackColor = true;
+            this.pcl_34_cb.CheckedChanged += new System.EventHandler(this.pcl_34_cb_CheckedChanged);
             // 
             // pcl_33_cb
             // 
@@ -702,6 +723,7 @@
             this.pcl_33_cb.TabIndex = 81;
             this.pcl_33_cb.Text = "3.3 Beam";
             this.pcl_33_cb.UseVisualStyleBackColor = true;
+            this.pcl_33_cb.CheckedChanged += new System.EventHandler(this.pcl_33_cb_CheckedChanged);
             // 
             // pcl_32_cb
             // 
@@ -713,6 +735,7 @@
             this.pcl_32_cb.TabIndex = 80;
             this.pcl_32_cb.Text = "3.2 Column";
             this.pcl_32_cb.UseVisualStyleBackColor = true;
+            this.pcl_32_cb.CheckedChanged += new System.EventHandler(this.pcl_32_cb_CheckedChanged);
             // 
             // pcl_3_cb
             // 
@@ -736,6 +759,7 @@
             this.pcl_31_cb.TabIndex = 78;
             this.pcl_31_cb.Text = "3.1 Footing";
             this.pcl_31_cb.UseVisualStyleBackColor = true;
+            this.pcl_31_cb.CheckedChanged += new System.EventHandler(this.pcl_31_cb_CheckedChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -944,22 +968,12 @@
             this.pcl_21_cb.UseVisualStyleBackColor = true;
             this.pcl_21_cb.CheckedChanged += new System.EventHandler(this.pcl_21_cb_CheckedChanged);
             // 
-            // pcl_102_Panel
-            // 
-            this.pcl_102_Panel.AutoScroll = true;
-            this.pcl_102_Panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.pcl_102_Panel.Location = new System.Drawing.Point(3, 159);
-            this.pcl_102_Panel.Name = "pcl_102_Panel";
-            this.pcl_102_Panel.Size = new System.Drawing.Size(468, 115);
-            this.pcl_102_Panel.TabIndex = 81;
-            this.pcl_102_Panel.WrapContents = false;
-            // 
             // PriceChecklistForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(535, 663);
+            this.ClientSize = new System.Drawing.Size(561, 663);
             this.Controls.Add(this.tableLayoutPanel10);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;

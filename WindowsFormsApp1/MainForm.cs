@@ -42,7 +42,7 @@ namespace KnowEst
         public bool[] concreteChecklist = { true, true, true, true, true, true }; //2.0
         public bool[] formworksChecklist = { true, true, true, true , true , true }; //3.0 **
         public bool[] masonryChecklist = { true, true }; //4.0
-        public bool[] rebarsChecklist = { true, true, true, true, true, true, true, true, true };//5.0**
+        public bool[] rebarsChecklist = { true, true, true, true, true, true, true, true };//5.0**
         public bool[] roofingsChecklist = { true, true, true}; //6.0
         public bool[] tilesChecklist = { true, true }; //7.0
         public bool[] paintsChecklist = { true, true, true, true }; //8.0
@@ -293,6 +293,9 @@ namespace KnowEst
 
         //10.0 - Additional Labor and Equipment
         public double laborAndEqpt_TOTALCOST;
+
+        //BOQ - FINAL COST
+        public double TOTALCOST;
 
         //Cost -- END
 
@@ -1891,15 +1894,7 @@ namespace KnowEst
                 reinWF_CostL = 0;
                 reinWF_TotalCost = 0;
             }
-            if (rebarsChecklist[2])
-            {
-                
-            }
-            else
-            {
-
-            }
-            if (rebarsChecklist[3]) // COLUMNS
+            if (rebarsChecklist[2]) // COLUMNS
             {
                 double columnMainPrice = 0;
                 double laterTiesPrice = 0;
@@ -2009,7 +2004,7 @@ namespace KnowEst
                 RCOL_Lcost = 0;
                 RCOL_TOTALCOST = 0;
             }
-            if (rebarsChecklist[4])//BEAM
+            if (rebarsChecklist[3])//BEAM
             {
                 double mainbeamPrice = 0; // -- //
                 double stirRebarPrice = 0;// -- //
@@ -2189,7 +2184,7 @@ namespace KnowEst
                 Rbeam_Lcost = 0;
                 Rbeam_TOTALCOST = 0;
             }
-            if (rebarsChecklist[5]) // Slab on grade
+            if (rebarsChecklist[4]) // Slab on grade
             {
                 double slabOGprice = 0;
                 try
@@ -2265,7 +2260,7 @@ namespace KnowEst
                 RSOG_Lcost = 0;
                 RSOG_TOTALCOST = 0;                
             }
-            if (rebarsChecklist[6])
+            if (rebarsChecklist[5])
             {
                 double suspendedSlabPrice = 0;
                 try
@@ -2323,7 +2318,7 @@ namespace KnowEst
                 RSS_Lcost = 0;
                 RSS_TOTALCOST = 0;
             }
-            if (rebarsChecklist[7])
+            if (rebarsChecklist[6])
             {
 
             }
@@ -2331,7 +2326,7 @@ namespace KnowEst
             {
 
             }
-            if (rebarsChecklist[8])
+            if (rebarsChecklist[7])
             {
 
             }
@@ -2807,6 +2802,32 @@ namespace KnowEst
             //Setting View -- START
             if (!viewInitalized)
             {
+                double earthworks1_TotalCostM = backfillingAndCompaction_CostM + gravelBedding_CostM + soilPoisoning_CostM;
+                double earthworks1_TotalCostL = excavation_CostL + backfillingAndCompaction_CostL + gradingAndCompaction_CostL + gravelBedding_CostL;
+                double earthworks1_TotalCost = earthworks1_TotalCostM + earthworks1_TotalCostL;
+
+                //Computation of Total Cost fos_LC_Type, fos_LC_Percentage
+                if (fos_LC_Type.Equals("Rate"))
+                {
+                    TOTALCOST = earthworks1_TotalCost + concrete_TOTALCOST + FW_MATOTAL + mason_TOTALCOST +
+                                rein_TotalCost + roof_TOTALCOST + tiles_TOTALCOST + paints_TOTALCOST +
+                                misc_TOTALCOST + laborAndEqpt_TOTALCOST;
+                }  
+                else if (fos_LC_Type.Equals("Percentage"))
+                {
+                    TOTALCOST = earthworks1_TotalCostM + concreteMCost_total + FW_totalMats + masonMCost_total +
+                                rein_MCost + roof_MTOTAL + tiles_mTOTALCOST + paint_mTOTALCOST +
+                                misc_TOTALCOST + laborAndEqpt_TOTALCOST;
+                    string percentString = fos_LC_Percentage.Replace(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, "");
+                    double percentage = double.Parse(percentString, System.Globalization.CultureInfo.InvariantCulture) / 100;
+                    TOTALCOST = TOTALCOST + (TOTALCOST * percentage);
+                }
+                else
+                {
+                    TOTALCOST = earthworks1_TotalCostM + concreteMCost_total + FW_totalMats + masonMCost_total +
+                                rein_MCost + roof_MTOTAL + tiles_mTOTALCOST + paint_mTOTALCOST +
+                                misc_TOTALCOST + laborAndEqpt_TOTALCOST;
+                }
                 //For refresh
                 view_TV1.Nodes.Clear();
                 view_TV2.Nodes.Clear();
@@ -7143,11 +7164,10 @@ namespace KnowEst
             //Price List
             stringParam += "\nPrice-List|\n";
             stringParam += "Price-Checklist|\n";
-
             //Checklist
             foreach(bool checkMark in earthworksChecklist)
             {
-                stringParam += checkMark + "|";
+                stringParam += checkMark + "|"; 
             }
             foreach(bool checkMark in concreteChecklist)
             {
@@ -7158,6 +7178,10 @@ namespace KnowEst
                 stringParam += checkMark + "|";
             }
             foreach (bool checkMark in masonryChecklist)
+            {
+                stringParam += checkMark + "|";
+            }
+            foreach (bool checkMark in rebarsChecklist)
             {
                 stringParam += checkMark + "|";
             }
@@ -9008,6 +9032,14 @@ namespace KnowEst
             formworksChecklist[5] = bool.Parse(tokens[i]); i++;
             masonryChecklist[0] = bool.Parse(tokens[i]); i++;
             masonryChecklist[1] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[0] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[1] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[2] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[3] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[4] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[5] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[6] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[7] = bool.Parse(tokens[i]); i++;
             roofingsChecklist[0] = bool.Parse(tokens[i]); i++;
             roofingsChecklist[1] = bool.Parse(tokens[i]); i++;
             roofingsChecklist[2] = bool.Parse(tokens[i]); i++;
