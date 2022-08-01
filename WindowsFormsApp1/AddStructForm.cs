@@ -974,7 +974,7 @@ namespace KnowEst
                             bsMember.Add(bs.midspan_qty3);
                             bsMember.Add(bs.midspan_qty4);
 
-                            bsMember.Add(bs.intSupport_qty1);
+                            bsMember.Add(bs.intSupport_qty1);//15
                             bsMember.Add(bs.intSupport_qty2);
                             bsMember.Add(bs.intSupport_qty3);
                             bsMember.Add(bs.intSupport_qty4);
@@ -1240,15 +1240,15 @@ namespace KnowEst
 
                             members.Add(slab_SOG_L_D_bx.Text);
                             members.Add(slab_SOG_T_D_bx.Text);
-                            members.Add(slab_SOG_L_S_bx.Text);
-                            members.Add(slab_SOG_T_S_bx.Text);
+                            members.Add(slab_SOG_L_S_bx.Text);//6
+                            members.Add(slab_SOG_T_S_bx.Text);//7
                             members.Add(slab_SOG_L_ST_cbx.Text);
                             members.Add(slab_SOG_T_ST_cbx.Text);
 
-                            members.Add(slab_SOG_SB_T_L_bx.Text);
+                            members.Add(slab_SOG_SB_T_L_bx.Text);//10
                             members.Add(slab_SOG_SB_T_CL_bx.Text);
 
-                            members.Add(slab_SOG_SB_B_L_bx.Text);
+                            members.Add(slab_SOG_SB_B_L_bx.Text);//12
                             members.Add(slab_SOG_SB_B_CL_bx.Text);
 
                             members.Add(slab_SOG_SB_L_L_bx.Text);
@@ -2089,6 +2089,7 @@ namespace KnowEst
                     costEstimationForm.structuralMembers.earthworkSolutions.RemoveAt(i);
                     costEstimationForm.structuralMembers.concreteWorkSolutionsF.RemoveAt(i);
                     costEstimationForm.structuralMembers.per_col.RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.footingReinforcements.RemoveAt(memberCount);
 
                     compute.recomputeFW_Footings(costEstimationForm);
                     //Refresh Solutions

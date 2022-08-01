@@ -63,7 +63,7 @@ namespace KnowEst
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.5F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.tableLayoutPanel1.Controls.Add(this.floorDupeCountNUD, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.floorUCDeleteBtn, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.floorLbl, 1, 0);
@@ -91,9 +91,9 @@ namespace KnowEst
             // floorUCDeleteBtn
             // 
             this.floorUCDeleteBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.floorUCDeleteBtn.Location = new System.Drawing.Point(232, 3);
+            this.floorUCDeleteBtn.Location = new System.Drawing.Point(231, 3);
             this.floorUCDeleteBtn.Name = "floorUCDeleteBtn";
-            this.floorUCDeleteBtn.Size = new System.Drawing.Size(62, 29);
+            this.floorUCDeleteBtn.Size = new System.Drawing.Size(63, 29);
             this.floorUCDeleteBtn.TabIndex = 4;
             this.floorUCDeleteBtn.Text = "X";
             this.floorUCDeleteBtn.UseVisualStyleBackColor = true;
@@ -105,7 +105,7 @@ namespace KnowEst
             this.floorLbl.Location = new System.Drawing.Point(59, 6);
             this.floorLbl.Name = "floorLbl";
             this.floorLbl.ReadOnly = true;
-            this.floorLbl.Size = new System.Drawing.Size(167, 26);
+            this.floorLbl.Size = new System.Drawing.Size(166, 26);
             this.floorLbl.TabIndex = 5;
             this.floorLbl.DoubleClick += new System.EventHandler(this.floorLbl_DoubleClick);
             this.floorLbl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.floorLbl_KeyPress);
