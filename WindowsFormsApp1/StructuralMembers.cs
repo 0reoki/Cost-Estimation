@@ -112,6 +112,8 @@ namespace KnowEst
         //----- FOOTING ------//
         //Lm -> QTY[X] -> LB of QTY[X] -> qtyP -> qtyM -> Lw -> Le -> Total Waste -> Diameter -> Weight
         public List<List<List<double>>> footingReinforcements = new List<List<List<double>>>();
+        //----- WALL FOOTING ------//
+        public List<List<List<double>>> wallFootingReinforcements = new List<List<List<double>>>();
         //----- COLUMN MAIN ------//
         public List<List<List<string>>> Column_mainRebar = new List<List<List<string>>>();
         public double totalweightkgm_Colmain = 0;

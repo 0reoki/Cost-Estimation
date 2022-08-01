@@ -1475,14 +1475,15 @@ namespace KnowEst
             rein_ML_CF_12_chk.Checked = parameters.rein_mfIsSelected[0, 4];
             rein_ML_CF_135_chk.Checked = parameters.rein_mfIsSelected[0, 5];
             rein_ML_CF_15_chk.Checked = parameters.rein_mfIsSelected[0, 6];
-            
-            rein_ML_FT_6_chk.Checked = parameters.rein_mfIsSelected[1, 0];
-            rein_ML_FT_75_chk.Checked = parameters.rein_mfIsSelected[1, 1];
-            rein_ML_FT_9_chk.Checked = parameters.rein_mfIsSelected[1, 2];
-            rein_ML_FT_105_chk.Checked = parameters.rein_mfIsSelected[1, 3];
-            rein_ML_FT_12_chk.Checked = parameters.rein_mfIsSelected[1, 4];
-            rein_ML_FT_135_chk.Checked = parameters.rein_mfIsSelected[1, 5];
-            rein_ML_FT_15_chk.Checked = parameters.rein_mfIsSelected[1, 6];
+
+            bool footTieIsChecked;
+            footTieIsChecked = parameters.rein_mfIsSelected[1, 0];
+            footTieIsChecked = parameters.rein_mfIsSelected[1, 1];
+            footTieIsChecked = parameters.rein_mfIsSelected[1, 2];
+            footTieIsChecked = parameters.rein_mfIsSelected[1, 3];
+            footTieIsChecked = parameters.rein_mfIsSelected[1, 4];
+            footTieIsChecked = parameters.rein_mfIsSelected[1, 5];
+            footTieIsChecked = parameters.rein_mfIsSelected[1, 6];
 
             rein_ML_WF_6_chk.Checked = parameters.rein_mfIsSelected[2, 0];
             rein_ML_WF_75_chk.Checked = parameters.rein_mfIsSelected[2, 1];
@@ -1842,14 +1843,6 @@ namespace KnowEst
             rein_ML_CF_135_chk.Checked = true;
             rein_ML_CF_15_chk.Checked = true;
 
-            rein_ML_FT_6_chk.Checked = true;
-            rein_ML_FT_75_chk.Checked = true;
-            rein_ML_FT_9_chk.Checked = true;
-            rein_ML_FT_105_chk.Checked = true;
-            rein_ML_FT_12_chk.Checked = true;
-            rein_ML_FT_135_chk.Checked = true;
-            rein_ML_FT_15_chk.Checked = true;
-
             rein_ML_WF_6_chk.Checked = true;
             rein_ML_WF_75_chk.Checked = true;
             rein_ML_WF_9_chk.Checked = true;
@@ -2095,7 +2088,7 @@ namespace KnowEst
             }
             bool[,] rein_mfIsSelected = new bool[,] {
                                                         { rein_ML_CF_6_chk.Checked, rein_ML_CF_75_chk.Checked, rein_ML_CF_9_chk.Checked, rein_ML_CF_105_chk.Checked, rein_ML_CF_12_chk.Checked, rein_ML_CF_135_chk.Checked, rein_ML_CF_15_chk.Checked },
-                                                        { rein_ML_FT_6_chk.Checked, rein_ML_FT_75_chk.Checked, rein_ML_FT_9_chk.Checked, rein_ML_FT_105_chk.Checked, rein_ML_FT_12_chk.Checked, rein_ML_FT_135_chk.Checked, rein_ML_FT_15_chk.Checked },
+                                                        { true, true, true, true, true, true, true },
                                                         { rein_ML_WF_6_chk.Checked, rein_ML_WF_75_chk.Checked, rein_ML_WF_9_chk.Checked, rein_ML_WF_105_chk.Checked, rein_ML_WF_12_chk.Checked, rein_ML_WF_135_chk.Checked, rein_ML_WF_15_chk.Checked },
                                                         { rein_ML_C_6_chk.Checked, rein_ML_C_75_chk.Checked, rein_ML_C_9_chk.Checked, rein_ML_C_105_chk.Checked, rein_ML_C_12_chk.Checked, rein_ML_C_135_chk.Checked, rein_ML_C_15_chk.Checked },
                                                         { rein_ML_B_6_chk.Checked, rein_ML_B_75_chk.Checked, rein_ML_B_9_chk.Checked, rein_ML_B_105_chk.Checked, rein_ML_B_12_chk.Checked, rein_ML_B_135_chk.Checked, rein_ML_B_15_chk.Checked },
