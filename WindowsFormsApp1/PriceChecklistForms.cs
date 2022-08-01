@@ -34,13 +34,27 @@ namespace KnowEst
             pcl_25_cb.Checked = costEstimationForm.concreteChecklist[4];
             pcl_26_cb.Checked = costEstimationForm.concreteChecklist[5];
 
-            //3.0 - Form Works TODO
+            //3.0 - Form Works
+            pcl_31_cb.Checked = costEstimationForm.formworksChecklist[0];
+            pcl_32_cb.Checked = costEstimationForm.formworksChecklist[1];
+            pcl_33_cb.Checked = costEstimationForm.formworksChecklist[2];
+            pcl_34_cb.Checked = costEstimationForm.formworksChecklist[3];
+            pcl_35_cb.Checked = costEstimationForm.formworksChecklist[4];
+            pcl_36_cb.Checked = costEstimationForm.formworksChecklist[5];
 
             //4.0 - Masonry
             pcl_41_cb.Checked = costEstimationForm.masonryChecklist[0];
             pcl_42_cb.Checked = costEstimationForm.masonryChecklist[1];
 
-            //5.0 - Steel Reinforcement TODO
+            //5.0 - Steel Reinforcement
+            pcl_51_cb.Checked = costEstimationForm.rebarsChecklist[0];
+            pcl_52_cb.Checked = costEstimationForm.rebarsChecklist[1];
+            pcl_53_cb.Checked = costEstimationForm.rebarsChecklist[2];
+            pcl_54_cb.Checked = costEstimationForm.rebarsChecklist[3];
+            pcl_55_cb.Checked = costEstimationForm.rebarsChecklist[4];
+            pcl_56_cb.Checked = costEstimationForm.rebarsChecklist[5];
+            pcl_57_cb.Checked = costEstimationForm.rebarsChecklist[6];
+            pcl_58_cb.Checked = costEstimationForm.rebarsChecklist[7];
 
             //6.0 - Roofing
             pcl_61_cb.Checked = costEstimationForm.roofingsChecklist[0];
@@ -142,13 +156,27 @@ namespace KnowEst
             costEstimationForm.concreteChecklist[4] = pcl_25_cb.Checked;
             costEstimationForm.concreteChecklist[5] = pcl_26_cb.Checked;
 
-            //3.0 - Form Works TODO
+            //3.0 - Form Works 
+            costEstimationForm.formworksChecklist[0] = pcl_31_cb.Checked;
+            costEstimationForm.formworksChecklist[1] = pcl_32_cb.Checked;
+            costEstimationForm.formworksChecklist[2] = pcl_33_cb.Checked;
+            costEstimationForm.formworksChecklist[3] = pcl_34_cb.Checked;
+            costEstimationForm.formworksChecklist[4] = pcl_35_cb.Checked;
+            costEstimationForm.formworksChecklist[5] = pcl_36_cb.Checked;
 
             //4.0 - Masonry
             costEstimationForm.masonryChecklist[0] = pcl_41_cb.Checked;
             costEstimationForm.masonryChecklist[1] = pcl_42_cb.Checked;
 
-            //5.0 - Steel Reinforcement TODO
+            //5.0 - Steel Reinforcement
+            costEstimationForm.rebarsChecklist[0] = pcl_51_cb.Checked;
+            costEstimationForm.rebarsChecklist[1] = pcl_52_cb.Checked;
+            costEstimationForm.rebarsChecklist[2] = pcl_53_cb.Checked;
+            costEstimationForm.rebarsChecklist[3] = pcl_54_cb.Checked;
+            costEstimationForm.rebarsChecklist[4] = pcl_55_cb.Checked;
+            costEstimationForm.rebarsChecklist[5] = pcl_56_cb.Checked;
+            costEstimationForm.rebarsChecklist[6] = pcl_57_cb.Checked;
+            costEstimationForm.rebarsChecklist[7] = pcl_58_cb.Checked;
 
             //6.0 - Roofing
             costEstimationForm.roofingsChecklist[0] = pcl_61_cb.Checked;
@@ -344,7 +372,84 @@ namespace KnowEst
         //3.0 - Form Works -- START
         private void pcl_3_cb_Click(object sender, EventArgs e)
         {
+            if (pcl_3_cb.Checked)
+            {
+                pcl_31_cb.Checked = true;
+                pcl_32_cb.Checked = true;
+                pcl_33_cb.Checked = true;
+                pcl_34_cb.Checked = true;
+                pcl_35_cb.Checked = true;
+                pcl_36_cb.Checked = true;
+            }
+            else
+            {
+                pcl_31_cb.Checked = false;
+                pcl_32_cb.Checked = false;
+                pcl_33_cb.Checked = false;
+                pcl_34_cb.Checked = false;
+                pcl_35_cb.Checked = false;
+                pcl_36_cb.Checked = false;
+            }
+        }
 
+        private void pcl_31_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pcl_31_cb.Checked)
+                pcl_3_cb.Checked = true;
+            else
+                if (!pcl_32_cb.Checked && !pcl_33_cb.Checked && !pcl_34_cb.Checked &&
+                    !pcl_35_cb.Checked && !pcl_36_cb.Checked)
+                pcl_3_cb.Checked = false;
+        }
+
+        private void pcl_32_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pcl_32_cb.Checked)
+                pcl_3_cb.Checked = true;
+            else
+                if (!pcl_31_cb.Checked && !pcl_33_cb.Checked && !pcl_34_cb.Checked &&
+                    !pcl_35_cb.Checked && !pcl_36_cb.Checked)
+                pcl_3_cb.Checked = false;
+        }
+
+        private void pcl_33_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pcl_33_cb.Checked)
+                pcl_3_cb.Checked = true;
+            else
+                if (!pcl_31_cb.Checked && !pcl_32_cb.Checked && !pcl_34_cb.Checked &&
+                    !pcl_35_cb.Checked && !pcl_36_cb.Checked)
+                pcl_3_cb.Checked = false;
+        }
+
+        private void pcl_34_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pcl_34_cb.Checked)
+                pcl_3_cb.Checked = true;
+            else
+                if (!pcl_31_cb.Checked && !pcl_32_cb.Checked && !pcl_33_cb.Checked &&
+                    !pcl_35_cb.Checked && !pcl_36_cb.Checked)
+                pcl_3_cb.Checked = false;
+        }
+
+        private void pcl_35_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pcl_35_cb.Checked)
+                pcl_3_cb.Checked = true;
+            else
+                if (!pcl_31_cb.Checked && !pcl_32_cb.Checked && !pcl_33_cb.Checked &&
+                    !pcl_34_cb.Checked && !pcl_36_cb.Checked)
+                pcl_3_cb.Checked = false;
+        }
+
+        private void pcl_36_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pcl_36_cb.Checked)
+                pcl_3_cb.Checked = true;
+            else
+                if (!pcl_31_cb.Checked && !pcl_32_cb.Checked && !pcl_33_cb.Checked &&
+                    !pcl_34_cb.Checked && !pcl_35_cb.Checked)
+                pcl_3_cb.Checked = false;
         }
         //3.0 - Form Works -- END
 
@@ -386,7 +491,108 @@ namespace KnowEst
         //5.0 - Steel Reinforcement -- START
         private void pcl_5_cb_Click(object sender, EventArgs e)
         {
-            
+            if (pcl_5_cb.Checked)
+            {
+                pcl_51_cb.Checked = true;
+                pcl_52_cb.Checked = true;
+                pcl_53_cb.Checked = true;
+                pcl_54_cb.Checked = true;
+                pcl_55_cb.Checked = true;
+                pcl_56_cb.Checked = true;
+                pcl_57_cb.Checked = true;
+                pcl_58_cb.Checked = true;
+            }
+            else
+            {
+                pcl_51_cb.Checked = false;
+                pcl_52_cb.Checked = false;
+                pcl_53_cb.Checked = false;
+                pcl_54_cb.Checked = false;
+                pcl_55_cb.Checked = false;
+                pcl_56_cb.Checked = false;
+                pcl_57_cb.Checked = false;
+                pcl_58_cb.Checked = false;
+            }
+        }
+
+        private void pcl_51_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pcl_51_cb.Checked)
+                pcl_5_cb.Checked = true;
+            else
+                if (!pcl_52_cb.Checked && !pcl_53_cb.Checked && !pcl_54_cb.Checked &&
+                    !pcl_55_cb.Checked && !pcl_56_cb.Checked && !pcl_57_cb.Checked && !pcl_58_cb.Checked)
+                pcl_5_cb.Checked = false;
+        }
+
+        private void pcl_52_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pcl_52_cb.Checked)
+                pcl_5_cb.Checked = true;
+            else
+                if (!pcl_51_cb.Checked && !pcl_53_cb.Checked && !pcl_54_cb.Checked &&
+                    !pcl_55_cb.Checked && !pcl_56_cb.Checked && !pcl_57_cb.Checked && !pcl_58_cb.Checked)
+                pcl_5_cb.Checked = false;
+        }
+
+        private void pcl_53_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pcl_53_cb.Checked)
+                pcl_5_cb.Checked = true;
+            else
+                if (!pcl_51_cb.Checked && !pcl_52_cb.Checked && !pcl_54_cb.Checked &&
+                    !pcl_55_cb.Checked && !pcl_56_cb.Checked && !pcl_57_cb.Checked && !pcl_58_cb.Checked)
+                pcl_5_cb.Checked = false;
+        }
+
+        private void pcl_54_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pcl_54_cb.Checked)
+                pcl_5_cb.Checked = true;
+            else
+                if (!pcl_51_cb.Checked && !pcl_52_cb.Checked && !pcl_53_cb.Checked &&
+                    !pcl_55_cb.Checked && !pcl_56_cb.Checked && !pcl_57_cb.Checked && !pcl_58_cb.Checked)
+                pcl_5_cb.Checked = false;
+        }
+
+        private void pcl_55_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pcl_55_cb.Checked)
+                pcl_5_cb.Checked = true;
+            else
+                if (!pcl_51_cb.Checked && !pcl_52_cb.Checked && !pcl_53_cb.Checked &&
+                    !pcl_54_cb.Checked && !pcl_56_cb.Checked && !pcl_57_cb.Checked && !pcl_58_cb.Checked)
+                pcl_5_cb.Checked = false;
+        }
+
+        private void pcl_56_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pcl_56_cb.Checked)
+                pcl_5_cb.Checked = true;
+            else
+                if (!pcl_51_cb.Checked && !pcl_52_cb.Checked && !pcl_53_cb.Checked &&
+                    !pcl_54_cb.Checked && !pcl_55_cb.Checked && !pcl_57_cb.Checked && !pcl_58_cb.Checked)
+                pcl_5_cb.Checked = false;
+        }
+
+        private void pcl_57_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pcl_57_cb.Checked)
+                pcl_5_cb.Checked = true;
+            else
+                if (!pcl_51_cb.Checked && !pcl_52_cb.Checked && !pcl_53_cb.Checked &&
+                    !pcl_54_cb.Checked && !pcl_55_cb.Checked && !pcl_56_cb.Checked && !pcl_58_cb.Checked)
+                pcl_5_cb.Checked = false;
+        }
+
+        private void pcl_58_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pcl_58_cb.Checked)
+                pcl_5_cb.Checked = true;
+            else
+                if (!pcl_51_cb.Checked && !pcl_52_cb.Checked && !pcl_53_cb.Checked &&
+                    !pcl_54_cb.Checked && !pcl_55_cb.Checked && !pcl_56_cb.Checked && !pcl_57_cb.Checked)
+                pcl_5_cb.Checked = false;
         }
         //5.0 - Steel Reinforcement -- END
 

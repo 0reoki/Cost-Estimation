@@ -42,7 +42,7 @@ namespace KnowEst
         public bool[] concreteChecklist = { true, true, true, true, true, true }; //2.0
         public bool[] formworksChecklist = { true, true, true, true , true , true }; //3.0 **
         public bool[] masonryChecklist = { true, true }; //4.0
-        public bool[] rebarsChecklist = { true, true, true, true, true, true, true, true, true };//5.0**
+        public bool[] rebarsChecklist = { true, true, true, true, true, true, true, true };//5.0**
         public bool[] roofingsChecklist = { true, true, true}; //6.0
         public bool[] tilesChecklist = { true, true }; //7.0
         public bool[] paintsChecklist = { true, true, true, true }; //8.0
@@ -293,6 +293,9 @@ namespace KnowEst
 
         //10.0 - Additional Labor and Equipment
         public double laborAndEqpt_TOTALCOST;
+
+        //BOQ - FINAL COST
+        public double TOTALCOST;
 
         //Cost -- END
 
@@ -1774,14 +1777,21 @@ namespace KnowEst
                 {
                     foreach(List<double> chosenML in footing)
                     {
-                        double unitCost = 0;
-                        if (rebarGrade.Contains("33"))
-                            unitCost = double.Parse(parameters.price_RebarGrade33["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
-                        else if (rebarGrade.Contains("40"))
-                            unitCost = double.Parse(parameters.price_RebarGrade40["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
-                        else
-                            unitCost = double.Parse(parameters.price_RebarGrade60["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
-                        reinF_CostM += (chosenML[4] * unitCost);
+                        try
+                        {
+                            double unitCost = 0;
+                            if (rebarGrade.Contains("33"))
+                                unitCost = double.Parse(parameters.price_RebarGrade33["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                            else if (rebarGrade.Contains("40"))
+                                unitCost = double.Parse(parameters.price_RebarGrade40["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                            else
+                                unitCost = double.Parse(parameters.price_RebarGrade60["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                            reinF_CostM += (chosenML[4] * unitCost);
+                        }
+                        catch(Exception ex)
+                        {
+                            print("Rebar Footings error: " + ex.ToString());
+                        }
                     }
                 }
                 print("Material Cost: " + reinF_CostM);
@@ -1791,10 +1801,17 @@ namespace KnowEst
                 {
                     foreach (List<double> chosenML in footing)
                     {
-                        double unitCost = 0;
-                        unitCost = double.Parse(parameters.price_LaborRate_Rebar["FOOTING [KG]"].ToString());
-                        reinF_CostL += (chosenML[9] * unitCost);
-                        reinF_QTY += chosenML[9];
+                        try
+                        {
+                            double unitCost = 0;
+                            unitCost = double.Parse(parameters.price_LaborRate_Rebar["FOOTING [KG]"].ToString());
+                            reinF_CostL += (chosenML[9] * unitCost);
+                            reinF_QTY += chosenML[9];
+                        }
+                        catch (Exception ex)
+                        {
+                            print("Rebar Footings error: " + ex.ToString());
+                        }
                     }
                 }
                 print("Labor Cost: " + reinF_CostL);
@@ -1827,14 +1844,21 @@ namespace KnowEst
                 {
                     foreach (List<double> chosenML in wallFooting)
                     {
-                        double unitCost = 0;
-                        if (rebarGrade.Contains("33"))
-                            unitCost = double.Parse(parameters.price_RebarGrade33["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
-                        else if (rebarGrade.Contains("40"))
-                            unitCost = double.Parse(parameters.price_RebarGrade40["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
-                        else
-                            unitCost = double.Parse(parameters.price_RebarGrade60["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
-                        reinWF_CostM += (Math.Ceiling(chosenML[4]) * unitCost);
+                        try
+                        {
+                            double unitCost = 0;
+                            if (rebarGrade.Contains("33"))
+                                unitCost = double.Parse(parameters.price_RebarGrade33["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                            else if (rebarGrade.Contains("40"))
+                                unitCost = double.Parse(parameters.price_RebarGrade40["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                            else
+                                unitCost = double.Parse(parameters.price_RebarGrade60["Rebar " + rebarGrade + " (⌀" + chosenML[8] + "mm) [" + chosenML[0] + "m]"].ToString());
+                            reinWF_CostM += (Math.Ceiling(chosenML[4]) * unitCost);
+                        }
+                        catch (Exception ex)
+                        {
+                            print("Rebar Wall Footings error: " + ex.ToString());
+                        }
                     }
                 }
                 print("Material Cost: " + reinWF_CostM);
@@ -1843,10 +1867,17 @@ namespace KnowEst
                 {
                     foreach (List<double> chosenML in wallFooting)
                     {
-                        double unitCost = 0;
-                        unitCost = double.Parse(parameters.price_LaborRate_Rebar["WALL FOOTING [KG]"].ToString());
-                        reinWF_CostL += (chosenML[9] * unitCost);
-                        reinWF_QTY += chosenML[9];
+                        try
+                        {
+                            double unitCost = 0;
+                            unitCost = double.Parse(parameters.price_LaborRate_Rebar["WALL FOOTING [KG]"].ToString());
+                            reinWF_CostL += (chosenML[9] * unitCost);
+                            reinWF_QTY += chosenML[9];
+                        }
+                        catch (Exception ex)
+                        {
+                            print("Rebar Wall Footings error: " + ex.ToString());
+                        }
                     }
                 }
                 print("Labor Cost: " + reinWF_CostL);
@@ -1863,15 +1894,7 @@ namespace KnowEst
                 reinWF_CostL = 0;
                 reinWF_TotalCost = 0;
             }
-            if (rebarsChecklist[2])
-            {
-                
-            }
-            else
-            {
-
-            }
-            if (rebarsChecklist[3]) // COLUMNS
+            if (rebarsChecklist[2]) // COLUMNS
             {
                 double columnMainPrice = 0;
                 double laterTiesPrice = 0;
@@ -1981,7 +2004,7 @@ namespace KnowEst
                 RCOL_Lcost = 0;
                 RCOL_TOTALCOST = 0;
             }
-            if (rebarsChecklist[4])//BEAM
+            if (rebarsChecklist[3])//BEAM
             {
                 double mainbeamPrice = 0; // -- //
                 double stirRebarPrice = 0;// -- //
@@ -2161,7 +2184,7 @@ namespace KnowEst
                 Rbeam_Lcost = 0;
                 Rbeam_TOTALCOST = 0;
             }
-            if (rebarsChecklist[5]) // Slab on grade
+            if (rebarsChecklist[4]) // Slab on grade
             {
                 double slabOGprice = 0;
                 try
@@ -2237,7 +2260,7 @@ namespace KnowEst
                 RSOG_Lcost = 0;
                 RSOG_TOTALCOST = 0;                
             }
-            if (rebarsChecklist[6])
+            if (rebarsChecklist[5])
             {
                 double suspendedSlabPrice = 0;
                 try
@@ -2295,7 +2318,7 @@ namespace KnowEst
                 RSS_Lcost = 0;
                 RSS_TOTALCOST = 0;
             }
-            if (rebarsChecklist[7])
+            if (rebarsChecklist[6])
             {
 
             }
@@ -2303,7 +2326,7 @@ namespace KnowEst
             {
 
             }
-            if (rebarsChecklist[8])
+            if (rebarsChecklist[7])
             {
 
             }
@@ -2779,6 +2802,32 @@ namespace KnowEst
             //Setting View -- START
             if (!viewInitalized)
             {
+                double earthworks1_TotalCostM = backfillingAndCompaction_CostM + gravelBedding_CostM + soilPoisoning_CostM;
+                double earthworks1_TotalCostL = excavation_CostL + backfillingAndCompaction_CostL + gradingAndCompaction_CostL + gravelBedding_CostL;
+                double earthworks1_TotalCost = earthworks1_TotalCostM + earthworks1_TotalCostL;
+
+                //Computation of Total Cost fos_LC_Type, fos_LC_Percentage
+                if (fos_LC_Type.Equals("Rate"))
+                {
+                    TOTALCOST = earthworks1_TotalCost + concrete_TOTALCOST + FW_MATOTAL + mason_TOTALCOST +
+                                rein_TotalCost + roof_TOTALCOST + tiles_TOTALCOST + paints_TOTALCOST +
+                                misc_TOTALCOST + laborAndEqpt_TOTALCOST;
+                }  
+                else if (fos_LC_Type.Equals("Percentage"))
+                {
+                    TOTALCOST = earthworks1_TotalCostM + concreteMCost_total + FW_totalMats + masonMCost_total +
+                                rein_MCost + roof_MTOTAL + tiles_mTOTALCOST + paint_mTOTALCOST +
+                                misc_TOTALCOST + laborAndEqpt_TOTALCOST;
+                    string percentString = fos_LC_Percentage.Replace(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.PercentSymbol, "");
+                    double percentage = double.Parse(percentString, System.Globalization.CultureInfo.InvariantCulture) / 100;
+                    TOTALCOST = TOTALCOST + (TOTALCOST * percentage);
+                }
+                else
+                {
+                    TOTALCOST = earthworks1_TotalCostM + concreteMCost_total + FW_totalMats + masonMCost_total +
+                                rein_MCost + roof_MTOTAL + tiles_mTOTALCOST + paint_mTOTALCOST +
+                                misc_TOTALCOST + laborAndEqpt_TOTALCOST;
+                }
                 //For refresh
                 view_TV1.Nodes.Clear();
                 view_TV2.Nodes.Clear();
@@ -3579,7 +3628,7 @@ namespace KnowEst
                 //Setting of BOQ     
                 try
                 {
-                    if (rein_TotalCost != 0) //TODO palitan ng total cost ng buong reinforcements
+                    if (rein_TotalCost != 0)
                     {
                         var index = this.summ_BOQ_dg.Rows.Add();
                         this.summ_BOQ_dg.Rows[index].Cells["item1"].Value = "5.0";
@@ -3725,7 +3774,7 @@ namespace KnowEst
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Value = "₱" + RSS_TOTALCOST.ToString("#,##0.00");
                             this.summ_BOQ_dg.Rows[index].Cells["totalcost1"].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             i++;
-                        } // TODO STAIRS AND WALLS
+                        } // TODO STAIRS AND WALLS AND COMPUTATION NG TOTAL COST
                         this.summ_BOQ_dg.Rows.Add();
                         index = this.summ_BOQ_dg.Rows.Add();
                         this.summ_BOQ_dg.Rows[index].Cells["materials2"].Value = "₱" + rein_MCost.ToString("#,##0.00");
@@ -7115,11 +7164,10 @@ namespace KnowEst
             //Price List
             stringParam += "\nPrice-List|\n";
             stringParam += "Price-Checklist|\n";
-
             //Checklist
             foreach(bool checkMark in earthworksChecklist)
             {
-                stringParam += checkMark + "|";
+                stringParam += checkMark + "|"; 
             }
             foreach(bool checkMark in concreteChecklist)
             {
@@ -7130,6 +7178,10 @@ namespace KnowEst
                 stringParam += checkMark + "|";
             }
             foreach (bool checkMark in masonryChecklist)
+            {
+                stringParam += checkMark + "|";
+            }
+            foreach (bool checkMark in rebarsChecklist)
             {
                 stringParam += checkMark + "|";
             }
@@ -7836,7 +7888,221 @@ namespace KnowEst
             stringParam += masonLCost_total + "|";
             stringParam += mason_TOTALCOST + "|";
 
-            //5.0 - Rebars TODO
+            //5.0 - Rebars (DITO DOS)
+            //Totalities
+            stringParam += "\nRebars|\n";
+            //Footing
+            stringParam += "RebarsF|\n";
+            j = 0;
+            foreach (List<List<double>> member in structuralMembers.footingReinforcements)
+            {
+                stringParam += "member-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<double> row in member)
+                {
+                    stringParam += "row-" + (k + 1) + "|";
+                    foreach (double value in row)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
+            //Wall Footing
+            stringParam += "\nRebarsWF|\n";
+            j = 0;
+            foreach (List<List<double>> member in structuralMembers.wallFootingReinforcements)
+            {
+                stringParam += "member-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<double> row in member)
+                {
+                    stringParam += "row-" + (k + 1) + "|";
+                    foreach (double value in row)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
+            //Column Main
+            stringParam += "\nRebarsCM|\n";
+            stringParam += structuralMembers.totalweightkgm_Colmain + "|";
+            j = 0;
+            foreach (List<List<string>> floor in structuralMembers.Column_mainRebar)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<string> member in floor)
+                {
+                    stringParam += "member-" + (k + 1) + "|";
+                    foreach (string value in member)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
+            //Column Lateral Ties
+            stringParam += "\nRebarsCT|\n";
+            stringParam += structuralMembers.totalweightkgm_Colties + "|";
+            j = 0;
+            foreach (List<List<List<string>>> floor in structuralMembers.Column_lateralRebar)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<List<string>> member in floor)
+                {
+                    stringParam += "member-" + (k + 1) + "|";
+                    int l = 0;
+                    foreach (List<string> row in member)
+                    {
+                        stringParam += "row-" + (l + 1) + "|";
+                        foreach (string value in row)
+                        {
+                            stringParam += value + "|";
+                        }
+                        l++;
+                    }
+                    k++;
+                }
+                j++;
+            }
+            //Beam Main 1
+            stringParam += "\nRebarsBM1|\n";
+            stringParam += structuralMembers.totalweightkgm_main + "|";
+            j = 0;
+            foreach (List<List<string>> floor in structuralMembers.beamdias)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<string> member in floor)
+                {
+                    stringParam += "member-" + (k + 1) + "|";
+                    foreach (string value in member)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
+            //Beam Main 2
+            stringParam += "\nRebarsBM2|\n";
+            j = 0;
+            foreach (List<List<List<string>>> floor in structuralMembers.Beam_mainRebar)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<List<string>> member in floor)
+                {
+                    stringParam += "member-" + (k + 1) + "|";
+                    int l = 0;
+                    foreach (List<string> row in member)
+                    {
+                        stringParam += "row-" + (l + 1) + "|";
+                        foreach (string value in row)
+                        {
+                            stringParam += value + "|";
+                        }
+                        l++;
+                    }
+                    k++;
+                }
+                j++;
+            }
+            //Beam Stirrups
+            stringParam += "\nRebarsBS|\n";
+            stringParam += structuralMembers.totalweightkgm_stir + "|";
+            j = 0;
+            foreach (List<List<List<string>>> floor in structuralMembers.Beam_stirRebar)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<List<string>> member in floor)
+                {
+                    stringParam += "member-" + (k + 1) + "|";
+                    int l = 0;
+                    foreach (List<string> row in member)
+                    {
+                        stringParam += "row-" + (l + 1) + "|";
+                        foreach (string value in row)
+                        {
+                            stringParam += value + "|";
+                        }
+                        l++;
+                    }
+                    k++;
+                }
+                j++;
+            }
+            //Beam Web
+            stringParam += "\nRebarsBW|\n";
+            stringParam += structuralMembers.totalweightkgm_web + "|";
+            j = 0;
+            foreach (List<List<List<string>>> floor in structuralMembers.Beam_webRebar)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<List<string>> member in floor)
+                {
+                    stringParam += "member-" + (k + 1) + "|";
+                    int l = 0;
+                    foreach (List<string> row in member)
+                    {
+                        stringParam += "row-" + (l + 1) + "|";
+                        foreach (string value in row)
+                        {
+                            stringParam += value + "|";
+                        }
+                        l++;
+                    }
+                    k++;
+                }
+                j++;
+            }
+            //Slab on Grade
+            stringParam += "\nRebarsSOG|\n";
+            stringParam += structuralMembers.totalweightkgm_slabongrade + "|";
+            j = 0;
+            foreach (List<List<string>> floor in structuralMembers.Slab_ongradeRebar)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<string> member in floor)
+                {
+                    stringParam += "member-" + (k + 1) + "|";
+                    foreach (string value in member)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
+            //Suspended Slab
+            stringParam += "\nRebarsSS|\n";
+            stringParam += structuralMembers.totalweightkgm_suspendedslab + "|";
+            j = 0;
+            foreach (List<List<double>> floor in structuralMembers.Slab_suspendedRebar)
+            {
+                stringParam += "Floor-" + (j + 1) + "|";
+                int k = 0;
+                foreach (List<double> member in floor)
+                {
+                    stringParam += "member-" + (k + 1) + "|";
+                    foreach (double value in member)
+                    {
+                        stringParam += value + "|";
+                    }
+                    k++;
+                }
+                j++;
+            }
+            //TODO STAIRS SAVE
 
             //6.0 - Roofings
             stringParam += "\nRoofings|\n";
@@ -8117,6 +8383,18 @@ namespace KnowEst
             masonrysSolutionP1.Clear();
             masonrysSolutionP2.Clear();
             masonrysSolutionP3.Clear();
+
+            structuralMembers.footingReinforcements.Clear();
+            structuralMembers.wallFootingReinforcements.Clear();
+            structuralMembers.Column_mainRebar.Clear();
+            structuralMembers.Column_lateralRebar.Clear();
+            structuralMembers.beamdias.Clear();
+            structuralMembers.Beam_mainRebar.Clear();
+            structuralMembers.Beam_stirRebar.Clear();
+            structuralMembers.Beam_webRebar.Clear();
+            structuralMembers.Slab_ongradeRebar.Clear();
+            structuralMembers.Slab_suspendedRebar.Clear();
+            //structuralMembers.xxx.Clear(); TODO STAIRS
 
             structuralMembers.roofSolutions.Clear();
 
@@ -8754,6 +9032,14 @@ namespace KnowEst
             formworksChecklist[5] = bool.Parse(tokens[i]); i++;
             masonryChecklist[0] = bool.Parse(tokens[i]); i++;
             masonryChecklist[1] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[0] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[1] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[2] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[3] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[4] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[5] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[6] = bool.Parse(tokens[i]); i++;
+            rebarsChecklist[7] = bool.Parse(tokens[i]); i++;
             roofingsChecklist[0] = bool.Parse(tokens[i]); i++;
             roofingsChecklist[1] = bool.Parse(tokens[i]); i++;
             roofingsChecklist[2] = bool.Parse(tokens[i]); i++;
@@ -10384,7 +10670,324 @@ namespace KnowEst
             masonLCost_total = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
             mason_TOTALCOST = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
 
-            //5.0 - Rebars TODO
+            //5.0 - Rebars
+            //Totalities
+            i++;
+            //Footing
+            i++;
+            j = 0;
+            l = 0;
+            while (!tokens[i].Equals("RebarsWF"))
+            {
+                if (tokens[i].Equals("member-" + (j + 1)) && !tokens[i].Equals("RebarsWF"))
+                {
+                    List<List<double>> member = new List<List<double>>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("row-" + (l + 1)) && !tokens[i].Equals("RebarsWF") && !tokens[i].Equals("member-" + (j + 2)))
+                    {
+                        List<double> toAdd = new List<double>();
+                        i++;
+
+                        while (!tokens[i].Equals("row-" + (l + 2)) && !tokens[i].Equals("RebarsWF") && !tokens[i].Equals("member-" + (j + 2)))
+                        {
+                            toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+                        }
+                        l++;
+                        member.Add(toAdd);
+                    }
+                    structuralMembers.footingReinforcements.Add(member);
+                    j++;
+                }
+            }
+            //Wall Footing
+            i++;
+            j = 0;
+            l = 0;
+            while (!tokens[i].Equals("RebarsCM"))
+            {
+                if (tokens[i].Equals("member-" + (j + 1)) && !tokens[i].Equals("RebarsCM"))
+                {
+                    List<List<double>> member = new List<List<double>>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("row-" + (l + 1)) && !tokens[i].Equals("RebarsCM") && !tokens[i].Equals("member-" + (j + 2)))
+                    {
+                        List<double> toAdd = new List<double>();
+                        i++;
+
+                        while (!tokens[i].Equals("row-" + (l + 2)) && !tokens[i].Equals("RebarsCM") && !tokens[i].Equals("member-" + (j + 2)))
+                        {
+                            toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+                        }
+                        l++;
+                        member.Add(toAdd);
+                    }
+                    structuralMembers.wallFootingReinforcements.Add(member);
+                    j++;
+                }
+            }
+            //Column Main
+            i++;
+            structuralMembers.totalweightkgm_Colmain = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            j = 0;
+            l = 0;
+            while (!tokens[i].Equals("RebarsCT"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("RebarsCT"))
+                {
+                    List<List<string>> floor = new List<List<string>>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("member-" + (l + 1)) && !tokens[i].Equals("RebarsCT") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    {
+                        List<string> toAdd = new List<string>();
+                        i++;
+
+                        while (!tokens[i].Equals("member-" + (l + 2)) && !tokens[i].Equals("RebarsCT") && !tokens[i].Equals("Floor-" + (j + 2)))
+                        {
+                            toAdd.Add(tokens[i]); i++;
+                        }
+                        l++;
+                        floor.Add(toAdd);
+                    }
+                    structuralMembers.Column_mainRebar.Add(floor);
+                    j++;
+                }
+            }
+            //Column Lateral Ties
+            i++;
+            structuralMembers.totalweightkgm_Colties = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            j = 0;
+            l = 0;
+            int m = 0;
+            while (!tokens[i].Equals("RebarsBM1"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("RebarsBM1"))
+                {
+                    List<List<List<string>>> floor = new List<List<List<string>>>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("member-" + (l + 1)) && !tokens[i].Equals("RebarsBM1") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    {
+                        List<List<string>> member = new List<List<string>>();
+                        i++;
+                        m = 0;
+                        while (tokens[i].Equals("row-" + (m + 1)) && !tokens[i].Equals("RebarsBM1") && !tokens[i].Equals("Floor-" + (j + 2)) && !tokens[i].Equals("member-" + (l + 2)))
+                        {
+                            List<string> row = new List<string>();
+                            i++;
+
+                            while (!tokens[i].Equals("row-" + (m + 2)) && !tokens[i].Equals("RebarsBM1") && !tokens[i].Equals("Floor-" + (j + 2)) && !tokens[i].Equals("member-" + (l + 2)))
+                            {
+                                row.Add(tokens[i]); i++;
+                            }
+                            m++;
+                            member.Add(row);
+                        }
+                        l++;
+                        floor.Add(member);
+                    }
+                    structuralMembers.Column_lateralRebar.Add(floor);
+                    j++;
+                }
+            }
+            //Beam Main 1
+            i++;
+            structuralMembers.totalweightkgm_main = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            j = 0;
+            l = 0;
+            while (!tokens[i].Equals("RebarsBM2"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("RebarsBM2"))
+                {
+                    List<List<string>> floor = new List<List<string>>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("member-" + (l + 1)) && !tokens[i].Equals("RebarsBM2") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    {
+                        List<string> toAdd = new List<string>();
+                        i++;
+
+                        while (!tokens[i].Equals("member-" + (l + 2)) && !tokens[i].Equals("RebarsBM2") && !tokens[i].Equals("Floor-" + (j + 2)))
+                        {
+                            toAdd.Add(tokens[i]); i++;
+                        }
+                        l++;
+                        floor.Add(toAdd);
+                    }
+                    structuralMembers.beamdias.Add(floor);
+                    j++;
+                }
+            }
+            //Beam Main 2
+            i++;
+            j = 0;
+            l = 0;
+            m = 0;
+            while (!tokens[i].Equals("RebarsBS"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("RebarsBS"))
+                {
+                    List<List<List<string>>> floor = new List<List<List<string>>>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("member-" + (l + 1)) && !tokens[i].Equals("RebarsBS") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    {
+                        List<List<string>> member = new List<List<string>>();
+                        i++;
+                        m = 0;
+                        while (tokens[i].Equals("row-" + (m + 1)) && !tokens[i].Equals("RebarsBS") && !tokens[i].Equals("Floor-" + (j + 2)) && !tokens[i].Equals("member-" + (l + 2)))
+                        {
+                            List<string> row = new List<string>();
+                            i++;
+
+                            while (!tokens[i].Equals("row-" + (m + 2)) && !tokens[i].Equals("RebarsBS") && !tokens[i].Equals("Floor-" + (j + 2)) && !tokens[i].Equals("member-" + (l + 2)))
+                            {
+                                row.Add(tokens[i]); i++;
+                            }
+                            m++;
+                            member.Add(row);
+                        }
+                        l++;
+                        floor.Add(member);
+                    }
+                    structuralMembers.Beam_mainRebar.Add(floor);
+                    j++;
+                }
+            }
+            //Beam Stirrups
+            i++;
+            structuralMembers.totalweightkgm_stir = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            j = 0;
+            l = 0;
+            m = 0;
+            while (!tokens[i].Equals("RebarsBW"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("RebarsBW"))
+                {
+                    List<List<List<string>>> floor = new List<List<List<string>>>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("member-" + (l + 1)) && !tokens[i].Equals("RebarsBW") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    {
+                        List<List<string>> member = new List<List<string>>();
+                        i++;
+                        m = 0;
+                        while (tokens[i].Equals("row-" + (m + 1)) && !tokens[i].Equals("RebarsBW") && !tokens[i].Equals("Floor-" + (j + 2)) && !tokens[i].Equals("member-" + (l + 2)))
+                        {
+                            List<string> row = new List<string>();
+                            i++;
+
+                            while (!tokens[i].Equals("row-" + (m + 2)) && !tokens[i].Equals("RebarsBW") && !tokens[i].Equals("Floor-" + (j + 2)) && !tokens[i].Equals("member-" + (l + 2)))
+                            {
+                                row.Add(tokens[i]); i++;
+                            }
+                            m++;
+                            member.Add(row);
+                        }
+                        l++;
+                        floor.Add(member);
+                    }
+                    structuralMembers.Beam_stirRebar.Add(floor);
+                    j++;
+                }
+            }
+            //Beam Web
+            i++;
+            structuralMembers.totalweightkgm_web = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            j = 0;
+            l = 0;
+            m = 0;
+            while (!tokens[i].Equals("RebarsSOG"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("RebarsSOG"))
+                {
+                    List<List<List<string>>> floor = new List<List<List<string>>>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("member-" + (l + 1)) && !tokens[i].Equals("RebarsSOG") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    {
+                        List<List<string>> member = new List<List<string>>();
+                        i++;
+                        m = 0;
+                        while (tokens[i].Equals("row-" + (m + 1)) && !tokens[i].Equals("RebarsSOG") && !tokens[i].Equals("Floor-" + (j + 2)) && !tokens[i].Equals("member-" + (l + 2)))
+                        {
+                            List<string> row = new List<string>();
+                            i++;
+
+                            while (!tokens[i].Equals("row-" + (m + 2)) && !tokens[i].Equals("RebarsSOG") && !tokens[i].Equals("Floor-" + (j + 2)) && !tokens[i].Equals("member-" + (l + 2)))
+                            {
+                                row.Add(tokens[i]); i++;
+                            }
+                            m++;
+                            member.Add(row);
+                        }
+                        l++;
+                        floor.Add(member);
+                    }
+                    structuralMembers.Beam_webRebar.Add(floor);
+                    j++;
+                }
+            }
+            //Slab on Grade
+            i++;
+            structuralMembers.totalweightkgm_slabongrade = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            j = 0;
+            l = 0;
+            while (!tokens[i].Equals("RebarsSS"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("RebarsSS"))
+                {
+                    List<List<string>> floor = new List<List<string>>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("member-" + (l + 1)) && !tokens[i].Equals("RebarsSS") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    {
+                        List<string> toAdd = new List<string>();
+                        i++;
+
+                        while (!tokens[i].Equals("member-" + (l + 2)) && !tokens[i].Equals("RebarsSS") && !tokens[i].Equals("Floor-" + (j + 2)))
+                        {
+                            toAdd.Add(tokens[i]); i++;
+                        }
+                        l++;
+                        floor.Add(toAdd);
+                    }
+                    structuralMembers.Slab_ongradeRebar.Add(floor);
+                    j++;
+                }
+            }
+            //Suspended Slab
+            i++;
+            structuralMembers.totalweightkgm_suspendedslab = double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture); i++;
+            j = 0;
+            l = 0;
+            while (!tokens[i].Equals("Roofings"))
+            {
+                if (tokens[i].Equals("Floor-" + (j + 1)) && !tokens[i].Equals("Roofings"))
+                {
+                    List<List<double>> floor = new List<List<double>>();
+                    i++;
+                    l = 0;
+                    while (tokens[i].Equals("member-" + (l + 1)) && !tokens[i].Equals("Roofings") && !tokens[i].Equals("Floor-" + (j + 2)))
+                    {
+                        List<double> toAdd = new List<double>();
+                        i++;
+
+                        while (!tokens[i].Equals("member-" + (l + 2)) && !tokens[i].Equals("Roofings") && !tokens[i].Equals("Floor-" + (j + 2)))
+                        {
+                            toAdd.Add(double.Parse(tokens[i], System.Globalization.CultureInfo.InvariantCulture)); i++;
+                        }
+                        l++;
+                        floor.Add(toAdd);
+                    }
+                    structuralMembers.Slab_suspendedRebar.Add(floor);
+                    j++;
+                }
+            }
+
+            //TODO STAIRS OPEN
 
             //6.0 - Roofings
             i++;
