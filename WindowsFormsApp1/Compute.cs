@@ -9312,6 +9312,25 @@ namespace KnowEst
                 Console.WriteLine();
                 // F_Length = nearestValue(Math.Sqrt(Math.Pow(Riser * F_Steps, 2) + Math.Pow(Tread * F_Steps, 2)), 25);
                 //S_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + WidthLanding + BeamWidth + (LapLength * WS_Diameter), 25);
+
+                double main_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][11]);
+                double temp_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][13]);
+                double landing_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][15]);
+                double chair_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][17]);                
+                double nose_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][19]);
+                List<double> results = new List<double>();                
+            }
+            foreach(var a in cEF.structuralMembers.stairs)
+            {
+                foreach(var b in a)
+                {
+                    int i = 0;
+                    foreach(var c in b)
+                    {
+                        print(c + " [" + i + "]");
+                        i++;
+                    }
+                }
             }
             //Computation -- add Formworks [STAIRS]
             recomputeFW_stairs(cEF);
@@ -10452,12 +10471,13 @@ namespace KnowEst
             return cementAndsands;
         }
 
-        public List<double> computeCHB_reinforcement(double eCHB, double iCHB, string vSpace, string hSpace, string grade, string diam, string rLen, string tWire)
+        public List<double> computeCHB_reinforcement(CostEstimationForm cEF, double eCHB, double iCHB, string vSpace, string hSpace, string grade, string diam, string rLen, string tWire)
         {
             List<double> mason = new List<double>();
             double[] vertical = { 2.93, 2.13, 1.60 };
             double[] horizontal = { 3.30, 2.15, 1.72 };
-            double[] diameter = { 0.616, 0.888, 1.578, 2.466, 3.853 };
+            //double[] diameter = { 0.616, 0.888, 1.578, 2.466, 3.853 };
+            double[] diameter = { double.Parse(cEF.parameters.rein_W_dt.Rows[2][1].ToString()), double.Parse(cEF.parameters.rein_W_dt.Rows[3][1].ToString()), double.Parse(cEF.parameters.rein_W_dt.Rows[4][1].ToString()), double.Parse(cEF.parameters.rein_W_dt.Rows[5][1].ToString()), double.Parse(cEF.parameters.rein_W_dt.Rows[6][1].ToString()) };            
             double[,] tieXL = new double[,] { { .054, .039, .024 }, { .065, .047, .029 }, { .086, .063, .039 } };
             double[,] tieLX = new double[,] { { .036, .026, .020 }, { .044, .032, .024 }, { .057, .042, .032 } };
             double[,] tieLXXX = new double[,] { { .027, .020, .015 }, { .033, .024, .018 }, { .044, .032, .024 } };
@@ -10557,7 +10577,7 @@ namespace KnowEst
                 mason.Add(hBAR);
                 mason.Add(reinforceCHB);
                 mason.Add(reinforceCHBweight);
-                mason.Add(tieWire);
+                mason.Add(tieWire);                
             }
             return mason;
         }
@@ -10826,8 +10846,7 @@ namespace KnowEst
 
         public double stairsRounder(double x)
         {
-            x = x * 1000;
-            print(x + " lol");
+            x = x * 1000;            
             if ((x % 5) == 0)
             {
                 return x;
@@ -11666,6 +11685,20 @@ namespace KnowEst
                 results.Add(rounder(bestQTYM));
             }
             return results;
-        }        
+        }
+        
+        
+        public void stairsRebarsElper(CostEstimationForm cEF, double prot)
+        {
+            double[] mls = { 6.0, 7.5, 9.0, 10.5, 12.0};
+            double bestTW = 0;
+            double bestLM = 0;
+            double bestQTYM = 0;
+            for (int i = 0; i < 5; i++)
+            {
+                double step1 = mls[i] / prot;
+                double step2_wholenumber = Math.Floor(step1);
+            }
+        }
     }   
 }

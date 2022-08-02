@@ -225,7 +225,13 @@ namespace KnowEst
                       RCOL_Mcost,
                       RCOL_Lunit,
                       RCOL_Lcost,
-                      RCOL_TOTALCOST;
+                      RCOL_TOTALCOST,
+                      RWALLS_qty, //WALLS
+                      RWALLS_Munit,
+                      RWALLS_Mcost,
+                      RWALLS_Lunit,
+                      RWALLS_Lcost,
+                      RWALLS_TOTALCOST;
 
         public double rein_MCost,        //Reinforcements - Total Material Cost
                       rein_LCost,        //Reinforcements - Total Labor Cost
@@ -444,6 +450,12 @@ namespace KnowEst
             RSS_Lunit = 0;
             RSS_Lcost = 0;
             RSS_TOTALCOST = 0;
+            RWALLS_qty = 0;
+            RWALLS_Munit = 0;
+            RWALLS_Mcost = 0;
+            RWALLS_Lunit = 0;
+            RWALLS_Lcost = 0;
+            RWALLS_TOTALCOST = 0;
 
             //Roofings **
             rANDp_MCost = 0; 
@@ -2327,13 +2339,101 @@ namespace KnowEst
             {
 
             }
-            if (rebarsChecklist[7])
-            {
+            if (rebarsChecklist[7])// Walls
+            {                
+                //extvBAR -> exthBAR -> extReinforcementCHB -> extReinforcementWeight -> extTieWire -> intvBAR -> inthBAR -> intReinforcementCHB -> intReinforcementWeight -> intTieWire
+                try 
+                {                    
+                    foreach(var a in masonrysSolutionP1)
+                    {
+                        print(a + " masonry1");
+                    }
+                    print("---------------");
+                    foreach (var a in masonrysSolutionP2)
+                    {
+                        print(a + " masonry2");
+                    }
+                    print("---------------");
+                    foreach (var a in masonrysSolutionP3)
+                    {
+                        print(a + " masonry3");
+                    }
+                    print("---------------");
+                    List<string> grade_holder = gradefilterer(parameters.mason_RTW_RG);
+                    double exterior_chb = masonrysSolutionP3[2];
+                    double exterior_weight = masonrysSolutionP3[3];
+                    double exterior_TW = masonrysSolutionP3[4];
 
+                    double interior_chb = masonrysSolutionP3[7];
+                    double interior_weight = masonrysSolutionP3[8];
+                    double interior_TW = masonrysSolutionP3[9];
+
+                    string rebar_length = parameters.mason_RTW_RL; 
+                    string rebar_diameter = parameters.mason_RTW_BD;
+                    string grade = parameters.mason_RTW_RG;
+
+                    print("Exterior chb: " + masonrysSolutionP3[2]);
+                    print("Exterior weit: " + masonrysSolutionP3[3]);
+                    print("Exterior TW: " + masonrysSolutionP3[4]);
+
+                    print("interior chb: " + masonrysSolutionP3[7]);
+                    print("interior weit: " + masonrysSolutionP3[8]);
+                    print("interior TW: " + masonrysSolutionP3[9]);
+
+                    print("rebar l: " + rebar_length);
+                    print("rebar dia: " + rebar_diameter);
+                    print("grade: " + grade);
+                    double priceTW = 0;
+                    string price_name = "Rebar "+ grade + " (⌀" + rebar_diameter + ") [" + rebar_length + "]";
+                    if (grade_holder[1] == "33")
+                    {
+                        priceTW = double.Parse(parameters.price_RebarGrade33[price_name].ToString());                            
+                    }
+                    else if (grade_holder[1] == "40")
+                    {
+                        priceTW = double.Parse(parameters.price_RebarGrade40[price_name].ToString());                            
+                    }
+                    else if (grade_holder[1] == "60")
+                    {
+                        priceTW = double.Parse(parameters.price_RebarGrade60[price_name].ToString());                            
+                    }
+
+                    double totalPriceTW = 0;
+                    double totalLaborTW = 0;
+                    totalPriceTW += exterior_chb * priceTW;
+                    totalPriceTW += interior_chb * priceTW;
+                    totalPriceTW += exterior_TW * double.Parse(parameters.price_CommonMaterials["GI Wire (no. 16) [KG]"].ToString());
+                    totalPriceTW += interior_TW * double.Parse(parameters.price_CommonMaterials["GI Wire (no. 16) [KG]"].ToString());
+                    
+                    totalLaborTW += double.Parse(parameters.price_LaborRate_Rebar["WALLS [KG]"].ToString()) * exterior_weight;
+                    totalLaborTW += double.Parse(parameters.price_LaborRate_Rebar["WALLS [KG]"].ToString()) * interior_weight;
+                    RWALLS_qty = exterior_weight + interior_weight + exterior_TW + interior_TW;
+                    RWALLS_Mcost = totalPriceTW;
+                    RWALLS_Munit = totalPriceTW/RWALLS_qty;
+                    RWALLS_Lunit = double.Parse(parameters.price_LaborRate_Rebar["WALLS [KG]"].ToString());
+                    RWALLS_Lcost = totalLaborTW;
+                    RWALLS_TOTALCOST = RWALLS_Mcost + RWALLS_Lcost;
+                    print("=========WALLS======");
+                    print("RWALLS_Munit: " + RWALLS_Munit);
+                    print("RWALLS_Mcost: " + RWALLS_Mcost);
+                    print("RWALLS_Lunit: " + RWALLS_Lunit);
+                    print("RWALLS_Lcost: " + RWALLS_Lcost);
+                    print("RWALLS_TOTALCOST: " + RWALLS_TOTALCOST);
+
+                }
+                catch(Exception ex)
+                {
+                    print("WALLS: " + ex);
+                }                                
             }
             else
             {
-
+                RWALLS_qty = 0;
+                RWALLS_Munit = 0;
+                RWALLS_Mcost = 0;
+                RWALLS_Lunit = 0;
+                RWALLS_Lcost = 0;
+                RWALLS_TOTALCOST = 0;
             }
             //Rebars END
 
