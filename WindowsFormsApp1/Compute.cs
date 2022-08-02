@@ -391,7 +391,7 @@ namespace KnowEst
                                     }
                                 }
                             }
-                            else if (previousTotalWaste_L == 0)
+                            else if (previousTotalWaste_L == 0 && !Double.IsNaN(totalWaste_L) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                             {
                                 chosenML_L.Clear();
                                 chosenML_L.Add(Lm);
@@ -453,7 +453,7 @@ namespace KnowEst
                                     }
                                 }
                             }
-                            else if (previousTotalWaste_T == 0)
+                            else if (previousTotalWaste_T == 0 && !Double.IsNaN(totalWaste_T) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                             {
                                 chosenML_T.Clear();
                                 chosenML_T.Add(Lm);
@@ -855,7 +855,7 @@ namespace KnowEst
                                             }
                                         }
                                     }
-                                    else if (previousTotalWaste_LU == 0)
+                                    else if (previousTotalWaste_LU == 0 && !Double.IsNaN(totalWaste_LU) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                     {
                                         chosenML_L.Clear();
                                         chosenML_L.Add(Lm);
@@ -917,7 +917,7 @@ namespace KnowEst
                                             }
                                         }
                                     }
-                                    else if (previousTotalWaste_T == 0)
+                                    else if (previousTotalWaste_T == 0 && !Double.IsNaN(totalWaste_T) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                     {
                                         chosenML_T.Clear();
                                         chosenML_T.Add(Lm);
@@ -981,7 +981,7 @@ namespace KnowEst
                                             }
                                         }
                                     }
-                                    else if (previousTotalWaste_LU == 0)
+                                    else if (previousTotalWaste_LU == 0 && !Double.IsNaN(totalWaste_LU) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                     {
                                         chosenML_L.Clear();
                                         chosenML_L.Add(Lm);
@@ -1043,7 +1043,7 @@ namespace KnowEst
                                             }
                                         }
                                     }
-                                    else if (previousTotalWaste_T == 0)
+                                    else if (previousTotalWaste_T == 0 && !Double.IsNaN(totalWaste_T) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                     {
                                         chosenML_T.Clear();
                                         chosenML_T.Add(Lm);
@@ -1108,7 +1108,7 @@ namespace KnowEst
                                         }
                                     }
                                 }
-                                else if (previousTotalWaste_L == 0)
+                                else if (previousTotalWaste_L == 0 && !Double.IsNaN(totalWaste_L) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                 {
                                     chosenML_L.Clear();
                                     chosenML_L.Add(Lm);
@@ -1170,7 +1170,7 @@ namespace KnowEst
                                         }
                                     }
                                 }
-                                else if (previousTotalWaste_U == 0)
+                                else if (previousTotalWaste_U == 0 && !Double.IsNaN(totalWaste_U) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                 {
                                     chosenML_U.Clear();
                                     chosenML_U.Add(Lm);
@@ -1232,7 +1232,7 @@ namespace KnowEst
                                         }
                                     }
                                 }
-                                else if (previousTotalWaste_T == 0)
+                                else if (previousTotalWaste_T == 0 && !Double.IsNaN(totalWaste_T) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                 {
                                     chosenML_T.Clear();
                                     chosenML_T.Add(Lm);
@@ -1671,7 +1671,7 @@ namespace KnowEst
                                         }
                                     }
                                 }
-                                else if (previousTotalWaste_L == 0)
+                                else if (previousTotalWaste_L == 0 && !Double.IsNaN(totalWaste_L) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                 {
                                     chosenML_L.Clear();
                                     chosenML_L.Add(Lm);
@@ -1728,7 +1728,7 @@ namespace KnowEst
                                         }
                                     }
                                 }
-                                else if (previousTotalWaste_L == 0)
+                                else if (previousTotalWaste_L == 0 && !Double.IsNaN(totalWaste_L) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                 {
                                     chosenML_L.Clear();
                                     chosenML_L.Add(Lm);
@@ -1786,7 +1786,7 @@ namespace KnowEst
                                     }
                                 }
                             }
-                            else if (previousTotalWaste_T == 0)
+                            else if (previousTotalWaste_T == 0 && !Double.IsNaN(totalWaste_T) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                             {
                                 chosenML_T.Clear();
                                 chosenML_T.Add(Lm);
@@ -2201,7 +2201,7 @@ namespace KnowEst
                                         }
                                     }
                                 }
-                                else if (previousTotalWaste_L == 0)
+                                else if (previousTotalWaste_L == 0 && !Double.IsNaN(totalWaste_L) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                 {
                                     chosenML_L.Clear();
                                     chosenML_L.Add(Lm);
@@ -2269,7 +2269,7 @@ namespace KnowEst
                                         }
                                     }
                                 }
-                                else if (previousTotalWaste_L == 0)
+                                else if (previousTotalWaste_L == 0 && !Double.IsNaN(totalWaste_L) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                 {
                                     chosenML_L.Clear();
                                     chosenML_L.Add(Lm);
@@ -2339,7 +2339,7 @@ namespace KnowEst
                                     }
                                 }
                             }
-                            else if (previousTotalWaste_T == 0)
+                            else if (previousTotalWaste_T == 0 && !Double.IsNaN(totalWaste_T) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                             {
                                 chosenML_T.Clear();
                                 chosenML_T.Add(Lm);
@@ -2686,7 +2686,7 @@ namespace KnowEst
                                     }
                                 }
                             }
-                            else if (previousTotalWaste_L == 0)
+                            else if (previousTotalWaste_L == 0 && !Double.IsNaN(totalWaste_L) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                             {
                                 chosenML_L.Clear();
                                 chosenML_L.Add(Lm);
@@ -2748,7 +2748,7 @@ namespace KnowEst
                                     }
                                 }
                             }
-                            else if (previousTotalWaste_T == 0)
+                            else if (previousTotalWaste_T == 0 && !Double.IsNaN(totalWaste_T) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                             {
                                 chosenML_T.Clear();
                                 chosenML_T.Add(Lm);
@@ -3158,7 +3158,7 @@ namespace KnowEst
                                             }
                                         }
                                     }
-                                    else if (previousTotalWaste_LU == 0)
+                                    else if (previousTotalWaste_LU == 0 && !Double.IsNaN(totalWaste_LU) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                     {
                                         chosenML_L.Clear();
                                         chosenML_L.Add(Lm);
@@ -3220,7 +3220,7 @@ namespace KnowEst
                                             }
                                         }
                                     }
-                                    else if (previousTotalWaste_T == 0)
+                                    else if (previousTotalWaste_T == 0 && !Double.IsNaN(totalWaste_T) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                     {
                                         chosenML_T.Clear();
                                         chosenML_T.Add(Lm);
@@ -3284,7 +3284,7 @@ namespace KnowEst
                                             }
                                         }
                                     }
-                                    else if (previousTotalWaste_LU == 0)
+                                    else if (previousTotalWaste_LU == 0 && !Double.IsNaN(totalWaste_LU) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                     {
                                         chosenML_L.Clear();
                                         chosenML_L.Add(Lm);
@@ -3346,7 +3346,7 @@ namespace KnowEst
                                             }
                                         }
                                     }
-                                    else if (previousTotalWaste_T == 0)
+                                    else if (previousTotalWaste_T == 0 && !Double.IsNaN(totalWaste_T) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                     {
                                         chosenML_T.Clear();
                                         chosenML_T.Add(Lm);
@@ -3411,7 +3411,7 @@ namespace KnowEst
                                         }
                                     }
                                 }
-                                else if (previousTotalWaste_L == 0)
+                                else if (previousTotalWaste_L == 0 && !Double.IsNaN(totalWaste_L) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                 {
                                     chosenML_L.Clear();
                                     chosenML_L.Add(Lm);
@@ -3473,7 +3473,7 @@ namespace KnowEst
                                         }
                                     }
                                 }
-                                else if (previousTotalWaste_U == 0)
+                                else if (previousTotalWaste_U == 0 && !Double.IsNaN(totalWaste_U) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                 {
                                     chosenML_U.Clear();
                                     chosenML_U.Add(Lm);
@@ -3535,7 +3535,7 @@ namespace KnowEst
                                         }
                                     }
                                 }
-                                else if (previousTotalWaste_T == 0)
+                                else if (previousTotalWaste_T == 0 && !Double.IsNaN(totalWaste_T) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                 {
                                     chosenML_T.Clear();
                                     chosenML_T.Add(Lm);
@@ -3982,7 +3982,7 @@ namespace KnowEst
                                         }
                                     }
                                 }
-                                else if (previousTotalWaste_L == 0)
+                                else if (previousTotalWaste_L == 0 && !Double.IsNaN(totalWaste_L) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                 {
                                     chosenML_L.Clear();
                                     chosenML_L.Add(Lm);
@@ -4039,7 +4039,7 @@ namespace KnowEst
                                         }
                                     }
                                 }
-                                else if (previousTotalWaste_L == 0)
+                                else if (previousTotalWaste_L == 0 && !Double.IsNaN(totalWaste_L) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                 {
                                     chosenML_L.Clear();
                                     chosenML_L.Add(Lm);
@@ -4097,7 +4097,7 @@ namespace KnowEst
                                     }
                                 }
                             }
-                            else if (previousTotalWaste_T == 0)
+                            else if (previousTotalWaste_T == 0 && !Double.IsNaN(totalWaste_T) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                             {
                                 chosenML_T.Clear();
                                 chosenML_T.Add(Lm);
@@ -4519,7 +4519,7 @@ namespace KnowEst
                                         }
                                     }
                                 }
-                                else if (previousTotalWaste_L == 0)
+                                else if (previousTotalWaste_L == 0 && !Double.IsNaN(totalWaste_L) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                 {
                                     chosenML_L.Clear();
                                     chosenML_L.Add(Lm);
@@ -4587,7 +4587,7 @@ namespace KnowEst
                                         }
                                     }
                                 }
-                                else if (previousTotalWaste_L == 0)
+                                else if (previousTotalWaste_L == 0 && !Double.IsNaN(totalWaste_L) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                                 {
                                     chosenML_L.Clear();
                                     chosenML_L.Add(Lm);
@@ -4657,7 +4657,7 @@ namespace KnowEst
                                     }
                                 }
                             }
-                            else if (previousTotalWaste_T == 0)
+                            else if (previousTotalWaste_T == 0 && !Double.IsNaN(totalWaste_T) && !Double.IsNaN(qtyM) && !Double.IsInfinity(qtyM))
                             {
                                 chosenML_T.Clear();
                                 chosenML_T.Add(Lm);
