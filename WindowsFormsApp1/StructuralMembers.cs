@@ -225,7 +225,13 @@ namespace KnowEst
             cEF.masonrysSolutionP1 = cEF.compute.computeMasonry(cEF, cEF.parameters.mason_exteriorWall, cEF.parameters.mason_exteriorWindow, cEF.parameters.mason_exteriorDoor, cEF.parameters.mason_interiorWall, cEF.parameters.mason_interiorWindow, cEF.parameters.mason_interiorDoor, cEF.parameters.mason_CHB_EW, cEF.parameters.mason_CHB_IW);
             cEF.masonrysSolutionP2 = cEF.compute.computeConcreteWall_mortar(cEF, cEF.parameters.conc_CM_W_MEW_CM, cEF.parameters.conc_CM_W_MIW_CM, cEF.parameters.conc_CM_W_P_CM, cEF.parameters.conc_CM_W_P_PT);
             cEF.masonrysSolutionP3 = cEF.compute.computeCHB_reinforcement(cEF, cEF.masonrysSolutionP1[3], cEF.masonrysSolutionP1[8], cEF.parameters.mason_RTW_VS, cEF.parameters.mason_RTW_HSL, cEF.parameters.mason_RTW_RG, cEF.parameters.mason_RTW_BD, cEF.parameters.mason_RTW_RL, cEF.parameters.mason_RTW_LTW);
-            
+            foreach (List<StairParameterUserControl> a in cEF.parameters.stair)
+            {
+                foreach(var b in a)
+                {
+                    Console.WriteLine("- " + b);
+                }
+            }
         }
     }
 }

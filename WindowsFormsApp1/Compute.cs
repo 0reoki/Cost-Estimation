@@ -9288,6 +9288,7 @@ namespace KnowEst
                 S_NoseBar = (F_Steps + S_Steps);
 
                 Console.WriteLine();
+                print(F_Length.ToString());
                 Console.WriteLine(F_WaistSlab1);
                 Console.WriteLine(F_WaistSlab2);
                 Console.WriteLine(F_WaistSlab3);
@@ -9318,9 +9319,11 @@ namespace KnowEst
                 double landing_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][15]);
                 double chair_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][17]);                
                 double nose_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][19]);
-                List<double> results = new List<double>();                
+                List<double> results = new List<double>();
+                //public void stairsRebarsElper(CostEstimationForm cEF, double prot, double bar_quantity)
+                stairsRebarsElper(cEF, F_WaistSlab1, F_WS_BarNumber);
             }
-            foreach(var a in cEF.structuralMembers.stairs)
+            foreach (var a in cEF.structuralMembers.stairs)
             {
                 foreach(var b in a)
                 {
@@ -10572,6 +10575,9 @@ namespace KnowEst
                 hBAR = chbS[x] * horizontal[hIndexer];
                 reinforceCHB = rounder((vBAR + hBAR) / double.Parse(filterer(rLen)));
                 reinforceCHBweight = rounder(reinforceCHB * diameter[diamIndexer] * double.Parse(filterer(rLen)));
+                print("weight lol:");
+                print("diameter inx: " + diameter[diamIndexer]);
+                print("rlen: " + double.Parse(filterer(rLen)));
                 tieWire = rounder(chbS[x] * arrayHandler[tieIndexer, hIndexer]);
                 mason.Add(vBAR);
                 mason.Add(hBAR);
@@ -11688,17 +11694,62 @@ namespace KnowEst
         }
         
         
-        public void stairsRebarsElper(CostEstimationForm cEF, double prot)
+        public void stairsRebarsElper(CostEstimationForm cEF, double prot, double bar_quantity)
         {
             double[] mls = { 6.0, 7.5, 9.0, 10.5, 12.0};
             double bestTW = 0;
             double bestLM = 0;
             double bestQTYM = 0;
+            prot = prot / 1000;
+            print("WTF: " + prot);
             for (int i = 0; i < 5; i++)
             {
-                double step1 = mls[i] / prot;
-                double step2_wholenumber = Math.Floor(step1);
+                double step1 = mls[i] / prot; // step 1
+                //print("step 1: " + step1);
+                double step2_wholenumber = Math.Floor(step1); // step 2
+                //print("step 2 whole: " + step2_wholenumber);
+                double step2_afterdecimal = step1 - Math.Floor(step1);// step 3
+                //print("step 2 dec: " + step2_afterdecimal);
+                double waste_length = step2_afterdecimal * prot; // step 4
+                //print("waste leng: " + waste_length);
+                double waste_per_piece = (waste_length / mls[i]); // step 5
+                //print("waste per piece: " + waste_per_piece);
+                double not_qtym = bar_quantity / step2_wholenumber; // step 6
+                //print("not qtym: " + not_qtym);
+                double qtym = rounder(bar_quantity / step2_wholenumber);
+                double totwaste1 = (waste_length * Math.Floor(not_qtym));
+                //print("totwaste1: " + totwaste1);
+                double totwaste2 = mls[i] - prot;
+                //print("totwaste2: " + totwaste2);
+                double totalwaste = totwaste1 + totwaste2;
+                double waste_percentage = (totalwaste / (mls[i] * qtym));
+                //print("waste percentage: " + waste_percentage);
+                double waste_percent_per = (totwaste2 / mls[i]);
+                //print("waste percentage per piece: " + waste_percent_per);
+                double ave_waste = (waste_per_piece + waste_percentage + waste_percent_per)/3;
+                //print("average waste: " + ave_waste);
+                if (bestTW == 0 && !Double.IsNaN(ave_waste))
+                {
+                    bestTW = ave_waste;
+                    bestQTYM = qtym;
+                    bestLM = mls[i];
+                }
+                else
+                {
+                    if (bestTW > ave_waste && !Double.IsNaN(ave_waste))
+                    {
+                        bestTW = ave_waste;
+                        bestQTYM = qtym;
+                        bestLM = mls[i];
+                    }
+                }
             }
+            List<double> res = new List<double>();
+            res.Add(bestLM);
+            res.Add(bestQTYM);
+            print("LM: " + bestLM);
+            print("QTYM: " + bestQTYM);
+            
         }
     }   
 }
