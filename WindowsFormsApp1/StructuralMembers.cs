@@ -136,8 +136,8 @@ namespace KnowEst
         ///----- SUSPENDED SLAB ------//        
         public List<List<List<double>>> Slab_suspendedRebar = new List<List<List<double>>>();
         public double totalweightkgm_suspendedslab = 0;
-
-        //double.Parse(xxx, System.Globalization.CultureInfo.InvariantCulture);
+        ///----- STAIRS ------//        
+        public List<List<List<double[,]>>> stairs_Rebar = new List<List<List<double[,]>>>();
 
         //Constant variables
         //Cement

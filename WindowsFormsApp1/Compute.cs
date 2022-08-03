@@ -9321,7 +9321,35 @@ namespace KnowEst
                 double nose_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][19]);
                 List<double> results = new List<double>();
                 //public void stairsRebarsElper(CostEstimationForm cEF, double prot, double bar_quantity)
+
+                //For solutions on structural members
+                List<double[,]> toAdd = new List<double[,]>();
+                double[,] waistSlab1 = new double[,]{
+                                                        { 123, 123, 123, 123 },// 6
+                                                        { 123, 123, 123, 123 },// 7.5
+                                                        { 123, 123, 123, 123 },// 9
+                                                        { 123, 123, 123, 123 },// 10.5
+                                                        { 123, 123, 123, 123 },// 12
+                                                        { 1, 0, 0, 0 }
+                                                    };
+
+                //For parameter manipulation
+                string[] stringArray = cEF.parameters.stair[floorCount][stairsCount].getValues();
+
                 stairsRebarsElper(cEF, F_WaistSlab1, F_WS_BarNumber);
+
+                toAdd.Add(waistSlab1);
+                stringArray[5] = "7.5m";
+
+                stairsRebarsElper(cEF, F_WaistSlab1, F_WS_BarNumber);
+
+                stairsRebarsElper(cEF, F_WaistSlab1, F_WS_BarNumber);
+                stairsRebarsElper(cEF, F_WaistSlab1, F_WS_BarNumber);
+
+                cEF.parameters.stair[floorCount][stairsCount].setUStairsValues(stringArray[1], stringArray[2], stringArray[3],
+                            stringArray[4], stringArray[5], "6.0m", "6.0m", "6.0m", "6.0m", "6.0m", "6.0m", "6.0m", "6.0m", "6.0m");
+
+
             }
             foreach (var a in cEF.structuralMembers.stairs)
             {

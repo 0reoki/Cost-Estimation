@@ -2333,7 +2333,30 @@ namespace KnowEst
             }
             if (rebarsChecklist[6])
             {
-
+                int i = 0;
+                foreach (List<List<double[,]>> floor in structuralMembers.stairs_Rebar)
+                {
+                    int j = 0;
+                    foreach (List<double[,]> stair in floor)
+                    {
+                        int k = 0;
+                        foreach(double[,] row in stair)
+                        {
+                            string userML = parameters.stair[i][j].getValues()[k + 5];
+                            int mlIndex = 0;
+                            switch (userML)
+                            {
+                                case "6.0m":
+                                    mlIndex = 0; break;
+                                default:
+                                    mlIndex = 0; break;
+                            }
+                            k++;
+                        }
+                        j++;
+                    }
+                    i++;
+                }
             }
             else
             {
