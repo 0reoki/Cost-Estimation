@@ -5391,6 +5391,25 @@ namespace KnowEst
                         if (type == "Lapped Splice" || type == "Welded Splice (Lap)")
                         {
                             string mix = spliceMixGetter(cEF.parameters.conc_CM_C_RM);
+                            if (cEF.parameters.conc_cmIsSelected[1])
+                            {
+                                if (cEF.parameters.conc_CM_C_CG.Equals("CLASS AA"))
+                                {
+                                    mix = "27.6";
+                                }
+                                else if (cEF.parameters.conc_CM_C_CG.Equals("CLASS A"))
+                                {
+                                    mix = "24.1";
+                                }
+                                else if (cEF.parameters.conc_CM_C_CG.Equals("CLASS B"))
+                                {
+                                    mix = "17.2";
+                                }
+                                else
+                                {
+                                    mix = "13.8";
+                                }                                                                                           
+                            }                                                        
                             int index = cEF.parameters.rein_LSL_CB_fc_list.IndexOf(mix);
                             if (index >= 0)
                             {
@@ -5403,6 +5422,7 @@ namespace KnowEst
                                     }
                                 }
                             }
+                            print(mix + " COL MIX");
                         }
 
                         double hl = 0;
@@ -6522,6 +6542,26 @@ namespace KnowEst
                                 else
                                 {
                                     string mix = spliceMixGetter(cEF.parameters.conc_CM_B_RM);
+                                    if (cEF.parameters.conc_cmIsSelected[2])
+                                    {
+                                        if (cEF.parameters.conc_CM_B_CG.Equals("CLASS AA"))
+                                        {
+                                            mix = "27.6";
+                                        }
+                                        else if (cEF.parameters.conc_CM_B_CG.Equals("CLASS A"))
+                                        {
+                                            mix = "24.1";
+                                        }
+                                        else if (cEF.parameters.conc_CM_B_CG.Equals("CLASS B"))
+                                        {
+                                            mix = "17.2";
+                                        }
+                                        else
+                                        {
+                                            mix = "13.8";
+                                        }
+                                    }
+                                    print(mix + " MIX");
                                     int index = cEF.parameters.rein_LSL_TB_fc_list.IndexOf(mix);
                                     if (index >= 0)
                                     {
@@ -6973,6 +7013,26 @@ namespace KnowEst
                                 }
                             }
                             string mix = spliceMixGetter(cEF.parameters.conc_CM_B_RM);
+                            if (cEF.parameters.conc_cmIsSelected[2])
+                            {
+                                if (cEF.parameters.conc_CM_B_CG.Equals("CLASS AA"))
+                                {
+                                    mix = "27.6";
+                                }
+                                else if (cEF.parameters.conc_CM_B_CG.Equals("CLASS A"))
+                                {
+                                    mix = "24.1";
+                                }
+                                else if (cEF.parameters.conc_CM_B_CG.Equals("CLASS B"))
+                                {
+                                    mix = "17.2";
+                                }
+                                else
+                                {
+                                    mix = "13.8";
+                                }
+                            }
+
                             int index = cEF.parameters.rein_LSL_TB_fc_list.IndexOf(mix);
                             double sl = 0;
                             if (index >= 0)
@@ -7577,6 +7637,26 @@ namespace KnowEst
                             if (type_Long == "Lapped Splice" || type_Long == "Welded Splice (Lap)")
                             {
                                 string mix = spliceMixGetter(cEF.parameters.conc_CM_S_SOG_RM);
+                                if (cEF.parameters.conc_cmIsSelected[3])
+                                {
+                                    if (cEF.parameters.conc_CM_S_SOG_CG.Equals("CLASS AA"))
+                                    {
+                                        mix = "27.6";
+                                    }
+                                    else if (cEF.parameters.conc_CM_S_SOG_CG.Equals("CLASS A"))
+                                    {
+                                        mix = "24.1";
+                                    }
+                                    else if (cEF.parameters.conc_CM_S_SOG_CG.Equals("CLASS B"))
+                                    {
+                                        mix = "17.2";
+                                    }
+                                    else
+                                    {
+                                        mix = "13.8";
+                                    }
+                                }
+                                print(mix + " MIX");
                                 int index = cEF.parameters.rein_LSL_TB_fc_list.IndexOf(mix);
                                 if (index >= 0)
                                 {
@@ -7593,6 +7673,25 @@ namespace KnowEst
                             if (type_Trans == "Lapped Splice" || type_Trans == "Welded Splice (Lap)")
                             {
                                 string mix = spliceMixGetter(cEF.parameters.conc_CM_S_SOG_RM);
+                                if (cEF.parameters.conc_cmIsSelected[3])
+                                {
+                                    if (cEF.parameters.conc_CM_S_SOG_CG.Equals("CLASS AA"))
+                                    {
+                                        mix = "27.6";
+                                    }
+                                    else if (cEF.parameters.conc_CM_S_SOG_CG.Equals("CLASS A"))
+                                    {
+                                        mix = "24.1";
+                                    }
+                                    else if (cEF.parameters.conc_CM_S_SOG_CG.Equals("CLASS B"))
+                                    {
+                                        mix = "17.2";
+                                    }
+                                    else
+                                    {
+                                        mix = "13.8";
+                                    }
+                                }
                                 int index = cEF.parameters.rein_LSL_TB_fc_list.IndexOf(mix);
                                 if (index >= 0)
                                 {
@@ -7649,20 +7748,7 @@ namespace KnowEst
             catch(Exception ex)
             {
                 print("Slab rebar on grade: " + ex);
-            }
-
-            foreach (var a in cEF.structuralMembers.slab)
-            {
-                foreach (var b in a)
-                {
-                    int o = 0;
-                    foreach (var c in b)
-                    {
-                        print(c + "[" + o + "]");
-                        o++;
-                    }
-                }
-            }
+            }            
             /// suspended slabs
             try
             {
@@ -8258,24 +8344,28 @@ namespace KnowEst
                                         bar_size = schedtraits_hanlder[9];
                                     }                                    
                                     if (str_splices[spl] == "Lapped Splice" || str_splices[spl] == "Welded Splice (Lap)")
-                                    {
-                                        string mix = cEF.parameters.conc_CM_S_SS_CG;
-                                        if (mix == "CLASS AA")
+                                    {                                        
+                                        string mix = spliceMixGetter(cEF.parameters.conc_CM_S_SS_RM);                                        
+                                        if (cEF.parameters.conc_cmIsSelected[4])
                                         {
-                                            mix = "27.6";
+                                            if (cEF.parameters.conc_CM_S_SS_CG.Equals("CLASS AA"))
+                                            {
+                                                mix = "27.6";
+                                            }
+                                            else if (cEF.parameters.conc_CM_S_SS_CG.Equals("CLASS A"))
+                                            {
+                                                mix = "24.1";
+                                            }
+                                            else if (cEF.parameters.conc_CM_S_SS_CG.Equals("CLASS B"))
+                                            {
+                                                mix = "17.2";
+                                            }
+                                            else
+                                            {
+                                                mix = "13.8";
+                                            }
                                         }
-                                        else if (mix == "CLASS A")
-                                        {
-                                            mix = "24.1";
-                                        }
-                                        else if (mix == "CLASS B")
-                                        {
-                                            mix = "17.2";
-                                        }
-                                        else if (mix == "CLASS C")
-                                        {
-                                            mix = "13.8";
-                                        }                                        
+                                        print(mix + " MIX");
                                         int index = cEF.parameters.rein_LSL_TB_fc_list.IndexOf(mix);
                                         if (index >= 0)
                                         {
@@ -10655,14 +10745,14 @@ namespace KnowEst
             {
                 double eOne = double.Parse(eWindow[x][0]);
                 double eTwo = double.Parse(eWindow[x][1]);
-                eWindow_total += eOne * eTwo;
+                eWindow_total += (eOne * eTwo) / 1000000;
             }
 
             for (int x = 0; x < eDoor.Count; x++)
             {
                 double eOne = double.Parse(eDoor[x][0]);
                 double eTwo = double.Parse(eDoor[x][1]);
-                eDoor_total += eOne * eTwo;
+                eDoor_total += (eOne * eTwo) / 1000000;
             }
             eCHB_area = eWall_total - eWindow_total - eDoor_total;
             eCHB_total = eCHB_area * 12.5;
@@ -10679,14 +10769,14 @@ namespace KnowEst
             {
                 double eOne = double.Parse(iWindow[x][0]);
                 double eTwo = double.Parse(iWindow[x][1]);
-                iWindow_total += eOne * eTwo;
+                iWindow_total += (eOne * eTwo) / 1000000;
             }
 
             for (int x = 0; x < iDoor.Count; x++)
             {
                 double eOne = double.Parse(iDoor[x][0]);
                 double eTwo = double.Parse(iDoor[x][1]);
-                iDoor_total += eOne * eTwo;
+                iDoor_total += (eOne * eTwo) / 1000000;
             }
             iCHB_area = iWall_total - iWindow_total - iDoor_total;
             iCHB_total = iCHB_area * 12.5;
