@@ -2510,12 +2510,24 @@ namespace KnowEst
         {
             toolTip1.Show("Selection of Gravel Types.", conc_CM_ST_GT_cbx);
         }
+        //Concrete Grade -- END
 
         //Paint
         private void paint_SCL_bx_MouseHover(object sender, EventArgs e)
         {
             toolTip1.Show("Number of times the skim coating should be applied to form layers.", paint_SCL_bx);
         }
-        //Concrete Grade -- END
+
+        //Tiles
+        private void tiles_FS_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Additional tiles to be purchased from each computed totality. \nTo ensure that there are enough tiles considering handling and installation errors, a factor of safety is used.", tiles_FS_bx);
+        }
+
+        //Labor and Equipment
+        private void labor_RD_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Manila Rate uses higher rates than provincial rates. \nSelect corresponding rate of labor per day.", labor_RD_cbx);
+        }
     }
 }
