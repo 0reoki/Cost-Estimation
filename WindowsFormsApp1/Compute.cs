@@ -5022,6 +5022,8 @@ namespace KnowEst
             string connectionF, connectionS;
 
             //Init variables from StructMem
+            print("eto count: " + cEF.structuralMembers.column.Count);
+            print("eto count2: " + index);
             baseC = double.Parse(cEF.structuralMembers.column[floorCount][index][1], System.Globalization.CultureInfo.InvariantCulture);
             depth = double.Parse(cEF.structuralMembers.column[floorCount][index][2], System.Globalization.CultureInfo.InvariantCulture);
             height = double.Parse(cEF.structuralMembers.column[floorCount][index][3], System.Globalization.CultureInfo.InvariantCulture);

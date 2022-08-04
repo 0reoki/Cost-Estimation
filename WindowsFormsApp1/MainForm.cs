@@ -10473,6 +10473,8 @@ namespace KnowEst
                     structuralMembers.columnLateralTies.Add(floor1);
                     structuralMembers.columnSpacing.Add(floor2);
                     structuralMembers.columnNames.Add(name);
+
+                    Console.WriteLine("column list iteration " + j + " " + structuralMembers.column[j]);
                     j++;
                 }
             }
