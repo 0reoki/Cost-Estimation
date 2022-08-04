@@ -112,5 +112,15 @@ namespace KnowEst
                 support_cbx.Text = value;
             }
         }
+
+        private void length_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports or center to edge distance of a 1-support", length_bx);
+        }
+
+        private void clearlength_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; the distance that is unsupported.", clearlength_bx);
+        }
     }
 }
