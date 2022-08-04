@@ -1035,6 +1035,7 @@ namespace KnowEst
             this.textBox17.Size = new System.Drawing.Size(118, 22);
             this.textBox17.TabIndex = 27;
             this.textBox17.Text = "Millimeter";
+            this.textBox17.TextChanged += new System.EventHandler(this.textBox17_TextChanged);
             // 
             // label25
             // 
@@ -5303,15 +5304,15 @@ namespace KnowEst
             // 
             this.tableLayoutPanel112.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel112.ColumnCount = 9;
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 171F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 338F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 225F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 225F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 225F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 225F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 192F));
             this.tableLayoutPanel112.Controls.Add(this.label280, 8, 0);
             this.tableLayoutPanel112.Controls.Add(this.label279, 7, 0);
             this.tableLayoutPanel112.Controls.Add(this.label278, 6, 0);
@@ -6114,6 +6115,7 @@ namespace KnowEst
             this.slab_SOG_SB_R_L_bx.Size = new System.Drawing.Size(122, 22);
             this.slab_SOG_SB_R_L_bx.TabIndex = 53;
             this.slab_SOG_SB_R_L_bx.Text = "0";
+            this.slab_SOG_SB_R_L_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_R_L_bx_MouseHover);
             // 
             // slab_SOG_SB_L_L_bx
             // 
@@ -6124,6 +6126,7 @@ namespace KnowEst
             this.slab_SOG_SB_L_L_bx.Size = new System.Drawing.Size(122, 22);
             this.slab_SOG_SB_L_L_bx.TabIndex = 52;
             this.slab_SOG_SB_L_L_bx.Text = "0";
+            this.slab_SOG_SB_L_L_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_L_L_bx_MouseHover);
             // 
             // slab_SOG_SB_B_L_bx
             // 
@@ -6134,6 +6137,7 @@ namespace KnowEst
             this.slab_SOG_SB_B_L_bx.Size = new System.Drawing.Size(122, 22);
             this.slab_SOG_SB_B_L_bx.TabIndex = 51;
             this.slab_SOG_SB_B_L_bx.Text = "0";
+            this.slab_SOG_SB_B_L_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_B_L_bx_MouseHover);
             // 
             // slab_SOG_SB_T_L_bx
             // 
@@ -6144,6 +6148,7 @@ namespace KnowEst
             this.slab_SOG_SB_T_L_bx.Size = new System.Drawing.Size(122, 22);
             this.slab_SOG_SB_T_L_bx.TabIndex = 50;
             this.slab_SOG_SB_T_L_bx.Text = "0";
+            this.slab_SOG_SB_T_L_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_T_L_bx_MouseHover);
             // 
             // slab_SOG_SB_T_CL_bx
             // 
@@ -6154,6 +6159,7 @@ namespace KnowEst
             this.slab_SOG_SB_T_CL_bx.Size = new System.Drawing.Size(124, 22);
             this.slab_SOG_SB_T_CL_bx.TabIndex = 49;
             this.slab_SOG_SB_T_CL_bx.Text = "0";
+            this.slab_SOG_SB_T_CL_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_T_CL_bx_MouseHover);
             // 
             // slab_SOG_SB_B_CL_bx
             // 
@@ -6164,6 +6170,7 @@ namespace KnowEst
             this.slab_SOG_SB_B_CL_bx.Size = new System.Drawing.Size(124, 22);
             this.slab_SOG_SB_B_CL_bx.TabIndex = 47;
             this.slab_SOG_SB_B_CL_bx.Text = "0";
+            this.slab_SOG_SB_B_CL_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_B_CL_bx_MouseHover);
             // 
             // slab_SOG_SB_L_CL_bx
             // 
@@ -6174,6 +6181,7 @@ namespace KnowEst
             this.slab_SOG_SB_L_CL_bx.Size = new System.Drawing.Size(124, 22);
             this.slab_SOG_SB_L_CL_bx.TabIndex = 46;
             this.slab_SOG_SB_L_CL_bx.Text = "0";
+            this.slab_SOG_SB_L_CL_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_L_CL_bx_MouseHover);
             // 
             // slab_SOG_SB_R_CL_bx
             // 
@@ -6184,6 +6192,7 @@ namespace KnowEst
             this.slab_SOG_SB_R_CL_bx.Size = new System.Drawing.Size(124, 22);
             this.slab_SOG_SB_R_CL_bx.TabIndex = 45;
             this.slab_SOG_SB_R_CL_bx.Text = "0";
+            this.slab_SOG_SB_R_CL_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_R_CL_bx_MouseHover);
             // 
             // label340
             // 
@@ -6432,6 +6441,7 @@ namespace KnowEst
             this.slab_SOG_T_ST_cbx.Name = "slab_SOG_T_ST_cbx";
             this.slab_SOG_T_ST_cbx.Size = new System.Drawing.Size(101, 24);
             this.slab_SOG_T_ST_cbx.TabIndex = 28;
+            this.slab_SOG_T_ST_cbx.MouseHover += new System.EventHandler(this.slab_SOG_T_ST_cbx_MouseHover);
             // 
             // slab_SOG_T_S_bx
             // 
@@ -6478,6 +6488,7 @@ namespace KnowEst
             this.slab_SOG_L_ST_cbx.Name = "slab_SOG_L_ST_cbx";
             this.slab_SOG_L_ST_cbx.Size = new System.Drawing.Size(100, 24);
             this.slab_SOG_L_ST_cbx.TabIndex = 24;
+            this.slab_SOG_L_ST_cbx.MouseHover += new System.EventHandler(this.slab_SOG_L_ST_cbx_MouseHover);
             // 
             // slab_SOG_L_D_bx
             // 
@@ -6808,6 +6819,7 @@ namespace KnowEst
             this.slab_SS_T_B_cbx.Name = "slab_SS_T_B_cbx";
             this.slab_SS_T_B_cbx.Size = new System.Drawing.Size(101, 24);
             this.slab_SS_T_B_cbx.TabIndex = 30;
+            this.slab_SS_T_B_cbx.MouseHover += new System.EventHandler(this.slab_SS_T_B_cbx_MouseHover);
             // 
             // slab_SS_L_B_cbx
             // 
@@ -6823,6 +6835,7 @@ namespace KnowEst
             this.slab_SS_L_B_cbx.Name = "slab_SS_L_B_cbx";
             this.slab_SS_L_B_cbx.Size = new System.Drawing.Size(100, 24);
             this.slab_SS_L_B_cbx.TabIndex = 29;
+            this.slab_SS_L_B_cbx.MouseHover += new System.EventHandler(this.slab_SS_L_B_cbx_MouseHover);
             // 
             // label338
             // 
@@ -6884,6 +6897,7 @@ namespace KnowEst
             this.slab_SS_L_T_cbx.Name = "slab_SS_L_T_cbx";
             this.slab_SS_L_T_cbx.Size = new System.Drawing.Size(100, 24);
             this.slab_SS_L_T_cbx.TabIndex = 24;
+            this.slab_SS_L_T_cbx.MouseHover += new System.EventHandler(this.slab_SS_L_T_cbx_MouseHover);
             // 
             // slab_SS_T_T_cbx
             // 
@@ -6899,6 +6913,7 @@ namespace KnowEst
             this.slab_SS_T_T_cbx.Name = "slab_SS_T_T_cbx";
             this.slab_SS_T_T_cbx.Size = new System.Drawing.Size(101, 24);
             this.slab_SS_T_T_cbx.TabIndex = 28;
+            this.slab_SS_T_T_cbx.MouseHover += new System.EventHandler(this.slab_SS_T_T_cbx_MouseHover);
             // 
             // slab_SS_SM_cbx
             // 
@@ -7019,6 +7034,7 @@ namespace KnowEst
             this.slab_SS_SB_R_L_bx.Size = new System.Drawing.Size(123, 22);
             this.slab_SS_SB_R_L_bx.TabIndex = 53;
             this.slab_SS_SB_R_L_bx.Text = "0";
+            this.slab_SS_SB_R_L_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_R_L_bx_MouseHover);
             // 
             // slab_SS_SB_L_L_bx
             // 
@@ -7029,6 +7045,7 @@ namespace KnowEst
             this.slab_SS_SB_L_L_bx.Size = new System.Drawing.Size(123, 22);
             this.slab_SS_SB_L_L_bx.TabIndex = 52;
             this.slab_SS_SB_L_L_bx.Text = "0";
+            this.slab_SS_SB_L_L_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_L_L_bx_MouseHover);
             // 
             // slab_SS_SB_B_L_bx
             // 
@@ -7039,6 +7056,7 @@ namespace KnowEst
             this.slab_SS_SB_B_L_bx.Size = new System.Drawing.Size(123, 22);
             this.slab_SS_SB_B_L_bx.TabIndex = 51;
             this.slab_SS_SB_B_L_bx.Text = "0";
+            this.slab_SS_SB_B_L_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_B_L_bx_MouseHover);
             // 
             // slab_SS_SB_T_L_bx
             // 
@@ -7049,6 +7067,7 @@ namespace KnowEst
             this.slab_SS_SB_T_L_bx.Size = new System.Drawing.Size(123, 22);
             this.slab_SS_SB_T_L_bx.TabIndex = 50;
             this.slab_SS_SB_T_L_bx.Text = "0";
+            this.slab_SS_SB_T_L_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_T_L_bx_MouseHover);
             // 
             // slab_SS_SB_T_CL_bx
             // 
@@ -7059,6 +7078,7 @@ namespace KnowEst
             this.slab_SS_SB_T_CL_bx.Size = new System.Drawing.Size(126, 22);
             this.slab_SS_SB_T_CL_bx.TabIndex = 49;
             this.slab_SS_SB_T_CL_bx.Text = "0";
+            this.slab_SS_SB_T_CL_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_T_CL_bx_MouseHover);
             // 
             // slab_SS_SB_B_CL_bx
             // 
@@ -7069,6 +7089,7 @@ namespace KnowEst
             this.slab_SS_SB_B_CL_bx.Size = new System.Drawing.Size(126, 22);
             this.slab_SS_SB_B_CL_bx.TabIndex = 47;
             this.slab_SS_SB_B_CL_bx.Text = "0";
+            this.slab_SS_SB_B_CL_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_B_CL_bx_MouseHover);
             // 
             // slab_SS_SB_L_CL_bx
             // 
@@ -7079,6 +7100,7 @@ namespace KnowEst
             this.slab_SS_SB_L_CL_bx.Size = new System.Drawing.Size(126, 22);
             this.slab_SS_SB_L_CL_bx.TabIndex = 46;
             this.slab_SS_SB_L_CL_bx.Text = "0";
+            this.slab_SS_SB_L_CL_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_L_CL_bx_MouseHover);
             // 
             // slab_SS_SB_R_CL_bx
             // 
@@ -7089,6 +7111,7 @@ namespace KnowEst
             this.slab_SS_SB_R_CL_bx.Size = new System.Drawing.Size(126, 22);
             this.slab_SS_SB_R_CL_bx.TabIndex = 45;
             this.slab_SS_SB_R_CL_bx.Text = "0";
+            this.slab_SS_SB_R_CL_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_R_CL_bx_MouseHover);
             // 
             // label105
             // 
@@ -7337,23 +7360,23 @@ namespace KnowEst
             // 
             this.tableLayoutPanel140.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel140.ColumnCount = 17;
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 225F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 172F));
             this.tableLayoutPanel140.Controls.Add(this.label404, 14, 2);
             this.tableLayoutPanel140.Controls.Add(this.label403, 13, 2);
             this.tableLayoutPanel140.Controls.Add(this.label402, 12, 2);
@@ -10320,8 +10343,8 @@ namespace KnowEst
             this.tabPage16.Controls.Add(this.tableLayoutPanel96);
             this.tabPage16.Location = new System.Drawing.Point(4, 29);
             this.tabPage16.Name = "tabPage16";
-            this.tabPage16.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage16.Size = new System.Drawing.Size(349, 316);
+            this.tabPage16.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage16.Size = new System.Drawing.Size(394, 403);
             this.tabPage16.TabIndex = 1;
             this.tabPage16.Text = "Steel - T";
             this.tabPage16.UseVisualStyleBackColor = true;
@@ -10358,8 +10381,8 @@ namespace KnowEst
             this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
-            this.tableLayoutPanel96.Size = new System.Drawing.Size(343, 310);
+            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel96.Size = new System.Drawing.Size(388, 395);
             this.tableLayoutPanel96.TabIndex = 26;
             // 
             // label265
@@ -10399,10 +10422,10 @@ namespace KnowEst
             "75mm x 50mm x 1.5mm thick",
             "100mm x 50mm x 1.5mm thick",
             "150mm x 50mm x 1.5mm thick"});
-            this.roof_RP_ST_D_CLTSP_cbx.Location = new System.Drawing.Point(221, 205);
+            this.roof_RP_ST_D_CLTSP_cbx.Location = new System.Drawing.Point(250, 248);
             this.roof_RP_ST_D_CLTSP_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roof_RP_ST_D_CLTSP_cbx.Name = "roof_RP_ST_D_CLTSP_cbx";
-            this.roof_RP_ST_D_CLTSP_cbx.Size = new System.Drawing.Size(119, 24);
+            this.roof_RP_ST_D_CLTSP_cbx.Size = new System.Drawing.Size(135, 28);
             this.roof_RP_ST_D_CLTSP_cbx.TabIndex = 27;
             // 
             // label266
@@ -10420,50 +10443,50 @@ namespace KnowEst
             // roof_RP_ST_D_SP_bx
             // 
             this.roof_RP_ST_D_SP_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roof_RP_ST_D_SP_bx.Location = new System.Drawing.Point(221, 131);
+            this.roof_RP_ST_D_SP_bx.Location = new System.Drawing.Point(250, 157);
             this.roof_RP_ST_D_SP_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roof_RP_ST_D_SP_bx.Name = "roof_RP_ST_D_SP_bx";
-            this.roof_RP_ST_D_SP_bx.Size = new System.Drawing.Size(119, 22);
+            this.roof_RP_ST_D_SP_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_ST_D_SP_bx.TabIndex = 21;
             this.roof_RP_ST_D_SP_bx.Text = "0.6";
             // 
             // roof_RP_ST_D_LRSW_bx
             // 
             this.roof_RP_ST_D_LRSW_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roof_RP_ST_D_LRSW_bx.Location = new System.Drawing.Point(221, 27);
+            this.roof_RP_ST_D_LRSW_bx.Location = new System.Drawing.Point(250, 33);
             this.roof_RP_ST_D_LRSW_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roof_RP_ST_D_LRSW_bx.Name = "roof_RP_ST_D_LRSW_bx";
-            this.roof_RP_ST_D_LRSW_bx.Size = new System.Drawing.Size(119, 22);
+            this.roof_RP_ST_D_LRSW_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_ST_D_LRSW_bx.TabIndex = 20;
             this.roof_RP_ST_D_LRSW_bx.Text = "0";
             // 
             // roof_RP_ST_D_SR_bx
             // 
             this.roof_RP_ST_D_SR_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roof_RP_ST_D_SR_bx.Location = new System.Drawing.Point(221, 105);
+            this.roof_RP_ST_D_SR_bx.Location = new System.Drawing.Point(250, 126);
             this.roof_RP_ST_D_SR_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roof_RP_ST_D_SR_bx.Name = "roof_RP_ST_D_SR_bx";
-            this.roof_RP_ST_D_SR_bx.Size = new System.Drawing.Size(119, 22);
+            this.roof_RP_ST_D_SR_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_ST_D_SR_bx.TabIndex = 19;
             this.roof_RP_ST_D_SR_bx.Text = "1.0";
             // 
             // roof_RP_ST_D_LP_bx
             // 
             this.roof_RP_ST_D_LP_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roof_RP_ST_D_LP_bx.Location = new System.Drawing.Point(221, 79);
+            this.roof_RP_ST_D_LP_bx.Location = new System.Drawing.Point(250, 95);
             this.roof_RP_ST_D_LP_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roof_RP_ST_D_LP_bx.Name = "roof_RP_ST_D_LP_bx";
-            this.roof_RP_ST_D_LP_bx.Size = new System.Drawing.Size(119, 22);
+            this.roof_RP_ST_D_LP_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_ST_D_LP_bx.TabIndex = 16;
             this.roof_RP_ST_D_LP_bx.Text = "0";
             // 
             // roof_RP_ST_D_LR_bx
             // 
             this.roof_RP_ST_D_LR_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roof_RP_ST_D_LR_bx.Location = new System.Drawing.Point(221, 53);
+            this.roof_RP_ST_D_LR_bx.Location = new System.Drawing.Point(250, 64);
             this.roof_RP_ST_D_LR_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roof_RP_ST_D_LR_bx.Name = "roof_RP_ST_D_LR_bx";
-            this.roof_RP_ST_D_LR_bx.Size = new System.Drawing.Size(119, 22);
+            this.roof_RP_ST_D_LR_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_ST_D_LR_bx.TabIndex = 15;
             this.roof_RP_ST_D_LR_bx.Text = "0";
             // 
@@ -10565,10 +10588,10 @@ namespace KnowEst
             "75mm x 50mm x 1.5mm thick",
             "100mm x 50mm x 1.5mm thick",
             "150mm x 50mm x 1.5mm thick"});
-            this.roof_RP_ST_D_CLTSR_cbx.Location = new System.Drawing.Point(221, 157);
+            this.roof_RP_ST_D_CLTSR_cbx.Location = new System.Drawing.Point(250, 188);
             this.roof_RP_ST_D_CLTSR_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roof_RP_ST_D_CLTSR_cbx.Name = "roof_RP_ST_D_CLTSR_cbx";
-            this.roof_RP_ST_D_CLTSR_cbx.Size = new System.Drawing.Size(119, 24);
+            this.roof_RP_ST_D_CLTSR_cbx.Size = new System.Drawing.Size(135, 28);
             this.roof_RP_ST_D_CLTSR_cbx.TabIndex = 26;
             this.roof_RP_ST_D_CLTSR_cbx.SelectedIndexChanged += new System.EventHandler(this.roof_RP_ST_D_CLTSR_cbx_SelectedIndexChanged);
             // 
@@ -10580,7 +10603,7 @@ namespace KnowEst
             this.tabPage17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage17.Name = "tabPage17";
             this.tabPage17.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage17.Size = new System.Drawing.Size(349, 316);
+            this.tabPage17.Size = new System.Drawing.Size(394, 403);
             this.tabPage17.TabIndex = 2;
             this.tabPage17.Text = "Steel - C";
             this.tabPage17.UseVisualStyleBackColor = true;
@@ -10617,8 +10640,8 @@ namespace KnowEst
             this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
-            this.tableLayoutPanel95.Size = new System.Drawing.Size(343, 312);
+            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel95.Size = new System.Drawing.Size(388, 399);
             this.tableLayoutPanel95.TabIndex = 25;
             // 
             // label264
@@ -10648,10 +10671,10 @@ namespace KnowEst
             "75mm x 50mm x 1.2mm thick",
             "100mm x 50mm x 1.2mm thick",
             "150mm x 50mm x 1.2mm thick"});
-            this.roof_RP_SCP_D_CLCPP_cbx.Location = new System.Drawing.Point(221, 205);
+            this.roof_RP_SCP_D_CLCPP_cbx.Location = new System.Drawing.Point(250, 248);
             this.roof_RP_SCP_D_CLCPP_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roof_RP_SCP_D_CLCPP_cbx.Name = "roof_RP_SCP_D_CLCPP_cbx";
-            this.roof_RP_SCP_D_CLCPP_cbx.Size = new System.Drawing.Size(119, 24);
+            this.roof_RP_SCP_D_CLCPP_cbx.Size = new System.Drawing.Size(135, 28);
             this.roof_RP_SCP_D_CLCPP_cbx.TabIndex = 27;
             // 
             // label263
@@ -10669,50 +10692,50 @@ namespace KnowEst
             // roof_RP_SCP_D_SP_bx
             // 
             this.roof_RP_SCP_D_SP_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roof_RP_SCP_D_SP_bx.Location = new System.Drawing.Point(221, 131);
+            this.roof_RP_SCP_D_SP_bx.Location = new System.Drawing.Point(250, 157);
             this.roof_RP_SCP_D_SP_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roof_RP_SCP_D_SP_bx.Name = "roof_RP_SCP_D_SP_bx";
-            this.roof_RP_SCP_D_SP_bx.Size = new System.Drawing.Size(119, 22);
+            this.roof_RP_SCP_D_SP_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_SCP_D_SP_bx.TabIndex = 21;
             this.roof_RP_SCP_D_SP_bx.Text = "0.6";
             // 
             // roof_RP_SCP_D_LRSW_bx
             // 
             this.roof_RP_SCP_D_LRSW_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roof_RP_SCP_D_LRSW_bx.Location = new System.Drawing.Point(221, 27);
+            this.roof_RP_SCP_D_LRSW_bx.Location = new System.Drawing.Point(250, 33);
             this.roof_RP_SCP_D_LRSW_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roof_RP_SCP_D_LRSW_bx.Name = "roof_RP_SCP_D_LRSW_bx";
-            this.roof_RP_SCP_D_LRSW_bx.Size = new System.Drawing.Size(119, 22);
+            this.roof_RP_SCP_D_LRSW_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_SCP_D_LRSW_bx.TabIndex = 20;
             this.roof_RP_SCP_D_LRSW_bx.Text = "0";
             // 
             // roof_RP_SCP_D_SR_bx
             // 
             this.roof_RP_SCP_D_SR_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roof_RP_SCP_D_SR_bx.Location = new System.Drawing.Point(221, 105);
+            this.roof_RP_SCP_D_SR_bx.Location = new System.Drawing.Point(250, 126);
             this.roof_RP_SCP_D_SR_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roof_RP_SCP_D_SR_bx.Name = "roof_RP_SCP_D_SR_bx";
-            this.roof_RP_SCP_D_SR_bx.Size = new System.Drawing.Size(119, 22);
+            this.roof_RP_SCP_D_SR_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_SCP_D_SR_bx.TabIndex = 19;
             this.roof_RP_SCP_D_SR_bx.Text = "1.0";
             // 
             // roof_RP_SCP_D_LP_bx
             // 
             this.roof_RP_SCP_D_LP_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roof_RP_SCP_D_LP_bx.Location = new System.Drawing.Point(221, 79);
+            this.roof_RP_SCP_D_LP_bx.Location = new System.Drawing.Point(250, 95);
             this.roof_RP_SCP_D_LP_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roof_RP_SCP_D_LP_bx.Name = "roof_RP_SCP_D_LP_bx";
-            this.roof_RP_SCP_D_LP_bx.Size = new System.Drawing.Size(119, 22);
+            this.roof_RP_SCP_D_LP_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_SCP_D_LP_bx.TabIndex = 16;
             this.roof_RP_SCP_D_LP_bx.Text = "0";
             // 
             // roof_RP_SCP_D_LR_bx
             // 
             this.roof_RP_SCP_D_LR_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roof_RP_SCP_D_LR_bx.Location = new System.Drawing.Point(221, 53);
+            this.roof_RP_SCP_D_LR_bx.Location = new System.Drawing.Point(250, 64);
             this.roof_RP_SCP_D_LR_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roof_RP_SCP_D_LR_bx.Name = "roof_RP_SCP_D_LR_bx";
-            this.roof_RP_SCP_D_LR_bx.Size = new System.Drawing.Size(119, 22);
+            this.roof_RP_SCP_D_LR_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_SCP_D_LR_bx.TabIndex = 15;
             this.roof_RP_SCP_D_LR_bx.Text = "0";
             // 
@@ -10804,10 +10827,10 @@ namespace KnowEst
             "75mm x 50mm x 1.2mm thick",
             "100mm x 50mm x 1.2mm thick",
             "150mm x 50mm x 1.2mm thick"});
-            this.roof_RP_SCP_D_CLCPR_cbx.Location = new System.Drawing.Point(221, 157);
+            this.roof_RP_SCP_D_CLCPR_cbx.Location = new System.Drawing.Point(250, 188);
             this.roof_RP_SCP_D_CLCPR_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.roof_RP_SCP_D_CLCPR_cbx.Name = "roof_RP_SCP_D_CLCPR_cbx";
-            this.roof_RP_SCP_D_CLCPR_cbx.Size = new System.Drawing.Size(119, 24);
+            this.roof_RP_SCP_D_CLCPR_cbx.Size = new System.Drawing.Size(135, 28);
             this.roof_RP_SCP_D_CLCPR_cbx.TabIndex = 26;
             // 
             // tableLayoutPanel97
