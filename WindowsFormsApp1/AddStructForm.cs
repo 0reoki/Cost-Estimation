@@ -2266,10 +2266,11 @@ namespace KnowEst
                 {
                     //Remove Structural Member
                     costEstimationForm.structuralMembers.stairs[floorCount].RemoveAt(memberCount);
-                    costEstimationForm.structuralMembers.stairsNames[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.stairsNames[floorCount].RemoveAt(memberCount);                    
 
                     //Remove Solution
                     costEstimationForm.structuralMembers.concreteWorkSolutionsST[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.stairs_Rebar[floorCount].RemoveAt(memberCount);
 
                     //Refresh Solutions
                     compute.refreshSolutions(costEstimationForm);

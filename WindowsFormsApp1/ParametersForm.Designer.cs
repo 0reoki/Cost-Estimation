@@ -30,10 +30,10 @@ namespace KnowEst
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.paramTabControl = new System.Windows.Forms.TabControl();
             this.earthworksTabPage = new System.Windows.Forms.TabPage();
             this.earthworksPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -335,13 +335,19 @@ namespace KnowEst
             this.rein_ML_WF_9_chk = new System.Windows.Forms.CheckBox();
             this.rein_ML_WF_75_chk = new System.Windows.Forms.CheckBox();
             this.rein_ML_WF_6_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_CF_15_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_CF_135_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_CF_12_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_CF_105_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_CF_9_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_CF_75_chk = new System.Windows.Forms.CheckBox();
             this.label145 = new System.Windows.Forms.Label();
+            this.label141 = new System.Windows.Forms.Label();
+            this.label142 = new System.Windows.Forms.Label();
+            this.label143 = new System.Windows.Forms.Label();
+            this.label144 = new System.Windows.Forms.Label();
+            this.label139 = new System.Windows.Forms.Label();
+            this.rein_ML_CF_6_chk = new System.Windows.Forms.CheckBox();
+            this.rein_ML_CF_75_chk = new System.Windows.Forms.CheckBox();
+            this.rein_ML_CF_9_chk = new System.Windows.Forms.CheckBox();
+            this.rein_ML_CF_105_chk = new System.Windows.Forms.CheckBox();
+            this.rein_ML_CF_12_chk = new System.Windows.Forms.CheckBox();
+            this.rein_ML_CF_135_chk = new System.Windows.Forms.CheckBox();
+            this.rein_ML_CF_15_chk = new System.Windows.Forms.CheckBox();
             this.label132 = new System.Windows.Forms.Label();
             this.label133 = new System.Windows.Forms.Label();
             this.label134 = new System.Windows.Forms.Label();
@@ -349,12 +355,6 @@ namespace KnowEst
             this.label136 = new System.Windows.Forms.Label();
             this.label137 = new System.Windows.Forms.Label();
             this.label138 = new System.Windows.Forms.Label();
-            this.label139 = new System.Windows.Forms.Label();
-            this.label141 = new System.Windows.Forms.Label();
-            this.label142 = new System.Windows.Forms.Label();
-            this.label143 = new System.Windows.Forms.Label();
-            this.label144 = new System.Windows.Forms.Label();
-            this.rein_ML_CF_6_chk = new System.Windows.Forms.CheckBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
             this.paint_PA_Panel = new System.Windows.Forms.FlowLayoutPanel();
@@ -1477,7 +1477,7 @@ namespace KnowEst
             this.tabPage16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage16.Name = "tabPage16";
             this.tabPage16.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage16.Size = new System.Drawing.Size(357, 430);
+            this.tabPage16.Size = new System.Drawing.Size(356, 428);
             this.tabPage16.TabIndex = 1;
             this.tabPage16.Text = "Beams";
             this.tabPage16.UseVisualStyleBackColor = true;
@@ -1639,7 +1639,7 @@ namespace KnowEst
             this.tabPage17.Location = new System.Drawing.Point(4, 29);
             this.tabPage17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage17.Name = "tabPage17";
-            this.tabPage17.Size = new System.Drawing.Size(357, 430);
+            this.tabPage17.Size = new System.Drawing.Size(356, 428);
             this.tabPage17.TabIndex = 2;
             this.tabPage17.Text = "Columns";
             this.tabPage17.UseVisualStyleBackColor = true;
@@ -1835,7 +1835,7 @@ namespace KnowEst
             this.tabPage18.Location = new System.Drawing.Point(4, 29);
             this.tabPage18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage18.Name = "tabPage18";
-            this.tabPage18.Size = new System.Drawing.Size(357, 430);
+            this.tabPage18.Size = new System.Drawing.Size(356, 428);
             this.tabPage18.TabIndex = 3;
             this.tabPage18.Text = "Hanging Slabs";
             this.tabPage18.UseVisualStyleBackColor = true;
@@ -1919,7 +1919,7 @@ namespace KnowEst
             this.tabPage20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage20.Name = "tabPage20";
             this.tabPage20.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage20.Size = new System.Drawing.Size(357, 430);
+            this.tabPage20.Size = new System.Drawing.Size(356, 428);
             this.tabPage20.TabIndex = 5;
             this.tabPage20.Text = "Stairs";
             this.tabPage20.UseVisualStyleBackColor = true;
@@ -2442,7 +2442,7 @@ namespace KnowEst
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(357, 430);
+            this.tabPage2.Size = new System.Drawing.Size(356, 428);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Columns";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -2604,7 +2604,7 @@ namespace KnowEst
             this.tabPage11.Location = new System.Drawing.Point(4, 29);
             this.tabPage11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(357, 430);
+            this.tabPage11.Size = new System.Drawing.Size(356, 428);
             this.tabPage11.TabIndex = 2;
             this.tabPage11.Text = "Beams";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -2766,7 +2766,7 @@ namespace KnowEst
             this.tabPage12.Location = new System.Drawing.Point(4, 29);
             this.tabPage12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(357, 430);
+            this.tabPage12.Size = new System.Drawing.Size(356, 428);
             this.tabPage12.TabIndex = 3;
             this.tabPage12.Text = "Slabs";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -2777,8 +2777,9 @@ namespace KnowEst
             this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel58);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(357, 430);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(356, 428);
             this.flowLayoutPanel1.TabIndex = 4;
             // 
             // tableLayoutPanel14
@@ -3117,7 +3118,7 @@ namespace KnowEst
             this.tabPage13.Location = new System.Drawing.Point(4, 29);
             this.tabPage13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(357, 430);
+            this.tabPage13.Size = new System.Drawing.Size(356, 428);
             this.tabPage13.TabIndex = 4;
             this.tabPage13.Text = "Walls";
             this.tabPage13.UseVisualStyleBackColor = true;
@@ -3337,7 +3338,7 @@ namespace KnowEst
             this.tabPage14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage14.Name = "tabPage14";
             this.tabPage14.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage14.Size = new System.Drawing.Size(357, 430);
+            this.tabPage14.Size = new System.Drawing.Size(356, 428);
             this.tabPage14.TabIndex = 5;
             this.tabPage14.Text = "Stairs";
             this.tabPage14.UseVisualStyleBackColor = true;
@@ -3914,7 +3915,7 @@ namespace KnowEst
             this.tabPage21.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage21.Name = "tabPage21";
             this.tabPage21.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage21.Size = new System.Drawing.Size(601, 211);
+            this.tabPage21.Size = new System.Drawing.Size(601, 209);
             this.tabPage21.TabIndex = 1;
             this.tabPage21.Text = "Compression Bars";
             this.tabPage21.UseVisualStyleBackColor = true;
@@ -3988,14 +3989,14 @@ namespace KnowEst
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_W_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_W_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_W_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.rein_W_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_W_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_W_dg.Location = new System.Drawing.Point(397, 50);
@@ -4056,27 +4057,27 @@ namespace KnowEst
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_BEH_MB_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_MB_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_MB_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.rein_BEH_MB_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_BEH_MB_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_BEH_MB_dg.Location = new System.Drawing.Point(6, 6);
             this.rein_BEH_MB_dg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_BEH_MB_dg.Name = "rein_BEH_MB_dg";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_MB_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_MB_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.rein_BEH_MB_dg.RowHeadersVisible = false;
             this.rein_BEH_MB_dg.RowHeadersWidth = 62;
             this.rein_BEH_MB_dg.RowTemplate.Height = 28;
@@ -4090,7 +4091,7 @@ namespace KnowEst
             this.tabPage23.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage23.Name = "tabPage23";
             this.tabPage23.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage23.Size = new System.Drawing.Size(380, 159);
+            this.tabPage23.Size = new System.Drawing.Size(379, 157);
             this.tabPage23.TabIndex = 1;
             this.tabPage23.Text = "Stirrups and Ties";
             this.tabPage23.UseVisualStyleBackColor = true;
@@ -4103,14 +4104,14 @@ namespace KnowEst
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_BEH_ST_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_ST_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_ST_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.rein_BEH_ST_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_BEH_ST_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_BEH_ST_dg.Location = new System.Drawing.Point(6, 6);
@@ -4119,7 +4120,7 @@ namespace KnowEst
             this.rein_BEH_ST_dg.RowHeadersVisible = false;
             this.rein_BEH_ST_dg.RowHeadersWidth = 62;
             this.rein_BEH_ST_dg.RowTemplate.Height = 28;
-            this.rein_BEH_ST_dg.Size = new System.Drawing.Size(368, 147);
+            this.rein_BEH_ST_dg.Size = new System.Drawing.Size(367, 145);
             this.rein_BEH_ST_dg.TabIndex = 3;
             // 
             // tableLayoutPanel49
@@ -4271,7 +4272,7 @@ namespace KnowEst
             this.rein_RG_CLT_cbx.Location = new System.Drawing.Point(138, 42);
             this.rein_RG_CLT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_RG_CLT_cbx.Name = "rein_RG_CLT_cbx";
-            this.rein_RG_CLT_cbx.Size = new System.Drawing.Size(125, 28);
+            this.rein_RG_CLT_cbx.Size = new System.Drawing.Size(123, 28);
             this.rein_RG_CLT_cbx.TabIndex = 25;
             // 
             // label113
@@ -4297,7 +4298,7 @@ namespace KnowEst
             this.rein_RG_BS_cbx.Location = new System.Drawing.Point(138, 82);
             this.rein_RG_BS_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_RG_BS_cbx.Name = "rein_RG_BS_cbx";
-            this.rein_RG_BS_cbx.Size = new System.Drawing.Size(125, 28);
+            this.rein_RG_BS_cbx.Size = new System.Drawing.Size(123, 28);
             this.rein_RG_BS_cbx.TabIndex = 27;
             // 
             // tableLayoutPanel54
@@ -4979,66 +4980,6 @@ namespace KnowEst
             this.rein_ML_WF_6_chk.TabIndex = 73;
             this.rein_ML_WF_6_chk.UseVisualStyleBackColor = true;
             // 
-            // rein_ML_CF_15_chk
-            // 
-            this.rein_ML_CF_15_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_15_chk.Location = new System.Drawing.Point(453, 50);
-            this.rein_ML_CF_15_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_CF_15_chk.Name = "rein_ML_CF_15_chk";
-            this.rein_ML_CF_15_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_CF_15_chk.TabIndex = 65;
-            this.rein_ML_CF_15_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_CF_135_chk
-            // 
-            this.rein_ML_CF_135_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_135_chk.Location = new System.Drawing.Point(403, 50);
-            this.rein_ML_CF_135_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_CF_135_chk.Name = "rein_ML_CF_135_chk";
-            this.rein_ML_CF_135_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_CF_135_chk.TabIndex = 64;
-            this.rein_ML_CF_135_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_CF_12_chk
-            // 
-            this.rein_ML_CF_12_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_12_chk.Location = new System.Drawing.Point(353, 50);
-            this.rein_ML_CF_12_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_CF_12_chk.Name = "rein_ML_CF_12_chk";
-            this.rein_ML_CF_12_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_CF_12_chk.TabIndex = 63;
-            this.rein_ML_CF_12_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_CF_105_chk
-            // 
-            this.rein_ML_CF_105_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_105_chk.Location = new System.Drawing.Point(303, 50);
-            this.rein_ML_CF_105_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_CF_105_chk.Name = "rein_ML_CF_105_chk";
-            this.rein_ML_CF_105_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_CF_105_chk.TabIndex = 62;
-            this.rein_ML_CF_105_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_CF_9_chk
-            // 
-            this.rein_ML_CF_9_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_9_chk.Location = new System.Drawing.Point(253, 50);
-            this.rein_ML_CF_9_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_CF_9_chk.Name = "rein_ML_CF_9_chk";
-            this.rein_ML_CF_9_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_CF_9_chk.TabIndex = 61;
-            this.rein_ML_CF_9_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_CF_75_chk
-            // 
-            this.rein_ML_CF_75_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_75_chk.Location = new System.Drawing.Point(203, 50);
-            this.rein_ML_CF_75_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_CF_75_chk.Name = "rein_ML_CF_75_chk";
-            this.rein_ML_CF_75_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_CF_75_chk.TabIndex = 60;
-            this.rein_ML_CF_75_chk.UseVisualStyleBackColor = true;
-            // 
             // label145
             // 
             this.label145.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -5050,6 +4991,136 @@ namespace KnowEst
             this.label145.TabIndex = 57;
             this.label145.Text = "Suspended Slab:";
             this.label145.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label141
+            // 
+            this.label141.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label141.Location = new System.Drawing.Point(1, 72);
+            this.label141.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label141.Name = "label141";
+            this.label141.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label141.Size = new System.Drawing.Size(145, 24);
+            this.label141.TabIndex = 53;
+            this.label141.Text = "Wall Footing:";
+            this.label141.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label142
+            // 
+            this.label142.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label142.Location = new System.Drawing.Point(1, 96);
+            this.label142.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label142.Name = "label142";
+            this.label142.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label142.Size = new System.Drawing.Size(145, 24);
+            this.label142.TabIndex = 54;
+            this.label142.Text = "Column:";
+            this.label142.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label143
+            // 
+            this.label143.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label143.Location = new System.Drawing.Point(1, 120);
+            this.label143.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label143.Name = "label143";
+            this.label143.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label143.Size = new System.Drawing.Size(145, 24);
+            this.label143.TabIndex = 55;
+            this.label143.Text = "Beam:";
+            this.label143.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label144
+            // 
+            this.label144.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label144.Location = new System.Drawing.Point(1, 144);
+            this.label144.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label144.Name = "label144";
+            this.label144.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label144.Size = new System.Drawing.Size(145, 24);
+            this.label144.TabIndex = 56;
+            this.label144.Text = "Slab on Grade:";
+            this.label144.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label139
+            // 
+            this.label139.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label139.Location = new System.Drawing.Point(1, 48);
+            this.label139.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label139.Name = "label139";
+            this.label139.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label139.Size = new System.Drawing.Size(145, 24);
+            this.label139.TabIndex = 51;
+            this.label139.Text = "Column Footing:";
+            this.label139.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // rein_ML_CF_6_chk
+            // 
+            this.rein_ML_CF_6_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rein_ML_CF_6_chk.Location = new System.Drawing.Point(153, 50);
+            this.rein_ML_CF_6_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_ML_CF_6_chk.Name = "rein_ML_CF_6_chk";
+            this.rein_ML_CF_6_chk.Size = new System.Drawing.Size(43, 18);
+            this.rein_ML_CF_6_chk.TabIndex = 58;
+            this.rein_ML_CF_6_chk.UseVisualStyleBackColor = true;
+            // 
+            // rein_ML_CF_75_chk
+            // 
+            this.rein_ML_CF_75_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rein_ML_CF_75_chk.Location = new System.Drawing.Point(203, 50);
+            this.rein_ML_CF_75_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_ML_CF_75_chk.Name = "rein_ML_CF_75_chk";
+            this.rein_ML_CF_75_chk.Size = new System.Drawing.Size(43, 18);
+            this.rein_ML_CF_75_chk.TabIndex = 60;
+            this.rein_ML_CF_75_chk.UseVisualStyleBackColor = true;
+            // 
+            // rein_ML_CF_9_chk
+            // 
+            this.rein_ML_CF_9_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rein_ML_CF_9_chk.Location = new System.Drawing.Point(253, 50);
+            this.rein_ML_CF_9_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_ML_CF_9_chk.Name = "rein_ML_CF_9_chk";
+            this.rein_ML_CF_9_chk.Size = new System.Drawing.Size(43, 18);
+            this.rein_ML_CF_9_chk.TabIndex = 61;
+            this.rein_ML_CF_9_chk.UseVisualStyleBackColor = true;
+            // 
+            // rein_ML_CF_105_chk
+            // 
+            this.rein_ML_CF_105_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rein_ML_CF_105_chk.Location = new System.Drawing.Point(303, 50);
+            this.rein_ML_CF_105_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_ML_CF_105_chk.Name = "rein_ML_CF_105_chk";
+            this.rein_ML_CF_105_chk.Size = new System.Drawing.Size(43, 18);
+            this.rein_ML_CF_105_chk.TabIndex = 62;
+            this.rein_ML_CF_105_chk.UseVisualStyleBackColor = true;
+            // 
+            // rein_ML_CF_12_chk
+            // 
+            this.rein_ML_CF_12_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rein_ML_CF_12_chk.Location = new System.Drawing.Point(353, 50);
+            this.rein_ML_CF_12_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_ML_CF_12_chk.Name = "rein_ML_CF_12_chk";
+            this.rein_ML_CF_12_chk.Size = new System.Drawing.Size(43, 18);
+            this.rein_ML_CF_12_chk.TabIndex = 63;
+            this.rein_ML_CF_12_chk.UseVisualStyleBackColor = true;
+            // 
+            // rein_ML_CF_135_chk
+            // 
+            this.rein_ML_CF_135_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rein_ML_CF_135_chk.Location = new System.Drawing.Point(403, 50);
+            this.rein_ML_CF_135_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_ML_CF_135_chk.Name = "rein_ML_CF_135_chk";
+            this.rein_ML_CF_135_chk.Size = new System.Drawing.Size(43, 18);
+            this.rein_ML_CF_135_chk.TabIndex = 64;
+            this.rein_ML_CF_135_chk.UseVisualStyleBackColor = true;
+            // 
+            // rein_ML_CF_15_chk
+            // 
+            this.rein_ML_CF_15_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rein_ML_CF_15_chk.Location = new System.Drawing.Point(453, 50);
+            this.rein_ML_CF_15_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_ML_CF_15_chk.Name = "rein_ML_CF_15_chk";
+            this.rein_ML_CF_15_chk.Size = new System.Drawing.Size(43, 18);
+            this.rein_ML_CF_15_chk.TabIndex = 65;
+            this.rein_ML_CF_15_chk.UseVisualStyleBackColor = true;
             // 
             // label132
             // 
@@ -5127,76 +5198,6 @@ namespace KnowEst
             this.label138.TabIndex = 50;
             this.label138.Text = "15.0";
             this.label138.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label139
-            // 
-            this.label139.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label139.Location = new System.Drawing.Point(1, 48);
-            this.label139.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label139.Name = "label139";
-            this.label139.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label139.Size = new System.Drawing.Size(145, 24);
-            this.label139.TabIndex = 51;
-            this.label139.Text = "Column Footing:";
-            this.label139.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label141
-            // 
-            this.label141.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label141.Location = new System.Drawing.Point(1, 72);
-            this.label141.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label141.Name = "label141";
-            this.label141.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label141.Size = new System.Drawing.Size(145, 24);
-            this.label141.TabIndex = 53;
-            this.label141.Text = "Wall Footing:";
-            this.label141.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label142
-            // 
-            this.label142.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label142.Location = new System.Drawing.Point(1, 96);
-            this.label142.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label142.Name = "label142";
-            this.label142.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label142.Size = new System.Drawing.Size(145, 24);
-            this.label142.TabIndex = 54;
-            this.label142.Text = "Column:";
-            this.label142.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label143
-            // 
-            this.label143.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label143.Location = new System.Drawing.Point(1, 120);
-            this.label143.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label143.Name = "label143";
-            this.label143.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label143.Size = new System.Drawing.Size(145, 24);
-            this.label143.TabIndex = 55;
-            this.label143.Text = "Beam:";
-            this.label143.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label144
-            // 
-            this.label144.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label144.Location = new System.Drawing.Point(1, 144);
-            this.label144.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label144.Name = "label144";
-            this.label144.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label144.Size = new System.Drawing.Size(145, 24);
-            this.label144.TabIndex = 56;
-            this.label144.Text = "Slab on Grade:";
-            this.label144.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // rein_ML_CF_6_chk
-            // 
-            this.rein_ML_CF_6_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_6_chk.Location = new System.Drawing.Point(153, 50);
-            this.rein_ML_CF_6_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_CF_6_chk.Name = "rein_ML_CF_6_chk";
-            this.rein_ML_CF_6_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_CF_6_chk.TabIndex = 58;
-            this.rein_ML_CF_6_chk.UseVisualStyleBackColor = true;
             // 
             // tabPage5
             // 
@@ -6028,7 +6029,7 @@ namespace KnowEst
             this.tableLayoutPanel53.Controls.Add(this.stairs_Panel, 0, 1);
             this.tableLayoutPanel53.Controls.Add(this.tableLayoutPanel55, 1, 2);
             this.tableLayoutPanel53.Controls.Add(this.tableLayoutPanel59, 0, 0);
-            this.tableLayoutPanel53.Location = new System.Drawing.Point(5, 6);
+            this.tableLayoutPanel53.Location = new System.Drawing.Point(4, 6);
             this.tableLayoutPanel53.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel53.Name = "tableLayoutPanel53";
             this.tableLayoutPanel53.RowCount = 3;
@@ -6455,7 +6456,7 @@ namespace KnowEst
             this.label49.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label49.Name = "label49";
             this.label49.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label49.Size = new System.Drawing.Size(373, 58);
+            this.label49.Size = new System.Drawing.Size(372, 58);
             this.label49.TabIndex = 32;
             this.label49.Text = "Add Custom Items";
             this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -6589,7 +6590,7 @@ namespace KnowEst
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(640, 317);
+            this.MinimumSize = new System.Drawing.Size(640, 315);
             this.Name = "ParametersForm";
             this.Text = "Parameters";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ParametersForm_FormClosing);
