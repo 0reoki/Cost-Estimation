@@ -76,5 +76,15 @@ namespace KnowEst
 
             parametersForm.refreshPaint();
         }
+
+        private void paUC_Area_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Enter the total area to be painted", paUC_Area_bx);
+        }
+
+        private void paUC_Paint_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Selection of the type of paint to be used.", paUC_Paint_cbx);
+        }
     }
 }

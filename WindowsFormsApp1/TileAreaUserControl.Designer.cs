@@ -29,6 +29,7 @@ namespace KnowEst
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.rightPanel = new System.Windows.Forms.TableLayoutPanel();
             this.taUC_Area_bx = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@ namespace KnowEst
             this.tdUC_cbx = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.taUC_cbx = new System.Windows.Forms.ComboBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.rightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,6 +83,7 @@ namespace KnowEst
             this.taUC_Area_bx.Name = "taUC_Area_bx";
             this.taUC_Area_bx.Size = new System.Drawing.Size(191, 26);
             this.taUC_Area_bx.TabIndex = 30;
+            this.taUC_Area_bx.MouseHover += new System.EventHandler(this.taUC_Area_bx_MouseHover);
             // 
             // label8
             // 
@@ -144,6 +147,7 @@ namespace KnowEst
             this.tdUC_cbx.Name = "tdUC_cbx";
             this.tdUC_cbx.Size = new System.Drawing.Size(188, 28);
             this.tdUC_cbx.TabIndex = 24;
+            this.tdUC_cbx.MouseHover += new System.EventHandler(this.tdUC_cbx_MouseHover);
             // 
             // label2
             // 
@@ -171,6 +175,7 @@ namespace KnowEst
             this.taUC_cbx.Name = "taUC_cbx";
             this.taUC_cbx.Size = new System.Drawing.Size(188, 28);
             this.taUC_cbx.TabIndex = 28;
+            this.taUC_cbx.MouseHover += new System.EventHandler(this.taUC_cbx_MouseHover);
             // 
             // TileAreaUserControl
             // 
@@ -196,5 +201,6 @@ namespace KnowEst
         private System.Windows.Forms.ComboBox taUC_cbx;
         private System.Windows.Forms.TextBox taUC_Area_bx;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

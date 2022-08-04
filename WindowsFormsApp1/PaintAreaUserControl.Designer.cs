@@ -29,6 +29,7 @@ namespace KnowEst
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.rightPanel = new System.Windows.Forms.TableLayoutPanel();
             this.paUC_PL_bx = new System.Windows.Forms.TextBox();
             this.paUC_Area_bx = new System.Windows.Forms.TextBox();
@@ -38,6 +39,7 @@ namespace KnowEst
             this.button1 = new System.Windows.Forms.Button();
             this.paUC_Paint_cbx = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.rightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,6 +91,7 @@ namespace KnowEst
             this.paUC_Area_bx.Name = "paUC_Area_bx";
             this.paUC_Area_bx.Size = new System.Drawing.Size(191, 26);
             this.paUC_Area_bx.TabIndex = 30;
+            this.paUC_Area_bx.MouseHover += new System.EventHandler(this.paUC_Area_bx_MouseHover);
             // 
             // label8
             // 
@@ -154,6 +157,7 @@ namespace KnowEst
             this.paUC_Paint_cbx.Name = "paUC_Paint_cbx";
             this.paUC_Paint_cbx.Size = new System.Drawing.Size(188, 28);
             this.paUC_Paint_cbx.TabIndex = 24;
+            this.paUC_Paint_cbx.MouseHover += new System.EventHandler(this.paUC_Paint_cbx_MouseHover);
             // 
             // label2
             // 
@@ -191,5 +195,6 @@ namespace KnowEst
         private System.Windows.Forms.ComboBox paUC_Paint_cbx;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox paUC_PL_bx;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

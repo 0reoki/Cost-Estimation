@@ -77,5 +77,20 @@ namespace KnowEst
 
             parametersForm.refreshTiles();
         }
+
+        private void taUC_Area_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Enter the total area for tile application", taUC_Area_bx);
+        }
+
+        private void tdUC_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the type of tiles to be installed. \n300 x 300 are ideal for Bathrooms, while 600 x 600 are suited for living rooms.", tdUC_cbx);
+        }
+
+        private void taUC_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Selection for the type of tile adhesive to be used. \nHeavy duty performs better than regular, regular adhesives are standard.", taUC_cbx);
+        }
     }
 }
