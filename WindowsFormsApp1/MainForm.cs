@@ -3127,7 +3127,7 @@ namespace KnowEst
                 }
 
                 //Set Labels total cost
-                totalcostLbl.Text = "(₱" + TOTALCOST.ToString("#,##0.00") + ")";
+                totalcostLbl.Text = "₱" + TOTALCOST.ToString("#,##0.00");
 
                 //Set Total Costs - Labor Cost depending on Labor Costing Type
                 if (!fos_LC_Type.Equals("Rate"))
