@@ -140,6 +140,7 @@ namespace KnowEst
                 stairs_ST_cbx.Enabled = false;
 
                 //Populate
+                textBox17.Text = "Millimeter";
                 if (parentNode.Equals("FOOTINGS"))
                 {
                     setFootingValues();
@@ -163,6 +164,7 @@ namespace KnowEst
                 else if (parentNode.Equals("ROOF"))
                 {
                     setRoofValues();
+                    textBox17.Text = "Meter";
                 }
             } 
             else
@@ -2336,6 +2338,7 @@ namespace KnowEst
 
         private void addstruct_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
+            textBox17.Text = "Millimeter";
             if (addstruct_cbx.Text.Equals("Footing (Column)"))
             {
                 addstructTabControl.SelectedIndex = 0;
@@ -2362,6 +2365,7 @@ namespace KnowEst
             }
             else if (addstruct_cbx.Text.Equals("Roofing (Gable)"))
             {
+                textBox17.Text = "Meter";
                 addstructTabControl.SelectedIndex = 6;
             }
             setDefaultStructMemName();
@@ -3628,6 +3632,175 @@ namespace KnowEst
         {
 
         }
+
+        //Slab on Grade Hover -- START
+
+        //Length
+        private void slab_SOG_SB_T_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SOG_SB_T_L_bx);
+        }
+
+        private void slab_SOG_SB_B_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SOG_SB_B_L_bx);
+        }
+
+        private void slab_SOG_SB_L_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SOG_SB_L_L_bx);
+        }
+
+        private void slab_SOG_SB_R_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SOG_SB_R_L_bx);
+        }
+
+        //Clear Length
+        private void slab_SOG_SB_T_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SOG_SB_T_CL_bx);
+        }
+
+        private void slab_SOG_SB_B_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SOG_SB_B_CL_bx);
+        }
+
+        private void slab_SOG_SB_L_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SOG_SB_L_CL_bx);
+        }
+
+        private void slab_SOG_SB_R_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SOG_SB_R_CL_bx);
+        }
+
+        private void slab_SOG_L_ST_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (slab_SOG_L_ST_cbx.Text.Equals("Lapped Splice"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I.wires to form a continuous reinforcement.", slab_SOG_L_ST_cbx);
+            else if (slab_SOG_L_ST_cbx.Text.Equals("CLASS A"))
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", slab_SOG_L_ST_cbx);
+            else if (slab_SOG_L_ST_cbx.Text.Equals("CLASS B"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", slab_SOG_L_ST_cbx);
+            else
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", slab_SOG_L_ST_cbx);
+        }
+
+        private void slab_SOG_T_ST_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (slab_SOG_T_ST_cbx.Text.Equals("Lapped Splice"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I.wires to form a continuous reinforcement.", slab_SOG_T_ST_cbx);
+            else if (slab_SOG_T_ST_cbx.Text.Equals("Welded Splice(Butt)"))
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", slab_SOG_T_ST_cbx);
+            else if (slab_SOG_T_ST_cbx.Text.Equals("Welded Splice(Lap)"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", slab_SOG_T_ST_cbx);
+            else
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", slab_SOG_T_ST_cbx);
+        }
+        //Slab on Grade Hover -- END
+
+        //Suspended Slab Hover -- START
+
+        //Length
+        private void slab_SS_SB_T_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SS_SB_T_L_bx);
+        }
+
+        private void slab_SS_SB_B_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SS_SB_B_L_bx);
+        }
+
+        private void slab_SS_SB_L_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SS_SB_L_L_bx);
+        }
+
+        private void slab_SS_SB_R_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SS_SB_R_L_bx);
+        }
+
+        //Clear Length
+        private void slab_SS_SB_T_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SS_SB_T_CL_bx);
+        }
+
+        private void slab_SS_SB_B_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SS_SB_B_CL_bx);
+        }
+
+        private void slab_SS_SB_L_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SS_SB_L_CL_bx);
+        }
+
+        private void slab_SS_SB_R_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SS_SB_R_CL_bx);
+        }
+
+        //Lapped Splice etc,
+        private void slab_SS_L_T_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (slab_SS_L_T_cbx.Text.Equals("Lapped Splice"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I.wires to form a continuous reinforcement.", slab_SS_L_T_cbx);
+            else if (slab_SS_L_T_cbx.Text.Equals("Welded Splice(Butt)"))
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", slab_SS_L_T_cbx);
+            else if (slab_SS_L_T_cbx.Text.Equals("Welded Splice(Lap)"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", slab_SS_L_T_cbx);
+            else
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", slab_SS_L_T_cbx);
+        }
+
+        private void slab_SS_T_T_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (slab_SS_T_T_cbx.Text.Equals("Lapped Splice"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I.wires to form a continuous reinforcement.", slab_SS_T_T_cbx);
+            else if (slab_SS_T_T_cbx.Text.Equals("Welded Splice(Butt)"))
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", slab_SS_T_T_cbx);
+            else if (slab_SS_T_T_cbx.Text.Equals("Welded Splice(Lap)"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", slab_SS_T_T_cbx);
+            else
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", slab_SS_T_T_cbx);
+        }
+
+        private void slab_SS_L_B_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (slab_SS_L_B_cbx.Text.Equals("Lapped Splice"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I.wires to form a continuous reinforcement.", slab_SS_L_B_cbx);
+            else if (slab_SS_L_B_cbx.Text.Equals("Welded Splice(Butt)"))
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", slab_SS_L_B_cbx);
+            else if (slab_SS_L_B_cbx.Text.Equals("Welded Splice(Lap)"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", slab_SS_L_B_cbx);
+            else
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", slab_SS_L_B_cbx);
+        }
+
+        private void slab_SS_T_B_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (slab_SS_T_B_cbx.Text.Equals("Lapped Splice"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I.wires to form a continuous reinforcement.", slab_SS_T_B_cbx);
+            else if (slab_SS_T_B_cbx.Text.Equals("Welded Splice(Butt)"))
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", slab_SS_T_B_cbx);
+            else if (slab_SS_T_B_cbx.Text.Equals("Welded Splice(Lap)"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", slab_SS_T_B_cbx);
+            else
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", slab_SS_T_B_cbx);
+        }
+
+        private void textBox17_TextChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("Unit is now in " + textBox17.Text + ".");
+        }
+
+        //Suspended Slab Hover -- END
 
         private void roof_GI_D_HRS_AddBtn_Click(object sender, EventArgs e)
         {
