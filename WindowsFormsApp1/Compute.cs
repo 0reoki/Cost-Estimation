@@ -1601,6 +1601,7 @@ namespace KnowEst
                             stringMPa = stringMPa.Substring(0, 2);
                         MPa = double.Parse(stringMPa, System.Globalization.CultureInfo.InvariantCulture);
                     }
+
                     int k = 0;
                     foreach(string Fc in cEF.parameters.rein_LSL_TB_fc_list)
                     {

@@ -66,6 +66,8 @@ namespace KnowEst
         //exteriorWall -> exteriorWindow -> exteriorDoor -> exteriorCHBarea -> exteriorCHBtotalpcs -> interiorWall -> interiorWindow -> interiorDoor -> interiorCHBarea ->  interiorCHBtotalpcs
         public List<double> masonrysSolutionP1 = new List<double>();
 
+        //eLPUta ka talaga Avelino Ψ(￣∀￣)Ψ
+
         //extCement -> extSand -> intCement -> intSand -> extplasterArea -> extplasterCement -> extplasterSand -> intplasterArea -> intplasterCement -> intplasterSand
         public List<double> masonrysSolutionP2 = new List<double>();
 
@@ -172,7 +174,7 @@ namespace KnowEst
                       nails_QTY, //nails - QTY
                       FW_totalMats, //formworks - MATERIALS TOTAL
                       FW_totalLab, //formworks - LABOR TOTAL
-                      FW_MATOTAL;//formworks - OVERALL TOTAL        
+                      FW_MATOTAL;//formworks - OVERALL TOTAL     
 
         //4.0 Masonry **
         public double exterior_UnitM, //exterior - Materials Unit
@@ -621,6 +623,74 @@ namespace KnowEst
                 
                 //Console.WriteLine(structuralMembers.concreteWorkSolutionsC[0][0][0]);
             }
+        }
+
+        private void tabControl1_MouseMove(object sender, MouseEventArgs e)
+        {
+            Rectangle mouseRect = new Rectangle(e.X, e.Y, 1, 1);
+            for (int i = 0; i < tabControl1.TabCount; i++)
+            {
+                if (tabControl1.GetTabRect(i).IntersectsWith(mouseRect))
+                {
+                    switch (i)
+                    {
+                        case 0: //File
+                            break;
+                        case 1: //Home
+                            toolTip1.Show("The main window page for adding structural members and setting the parameters.", tabControl1); break;
+                        case 2: //Price
+                            toolTip1.Show("Contains all the materials, labor, tools, and equipment included in KnowEst. Edit and customize prices according to preference.", tabControl1); break;
+                        case 3: //View
+                            toolTip1.Show("Contains the pricing summary of each inputted work according to structural members.", tabControl1); break;
+                        case 4: //BOQ
+                             break;
+                        case 5: //Help
+                            toolTip1.Show(" Contains helpful guides, tutorial and information in understanding cost estimation and operating the program KnowEst.", tabControl1); break;
+                    }
+                    break;
+                }
+            }
+        }
+
+        private void paraBtn_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Adjust and customize values of structural members, add, and include other material add-ons.", paraBtn); 
+        }
+
+        private void addFloorBtn_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Adds another floor containing structural members.", addFloorBtn);
+        }
+
+        private void totalLbl_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Shows the overall complete total cost of the whole estimation.", totalLbl);
+        }
+
+        private void totalcostLbl_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Shows the overall complete total cost of the whole estimation.", totalcostLbl);
+        }
+
+        private void price_SettingsBtn_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Configure or customize default values for the factor of safety and labor", price_SettingsBtn);
+        }
+
+        private void price_RestoreDefaultsBtn_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Returns all materials to its original default price.", price_RestoreDefaultsBtn);
+        }
+
+        private void view_ConfigureBtn_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Choose what to include in the total estimated cost. Check to include and uncheck to exclude.", view_ConfigureBtn);
+        }
+
+        //--------
+        private void tabControl1_MouseHover(object sender, EventArgs e)
+        {
+            //
         }
 
         //File Menu - New
