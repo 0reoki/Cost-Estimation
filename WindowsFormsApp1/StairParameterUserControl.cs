@@ -197,5 +197,15 @@ namespace KnowEst
             LStair_S_MB_ML_cbx.Text = S_MB_ML;
             LStair_S_NB_ML_cbx.Text = S_NB_ML;
         }
+
+        private void straightStairs_MB1_ML_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LStair_WSF1_MB1_ML_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -226,6 +226,12 @@ namespace KnowEst
                       RCOL_Lunit,
                       RCOL_Lcost,
                       RCOL_TOTALCOST,
+                      RSTAIRS_qty, //STAIRS
+                      RSTAIRS_Munit,
+                      RSTAIRS_Mcost,
+                      RSTAIRS_Lunit,
+                      RSTAIRS_Lcost,
+                      RSTAIRS_TOTALCOST,
                       RWALLS_qty, //WALLS
                       RWALLS_Munit,
                       RWALLS_Mcost,
@@ -450,6 +456,12 @@ namespace KnowEst
             RSS_Lunit = 0;
             RSS_Lcost = 0;
             RSS_TOTALCOST = 0;
+            RSTAIRS_qty = 0;
+            RSTAIRS_Munit = 0;
+            RSTAIRS_Mcost = 0;
+            RSTAIRS_Lunit = 0;
+            RSTAIRS_Lcost = 0;
+            RSTAIRS_TOTALCOST = 0;
             RWALLS_qty = 0;
             RWALLS_Munit = 0;
             RWALLS_Mcost = 0;
@@ -778,11 +790,14 @@ namespace KnowEst
                 List<List<double>> newList21 = new List<List<double>>();
                 List<string> newList22 = new List<string>();
                 List<List<double>> newList23 = new List<List<double>>();
+                List<List<double[,]>> newList24 = new List<List<double[,]>>();
+                
                 structuralMembers.concreteWorkSolutionsC.Add(newList19);
                 structuralMembers.concreteWorkSolutionsBR.Add(newList20);
                 structuralMembers.concreteWorkSolutionsSL.Add(newList21);
                 structuralMembers.concreteWorkSolutionsSLSM.Add(newList22);
                 structuralMembers.concreteWorkSolutionsST.Add(newList23);
+                structuralMembers.stairs_Rebar.Add(newList24);
             }
             else //Upper Floors
             {
@@ -836,12 +851,15 @@ namespace KnowEst
                 List<List<double>> newList21 = new List<List<double>>();
                 List<string> newList22 = new List<string>();
                 List<List<double>> newList23 = new List<List<double>>();
+                List<List<double[,]>> newList24 = new List<List<double[,]>>();                
                 structuralMembers.concreteWorkSolutionsC.Add(newList19);
                 structuralMembers.concreteWorkSolutionsBR.Add(newList20);
                 structuralMembers.concreteWorkSolutionsSL.Add(newList21);
                 structuralMembers.concreteWorkSolutionsSLSM.Add(newList22);
                 structuralMembers.concreteWorkSolutionsST.Add(newList23);
+                structuralMembers.stairs_Rebar.Add(newList24);
             }
+            
         }
 
         public void refreshFloors()
@@ -1989,7 +2007,7 @@ namespace KnowEst
                 double columnLats_Labor = structuralMembers.totalweightkgm_Colties * double.Parse(parameters.price_LaborRate_Rebar["COLUMN [KG]"].ToString());// -- //                
                 RCOL_qty = structuralMembers.totalweightkgm_Colmain + structuralMembers.totalweightkgm_Colties;
                 RCOL_Mcost = columnMainPrice + laterTiesPrice;
-                RCOL_Munit = RCOL_Mcost / RCOL_Mcost;
+                RCOL_Munit = RCOL_Mcost / RCOL_qty;
                 RCOL_Lunit = double.Parse(parameters.price_LaborRate_Rebar["COLUMN [KG]"].ToString());
                 RCOL_Lcost = columnMain_Labor + columnLats_Labor;
                 RCOL_TOTALCOST = RCOL_Mcost + RCOL_Lcost;
@@ -2263,6 +2281,13 @@ namespace KnowEst
                 RSOG_Lunit = double.Parse(parameters.price_LaborRate_Rebar["SLAB ON GRADE [KG]"].ToString());
                 RSOG_Lcost = slabongradeLABOR;
                 RSOG_TOTALCOST = RSOG_Mcost + RSOG_Lcost;
+                print("======== SLAB ON GRADE ========");
+                print("RSOG_qty: " + RSOG_qty);
+                print("RSOG_Munit: " + RSOG_Munit);
+                print("RSOG_Mcost: " + RSOG_Mcost);
+                print("RSOG_Lunit: " + RSOG_Lunit);
+                print("RSOG_Lcost: " + RSOG_Lcost);
+                print("RSOG_TOTALCOST: " + RSOG_TOTALCOST);
             }
             else
             {
@@ -2321,6 +2346,13 @@ namespace KnowEst
                 RSS_Lunit = double.Parse(parameters.price_LaborRate_Rebar["SUSPENDED SLAB [KG]"].ToString());
                 RSS_Lcost = double.Parse(parameters.price_LaborRate_Rebar["SUSPENDED SLAB [KG]"].ToString()) * RSS_qty;
                 RSS_TOTALCOST = RSS_Mcost + RSS_Lcost;
+                print("======== SUSPENDED SLAB ========");
+                print("RSS_qty: " + RSS_qty);
+                print("RSS_Munit: " + RSS_Munit);
+                print("RSS_Mcost: " + RSS_Mcost);
+                print("RSS_Lunit: " + RSS_Lunit);
+                print("RSS_Lcost: " + RSS_Lcost);
+                print("RSS_TOTALCOST: " + RSS_TOTALCOST);
             }
             else
             {
@@ -2333,55 +2365,105 @@ namespace KnowEst
             }
             if (rebarsChecklist[6])
             {
-                int i = 0;
-                foreach (List<List<double[,]>> floor in structuralMembers.stairs_Rebar)
+                double stairsprice = 0;
+                double stairsweight = 0;
+                try
                 {
-                    int j = 0;
-                    foreach (List<double[,]> stair in floor)
+                    int i = 0;
+                    foreach (List<List<double[,]>> floor in structuralMembers.stairs_Rebar)
                     {
-                        int k = 0;
-                        foreach(double[,] row in stair)
+                        int j = 0;
+                        foreach (List<double[,]> stair in floor)
                         {
-                            string userML = parameters.stair[i][j].getValues()[k + 5];
-                            int mlIndex = 0;
-                            switch (userML)
+                            int k = 0;
+                            foreach (double[,] row in stair)
                             {
-                                case "6.0m":
-                                    mlIndex = 0; break;
-                                default:
-                                    mlIndex = 0; break;
+                                string userML = parameters.stair[i][j].getValues()[k+5];
+                                int mlIndex = 0;
+                                if (userML == "6.0m")
+                                {
+                                    mlIndex = 0;
+                                }
+                                else if (userML == "7.5m")
+                                {
+                                    mlIndex = 1;
+                                }
+                                else if (userML == "9.0m")
+                                {
+                                    mlIndex = 2;
+                                }
+                                else if (userML == "10.5m")
+                                {
+                                    mlIndex = 3;
+                                }
+                                else if (userML == "12.0m")
+                                {
+                                    mlIndex = 4;
+                                }
+                                List<string> grade = gradefilterer(parameters.stair[i][j].getValues()[4]);
+                                double diameter = row[mlIndex, 0];
+                                double manufactured_length = row[mlIndex, 1];
+                                string price_name = "Rebar GRADE " + grade[1] + " (⌀" + diameter + "mm) [" + manufactured_length + "m]";
+                                if (manufactured_length.ToString() != "0")
+                                {
+                                    if (grade[1] == "33")
+                                    {
+                                        stairsprice += (double.Parse(parameters.price_RebarGrade33[price_name].ToString())
+                                            * row[mlIndex, 2]) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                    else if (grade[1] == "40")
+                                    {
+                                        stairsprice += (double.Parse(parameters.price_RebarGrade40[price_name].ToString())
+                                            * row[mlIndex, 2]) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                    else if (grade[1] == "60")
+                                    {
+                                        stairsprice += (double.Parse(parameters.price_RebarGrade60[price_name].ToString())
+                                            * row[mlIndex, 2]) * double.Parse(Floors[i].getValues()[0]);
+                                    }
+                                }
+                                stairsweight += (row[mlIndex, 1] * row[mlIndex, 2] * row[mlIndex, 3]) * double.Parse(Floors[i].getValues()[0]);
+                                k++;
                             }
-                            k++;
+                            j++;
                         }
-                        j++;
+                        i++;
                     }
-                    i++;
+                    double stairsLabor = stairsweight * double.Parse(parameters.price_LaborRate_Rebar["STAIRS [KG]"].ToString());
+                    RSTAIRS_qty = stairsweight;                    
+                    RSTAIRS_Mcost = stairsprice;
+                    RSTAIRS_Munit = RSTAIRS_Mcost/RSTAIRS_qty;
+                    RSTAIRS_Lcost = stairsLabor;
+                    RSTAIRS_Lunit = double.Parse(parameters.price_LaborRate_Rebar["STAIRS [KG]"].ToString());
+                    RSTAIRS_TOTALCOST = RSTAIRS_Mcost + RSTAIRS_Lcost;
+                    print("============== STAIRS ============");
+                    print("RSTAIRS_qty: " + RSTAIRS_qty);
+                    print("RSTAIRS_Munit: " + RSTAIRS_Munit);
+                    print("RSTAIRS_Mcost: " + RSTAIRS_Mcost);
+                    print("RSTAIRS_Lunit: " + RSTAIRS_Lunit);
+                    print("RSTAIRS_Lcost: " + RSTAIRS_Lcost);
+                    print("RSTAIRS_TOTALCOST: " + RSTAIRS_TOTALCOST);
                 }
+                catch(Exception ex)
+                {
+                    print("Stairs: " + ex);
+                }
+                
             }
             else
             {
-
+                RSTAIRS_qty = 0;
+                RSTAIRS_Munit = 0;
+                RSTAIRS_Mcost = 0;
+                RSTAIRS_Lunit = 0;
+                RSTAIRS_Lcost = 0;
+                RSTAIRS_TOTALCOST = 0;
             }
             if (rebarsChecklist[7])// Walls
             {                
                 //extvBAR -> exthBAR -> extReinforcementCHB -> extReinforcementWeight -> extTieWire -> intvBAR -> inthBAR -> intReinforcementCHB -> intReinforcementWeight -> intTieWire
                 try 
-                {                    
-                    foreach(var a in masonrysSolutionP1)
-                    {
-                        print(a + " masonry1");
-                    }
-                    print("---------------");
-                    foreach (var a in masonrysSolutionP2)
-                    {
-                        print(a + " masonry2");
-                    }
-                    print("---------------");
-                    foreach (var a in masonrysSolutionP3)
-                    {
-                        print(a + " masonry3");
-                    }
-                    print("---------------");
+                {                        
                     List<string> grade_holder = gradefilterer(parameters.mason_RTW_RG);
                     double exterior_chb = masonrysSolutionP3[2];
                     double exterior_weight = masonrysSolutionP3[3];
@@ -2395,7 +2477,7 @@ namespace KnowEst
                     string rebar_diameter = parameters.mason_RTW_BD;
                     string grade = parameters.mason_RTW_RG;
 
-                    print("Exterior chb: " + masonrysSolutionP3[2]);
+                    /*print("Exterior chb: " + masonrysSolutionP3[2]);
                     print("Exterior weit: " + masonrysSolutionP3[3]);
                     print("Exterior TW: " + masonrysSolutionP3[4]);
 
@@ -2405,7 +2487,7 @@ namespace KnowEst
 
                     print("rebar l: " + rebar_length);
                     print("rebar dia: " + rebar_diameter);
-                    print("grade: " + grade);
+                    print("grade: " + grade);*/
                     double priceTW = 0;
                     string price_name = "Rebar "+ grade + " (⌀" + rebar_diameter + ") [" + rebar_length + "]";
                     if (grade_holder[1] == "33")
@@ -2437,6 +2519,7 @@ namespace KnowEst
                     RWALLS_Lcost = totalLaborTW;
                     RWALLS_TOTALCOST = RWALLS_Mcost + RWALLS_Lcost;
                     print("=========WALLS======");
+                    print("RWALLS_qty: " + RWALLS_qty);
                     print("RWALLS_Munit: " + RWALLS_Munit);
                     print("RWALLS_Mcost: " + RWALLS_Mcost);
                     print("RWALLS_Lunit: " + RWALLS_Lunit);

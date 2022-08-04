@@ -8661,8 +8661,12 @@ namespace KnowEst
         //Stairs Computation Functions -- START
         public void AddStairsWorks(CostEstimationForm cEF, int floorCount, int stairsCount)
         {
-            List<double> newList = new List<double>();
+            List<double> newList = new List<double>();            
             cEF.structuralMembers.concreteWorkSolutionsST[floorCount].Add(newList);
+
+            List<double[,]> newList2 = new List<double[,]>();
+            cEF.structuralMembers.stairs_Rebar[floorCount].Add(newList2);
+
             stairsWorks(cEF, floorCount, stairsCount);
         }
 
@@ -8788,8 +8792,7 @@ namespace KnowEst
                         volume * quantity);
                 }
 
-                //Computation - Rebars -- START KEVIN STRAIGHT STAIRS
-                //double D = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][7], System.Globalization.CultureInfo.InvariantCulture);
+                //kev straight                
                 double WaistSlab1, WaistSlab2, WaistSlab3, WaistSlab4, TempBars, Landing,
                        WS_BarNumber, LShaped_num, LShaped_Length, NoseBar;
 
@@ -8814,28 +8817,40 @@ namespace KnowEst
                 WaistSlab1 = nearestValue(Lapping + Length + (HookLength * WS_Diameter), 25);
                 WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + StairWidth + Length, 25);
                 WaistSlab3 = nearestValue((HookLength * WS_Diameter) + StairWidth + BeamWidth + (LapLength * 10), 25);
-                WaistSlab4 = nearestValue(2 * ((Length / WS_Spacing) + 1), 1);
+                WaistSlab4 = rounder(2 * ((Length / WS_Spacing) + 1));
+                double bar_pcs = rounder((StairWidth / WS_Spacing) + 1);
                 //Steps Rebar
-                LShaped_num = (StairWidth / WS_Spacing) + 1;
+                LShaped_num = rounder((StairWidth / WS_Spacing) + 1) * Steps;
                 LShaped_Length = Tread + Riser;
                 NoseBar = StairWidth;
 
-                Console.WriteLine();
-                Console.WriteLine(WaistSlab2);
-                Console.WriteLine(WaistSlab3);
-                Console.WriteLine(WaistSlab4);
-                Console.WriteLine();
+                double main_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][7]);
+                double temp_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][9]);
+                double chair_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][11]);
+                double nose_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][13]);                
 
-                /*
-                Lapping = LapLength * WS_Diameter;
-                F_Length = nearestValue(Math.Sqrt(Math.Pow(Riser * F_Steps, 2) + Math.Pow(Tread * F_Steps, 2)), 25);
-                F_WaistSlab1 = nearestValue(Lapping + F_Length + (HookLength * WS_Diameter), 25);
-                F_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + WidthLanding + F_Length, 25);
-                F_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + WidthLanding + BeamWidth + (LapLength * 10), 25);
-                F_WS_BarNumber = (WidthLanding / WS_Spacing) + 1;
-                F_TempBars = nearestValue(2 * ((F_Length / TB_Spacing) + 1), 1);
-                F_Landing = (StairWidth * 2) + Gap;
-                F_L_BarNumber = (StairWidth / L_Spacing) + 1;*/
+                double[,] SwaistSlab1 = stairsRebarsElper(cEF, WaistSlab1, bar_pcs, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(SwaistSlab1);
+                double[,] SwaistSlab2 = stairsRebarsElper(cEF, WaistSlab2, bar_pcs, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(SwaistSlab2);
+                double[,] SwaistSlab3 = stairsRebarsElper(cEF, WaistSlab3, bar_pcs, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(SwaistSlab3);
+                double[,] SdistBars = stairsRebarsElper(cEF, StairWidth, WaistSlab4, temp_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(SdistBars);
+                double[,] chairBars = stairsRebarsElper(cEF, LShaped_Length, LShaped_num, chair_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(chairBars);
+                double[,] noseBars = stairsRebarsElper(cEF, StairWidth, Steps, nose_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(noseBars);
+
+                string[] stringArray = cEF.parameters.stair[floorCount][stairsCount].getValues();
+                stringArray[5] = bestLMSgetter(SwaistSlab1);
+                stringArray[6] = bestLMSgetter(SwaistSlab2);
+                stringArray[7] = bestLMSgetter(SwaistSlab3);
+                stringArray[8] = bestLMSgetter(SdistBars);
+                stringArray[9] = bestLMSgetter(chairBars);
+                stringArray[10] = bestLMSgetter(noseBars);
+                cEF.parameters.stair[floorCount][stairsCount].setStraightStairsValues(stringArray[1], stringArray[2], stringArray[3],
+                            stringArray[4], stringArray[5], stringArray[6], stringArray[7], stringArray[8], stringArray[9], stringArray[10]);
             }
             else if (cEF.structuralMembers.stairs[floorCount][stairsCount][0].Equals("L-Stairs"))
             {
@@ -8997,7 +9012,7 @@ namespace KnowEst
                         volume * quantity);
                 }
 
-                //Computation - Rebars -- START KEVIN L-STAIRS
+                //kev L
 
                 double F_WaistSlab1, F_WaistSlab2, F_WaistSlab3, F_WaistSlab4, TempBars,
                        Landing_Length, Landing_Number, Landing_Spacing, TB_Spacing,
@@ -9032,8 +9047,8 @@ namespace KnowEst
                 F_WaistSlab1 = nearestValue(Lapping + F_Length + (HookLength * WS_Diameter), 25);
                 F_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + StairWidth + F_Length, 25);
                 F_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + StairWidth + BeamWidth + (LapLength * WS_Diameter), 25);
-                F_WS_BarNumber = (StairWidth / WS_Spacing) + 1;
-                F_WaistSlab4 = nearestValue(2 * ((F_Length / TB_Spacing) + 1), 1);
+                F_WS_BarNumber = rounder((StairWidth / WS_Spacing) + 1);
+                F_WaistSlab4 = rounder(2 * ((F_Length / TB_Spacing) + 1));
                 Landing_Length = StairWidth;
                 Landing_Number = (StairWidth / Landing_Spacing) + 1;
 
@@ -9042,10 +9057,56 @@ namespace KnowEst
                 S_WaistSlab1 = nearestValue(Lapping + S_Length + (HookLength * WS_Diameter), 25);
                 S_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + StairWidth + S_Length, 25);
                 S_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + StairWidth + BeamWidth + (LapLength * WS_Diameter), 25);
-                S_WS_BarNumber = (StairWidth / WS_Spacing) + 1;
-                S_WaistSlab4 = nearestValue(2 * ((S_Length / TB_Spacing) + 1), 1);
+                S_WS_BarNumber = rounder((StairWidth / WS_Spacing) + 1);
+                S_WaistSlab4 = rounder(2 * ((S_Length / TB_Spacing) + 1));
                 CB_Length = Tread + Riser;
-                CB_Number = F_Steps + S_Steps;
+                CB_Number = rounder((StairWidth / CB_Spacing) + 1) * (F_Steps + S_Steps);//F_Steps + S_Steps;                
+                double S_NoseBar = F_Steps + S_Steps;
+                //
+
+                double main_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][9]);
+                double temp_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][11]);
+                double landing_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][13]);
+                double chair_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][15]);
+                double nose_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][17]);
+
+                //For solutions on structural members                
+                double[,] FwaistSlab1 = stairsRebarsElper(cEF, F_WaistSlab1, F_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(FwaistSlab1);
+                double[,] FwaistSlab2 = stairsRebarsElper(cEF, F_WaistSlab2, F_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(FwaistSlab2);
+                double[,] FwaistSlab3 = stairsRebarsElper(cEF, F_WaistSlab3, F_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(FwaistSlab3);
+                double[,] SwaistSlab1 = stairsRebarsElper(cEF, S_WaistSlab1, S_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(SwaistSlab1);
+                double[,] SwaistSlab2 = stairsRebarsElper(cEF, S_WaistSlab2, S_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(SwaistSlab2);
+                double[,] SwaistSlab3 = stairsRebarsElper(cEF, S_WaistSlab3, S_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(SwaistSlab3);
+                double[,] FdistBars = stairsRebarsElper(cEF, StairWidth, (F_WaistSlab4 + S_WaistSlab4), temp_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(FdistBars);
+                double[,] Flanding = stairsRebarsElper(cEF, Landing_Length, Landing_Number, landing_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(Flanding);
+                //                
+                double[,] chairBars = stairsRebarsElper(cEF, CB_Length, CB_Number, chair_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(chairBars);
+                double[,] noseBars = stairsRebarsElper(cEF, StairWidth, S_NoseBar, nose_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(noseBars);
+
+                string[] stringArray = cEF.parameters.stair[floorCount][stairsCount].getValues();
+                stringArray[5] = bestLMSgetter(FwaistSlab1);
+                stringArray[6] = bestLMSgetter(FwaistSlab2);
+                stringArray[7] = bestLMSgetter(FwaistSlab3);
+                stringArray[8] = bestLMSgetter(SwaistSlab1);
+                stringArray[9] = bestLMSgetter(SwaistSlab2);
+                stringArray[10] = bestLMSgetter(SwaistSlab3);
+                stringArray[11] = bestLMSgetter(FdistBars);
+                stringArray[12] = bestLMSgetter(Flanding);
+                stringArray[13] = bestLMSgetter(chairBars);
+                stringArray[14] = bestLMSgetter(noseBars);
+                cEF.parameters.stair[floorCount][stairsCount].setLStairsValues(stringArray[1], stringArray[2], stringArray[3],
+                            stringArray[4], stringArray[5], stringArray[6], stringArray[7], stringArray[8], stringArray[9],
+                            stringArray[10], stringArray[11], stringArray[12], stringArray[13], stringArray[14]);
             }
             else
             {
@@ -9209,7 +9270,7 @@ namespace KnowEst
                         volume * quantity);
                 }
 
-                //Computation - Rebars-- START KEVIN U - STAIRS
+                //kev u 
                 //Vars  
 
                 double F_WaistSlab1, F_WaistSlab2, F_WaistSlab3, F_TempBars, F_Landing,
@@ -9260,14 +9321,10 @@ namespace KnowEst
                 F_WaistSlab1 = nearestValue(Lapping + F_Length + (HookLength * WS_Diameter), 25);
                 F_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + WidthLanding + F_Length, 25);
                 F_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + WidthLanding + BeamWidth + (LapLength * WS_Diameter), 25);
-                F_WS_BarNumber = (StairWidth / WS_Spacing) + 1;
-                if (F_WS_BarNumber % 1 != 0)
-                    F_WS_BarNumber = nearestValue((StairWidth / WS_Spacing) + 1, 1);
-                F_TempBars = 2 * ((F_Length / TB_Spacing) + 1);
-                if (F_TempBars % 1 != 0)
-                    F_TempBars = nearestValue(2 * ((F_Length / TB_Spacing) + 1), 1);
+                F_WS_BarNumber = rounder((StairWidth / WS_Spacing) + 1);                
+                F_TempBars = rounder(2 * ((F_Length / TB_Spacing) + 1));                
                 F_Landing = (StairWidth * 2) + Gap;
-                F_L_BarNumber = (StairWidth / L_Spacing) + 1;
+                F_L_BarNumber = rounder((WidthLanding / L_Spacing) + 1);
 
                 //===============SECOND FLIGHT =============================//
                 //CalculatedValues 6 -> n
@@ -9276,93 +9333,63 @@ namespace KnowEst
                 S_WaistSlab1 = nearestValue(Lapping + S_Length + (HookLength * WS_Diameter), 25);
                 S_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + WidthLanding + S_Length, 25);
                 S_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + WidthLanding + BeamWidth + (LapLength * WS_Diameter), 25);
-                S_WS_BarNumber = (StairWidth / WS_Spacing) + 1;
-                if (S_WS_BarNumber % 1 != 0)
-                    S_WS_BarNumber = nearestValue((StairWidth / WS_Spacing) + 1, 1);
-                S_TempBars = 2 * ((S_Length / TB_Spacing) + 1);
-                if (S_TempBars % 1 != 0)
-                    S_TempBars = nearestValue(2 * ((S_Length / TB_Spacing) + 1), 1);
+                S_WS_BarNumber = rounder((StairWidth / WS_Spacing) + 1);                
+                S_TempBars = rounder(2 * ((S_Length / TB_Spacing) + 1));                
                 //===========Steps========================
                 S_ChairBarsLength = Tread + Riser;
-                S_ChairBarNumber = nearestValue(((StairWidth / C_Spacing) + 1), 1) * (F_Steps + S_Steps);
+                S_ChairBarNumber = rounder((StairWidth / C_Spacing) + 1) * (F_Steps + S_Steps);
                 S_NoseBar = (F_Steps + S_Steps);
-
-                Console.WriteLine();
-                print(F_Length.ToString());
-                Console.WriteLine(F_WaistSlab1);
-                Console.WriteLine(F_WaistSlab2);
-                Console.WriteLine(F_WaistSlab3);
-                Console.WriteLine(F_WS_BarNumber);
-                Console.WriteLine(F_TempBars);
-                Console.WriteLine(F_Landing);
-                Console.WriteLine(F_L_BarNumber);
-                Console.WriteLine();
-                Console.WriteLine(S_WaistSlab1);
-                Console.WriteLine(S_WaistSlab2);
-                Console.WriteLine(S_WaistSlab3);
-                Console.WriteLine(S_WS_BarNumber);
-                Console.WriteLine(S_TempBars);
-                Console.WriteLine(S_ChairBarsLength);
-                Console.WriteLine(S_ChairBarNumber);
-                Console.WriteLine(S_NoseBar);
-                Console.WriteLine();
-                Console.WriteLine(F_Length);
-                Console.WriteLine(Riser);
-                Console.WriteLine(Tread);
-                Console.WriteLine(F_Steps);
-                Console.WriteLine();
-                // F_Length = nearestValue(Math.Sqrt(Math.Pow(Riser * F_Steps, 2) + Math.Pow(Tread * F_Steps, 2)), 25);
-                //S_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + WidthLanding + BeamWidth + (LapLength * WS_Diameter), 25);
+                              
 
                 double main_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][11]);
                 double temp_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][13]);
                 double landing_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][15]);
                 double chair_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][17]);                
                 double nose_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][stairsCount][19]);
-                List<double> results = new List<double>();
-                //public void stairsRebarsElper(CostEstimationForm cEF, double prot, double bar_quantity)
+                List<double> results = new List<double>();                
 
-                //For solutions on structural members
-                List<double[,]> toAdd = new List<double[,]>();
-                double[,] waistSlab1 = new double[,]{
-                                                        { 123, 123, 123, 123 },// 6
-                                                        { 123, 123, 123, 123 },// 7.5
-                                                        { 123, 123, 123, 123 },// 9
-                                                        { 123, 123, 123, 123 },// 10.5
-                                                        { 123, 123, 123, 123 },// 12
-                                                        { 1, 0, 0, 0 }
-                                                    };
+                //For solutions on structural members                
+                double[,] FwaistSlab1 = stairsRebarsElper(cEF, F_WaistSlab1, F_WS_BarNumber, main_bars_diam, quantity);               
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(FwaistSlab1);                
+                double[,] FwaistSlab2 = stairsRebarsElper(cEF, F_WaistSlab2, F_WS_BarNumber, main_bars_diam, quantity);                
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(FwaistSlab2);
+                double[,] FwaistSlab3 = stairsRebarsElper(cEF, F_WaistSlab3, F_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(FwaistSlab3);
+                double[,] SwaistSlab1 = stairsRebarsElper(cEF, S_WaistSlab1, S_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(SwaistSlab1);
+                double[,] SwaistSlab2 = stairsRebarsElper(cEF, S_WaistSlab2, S_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(SwaistSlab2);
+                double[,] SwaistSlab3 = stairsRebarsElper(cEF, S_WaistSlab3, S_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(SwaistSlab3);
+                double[,] FdistBars = stairsRebarsElper(cEF, StairWidth, (F_TempBars + S_TempBars), temp_bars_diam, quantity);                
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(FdistBars);
+                double[,] Flanding = stairsRebarsElper(cEF, F_Landing, F_L_BarNumber, landing_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(Flanding);
+                //                
+                double[,] chairBars = stairsRebarsElper(cEF, S_ChairBarsLength, S_ChairBarNumber, chair_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(chairBars);                
+                double[,] noseBars = stairsRebarsElper(cEF, StairWidth, S_NoseBar, nose_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][stairsCount].Add(noseBars);
 
                 //For parameter manipulation
-                string[] stringArray = cEF.parameters.stair[floorCount][stairsCount].getValues();
-
-                stairsRebarsElper(cEF, F_WaistSlab1, F_WS_BarNumber);
-
-                toAdd.Add(waistSlab1);
-                stringArray[5] = "7.5m";
-
-                stairsRebarsElper(cEF, F_WaistSlab1, F_WS_BarNumber);
-
-                stairsRebarsElper(cEF, F_WaistSlab1, F_WS_BarNumber);
-                stairsRebarsElper(cEF, F_WaistSlab1, F_WS_BarNumber);
-
+                string[] stringArray = cEF.parameters.stair[floorCount][stairsCount].getValues();                                
+                stringArray[5] = bestLMSgetter(FwaistSlab1);
+                stringArray[6] = bestLMSgetter(FwaistSlab2);
+                stringArray[7] = bestLMSgetter(FwaistSlab3);
+                stringArray[8] = bestLMSgetter(SwaistSlab1);
+                stringArray[9] = bestLMSgetter(SwaistSlab2);
+                stringArray[10] = bestLMSgetter(SwaistSlab3);
+                stringArray[11] = bestLMSgetter(FdistBars);
+                stringArray[12] = bestLMSgetter(Flanding);
+                stringArray[13] = bestLMSgetter(chairBars);
+                stringArray[14] = bestLMSgetter(noseBars);
                 cEF.parameters.stair[floorCount][stairsCount].setUStairsValues(stringArray[1], stringArray[2], stringArray[3],
-                            stringArray[4], stringArray[5], "6.0m", "6.0m", "6.0m", "6.0m", "6.0m", "6.0m", "6.0m", "6.0m", "6.0m");
-
-
+                            stringArray[4], stringArray[5], stringArray[6], stringArray[7], stringArray[8], stringArray[9],
+                            stringArray[10], stringArray[11], stringArray[12], stringArray[13], stringArray[14]);
+                
+                
             }
-            foreach (var a in cEF.structuralMembers.stairs)
-            {
-                foreach(var b in a)
-                {
-                    int i = 0;
-                    foreach(var c in b)
-                    {
-                        print(c + " [" + i + "]");
-                        i++;
-                    }
-                }
-            }
+
             //Computation -- add Formworks [STAIRS]
             recomputeFW_stairs(cEF);
             refreshSolutions(cEF);            
@@ -9486,6 +9513,64 @@ namespace KnowEst
                     cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] =
                         volume * quantity;
                 }
+                ///
+                double WaistSlab1, WaistSlab2, WaistSlab3, WaistSlab4, TempBars, Landing,
+                       WS_BarNumber, LShaped_num, LShaped_Length, NoseBar;
+
+                double Lapping, Length;
+                double LapLength, HookLength, WS_Diameter, Riser, Tread, Steps,
+                       WidthLanding, WS_Spacing, StairWidth, BeamWidth
+                       ;
+                string[] stairParameterValues = cEF.parameters.stair[floorCount][index].getValues();
+                LapLength = double.Parse(stairParameterValues[1]);
+                HookLength = double.Parse(stairParameterValues[2]);
+                WS_Diameter = double.Parse(cEF.structuralMembers.stairs[floorCount][index][7], System.Globalization.CultureInfo.InvariantCulture);
+                Riser = double.Parse(cEF.structuralMembers.stairs[floorCount][index][4], System.Globalization.CultureInfo.InvariantCulture);
+                Tread = double.Parse(cEF.structuralMembers.stairs[floorCount][index][5], System.Globalization.CultureInfo.InvariantCulture);
+                Steps = double.Parse(cEF.structuralMembers.stairs[floorCount][index][2], System.Globalization.CultureInfo.InvariantCulture);
+                WS_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][index][8], System.Globalization.CultureInfo.InvariantCulture);
+                StairWidth = double.Parse(cEF.structuralMembers.stairs[floorCount][index][3], System.Globalization.CultureInfo.InvariantCulture);
+                BeamWidth = double.Parse(stairParameterValues[3]);
+                //==========Calculation===========
+                Lapping = LapLength * WS_Diameter;
+                Length = nearestValue(Math.Sqrt(Math.Pow(Riser * Steps, 2) + Math.Pow(Tread * Steps, 2)), 25);
+                WaistSlab1 = nearestValue(Lapping + Length + (HookLength * WS_Diameter), 25);
+                WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + StairWidth + Length, 25);
+                WaistSlab3 = nearestValue((HookLength * WS_Diameter) + StairWidth + BeamWidth + (LapLength * 10), 25);
+                WaistSlab4 = rounder(2 * ((Length / WS_Spacing) + 1));
+                double bar_pcs = rounder((StairWidth / WS_Spacing) + 1);
+                //Steps Rebar
+                LShaped_num = rounder((StairWidth / WS_Spacing) + 1) * steps;
+                LShaped_Length = Tread + Riser;
+                NoseBar = StairWidth;
+                
+                double main_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][index][7]);
+                double temp_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][index][9]);
+                double chair_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][index][11]);
+                double nose_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][index][13]);
+
+                double[,] SwaistSlab1 = stairsRebarsElper(cEF, WaistSlab1, bar_pcs, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][0] = SwaistSlab1;
+                double[,] SwaistSlab2 = stairsRebarsElper(cEF, WaistSlab2, bar_pcs, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][1] = SwaistSlab2 ;
+                double[,] SwaistSlab3 = stairsRebarsElper(cEF, WaistSlab3, bar_pcs, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][2] = SwaistSlab3;
+                double[,] SdistBars = stairsRebarsElper(cEF, StairWidth, WaistSlab4, temp_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][3] = SdistBars;
+                double[,] chairBars = stairsRebarsElper(cEF, LShaped_Length, LShaped_num, chair_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][4] = chairBars;
+                double[,] noseBars = stairsRebarsElper(cEF, StairWidth, Steps, nose_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][5] = noseBars;
+                string[] stringArray = cEF.parameters.stair[floorCount][index].getValues();
+                stringArray[5] = bestLMSgetter(SwaistSlab1);
+                stringArray[6] = bestLMSgetter(SwaistSlab2);
+                stringArray[7] = bestLMSgetter(SwaistSlab3);
+                stringArray[8] = bestLMSgetter(SdistBars);
+                stringArray[9] = bestLMSgetter(chairBars);
+                stringArray[10] = bestLMSgetter(noseBars);
+                cEF.parameters.stair[floorCount][index].setStraightStairsValues(stringArray[1], stringArray[2], stringArray[3],
+                            stringArray[4], stringArray[5], stringArray[6], stringArray[7], stringArray[8], stringArray[9], stringArray[10]);
+                //
             }
             else if (cEF.structuralMembers.stairs[floorCount][index][0].Equals("L-Stairs"))
             {
@@ -9645,6 +9730,101 @@ namespace KnowEst
                     print(volumeSteps + " * " + volumeWSF1 + " * " + volumeSteps + " * " + volumeWSF2 + " = " +
                         ((volumeWSF1 + volumeSteps + volumeWSF2 + landing) / 1000000000) * quantity);
                 }
+
+                //
+                double F_WaistSlab1, F_WaistSlab2, F_WaistSlab3, F_WaistSlab4, TempBars,
+                       Landing_Length, Landing_Number, Landing_Spacing, TB_Spacing,
+                       F_WS_BarNumber,
+                       S_WaistSlab1, S_WaistSlab2, S_WaistSlab3, S_WaistSlab4,
+                       S_WS_BarNumber, CB_Length, CB_Number;
+                double Lapping, F_Length, S_Length;
+                double LapLength, HookLength, WS_Diameter,
+                       Tread, Riser, F_Steps, S_Steps,
+                       WidthLanding, StairWidth, BeamWidth,
+                       WS_Spacing, CB_Spacing;
+
+                string[] stairParameterValues = cEF.parameters.stair[floorCount][index].getValues();
+                LapLength = double.Parse(stairParameterValues[1]);
+                WS_Diameter = double.Parse(cEF.structuralMembers.stairs[floorCount][index][9], System.Globalization.CultureInfo.InvariantCulture);
+                Riser = double.Parse(cEF.structuralMembers.stairs[floorCount][index][5], System.Globalization.CultureInfo.InvariantCulture);
+                Tread = double.Parse(cEF.structuralMembers.stairs[floorCount][index][6], System.Globalization.CultureInfo.InvariantCulture);
+                F_Steps = double.Parse(cEF.structuralMembers.stairs[floorCount][index][2], System.Globalization.CultureInfo.InvariantCulture);
+                S_Steps = double.Parse(cEF.structuralMembers.stairs[floorCount][index][3], System.Globalization.CultureInfo.InvariantCulture);
+                HookLength = double.Parse(stairParameterValues[2]);
+                StairWidth = double.Parse(cEF.structuralMembers.stairs[floorCount][index][4], System.Globalization.CultureInfo.InvariantCulture);
+                BeamWidth = double.Parse(stairParameterValues[3]);
+                WS_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][index][10], System.Globalization.CultureInfo.InvariantCulture);
+                Landing_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][index][14], System.Globalization.CultureInfo.InvariantCulture);
+                CB_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][index][16], System.Globalization.CultureInfo.InvariantCulture);
+                TB_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][index][12], System.Globalization.CultureInfo.InvariantCulture);
+
+                //==========FIRST FLIGHT===========
+                Lapping = LapLength * WS_Diameter;
+                F_Length = nearestValue(Math.Sqrt(Math.Pow(Riser * F_Steps, 2) + Math.Pow(Tread * F_Steps, 2)), 25);
+                F_WaistSlab1 = nearestValue(Lapping + F_Length + (HookLength * WS_Diameter), 25);
+                F_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + StairWidth + F_Length, 25);
+                F_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + StairWidth + BeamWidth + (LapLength * WS_Diameter), 25);
+                F_WS_BarNumber = rounder((StairWidth / WS_Spacing) + 1);
+                F_WaistSlab4 = rounder(2 * ((F_Length / TB_Spacing) + 1));
+                Landing_Length = StairWidth;
+                Landing_Number = (StairWidth / Landing_Spacing) + 1;
+
+                //=========SECOND FLIGHT===========
+                S_Length = nearestValue(Math.Sqrt(Math.Pow(Riser * S_Steps, 2) + Math.Pow(Tread * S_Steps, 2)), 25);
+                S_WaistSlab1 = nearestValue(Lapping + S_Length + (HookLength * WS_Diameter), 25);
+                S_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + StairWidth + S_Length, 25);
+                S_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + StairWidth + BeamWidth + (LapLength * WS_Diameter), 25);
+                S_WS_BarNumber = rounder((StairWidth / WS_Spacing) + 1);
+                S_WaistSlab4 = rounder(2 * ((S_Length / TB_Spacing) + 1));
+                CB_Length = Tread + Riser;
+                CB_Number = rounder((StairWidth / CB_Spacing) + 1) * (F_Steps + S_Steps);
+                double S_NoseBar = F_Steps + S_Steps;
+                //
+
+                double main_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][index][9]);
+                double temp_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][index][11]);
+                double landing_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][index][13]);
+                double chair_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][index][15]);
+                double nose_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][index][17]);
+
+                //For solutions on structural members                
+                double[,] FwaistSlab1 = stairsRebarsElper(cEF, F_WaistSlab1, F_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][0] = FwaistSlab1;
+                double[,] FwaistSlab2 = stairsRebarsElper(cEF, F_WaistSlab2, F_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][1] = FwaistSlab2;
+                double[,] FwaistSlab3 = stairsRebarsElper(cEF, F_WaistSlab3, F_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][2] = FwaistSlab3;
+                double[,] SwaistSlab1 = stairsRebarsElper(cEF, S_WaistSlab1, S_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][3] = SwaistSlab1;
+                double[,] SwaistSlab2 = stairsRebarsElper(cEF, S_WaistSlab2, S_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][4] = SwaistSlab2;
+                double[,] SwaistSlab3 = stairsRebarsElper(cEF, S_WaistSlab3, S_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][5] = SwaistSlab3;
+                double[,] FdistBars = stairsRebarsElper(cEF, StairWidth, (F_WaistSlab4 + S_WaistSlab4), temp_bars_diam, quantity);                
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][6] = FdistBars;
+                double[,] Flanding = stairsRebarsElper(cEF, Landing_Length, Landing_Number, landing_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][7] = Flanding;
+                //                               
+                double[,] chairBars = stairsRebarsElper(cEF, CB_Length, CB_Number, chair_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][8] = chairBars;
+                double[,] noseBars = stairsRebarsElper(cEF, StairWidth, S_NoseBar, nose_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][9] = noseBars;
+
+                string[] stringArray = cEF.parameters.stair[floorCount][index].getValues();
+                stringArray[5] = bestLMSgetter(FwaistSlab1);
+                stringArray[6] = bestLMSgetter(FwaistSlab2);
+                stringArray[7] = bestLMSgetter(FwaistSlab3);
+                stringArray[8] = bestLMSgetter(SwaistSlab1);
+                stringArray[9] = bestLMSgetter(SwaistSlab2);
+                stringArray[10] = bestLMSgetter(SwaistSlab3);
+                stringArray[11] = bestLMSgetter(FdistBars);
+                stringArray[12] = bestLMSgetter(Flanding);
+                stringArray[13] = bestLMSgetter(chairBars);
+                stringArray[14] = bestLMSgetter(noseBars);
+                cEF.parameters.stair[floorCount][index].setLStairsValues(stringArray[1], stringArray[2], stringArray[3],
+                            stringArray[4], stringArray[5], stringArray[6], stringArray[7], stringArray[8], stringArray[9],
+                            stringArray[10], stringArray[11], stringArray[12], stringArray[13], stringArray[14]);
+
             }
             else
             {
@@ -9803,6 +9983,120 @@ namespace KnowEst
                     cEF.structuralMembers.concreteWorkSolutionsST[floorCount][index][0] =
                         volume * quantity;
                 }
+                //
+
+                double F_WaistSlab1, F_WaistSlab2, F_WaistSlab3, F_TempBars, F_Landing,
+                       F_WS_BarNumber, F_L_BarNumber,
+                       S_WaistSlab1, S_WaistSlab2, S_WaistSlab3, S_TempBars, S_Landing,
+                       S_WS_BarNumber, S_ChairBarsLength, S_ChairBarNumber,
+                       S_NoseBar;
+                double Lapping, F_Length, S_Length;
+
+                string[] stairParameterValues = cEF.parameters.stair[floorCount][index].getValues();
+
+
+                double Riser, F_Steps, S_Steps, Tread,
+                       LapLength,
+                       HookLength, WS_Diameter, WS_Spacing,
+                       WidthLanding,
+                       BeamWidth,
+                       StairWidth, TB_Spacing,
+                       Gap,
+                       L_MainBars, L_Spacing,
+                       C_Spacing
+                       ;
+
+                //ParameterValues
+                HookLength = double.Parse(stairParameterValues[2]);
+                LapLength = double.Parse(stairParameterValues[1]);
+                BeamWidth = double.Parse(stairParameterValues[3]);
+
+                //AddStructValues
+                WS_Diameter = double.Parse(cEF.structuralMembers.stairs[floorCount][index][11], System.Globalization.CultureInfo.InvariantCulture);
+                WS_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][index][12], System.Globalization.CultureInfo.InvariantCulture);
+                WidthLanding = double.Parse(cEF.structuralMembers.stairs[floorCount][index][8], System.Globalization.CultureInfo.InvariantCulture);
+                Riser = double.Parse(cEF.structuralMembers.stairs[floorCount][index][5], System.Globalization.CultureInfo.InvariantCulture);
+                Tread = double.Parse(cEF.structuralMembers.stairs[floorCount][index][6], System.Globalization.CultureInfo.InvariantCulture);
+                F_Steps = double.Parse(cEF.structuralMembers.stairs[floorCount][index][2], System.Globalization.CultureInfo.InvariantCulture);
+                S_Steps = double.Parse(cEF.structuralMembers.stairs[floorCount][index][3], System.Globalization.CultureInfo.InvariantCulture);
+                StairWidth = double.Parse(cEF.structuralMembers.stairs[floorCount][index][4], System.Globalization.CultureInfo.InvariantCulture);
+                TB_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][index][14], System.Globalization.CultureInfo.InvariantCulture);
+                Gap = double.Parse(cEF.structuralMembers.stairs[floorCount][index][9], System.Globalization.CultureInfo.InvariantCulture);
+                L_MainBars = double.Parse(cEF.structuralMembers.stairs[floorCount][index][15], System.Globalization.CultureInfo.InvariantCulture);
+                L_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][index][16], System.Globalization.CultureInfo.InvariantCulture);
+                C_Spacing = double.Parse(cEF.structuralMembers.stairs[floorCount][index][18], System.Globalization.CultureInfo.InvariantCulture);
+                //===============FIRST FLIGHT =============================//
+                //CalculatedValues 1 -> 5
+                Lapping = LapLength * WS_Diameter;
+                F_Length = nearestValue(Math.Sqrt(Math.Pow(Riser * F_Steps, 2) + Math.Pow(Tread * F_Steps, 2)), 25);
+
+                F_WaistSlab1 = nearestValue(Lapping + F_Length + (HookLength * WS_Diameter), 25);
+                F_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + WidthLanding + F_Length, 25);
+                F_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + WidthLanding + BeamWidth + (LapLength * WS_Diameter), 25);
+                F_WS_BarNumber = rounder((StairWidth / WS_Spacing) + 1);
+                F_TempBars = rounder(2 * ((F_Length / TB_Spacing) + 1));
+                F_Landing = (StairWidth * 2) + Gap;
+                F_L_BarNumber = rounder((WidthLanding / L_Spacing) + 1);
+
+                //===============SECOND FLIGHT =============================//
+                //CalculatedValues 6 -> n
+                S_Length = nearestValue(Math.Sqrt(Math.Pow(Riser * S_Steps, 2) + Math.Pow(Tread * S_Steps, 2)), 25);
+
+                S_WaistSlab1 = nearestValue(Lapping + S_Length + (HookLength * WS_Diameter), 25);
+                S_WaistSlab2 = nearestValue((2 * HookLength * WS_Diameter) + WidthLanding + S_Length, 25);
+                S_WaistSlab3 = nearestValue((HookLength * WS_Diameter) + WidthLanding + BeamWidth + (LapLength * WS_Diameter), 25);
+                S_WS_BarNumber = rounder((StairWidth / WS_Spacing) + 1);
+                S_TempBars = rounder(2 * ((S_Length / TB_Spacing) + 1));
+                //===========Steps========================
+                S_ChairBarsLength = Tread + Riser;
+                S_ChairBarNumber = rounder((StairWidth / C_Spacing) + 1) * (F_Steps + S_Steps);
+                S_NoseBar = (F_Steps + S_Steps);                               
+
+                double main_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][index][11]);
+                double temp_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][index][13]);
+                double landing_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][index][15]);
+                double chair_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][index][17]);
+                double nose_bars_diam = double.Parse(cEF.structuralMembers.stairs[floorCount][index][19]);
+                List<double> results = new List<double>();                
+
+                //For solutions on structural members                
+                double[,] FwaistSlab1 = stairsRebarsElper(cEF, F_WaistSlab1, F_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][0] = FwaistSlab1;
+                double[,] FwaistSlab2 = stairsRebarsElper(cEF, F_WaistSlab2, F_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][1] = FwaistSlab2;
+                double[,] FwaistSlab3 = stairsRebarsElper(cEF, F_WaistSlab3, F_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][2] = FwaistSlab3;
+                double[,] SwaistSlab1 = stairsRebarsElper(cEF, S_WaistSlab1, S_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][3] = SwaistSlab1;
+                double[,] SwaistSlab2 = stairsRebarsElper(cEF, S_WaistSlab2, S_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][4] = SwaistSlab2;
+                double[,] SwaistSlab3 = stairsRebarsElper(cEF, S_WaistSlab3, S_WS_BarNumber, main_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][5] = SwaistSlab3;
+                double[,] FdistBars = stairsRebarsElper(cEF, StairWidth, (F_TempBars + S_TempBars), temp_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][6] = FdistBars;
+                double[,] Flanding = stairsRebarsElper(cEF, F_Landing, F_L_BarNumber, landing_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][7] = Flanding;
+                //
+                double[,] chairBars = stairsRebarsElper(cEF, S_ChairBarsLength, S_ChairBarNumber, chair_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][8] = chairBars;
+                double[,] noseBars = stairsRebarsElper(cEF, StairWidth, S_NoseBar, nose_bars_diam, quantity);
+                cEF.structuralMembers.stairs_Rebar[floorCount][index][9] = noseBars;
+
+                string[] stringArray = cEF.parameters.stair[floorCount][index].getValues();
+                stringArray[5] = bestLMSgetter(FwaistSlab1);
+                stringArray[6] = bestLMSgetter(FwaistSlab2);
+                stringArray[7] = bestLMSgetter(FwaistSlab3);
+                stringArray[8] = bestLMSgetter(SwaistSlab1);
+                stringArray[9] = bestLMSgetter(SwaistSlab2);
+                stringArray[10] = bestLMSgetter(SwaistSlab3);
+                stringArray[11] = bestLMSgetter(FdistBars);
+                stringArray[12] = bestLMSgetter(Flanding);
+                stringArray[13] = bestLMSgetter(chairBars);
+                stringArray[14] = bestLMSgetter(noseBars);
+                cEF.parameters.stair[floorCount][index].setUStairsValues(stringArray[1], stringArray[2], stringArray[3],
+                            stringArray[4], stringArray[5], stringArray[6], stringArray[7], stringArray[8], stringArray[9],
+                            stringArray[10], stringArray[11], stringArray[12], stringArray[13], stringArray[14]);
+                
             }
             //Computation -- modify Formworks [STAIRS]
             recomputeFW_stairs(cEF);
@@ -10806,9 +11100,9 @@ namespace KnowEst
             Console.WriteLine(str);
         }
         public double nearestValue(double val, int multiple)
-        {
-            double roundedValue = (multiple * (Math.Truncate(val / multiple))) + multiple;
-            return roundedValue;
+        {         
+                double roundedValue = (multiple * (Math.Truncate(val / multiple))) + multiple;
+                return roundedValue;
         }
         public double rounder(double val)
         {
@@ -11722,40 +12016,51 @@ namespace KnowEst
         }
         
         
-        public void stairsRebarsElper(CostEstimationForm cEF, double prot, double bar_quantity)
+        public double[,] stairsRebarsElper(CostEstimationForm cEF, double prot, double bar_quantity, double diameter, double stair_quantity)
         {
-            double[] mls = { 6.0, 7.5, 9.0, 10.5, 12.0};
+            double[] mls = { 6.0, 7.5, 9.0, 10.5, 12.0 };
+            double[,] results = new double[,]{
+                                                        { 123, 123, 123, 123},// 6
+                                                        { 123, 123, 123, 123},// 7.5
+                                                        { 123, 123, 123, 123},// 9
+                                                        { 123, 123, 123, 123},// 10.5
+                                                        { 123, 123, 123, 123},// 12
+                                                        { 1, 0, 0, 0}
+                                                    };
+            double weight_equi = 0;
+            for (int r = 0; r < cEF.parameters.rein_W_dt.Rows.Count; r++)
+            {                
+                if ((cEF.parameters.rein_W_dt.Rows[r][0]).ToString() == diameter.ToString()+"mm")
+                {
+                    weight_equi = double.Parse(cEF.parameters.rein_W_dt.Rows[r][1].ToString());
+                    break;
+                }                
+            }
             double bestTW = 0;
             double bestLM = 0;
             double bestQTYM = 0;
             prot = prot / 1000;
-            print("WTF: " + prot);
+            
             for (int i = 0; i < 5; i++)
             {
-                double step1 = mls[i] / prot; // step 1
-                //print("step 1: " + step1);
-                double step2_wholenumber = Math.Floor(step1); // step 2
-                //print("step 2 whole: " + step2_wholenumber);
-                double step2_afterdecimal = step1 - Math.Floor(step1);// step 3
-                //print("step 2 dec: " + step2_afterdecimal);
-                double waste_length = step2_afterdecimal * prot; // step 4
-                //print("waste leng: " + waste_length);
-                double waste_per_piece = (waste_length / mls[i]); // step 5
-                //print("waste per piece: " + waste_per_piece);
-                double not_qtym = bar_quantity / step2_wholenumber; // step 6
-                //print("not qtym: " + not_qtym);
+                double step1 = mls[i] / prot; // step 1                
+                double step2_wholenumber = Math.Floor(step1); // step 2                
+                double step2_afterdecimal = step1 - Math.Floor(step1);// step 3                
+                double waste_length = step2_afterdecimal * prot; // step 4                
+                double waste_per_piece = (waste_length / mls[i]); // step 5                
+                double not_qtym = bar_quantity / step2_wholenumber; // step 6                
                 double qtym = rounder(bar_quantity / step2_wholenumber);
-                double totwaste1 = (waste_length * Math.Floor(not_qtym));
-                //print("totwaste1: " + totwaste1);
-                double totwaste2 = mls[i] - prot;
-                //print("totwaste2: " + totwaste2);
+                double totwaste1 = (waste_length * Math.Floor(not_qtym));                
+                double totwaste2 = mls[i] - prot;                
                 double totalwaste = totwaste1 + totwaste2;
-                double waste_percentage = (totalwaste / (mls[i] * qtym));
-                //print("waste percentage: " + waste_percentage);
-                double waste_percent_per = (totwaste2 / mls[i]);
-                //print("waste percentage per piece: " + waste_percent_per);
-                double ave_waste = (waste_per_piece + waste_percentage + waste_percent_per)/3;
-                //print("average waste: " + ave_waste);
+                double waste_percentage = (totalwaste / (mls[i] * qtym));                
+                double waste_percent_per = (totwaste2 / mls[i]);                
+                double ave_waste = (waste_per_piece + waste_percentage + waste_percent_per)/3;                
+                results[i, 0] = diameter;
+                results[i, 1] = mls[i];
+                results[i, 2] = qtym * stair_quantity;
+                results[i, 3] = weight_equi;
+                
                 if (bestTW == 0 && !Double.IsNaN(ave_waste))
                 {
                     bestTW = ave_waste;
@@ -11772,12 +12077,58 @@ namespace KnowEst
                     }
                 }
             }
-            List<double> res = new List<double>();
-            res.Add(bestLM);
-            res.Add(bestQTYM);
-            print("LM: " + bestLM);
-            print("QTYM: " + bestQTYM);
+
+            double suggestion = 0;
+            if(bestLM == 6.0)
+            {
+                suggestion = 0;
+            }
+            else if (bestLM == 7.5)
+            {
+                suggestion = 1;
+            }
+            else if (bestLM == 9.0){
+                suggestion = 2;
+            }
+            else if (bestLM == 10.5)
+            {
+                suggestion = 3;
+            }
+            else if (bestLM == 12.0)
+            {
+                suggestion = 4;
+            }                        
+            results[5, 0] = suggestion;
+            return results;
             
+        }
+
+        public string bestLMSgetter(double[,] res)
+        {            
+            if (res[5,0] == 0)
+            {
+                return "6.0m";
+            }
+            else if (res[5, 0] == 1)
+            {
+                return "7.5m";
+            }
+            else if (res[5, 0] == 2)
+            {
+                return "9.0m";
+            }
+            else if (res[5, 0] == 3)
+            {
+                return "10.5m";
+            }
+            else if (res[5, 0] == 4)
+            {
+                return "12.0m";
+            }
+            else
+            {
+                return "eh";
+            }
         }
     }   
 }

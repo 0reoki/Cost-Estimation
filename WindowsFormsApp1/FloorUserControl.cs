@@ -325,6 +325,7 @@ namespace KnowEst
             costEstimationForm.structuralMembers.stairs.RemoveAt(floorCount);
             costEstimationForm.parameters.stair.RemoveAt(floorCount);
             costEstimationForm.structuralMembers.stairsNames.RemoveAt(floorCount);
+            costEstimationForm.structuralMembers.stairs_Rebar.RemoveAt(floorCount);
 
             //Roof
             costEstimationForm.structuralMembers.roof.RemoveAt(floorCount);
