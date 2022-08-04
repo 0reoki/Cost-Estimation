@@ -3629,6 +3629,26 @@ namespace KnowEst
 
         }
 
+        private void beam_ST_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (beam_ST_cbx.Equals("Lapped Splice"))
+            {
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I. wires to form a continuous reinforcement.", beam_ST_cbx);
+            }
+            else if (beam_ST_cbx.Equals("Welded Splice (Butt)"))
+            {
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", beam_ST_cbx);
+            }
+            else if (beam_ST_cbx.Equals("Welded Splice (Lap)"))
+            {
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", beam_ST_cbx);
+            }
+            else if (beam_ST_cbx.Equals("Mechanical"))
+            {
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", beam_ST_cbx);
+            }
+        }
+
         private void roof_GI_D_HRS_AddBtn_Click(object sender, EventArgs e)
         {
             RoofHRSUserControl content = new RoofHRSUserControl();

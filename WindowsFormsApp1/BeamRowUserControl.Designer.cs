@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel109 = new System.Windows.Forms.TableLayoutPanel();
             this.clearlength_bx = new System.Windows.Forms.TextBox();
             this.length_bx = new System.Windows.Forms.TextBox();
             this.qty_bx = new System.Windows.Forms.TextBox();
             this.support_cbx = new System.Windows.Forms.ComboBox();
             this.beamName_cbx = new System.Windows.Forms.ComboBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel109.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,39 +55,45 @@
             this.tableLayoutPanel109.Controls.Add(this.beamName_cbx, 0, 0);
             this.tableLayoutPanel109.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel109.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel109.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel109.Name = "tableLayoutPanel109";
             this.tableLayoutPanel109.RowCount = 1;
             this.tableLayoutPanel109.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel109.Size = new System.Drawing.Size(747, 40);
+            this.tableLayoutPanel109.Size = new System.Drawing.Size(664, 32);
             this.tableLayoutPanel109.TabIndex = 41;
             // 
             // clearlength_bx
             // 
             this.clearlength_bx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.clearlength_bx.Location = new System.Drawing.Point(311, 4);
+            this.clearlength_bx.Location = new System.Drawing.Point(277, 3);
+            this.clearlength_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.clearlength_bx.Name = "clearlength_bx";
-            this.clearlength_bx.Size = new System.Drawing.Size(211, 26);
+            this.clearlength_bx.Size = new System.Drawing.Size(187, 22);
             this.clearlength_bx.TabIndex = 50;
             this.clearlength_bx.Text = "0";
+            this.clearlength_bx.MouseHover += new System.EventHandler(this.clearlength_bx_MouseHover);
             // 
             // length_bx
             // 
             this.length_bx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.length_bx.Location = new System.Drawing.Point(223, 4);
+            this.length_bx.Location = new System.Drawing.Point(199, 3);
+            this.length_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.length_bx.Name = "length_bx";
-            this.length_bx.Size = new System.Drawing.Size(81, 26);
+            this.length_bx.Size = new System.Drawing.Size(71, 22);
             this.length_bx.TabIndex = 49;
             this.length_bx.Text = "0";
+            this.length_bx.MouseHover += new System.EventHandler(this.length_bx_MouseHover);
             // 
             // qty_bx
             // 
             this.qty_bx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.qty_bx.Location = new System.Drawing.Point(135, 4);
+            this.qty_bx.Location = new System.Drawing.Point(121, 3);
+            this.qty_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.qty_bx.Name = "qty_bx";
-            this.qty_bx.Size = new System.Drawing.Size(81, 26);
+            this.qty_bx.Size = new System.Drawing.Size(71, 22);
             this.qty_bx.TabIndex = 48;
             this.qty_bx.Text = "0";
             // 
@@ -96,9 +104,10 @@
             this.support_cbx.Items.AddRange(new object[] {
             "1-End Support",
             "2-End Supports"});
-            this.support_cbx.Location = new System.Drawing.Point(529, 4);
+            this.support_cbx.Location = new System.Drawing.Point(471, 3);
+            this.support_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.support_cbx.Name = "support_cbx";
-            this.support_cbx.Size = new System.Drawing.Size(211, 28);
+            this.support_cbx.Size = new System.Drawing.Size(188, 24);
             this.support_cbx.TabIndex = 47;
             // 
             // beamName_cbx
@@ -107,18 +116,20 @@
             this.beamName_cbx.FormattingEnabled = true;
             this.beamName_cbx.Items.AddRange(new object[] {
             "None"});
-            this.beamName_cbx.Location = new System.Drawing.Point(4, 4);
+            this.beamName_cbx.Location = new System.Drawing.Point(4, 3);
+            this.beamName_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.beamName_cbx.Name = "beamName_cbx";
-            this.beamName_cbx.Size = new System.Drawing.Size(124, 28);
+            this.beamName_cbx.Size = new System.Drawing.Size(110, 24);
             this.beamName_cbx.TabIndex = 45;
             // 
             // BeamRowUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel109);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "BeamRowUserControl";
-            this.Size = new System.Drawing.Size(747, 40);
+            this.Size = new System.Drawing.Size(664, 32);
             this.tableLayoutPanel109.ResumeLayout(false);
             this.tableLayoutPanel109.PerformLayout();
             this.ResumeLayout(false);
@@ -133,5 +144,6 @@
         private System.Windows.Forms.ComboBox support_cbx;
         private System.Windows.Forms.ComboBox beamName_cbx;
         private System.Windows.Forms.TextBox clearlength_bx;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
