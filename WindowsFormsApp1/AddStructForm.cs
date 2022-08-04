@@ -3631,21 +3631,102 @@ namespace KnowEst
 
         private void beam_ST_cbx_MouseHover(object sender, EventArgs e)
         {
-            if (beam_ST_cbx.Equals("Lapped Splice"))
+            if (beam_ST_cbx.Text.Equals("Lapped Splice"))
             {
                 toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I. wires to form a continuous reinforcement.", beam_ST_cbx);
             }
-            else if (beam_ST_cbx.Equals("Welded Splice (Butt)"))
+            else if (beam_ST_cbx.Text.Equals("Welded Splice (Butt)"))
             {
                 toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", beam_ST_cbx);
             }
-            else if (beam_ST_cbx.Equals("Welded Splice (Lap)"))
+            else if (beam_ST_cbx.Text.Equals("Welded Splice (Lap)"))
             {
                 toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", beam_ST_cbx);
             }
-            else if (beam_ST_cbx.Equals("Mechanical"))
+            else if (beam_ST_cbx.Text.Equals("Mechanical"))
             {
                 toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", beam_ST_cbx);
+            }
+        }
+
+        private void col_G_D_CH_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The distance from the finished floor of a building to any object overhead.", col_G_D_CH_bx);
+        }
+
+        private void col_G_MR_D_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The diameter of the steel reinforcement.", col_G_MR_D_bx);
+        }
+
+        private void col_G_LT_D_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The diameter of the steel reinforcement.", col_G_LT_D_bx);
+        }
+
+        private void col_G_JT_D_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The diameter of the steel reinforcement.", col_G_JT_D_bx);
+        }
+
+        private void col_G_ST_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (col_G_ST_cbx.Text.Equals("Lapped Splice"))
+            {
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I. wires to form a continuous reinforcement.", col_G_ST_cbx);
+            }
+            else if (col_G_ST_cbx.Text.Equals("Welded Splice (Butt)"))
+            {
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", col_G_ST_cbx);
+            }
+            else if (col_G_ST_cbx.Text.Equals("Welded Splice (Lap)"))
+            {
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", col_G_ST_cbx);
+            }
+            else if (col_G_ST_cbx.Text.Equals("Mechanical"))
+            {
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", col_G_ST_cbx);
+            }
+        }
+
+        private void col_U_D_CH_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The distance from the finished floor of a building to any object overhead.", col_U_D_CH_bx);
+        }
+
+        private void col_U_LT_D_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The diameter of the steel reinforcement.", col_U_LT_D_bx);
+        }
+
+        private void col_U_MR_D_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The diameter of the steel reinforcement.", col_U_MR_D_bx);
+        }
+
+        private void col_U_JT_D_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The diameter of the steel reinforcement.", col_U_JT_D_bx);
+        }
+
+        private void col_U_ST_cbx_MouseHover(object sender, EventArgs e)
+        {
+            
+            if (col_U_ST_cbx.Text.Equals("Lapped Splice"))
+            {
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I. wires to form a continuous reinforcement.", col_U_ST_cbx);
+            }
+            else if (col_U_ST_cbx.Text.Equals("Welded Splice (Butt)"))
+            {
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", col_U_ST_cbx);
+            }
+            else if (col_U_ST_cbx.Text.Equals("Welded Splice (Lap)"))
+            {
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", col_U_ST_cbx);
+            }
+            else if (col_U_ST_cbx.Text.Equals("Mechanical"))
+            {
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", col_U_ST_cbx);
             }
         }
 
