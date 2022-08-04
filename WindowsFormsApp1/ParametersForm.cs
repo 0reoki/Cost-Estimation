@@ -2261,7 +2261,261 @@ namespace KnowEst
             earth_WF_TY_cbx.SelectedIndex = earth_SG_TY_cbx.SelectedIndex;
             earth_WF_TY_cbx.SelectedIndex = earth_SG_TY_cbx.SelectedIndex;
         }
-
         //Extra Functions -- END
+
+        //Earthworks Hover -- START
+
+        //Formworks Allowance
+        private void earth_CF_FA_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Extra space that will be used by the formworks. \nThis will affect the excavation, gravel bedding and compaction volume.", earth_CF_FA_bx);
+        }
+
+        private void earth_WF_FA_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Extra space that will be used by the formworks. \nThis will affect the excavation, gravel bedding and compaction volume.", earth_WF_FA_bx);
+        }
+
+        private void earth_WTB_FA_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Extra space that will be used by the formworks. \nThis will affect the excavation, gravel bedding and compaction volume.", earth_WTB_FA_bx);
+        }
+
+        //Thickness
+        private void earth_CF_TH_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Desired Gravel bedding thickness in mm", earth_CF_TH_bx);
+        }
+
+        private void earth_WF_TH_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Desired Gravel bedding thickness in mm", earth_WF_TH_bx);
+        }
+
+        private void earth_WTB_TH_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Desired Gravel bedding thickness in mm", earth_WTB_TH_bx);
+        }
+
+        private void earth_SG_TH_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Desired Gravel bedding thickness in mm", earth_SG_TH_bx);
+        }
+
+        //Type
+        private void earth_CF_TY_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Type of grave to be used. This will be uniformly used for earthworks.", earth_CF_TY_cbx);
+        }
+
+        private void earth_WF_TY_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Type of grave to be used. This will be uniformly used for earthworks.", earth_WF_TY_cbx);
+        }
+
+        private void earth_WTB_TY_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Type of grave to be used. This will be uniformly used for earthworks.", earth_WTB_TY_cbx);
+        }
+
+        private void earth_SG_TY_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Type of grave to be used. This will be uniformly used for earthworks.", earth_SG_TY_cbx);
+        }
+
+        //Compaction Factor
+        private void earth_CF_CF_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The desired thickness will not always be completely achieved after the compaction of the gravel bedding. \nThe compaction factor will compensate and add a percentage of volume lost due to compaction.", earth_CF_CF_bx);
+        }
+
+        private void earth_WF_CF_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The desired thickness will not always be completely achieved after the compaction of the gravel bedding. \nThe compaction factor will compensate and add a percentage of volume lost due to compaction.", earth_WF_CF_bx);
+        }
+
+        private void earth_WTB_CF_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The desired thickness will not always be completely achieved after the compaction of the gravel bedding. \nThe compaction factor will compensate and add a percentage of volume lost due to compaction.", earth_WTB_CF_bx);
+        }
+
+        private void earth_SG_CF_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The desired thickness will not always be completely achieved after the compaction of the gravel bedding. \nThe compaction factor will compensate and add a percentage of volume lost due to compaction.", earth_SG_CF_bx);
+        }
+
+        //Manage Elevations
+        private void earth_ElevBtn_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Add or remove elevations.", earth_ElevBtn);
+        }
+
+        //Reset Button
+        private void earth_ResetBtn_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Revert everything in this section to default", earth_ResetBtn);
+        }
+        //Earthworks Hover -- END
+
+        //Formworks Hover -- START
+        private void form_F_NU_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Multiplier for the number of times a formwork should be used.", form_F_NU_bx);
+        }
+
+        private void form_F_N_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Multiplier for the weight of nails (kg) to be purchased alongside with the formworks", form_F_N_bx);
+        }
+
+        private void form_F_T_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the type of formworks to be used", form_F_T_cbx);
+        }
+
+        //Formworks Hover -- END
+
+        //Concrete Grade -- START
+        //Footing
+        private void label14_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Selection of concrete mixture class that will yield Cement (40 kg Bags), Sand (m3) and Gravel (m3)", label14);
+        }
+        private void conc_CM_F_CG_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if(conc_CM_F_CG_cbx.Text.Equals("CLASS AA"))
+                toolTip1.Show("CLASS AA multiplier: \n 12.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_F_CG_cbx);
+            else if (conc_CM_F_CG_cbx.Text.Equals("CLASS A"))
+                toolTip1.Show("CLASS A multiplier: \n 9.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_F_CG_cbx);
+            else if (conc_CM_F_CG_cbx.Text.Equals("CLASS B"))
+                toolTip1.Show("CLASS B multiplier: \n 7.5 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_F_CG_cbx);
+            else
+                toolTip1.Show("CLASS C multiplier: \n 6.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_F_CG_cbx);
+        }
+        private void conc_CM_F_GT_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Selection of Gravel Types.", conc_CM_F_GT_cbx);
+        }
+
+        //Column
+        private void label17_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Selection of concrete mixture class that will yield Cement (40 kg Bags), Sand (m3) and Gravel (m3)", label17);
+        }
+
+        private void conc_CM_C_CG_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (conc_CM_C_CG_cbx.Text.Equals("CLASS AA"))
+                toolTip1.Show("CLASS AA multiplier: \n 12.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_C_CG_cbx);
+            else if (conc_CM_C_CG_cbx.Text.Equals("CLASS A"))
+                toolTip1.Show("CLASS A multiplier: \n 9.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_C_CG_cbx);
+            else if (conc_CM_C_CG_cbx.Text.Equals("CLASS B"))
+                toolTip1.Show("CLASS B multiplier: \n 7.5 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_C_CG_cbx);
+            else
+                toolTip1.Show("CLASS C multiplier: \n 6.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_C_CG_cbx);
+        }
+
+        private void conc_CM_C_GT_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Selection of Gravel Types.", conc_CM_C_GT_cbx);
+        }
+
+        //Beams
+        private void label34_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Selection of concrete mixture class that will yield Cement (40 kg Bags), Sand (m3) and Gravel (m3)", label34);
+        }
+
+        private void conc_CM_B_CG_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (conc_CM_B_CG_cbx.Text.Equals("CLASS AA"))
+                toolTip1.Show("CLASS AA multiplier: \n 12.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_B_CG_cbx);
+            else if (conc_CM_B_CG_cbx.Text.Equals("CLASS A"))
+                toolTip1.Show("CLASS A multiplier: \n 9.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_B_CG_cbx);
+            else if (conc_CM_B_CG_cbx.Text.Equals("CLASS B"))
+                toolTip1.Show("CLASS B multiplier: \n 7.5 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_B_CG_cbx);
+            else
+                toolTip1.Show("CLASS C multiplier: \n 6.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_B_CG_cbx);
+        }
+
+        private void conc_CM_B_GT_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Selection of Gravel Types.", conc_CM_B_GT_cbx);
+        }
+
+        //Slab on Grade
+        private void label53_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Selection of concrete mixture class that will yield Cement (40 kg Bags), Sand (m3) and Gravel (m3)", label53);
+        }
+        private void conc_CM_S_SOG_CG_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (conc_CM_S_SOG_CG_cbx.Text.Equals("CLASS AA"))
+                toolTip1.Show("CLASS AA multiplier: \n 12.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_S_SOG_CG_cbx);
+            else if (conc_CM_S_SOG_CG_cbx.Text.Equals("CLASS A"))
+                toolTip1.Show("CLASS A multiplier: \n 9.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_S_SOG_CG_cbx);
+            else if (conc_CM_S_SOG_CG_cbx.Text.Equals("CLASS B"))
+                toolTip1.Show("CLASS B multiplier: \n 7.5 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_S_SOG_CG_cbx);
+            else
+                toolTip1.Show("CLASS C multiplier: \n 6.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_S_SOG_CG_cbx);
+        }
+
+        private void conc_CM_S_SOG_GT_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Selection of Gravel Types.", conc_CM_S_SOG_GT_cbx);
+        }
+
+        //Suspended Slab
+        private void label150_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Selection of concrete mixture class that will yield Cement (40 kg Bags), Sand (m3) and Gravel (m3)", label150);
+        }
+
+        private void conc_CM_S_SS_CG_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (conc_CM_S_SS_CG_cbx.Text.Equals("CLASS AA"))
+                toolTip1.Show("CLASS AA multiplier: \n 12.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_S_SS_CG_cbx);
+            else if (conc_CM_S_SS_CG_cbx.Text.Equals("CLASS A"))
+                toolTip1.Show("CLASS A multiplier: \n 9.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_S_SS_CG_cbx);
+            else if (conc_CM_S_SS_CG_cbx.Text.Equals("CLASS B"))
+                toolTip1.Show("CLASS B multiplier: \n 7.5 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_S_SS_CG_cbx);
+            else
+                toolTip1.Show("CLASS C multiplier: \n 6.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_S_SS_CG_cbx);
+        }
+
+        private void conc_CM_S_SS_GT_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Selection of Gravel Types.", conc_CM_S_SS_GT_cbx);
+        }
+
+        //Stairs
+        private void label58_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Selection of concrete mixture class that will yield Cement (40 kg Bags), Sand (m3) and Gravel (m3)", label58);
+        }
+
+        private void conc_CM_ST_CG_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (conc_CM_ST_CG_cbx.Text.Equals("CLASS AA"))
+                toolTip1.Show("CLASS AA multiplier: \n 12.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_ST_CG_cbx);
+            else if (conc_CM_ST_CG_cbx.Text.Equals("CLASS A"))
+                toolTip1.Show("CLASS A multiplier: \n 9.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_ST_CG_cbx);
+            else if (conc_CM_ST_CG_cbx.Text.Equals("CLASS B"))
+                toolTip1.Show("CLASS B multiplier: \n 7.5 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_ST_CG_cbx);
+            else
+                toolTip1.Show("CLASS C multiplier: \n 6.0 for Cement (40kg/Bag), \n 0.5 for Sand (m3), \n 1.0 for Gravel (m3)", conc_CM_ST_CG_cbx);
+        }
+
+        private void conc_CM_ST_GT_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Selection of Gravel Types.", conc_CM_ST_GT_cbx);
+        }
+
+        //Paint
+        private void paint_SCL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Number of times the skim coating should be applied to form layers.", paint_SCL_bx);
+        }
+        //Concrete Grade -- END
     }
 }

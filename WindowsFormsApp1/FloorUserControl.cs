@@ -300,6 +300,11 @@ namespace KnowEst
             }
         }
 
+        private void addStrMemBtn_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Add new structural member to an existing floor.", addStrMemBtn);
+        }
+
         private void floorUCDeleteBtn_Click(object sender, EventArgs e)
         {
             this.Parent.Controls.Remove(this);
