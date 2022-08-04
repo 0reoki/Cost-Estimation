@@ -3900,8 +3900,197 @@ namespace KnowEst
         {
             MessageBox.Show("Unit is now in " + textBox17.Text + ".");
         }
-
         //Suspended Slab Hover -- END
+
+        //Roofings Hover -- START
+        //Wood
+        private void roof_RP_W_rb_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("wood type of rafter and purlins", roof_RP_W_rb);
+        }
+
+        private void roof_RP_W_D_LR_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of rafter in meters", roof_RP_W_D_LR_bx);
+        }
+
+        private void roof_RP_W_D_LP_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of purlins in meters", roof_RP_W_D_LP_bx);
+        }
+
+        private void roof_RP_W_D_SR_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("spacing of rafter in meters", roof_RP_W_D_SR_bx);
+        }
+
+        private void roof_RP_W_D_SP_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("spacing of purlins in meters", roof_RP_W_D_SP_bx);
+        }
+
+        //Steel - tubular
+        private void roof_RP_ST_rb_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Tubular steel type of rafter and purlins", roof_RP_ST_rb);
+        }
+
+        private void roof_RP_ST_D_LRSW_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of rafter (side wall) can be the length of purlins in meters", roof_RP_ST_D_LRSW_bx);
+        }
+
+        private void roof_RP_ST_D_LR_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of rafter in meters", roof_RP_ST_D_LR_bx);
+        }
+
+        private void roof_RP_ST_D_LP_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of purlins in meters", roof_RP_ST_D_LP_bx);
+        }
+
+        private void roof_RP_ST_D_SR_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("spacing of rafter in meters", roof_RP_ST_D_SR_bx);
+        }
+
+        private void roof_RP_ST_D_SP_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("spacing of purlins in meters", roof_RP_ST_D_SP_bx);
+        }
+
+        //Steel - Cee Purlins
+        private void roof_RP_SCP_rb_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Cee purlins steel type of rafter and purlins", roof_RP_SCP_rb);
+        }
+
+        private void roof_RP_SCP_D_LRSW_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of rafter (side wall) can be the length of purlins in meters", roof_RP_SCP_D_LRSW_bx);
+        }
+
+        private void roof_RP_SCP_D_LR_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of rafter in meters", roof_RP_SCP_D_LR_bx);
+        }
+
+        private void roof_RP_SCP_D_LP_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of purlins in meters", roof_RP_SCP_D_LP_bx);
+        }
+
+        private void roof_RP_SCP_D_SR_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("spacing of rafter in meters", roof_RP_SCP_D_SR_bx);
+        }
+
+        private void roof_RP_SCP_D_SP_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("spacing of purlins in meters", roof_RP_SCP_D_SP_bx);
+        }
+
+        //GI Roof and Accessories
+        private void roof_GI_D_LP_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Length of Purlins (Along the Gutter Line) in meters", roof_GI_D_LP_bx);
+        }
+
+        private void roof_GI_D_EC_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Effective Covering (Side Lapping) in meters", roof_GI_D_EC_cbx);
+        }
+
+        private void roof_GI_D_HRS_AddBtn_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Add height of Roof Sheet in meters", roof_GI_D_HRS_AddBtn);
+        }
+
+        private void roof_GI_M_SP_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("size of purlins in inches", roof_GI_M_SP_cbx);
+        }
+
+        //Roof Accessories
+        //Total Length
+        private void roof_RA_D_G_TL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total length in meters", roof_RA_D_G_TL_bx);
+        }
+
+        private void roof_RA_D_F_TL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total length in meters", roof_RA_D_F_TL_bx);
+        }
+
+        private void roof_RA_D_RR_TL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total length in meters", roof_RA_D_RR_TL_bx);
+        }
+
+        private void roof_RA_D_VR_TL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total length in meters", roof_RA_D_VR_TL_bx);
+        }
+
+        private void roof_RA_D_HR_TL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total length in meters", roof_RA_D_HR_TL_bx);
+        }
+
+        //Effective Length
+        private void roof_RA_D_G_EL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("effective length in meters", roof_RA_D_G_EL_bx);
+        }
+
+        private void roof_RA_D_F_EL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("effective length in meters", roof_RA_D_F_EL_bx);
+        }
+
+        private void roof_RA_D_RR_EL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("effective length in meters", roof_RA_D_RR_EL_bx);
+        }
+
+        private void roof_RA_D_VR_EL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("effective length in meters", roof_RA_D_VR_EL_bx);
+        }
+
+        private void roof_RA_D_HR_EL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("effective length in meters", roof_RA_D_HR_EL_bx);
+        }
+
+        //Total Width
+        private void roof_RA_D_G_TW_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total width in meters", roof_RA_D_G_TW_bx);
+        }
+
+        private void roof_RA_D_F_TW_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total width in meters", roof_RA_D_F_TW_bx);
+        }
+
+        private void roof_RA_D_RR_TW_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total width in meters", roof_RA_D_RR_TW_bx);
+        }
+
+        private void roof_RA_D_VR_TW_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total width in meters", roof_RA_D_VR_TW_bx);
+        }
+
+        private void roof_RA_D_HR_TW_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total width in meters", roof_RA_D_HR_TW_bx);
+        }
+        //Roofings Hover -- END
 
         private void roof_GI_D_HRS_AddBtn_Click(object sender, EventArgs e)
         {
