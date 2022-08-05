@@ -861,13 +861,14 @@ namespace KnowEst
                 List<string> newList22 = new List<string>();
                 List<List<double>> newList23 = new List<List<double>>();
                 List<List<double[,]>> newList24 = new List<List<double[,]>>();
-                
+                List<List<double>> newList25 = new List<List<double>>();                
                 structuralMembers.concreteWorkSolutionsC.Add(newList19);
                 structuralMembers.concreteWorkSolutionsBR.Add(newList20);
                 structuralMembers.concreteWorkSolutionsSL.Add(newList21);
                 structuralMembers.concreteWorkSolutionsSLSM.Add(newList22);
                 structuralMembers.concreteWorkSolutionsST.Add(newList23);
                 structuralMembers.stairs_Rebar.Add(newList24);
+                structuralMembers.roofSolutions.Add(newList25);
             }
             else //Upper Floors
             {
@@ -921,13 +922,15 @@ namespace KnowEst
                 List<List<double>> newList21 = new List<List<double>>();
                 List<string> newList22 = new List<string>();
                 List<List<double>> newList23 = new List<List<double>>();
-                List<List<double[,]>> newList24 = new List<List<double[,]>>();                
+                List<List<double[,]>> newList24 = new List<List<double[,]>>();
+                List<List<double>> newList25 = new List<List<double>>();                
                 structuralMembers.concreteWorkSolutionsC.Add(newList19);
                 structuralMembers.concreteWorkSolutionsBR.Add(newList20);
                 structuralMembers.concreteWorkSolutionsSL.Add(newList21);
                 structuralMembers.concreteWorkSolutionsSLSM.Add(newList22);
                 structuralMembers.concreteWorkSolutionsST.Add(newList23);
                 structuralMembers.stairs_Rebar.Add(newList24);
+                structuralMembers.roofSolutions.Add(newList25);
             }
             
         }
@@ -2185,6 +2188,8 @@ namespace KnowEst
                                 List<string> grade = gradefilterer(parameters.rein_RG_BS);
                                 string dia = structuralMembers.Beam_stirRebar[i][j][n][2];
                                 string ms = structuralMembers.Beam_stirRebar[i][j][n][0];
+                                /*print(dia + " dia");
+                                print(ms + "");*/
                                 string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
                                 if (ms != "0")
                                 {
@@ -2225,6 +2230,8 @@ namespace KnowEst
                                 List<string> grade = gradefilterer(parameters.rein_RG_B);
                                 string dia = structuralMembers.Beam_webRebar[i][j][n][2];
                                 string ms = structuralMembers.Beam_webRebar[i][j][n][0];
+                                /*print(dia +" dia");
+                                print(ms + "");*/
                                 string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
                                 if (ms != "0")
                                 {
@@ -2262,12 +2269,14 @@ namespace KnowEst
                 Rbeam_Munit = Rbeam_Mcost / Rbeam_qty;
                 Rbeam_Lcost = mainrebarlabor + stirLabor + webRebarPrice + webLabor;
                 Rbeam_Lunit = double.Parse(parameters.price_LaborRate_Rebar["BEAM [KG]"].ToString());
+                Rbeam_TOTALCOST = Rbeam_Mcost + Rbeam_Lcost;
                 print("========= BEAM REBARS =========");
                 print("MQTY: " + Rbeam_qty);
                 print("Munit: " + Rbeam_Munit);
                 print("Mcost: " + Rbeam_Mcost);
                 print("Lunit: " + Rbeam_Lunit);
                 print("Lcost: " + Rbeam_Lcost);
+                print("TOTAL COST: " + Rbeam_TOTALCOST);
                 print("========= BEAM REBARS (EACH) =========");
                 print("MAIN: " + mainbeamPrice);
                 print("STIR: " + stirRebarPrice);
@@ -2533,7 +2542,8 @@ namespace KnowEst
             {                
                 //extvBAR -> exthBAR -> extReinforcementCHB -> extReinforcementWeight -> extTieWire -> intvBAR -> inthBAR -> intReinforcementCHB -> intReinforcementWeight -> intTieWire
                 try 
-                {                        
+                {
+                    print(masonrysSolutionP3[2] + " WTF");
                     List<string> grade_holder = gradefilterer(parameters.mason_RTW_RG);
                     double exterior_chb = masonrysSolutionP3[2];
                     double exterior_weight = masonrysSolutionP3[3];
@@ -2651,8 +2661,8 @@ namespace KnowEst
 
                 for (int i = 0; i < p_len.Count; i++)
                 {
-                    sqm_roof += p_len[i] * r_hei[i] * 2;
-                    labor_holder += p_len[i] * r_hei[i] * double.Parse(parameters.price_LaborRate_Roofings["ROOFINGS [m2]"].ToString()) * 2;
+                    sqm_roof += (p_len[i] * r_hei[i] * 2) ;
+                    labor_holder += (p_len[i] * r_hei[i] * double.Parse(parameters.price_LaborRate_Roofings["ROOFINGS [m2]"].ToString()) * 2);
                 }
                 roof_QTY = sqm_roof;
                 roof_LTOTAL = labor_holder;
@@ -2688,22 +2698,22 @@ namespace KnowEst
                                         {
                                             if (x == 7)
                                             {
-                                                steelRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_TubularSteel1mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString());
+                                                steelRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_TubularSteel1mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
                                             }
                                             else
                                             {
-                                                steelPurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_TubularSteel1mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString());
+                                                steelPurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_TubularSteel1mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
                                             }
                                         }
                                         else if (steelFilterer(structuralMembers.roof[i][j][x])[2] == "1.2")
                                         {
                                             if (x == 7)
                                             {
-                                                steelRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_TubularSteel1p2mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString());
+                                                steelRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_TubularSteel1p2mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
                                             }
                                             else
                                             {
-                                                steelPurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_TubularSteel1p2mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString());
+                                                steelPurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_TubularSteel1p2mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
                                             }
 
                                         }
@@ -2711,11 +2721,11 @@ namespace KnowEst
                                         {
                                             if (x == 7)
                                             {
-                                                steelRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_TubularSteel1p5mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString());
+                                                steelRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_TubularSteel1p5mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
                                             }
                                             else
                                             {
-                                                steelPurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_TubularSteel1p5mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString());
+                                                steelPurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_TubularSteel1p5mm["B.I. (Black Iron) Tubular " + structuralMembers.roof[i][j][x] + " [6m]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
                                             }
                                         }
                                     }
@@ -2728,11 +2738,11 @@ namespace KnowEst
                                         {
                                             if (parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + ") [6 m]"] != null)
                                             {
-                                                ceeRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + ") [6 m]"].ToString());
+                                                ceeRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + ") [6 m]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
                                             }
                                             else
                                             {
-                                                ceeRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + " ) [6 m]"].ToString());
+                                                ceeRaft_price += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + " ) [6 m]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
                                             }
                                         }
                                         //150mm x 50mm x 1.0mm thick
@@ -2740,11 +2750,11 @@ namespace KnowEst
                                         {
                                             if (parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + ") [6 m]"] != null)
                                             {
-                                                ceePurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + ") [6 m]"].ToString());
+                                                ceePurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + ") [6 m]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
                                             }
                                             else
                                             {
-                                                ceePurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + " ) [6 m]"].ToString());
+                                                ceePurlins_price += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_RoofMaterials["C- Purlins (" + structuralMembers.roof[i][j][x] + " ) [6 m]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
                                             }
                                         }
                                     }
@@ -2788,13 +2798,13 @@ namespace KnowEst
                     {
                         if (structuralMembers.roofSolutions[i][j][0] == 2)//acce
                         {
-                            corrugated += structuralMembers.roofSolutions[i][j][1] * double.Parse(parameters.price_RoofMaterials["Corrugated G.I Sheet, Gauge 26 (0.551mmx2.44 mm) [m2]"].ToString());
-                            ginails += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_RoofMaterials["G.I. Roof Nails [KG]"].ToString());
-                            rivets += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_RoofMaterials["G.I Rivets [KG]"].ToString()); 
-                            giwashers += structuralMembers.roofSolutions[i][j][4] * double.Parse(parameters.price_RoofMaterials["G.I Washers [KG]"].ToString());
-                            leadwashers += structuralMembers.roofSolutions[i][j][5] * double.Parse(parameters.price_RoofMaterials["G.I Washers [KG]"].ToString());
-                            umbnails += structuralMembers.roofSolutions[i][j][6] * double.Parse(parameters.price_RoofMaterials["Umbrella Nails [KG]"].ToString());
-                            plain += structuralMembers.roofSolutions[i][j][7] * double.Parse(parameters.price_RoofMaterials["Plain G.I Sheet, Gauge 24 (4ft x 8 ft) [UNIT]"].ToString());
+                            corrugated += structuralMembers.roofSolutions[i][j][1] * double.Parse(parameters.price_RoofMaterials["Corrugated G.I Sheet, Gauge 26 (0.551mmx2.44 mm) [m2]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
+                            ginails += structuralMembers.roofSolutions[i][j][2] * double.Parse(parameters.price_RoofMaterials["G.I. Roof Nails [KG]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
+                            rivets += structuralMembers.roofSolutions[i][j][3] * double.Parse(parameters.price_RoofMaterials["G.I Rivets [KG]"].ToString()) * double.Parse(Floors[i].getValues()[0]); 
+                            giwashers += structuralMembers.roofSolutions[i][j][4] * double.Parse(parameters.price_RoofMaterials["G.I Washers [KG]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
+                            leadwashers += structuralMembers.roofSolutions[i][j][5] * double.Parse(parameters.price_RoofMaterials["G.I Washers [KG]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
+                            umbnails += structuralMembers.roofSolutions[i][j][6] * double.Parse(parameters.price_RoofMaterials["Umbrella Nails [KG]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
+                            plain += structuralMembers.roofSolutions[i][j][7] * double.Parse(parameters.price_RoofMaterials["Plain G.I Sheet, Gauge 24 (4ft x 8 ft) [UNIT]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
 
                         }
                     }
@@ -2826,7 +2836,7 @@ namespace KnowEst
                     {
                         if (structuralMembers.roofSolutions[i][j][0] == 3)//tinswork
                         {
-                            tinswork_price += structuralMembers.roofSolutions[i][j][1] * double.Parse(parameters.price_RoofMaterials["Plain G.I Sheet, Gauge 24 (4ft x 8 ft) [UNIT]"].ToString());
+                            tinswork_price += structuralMembers.roofSolutions[i][j][1] * double.Parse(parameters.price_RoofMaterials["Plain G.I Sheet, Gauge 24 (4ft x 8 ft) [UNIT]"].ToString()) * double.Parse(Floors[i].getValues()[0]);
                         }
                     }
                 }

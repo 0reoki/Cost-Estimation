@@ -10393,7 +10393,7 @@ namespace KnowEst
         //Roof Computation Functions -- START
         public void AddRoofWorks(CostEstimationForm cEF, int floorCount, int roofCount)
         {
-            List<List<double>> newList = new List<List<double>>();
+            /*List<List<double>> newList = new List<List<double>>();
             int curr_FC = cEF.structuralMembers.roofSolutions.Count;
             if(curr_FC != floorCount+1)
             {
@@ -10405,7 +10405,9 @@ namespace KnowEst
             else
             {
                 print("same floor");
-            }            
+            }*/
+            List<double> newList = new List<double>();
+            cEF.structuralMembers.roofSolutions[floorCount].Add(newList);
             roofWorks(cEF, floorCount, roofCount);
         }
 
@@ -10558,7 +10560,7 @@ namespace KnowEst
                 outputs.Add(3);
                 outputs.Add(gutter + flashing + ridge + valley + hipped);
             }
-            cEF.structuralMembers.roofSolutions[floorCount].Add(outputs);
+            cEF.structuralMembers.roofSolutions[floorCount][roofCount] = outputs;
         }
 
         public void ModifyRoofWorks(CostEstimationForm cEF, int floorCount, int index)
@@ -10714,7 +10716,7 @@ namespace KnowEst
                 outputs.Add(3);
                 outputs.Add(gutter + flashing + ridge + valley + hipped);
             }
-            cEF.structuralMembers.roofSolutions[floorCount][index]= outputs;            
+            cEF.structuralMembers.roofSolutions[floorCount][index] = outputs;            
         }
         //Roof Computation Functions -- END
 

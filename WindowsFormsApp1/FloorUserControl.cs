@@ -342,8 +342,8 @@ namespace KnowEst
             costEstimationForm.structuralMembers.concreteWorkSolutionsBR.RemoveAt(floorCount);
             costEstimationForm.structuralMembers.concreteWorkSolutionsSL.RemoveAt(floorCount);
             costEstimationForm.structuralMembers.concreteWorkSolutionsST.RemoveAt(floorCount);
-
-        costEstimationForm.refreshFloors();
+            costEstimationForm.structuralMembers.roofSolutions.RemoveAt(floorCount);
+            costEstimationForm.refreshFloors();
         }
 
         private void floorLbl_DoubleClick(object sender, EventArgs e)
