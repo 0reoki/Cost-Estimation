@@ -10988,10 +10988,14 @@ namespace KnowEst
                 hBAR = chbS[x] * horizontal[hIndexer];
                 reinforceCHB = rounder((vBAR + hBAR) / double.Parse(filterer(rLen)));
                 reinforceCHBweight = rounder(reinforceCHB * diameter[diamIndexer] * double.Parse(filterer(rLen)));
-                print("weight lol:");
+                print("VBAR: " + vBAR);
+                print("hBAR: " + hBAR);
+                print("CHB pieces: "+reinforceCHB);
+                print("weight lol:"+ reinforceCHBweight);
                 print("diameter inx: " + diameter[diamIndexer]);
                 print("rlen: " + double.Parse(filterer(rLen)));
                 tieWire = rounder(chbS[x] * arrayHandler[tieIndexer, hIndexer]);
+                print("TW: " + tieWire);
                 mason.Add(vBAR);
                 mason.Add(hBAR);
                 mason.Add(reinforceCHB);
