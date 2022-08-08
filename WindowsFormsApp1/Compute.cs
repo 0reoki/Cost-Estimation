@@ -6515,191 +6515,197 @@ namespace KnowEst
                             double qty = double.Parse(cEF.structuralMembers.beamRow[i][j][n][1]);
                             List<string> mainrein_holder_2 = new List<string>();
                             List<string> lbs = new List<string>();
+                            bool notnone = false;
                             for (int sched = 0; sched < main_rein[i].Count; sched++)
                             {
                                 if (main_rein[i][sched][1] == cEF.structuralMembers.beamRow[i][j][n][0] && main_rein[i][sched][0] == cEF.structuralMembers.beam[i][j][0])
                                 {
                                     mainrein_holder_2 = main_rein[i][sched];
                                     lbs = main_rein[i][sched];
+                                    notnone = true;
                                     break;
                                 }
                             }
-                            for (int reps = 0; reps < qty; reps++)
+                            if (notnone)
                             {
-                                quantity_tracker++;
-                                List<string> mainrein_holder_3 = new List<string>();
-                                if (mainrein_holder_2[0] == "Footing Tie Beam" || mainrein_holder_2[0] == "Grade Beam")
+                                for (int reps = 0; reps < qty; reps++)
                                 {
-                                    ccs = cEF.parameters.conc_CC_BEE;
-                                }
-                                else
-                                {
-                                    ccs = cEF.parameters.conc_CC_BEW;
-                                }
-                                if (cEF.structuralMembers.beam[i][j][5] == "Mechanical" || cEF.structuralMembers.beam[i][j][5] == "Welded Splice (Butt)")
-                                {
-                                    sl_top = 0;
-                                    sl_bot = 0;
-                                }
-                                else
-                                {
-                                    string mix = spliceMixGetter(cEF.parameters.conc_CM_B_RM);
-                                    if (cEF.parameters.conc_cmIsSelected[2])
+                                    quantity_tracker++;
+                                    List<string> mainrein_holder_3 = new List<string>();
+                                    if (mainrein_holder_2[0] == "Footing Tie Beam" || mainrein_holder_2[0] == "Grade Beam")
                                     {
-                                        if (cEF.parameters.conc_CM_B_CG.Equals("CLASS AA"))
-                                        {
-                                            mix = "27.6";
-                                        }
-                                        else if (cEF.parameters.conc_CM_B_CG.Equals("CLASS A"))
-                                        {
-                                            mix = "24.1";
-                                        }
-                                        else if (cEF.parameters.conc_CM_B_CG.Equals("CLASS B"))
-                                        {
-                                            mix = "17.2";
-                                        }
-                                        else
-                                        {
-                                            mix = "13.8";
-                                        }
-                                    }
-                                    print(mix + " MIX");
-                                    int index = cEF.parameters.rein_LSL_TB_fc_list.IndexOf(mix);
-                                    if (index >= 0)
-                                    {
-                                        for (int r = 0; r < cEF.parameters.rein_LSL_TB_dt.Rows.Count; r++)
-                                        {
-                                            if (sl_top != 0 && sl_bot != 0)
-                                            {
-                                                break;
-                                            }
-                                            if ((cEF.parameters.rein_LSL_TB_dt.Rows[r][0]).ToString() == mainrein_holder_2[7])
-                                            {
-                                                sl_top = double.Parse(cEF.parameters.rein_LSL_TB_dt.Rows[r][index + 1].ToString());
-                                            }
-                                            if ((cEF.parameters.rein_LSL_TB_dt.Rows[r][0]).ToString() == mainrein_holder_2[8])
-                                            {
-                                                sl_bot = double.Parse(cEF.parameters.rein_LSL_TB_dt.Rows[r][index + 1].ToString());
-                                            }
-                                        }
+                                        ccs = cEF.parameters.conc_CC_BEE;
                                     }
                                     else
+                                    {
+                                        ccs = cEF.parameters.conc_CC_BEW;
+                                    }
+                                    if (cEF.structuralMembers.beam[i][j][5] == "Mechanical" || cEF.structuralMembers.beam[i][j][5] == "Welded Splice (Butt)")
                                     {
                                         sl_top = 0;
                                         sl_bot = 0;
                                     }
-                                }
-                                if (hook_index > 0)
-                                {
-                                    for (int r = 0; r < cEF.parameters.rein_BEH_MB_dt.Rows.Count; r++)
-                                    {
-                                        if (hook_top != 0 && hook_bot != 0)
-                                        {
-                                            break;
-                                        }
-                                        if ((cEF.parameters.rein_BEH_MB_dt.Rows[r][0]).ToString() == mainrein_holder_2[7])
-                                        {
-                                            hook_top = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[r][hook_index].ToString());
-                                        }
-                                        if ((cEF.parameters.rein_BEH_MB_dt.Rows[r][0]).ToString() == mainrein_holder_2[8])
-                                        {
-                                            hook_bot = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[r][hook_index].ToString());
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    hook_top = 0;
-                                    hook_bot = 0;
-                                }
-
-                                double total_quantity = 0;
-                                foreach (var row in cEF.structuralMembers.beamRow[i][j])
-                                {
-                                    total_quantity += double.Parse(row[1]);
-                                }
-
-                                double lb_top;
-                                double lb_bot;
-                                double lb_top_extraA;
-                                double lb_top_extraB;
-                                double lb_bot_extraA;
-                                double TR = reinGetter(cEF.structuralMembers.beam[i][j][6]);
-                                double BR = reinGetter(cEF.structuralMembers.beam[i][j][7]);
-                                if (total_quantity != 1)
-                                {
-                                    if (cEF.structuralMembers.beamRow[i][j][n][4] == "1-End Support")
-                                    {
-                                        lb_top = double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_top + (0.5 * sl_top) - double.Parse(ccs);
-                                        lb_bot = double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_bot + (0.5 * sl_bot) - double.Parse(ccs);
-                                        lb_top_extraA = 0;
-                                        lb_top_extraB = (TR - 1) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) + double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]);
-                                        lb_bot_extraA = 0;
-                                    }
                                     else
                                     {
-                                        if (quantity_tracker == 0)
+                                        string mix = spliceMixGetter(cEF.parameters.conc_CM_B_RM);
+                                        if (cEF.parameters.conc_cmIsSelected[2])
                                         {
-                                            lb_top = (1.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + hook_top + (0.5 * sl_top) - (0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3])) - double.Parse(ccs);
-                                            lb_bot = (1.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + hook_bot + (0.5 * sl_bot) - (0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3])) - double.Parse(ccs);
-                                            lb_top_extraA = double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_top + (TR - 1) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) - double.Parse(ccs);
-                                            lb_top_extraB = (0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + (TR - 0.5) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
+                                            if (cEF.parameters.conc_CM_B_CG.Equals("CLASS AA"))
+                                            {
+                                                mix = "27.6";
+                                            }
+                                            else if (cEF.parameters.conc_CM_B_CG.Equals("CLASS A"))
+                                            {
+                                                mix = "24.1";
+                                            }
+                                            else if (cEF.parameters.conc_CM_B_CG.Equals("CLASS B"))
+                                            {
+                                                mix = "17.2";
+                                            }
+                                            else
+                                            {
+                                                mix = "13.8";
+                                            }
+                                        }
+                                        print(mix + " MIX");
+                                        int index = cEF.parameters.rein_LSL_TB_fc_list.IndexOf(mix);
+                                        if (index >= 0)
+                                        {
+                                            for (int r = 0; r < cEF.parameters.rein_LSL_TB_dt.Rows.Count; r++)
+                                            {
+                                                if (sl_top != 0 && sl_bot != 0)
+                                                {
+                                                    break;
+                                                }
+                                                if ((cEF.parameters.rein_LSL_TB_dt.Rows[r][0]).ToString() == mainrein_holder_2[7])
+                                                {
+                                                    sl_top = double.Parse(cEF.parameters.rein_LSL_TB_dt.Rows[r][index + 1].ToString());
+                                                }
+                                                if ((cEF.parameters.rein_LSL_TB_dt.Rows[r][0]).ToString() == mainrein_holder_2[8])
+                                                {
+                                                    sl_bot = double.Parse(cEF.parameters.rein_LSL_TB_dt.Rows[r][index + 1].ToString());
+                                                }
+                                            }
                                         }
                                         else
                                         {
-                                            lb_top = double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + sl_top;
-                                            lb_bot = double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + sl_bot;
-                                            lb_top_extraA = (0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + (TR - 0.5) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
-                                            lb_top_extraB = (0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + (TR - 0.5) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
+                                            sl_top = 0;
+                                            sl_bot = 0;
                                         }
-                                        lb_bot_extraA = double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) * (1 - (2 * BR));
                                     }
-                                }
-                                else
-                                {
-                                    if (cEF.structuralMembers.beamRow[i][j][n][4] == "1-End Support")
+                                    if (hook_index > 0)
                                     {
-                                        lb_top = 2 * (double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_top - double.Parse(ccs)) - double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
-                                        lb_bot = 2 * (double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_bot - double.Parse(ccs)) - double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
-                                        lb_top_extraA = 0;
-                                        lb_top_extraB = (2 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + hook_top + (TR - 2) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) - double.Parse(ccs);
-                                        lb_bot_extraA = 0;
+                                        for (int r = 0; r < cEF.parameters.rein_BEH_MB_dt.Rows.Count; r++)
+                                        {
+                                            if (hook_top != 0 && hook_bot != 0)
+                                            {
+                                                break;
+                                            }
+                                            if ((cEF.parameters.rein_BEH_MB_dt.Rows[r][0]).ToString() == mainrein_holder_2[7])
+                                            {
+                                                hook_top = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[r][hook_index].ToString());
+                                            }
+                                            if ((cEF.parameters.rein_BEH_MB_dt.Rows[r][0]).ToString() == mainrein_holder_2[8])
+                                            {
+                                                hook_bot = double.Parse(cEF.parameters.rein_BEH_MB_dt.Rows[r][hook_index].ToString());
+                                            }
+                                        }
                                     }
                                     else
                                     {
-                                        lb_top = 2 * (double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_top - double.Parse(ccs)) - double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
-                                        lb_bot = 2 * (double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_bot - double.Parse(ccs)) - double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
-                                        lb_top_extraA = 2 * (double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_top - double.Parse(ccs)) - double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
-                                        lb_top_extraB = 2 * (double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_top - double.Parse(ccs)) - double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
-                                        lb_bot_extraA = double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) * (1 - (2 * BR));
+                                        hook_top = 0;
+                                        hook_bot = 0;
                                     }
+
+                                    double total_quantity = 0;
+                                    foreach (var row in cEF.structuralMembers.beamRow[i][j])
+                                    {
+                                        total_quantity += double.Parse(row[1]);
+                                    }
+
+                                    double lb_top;
+                                    double lb_bot;
+                                    double lb_top_extraA;
+                                    double lb_top_extraB;
+                                    double lb_bot_extraA;
+                                    double TR = reinGetter(cEF.structuralMembers.beam[i][j][6]);
+                                    double BR = reinGetter(cEF.structuralMembers.beam[i][j][7]);
+                                    if (total_quantity != 1)
+                                    {
+                                        if (cEF.structuralMembers.beamRow[i][j][n][4] == "1-End Support")
+                                        {
+                                            lb_top = double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_top + (0.5 * sl_top) - double.Parse(ccs);
+                                            lb_bot = double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_bot + (0.5 * sl_bot) - double.Parse(ccs);
+                                            lb_top_extraA = 0;
+                                            lb_top_extraB = (TR - 1) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) + double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]);
+                                            lb_bot_extraA = 0;
+                                        }
+                                        else
+                                        {
+                                            if (quantity_tracker == 0)
+                                            {
+                                                lb_top = (1.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + hook_top + (0.5 * sl_top) - (0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3])) - double.Parse(ccs);
+                                                lb_bot = (1.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + hook_bot + (0.5 * sl_bot) - (0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3])) - double.Parse(ccs);
+                                                lb_top_extraA = double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_top + (TR - 1) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) - double.Parse(ccs);
+                                                lb_top_extraB = (0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + (TR - 0.5) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
+                                            }
+                                            else
+                                            {
+                                                lb_top = double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + sl_top;
+                                                lb_bot = double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + sl_bot;
+                                                lb_top_extraA = (0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + (TR - 0.5) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
+                                                lb_top_extraB = (0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + (TR - 0.5) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
+                                            }
+                                            lb_bot_extraA = double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) * (1 - (2 * BR));
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (cEF.structuralMembers.beamRow[i][j][n][4] == "1-End Support")
+                                        {
+                                            lb_top = 2 * (double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_top - double.Parse(ccs)) - double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
+                                            lb_bot = 2 * (double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_bot - double.Parse(ccs)) - double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
+                                            lb_top_extraA = 0;
+                                            lb_top_extraB = (2 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + hook_top + (TR - 2) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) - double.Parse(ccs);
+                                            lb_bot_extraA = 0;
+                                        }
+                                        else
+                                        {
+                                            lb_top = 2 * (double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_top - double.Parse(ccs)) - double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
+                                            lb_bot = 2 * (double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_bot - double.Parse(ccs)) - double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
+                                            lb_top_extraA = 2 * (double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_top - double.Parse(ccs)) - double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
+                                            lb_top_extraB = 2 * (double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_top - double.Parse(ccs)) - double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]);
+                                            lb_bot_extraA = double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) * (1 - (2 * BR));
+                                        }
+                                    }
+                                    mainrein_holder_3.Add(lb_top.ToString());
+                                    mainrein_holder_3.Add(lb_bot.ToString());
+                                    mainrein_holder_3.Add(lb_top_extraA.ToString());
+                                    mainrein_holder_3.Add(lb_top_extraB.ToString());
+                                    mainrein_holder_3.Add(lb_bot_extraA.ToString());
+                                    mainrein_holder_3.Add(cEF.structuralMembers.beam[i][j][2].ToString());
+                                    var concatted2ndLayer = mainrein_holder_2.Concat(mainrein_holder_3);
+                                    mainrein_holder_2 = concatted2ndLayer.ToList();
+                                    if (cEF.structuralMembers.beamRow[i][j][n][4] == "2-End Supports" && quantity_tracker == total_quantity)
+                                    {
+                                        List<string> lbs_handler = new List<string>();
+                                        lbs_handler.Add(((1.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + hook_top + (0.5 * sl_top) - (0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3])) - double.Parse(ccs)).ToString());
+                                        lbs_handler.Add(((1.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + hook_bot + (0.5 * sl_bot) - (0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3])) - double.Parse(ccs)).ToString());
+                                        lbs_handler.Add((double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_top + (TR - 1) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) - double.Parse(ccs)).ToString());
+                                        lbs_handler.Add(((0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + (TR - 0.5) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3])).ToString());
+                                        lbs_handler.Add(lb_bot_extraA.ToString());
+                                        lbs_handler.Add(cEF.structuralMembers.beam[i][j][2].ToString());
+                                        var concatLBS = lbs.Concat(lbs_handler);
+                                        lbs = concatLBS.ToList();
+                                        mainrein_holder_1.Add(lbs);
+                                    }
+                                    else
+                                    {
+                                        mainrein_holder_1.Add(mainrein_holder_2);
+                                    }                                    
                                 }
-                                mainrein_holder_3.Add(lb_top.ToString());
-                                mainrein_holder_3.Add(lb_bot.ToString());
-                                mainrein_holder_3.Add(lb_top_extraA.ToString());
-                                mainrein_holder_3.Add(lb_top_extraB.ToString());
-                                mainrein_holder_3.Add(lb_bot_extraA.ToString());
-                                mainrein_holder_3.Add(cEF.structuralMembers.beam[i][j][2].ToString());
-                                var concatted2ndLayer = mainrein_holder_2.Concat(mainrein_holder_3);
-                                mainrein_holder_2 = concatted2ndLayer.ToList();
-                                if (cEF.structuralMembers.beamRow[i][j][n][4] == "2-End Supports" && quantity_tracker == total_quantity)
-                                {
-                                    List<string> lbs_handler = new List<string>();
-                                    lbs_handler.Add(((1.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + hook_top + (0.5 * sl_top) - (0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3])) - double.Parse(ccs)).ToString());
-                                    lbs_handler.Add(((1.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + hook_bot + (0.5 * sl_bot) - (0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3])) - double.Parse(ccs)).ToString());
-                                    lbs_handler.Add((double.Parse(cEF.structuralMembers.beamRow[i][j][n][2]) + hook_top + (TR - 1) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) - double.Parse(ccs)).ToString());
-                                    lbs_handler.Add(((0.5 * double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) + (TR - 0.5) * double.Parse(cEF.structuralMembers.beamRow[i][j][n][3])).ToString());
-                                    lbs_handler.Add(lb_bot_extraA.ToString());
-                                    lbs_handler.Add(cEF.structuralMembers.beam[i][j][2].ToString());
-                                    var concatLBS = lbs.Concat(lbs_handler);
-                                    lbs = concatLBS.ToList();
-                                    mainrein_holder_1.Add(lbs);
-                                }
-                                else
-                                {
-                                    mainrein_holder_1.Add(mainrein_holder_2);
-                                }
-                            }
+                                notnone = false;
+                            }                            
                         }
                     }
                     eachBeamRow.Add(mainrein_holder_1); // save this
@@ -6812,6 +6818,7 @@ namespace KnowEst
                         string diabot = eachBeamRow[i][j][8] + "mm";
                         double kgmTop = 0;
                         double kgmBot = 0;
+                        
                         for (int r = 0; r < cEF.parameters.rein_W_dt.Rows.Count; r++)
                         {
                             if (kgmTop != 0 && kgmBot != 0)
@@ -6881,10 +6888,13 @@ namespace KnowEst
                             int sh_index = 0;
                             double s = 0;
                             double lbn = 0;
+                            bool notnone = false;
                             for (int sched = 0; sched < cEF.structuralMembers.beamSchedule[i].Count; sched++)
                             {
                                 if (cEF.structuralMembers.beamRow[i][j][n][0] == cEF.structuralMembers.beamSchedule[i][sched][1] && cEF.structuralMembers.beam[i][j][0] == cEF.structuralMembers.beamSchedule[i][sched][0])
                                 {
+                                    notnone = true;
+                                    print("PASOK STIR");
                                     qtyA = cEF.structuralMembers.beamSchedule[i][sched][20];
                                     qtyB = cEF.structuralMembers.beamSchedule[i][sched][22];
                                     spacingA = cEF.structuralMembers.beamSchedule[i][sched][21];
@@ -6938,23 +6948,33 @@ namespace KnowEst
                                     break;
                                 }
                             }
-                            double qtyc = 0;
-                            int determiner = 0;
-                            if (cEF.structuralMembers.beamRow[i][j][n][4] == "2-End Supports")
+                            if (notnone)
                             {
-                                qtyc = rounder((double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) - 2 * (double.Parse(qtyA) * double.Parse(spacingA) + double.Parse(qtyB) * double.Parse(spacingB))) / double.Parse(rest)) + 1;
-                                determiner = 2;
-                            }
-                            else
-                            {
-                                qtyc = rounder((double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) - (double.Parse(qtyA) * double.Parse(spacingA) + double.Parse(qtyB) * double.Parse(spacingB))) / double.Parse(rest)) + 1;
-                                determiner = 1;
-                            }
-                            string rowQ = cEF.structuralMembers.beamRow[i][j][n][1];
-                            string page_quan = cEF.structuralMembers.beam[i][j][2];
-                            List<string> wastes = stiruphelper(determiner, lbn.ToString(), rowQ, qtyA, qtyB, qtyc.ToString(), page_quan, props, cEF);
-                            wastes.Add(dbs.ToString());
-                            sbs2.Add(wastes);
+                                double qtyc = 0;
+                                int determiner = 0;
+                                if (cEF.structuralMembers.beamRow[i][j][n][4] == "2-End Supports")
+                                {
+                                    qtyc = rounder((double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) - 2 * (double.Parse(qtyA) * double.Parse(spacingA) + double.Parse(qtyB) * double.Parse(spacingB))) / double.Parse(rest)) + 1;
+                                    determiner = 2;
+                                }
+                                else
+                                {
+                                    print(cEF.structuralMembers.beamRow[i][j][n][3]);
+                                    print(qtyA);
+                                    print(spacingA);
+                                    print(qtyB);
+                                    print(spacingB);
+                                    print(rest);
+                                    qtyc = rounder((double.Parse(cEF.structuralMembers.beamRow[i][j][n][3]) - (double.Parse(qtyA) * double.Parse(spacingA) + double.Parse(qtyB) * double.Parse(spacingB))) / double.Parse(rest)) + 1;
+                                    determiner = 1;
+                                }
+                                string rowQ = cEF.structuralMembers.beamRow[i][j][n][1];
+                                string page_quan = cEF.structuralMembers.beam[i][j][2];
+                                List<string> wastes = stiruphelper(determiner, lbn.ToString(), rowQ, qtyA, qtyB, qtyc.ToString(), page_quan, props, cEF);
+                                wastes.Add(dbs.ToString());
+                                sbs2.Add(wastes);
+                                notnone = false;
+                            }                            
                         }
                         sbs3.Add(sbs2);
                     }
@@ -7003,62 +7023,68 @@ namespace KnowEst
                         List<List<string>> web_holder2 = new List<List<string>>();
                         for (int n = 0; n < cEF.structuralMembers.beamRow[i][j].Count; n++)
                         {
+                            bool notnone = false;
                             double W_dia = 0;
                             double W_dQTY = 0;
                             for (int sched = 0; sched < cEF.structuralMembers.beamSchedule[i].Count; sched++)
                             {
                                 if (cEF.structuralMembers.beamRow[i][j][n][0] == cEF.structuralMembers.beamSchedule[i][sched][1] && cEF.structuralMembers.beamSchedule[i][sched][0] == cEF.structuralMembers.beam[i][j][0])
                                 {
+                                    notnone = true;
                                     W_dia = double.Parse(cEF.structuralMembers.beamSchedule[i][sched][25]);
                                     W_dQTY = double.Parse(cEF.structuralMembers.beamSchedule[i][sched][26]);
                                     break;
                                 }
                             }
-                            string mix = spliceMixGetter(cEF.parameters.conc_CM_B_RM);
-                            if (cEF.parameters.conc_cmIsSelected[2])
+                            if(notnone)
                             {
-                                if (cEF.parameters.conc_CM_B_CG.Equals("CLASS AA"))
+                                string mix = spliceMixGetter(cEF.parameters.conc_CM_B_RM);
+                                if (cEF.parameters.conc_cmIsSelected[2])
                                 {
-                                    mix = "27.6";
+                                    if (cEF.parameters.conc_CM_B_CG.Equals("CLASS AA"))
+                                    {
+                                        mix = "27.6";
+                                    }
+                                    else if (cEF.parameters.conc_CM_B_CG.Equals("CLASS A"))
+                                    {
+                                        mix = "24.1";
+                                    }
+                                    else if (cEF.parameters.conc_CM_B_CG.Equals("CLASS B"))
+                                    {
+                                        mix = "17.2";
+                                    }
+                                    else
+                                    {
+                                        mix = "13.8";
+                                    }
                                 }
-                                else if (cEF.parameters.conc_CM_B_CG.Equals("CLASS A"))
+
+                                int index = cEF.parameters.rein_LSL_TB_fc_list.IndexOf(mix);
+                                double sl = 0;
+                                if (index >= 0)
                                 {
-                                    mix = "24.1";
-                                }
-                                else if (cEF.parameters.conc_CM_B_CG.Equals("CLASS B"))
-                                {
-                                    mix = "17.2";
+                                    for (int r = 0; r < cEF.parameters.rein_LSL_TB_dt.Rows.Count; r++)
+                                    {
+                                        if (sl != 0)
+                                        {
+                                            break;
+                                        }
+                                        if ((cEF.parameters.rein_LSL_TB_dt.Rows[r][0]).ToString() == W_dia.ToString())
+                                        {
+                                            sl = double.Parse(cEF.parameters.rein_LSL_TB_dt.Rows[r][index + 1].ToString());
+                                        }
+                                    }
                                 }
                                 else
                                 {
-                                    mix = "13.8";
+                                    sl = 0;
                                 }
+                                double lb = (sl + double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) / 1000;
+                                List<string> web_holder = webBeamHelper(cEF, lb, double.Parse(cEF.structuralMembers.beamRow[i][j][n][1]), double.Parse(cEF.structuralMembers.beam[i][j][2]), W_dQTY);
+                                web_holder.Add(W_dia.ToString());
+                                web_holder2.Add(web_holder);
+                                notnone = false;
                             }
-
-                            int index = cEF.parameters.rein_LSL_TB_fc_list.IndexOf(mix);
-                            double sl = 0;
-                            if (index >= 0)
-                            {
-                                for (int r = 0; r < cEF.parameters.rein_LSL_TB_dt.Rows.Count; r++)
-                                {
-                                    if (sl != 0)
-                                    {
-                                        break;
-                                    }
-                                    if ((cEF.parameters.rein_LSL_TB_dt.Rows[r][0]).ToString() == W_dia.ToString())
-                                    {
-                                        sl = double.Parse(cEF.parameters.rein_LSL_TB_dt.Rows[r][index + 1].ToString());
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                sl = 0;
-                            }
-                            double lb = (sl + double.Parse(cEF.structuralMembers.beamRow[i][j][n][2])) / 1000;
-                            List<string> web_holder = webBeamHelper(cEF, lb, double.Parse(cEF.structuralMembers.beamRow[i][j][n][1]), double.Parse(cEF.structuralMembers.beam[i][j][2]), W_dQTY);
-                            web_holder.Add(W_dia.ToString());
-                            web_holder2.Add(web_holder);
                         }
                         web_holder3.Add(web_holder2);
                     }

@@ -981,7 +981,7 @@ namespace KnowEst
 
         //View Functions -- START
         private void initializeView()
-        {
+        {            
             compute.recomputeFW_Footings(this);
             compute.recomputeFW_Column(this);
             compute.recomputeFW_Beam(this);
@@ -2012,7 +2012,7 @@ namespace KnowEst
                             string dia = structuralMembers.Column_mainRebar[i][j][2];
                             string ms = structuralMembers.Column_mainRebar[i][j][0];
                             string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
-                            if (ms != "0")
+                            if (ms != "0" && dia != "0")
                             {
                                 if (grade[1] == "33")
                                 {
@@ -2050,7 +2050,7 @@ namespace KnowEst
                                 string ms = structuralMembers.Column_lateralRebar[i][j][n][0];
                                 double qty = double.Parse(structuralMembers.Column_lateralRebar[i][j][n][1]);
                                 string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
-                                if (ms != "0")
+                                if (ms != "0" && dia != "0")
                                 {
                                     if (grade[1] == "33")
                                     {
@@ -2116,17 +2116,18 @@ namespace KnowEst
                 try
                 {
                     for (int i = 0; i < structuralMembers.Beam_mainRebar.Count; i++)
-                    {
+                    {                        
                         for (int j = 0; j < structuralMembers.Beam_mainRebar[i].Count; j++)
-                        {
+                        {                            
                             for (int n = 0; n < structuralMembers.Beam_mainRebar[i][j].Count; n++)
                             {
-                                //part 1
+                                //part 1                                
                                 List<string> grade = gradefilterer(parameters.rein_RG_B);
                                 string dia = structuralMembers.beamdias[i][j][7];
                                 string ms = structuralMembers.Beam_mainRebar[i][j][n][0];
                                 string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
-                                if (ms != "0")
+                                //print(price_name);
+                                if (ms != "0" && dia != "0")
                                 {
                                     if (grade[1] == "33")
                                     {
@@ -2148,7 +2149,8 @@ namespace KnowEst
                                 dia = structuralMembers.beamdias[i][j][8];
                                 ms = structuralMembers.Beam_mainRebar[i][j][n][2];
                                 price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
-                                if (ms != "0")
+                                print(price_name);
+                                if (ms != "0" && dia != "0")
                                 {
                                     if (grade[1] == "33")
                                     {
@@ -2180,6 +2182,7 @@ namespace KnowEst
                 {
                     for (int i = 0; i < structuralMembers.Beam_stirRebar.Count; i++)
                     {
+                        print("Floor -------------------");
                         for (int j = 0; j < structuralMembers.Beam_stirRebar[i].Count; j++)
                         {
                             for (int n = 0; n < structuralMembers.Beam_stirRebar[i][j].Count; n++)
@@ -2191,7 +2194,8 @@ namespace KnowEst
                                 /*print(dia + " dia");
                                 print(ms + "");*/
                                 string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
-                                if (ms != "0")
+                                //print(price_name);
+                                if (ms != "0" && dia != "0")
                                 {
                                     if (grade[1] == "33")
                                     {
@@ -2222,6 +2226,7 @@ namespace KnowEst
                 {
                     for (int i = 0; i < structuralMembers.Beam_webRebar.Count; i++)
                     {
+                        print("Floor -------------------");
                         for (int j = 0; j < structuralMembers.Beam_webRebar[i].Count; j++)
                         {
                             for (int n = 0; n < structuralMembers.Beam_webRebar[i][j].Count; n++)
@@ -2233,7 +2238,8 @@ namespace KnowEst
                                 /*print(dia +" dia");
                                 print(ms + "");*/
                                 string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
-                                if (ms != "0")
+                                //print(dia + " dias");
+                                if (ms != "0" && dia != "0")
                                 {
                                     if (grade[1] == "33")
                                     {
@@ -2267,7 +2273,7 @@ namespace KnowEst
                         + structuralMembers.totalweightkgm_web;
                 Rbeam_Mcost = mainbeamPrice + stirRebarPrice + webRebarPrice;
                 Rbeam_Munit = Rbeam_Mcost / Rbeam_qty;
-                Rbeam_Lcost = mainrebarlabor + stirLabor + webRebarPrice + webLabor;
+                Rbeam_Lcost = mainrebarlabor + stirLabor + webLabor;
                 Rbeam_Lunit = double.Parse(parameters.price_LaborRate_Rebar["BEAM [KG]"].ToString());
                 Rbeam_TOTALCOST = Rbeam_Mcost + Rbeam_Lcost;
                 print("========= BEAM REBARS =========");
@@ -2307,7 +2313,7 @@ namespace KnowEst
                             string dia = structuralMembers.Slab_ongradeRebar[i][j][4];
                             string ms = structuralMembers.Slab_ongradeRebar[i][j][0];
                             string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
-                            if (ms != "0")
+                            if (ms != "0" && dia != "0")
                             {
                                 if (grade[1] == "33")
                                 {
@@ -2328,7 +2334,7 @@ namespace KnowEst
                             dia = structuralMembers.Slab_ongradeRebar[i][j][5];
                             ms = structuralMembers.Slab_ongradeRebar[i][j][2];
                             price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
-                            if (ms != "0")
+                            if (ms != "0" && dia != "0")
                             {
                                 if (grade[1] == "33")
                                 {
@@ -2392,7 +2398,7 @@ namespace KnowEst
                             {
                                 string ms = structuralMembers.Slab_suspendedRebar[i][j][n].ToString();
                                 string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
-                                if (ms != "0")
+                                if (ms != "0" && dia != "0")
                                 {
                                     if (grade[1] == "33")
                                     {
@@ -2483,7 +2489,7 @@ namespace KnowEst
                                 double diameter = row[mlIndex, 0];
                                 double manufactured_length = row[mlIndex, 1];
                                 string price_name = "Rebar GRADE " + grade[1] + " (⌀" + diameter + "mm) [" + manufactured_length + "m]";
-                                if (manufactured_length.ToString() != "0")
+                                if (manufactured_length.ToString() != "0" && diameter.ToString() != "0")
                                 {
                                     if (grade[1] == "33")
                                     {
@@ -2570,19 +2576,21 @@ namespace KnowEst
                     print("grade: " + grade);*/
                     double priceTW = 0;
                     string price_name = "Rebar "+ grade + " (⌀" + rebar_diameter + ") [" + rebar_length + "]";
-                    if (grade_holder[1] == "33")
+                    if(rebar_diameter != "0" && rebar_length != "0")
                     {
-                        priceTW = double.Parse(parameters.price_RebarGrade33[price_name].ToString());                            
-                    }
-                    else if (grade_holder[1] == "40")
-                    {
-                        priceTW = double.Parse(parameters.price_RebarGrade40[price_name].ToString());                            
-                    }
-                    else if (grade_holder[1] == "60")
-                    {
-                        priceTW = double.Parse(parameters.price_RebarGrade60[price_name].ToString());                            
-                    }
-
+                        if (grade_holder[1] == "33")
+                        {
+                            priceTW = double.Parse(parameters.price_RebarGrade33[price_name].ToString());
+                        }
+                        else if (grade_holder[1] == "40")
+                        {
+                            priceTW = double.Parse(parameters.price_RebarGrade40[price_name].ToString());
+                        }
+                        else if (grade_holder[1] == "60")
+                        {
+                            priceTW = double.Parse(parameters.price_RebarGrade60[price_name].ToString());
+                        }
+                    }                    
                     double totalPriceTW = 0;
                     double totalLaborTW = 0;
                     totalPriceTW += exterior_chb * priceTW;
