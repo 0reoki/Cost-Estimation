@@ -2149,7 +2149,7 @@ namespace KnowEst
                                 dia = structuralMembers.beamdias[i][j][8];
                                 ms = structuralMembers.Beam_mainRebar[i][j][n][2];
                                 price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
-                                print(price_name);
+                                //print(price_name);
                                 if (ms != "0" && dia != "0")
                                 {
                                     if (grade[1] == "33")
@@ -2385,12 +2385,15 @@ namespace KnowEst
             }
             if (rebarsChecklist[5])
             {
-                double suspendedSlabPrice = 0;
+                double suspendedSlabPrice = 0;                
                 try
                 {
+                    int ssfloor = 0;
                     for (int i = 0; i < structuralMembers.Slab_suspendedRebar.Count; i++)
                     {
-                        for (int j = 0; j < structuralMembers.Slab_suspendedRebar[i].Count; j += 2)
+                        ssfloor++;
+                        //print("FLOOR -----------------------------SLABSUS");
+                        for (int j = 0; j < structuralMembers.Slab_suspendedRebar[i].Count; j ++)
                         {
                             List<string> grade = gradefilterer(parameters.rein_RG_SL);
                             string dia = structuralMembers.Slab_suspendedRebar[i][j][0].ToString();
@@ -2398,25 +2401,27 @@ namespace KnowEst
                             {
                                 string ms = structuralMembers.Slab_suspendedRebar[i][j][n].ToString();
                                 string price_name = "Rebar GRADE " + grade[1] + " (⌀" + dia + "mm) [" + ms + "m]";
+                                //print(price_name + " * " + structuralMembers.Slab_suspendedRebar[i][j][n + 1] + " * " + double.Parse(Floors[ssfloor].getValues()[0]));
                                 if (ms != "0" && dia != "0")
                                 {
+                                    
                                     if (grade[1] == "33")
                                     {
                                         suspendedSlabPrice += (double.Parse(parameters.price_RebarGrade33[price_name].ToString())
-                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[i+1].getValues()[0]);
+                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[ssfloor].getValues()[0]);                                        
                                     }
                                     else if (grade[1] == "40")
                                     {
                                         suspendedSlabPrice += (double.Parse(parameters.price_RebarGrade40[price_name].ToString())
-                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[i+1].getValues()[0]);
+                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[ssfloor].getValues()[0]);                                        
                                     }
                                     else if (grade[1] == "60")
                                     {
                                         suspendedSlabPrice += (double.Parse(parameters.price_RebarGrade60[price_name].ToString())
-                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[i+1].getValues()[0]);
+                                            * structuralMembers.Slab_suspendedRebar[i][j][n + 1]) * double.Parse(Floors[ssfloor].getValues()[0]);                                        
                                     }
                                 }
-                            }
+                            }                            
                         }
                     }                    
                 }
