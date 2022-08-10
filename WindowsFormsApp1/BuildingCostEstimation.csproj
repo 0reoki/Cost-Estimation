@@ -300,7 +300,7 @@
       <DependentUpon>PriceChecklistForms.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -349,21 +349,22 @@
     <None Include="Resources\Footing\WALL FOOTING.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Help\BEAM MAIN TOP REBARS.pdf" />
-    <None Include="Resources\Help\BEAM REBAR SPACERS.pdf" />
-    <None Include="Resources\Help\BEAM STIRRUPS.pdf" />
-    <None Include="Resources\Help\COLUMN LATERAL TIES.pdf" />
-    <None Include="Resources\Help\COLUMN MAIN BARS.pdf" />
-    <None Include="Resources\Help\CONCRETE WORKS.pdf" />
+    <None Include="Resources\Help\Beam Main Rebars.pdf" />
+    <None Include="Resources\Help\Beam Stirrups.pdf" />
+    <None Include="Resources\Help\Column Lateral Ties.pdf" />
+    <None Include="Resources\Help\Column Main Bars.pdf" />
+    <None Include="Resources\Help\Concrete works.pdf" />
     <None Include="Resources\Help\EARTHWORKS.pdf" />
-    <None Include="Resources\Help\FOOTING REBARS.pdf" />
-    <None Include="Resources\Help\FORMWORKS.pdf" />
-    <None Include="Resources\Help\MASONRY.pdf" />
+    <None Include="Resources\Help\Footing Rebars .pdf" />
+    <None Include="Resources\Help\Formworks.pdf" />
+    <None Include="Resources\Help\MASONRY AND WALL REBARS.pdf" />
     <None Include="Resources\Help\Paint Works.pdf" />
     <None Include="Resources\Help\Roofings.pdf" />
+    <None Include="Resources\Help\Slab on Grade.pdf" />
     <None Include="Resources\Help\STAIRS REBARS.pdf" />
+    <None Include="Resources\Help\Suspended Slab.pdf" />
     <None Include="Resources\Help\TILE WORKS.pdf" />
-    <None Include="Resources\Help\WALLFOOTING REBARS.pdf" />
+    <None Include="Resources\Help\Wall Footing Rebars.pdf" />
     <None Include="Resources\Stairs\L STAIRS.PNG" />
   </ItemGroup>
   <ItemGroup>
@@ -417,6 +418,7 @@
     <Content Include="Resources\Roofings\Roof Accesories %28Tinsworks%29.png" />
     <Content Include="Resources\Slab\CORNER SLAB REINFORCEMENT.PNG" />
     <Content Include="Resources\Slab\DIAGONAL.PNG" />
+    <Content Include="Resources\Slab\NEW SLAB ON GRADE.PNG" />
     <Content Include="Resources\Slab\SLAB DETAIL 2.PNG" />
     <Content Include="Resources\Slab\SLAB DETAIL.PNG" />
     <Content Include="Resources\Slab\SLAB.PNG" />

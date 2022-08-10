@@ -22,7 +22,7 @@ namespace KnowEst.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace KnowEst.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("KnowEst.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace KnowEst.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BEAM {
+        public static System.Drawing.Bitmap BEAM {
             get {
                 object obj = ResourceManager.GetObject("BEAM", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BEAM_DETAILS {
+        public static System.Drawing.Bitmap BEAM_DETAILS {
             get {
                 object obj = ResourceManager.GetObject("BEAM_DETAILS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,9 +83,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] BEAM_MAIN_TOP_REBARS {
+        public static byte[] Beam_Main_Rebars {
             get {
-                object obj = ResourceManager.GetObject("BEAM_MAIN_TOP_REBARS", resourceCulture);
+                object obj = ResourceManager.GetObject("Beam_Main_Rebars", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -93,7 +93,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BEAM_PROP_1 {
+        public static System.Drawing.Bitmap BEAM_PROP_1 {
             get {
                 object obj = ResourceManager.GetObject("BEAM_PROP_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BEAM_PROP_2 {
+        public static System.Drawing.Bitmap BEAM_PROP_2 {
             get {
                 object obj = ResourceManager.GetObject("BEAM_PROP_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,19 +113,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] BEAM_REBAR_SPACERS {
+        public static byte[] Beam_Stirrups {
             get {
-                object obj = ResourceManager.GetObject("BEAM_REBAR_SPACERS", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] BEAM_STIRRUPS {
-            get {
-                object obj = ResourceManager.GetObject("BEAM_STIRRUPS", resourceCulture);
+                object obj = ResourceManager.GetObject("Beam_Stirrups", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -133,7 +123,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap COLUMN {
+        public static System.Drawing.Bitmap COLUMN {
             get {
                 object obj = ResourceManager.GetObject("COLUMN", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,9 +133,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] COLUMN_LATERAL_TIES {
+        public static byte[] Column_Lateral_Ties {
             get {
-                object obj = ResourceManager.GetObject("COLUMN_LATERAL_TIES", resourceCulture);
+                object obj = ResourceManager.GetObject("Column_Lateral_Ties", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -153,9 +143,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] COLUMN_MAIN_BARS {
+        public static byte[] Column_Main_Bars {
             get {
-                object obj = ResourceManager.GetObject("COLUMN_MAIN_BARS", resourceCulture);
+                object obj = ResourceManager.GetObject("Column_Main_Bars", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -163,7 +153,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap COMB_FOOTING {
+        public static System.Drawing.Bitmap COMB_FOOTING {
             get {
                 object obj = ResourceManager.GetObject("COMB FOOTING", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -173,9 +163,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] CONCRETE_WORKS {
+        public static byte[] Concrete_works {
             get {
-                object obj = ResourceManager.GetObject("CONCRETE_WORKS", resourceCulture);
+                object obj = ResourceManager.GetObject("Concrete_works", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -183,7 +173,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CORNER_SLAB_REINFORCEMENT {
+        public static System.Drawing.Bitmap CORNER_SLAB_REINFORCEMENT {
             get {
                 object obj = ResourceManager.GetObject("CORNER_SLAB_REINFORCEMENT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +183,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DIAGONAL {
+        public static System.Drawing.Bitmap DIAGONAL {
             get {
                 object obj = ResourceManager.GetObject("DIAGONAL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -203,7 +193,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DIAGONAL1 {
+        public static System.Drawing.Bitmap DIAGONAL1 {
             get {
                 object obj = ResourceManager.GetObject("DIAGONAL1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -213,7 +203,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DISTRIBUTION_BARS {
+        public static System.Drawing.Bitmap DISTRIBUTION_BARS {
             get {
                 object obj = ResourceManager.GetObject("DISTRIBUTION BARS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -223,7 +213,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] EARTHWORKS {
+        public static byte[] EARTHWORKS {
             get {
                 object obj = ResourceManager.GetObject("EARTHWORKS", resourceCulture);
                 return ((byte[])(obj));
@@ -233,9 +223,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] FOOTING_REBARS {
+        public static byte[] Footing_Rebars {
             get {
-                object obj = ResourceManager.GetObject("FOOTING_REBARS", resourceCulture);
+                object obj = ResourceManager.GetObject("Footing_Rebars", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -243,9 +233,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] FORMWORKS {
+        public static byte[] Formworks {
             get {
-                object obj = ResourceManager.GetObject("FORMWORKS", resourceCulture);
+                object obj = ResourceManager.GetObject("Formworks", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -253,7 +243,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap G_I_Roof_and_Its_Accessories {
+        public static System.Drawing.Bitmap G_I_Roof_and_Its_Accessories {
             get {
                 object obj = ResourceManager.GetObject("G_I_Roof_and_Its_Accessories", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -263,7 +253,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap GREEN {
+        public static System.Drawing.Bitmap GREEN {
             get {
                 object obj = ResourceManager.GetObject("GREEN", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -273,7 +263,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap INDIGO {
+        public static System.Drawing.Bitmap INDIGO {
             get {
                 object obj = ResourceManager.GetObject("INDIGO", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -283,7 +273,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ISOLATED__FOOTING {
+        public static System.Drawing.Bitmap ISOLATED__FOOTING {
             get {
                 object obj = ResourceManager.GetObject("ISOLATED  FOOTING", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -293,7 +283,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap L__BARS {
+        public static System.Drawing.Bitmap L__BARS {
             get {
                 object obj = ResourceManager.GetObject("L  BARS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -303,7 +293,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap L_STAIRS {
+        public static System.Drawing.Bitmap L_STAIRS {
             get {
                 object obj = ResourceManager.GetObject("L STAIRS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -313,7 +303,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap L_STAIRS_REBARS {
+        public static System.Drawing.Bitmap L_STAIRS_REBARS {
             get {
                 object obj = ResourceManager.GetObject("L_STAIRS_REBARS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -323,7 +313,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LANDING_REBAR {
+        public static System.Drawing.Bitmap LANDING_REBAR {
             get {
                 object obj = ResourceManager.GetObject("LANDING_REBAR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -333,7 +323,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LT_CONFIG_1 {
+        public static System.Drawing.Bitmap LT_CONFIG_1 {
             get {
                 object obj = ResourceManager.GetObject("LT_CONFIG_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -343,7 +333,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LT_CONFIG_2 {
+        public static System.Drawing.Bitmap LT_CONFIG_2 {
             get {
                 object obj = ResourceManager.GetObject("LT_CONFIG_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -353,7 +343,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LT_CONFIG_3 {
+        public static System.Drawing.Bitmap LT_CONFIG_3 {
             get {
                 object obj = ResourceManager.GetObject("LT_CONFIG_3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -363,7 +353,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LT_CONFIG_4 {
+        public static System.Drawing.Bitmap LT_CONFIG_4 {
             get {
                 object obj = ResourceManager.GetObject("LT_CONFIG_4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -373,7 +363,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LT_CONFIG_5 {
+        public static System.Drawing.Bitmap LT_CONFIG_5 {
             get {
                 object obj = ResourceManager.GetObject("LT_CONFIG_5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -383,7 +373,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LT_CONFIG_6 {
+        public static System.Drawing.Bitmap LT_CONFIG_6 {
             get {
                 object obj = ResourceManager.GetObject("LT_CONFIG_6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -393,7 +383,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MAIN_BAR_1 {
+        public static System.Drawing.Bitmap MAIN_BAR_1 {
             get {
                 object obj = ResourceManager.GetObject("MAIN BAR 1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -403,7 +393,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MAIN_BAR_2 {
+        public static System.Drawing.Bitmap MAIN_BAR_2 {
             get {
                 object obj = ResourceManager.GetObject("MAIN BAR 2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -413,7 +403,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MAIN_BAR_3 {
+        public static System.Drawing.Bitmap MAIN_BAR_3 {
             get {
                 object obj = ResourceManager.GetObject("MAIN BAR 3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -423,9 +413,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] MASONRY {
+        public static byte[] MASONRY_AND_WALL_REBARS {
             get {
-                object obj = ResourceManager.GetObject("MASONRY", resourceCulture);
+                object obj = ResourceManager.GetObject("MASONRY_AND_WALL_REBARS", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -433,7 +423,17 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ORANGE {
+        public static System.Drawing.Bitmap NEW_SLAB_ON_GRADE {
+            get {
+                object obj = ResourceManager.GetObject("NEW_SLAB_ON_GRADE", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ORANGE {
             get {
                 object obj = ResourceManager.GetObject("ORANGE", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -443,7 +443,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Paint_Works {
+        public static byte[] Paint_Works {
             get {
                 object obj = ResourceManager.GetObject("Paint_Works", resourceCulture);
                 return ((byte[])(obj));
@@ -453,7 +453,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Rafters_and_Purlins {
+        public static System.Drawing.Bitmap Rafters_and_Purlins {
             get {
                 object obj = ResourceManager.GetObject("Rafters_and_Purlins", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -463,7 +463,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RED {
+        public static System.Drawing.Bitmap RED {
             get {
                 object obj = ResourceManager.GetObject("RED", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -473,7 +473,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Roof_Accesories__Tinsworks_ {
+        public static System.Drawing.Bitmap Roof_Accesories__Tinsworks_ {
             get {
                 object obj = ResourceManager.GetObject("Roof_Accesories__Tinsworks_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -483,7 +483,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Roofings {
+        public static byte[] Roofings {
             get {
                 object obj = ResourceManager.GetObject("Roofings", resourceCulture);
                 return ((byte[])(obj));
@@ -493,7 +493,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SLAB {
+        public static System.Drawing.Bitmap SLAB {
             get {
                 object obj = ResourceManager.GetObject("SLAB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -503,7 +503,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SLAB_DETAIL {
+        public static System.Drawing.Bitmap SLAB_DETAIL {
             get {
                 object obj = ResourceManager.GetObject("SLAB_DETAIL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -513,7 +513,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SLAB_DETAIL_2 {
+        public static System.Drawing.Bitmap SLAB_DETAIL_2 {
             get {
                 object obj = ResourceManager.GetObject("SLAB_DETAIL_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -521,9 +521,19 @@ namespace KnowEst.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Slab_on_Grade {
+            get {
+                object obj = ResourceManager.GetObject("Slab_on_Grade", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ST_STAIRS {
+        public static System.Drawing.Bitmap ST_STAIRS {
             get {
                 object obj = ResourceManager.GetObject("ST STAIRS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -533,7 +543,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] STAIRS_REBARS {
+        public static byte[] STAIRS_REBARS {
             get {
                 object obj = ResourceManager.GetObject("STAIRS_REBARS", resourceCulture);
                 return ((byte[])(obj));
@@ -543,7 +553,17 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] TILE_WORKS {
+        public static byte[] Suspended_Slab {
+            get {
+                object obj = ResourceManager.GetObject("Suspended_Slab", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] TILE_WORKS {
             get {
                 object obj = ResourceManager.GetObject("TILE_WORKS", resourceCulture);
                 return ((byte[])(obj));
@@ -553,7 +573,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap TRAPEZOIDAL__WALL_FOOTING {
+        public static System.Drawing.Bitmap TRAPEZOIDAL__WALL_FOOTING {
             get {
                 object obj = ResourceManager.GetObject("TRAPEZOIDAL  WALL FOOTING", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -563,7 +583,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap U_STAIRS {
+        public static System.Drawing.Bitmap U_STAIRS {
             get {
                 object obj = ResourceManager.GetObject("U STAIRS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -573,7 +593,7 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap WALL_FOOTING {
+        public static System.Drawing.Bitmap WALL_FOOTING {
             get {
                 object obj = ResourceManager.GetObject("WALL FOOTING", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -583,9 +603,9 @@ namespace KnowEst.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] WALLFOOTING_REBARS {
+        public static byte[] Wall_Footing_Rebars {
             get {
-                object obj = ResourceManager.GetObject("WALLFOOTING_REBARS", resourceCulture);
+                object obj = ResourceManager.GetObject("Wall_Footing_Rebars", resourceCulture);
                 return ((byte[])(obj));
             }
         }

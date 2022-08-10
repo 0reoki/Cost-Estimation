@@ -30,8 +30,8 @@ namespace KnowEst
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -2037,6 +2037,8 @@ namespace KnowEst
             this.fileMenu6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.fileMenu5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.rightPanel.SuspendLayout();
@@ -2512,6 +2514,8 @@ namespace KnowEst
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 1;
             this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
+            this.tabControl1.MouseHover += new System.EventHandler(this.tabControl1_MouseHover);
+            this.tabControl1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseMove);
             // 
             // tabPage1
             // 
@@ -2593,6 +2597,7 @@ namespace KnowEst
             this.totalLbl.TabIndex = 8;
             this.totalLbl.Text = "Total Cost:";
             this.totalLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.totalLbl.MouseHover += new System.EventHandler(this.totalLbl_MouseHover);
             // 
             // totalcostLbl
             // 
@@ -2605,6 +2610,7 @@ namespace KnowEst
             this.totalcostLbl.TabIndex = 9;
             this.totalcostLbl.Text = "0 PHP";
             this.totalcostLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.totalcostLbl.MouseHover += new System.EventHandler(this.totalcostLbl_MouseHover);
             // 
             // topPanel
             // 
@@ -2639,6 +2645,7 @@ namespace KnowEst
             this.paraBtn.Text = "Parameters";
             this.paraBtn.UseVisualStyleBackColor = true;
             this.paraBtn.Click += new System.EventHandler(this.paraBtn_Click);
+            this.paraBtn.MouseHover += new System.EventHandler(this.paraBtn_MouseHover);
             // 
             // addFloorBtn
             // 
@@ -2656,6 +2663,7 @@ namespace KnowEst
             this.addFloorBtn.Text = "Add Floor";
             this.addFloorBtn.UseVisualStyleBackColor = true;
             this.addFloorBtn.Click += new System.EventHandler(this.addFloorBtn_Click);
+            this.addFloorBtn.MouseHover += new System.EventHandler(this.addFloorBtn_MouseHover);
             // 
             // pdfPanel
             // 
@@ -2777,6 +2785,7 @@ namespace KnowEst
             this.price_RestoreDefaultsBtn.Text = "Restore Defaults";
             this.price_RestoreDefaultsBtn.UseVisualStyleBackColor = true;
             this.price_RestoreDefaultsBtn.Click += new System.EventHandler(this.price_RestoreDefaultsBtn_Click);
+            this.price_RestoreDefaultsBtn.MouseHover += new System.EventHandler(this.price_RestoreDefaultsBtn_MouseHover);
             // 
             // price_SettingsBtn
             // 
@@ -2790,6 +2799,7 @@ namespace KnowEst
             this.price_SettingsBtn.Text = "Settings";
             this.price_SettingsBtn.UseVisualStyleBackColor = true;
             this.price_SettingsBtn.Click += new System.EventHandler(this.price_SettingsBtn_Click);
+            this.price_SettingsBtn.MouseHover += new System.EventHandler(this.price_SettingsBtn_MouseHover);
             // 
             // price_SearchBar_bx
             // 
@@ -32785,6 +32795,7 @@ namespace KnowEst
             this.view_ConfigureBtn.Text = "Configure ";
             this.view_ConfigureBtn.UseVisualStyleBackColor = true;
             this.view_ConfigureBtn.Click += new System.EventHandler(this.view_ConfigureBtn_Click);
+            this.view_ConfigureBtn.MouseHover += new System.EventHandler(this.view_ConfigureBtn_MouseHover);
             // 
             // tableLayoutPanel8
             // 
@@ -32866,28 +32877,28 @@ namespace KnowEst
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.summ_BOQ_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.summ_BOQ_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.summ_BOQ_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.summ_BOQ_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.summ_BOQ_dg.Cursor = System.Windows.Forms.Cursors.Default;
             this.summ_BOQ_dg.GridColor = System.Drawing.SystemColors.Control;
             this.summ_BOQ_dg.Location = new System.Drawing.Point(4, 218);
             this.summ_BOQ_dg.Name = "summ_BOQ_dg";
             this.summ_BOQ_dg.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.summ_BOQ_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.summ_BOQ_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.summ_BOQ_dg.RowHeadersVisible = false;
             this.summ_BOQ_dg.RowHeadersWidth = 62;
             this.summ_BOQ_dg.RowTemplate.Height = 28;
@@ -33212,6 +33223,14 @@ namespace KnowEst
             this.fileMenu5.Size = new System.Drawing.Size(146, 32);
             this.fileMenu5.Text = "Exit";
             this.fileMenu5.Click += new System.EventHandler(this.fileMenu5_Click);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 1000;
+            // 
+            // toolTip2
+            // 
+            this.toolTip2.AutomaticDelay = 1000;
             // 
             // CostEstimationForm
             // 
@@ -36063,6 +36082,8 @@ namespace KnowEst
         private System.Windows.Forms.TreeView view_TV3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel412;
         private System.Windows.Forms.Button summ_Export_btn;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip toolTip2;
     }
 }
 

@@ -229,35 +229,38 @@
   <data name="DIAGONAL1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Slab\DIAGONAL.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BEAM_MAIN_TOP_REBARS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\help\beam main top rebars.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="LANDING_REBAR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\stairs\landing rebar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BEAM_REBAR_SPACERS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\help\beam rebar spacers.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Beam_Main_Rebars" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\help\beam main rebars.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="BEAM_STIRRUPS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Beam_Stirrups" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\help\beam stirrups.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="COLUMN_LATERAL_TIES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Column_Lateral_Ties" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\help\column lateral ties.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="COLUMN_MAIN_BARS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Column_Main_Bars" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\help\column main bars.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="CONCRETE_WORKS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Concrete_works" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\help\concrete works.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="EARTHWORKS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\help\earthworks.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FOOTING_REBARS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\help\footing rebars.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Footing_Rebars" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\help\footing rebars .pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FORMWORKS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Formworks" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\help\formworks.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="MASONRY" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\help\masonry.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="MASONRY_AND_WALL_REBARS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\help\masonry and wall rebars.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NEW_SLAB_ON_GRADE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\slab\new slab on grade.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Paint_Works" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\help\paint works.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -265,16 +268,19 @@
   <data name="Roofings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\help\roofings.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Slab_on_Grade" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\help\slab on grade.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="STAIRS_REBARS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\help\stairs rebars.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Suspended_Slab" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\help\suspended slab.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="TILE_WORKS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\help\tile works.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="WALLFOOTING_REBARS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\help\wallfooting rebars.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="LANDING_REBAR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\stairs\landing rebar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Wall_Footing_Rebars" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\help\wall footing rebars.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

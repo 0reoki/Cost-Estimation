@@ -10,8 +10,6 @@ using System.Windows.Forms;
 
 namespace KnowEst
 {
-    //TODO: populate combobox ng beam row according kung anong existing + new schedules 
-
     public partial class AddStructForm : Form
     {
         //Local Variables
@@ -142,6 +140,7 @@ namespace KnowEst
                 stairs_ST_cbx.Enabled = false;
 
                 //Populate
+                textBox17.Text = "Millimeter";
                 if (parentNode.Equals("FOOTINGS"))
                 {
                     setFootingValues();
@@ -165,6 +164,7 @@ namespace KnowEst
                 else if (parentNode.Equals("ROOF"))
                 {
                     setRoofValues();
+                    textBox17.Text = "Meter";
                 }
             } 
             else
@@ -836,7 +836,7 @@ namespace KnowEst
                             costEstimationForm.structuralMembers.columnLateralTies[floorCount][memberCount] = ltMember;
                             costEstimationForm.structuralMembers.columnSpacing[floorCount][memberCount] = sMember;
 
-                            //compute.ModifyColumnWorks(costEstimationForm, memberCount, columnCount);
+                            compute.ModifyColumnWorks(costEstimationForm, floorCount, memberCount);
                             this.DialogResult = DialogResult.OK;
                         }
                         else //Upper
@@ -873,7 +873,7 @@ namespace KnowEst
                             costEstimationForm.structuralMembers.columnLateralTies[floorCount][memberCount] = ltMember;
                             costEstimationForm.structuralMembers.columnSpacing[floorCount][memberCount] = sMember;
 
-                            //compute.ModifyColumnWorks(costEstimationForm, memberCount, columnCount);
+                            compute.ModifyColumnWorks(costEstimationForm, floorCount, memberCount);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
@@ -976,7 +976,7 @@ namespace KnowEst
                             bsMember.Add(bs.midspan_qty3);
                             bsMember.Add(bs.midspan_qty4);
 
-                            bsMember.Add(bs.intSupport_qty1);
+                            bsMember.Add(bs.intSupport_qty1);//15
                             bsMember.Add(bs.intSupport_qty2);
                             bsMember.Add(bs.intSupport_qty3);
                             bsMember.Add(bs.intSupport_qty4);
@@ -1242,15 +1242,15 @@ namespace KnowEst
 
                             members.Add(slab_SOG_L_D_bx.Text);
                             members.Add(slab_SOG_T_D_bx.Text);
-                            members.Add(slab_SOG_L_S_bx.Text);
-                            members.Add(slab_SOG_T_S_bx.Text);
+                            members.Add(slab_SOG_L_S_bx.Text);//6
+                            members.Add(slab_SOG_T_S_bx.Text);//7
                             members.Add(slab_SOG_L_ST_cbx.Text);
                             members.Add(slab_SOG_T_ST_cbx.Text);
 
-                            members.Add(slab_SOG_SB_T_L_bx.Text);
+                            members.Add(slab_SOG_SB_T_L_bx.Text);//10
                             members.Add(slab_SOG_SB_T_CL_bx.Text);
 
-                            members.Add(slab_SOG_SB_B_L_bx.Text);
+                            members.Add(slab_SOG_SB_B_L_bx.Text);//12
                             members.Add(slab_SOG_SB_B_CL_bx.Text);
 
                             members.Add(slab_SOG_SB_L_L_bx.Text);
@@ -2090,7 +2090,10 @@ namespace KnowEst
                     //Remove Solution
                     costEstimationForm.structuralMembers.earthworkSolutions.RemoveAt(i);
                     costEstimationForm.structuralMembers.concreteWorkSolutionsF.RemoveAt(i);
+                    costEstimationForm.structuralMembers.per_col.RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.footingReinforcements.RemoveAt(memberCount);
 
+                    compute.recomputeFW_Footings(costEstimationForm);
                     //Refresh Solutions
                     compute.refreshSolutions(costEstimationForm);
 
@@ -2133,7 +2136,9 @@ namespace KnowEst
                     //Remove Solution
                     costEstimationForm.structuralMembers.earthworkSolutions.RemoveAt(i);
                     costEstimationForm.structuralMembers.concreteWorkSolutionsF.RemoveAt(i);
-
+                    costEstimationForm.structuralMembers.per_wal.RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.wallFootingReinforcements.RemoveAt(memberCount);
+                    compute.recomputeFW_Footings(costEstimationForm);
                     //Refresh Solutions
                     compute.refreshSolutions(costEstimationForm);
 
@@ -2263,10 +2268,11 @@ namespace KnowEst
                 {
                     //Remove Structural Member
                     costEstimationForm.structuralMembers.stairs[floorCount].RemoveAt(memberCount);
-                    costEstimationForm.structuralMembers.stairsNames[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.stairsNames[floorCount].RemoveAt(memberCount);                    
 
                     //Remove Solution
                     costEstimationForm.structuralMembers.concreteWorkSolutionsST[floorCount].RemoveAt(memberCount);
+                    costEstimationForm.structuralMembers.stairs_Rebar[floorCount].RemoveAt(memberCount);
 
                     //Refresh Solutions
                     compute.refreshSolutions(costEstimationForm);
@@ -2332,6 +2338,7 @@ namespace KnowEst
 
         private void addstruct_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
+            textBox17.Text = "Millimeter";
             if (addstruct_cbx.Text.Equals("Footing (Column)"))
             {
                 addstructTabControl.SelectedIndex = 0;
@@ -2358,12 +2365,12 @@ namespace KnowEst
             }
             else if (addstruct_cbx.Text.Equals("Roofing (Gable)"))
             {
+                textBox17.Text = "Meter";
                 addstructTabControl.SelectedIndex = 6;
             }
             setDefaultStructMemName();
         }
 
-        //TODO add other structural members
         private void setDefaultStructMemName()
         {
             if(floorCount == 0) //Ground Floor
@@ -2422,7 +2429,6 @@ namespace KnowEst
             }
         }
 
-        //TODO add other structural members from opened node
         private void setFootingValues()
         {
             if (isFooting)
@@ -3626,6 +3632,465 @@ namespace KnowEst
         {
 
         }
+
+        private void beam_ST_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (beam_ST_cbx.Text.Equals("Lapped Splice"))
+            {
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I. wires to form a continuous reinforcement.", beam_ST_cbx);
+            }
+            else if (beam_ST_cbx.Text.Equals("Welded Splice (Butt)"))
+            {
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", beam_ST_cbx);
+            }
+            else if (beam_ST_cbx.Text.Equals("Welded Splice (Lap)"))
+            {
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", beam_ST_cbx);
+            }
+            else if (beam_ST_cbx.Text.Equals("Mechanical"))
+            {
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", beam_ST_cbx);
+            }
+        }
+
+        private void col_G_D_CH_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The distance from the finished floor of a building to any object overhead.", col_G_D_CH_bx);
+        }
+
+        private void col_G_MR_D_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The diameter of the steel reinforcement.", col_G_MR_D_bx);
+        }
+
+        private void col_G_LT_D_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The diameter of the steel reinforcement.", col_G_LT_D_bx);
+        }
+
+        private void col_G_JT_D_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The diameter of the steel reinforcement.", col_G_JT_D_bx);
+        }
+
+        private void col_G_ST_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (col_G_ST_cbx.Text.Equals("Lapped Splice"))
+            {
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I. wires to form a continuous reinforcement.", col_G_ST_cbx);
+            }
+            else if (col_G_ST_cbx.Text.Equals("Welded Splice (Butt)"))
+            {
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", col_G_ST_cbx);
+            }
+            else if (col_G_ST_cbx.Text.Equals("Welded Splice (Lap)"))
+            {
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", col_G_ST_cbx);
+            }
+            else if (col_G_ST_cbx.Text.Equals("Mechanical"))
+            {
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", col_G_ST_cbx);
+            }
+        }
+
+        private void col_U_D_CH_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The distance from the finished floor of a building to any object overhead.", col_U_D_CH_bx);
+        }
+
+        private void col_U_LT_D_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The diameter of the steel reinforcement.", col_U_LT_D_bx);
+        }
+
+        private void col_U_MR_D_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The diameter of the steel reinforcement.", col_U_MR_D_bx);
+        }
+
+        private void col_U_JT_D_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The diameter of the steel reinforcement.", col_U_JT_D_bx);
+        }
+
+        private void col_U_ST_cbx_MouseHover(object sender, EventArgs e)
+        {
+            
+            if (col_U_ST_cbx.Text.Equals("Lapped Splice"))
+            {
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I. wires to form a continuous reinforcement.", col_U_ST_cbx);
+            }
+            else if (col_U_ST_cbx.Text.Equals("Welded Splice (Butt)"))
+            {
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", col_U_ST_cbx);
+            }
+            else if (col_U_ST_cbx.Text.Equals("Welded Splice (Lap)"))
+            {
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", col_U_ST_cbx);
+            }
+            else if (col_U_ST_cbx.Text.Equals("Mechanical"))
+            {
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", col_U_ST_cbx);
+            }
+        }
+
+        //Slab on Grade Hover -- START
+
+        //Length
+        private void slab_SOG_SB_T_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SOG_SB_T_L_bx);
+        }
+
+        private void slab_SOG_SB_B_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SOG_SB_B_L_bx);
+        }
+
+        private void slab_SOG_SB_L_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SOG_SB_L_L_bx);
+        }
+
+        private void slab_SOG_SB_R_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SOG_SB_R_L_bx);
+        }
+
+        //Clear Length
+        private void slab_SOG_SB_T_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SOG_SB_T_CL_bx);
+        }
+
+        private void slab_SOG_SB_B_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SOG_SB_B_CL_bx);
+        }
+
+        private void slab_SOG_SB_L_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SOG_SB_L_CL_bx);
+        }
+
+        private void slab_SOG_SB_R_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SOG_SB_R_CL_bx);
+        }
+
+        private void slab_SOG_L_ST_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (slab_SOG_L_ST_cbx.Text.Equals("Lapped Splice"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I.wires to form a continuous reinforcement.", slab_SOG_L_ST_cbx);
+            else if (slab_SOG_L_ST_cbx.Text.Equals("CLASS A"))
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", slab_SOG_L_ST_cbx);
+            else if (slab_SOG_L_ST_cbx.Text.Equals("CLASS B"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", slab_SOG_L_ST_cbx);
+            else
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", slab_SOG_L_ST_cbx);
+        }
+
+        private void slab_SOG_T_ST_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (slab_SOG_T_ST_cbx.Text.Equals("Lapped Splice"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I.wires to form a continuous reinforcement.", slab_SOG_T_ST_cbx);
+            else if (slab_SOG_T_ST_cbx.Text.Equals("Welded Splice(Butt)"))
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", slab_SOG_T_ST_cbx);
+            else if (slab_SOG_T_ST_cbx.Text.Equals("Welded Splice(Lap)"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", slab_SOG_T_ST_cbx);
+            else
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", slab_SOG_T_ST_cbx);
+        }
+        //Slab on Grade Hover -- END
+
+        //Suspended Slab Hover -- START
+
+        //Length
+        private void slab_SS_SB_T_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SS_SB_T_L_bx);
+        }
+
+        private void slab_SS_SB_B_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SS_SB_B_L_bx);
+        }
+
+        private void slab_SS_SB_L_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SS_SB_L_L_bx);
+        }
+
+        private void slab_SS_SB_R_L_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The center to center distance between 2 supports", slab_SS_SB_R_L_bx);
+        }
+
+        //Clear Length
+        private void slab_SS_SB_T_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SS_SB_T_CL_bx);
+        }
+
+        private void slab_SS_SB_B_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SS_SB_B_CL_bx);
+        }
+
+        private void slab_SS_SB_L_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SS_SB_L_CL_bx);
+        }
+
+        private void slab_SS_SB_R_CL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("The length between the two inside surfaces of the span supports; \nthe distance that is unsupported.", slab_SS_SB_R_CL_bx);
+        }
+
+        //Lapped Splice etc,
+        private void slab_SS_L_T_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (slab_SS_L_T_cbx.Text.Equals("Lapped Splice"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I.wires to form a continuous reinforcement.", slab_SS_L_T_cbx);
+            else if (slab_SS_L_T_cbx.Text.Equals("Welded Splice(Butt)"))
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", slab_SS_L_T_cbx);
+            else if (slab_SS_L_T_cbx.Text.Equals("Welded Splice(Lap)"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", slab_SS_L_T_cbx);
+            else
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", slab_SS_L_T_cbx);
+        }
+
+        private void slab_SS_T_T_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (slab_SS_T_T_cbx.Text.Equals("Lapped Splice"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I.wires to form a continuous reinforcement.", slab_SS_T_T_cbx);
+            else if (slab_SS_T_T_cbx.Text.Equals("Welded Splice(Butt)"))
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", slab_SS_T_T_cbx);
+            else if (slab_SS_T_T_cbx.Text.Equals("Welded Splice(Lap)"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", slab_SS_T_T_cbx);
+            else
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", slab_SS_T_T_cbx);
+        }
+
+        private void slab_SS_L_B_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (slab_SS_L_B_cbx.Text.Equals("Lapped Splice"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I.wires to form a continuous reinforcement.", slab_SS_L_B_cbx);
+            else if (slab_SS_L_B_cbx.Text.Equals("Welded Splice(Butt)"))
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", slab_SS_L_B_cbx);
+            else if (slab_SS_L_B_cbx.Text.Equals("Welded Splice(Lap)"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", slab_SS_L_B_cbx);
+            else
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", slab_SS_L_B_cbx);
+        }
+
+        private void slab_SS_T_B_cbx_MouseHover(object sender, EventArgs e)
+        {
+            if (slab_SS_T_B_cbx.Text.Equals("Lapped Splice"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are secured with G.I.wires to form a continuous reinforcement.", slab_SS_T_B_cbx);
+            else if (slab_SS_T_B_cbx.Text.Equals("Welded Splice(Butt)"))
+                toolTip1.Show("It is when two rebar is joined by welding their butt ends to form a continuous reinforcement.", slab_SS_T_B_cbx);
+            else if (slab_SS_T_B_cbx.Text.Equals("Welded Splice(Lap)"))
+                toolTip1.Show("It is when two pieces of rebar overlap and are welded to form a continuous reinforcement.", slab_SS_T_B_cbx);
+            else
+                toolTip1.Show("It is when two rebar is joining their butt ends using mechanical couplers  to form a continuous reinforcement.", slab_SS_T_B_cbx);
+        }
+
+        private void textBox17_TextChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("Unit is now in " + textBox17.Text + ".");
+        }
+        //Suspended Slab Hover -- END
+
+        //Roofings Hover -- START
+        //Wood
+        private void roof_RP_W_rb_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("wood type of rafter and purlins", roof_RP_W_rb);
+        }
+
+        private void roof_RP_W_D_LR_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of rafter in meters", roof_RP_W_D_LR_bx);
+        }
+
+        private void roof_RP_W_D_LP_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of purlins in meters", roof_RP_W_D_LP_bx);
+        }
+
+        private void roof_RP_W_D_SR_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("spacing of rafter in meters", roof_RP_W_D_SR_bx);
+        }
+
+        private void roof_RP_W_D_SP_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("spacing of purlins in meters", roof_RP_W_D_SP_bx);
+        }
+
+        //Steel - tubular
+        private void roof_RP_ST_rb_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Tubular steel type of rafter and purlins", roof_RP_ST_rb);
+        }
+
+        private void roof_RP_ST_D_LRSW_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of rafter (side wall) can be the length of purlins in meters", roof_RP_ST_D_LRSW_bx);
+        }
+
+        private void roof_RP_ST_D_LR_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of rafter in meters", roof_RP_ST_D_LR_bx);
+        }
+
+        private void roof_RP_ST_D_LP_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of purlins in meters", roof_RP_ST_D_LP_bx);
+        }
+
+        private void roof_RP_ST_D_SR_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("spacing of rafter in meters", roof_RP_ST_D_SR_bx);
+        }
+
+        private void roof_RP_ST_D_SP_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("spacing of purlins in meters", roof_RP_ST_D_SP_bx);
+        }
+
+        //Steel - Cee Purlins
+        private void roof_RP_SCP_rb_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Cee purlins steel type of rafter and purlins", roof_RP_SCP_rb);
+        }
+
+        private void roof_RP_SCP_D_LRSW_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of rafter (side wall) can be the length of purlins in meters", roof_RP_SCP_D_LRSW_bx);
+        }
+
+        private void roof_RP_SCP_D_LR_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of rafter in meters", roof_RP_SCP_D_LR_bx);
+        }
+
+        private void roof_RP_SCP_D_LP_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("length of purlins in meters", roof_RP_SCP_D_LP_bx);
+        }
+
+        private void roof_RP_SCP_D_SR_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("spacing of rafter in meters", roof_RP_SCP_D_SR_bx);
+        }
+
+        private void roof_RP_SCP_D_SP_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("spacing of purlins in meters", roof_RP_SCP_D_SP_bx);
+        }
+
+        //GI Roof and Accessories
+        private void roof_GI_D_LP_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Length of Purlins (Along the Gutter Line) in meters", roof_GI_D_LP_bx);
+        }
+
+        private void roof_GI_D_EC_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Effective Covering (Side Lapping) in meters", roof_GI_D_EC_cbx);
+        }
+
+        private void roof_GI_D_HRS_AddBtn_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Add height of Roof Sheet in meters", roof_GI_D_HRS_AddBtn);
+        }
+
+        private void roof_GI_M_SP_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("size of purlins in inches", roof_GI_M_SP_cbx);
+        }
+
+        //Roof Accessories
+        //Total Length
+        private void roof_RA_D_G_TL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total length in meters", roof_RA_D_G_TL_bx);
+        }
+
+        private void roof_RA_D_F_TL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total length in meters", roof_RA_D_F_TL_bx);
+        }
+
+        private void roof_RA_D_RR_TL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total length in meters", roof_RA_D_RR_TL_bx);
+        }
+
+        private void roof_RA_D_VR_TL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total length in meters", roof_RA_D_VR_TL_bx);
+        }
+
+        private void roof_RA_D_HR_TL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total length in meters", roof_RA_D_HR_TL_bx);
+        }
+
+        //Effective Length
+        private void roof_RA_D_G_EL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("effective length in meters", roof_RA_D_G_EL_bx);
+        }
+
+        private void roof_RA_D_F_EL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("effective length in meters", roof_RA_D_F_EL_bx);
+        }
+
+        private void roof_RA_D_RR_EL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("effective length in meters", roof_RA_D_RR_EL_bx);
+        }
+
+        private void roof_RA_D_VR_EL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("effective length in meters", roof_RA_D_VR_EL_bx);
+        }
+
+        private void roof_RA_D_HR_EL_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("effective length in meters", roof_RA_D_HR_EL_bx);
+        }
+
+        //Total Width
+        private void roof_RA_D_G_TW_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total width in meters", roof_RA_D_G_TW_bx);
+        }
+
+        private void roof_RA_D_F_TW_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total width in meters", roof_RA_D_F_TW_bx);
+        }
+
+        private void roof_RA_D_RR_TW_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total width in meters", roof_RA_D_RR_TW_bx);
+        }
+
+        private void roof_RA_D_VR_TW_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total width in meters", roof_RA_D_VR_TW_bx);
+        }
+
+        private void roof_RA_D_HR_TW_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("total width in meters", roof_RA_D_HR_TW_bx);
+        }
+        //Roofings Hover -- END
 
         private void roof_GI_D_HRS_AddBtn_Click(object sender, EventArgs e)
         {

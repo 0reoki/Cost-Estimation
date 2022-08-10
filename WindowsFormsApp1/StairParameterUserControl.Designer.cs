@@ -84,6 +84,14 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.UStairs_S_NB_ML_cbx = new System.Windows.Forms.ComboBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.UStairs_S_MB_ML_cbx = new System.Windows.Forms.ComboBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.label47 = new System.Windows.Forms.Label();
             this.UStairs_LR_ML_cbx = new System.Windows.Forms.ComboBox();
             this.label46 = new System.Windows.Forms.Label();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
@@ -119,14 +127,6 @@
             this.label41 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label47 = new System.Windows.Forms.Label();
-            this.pictureBox14 = new System.Windows.Forms.PictureBox();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.UStairs_S_MB_ML_cbx = new System.Windows.Forms.ComboBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.UStairs_S_NB_ML_cbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.label52 = new System.Windows.Forms.Label();
@@ -197,6 +197,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
@@ -206,7 +207,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
@@ -233,7 +233,7 @@
             this.stairsTabControl.Name = "stairsTabControl";
             this.stairsTabControl.Padding = new System.Drawing.Point(3, 3);
             this.stairsTabControl.SelectedIndex = 0;
-            this.stairsTabControl.Size = new System.Drawing.Size(742, 469);
+            this.stairsTabControl.Size = new System.Drawing.Size(660, 375);
             this.stairsTabControl.TabIndex = 35;
             // 
             // tabPage13
@@ -241,10 +241,9 @@
             this.tabPage13.AutoScroll = true;
             this.tabPage13.Controls.Add(this.tableLayoutPanel1);
             this.tabPage13.Location = new System.Drawing.Point(4, 29);
-            this.tabPage13.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage13.Size = new System.Drawing.Size(734, 436);
+            this.tabPage13.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage13.Size = new System.Drawing.Size(652, 342);
             this.tabPage13.TabIndex = 0;
             this.tabPage13.Text = "Straight Stairs";
             this.tabPage13.UseVisualStyleBackColor = true;
@@ -256,13 +255,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.26773F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 9);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 7);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(691, 1500);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(614, 1200);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // tableLayoutPanel3
@@ -283,7 +282,7 @@
             this.tableLayoutPanel3.Controls.Add(this.label8, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.label24, 2, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(242, 2);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(216, 2);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 8;
@@ -295,17 +294,17 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(446, 204);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(395, 163);
             this.tableLayoutPanel3.TabIndex = 25;
             // 
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(383, 31);
+            this.label10.Location = new System.Drawing.Point(339, 26);
             this.label10.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label10.Name = "label10";
-            this.label10.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label10.Size = new System.Drawing.Size(60, 31);
+            this.label10.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label10.Size = new System.Drawing.Size(53, 25);
             this.label10.TabIndex = 55;
             this.label10.Text = "D";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -313,11 +312,11 @@
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(383, 0);
+            this.label9.Location = new System.Drawing.Point(339, 0);
             this.label9.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label9.Name = "label9";
-            this.label9.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label9.Size = new System.Drawing.Size(60, 31);
+            this.label9.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label9.Size = new System.Drawing.Size(53, 25);
             this.label9.TabIndex = 54;
             this.label9.Text = "D";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -325,41 +324,41 @@
             // straightStair_SBW_bx
             // 
             this.straightStair_SBW_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.straightStair_SBW_bx.Location = new System.Drawing.Point(180, 64);
+            this.straightStair_SBW_bx.Location = new System.Drawing.Point(160, 54);
             this.straightStair_SBW_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.straightStair_SBW_bx.Name = "straightStair_SBW_bx";
-            this.straightStair_SBW_bx.Size = new System.Drawing.Size(199, 26);
+            this.straightStair_SBW_bx.Size = new System.Drawing.Size(175, 22);
             this.straightStair_SBW_bx.TabIndex = 53;
             this.straightStair_SBW_bx.Text = "300";
             // 
             // straightStair_LL_bx
             // 
             this.straightStair_LL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.straightStair_LL_bx.Location = new System.Drawing.Point(180, 2);
+            this.straightStair_LL_bx.Location = new System.Drawing.Point(160, 2);
             this.straightStair_LL_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.straightStair_LL_bx.Name = "straightStair_LL_bx";
-            this.straightStair_LL_bx.Size = new System.Drawing.Size(199, 26);
+            this.straightStair_LL_bx.Size = new System.Drawing.Size(175, 22);
             this.straightStair_LL_bx.TabIndex = 52;
             this.straightStair_LL_bx.Text = "40";
             // 
             // straightStair_HL_bx
             // 
             this.straightStair_HL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.straightStair_HL_bx.Location = new System.Drawing.Point(180, 33);
+            this.straightStair_HL_bx.Location = new System.Drawing.Point(160, 28);
             this.straightStair_HL_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.straightStair_HL_bx.Name = "straightStair_HL_bx";
-            this.straightStair_HL_bx.Size = new System.Drawing.Size(199, 26);
+            this.straightStair_HL_bx.Size = new System.Drawing.Size(175, 22);
             this.straightStair_HL_bx.TabIndex = 50;
             this.straightStair_HL_bx.Text = "9";
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(1, 31);
+            this.label5.Location = new System.Drawing.Point(1, 26);
             this.label5.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label5.Name = "label5";
-            this.label5.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label5.Size = new System.Drawing.Size(173, 31);
+            this.label5.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label5.Size = new System.Drawing.Size(153, 25);
             this.label5.TabIndex = 39;
             this.label5.Text = "Hook Length:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -367,11 +366,11 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(1, 93);
+            this.label6.Location = new System.Drawing.Point(1, 78);
             this.label6.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label6.Name = "label6";
-            this.label6.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label6.Size = new System.Drawing.Size(173, 34);
+            this.label6.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label6.Size = new System.Drawing.Size(153, 27);
             this.label6.TabIndex = 26;
             this.label6.Text = "Rebar Grade:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -382,8 +381,8 @@
             this.label7.Location = new System.Drawing.Point(1, 0);
             this.label7.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label7.Name = "label7";
-            this.label7.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label7.Size = new System.Drawing.Size(173, 31);
+            this.label7.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label7.Size = new System.Drawing.Size(153, 25);
             this.label7.TabIndex = 10;
             this.label7.Text = "Lap Length:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -396,20 +395,20 @@
             "Grade 33",
             "Grade 40",
             "Grade 60"});
-            this.straightStair_RG_cbx.Location = new System.Drawing.Point(180, 95);
+            this.straightStair_RG_cbx.Location = new System.Drawing.Point(160, 80);
             this.straightStair_RG_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.straightStair_RG_cbx.Name = "straightStair_RG_cbx";
-            this.straightStair_RG_cbx.Size = new System.Drawing.Size(198, 28);
+            this.straightStair_RG_cbx.Size = new System.Drawing.Size(175, 24);
             this.straightStair_RG_cbx.TabIndex = 30;
             // 
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(1, 62);
+            this.label8.Location = new System.Drawing.Point(1, 52);
             this.label8.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label8.Name = "label8";
-            this.label8.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label8.Size = new System.Drawing.Size(173, 31);
+            this.label8.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label8.Size = new System.Drawing.Size(153, 25);
             this.label8.TabIndex = 51;
             this.label8.Text = "Stair Beam Width:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -417,11 +416,11 @@
             // label24
             // 
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(383, 62);
+            this.label24.Location = new System.Drawing.Point(339, 52);
             this.label24.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label24.Name = "label24";
-            this.label24.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label24.Size = new System.Drawing.Size(60, 31);
+            this.label24.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label24.Size = new System.Drawing.Size(53, 25);
             this.label24.TabIndex = 56;
             this.label24.Text = "mm";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -458,7 +457,7 @@
             this.tableLayoutPanel2.Controls.Add(this.label23, 0, 19);
             this.tableLayoutPanel2.Controls.Add(this.straightStairs_S_NB_ML_cbx, 1, 19);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 210);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 169);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 22;
@@ -484,18 +483,18 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(685, 1288);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(608, 1030);
             this.tableLayoutPanel2.TabIndex = 24;
             // 
             // pictureBox3
             // 
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel2.SetColumnSpan(this.pictureBox3, 2);
-            this.pictureBox3.Image = KnowEst.Properties.Resources.MAIN_BAR_3;
-            this.pictureBox3.Location = new System.Drawing.Point(176, 455);
+            this.pictureBox3.Image = global::KnowEst.Properties.Resources.MAIN_BAR_3;
+            this.pictureBox3.Location = new System.Drawing.Point(156, 372);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(333, 95);
+            this.pictureBox3.Size = new System.Drawing.Size(296, 76);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 79;
             this.pictureBox3.TabStop = false;
@@ -504,11 +503,11 @@
             // 
             this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel2.SetColumnSpan(this.pictureBox5, 2);
-            this.pictureBox5.Image = KnowEst.Properties.Resources.L__BARS;
-            this.pictureBox5.Location = new System.Drawing.Point(176, 859);
+            this.pictureBox5.Image = global::KnowEst.Properties.Resources.L__BARS;
+            this.pictureBox5.Location = new System.Drawing.Point(156, 702);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(333, 127);
+            this.pictureBox5.Size = new System.Drawing.Size(296, 102);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 72;
             this.pictureBox5.TabStop = false;
@@ -516,11 +515,11 @@
             // label19
             // 
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(1, 826);
+            this.label19.Location = new System.Drawing.Point(1, 675);
             this.label19.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label19.Name = "label19";
-            this.label19.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label19.Size = new System.Drawing.Size(338, 31);
+            this.label19.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label19.Size = new System.Drawing.Size(300, 25);
             this.label19.TabIndex = 71;
             this.label19.Text = "Steps";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -534,23 +533,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.straightStairs_DB_ML_cbx.Location = new System.Drawing.Point(345, 796);
+            this.straightStairs_DB_ML_cbx.Location = new System.Drawing.Point(307, 649);
             this.straightStairs_DB_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.straightStairs_DB_ML_cbx.Name = "straightStairs_DB_ML_cbx";
-            this.straightStairs_DB_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.straightStairs_DB_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.straightStairs_DB_ML_cbx.TabIndex = 70;
             // 
             // label18
             // 
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(1, 794);
+            this.label18.Location = new System.Drawing.Point(1, 647);
             this.label18.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label18.Name = "label18";
-            this.label18.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label18.Size = new System.Drawing.Size(338, 31);
+            this.label18.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label18.Size = new System.Drawing.Size(300, 25);
             this.label18.TabIndex = 69;
             this.label18.Text = "Manufactured Length:";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -559,11 +558,11 @@
             // 
             this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel2.SetColumnSpan(this.pictureBox4, 2);
-            this.pictureBox4.Image = KnowEst.Properties.Resources.DISTRIBUTION_BARS;
-            this.pictureBox4.Location = new System.Drawing.Point(162, 617);
+            this.pictureBox4.Image = global::KnowEst.Properties.Resources.DISTRIBUTION_BARS;
+            this.pictureBox4.Location = new System.Drawing.Point(143, 505);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(361, 175);
+            this.pictureBox4.Size = new System.Drawing.Size(321, 140);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 68;
             this.pictureBox4.TabStop = false;
@@ -571,11 +570,11 @@
             // label17
             // 
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(1, 584);
+            this.label17.Location = new System.Drawing.Point(1, 478);
             this.label17.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label17.Name = "label17";
-            this.label17.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label17.Size = new System.Drawing.Size(338, 31);
+            this.label17.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label17.Size = new System.Drawing.Size(300, 25);
             this.label17.TabIndex = 67;
             this.label17.Text = "Distribution Bars";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -589,23 +588,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.straightStairs_MB3_ML_cbx.Location = new System.Drawing.Point(345, 554);
+            this.straightStairs_MB3_ML_cbx.Location = new System.Drawing.Point(307, 452);
             this.straightStairs_MB3_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.straightStairs_MB3_ML_cbx.Name = "straightStairs_MB3_ML_cbx";
-            this.straightStairs_MB3_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.straightStairs_MB3_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.straightStairs_MB3_ML_cbx.TabIndex = 66;
             // 
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(1, 552);
+            this.label16.Location = new System.Drawing.Point(1, 450);
             this.label16.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label16.Name = "label16";
-            this.label16.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label16.Size = new System.Drawing.Size(338, 31);
+            this.label16.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label16.Size = new System.Drawing.Size(300, 25);
             this.label16.TabIndex = 65;
             this.label16.Text = "Manufactured Length:";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -613,11 +612,11 @@
             // label15
             // 
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(1, 422);
+            this.label15.Location = new System.Drawing.Point(1, 345);
             this.label15.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label15.Name = "label15";
-            this.label15.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label15.Size = new System.Drawing.Size(338, 31);
+            this.label15.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label15.Size = new System.Drawing.Size(300, 25);
             this.label15.TabIndex = 63;
             this.label15.Text = "Main Bar 3";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -631,23 +630,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.straightStairs_MB2_ML_cbx.Location = new System.Drawing.Point(345, 392);
+            this.straightStairs_MB2_ML_cbx.Location = new System.Drawing.Point(307, 319);
             this.straightStairs_MB2_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.straightStairs_MB2_ML_cbx.Name = "straightStairs_MB2_ML_cbx";
-            this.straightStairs_MB2_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.straightStairs_MB2_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.straightStairs_MB2_ML_cbx.TabIndex = 62;
             // 
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(1, 390);
+            this.label14.Location = new System.Drawing.Point(1, 317);
             this.label14.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label14.Name = "label14";
-            this.label14.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label14.Size = new System.Drawing.Size(338, 31);
+            this.label14.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label14.Size = new System.Drawing.Size(300, 25);
             this.label14.TabIndex = 61;
             this.label14.Text = "Manufactured Length:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -656,11 +655,11 @@
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel2.SetColumnSpan(this.pictureBox2, 2);
-            this.pictureBox2.Image = KnowEst.Properties.Resources.MAIN_BAR_2;
-            this.pictureBox2.Location = new System.Drawing.Point(176, 261);
+            this.pictureBox2.Image = global::KnowEst.Properties.Resources.MAIN_BAR_2;
+            this.pictureBox2.Location = new System.Drawing.Point(156, 213);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(333, 127);
+            this.pictureBox2.Size = new System.Drawing.Size(296, 102);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 60;
             this.pictureBox2.TabStop = false;
@@ -668,11 +667,11 @@
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(1, 228);
+            this.label13.Location = new System.Drawing.Point(1, 186);
             this.label13.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label13.Name = "label13";
-            this.label13.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label13.Size = new System.Drawing.Size(338, 31);
+            this.label13.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label13.Size = new System.Drawing.Size(300, 25);
             this.label13.TabIndex = 59;
             this.label13.Text = "Main Bar 2";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -680,11 +679,11 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1, 34);
+            this.label1.Location = new System.Drawing.Point(1, 27);
             this.label1.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label1.Size = new System.Drawing.Size(338, 31);
+            this.label1.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label1.Size = new System.Drawing.Size(300, 25);
             this.label1.TabIndex = 39;
             this.label1.Text = "Main Bar 1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -695,8 +694,8 @@
             this.label2.Location = new System.Drawing.Point(1, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label2.Size = new System.Drawing.Size(338, 34);
+            this.label2.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label2.Size = new System.Drawing.Size(300, 27);
             this.label2.TabIndex = 26;
             this.label2.Text = "Waist Slab - Flight 1";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -705,11 +704,11 @@
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel2.SetColumnSpan(this.pictureBox1, 2);
-            this.pictureBox1.Image = KnowEst.Properties.Resources.MAIN_BAR_1;
-            this.pictureBox1.Location = new System.Drawing.Point(195, 67);
+            this.pictureBox1.Image = global::KnowEst.Properties.Resources.MAIN_BAR_1;
+            this.pictureBox1.Location = new System.Drawing.Point(173, 54);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(294, 127);
+            this.pictureBox1.Size = new System.Drawing.Size(261, 102);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 36;
             this.pictureBox1.TabStop = false;
@@ -723,23 +722,24 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.straightStairs_MB1_ML_cbx.Location = new System.Drawing.Point(345, 198);
+            this.straightStairs_MB1_ML_cbx.Location = new System.Drawing.Point(307, 160);
             this.straightStairs_MB1_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.straightStairs_MB1_ML_cbx.Name = "straightStairs_MB1_ML_cbx";
-            this.straightStairs_MB1_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.straightStairs_MB1_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.straightStairs_MB1_ML_cbx.TabIndex = 52;
+            this.straightStairs_MB1_ML_cbx.SelectedIndexChanged += new System.EventHandler(this.straightStairs_MB1_ML_cbx_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(1, 196);
+            this.label4.Location = new System.Drawing.Point(1, 158);
             this.label4.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label4.Name = "label4";
-            this.label4.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label4.Size = new System.Drawing.Size(338, 31);
+            this.label4.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label4.Size = new System.Drawing.Size(300, 25);
             this.label4.TabIndex = 51;
             this.label4.Text = "Manufactured Length:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -753,23 +753,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.straightStairs_S_MB_ML_cbx.Location = new System.Drawing.Point(345, 1021);
+            this.straightStairs_S_MB_ML_cbx.Location = new System.Drawing.Point(307, 833);
             this.straightStairs_S_MB_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.straightStairs_S_MB_ML_cbx.Name = "straightStairs_S_MB_ML_cbx";
-            this.straightStairs_S_MB_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.straightStairs_S_MB_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.straightStairs_S_MB_ML_cbx.TabIndex = 75;
             // 
             // label21
             // 
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(1, 1019);
+            this.label21.Location = new System.Drawing.Point(1, 831);
             this.label21.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label21.Name = "label21";
-            this.label21.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label21.Size = new System.Drawing.Size(338, 31);
+            this.label21.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label21.Size = new System.Drawing.Size(300, 25);
             this.label21.TabIndex = 74;
             this.label21.Text = "Manufactured Length:";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -777,11 +777,11 @@
             // label20
             // 
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(1, 988);
+            this.label20.Location = new System.Drawing.Point(1, 806);
             this.label20.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label20.Name = "label20";
-            this.label20.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label20.Size = new System.Drawing.Size(338, 31);
+            this.label20.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label20.Size = new System.Drawing.Size(300, 25);
             this.label20.TabIndex = 73;
             this.label20.Text = "Main Bars:";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -789,11 +789,11 @@
             // label22
             // 
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(1, 1051);
+            this.label22.Location = new System.Drawing.Point(1, 859);
             this.label22.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label22.Name = "label22";
-            this.label22.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label22.Size = new System.Drawing.Size(338, 31);
+            this.label22.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label22.Size = new System.Drawing.Size(300, 25);
             this.label22.TabIndex = 76;
             this.label22.Text = "Nose Bar:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -801,11 +801,11 @@
             // label23
             // 
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(1, 1082);
+            this.label23.Location = new System.Drawing.Point(1, 884);
             this.label23.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label23.Name = "label23";
-            this.label23.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label23.Size = new System.Drawing.Size(338, 31);
+            this.label23.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label23.Size = new System.Drawing.Size(300, 25);
             this.label23.TabIndex = 77;
             this.label23.Text = "Manufactured Length:";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -819,13 +819,13 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.straightStairs_S_NB_ML_cbx.Location = new System.Drawing.Point(345, 1084);
+            this.straightStairs_S_NB_ML_cbx.Location = new System.Drawing.Point(307, 886);
             this.straightStairs_S_NB_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.straightStairs_S_NB_ML_cbx.Name = "straightStairs_S_NB_ML_cbx";
-            this.straightStairs_S_NB_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.straightStairs_S_NB_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.straightStairs_S_NB_ML_cbx.TabIndex = 78;
             // 
             // tabPage14
@@ -833,10 +833,9 @@
             this.tabPage14.AutoScroll = true;
             this.tabPage14.Controls.Add(this.tableLayoutPanel4);
             this.tabPage14.Location = new System.Drawing.Point(4, 29);
-            this.tabPage14.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage14.Size = new System.Drawing.Size(734, 436);
+            this.tabPage14.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage14.Size = new System.Drawing.Size(652, 342);
             this.tabPage14.TabIndex = 1;
             this.tabPage14.Text = "U-Stairs";
             this.tabPage14.UseVisualStyleBackColor = true;
@@ -848,13 +847,13 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.96382F));
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel6, 0, 1);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(9, 9);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(8, 7);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(691, 2350);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(614, 1880);
             this.tableLayoutPanel4.TabIndex = 3;
             // 
             // tableLayoutPanel5
@@ -875,7 +874,7 @@
             this.tableLayoutPanel5.Controls.Add(this.label27, 0, 2);
             this.tableLayoutPanel5.Controls.Add(this.label28, 2, 2);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(176, 2);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(156, 2);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 8;
@@ -887,17 +886,17 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(512, 204);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(455, 163);
             this.tableLayoutPanel5.TabIndex = 25;
             // 
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(440, 31);
+            this.label3.Location = new System.Drawing.Point(391, 26);
             this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label3.Size = new System.Drawing.Size(60, 31);
+            this.label3.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label3.Size = new System.Drawing.Size(53, 25);
             this.label3.TabIndex = 55;
             this.label3.Text = "D";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -905,11 +904,11 @@
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(440, 0);
+            this.label11.Location = new System.Drawing.Point(391, 0);
             this.label11.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label11.Name = "label11";
-            this.label11.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label11.Size = new System.Drawing.Size(60, 31);
+            this.label11.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label11.Size = new System.Drawing.Size(53, 25);
             this.label11.TabIndex = 54;
             this.label11.Text = "D";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -917,41 +916,41 @@
             // UStair_LSBW_bx
             // 
             this.UStair_LSBW_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UStair_LSBW_bx.Location = new System.Drawing.Point(243, 64);
+            this.UStair_LSBW_bx.Location = new System.Drawing.Point(216, 54);
             this.UStair_LSBW_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UStair_LSBW_bx.Name = "UStair_LSBW_bx";
-            this.UStair_LSBW_bx.Size = new System.Drawing.Size(193, 26);
+            this.UStair_LSBW_bx.Size = new System.Drawing.Size(171, 22);
             this.UStair_LSBW_bx.TabIndex = 53;
             this.UStair_LSBW_bx.Text = "300";
             // 
             // UStair_LL_bx
             // 
             this.UStair_LL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UStair_LL_bx.Location = new System.Drawing.Point(243, 2);
+            this.UStair_LL_bx.Location = new System.Drawing.Point(216, 2);
             this.UStair_LL_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UStair_LL_bx.Name = "UStair_LL_bx";
-            this.UStair_LL_bx.Size = new System.Drawing.Size(193, 26);
+            this.UStair_LL_bx.Size = new System.Drawing.Size(171, 22);
             this.UStair_LL_bx.TabIndex = 52;
             this.UStair_LL_bx.Text = "40";
             // 
             // UStair_HL_bx
             // 
             this.UStair_HL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UStair_HL_bx.Location = new System.Drawing.Point(243, 33);
+            this.UStair_HL_bx.Location = new System.Drawing.Point(216, 28);
             this.UStair_HL_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UStair_HL_bx.Name = "UStair_HL_bx";
-            this.UStair_HL_bx.Size = new System.Drawing.Size(193, 26);
+            this.UStair_HL_bx.Size = new System.Drawing.Size(171, 22);
             this.UStair_HL_bx.TabIndex = 50;
             this.UStair_HL_bx.Text = "9";
             // 
             // label12
             // 
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(1, 31);
+            this.label12.Location = new System.Drawing.Point(1, 26);
             this.label12.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label12.Name = "label12";
-            this.label12.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label12.Size = new System.Drawing.Size(236, 31);
+            this.label12.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label12.Size = new System.Drawing.Size(209, 25);
             this.label12.TabIndex = 39;
             this.label12.Text = "Hook Length:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -959,11 +958,11 @@
             // label25
             // 
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(1, 93);
+            this.label25.Location = new System.Drawing.Point(1, 78);
             this.label25.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label25.Name = "label25";
-            this.label25.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label25.Size = new System.Drawing.Size(236, 34);
+            this.label25.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label25.Size = new System.Drawing.Size(209, 27);
             this.label25.TabIndex = 26;
             this.label25.Text = "Rebar Grade:";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -974,8 +973,8 @@
             this.label26.Location = new System.Drawing.Point(1, 0);
             this.label26.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label26.Name = "label26";
-            this.label26.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label26.Size = new System.Drawing.Size(236, 31);
+            this.label26.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label26.Size = new System.Drawing.Size(209, 25);
             this.label26.TabIndex = 10;
             this.label26.Text = "Lap Length:";
             this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -988,20 +987,20 @@
             "Grade 33",
             "Grade 40",
             "Grade 60"});
-            this.UStair_RG_cbx.Location = new System.Drawing.Point(243, 95);
+            this.UStair_RG_cbx.Location = new System.Drawing.Point(216, 80);
             this.UStair_RG_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UStair_RG_cbx.Name = "UStair_RG_cbx";
-            this.UStair_RG_cbx.Size = new System.Drawing.Size(193, 28);
+            this.UStair_RG_cbx.Size = new System.Drawing.Size(171, 24);
             this.UStair_RG_cbx.TabIndex = 30;
             // 
             // label27
             // 
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(1, 62);
+            this.label27.Location = new System.Drawing.Point(1, 52);
             this.label27.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label27.Name = "label27";
-            this.label27.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label27.Size = new System.Drawing.Size(236, 31);
+            this.label27.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label27.Size = new System.Drawing.Size(209, 25);
             this.label27.TabIndex = 51;
             this.label27.Text = "Landing Stair Beam Width:";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1009,11 +1008,11 @@
             // label28
             // 
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(440, 62);
+            this.label28.Location = new System.Drawing.Point(391, 52);
             this.label28.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label28.Name = "label28";
-            this.label28.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label28.Size = new System.Drawing.Size(60, 31);
+            this.label28.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label28.Size = new System.Drawing.Size(53, 25);
             this.label28.TabIndex = 56;
             this.label28.Text = "mm";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1067,7 +1066,7 @@
             this.tableLayoutPanel6.Controls.Add(this.label41, 0, 3);
             this.tableLayoutPanel6.Controls.Add(this.label42, 0, 13);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 210);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 169);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 35;
@@ -1106,8 +1105,117 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(685, 2288);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(608, 1830);
             this.tableLayoutPanel6.TabIndex = 24;
+            // 
+            // UStairs_S_NB_ML_cbx
+            // 
+            this.UStairs_S_NB_ML_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UStairs_S_NB_ML_cbx.FormattingEnabled = true;
+            this.UStairs_S_NB_ML_cbx.Items.AddRange(new object[] {
+            "6.0m",
+            "7.5m",
+            "9.0m",
+            "10.5m",
+            "12.0m",
+            "13.5m",
+            "15.0m"});
+            this.UStairs_S_NB_ML_cbx.Location = new System.Drawing.Point(307, 1662);
+            this.UStairs_S_NB_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UStairs_S_NB_ML_cbx.Name = "UStairs_S_NB_ML_cbx";
+            this.UStairs_S_NB_ML_cbx.Size = new System.Drawing.Size(146, 24);
+            this.UStairs_S_NB_ML_cbx.TabIndex = 103;
+            // 
+            // label51
+            // 
+            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Location = new System.Drawing.Point(1, 1660);
+            this.label51.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label51.Name = "label51";
+            this.label51.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label51.Size = new System.Drawing.Size(300, 25);
+            this.label51.TabIndex = 102;
+            this.label51.Text = "Manufactured Length:";
+            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label50
+            // 
+            this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Location = new System.Drawing.Point(1, 1635);
+            this.label50.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label50.Name = "label50";
+            this.label50.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label50.Size = new System.Drawing.Size(300, 25);
+            this.label50.TabIndex = 101;
+            this.label50.Text = "Nose Bar:";
+            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // UStairs_S_MB_ML_cbx
+            // 
+            this.UStairs_S_MB_ML_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UStairs_S_MB_ML_cbx.FormattingEnabled = true;
+            this.UStairs_S_MB_ML_cbx.Items.AddRange(new object[] {
+            "6.0m",
+            "7.5m",
+            "9.0m",
+            "10.5m",
+            "12.0m",
+            "13.5m",
+            "15.0m"});
+            this.UStairs_S_MB_ML_cbx.Location = new System.Drawing.Point(307, 1609);
+            this.UStairs_S_MB_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UStairs_S_MB_ML_cbx.Name = "UStairs_S_MB_ML_cbx";
+            this.UStairs_S_MB_ML_cbx.Size = new System.Drawing.Size(146, 24);
+            this.UStairs_S_MB_ML_cbx.TabIndex = 100;
+            // 
+            // label49
+            // 
+            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(1, 1607);
+            this.label49.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label49.Name = "label49";
+            this.label49.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label49.Size = new System.Drawing.Size(300, 25);
+            this.label49.TabIndex = 99;
+            this.label49.Text = "Manufactured Length:";
+            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label48
+            // 
+            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(1, 1582);
+            this.label48.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label48.Name = "label48";
+            this.label48.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label48.Size = new System.Drawing.Size(300, 25);
+            this.label48.TabIndex = 98;
+            this.label48.Text = "Main Bars:";
+            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox14
+            // 
+            this.pictureBox14.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel6.SetColumnSpan(this.pictureBox14, 2);
+            this.pictureBox14.Image = global::KnowEst.Properties.Resources.L__BARS;
+            this.pictureBox14.Location = new System.Drawing.Point(132, 1413);
+            this.pictureBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox14.Name = "pictureBox14";
+            this.pictureBox14.Size = new System.Drawing.Size(343, 167);
+            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox14.TabIndex = 97;
+            this.pictureBox14.TabStop = false;
+            // 
+            // label47
+            // 
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(1, 1386);
+            this.label47.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label47.Name = "label47";
+            this.label47.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label47.Size = new System.Drawing.Size(300, 25);
+            this.label47.TabIndex = 96;
+            this.label47.Text = "Steps";
+            this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // UStairs_LR_ML_cbx
             // 
@@ -1118,23 +1226,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.UStairs_LR_ML_cbx.Location = new System.Drawing.Point(345, 1667);
+            this.UStairs_LR_ML_cbx.Location = new System.Drawing.Point(307, 1360);
             this.UStairs_LR_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UStairs_LR_ML_cbx.Name = "UStairs_LR_ML_cbx";
-            this.UStairs_LR_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.UStairs_LR_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.UStairs_LR_ML_cbx.TabIndex = 95;
             // 
             // label46
             // 
             this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(1, 1665);
+            this.label46.Location = new System.Drawing.Point(1, 1358);
             this.label46.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label46.Name = "label46";
-            this.label46.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label46.Size = new System.Drawing.Size(338, 31);
+            this.label46.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label46.Size = new System.Drawing.Size(300, 25);
             this.label46.TabIndex = 94;
             this.label46.Text = "Manufactured Length:";
             this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1143,11 +1251,11 @@
             // 
             this.pictureBox13.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox13, 2);
-            this.pictureBox13.Image = KnowEst.Properties.Resources.LANDING_REBAR;
-            this.pictureBox13.Location = new System.Drawing.Point(149, 1454);
+            this.pictureBox13.Image = global::KnowEst.Properties.Resources.LANDING_REBAR;
+            this.pictureBox13.Location = new System.Drawing.Point(132, 1189);
             this.pictureBox13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(386, 209);
+            this.pictureBox13.Size = new System.Drawing.Size(343, 167);
             this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox13.TabIndex = 93;
             this.pictureBox13.TabStop = false;
@@ -1155,11 +1263,11 @@
             // label45
             // 
             this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(1, 1421);
+            this.label45.Location = new System.Drawing.Point(1, 1162);
             this.label45.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label45.Name = "label45";
-            this.label45.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label45.Size = new System.Drawing.Size(338, 31);
+            this.label45.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label45.Size = new System.Drawing.Size(300, 25);
             this.label45.TabIndex = 92;
             this.label45.Text = "Landing Rebar";
             this.label45.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1173,23 +1281,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.UStairs_DB_ML_cbx.Location = new System.Drawing.Point(345, 1391);
+            this.UStairs_DB_ML_cbx.Location = new System.Drawing.Point(307, 1136);
             this.UStairs_DB_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UStairs_DB_ML_cbx.Name = "UStairs_DB_ML_cbx";
-            this.UStairs_DB_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.UStairs_DB_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.UStairs_DB_ML_cbx.TabIndex = 91;
             // 
             // label44
             // 
             this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(1, 1389);
+            this.label44.Location = new System.Drawing.Point(1, 1134);
             this.label44.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label44.Name = "label44";
-            this.label44.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label44.Size = new System.Drawing.Size(338, 31);
+            this.label44.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label44.Size = new System.Drawing.Size(300, 25);
             this.label44.TabIndex = 90;
             this.label44.Text = "Manufactured Length:";
             this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1198,11 +1306,11 @@
             // 
             this.pictureBox12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox12, 2);
-            this.pictureBox12.Image = KnowEst.Properties.Resources.DISTRIBUTION_BARS;
-            this.pictureBox12.Location = new System.Drawing.Point(161, 1186);
+            this.pictureBox12.Image = global::KnowEst.Properties.Resources.DISTRIBUTION_BARS;
+            this.pictureBox12.Location = new System.Drawing.Point(143, 971);
             this.pictureBox12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(362, 201);
+            this.pictureBox12.Size = new System.Drawing.Size(322, 161);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox12.TabIndex = 89;
             this.pictureBox12.TabStop = false;
@@ -1210,11 +1318,11 @@
             // label33
             // 
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(1, 1153);
+            this.label33.Location = new System.Drawing.Point(1, 944);
             this.label33.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label33.Name = "label33";
-            this.label33.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label33.Size = new System.Drawing.Size(338, 31);
+            this.label33.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label33.Size = new System.Drawing.Size(300, 25);
             this.label33.TabIndex = 88;
             this.label33.Text = "Distribution Bars";
             this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1228,23 +1336,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.UStairs_WSF2_MB3_ML_cbx.Location = new System.Drawing.Point(345, 1123);
+            this.UStairs_WSF2_MB3_ML_cbx.Location = new System.Drawing.Point(307, 918);
             this.UStairs_WSF2_MB3_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UStairs_WSF2_MB3_ML_cbx.Name = "UStairs_WSF2_MB3_ML_cbx";
-            this.UStairs_WSF2_MB3_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.UStairs_WSF2_MB3_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.UStairs_WSF2_MB3_ML_cbx.TabIndex = 87;
             // 
             // label32
             // 
             this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(1, 1121);
+            this.label32.Location = new System.Drawing.Point(1, 916);
             this.label32.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label32.Name = "label32";
-            this.label32.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label32.Size = new System.Drawing.Size(338, 31);
+            this.label32.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label32.Size = new System.Drawing.Size(300, 25);
             this.label32.TabIndex = 86;
             this.label32.Text = "Manufactured Length:";
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1253,11 +1361,11 @@
             // 
             this.pictureBox11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox11, 2);
-            this.pictureBox11.Image = KnowEst.Properties.Resources.MAIN_BAR_3;
-            this.pictureBox11.Location = new System.Drawing.Point(176, 1030);
+            this.pictureBox11.Image = global::KnowEst.Properties.Resources.MAIN_BAR_3;
+            this.pictureBox11.Location = new System.Drawing.Point(156, 843);
             this.pictureBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(333, 89);
+            this.pictureBox11.Size = new System.Drawing.Size(296, 71);
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox11.TabIndex = 85;
             this.pictureBox11.TabStop = false;
@@ -1265,11 +1373,11 @@
             // label31
             // 
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(1, 997);
+            this.label31.Location = new System.Drawing.Point(1, 816);
             this.label31.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label31.Name = "label31";
-            this.label31.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label31.Size = new System.Drawing.Size(338, 31);
+            this.label31.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label31.Size = new System.Drawing.Size(300, 25);
             this.label31.TabIndex = 84;
             this.label31.Text = "Main Bar 3";
             this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1283,23 +1391,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.UStairs_WSF2_MB2_ML_cbx.Location = new System.Drawing.Point(345, 967);
+            this.UStairs_WSF2_MB2_ML_cbx.Location = new System.Drawing.Point(307, 790);
             this.UStairs_WSF2_MB2_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UStairs_WSF2_MB2_ML_cbx.Name = "UStairs_WSF2_MB2_ML_cbx";
-            this.UStairs_WSF2_MB2_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.UStairs_WSF2_MB2_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.UStairs_WSF2_MB2_ML_cbx.TabIndex = 83;
             // 
             // label30
             // 
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(1, 965);
+            this.label30.Location = new System.Drawing.Point(1, 788);
             this.label30.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label30.Name = "label30";
-            this.label30.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label30.Size = new System.Drawing.Size(338, 31);
+            this.label30.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label30.Size = new System.Drawing.Size(300, 25);
             this.label30.TabIndex = 82;
             this.label30.Text = "Manufactured Length:";
             this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1308,11 +1416,11 @@
             // 
             this.pictureBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox6, 2);
-            this.pictureBox6.Image = KnowEst.Properties.Resources.MAIN_BAR_2;
-            this.pictureBox6.Location = new System.Drawing.Point(176, 836);
+            this.pictureBox6.Image = global::KnowEst.Properties.Resources.MAIN_BAR_2;
+            this.pictureBox6.Location = new System.Drawing.Point(156, 684);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(333, 127);
+            this.pictureBox6.Size = new System.Drawing.Size(296, 102);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox6.TabIndex = 81;
             this.pictureBox6.TabStop = false;
@@ -1320,11 +1428,11 @@
             // label29
             // 
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(1, 803);
+            this.label29.Location = new System.Drawing.Point(1, 657);
             this.label29.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label29.Name = "label29";
-            this.label29.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label29.Size = new System.Drawing.Size(338, 31);
+            this.label29.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label29.Size = new System.Drawing.Size(300, 25);
             this.label29.TabIndex = 80;
             this.label29.Text = "Main Bar 2";
             this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1332,11 +1440,11 @@
             // label43
             // 
             this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(1, 609);
+            this.label43.Location = new System.Drawing.Point(1, 498);
             this.label43.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label43.Name = "label43";
-            this.label43.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label43.Size = new System.Drawing.Size(338, 31);
+            this.label43.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label43.Size = new System.Drawing.Size(300, 25);
             this.label43.TabIndex = 79;
             this.label43.Text = "Main Bar 1";
             this.label43.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1350,24 +1458,24 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.UStairs_WSF2_MB1_ML_cbx.Location = new System.Drawing.Point(345, 773);
+            this.UStairs_WSF2_MB1_ML_cbx.Location = new System.Drawing.Point(307, 631);
             this.UStairs_WSF2_MB1_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UStairs_WSF2_MB1_ML_cbx.Name = "UStairs_WSF2_MB1_ML_cbx";
-            this.UStairs_WSF2_MB1_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.UStairs_WSF2_MB1_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.UStairs_WSF2_MB1_ML_cbx.TabIndex = 75;
             // 
             // pictureBox7
             // 
             this.pictureBox7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox7, 2);
-            this.pictureBox7.Image = KnowEst.Properties.Resources.MAIN_BAR_1;
-            this.pictureBox7.Location = new System.Drawing.Point(176, 642);
+            this.pictureBox7.Image = global::KnowEst.Properties.Resources.MAIN_BAR_1;
+            this.pictureBox7.Location = new System.Drawing.Point(156, 525);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(333, 127);
+            this.pictureBox7.Size = new System.Drawing.Size(296, 102);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 68;
             this.pictureBox7.TabStop = false;
@@ -1375,11 +1483,11 @@
             // label34
             // 
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(1, 578);
+            this.label34.Location = new System.Drawing.Point(1, 473);
             this.label34.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label34.Name = "label34";
-            this.label34.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label34.Size = new System.Drawing.Size(338, 31);
+            this.label34.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label34.Size = new System.Drawing.Size(300, 25);
             this.label34.TabIndex = 67;
             this.label34.Text = "Waist Slab Flight 2";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1393,23 +1501,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.UStairs_WSF1_MB3_ML_cbx.Location = new System.Drawing.Point(345, 548);
+            this.UStairs_WSF1_MB3_ML_cbx.Location = new System.Drawing.Point(307, 447);
             this.UStairs_WSF1_MB3_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UStairs_WSF1_MB3_ML_cbx.Name = "UStairs_WSF1_MB3_ML_cbx";
-            this.UStairs_WSF1_MB3_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.UStairs_WSF1_MB3_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.UStairs_WSF1_MB3_ML_cbx.TabIndex = 66;
             // 
             // label35
             // 
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(1, 546);
+            this.label35.Location = new System.Drawing.Point(1, 445);
             this.label35.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label35.Name = "label35";
-            this.label35.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label35.Size = new System.Drawing.Size(338, 31);
+            this.label35.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label35.Size = new System.Drawing.Size(300, 25);
             this.label35.TabIndex = 65;
             this.label35.Text = "Manufactured Length:";
             this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1418,11 +1526,11 @@
             // 
             this.pictureBox8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox8, 2);
-            this.pictureBox8.Image = KnowEst.Properties.Resources.MAIN_BAR_3;
-            this.pictureBox8.Location = new System.Drawing.Point(176, 455);
+            this.pictureBox8.Image = global::KnowEst.Properties.Resources.MAIN_BAR_3;
+            this.pictureBox8.Location = new System.Drawing.Point(156, 372);
             this.pictureBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(333, 89);
+            this.pictureBox8.Size = new System.Drawing.Size(296, 71);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox8.TabIndex = 64;
             this.pictureBox8.TabStop = false;
@@ -1430,11 +1538,11 @@
             // label36
             // 
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(1, 422);
+            this.label36.Location = new System.Drawing.Point(1, 345);
             this.label36.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label36.Name = "label36";
-            this.label36.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label36.Size = new System.Drawing.Size(338, 31);
+            this.label36.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label36.Size = new System.Drawing.Size(300, 25);
             this.label36.TabIndex = 63;
             this.label36.Text = "Main Bar 3";
             this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1448,23 +1556,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.UStairs_WSF1_MB2_ML_cbx.Location = new System.Drawing.Point(345, 392);
+            this.UStairs_WSF1_MB2_ML_cbx.Location = new System.Drawing.Point(307, 319);
             this.UStairs_WSF1_MB2_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UStairs_WSF1_MB2_ML_cbx.Name = "UStairs_WSF1_MB2_ML_cbx";
-            this.UStairs_WSF1_MB2_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.UStairs_WSF1_MB2_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.UStairs_WSF1_MB2_ML_cbx.TabIndex = 62;
             // 
             // label37
             // 
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(1, 390);
+            this.label37.Location = new System.Drawing.Point(1, 317);
             this.label37.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label37.Name = "label37";
-            this.label37.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label37.Size = new System.Drawing.Size(338, 31);
+            this.label37.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label37.Size = new System.Drawing.Size(300, 25);
             this.label37.TabIndex = 61;
             this.label37.Text = "Manufactured Length:";
             this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1473,11 +1581,11 @@
             // 
             this.pictureBox9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox9, 2);
-            this.pictureBox9.Image = KnowEst.Properties.Resources.MAIN_BAR_2;
-            this.pictureBox9.Location = new System.Drawing.Point(176, 261);
+            this.pictureBox9.Image = global::KnowEst.Properties.Resources.MAIN_BAR_2;
+            this.pictureBox9.Location = new System.Drawing.Point(156, 213);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(333, 127);
+            this.pictureBox9.Size = new System.Drawing.Size(296, 102);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox9.TabIndex = 60;
             this.pictureBox9.TabStop = false;
@@ -1485,11 +1593,11 @@
             // label38
             // 
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(1, 228);
+            this.label38.Location = new System.Drawing.Point(1, 186);
             this.label38.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label38.Name = "label38";
-            this.label38.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label38.Size = new System.Drawing.Size(338, 31);
+            this.label38.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label38.Size = new System.Drawing.Size(300, 25);
             this.label38.TabIndex = 59;
             this.label38.Text = "Main Bar 2";
             this.label38.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1497,11 +1605,11 @@
             // label39
             // 
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(1, 34);
+            this.label39.Location = new System.Drawing.Point(1, 27);
             this.label39.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label39.Name = "label39";
-            this.label39.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label39.Size = new System.Drawing.Size(338, 31);
+            this.label39.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label39.Size = new System.Drawing.Size(300, 25);
             this.label39.TabIndex = 39;
             this.label39.Text = "Main Bar 1";
             this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1512,8 +1620,8 @@
             this.label40.Location = new System.Drawing.Point(1, 0);
             this.label40.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label40.Name = "label40";
-            this.label40.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label40.Size = new System.Drawing.Size(338, 34);
+            this.label40.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label40.Size = new System.Drawing.Size(300, 27);
             this.label40.TabIndex = 26;
             this.label40.Text = "Waist Slab - Flight 1";
             this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1522,11 +1630,11 @@
             // 
             this.pictureBox10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel6.SetColumnSpan(this.pictureBox10, 2);
-            this.pictureBox10.Image = KnowEst.Properties.Resources.MAIN_BAR_1;
-            this.pictureBox10.Location = new System.Drawing.Point(176, 67);
+            this.pictureBox10.Image = global::KnowEst.Properties.Resources.MAIN_BAR_1;
+            this.pictureBox10.Location = new System.Drawing.Point(156, 54);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(333, 127);
+            this.pictureBox10.Size = new System.Drawing.Size(296, 102);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox10.TabIndex = 36;
             this.pictureBox10.TabStop = false;
@@ -1540,23 +1648,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.UStairs_WSF1_MB1_ML_cbx.Location = new System.Drawing.Point(345, 198);
+            this.UStairs_WSF1_MB1_ML_cbx.Location = new System.Drawing.Point(307, 160);
             this.UStairs_WSF1_MB1_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UStairs_WSF1_MB1_ML_cbx.Name = "UStairs_WSF1_MB1_ML_cbx";
-            this.UStairs_WSF1_MB1_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.UStairs_WSF1_MB1_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.UStairs_WSF1_MB1_ML_cbx.TabIndex = 52;
             // 
             // label41
             // 
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(1, 196);
+            this.label41.Location = new System.Drawing.Point(1, 158);
             this.label41.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label41.Name = "label41";
-            this.label41.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label41.Size = new System.Drawing.Size(338, 31);
+            this.label41.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label41.Size = new System.Drawing.Size(300, 25);
             this.label41.TabIndex = 51;
             this.label41.Text = "Manufactured Length:";
             this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1564,11 +1672,11 @@
             // label42
             // 
             this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(1, 771);
+            this.label42.Location = new System.Drawing.Point(1, 629);
             this.label42.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label42.Name = "label42";
-            this.label42.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label42.Size = new System.Drawing.Size(338, 31);
+            this.label42.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label42.Size = new System.Drawing.Size(300, 25);
             this.label42.TabIndex = 74;
             this.label42.Text = "Manufactured Length:";
             this.label42.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1578,121 +1686,13 @@
             this.tabPage1.AutoScroll = true;
             this.tabPage1.Controls.Add(this.tableLayoutPanel7);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(734, 436);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage1.Size = new System.Drawing.Size(652, 342);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "L-Stairs";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // label47
-            // 
-            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(1, 1697);
-            this.label47.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label47.Name = "label47";
-            this.label47.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label47.Size = new System.Drawing.Size(338, 31);
-            this.label47.TabIndex = 96;
-            this.label47.Text = "Steps";
-            this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pictureBox14
-            // 
-            this.pictureBox14.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tableLayoutPanel6.SetColumnSpan(this.pictureBox14, 2);
-            this.pictureBox14.Image = KnowEst.Properties.Resources.L__BARS;
-            this.pictureBox14.Location = new System.Drawing.Point(149, 1730);
-            this.pictureBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(386, 209);
-            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox14.TabIndex = 97;
-            this.pictureBox14.TabStop = false;
-            // 
-            // label48
-            // 
-            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(1, 1941);
-            this.label48.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label48.Name = "label48";
-            this.label48.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label48.Size = new System.Drawing.Size(338, 31);
-            this.label48.TabIndex = 98;
-            this.label48.Text = "Main Bars:";
-            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label49
-            // 
-            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(1, 1972);
-            this.label49.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label49.Name = "label49";
-            this.label49.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label49.Size = new System.Drawing.Size(338, 31);
-            this.label49.TabIndex = 99;
-            this.label49.Text = "Manufactured Length:";
-            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // UStairs_S_MB_ML_cbx
-            // 
-            this.UStairs_S_MB_ML_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.UStairs_S_MB_ML_cbx.FormattingEnabled = true;
-            this.UStairs_S_MB_ML_cbx.Items.AddRange(new object[] {
-            "6.0m",
-            "7.5m",
-            "9.0m",
-            "10.5m",
-            "12.5m",
-            "13.5m",
-            "15.0m"});
-            this.UStairs_S_MB_ML_cbx.Location = new System.Drawing.Point(345, 1974);
-            this.UStairs_S_MB_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.UStairs_S_MB_ML_cbx.Name = "UStairs_S_MB_ML_cbx";
-            this.UStairs_S_MB_ML_cbx.Size = new System.Drawing.Size(164, 28);
-            this.UStairs_S_MB_ML_cbx.TabIndex = 100;
-            // 
-            // label50
-            // 
-            this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(1, 2004);
-            this.label50.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label50.Name = "label50";
-            this.label50.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label50.Size = new System.Drawing.Size(338, 31);
-            this.label50.TabIndex = 101;
-            this.label50.Text = "Nose Bar:";
-            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label51
-            // 
-            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.Location = new System.Drawing.Point(1, 2035);
-            this.label51.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label51.Name = "label51";
-            this.label51.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label51.Size = new System.Drawing.Size(338, 31);
-            this.label51.TabIndex = 102;
-            this.label51.Text = "Manufactured Length:";
-            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // UStairs_S_NB_ML_cbx
-            // 
-            this.UStairs_S_NB_ML_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.UStairs_S_NB_ML_cbx.FormattingEnabled = true;
-            this.UStairs_S_NB_ML_cbx.Items.AddRange(new object[] {
-            "6.0m",
-            "7.5m",
-            "9.0m",
-            "10.5m",
-            "12.5m",
-            "13.5m",
-            "15.0m"});
-            this.UStairs_S_NB_ML_cbx.Location = new System.Drawing.Point(345, 2037);
-            this.UStairs_S_NB_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.UStairs_S_NB_ML_cbx.Name = "UStairs_S_NB_ML_cbx";
-            this.UStairs_S_NB_ML_cbx.Size = new System.Drawing.Size(164, 28);
-            this.UStairs_S_NB_ML_cbx.TabIndex = 103;
             // 
             // tableLayoutPanel7
             // 
@@ -1701,13 +1701,13 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.96382F));
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel8, 1, 0);
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel9, 0, 1);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(9, 9);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(8, 7);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(691, 2350);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(614, 1880);
             this.tableLayoutPanel7.TabIndex = 4;
             // 
             // tableLayoutPanel8
@@ -1728,7 +1728,7 @@
             this.tableLayoutPanel8.Controls.Add(this.label57, 0, 2);
             this.tableLayoutPanel8.Controls.Add(this.label58, 2, 2);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(176, 2);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(156, 2);
             this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 8;
@@ -1740,17 +1740,17 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(512, 204);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(455, 163);
             this.tableLayoutPanel8.TabIndex = 25;
             // 
             // label52
             // 
             this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.Location = new System.Drawing.Point(440, 31);
+            this.label52.Location = new System.Drawing.Point(391, 26);
             this.label52.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label52.Name = "label52";
-            this.label52.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label52.Size = new System.Drawing.Size(60, 31);
+            this.label52.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label52.Size = new System.Drawing.Size(53, 25);
             this.label52.TabIndex = 55;
             this.label52.Text = "D";
             this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1758,11 +1758,11 @@
             // label53
             // 
             this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(440, 0);
+            this.label53.Location = new System.Drawing.Point(391, 0);
             this.label53.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label53.Name = "label53";
-            this.label53.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label53.Size = new System.Drawing.Size(60, 31);
+            this.label53.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label53.Size = new System.Drawing.Size(53, 25);
             this.label53.TabIndex = 54;
             this.label53.Text = "D";
             this.label53.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1770,41 +1770,41 @@
             // LStair_SBW_bx
             // 
             this.LStair_SBW_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LStair_SBW_bx.Location = new System.Drawing.Point(243, 64);
+            this.LStair_SBW_bx.Location = new System.Drawing.Point(216, 54);
             this.LStair_SBW_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LStair_SBW_bx.Name = "LStair_SBW_bx";
-            this.LStair_SBW_bx.Size = new System.Drawing.Size(193, 26);
+            this.LStair_SBW_bx.Size = new System.Drawing.Size(171, 22);
             this.LStair_SBW_bx.TabIndex = 53;
             this.LStair_SBW_bx.Text = "300";
             // 
             // LStair_LL_bx
             // 
             this.LStair_LL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LStair_LL_bx.Location = new System.Drawing.Point(243, 2);
+            this.LStair_LL_bx.Location = new System.Drawing.Point(216, 2);
             this.LStair_LL_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LStair_LL_bx.Name = "LStair_LL_bx";
-            this.LStair_LL_bx.Size = new System.Drawing.Size(193, 26);
+            this.LStair_LL_bx.Size = new System.Drawing.Size(171, 22);
             this.LStair_LL_bx.TabIndex = 52;
             this.LStair_LL_bx.Text = "40";
             // 
             // LStair_HL_bx
             // 
             this.LStair_HL_bx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LStair_HL_bx.Location = new System.Drawing.Point(243, 33);
+            this.LStair_HL_bx.Location = new System.Drawing.Point(216, 28);
             this.LStair_HL_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LStair_HL_bx.Name = "LStair_HL_bx";
-            this.LStair_HL_bx.Size = new System.Drawing.Size(193, 26);
+            this.LStair_HL_bx.Size = new System.Drawing.Size(171, 22);
             this.LStair_HL_bx.TabIndex = 50;
             this.LStair_HL_bx.Text = "9";
             // 
             // label54
             // 
             this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.Location = new System.Drawing.Point(1, 31);
+            this.label54.Location = new System.Drawing.Point(1, 26);
             this.label54.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label54.Name = "label54";
-            this.label54.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label54.Size = new System.Drawing.Size(236, 31);
+            this.label54.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label54.Size = new System.Drawing.Size(209, 25);
             this.label54.TabIndex = 39;
             this.label54.Text = "Hook Length:";
             this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1812,11 +1812,11 @@
             // label55
             // 
             this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label55.Location = new System.Drawing.Point(1, 93);
+            this.label55.Location = new System.Drawing.Point(1, 78);
             this.label55.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label55.Name = "label55";
-            this.label55.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label55.Size = new System.Drawing.Size(236, 34);
+            this.label55.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label55.Size = new System.Drawing.Size(209, 27);
             this.label55.TabIndex = 26;
             this.label55.Text = "Rebar Grade:";
             this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1827,8 +1827,8 @@
             this.label56.Location = new System.Drawing.Point(1, 0);
             this.label56.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label56.Name = "label56";
-            this.label56.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label56.Size = new System.Drawing.Size(236, 31);
+            this.label56.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label56.Size = new System.Drawing.Size(209, 25);
             this.label56.TabIndex = 10;
             this.label56.Text = "Lap Length:";
             this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1841,20 +1841,20 @@
             "Grade 33",
             "Grade 40",
             "Grade 60"});
-            this.LStair_RG_cbx.Location = new System.Drawing.Point(243, 95);
+            this.LStair_RG_cbx.Location = new System.Drawing.Point(216, 80);
             this.LStair_RG_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LStair_RG_cbx.Name = "LStair_RG_cbx";
-            this.LStair_RG_cbx.Size = new System.Drawing.Size(193, 28);
+            this.LStair_RG_cbx.Size = new System.Drawing.Size(171, 24);
             this.LStair_RG_cbx.TabIndex = 30;
             // 
             // label57
             // 
             this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label57.Location = new System.Drawing.Point(1, 62);
+            this.label57.Location = new System.Drawing.Point(1, 52);
             this.label57.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label57.Name = "label57";
-            this.label57.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label57.Size = new System.Drawing.Size(236, 31);
+            this.label57.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label57.Size = new System.Drawing.Size(209, 25);
             this.label57.TabIndex = 51;
             this.label57.Text = "Stair Beam Width:";
             this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1862,11 +1862,11 @@
             // label58
             // 
             this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label58.Location = new System.Drawing.Point(440, 62);
+            this.label58.Location = new System.Drawing.Point(391, 52);
             this.label58.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label58.Name = "label58";
-            this.label58.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label58.Size = new System.Drawing.Size(60, 31);
+            this.label58.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label58.Size = new System.Drawing.Size(53, 25);
             this.label58.TabIndex = 56;
             this.label58.Text = "mm";
             this.label58.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1920,7 +1920,7 @@
             this.tableLayoutPanel9.Controls.Add(this.label80, 0, 3);
             this.tableLayoutPanel9.Controls.Add(this.label81, 0, 13);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 210);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 169);
             this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 35;
@@ -1959,7 +1959,7 @@
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(685, 2288);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(608, 1830);
             this.tableLayoutPanel9.TabIndex = 24;
             // 
             // LStair_S_NB_ML_cbx
@@ -1971,23 +1971,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.LStair_S_NB_ML_cbx.Location = new System.Drawing.Point(345, 2040);
+            this.LStair_S_NB_ML_cbx.Location = new System.Drawing.Point(307, 1665);
             this.LStair_S_NB_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LStair_S_NB_ML_cbx.Name = "LStair_S_NB_ML_cbx";
-            this.LStair_S_NB_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.LStair_S_NB_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.LStair_S_NB_ML_cbx.TabIndex = 103;
             // 
             // label59
             // 
             this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label59.Location = new System.Drawing.Point(1, 2038);
+            this.label59.Location = new System.Drawing.Point(1, 1663);
             this.label59.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label59.Name = "label59";
-            this.label59.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label59.Size = new System.Drawing.Size(338, 31);
+            this.label59.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label59.Size = new System.Drawing.Size(300, 25);
             this.label59.TabIndex = 102;
             this.label59.Text = "Manufactured Length:";
             this.label59.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1995,11 +1995,11 @@
             // label60
             // 
             this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.Location = new System.Drawing.Point(1, 2007);
+            this.label60.Location = new System.Drawing.Point(1, 1638);
             this.label60.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label60.Name = "label60";
-            this.label60.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label60.Size = new System.Drawing.Size(338, 31);
+            this.label60.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label60.Size = new System.Drawing.Size(300, 25);
             this.label60.TabIndex = 101;
             this.label60.Text = "Nose Bar:";
             this.label60.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2013,23 +2013,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.LStair_S_MB_ML_cbx.Location = new System.Drawing.Point(345, 1977);
+            this.LStair_S_MB_ML_cbx.Location = new System.Drawing.Point(307, 1612);
             this.LStair_S_MB_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LStair_S_MB_ML_cbx.Name = "LStair_S_MB_ML_cbx";
-            this.LStair_S_MB_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.LStair_S_MB_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.LStair_S_MB_ML_cbx.TabIndex = 100;
             // 
             // label61
             // 
             this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label61.Location = new System.Drawing.Point(1, 1975);
+            this.label61.Location = new System.Drawing.Point(1, 1610);
             this.label61.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label61.Name = "label61";
-            this.label61.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label61.Size = new System.Drawing.Size(338, 31);
+            this.label61.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label61.Size = new System.Drawing.Size(300, 25);
             this.label61.TabIndex = 99;
             this.label61.Text = "Manufactured Length:";
             this.label61.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2037,11 +2037,11 @@
             // label62
             // 
             this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.Location = new System.Drawing.Point(1, 1944);
+            this.label62.Location = new System.Drawing.Point(1, 1585);
             this.label62.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label62.Name = "label62";
-            this.label62.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label62.Size = new System.Drawing.Size(338, 31);
+            this.label62.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label62.Size = new System.Drawing.Size(300, 25);
             this.label62.TabIndex = 98;
             this.label62.Text = "Main Bars:";
             this.label62.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2050,11 +2050,11 @@
             // 
             this.pictureBox15.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox15, 2);
-            this.pictureBox15.Image = KnowEst.Properties.Resources.L__BARS;
-            this.pictureBox15.Location = new System.Drawing.Point(188, 1811);
+            this.pictureBox15.Image = global::KnowEst.Properties.Resources.L__BARS;
+            this.pictureBox15.Location = new System.Drawing.Point(166, 1478);
             this.pictureBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(309, 131);
+            this.pictureBox15.Size = new System.Drawing.Size(275, 105);
             this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox15.TabIndex = 97;
             this.pictureBox15.TabStop = false;
@@ -2062,11 +2062,11 @@
             // label63
             // 
             this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label63.Location = new System.Drawing.Point(1, 1778);
+            this.label63.Location = new System.Drawing.Point(1, 1451);
             this.label63.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label63.Name = "label63";
-            this.label63.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label63.Size = new System.Drawing.Size(338, 31);
+            this.label63.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label63.Size = new System.Drawing.Size(300, 25);
             this.label63.TabIndex = 96;
             this.label63.Text = "Steps";
             this.label63.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2080,23 +2080,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.LStair_LR_ML_cbx.Location = new System.Drawing.Point(345, 1748);
+            this.LStair_LR_ML_cbx.Location = new System.Drawing.Point(307, 1425);
             this.LStair_LR_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LStair_LR_ML_cbx.Name = "LStair_LR_ML_cbx";
-            this.LStair_LR_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.LStair_LR_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.LStair_LR_ML_cbx.TabIndex = 95;
             // 
             // label64
             // 
             this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label64.Location = new System.Drawing.Point(1, 1746);
+            this.label64.Location = new System.Drawing.Point(1, 1423);
             this.label64.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label64.Name = "label64";
-            this.label64.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label64.Size = new System.Drawing.Size(338, 31);
+            this.label64.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label64.Size = new System.Drawing.Size(300, 25);
             this.label64.TabIndex = 94;
             this.label64.Text = "Manufactured Length:";
             this.label64.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2105,11 +2105,11 @@
             // 
             this.pictureBox16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox16, 2);
-            this.pictureBox16.Image = KnowEst.Properties.Resources.L_STAIRS_REBARS;
-            this.pictureBox16.Location = new System.Drawing.Point(143, 1454);
+            this.pictureBox16.Image = global::KnowEst.Properties.Resources.L_STAIRS_REBARS;
+            this.pictureBox16.Location = new System.Drawing.Point(127, 1189);
             this.pictureBox16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox16.Name = "pictureBox16";
-            this.pictureBox16.Size = new System.Drawing.Size(398, 290);
+            this.pictureBox16.Size = new System.Drawing.Size(354, 232);
             this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox16.TabIndex = 93;
             this.pictureBox16.TabStop = false;
@@ -2117,11 +2117,11 @@
             // label65
             // 
             this.label65.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label65.Location = new System.Drawing.Point(1, 1421);
+            this.label65.Location = new System.Drawing.Point(1, 1162);
             this.label65.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label65.Name = "label65";
-            this.label65.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label65.Size = new System.Drawing.Size(338, 31);
+            this.label65.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label65.Size = new System.Drawing.Size(300, 25);
             this.label65.TabIndex = 92;
             this.label65.Text = "Landing Rebar";
             this.label65.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2135,23 +2135,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.LStair_DB_ML_cbx.Location = new System.Drawing.Point(345, 1391);
+            this.LStair_DB_ML_cbx.Location = new System.Drawing.Point(307, 1136);
             this.LStair_DB_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LStair_DB_ML_cbx.Name = "LStair_DB_ML_cbx";
-            this.LStair_DB_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.LStair_DB_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.LStair_DB_ML_cbx.TabIndex = 91;
             // 
             // label66
             // 
             this.label66.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label66.Location = new System.Drawing.Point(1, 1389);
+            this.label66.Location = new System.Drawing.Point(1, 1134);
             this.label66.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label66.Name = "label66";
-            this.label66.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label66.Size = new System.Drawing.Size(338, 31);
+            this.label66.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label66.Size = new System.Drawing.Size(300, 25);
             this.label66.TabIndex = 90;
             this.label66.Text = "Manufactured Length:";
             this.label66.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2160,11 +2160,11 @@
             // 
             this.pictureBox17.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox17, 2);
-            this.pictureBox17.Image = KnowEst.Properties.Resources.DISTRIBUTION_BARS;
-            this.pictureBox17.Location = new System.Drawing.Point(161, 1186);
+            this.pictureBox17.Image = global::KnowEst.Properties.Resources.DISTRIBUTION_BARS;
+            this.pictureBox17.Location = new System.Drawing.Point(143, 971);
             this.pictureBox17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(362, 201);
+            this.pictureBox17.Size = new System.Drawing.Size(322, 161);
             this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox17.TabIndex = 89;
             this.pictureBox17.TabStop = false;
@@ -2172,11 +2172,11 @@
             // label67
             // 
             this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.Location = new System.Drawing.Point(1, 1153);
+            this.label67.Location = new System.Drawing.Point(1, 944);
             this.label67.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label67.Name = "label67";
-            this.label67.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label67.Size = new System.Drawing.Size(338, 31);
+            this.label67.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label67.Size = new System.Drawing.Size(300, 25);
             this.label67.TabIndex = 88;
             this.label67.Text = "Distribution Bars";
             this.label67.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2190,23 +2190,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.LStair_WSF2_MB3_ML_cbx.Location = new System.Drawing.Point(345, 1123);
+            this.LStair_WSF2_MB3_ML_cbx.Location = new System.Drawing.Point(307, 918);
             this.LStair_WSF2_MB3_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LStair_WSF2_MB3_ML_cbx.Name = "LStair_WSF2_MB3_ML_cbx";
-            this.LStair_WSF2_MB3_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.LStair_WSF2_MB3_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.LStair_WSF2_MB3_ML_cbx.TabIndex = 87;
             // 
             // label68
             // 
             this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label68.Location = new System.Drawing.Point(1, 1121);
+            this.label68.Location = new System.Drawing.Point(1, 916);
             this.label68.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label68.Name = "label68";
-            this.label68.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label68.Size = new System.Drawing.Size(338, 31);
+            this.label68.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label68.Size = new System.Drawing.Size(300, 25);
             this.label68.TabIndex = 86;
             this.label68.Text = "Manufactured Length:";
             this.label68.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2215,11 +2215,11 @@
             // 
             this.pictureBox18.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox18, 2);
-            this.pictureBox18.Image = KnowEst.Properties.Resources.MAIN_BAR_3;
-            this.pictureBox18.Location = new System.Drawing.Point(176, 1030);
+            this.pictureBox18.Image = global::KnowEst.Properties.Resources.MAIN_BAR_3;
+            this.pictureBox18.Location = new System.Drawing.Point(156, 843);
             this.pictureBox18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox18.Name = "pictureBox18";
-            this.pictureBox18.Size = new System.Drawing.Size(333, 89);
+            this.pictureBox18.Size = new System.Drawing.Size(296, 71);
             this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox18.TabIndex = 85;
             this.pictureBox18.TabStop = false;
@@ -2227,11 +2227,11 @@
             // label69
             // 
             this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(1, 997);
+            this.label69.Location = new System.Drawing.Point(1, 816);
             this.label69.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label69.Name = "label69";
-            this.label69.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label69.Size = new System.Drawing.Size(338, 31);
+            this.label69.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label69.Size = new System.Drawing.Size(300, 25);
             this.label69.TabIndex = 84;
             this.label69.Text = "Main Bar 3";
             this.label69.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2245,23 +2245,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.LStair_WSF2_MB2_ML_cbx.Location = new System.Drawing.Point(345, 967);
+            this.LStair_WSF2_MB2_ML_cbx.Location = new System.Drawing.Point(307, 790);
             this.LStair_WSF2_MB2_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LStair_WSF2_MB2_ML_cbx.Name = "LStair_WSF2_MB2_ML_cbx";
-            this.LStair_WSF2_MB2_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.LStair_WSF2_MB2_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.LStair_WSF2_MB2_ML_cbx.TabIndex = 83;
             // 
             // label70
             // 
             this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.Location = new System.Drawing.Point(1, 965);
+            this.label70.Location = new System.Drawing.Point(1, 788);
             this.label70.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label70.Name = "label70";
-            this.label70.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label70.Size = new System.Drawing.Size(338, 31);
+            this.label70.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label70.Size = new System.Drawing.Size(300, 25);
             this.label70.TabIndex = 82;
             this.label70.Text = "Manufactured Length:";
             this.label70.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2270,11 +2270,11 @@
             // 
             this.pictureBox19.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox19, 2);
-            this.pictureBox19.Image = KnowEst.Properties.Resources.MAIN_BAR_2;
-            this.pictureBox19.Location = new System.Drawing.Point(176, 836);
+            this.pictureBox19.Image = global::KnowEst.Properties.Resources.MAIN_BAR_2;
+            this.pictureBox19.Location = new System.Drawing.Point(156, 684);
             this.pictureBox19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox19.Name = "pictureBox19";
-            this.pictureBox19.Size = new System.Drawing.Size(333, 127);
+            this.pictureBox19.Size = new System.Drawing.Size(296, 102);
             this.pictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox19.TabIndex = 81;
             this.pictureBox19.TabStop = false;
@@ -2282,11 +2282,11 @@
             // label71
             // 
             this.label71.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label71.Location = new System.Drawing.Point(1, 803);
+            this.label71.Location = new System.Drawing.Point(1, 657);
             this.label71.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label71.Name = "label71";
-            this.label71.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label71.Size = new System.Drawing.Size(338, 31);
+            this.label71.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label71.Size = new System.Drawing.Size(300, 25);
             this.label71.TabIndex = 80;
             this.label71.Text = "Main Bar 2";
             this.label71.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2294,11 +2294,11 @@
             // label72
             // 
             this.label72.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label72.Location = new System.Drawing.Point(1, 609);
+            this.label72.Location = new System.Drawing.Point(1, 498);
             this.label72.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label72.Name = "label72";
-            this.label72.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label72.Size = new System.Drawing.Size(338, 31);
+            this.label72.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label72.Size = new System.Drawing.Size(300, 25);
             this.label72.TabIndex = 79;
             this.label72.Text = "Main Bar 1";
             this.label72.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2312,24 +2312,24 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.LStair_WSF2_MB1_ML_cbx.Location = new System.Drawing.Point(345, 773);
+            this.LStair_WSF2_MB1_ML_cbx.Location = new System.Drawing.Point(307, 631);
             this.LStair_WSF2_MB1_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LStair_WSF2_MB1_ML_cbx.Name = "LStair_WSF2_MB1_ML_cbx";
-            this.LStair_WSF2_MB1_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.LStair_WSF2_MB1_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.LStair_WSF2_MB1_ML_cbx.TabIndex = 75;
             // 
             // pictureBox20
             // 
             this.pictureBox20.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox20, 2);
-            this.pictureBox20.Image = KnowEst.Properties.Resources.MAIN_BAR_1;
-            this.pictureBox20.Location = new System.Drawing.Point(176, 642);
+            this.pictureBox20.Image = global::KnowEst.Properties.Resources.MAIN_BAR_1;
+            this.pictureBox20.Location = new System.Drawing.Point(156, 525);
             this.pictureBox20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox20.Name = "pictureBox20";
-            this.pictureBox20.Size = new System.Drawing.Size(333, 127);
+            this.pictureBox20.Size = new System.Drawing.Size(296, 102);
             this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox20.TabIndex = 68;
             this.pictureBox20.TabStop = false;
@@ -2337,11 +2337,11 @@
             // label73
             // 
             this.label73.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label73.Location = new System.Drawing.Point(1, 578);
+            this.label73.Location = new System.Drawing.Point(1, 473);
             this.label73.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label73.Name = "label73";
-            this.label73.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label73.Size = new System.Drawing.Size(338, 31);
+            this.label73.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label73.Size = new System.Drawing.Size(300, 25);
             this.label73.TabIndex = 67;
             this.label73.Text = "Waist Slab Flight 2";
             this.label73.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2355,23 +2355,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.LStair_WSF1_MB3_ML_cbx.Location = new System.Drawing.Point(345, 548);
+            this.LStair_WSF1_MB3_ML_cbx.Location = new System.Drawing.Point(307, 447);
             this.LStair_WSF1_MB3_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LStair_WSF1_MB3_ML_cbx.Name = "LStair_WSF1_MB3_ML_cbx";
-            this.LStair_WSF1_MB3_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.LStair_WSF1_MB3_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.LStair_WSF1_MB3_ML_cbx.TabIndex = 66;
             // 
             // label74
             // 
             this.label74.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label74.Location = new System.Drawing.Point(1, 546);
+            this.label74.Location = new System.Drawing.Point(1, 445);
             this.label74.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label74.Name = "label74";
-            this.label74.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label74.Size = new System.Drawing.Size(338, 31);
+            this.label74.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label74.Size = new System.Drawing.Size(300, 25);
             this.label74.TabIndex = 65;
             this.label74.Text = "Manufactured Length:";
             this.label74.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2380,11 +2380,11 @@
             // 
             this.pictureBox21.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox21, 2);
-            this.pictureBox21.Image = KnowEst.Properties.Resources.MAIN_BAR_3;
-            this.pictureBox21.Location = new System.Drawing.Point(176, 455);
+            this.pictureBox21.Image = global::KnowEst.Properties.Resources.MAIN_BAR_3;
+            this.pictureBox21.Location = new System.Drawing.Point(156, 372);
             this.pictureBox21.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox21.Name = "pictureBox21";
-            this.pictureBox21.Size = new System.Drawing.Size(333, 89);
+            this.pictureBox21.Size = new System.Drawing.Size(296, 71);
             this.pictureBox21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox21.TabIndex = 64;
             this.pictureBox21.TabStop = false;
@@ -2392,11 +2392,11 @@
             // label75
             // 
             this.label75.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label75.Location = new System.Drawing.Point(1, 422);
+            this.label75.Location = new System.Drawing.Point(1, 345);
             this.label75.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label75.Name = "label75";
-            this.label75.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label75.Size = new System.Drawing.Size(338, 31);
+            this.label75.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label75.Size = new System.Drawing.Size(300, 25);
             this.label75.TabIndex = 63;
             this.label75.Text = "Main Bar 3";
             this.label75.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2410,23 +2410,23 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.LStair_WSF1_MB2_ML_cbx.Location = new System.Drawing.Point(345, 392);
+            this.LStair_WSF1_MB2_ML_cbx.Location = new System.Drawing.Point(307, 319);
             this.LStair_WSF1_MB2_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LStair_WSF1_MB2_ML_cbx.Name = "LStair_WSF1_MB2_ML_cbx";
-            this.LStair_WSF1_MB2_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.LStair_WSF1_MB2_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.LStair_WSF1_MB2_ML_cbx.TabIndex = 62;
             // 
             // label76
             // 
             this.label76.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label76.Location = new System.Drawing.Point(1, 390);
+            this.label76.Location = new System.Drawing.Point(1, 317);
             this.label76.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label76.Name = "label76";
-            this.label76.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label76.Size = new System.Drawing.Size(338, 31);
+            this.label76.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label76.Size = new System.Drawing.Size(300, 25);
             this.label76.TabIndex = 61;
             this.label76.Text = "Manufactured Length:";
             this.label76.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2435,11 +2435,11 @@
             // 
             this.pictureBox22.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox22, 2);
-            this.pictureBox22.Image = KnowEst.Properties.Resources.MAIN_BAR_2;
-            this.pictureBox22.Location = new System.Drawing.Point(176, 261);
+            this.pictureBox22.Image = global::KnowEst.Properties.Resources.MAIN_BAR_2;
+            this.pictureBox22.Location = new System.Drawing.Point(156, 213);
             this.pictureBox22.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox22.Name = "pictureBox22";
-            this.pictureBox22.Size = new System.Drawing.Size(333, 127);
+            this.pictureBox22.Size = new System.Drawing.Size(296, 102);
             this.pictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox22.TabIndex = 60;
             this.pictureBox22.TabStop = false;
@@ -2447,11 +2447,11 @@
             // label77
             // 
             this.label77.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label77.Location = new System.Drawing.Point(1, 228);
+            this.label77.Location = new System.Drawing.Point(1, 186);
             this.label77.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label77.Name = "label77";
-            this.label77.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label77.Size = new System.Drawing.Size(338, 31);
+            this.label77.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label77.Size = new System.Drawing.Size(300, 25);
             this.label77.TabIndex = 59;
             this.label77.Text = "Main Bar 2";
             this.label77.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2459,11 +2459,11 @@
             // label78
             // 
             this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label78.Location = new System.Drawing.Point(1, 34);
+            this.label78.Location = new System.Drawing.Point(1, 27);
             this.label78.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label78.Name = "label78";
-            this.label78.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label78.Size = new System.Drawing.Size(338, 31);
+            this.label78.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label78.Size = new System.Drawing.Size(300, 25);
             this.label78.TabIndex = 39;
             this.label78.Text = "Main Bar 1";
             this.label78.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2474,8 +2474,8 @@
             this.label79.Location = new System.Drawing.Point(1, 0);
             this.label79.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label79.Name = "label79";
-            this.label79.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label79.Size = new System.Drawing.Size(338, 34);
+            this.label79.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label79.Size = new System.Drawing.Size(300, 27);
             this.label79.TabIndex = 26;
             this.label79.Text = "Waist Slab - Flight 1";
             this.label79.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2484,11 +2484,11 @@
             // 
             this.pictureBox23.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel9.SetColumnSpan(this.pictureBox23, 2);
-            this.pictureBox23.Image = KnowEst.Properties.Resources.MAIN_BAR_1;
-            this.pictureBox23.Location = new System.Drawing.Point(176, 67);
+            this.pictureBox23.Image = global::KnowEst.Properties.Resources.MAIN_BAR_1;
+            this.pictureBox23.Location = new System.Drawing.Point(156, 54);
             this.pictureBox23.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox23.Name = "pictureBox23";
-            this.pictureBox23.Size = new System.Drawing.Size(333, 127);
+            this.pictureBox23.Size = new System.Drawing.Size(296, 102);
             this.pictureBox23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox23.TabIndex = 36;
             this.pictureBox23.TabStop = false;
@@ -2502,23 +2502,24 @@
             "7.5m",
             "9.0m",
             "10.5m",
-            "12.5m",
+            "12.0m",
             "13.5m",
             "15.0m"});
-            this.LStair_WSF1_MB1_ML_cbx.Location = new System.Drawing.Point(345, 198);
+            this.LStair_WSF1_MB1_ML_cbx.Location = new System.Drawing.Point(307, 160);
             this.LStair_WSF1_MB1_ML_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LStair_WSF1_MB1_ML_cbx.Name = "LStair_WSF1_MB1_ML_cbx";
-            this.LStair_WSF1_MB1_ML_cbx.Size = new System.Drawing.Size(164, 28);
+            this.LStair_WSF1_MB1_ML_cbx.Size = new System.Drawing.Size(146, 24);
             this.LStair_WSF1_MB1_ML_cbx.TabIndex = 52;
+            this.LStair_WSF1_MB1_ML_cbx.SelectedIndexChanged += new System.EventHandler(this.LStair_WSF1_MB1_ML_cbx_SelectedIndexChanged);
             // 
             // label80
             // 
             this.label80.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label80.Location = new System.Drawing.Point(1, 196);
+            this.label80.Location = new System.Drawing.Point(1, 158);
             this.label80.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label80.Name = "label80";
-            this.label80.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label80.Size = new System.Drawing.Size(338, 31);
+            this.label80.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label80.Size = new System.Drawing.Size(300, 25);
             this.label80.TabIndex = 51;
             this.label80.Text = "Manufactured Length:";
             this.label80.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2526,22 +2527,23 @@
             // label81
             // 
             this.label81.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label81.Location = new System.Drawing.Point(1, 771);
+            this.label81.Location = new System.Drawing.Point(1, 629);
             this.label81.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label81.Name = "label81";
-            this.label81.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label81.Size = new System.Drawing.Size(338, 31);
+            this.label81.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
+            this.label81.Size = new System.Drawing.Size(300, 25);
             this.label81.TabIndex = 74;
             this.label81.Text = "Manufactured Length:";
             this.label81.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // StairParameterUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.stairsTabControl);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "StairParameterUserControl";
-            this.Size = new System.Drawing.Size(742, 469);
+            this.Size = new System.Drawing.Size(660, 375);
             this.stairsTabControl.ResumeLayout(false);
             this.tabPage13.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -2558,6 +2560,7 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
@@ -2567,7 +2570,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();

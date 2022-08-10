@@ -180,7 +180,6 @@ namespace KnowEst
             AddStructForm asForm = new AddStructForm(costEstimationForm, floorCount, footingCount, wallFootingCount, columnCount, beamCount, slabCount, stairsCount, roofCount, nodes, true, -1, "NEW", false, this, "");
             if (asForm.ShowDialog() == DialogResult.OK)
             {
-                //TODO add other structural members
                 if (asForm.structuralMemberType.Equals("Footing (Column)"))
                 {
                     footingCount++;
@@ -301,6 +300,11 @@ namespace KnowEst
             }
         }
 
+        private void addStrMemBtn_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Add new structural member to an existing floor.", addStrMemBtn);
+        }
+
         private void floorUCDeleteBtn_Click(object sender, EventArgs e)
         {
             this.Parent.Controls.Remove(this);
@@ -326,6 +330,7 @@ namespace KnowEst
             costEstimationForm.structuralMembers.stairs.RemoveAt(floorCount);
             costEstimationForm.parameters.stair.RemoveAt(floorCount);
             costEstimationForm.structuralMembers.stairsNames.RemoveAt(floorCount);
+            costEstimationForm.structuralMembers.stairs_Rebar.RemoveAt(floorCount);
 
             //Roof
             costEstimationForm.structuralMembers.roof.RemoveAt(floorCount);
@@ -337,7 +342,7 @@ namespace KnowEst
             costEstimationForm.structuralMembers.concreteWorkSolutionsBR.RemoveAt(floorCount);
             costEstimationForm.structuralMembers.concreteWorkSolutionsSL.RemoveAt(floorCount);
             costEstimationForm.structuralMembers.concreteWorkSolutionsST.RemoveAt(floorCount);
-            
+            costEstimationForm.structuralMembers.roofSolutions.RemoveAt(floorCount);
             costEstimationForm.refreshFloors();
         }
 

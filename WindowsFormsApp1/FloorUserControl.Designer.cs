@@ -29,6 +29,7 @@ namespace KnowEst
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.floorPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.floorDupeCountNUD = new System.Windows.Forms.NumericUpDown();
@@ -36,6 +37,7 @@ namespace KnowEst
             this.floorLbl = new System.Windows.Forms.TextBox();
             this.floorTreeView = new System.Windows.Forms.TreeView();
             this.addStrMemBtn = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.floorPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.floorDupeCountNUD)).BeginInit();
@@ -63,11 +65,12 @@ namespace KnowEst
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.5F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
             this.tableLayoutPanel1.Controls.Add(this.floorDupeCountNUD, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.floorUCDeleteBtn, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.floorLbl, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -78,9 +81,10 @@ namespace KnowEst
             // 
             this.floorDupeCountNUD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.floorDupeCountNUD.Location = new System.Drawing.Point(3, 3);
+            this.floorDupeCountNUD.Location = new System.Drawing.Point(3, 2);
+            this.floorDupeCountNUD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.floorDupeCountNUD.Name = "floorDupeCountNUD";
-            this.floorDupeCountNUD.Size = new System.Drawing.Size(50, 26);
+            this.floorDupeCountNUD.Size = new System.Drawing.Size(48, 26);
             this.floorDupeCountNUD.TabIndex = 3;
             this.floorDupeCountNUD.Value = new decimal(new int[] {
             1,
@@ -91,9 +95,10 @@ namespace KnowEst
             // floorUCDeleteBtn
             // 
             this.floorUCDeleteBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.floorUCDeleteBtn.Location = new System.Drawing.Point(233, 3);
+            this.floorUCDeleteBtn.Location = new System.Drawing.Point(228, 4);
+            this.floorUCDeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.floorUCDeleteBtn.Name = "floorUCDeleteBtn";
-            this.floorUCDeleteBtn.Size = new System.Drawing.Size(61, 29);
+            this.floorUCDeleteBtn.Size = new System.Drawing.Size(66, 29);
             this.floorUCDeleteBtn.TabIndex = 4;
             this.floorUCDeleteBtn.Text = "X";
             this.floorUCDeleteBtn.UseVisualStyleBackColor = true;
@@ -102,10 +107,11 @@ namespace KnowEst
             // floorLbl
             // 
             this.floorLbl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.floorLbl.Location = new System.Drawing.Point(59, 6);
+            this.floorLbl.Location = new System.Drawing.Point(58, 7);
+            this.floorLbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.floorLbl.Name = "floorLbl";
             this.floorLbl.ReadOnly = true;
-            this.floorLbl.Size = new System.Drawing.Size(168, 26);
+            this.floorLbl.Size = new System.Drawing.Size(164, 26);
             this.floorLbl.TabIndex = 5;
             this.floorLbl.DoubleClick += new System.EventHandler(this.floorLbl_DoubleClick);
             this.floorLbl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.floorLbl_KeyPress);
@@ -116,7 +122,8 @@ namespace KnowEst
             this.floorTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.floorTreeView.Location = new System.Drawing.Point(3, 44);
+            this.floorTreeView.Location = new System.Drawing.Point(3, 41);
+            this.floorTreeView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.floorTreeView.Name = "floorTreeView";
             this.floorTreeView.Size = new System.Drawing.Size(297, 62);
             this.floorTreeView.TabIndex = 3;
@@ -129,14 +136,19 @@ namespace KnowEst
             this.addStrMemBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.addStrMemBtn.AutoSize = true;
-            this.addStrMemBtn.Location = new System.Drawing.Point(3, 111);
+            this.addStrMemBtn.Location = new System.Drawing.Point(3, 107);
             this.addStrMemBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addStrMemBtn.Name = "addStrMemBtn";
-            this.addStrMemBtn.Size = new System.Drawing.Size(297, 35);
+            this.addStrMemBtn.Size = new System.Drawing.Size(297, 38);
             this.addStrMemBtn.TabIndex = 1;
             this.addStrMemBtn.Text = "➕STRUCT. MEMBER";
             this.addStrMemBtn.UseVisualStyleBackColor = true;
             this.addStrMemBtn.Click += new System.EventHandler(this.addStrMemBtn_Click);
+            this.addStrMemBtn.MouseHover += new System.EventHandler(this.addStrMemBtn_MouseHover);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 1000;
             // 
             // Floor
             // 
@@ -145,6 +157,7 @@ namespace KnowEst
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.floorPanel);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MinimumSize = new System.Drawing.Size(250, 150);
             this.Name = "Floor";
             this.Size = new System.Drawing.Size(303, 150);
@@ -167,5 +180,6 @@ namespace KnowEst
         private System.Windows.Forms.NumericUpDown floorDupeCountNUD;
         private System.Windows.Forms.Button floorUCDeleteBtn;
         private System.Windows.Forms.TextBox floorLbl;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

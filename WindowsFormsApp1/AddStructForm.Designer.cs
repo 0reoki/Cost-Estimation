@@ -29,6 +29,7 @@ namespace KnowEst
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddStructForm));
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox17 = new System.Windows.Forms.TextBox();
@@ -826,6 +827,7 @@ namespace KnowEst
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel9.SuspendLayout();
             this.addstructTabControl.SuspendLayout();
             this.footingTabPage.SuspendLayout();
@@ -1033,6 +1035,7 @@ namespace KnowEst
             this.textBox17.Size = new System.Drawing.Size(133, 26);
             this.textBox17.TabIndex = 27;
             this.textBox17.Text = "Millimeter";
+            this.textBox17.TextChanged += new System.EventHandler(this.textBox17_TextChanged);
             // 
             // label25
             // 
@@ -2508,7 +2511,8 @@ namespace KnowEst
             this.footW_R_TR_HT_cbx.Items.AddRange(new object[] {
             "90",
             "135",
-            "180"});
+            "180",
+            "0"});
             this.footW_R_TR_HT_cbx.Location = new System.Drawing.Point(185, 143);
             this.footW_R_TR_HT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.footW_R_TR_HT_cbx.Name = "footW_R_TR_HT_cbx";
@@ -2642,7 +2646,8 @@ namespace KnowEst
             this.footW_R_LR_HT_cbx.Items.AddRange(new object[] {
             "90",
             "135",
-            "180"});
+            "180",
+            "0"});
             this.footW_R_LR_HT_cbx.Location = new System.Drawing.Point(185, 143);
             this.footW_R_LR_HT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.footW_R_LR_HT_cbx.Name = "footW_R_LR_HT_cbx";
@@ -3001,7 +3006,8 @@ namespace KnowEst
             this.footW_T_TR_HT_cbx.Items.AddRange(new object[] {
             "90",
             "135",
-            "180"});
+            "180",
+            "0"});
             this.footW_T_TR_HT_cbx.Location = new System.Drawing.Point(185, 143);
             this.footW_T_TR_HT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.footW_T_TR_HT_cbx.Name = "footW_T_TR_HT_cbx";
@@ -3135,7 +3141,8 @@ namespace KnowEst
             this.footW_T_LR_HT_cbx.Items.AddRange(new object[] {
             "90",
             "135",
-            "180"});
+            "180",
+            "0"});
             this.footW_T_LR_HT_cbx.Location = new System.Drawing.Point(185, 143);
             this.footW_T_LR_HT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.footW_T_LR_HT_cbx.Name = "footW_T_LR_HT_cbx";
@@ -3567,7 +3574,7 @@ namespace KnowEst
             this.tableLayoutPanel81.RowCount = 2;
             this.tableLayoutPanel81.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.12639F));
             this.tableLayoutPanel81.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85.8736F));
-            this.tableLayoutPanel81.Size = new System.Drawing.Size(214, 289);
+            this.tableLayoutPanel81.Size = new System.Drawing.Size(213, 289);
             this.tableLayoutPanel81.TabIndex = 0;
             // 
             // col_G_LT_LTC_cbx
@@ -3598,7 +3605,7 @@ namespace KnowEst
             this.col_G_LT_Panel.Location = new System.Drawing.Point(3, 42);
             this.col_G_LT_Panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.col_G_LT_Panel.Name = "col_G_LT_Panel";
-            this.col_G_LT_Panel.Size = new System.Drawing.Size(208, 245);
+            this.col_G_LT_Panel.Size = new System.Drawing.Size(206, 245);
             this.col_G_LT_Panel.TabIndex = 32;
             this.col_G_LT_Panel.WrapContents = false;
             // 
@@ -3676,24 +3683,25 @@ namespace KnowEst
             this.tableLayoutPanel77.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel77.Controls.Add(this.col_G_LT_D_bx, 1, 0);
             this.tableLayoutPanel77.Controls.Add(this.label229, 0, 0);
-            this.tableLayoutPanel77.Location = new System.Drawing.Point(222, 2);
+            this.tableLayoutPanel77.Location = new System.Drawing.Point(223, 2);
             this.tableLayoutPanel77.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel77.Name = "tableLayoutPanel77";
             this.tableLayoutPanel77.RowCount = 1;
             this.tableLayoutPanel77.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel77.Size = new System.Drawing.Size(214, 37);
+            this.tableLayoutPanel77.Size = new System.Drawing.Size(213, 35);
             this.tableLayoutPanel77.TabIndex = 29;
             // 
             // col_G_LT_D_bx
             // 
             this.col_G_LT_D_bx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.col_G_LT_D_bx.Location = new System.Drawing.Point(110, 2);
+            this.col_G_LT_D_bx.Location = new System.Drawing.Point(109, 2);
             this.col_G_LT_D_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.col_G_LT_D_bx.Name = "col_G_LT_D_bx";
             this.col_G_LT_D_bx.Size = new System.Drawing.Size(100, 26);
             this.col_G_LT_D_bx.TabIndex = 34;
             this.col_G_LT_D_bx.Text = "0";
+            this.col_G_LT_D_bx.MouseHover += new System.EventHandler(this.col_G_LT_D_bx_MouseHover);
             // 
             // label229
             // 
@@ -3703,7 +3711,7 @@ namespace KnowEst
             this.label229.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label229.Name = "label229";
             this.label229.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.label229.Size = new System.Drawing.Size(103, 37);
+            this.label229.Size = new System.Drawing.Size(102, 35);
             this.label229.TabIndex = 19;
             this.label229.Text = "Diameter:";
             this.label229.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3791,6 +3799,7 @@ namespace KnowEst
             this.col_G_D_CH_bx.Size = new System.Drawing.Size(214, 26);
             this.col_G_D_CH_bx.TabIndex = 27;
             this.col_G_D_CH_bx.Text = "0";
+            this.col_G_D_CH_bx.MouseHover += new System.EventHandler(this.col_G_D_CH_bx_MouseHover);
             // 
             // label238
             // 
@@ -4109,6 +4118,7 @@ namespace KnowEst
             this.col_G_ST_cbx.Name = "col_G_ST_cbx";
             this.col_G_ST_cbx.Size = new System.Drawing.Size(150, 28);
             this.col_G_ST_cbx.TabIndex = 36;
+            this.col_G_ST_cbx.MouseHover += new System.EventHandler(this.col_G_ST_cbx_MouseHover);
             // 
             // label226
             // 
@@ -4188,6 +4198,7 @@ namespace KnowEst
             this.col_G_JT_D_bx.Size = new System.Drawing.Size(150, 26);
             this.col_G_JT_D_bx.TabIndex = 28;
             this.col_G_JT_D_bx.Text = "0";
+            this.col_G_JT_D_bx.MouseHover += new System.EventHandler(this.col_G_JT_D_bx_MouseHover);
             // 
             // label37
             // 
@@ -4236,6 +4247,7 @@ namespace KnowEst
             this.col_G_MR_D_bx.Size = new System.Drawing.Size(150, 26);
             this.col_G_MR_D_bx.TabIndex = 16;
             this.col_G_MR_D_bx.Text = "0";
+            this.col_G_MR_D_bx.MouseHover += new System.EventHandler(this.col_G_MR_D_bx_MouseHover);
             // 
             // col_G_MR_Q_bx
             // 
@@ -4355,7 +4367,7 @@ namespace KnowEst
             this.col_G_S_S_bx.Location = new System.Drawing.Point(543, 2);
             this.col_G_S_S_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.col_G_S_S_bx.Name = "col_G_S_S_bx";
-            this.col_G_S_S_bx.Size = new System.Drawing.Size(178, 26);
+            this.col_G_S_S_bx.Size = new System.Drawing.Size(177, 26);
             this.col_G_S_S_bx.TabIndex = 34;
             this.col_G_S_S_bx.Text = "0";
             // 
@@ -4474,7 +4486,7 @@ namespace KnowEst
             this.tableLayoutPanel83.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.20937F));
             this.tableLayoutPanel83.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.20937F));
             this.tableLayoutPanel83.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 67.58126F));
-            this.tableLayoutPanel83.Size = new System.Drawing.Size(736, 244);
+            this.tableLayoutPanel83.Size = new System.Drawing.Size(736, 242);
             this.tableLayoutPanel83.TabIndex = 38;
             // 
             // tableLayoutPanel116
@@ -4487,12 +4499,12 @@ namespace KnowEst
             this.tableLayoutPanel116.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel116.Controls.Add(this.label10, 0, 0);
             this.tableLayoutPanel116.Controls.Add(this.col_U_LT_Add_btn, 3, 0);
-            this.tableLayoutPanel116.Location = new System.Drawing.Point(3, 2);
+            this.tableLayoutPanel116.Location = new System.Drawing.Point(4, 2);
             this.tableLayoutPanel116.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel116.Name = "tableLayoutPanel116";
             this.tableLayoutPanel116.RowCount = 1;
             this.tableLayoutPanel116.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel116.Size = new System.Drawing.Size(730, 35);
+            this.tableLayoutPanel116.Size = new System.Drawing.Size(729, 34);
             this.tableLayoutPanel116.TabIndex = 34;
             // 
             // label10
@@ -4502,7 +4514,7 @@ namespace KnowEst
             this.label10.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label10.Name = "label10";
             this.label10.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label10.Size = new System.Drawing.Size(115, 35);
+            this.label10.Size = new System.Drawing.Size(115, 34);
             this.label10.TabIndex = 36;
             this.label10.Text = "Spacing";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -4510,10 +4522,10 @@ namespace KnowEst
             // col_U_LT_Add_btn
             // 
             this.col_U_LT_Add_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.col_U_LT_Add_btn.Location = new System.Drawing.Point(641, 2);
+            this.col_U_LT_Add_btn.Location = new System.Drawing.Point(640, 2);
             this.col_U_LT_Add_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.col_U_LT_Add_btn.Name = "col_U_LT_Add_btn";
-            this.col_U_LT_Add_btn.Size = new System.Drawing.Size(86, 31);
+            this.col_U_LT_Add_btn.Size = new System.Drawing.Size(86, 29);
             this.col_U_LT_Add_btn.TabIndex = 37;
             this.col_U_LT_Add_btn.Text = "Add";
             this.col_U_LT_Add_btn.UseVisualStyleBackColor = true;
@@ -4531,12 +4543,12 @@ namespace KnowEst
             this.tableLayoutPanel85.Controls.Add(this.label7, 2, 0);
             this.tableLayoutPanel85.Controls.Add(this.col_U_S_S_bx, 3, 0);
             this.tableLayoutPanel85.Controls.Add(this.label8, 0, 0);
-            this.tableLayoutPanel85.Location = new System.Drawing.Point(3, 41);
+            this.tableLayoutPanel85.Location = new System.Drawing.Point(4, 41);
             this.tableLayoutPanel85.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel85.Name = "tableLayoutPanel85";
             this.tableLayoutPanel85.RowCount = 1;
             this.tableLayoutPanel85.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel85.Size = new System.Drawing.Size(730, 35);
+            this.tableLayoutPanel85.Size = new System.Drawing.Size(729, 34);
             this.tableLayoutPanel85.TabIndex = 33;
             // 
             // label6
@@ -4547,7 +4559,7 @@ namespace KnowEst
             this.label6.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label6.Name = "label6";
             this.label6.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label6.Size = new System.Drawing.Size(239, 35);
+            this.label6.Size = new System.Drawing.Size(239, 34);
             this.label6.TabIndex = 36;
             this.label6.Text = "Rest";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -4560,7 +4572,7 @@ namespace KnowEst
             this.label7.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label7.Name = "label7";
             this.label7.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label7.Size = new System.Drawing.Size(179, 35);
+            this.label7.Size = new System.Drawing.Size(178, 34);
             this.label7.TabIndex = 35;
             this.label7.Text = "Spacing:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4569,10 +4581,10 @@ namespace KnowEst
             // 
             this.col_U_S_S_bx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.col_U_S_S_bx.Location = new System.Drawing.Point(548, 2);
+            this.col_U_S_S_bx.Location = new System.Drawing.Point(547, 2);
             this.col_U_S_S_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.col_U_S_S_bx.Name = "col_U_S_S_bx";
-            this.col_U_S_S_bx.Size = new System.Drawing.Size(179, 26);
+            this.col_U_S_S_bx.Size = new System.Drawing.Size(177, 26);
             this.col_U_S_S_bx.TabIndex = 34;
             this.col_U_S_S_bx.Text = "0";
             // 
@@ -4584,7 +4596,7 @@ namespace KnowEst
             this.label8.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label8.Name = "label8";
             this.label8.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label8.Size = new System.Drawing.Size(115, 35);
+            this.label8.Size = new System.Drawing.Size(115, 34);
             this.label8.TabIndex = 19;
             this.label8.Text = "@";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -4598,7 +4610,7 @@ namespace KnowEst
             this.col_U_S_Panel.Location = new System.Drawing.Point(3, 80);
             this.col_U_S_Panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.col_U_S_Panel.Name = "col_U_S_Panel";
-            this.col_U_S_Panel.Size = new System.Drawing.Size(729, 162);
+            this.col_U_S_Panel.Size = new System.Drawing.Size(729, 160);
             this.col_U_S_Panel.TabIndex = 32;
             this.col_U_S_Panel.WrapContents = false;
             // 
@@ -4634,7 +4646,7 @@ namespace KnowEst
             this.tableLayoutPanel86.RowCount = 2;
             this.tableLayoutPanel86.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.07692F));
             this.tableLayoutPanel86.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.92308F));
-            this.tableLayoutPanel86.Size = new System.Drawing.Size(213, 194);
+            this.tableLayoutPanel86.Size = new System.Drawing.Size(213, 192);
             this.tableLayoutPanel86.TabIndex = 0;
             // 
             // col_U_LT_LTC_cbx
@@ -4665,7 +4677,7 @@ namespace KnowEst
             this.col_U_LT_Panel.Location = new System.Drawing.Point(3, 46);
             this.col_U_LT_Panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.col_U_LT_Panel.Name = "col_U_LT_Panel";
-            this.col_U_LT_Panel.Size = new System.Drawing.Size(206, 146);
+            this.col_U_LT_Panel.Size = new System.Drawing.Size(206, 144);
             this.col_U_LT_Panel.TabIndex = 32;
             this.col_U_LT_Panel.WrapContents = false;
             // 
@@ -4748,7 +4760,7 @@ namespace KnowEst
             this.tableLayoutPanel88.Name = "tableLayoutPanel88";
             this.tableLayoutPanel88.RowCount = 1;
             this.tableLayoutPanel88.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel88.Size = new System.Drawing.Size(213, 33);
+            this.tableLayoutPanel88.Size = new System.Drawing.Size(213, 32);
             this.tableLayoutPanel88.TabIndex = 29;
             // 
             // col_U_LT_D_bx
@@ -4761,6 +4773,7 @@ namespace KnowEst
             this.col_U_LT_D_bx.Size = new System.Drawing.Size(100, 26);
             this.col_U_LT_D_bx.TabIndex = 34;
             this.col_U_LT_D_bx.Text = "0";
+            this.col_U_LT_D_bx.MouseHover += new System.EventHandler(this.col_U_LT_D_bx_MouseHover);
             // 
             // label11
             // 
@@ -4770,7 +4783,7 @@ namespace KnowEst
             this.label11.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label11.Name = "label11";
             this.label11.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label11.Size = new System.Drawing.Size(102, 33);
+            this.label11.Size = new System.Drawing.Size(102, 32);
             this.label11.TabIndex = 19;
             this.label11.Text = "Diameter:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4782,7 +4795,7 @@ namespace KnowEst
             this.label236.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label236.Name = "label236";
             this.label236.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label236.Size = new System.Drawing.Size(215, 37);
+            this.label236.Size = new System.Drawing.Size(215, 38);
             this.label236.TabIndex = 10;
             this.label236.Text = "Lateral Ties";
             this.label236.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -4827,6 +4840,7 @@ namespace KnowEst
             this.col_U_D_CH_bx.Size = new System.Drawing.Size(214, 26);
             this.col_U_D_CH_bx.TabIndex = 29;
             this.col_U_D_CH_bx.Text = "0";
+            this.col_U_D_CH_bx.MouseHover += new System.EventHandler(this.col_U_D_CH_bx_MouseHover);
             // 
             // label35
             // 
@@ -4998,6 +5012,7 @@ namespace KnowEst
             this.col_U_ST_cbx.Name = "col_U_ST_cbx";
             this.col_U_ST_cbx.Size = new System.Drawing.Size(150, 28);
             this.col_U_ST_cbx.TabIndex = 36;
+            this.col_U_ST_cbx.MouseHover += new System.EventHandler(this.col_U_ST_cbx_MouseHover);
             // 
             // label248
             // 
@@ -5042,6 +5057,7 @@ namespace KnowEst
             this.col_U_JT_D_bx.Size = new System.Drawing.Size(150, 26);
             this.col_U_JT_D_bx.TabIndex = 28;
             this.col_U_JT_D_bx.Text = "0";
+            this.col_U_JT_D_bx.MouseHover += new System.EventHandler(this.col_U_JT_D_bx_MouseHover);
             // 
             // label252
             // 
@@ -5090,6 +5106,7 @@ namespace KnowEst
             this.col_U_MR_D_bx.Size = new System.Drawing.Size(150, 26);
             this.col_U_MR_D_bx.TabIndex = 16;
             this.col_U_MR_D_bx.Text = "0";
+            this.col_U_MR_D_bx.MouseHover += new System.EventHandler(this.col_U_MR_D_bx_MouseHover);
             // 
             // col_U_MR_Q_bx
             // 
@@ -5257,7 +5274,7 @@ namespace KnowEst
             this.tableLayoutPanel107.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.7907F));
             this.tableLayoutPanel107.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.2093F));
             this.tableLayoutPanel107.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel107.Size = new System.Drawing.Size(753, 344);
+            this.tableLayoutPanel107.Size = new System.Drawing.Size(753, 342);
             this.tableLayoutPanel107.TabIndex = 42;
             // 
             // tableLayoutPanel108
@@ -5273,7 +5290,7 @@ namespace KnowEst
             this.tableLayoutPanel108.Name = "tableLayoutPanel108";
             this.tableLayoutPanel108.RowCount = 1;
             this.tableLayoutPanel108.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel108.Size = new System.Drawing.Size(747, 40);
+            this.tableLayoutPanel108.Size = new System.Drawing.Size(747, 39);
             this.tableLayoutPanel108.TabIndex = 38;
             // 
             // beam_BS_lbl
@@ -5307,10 +5324,10 @@ namespace KnowEst
             this.beam_BS_Panel.AutoScroll = true;
             this.beam_BS_Panel.Controls.Add(this.tableLayoutPanel112);
             this.beam_BS_Panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.beam_BS_Panel.Location = new System.Drawing.Point(3, 46);
+            this.beam_BS_Panel.Location = new System.Drawing.Point(3, 45);
             this.beam_BS_Panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.beam_BS_Panel.Name = "beam_BS_Panel";
-            this.beam_BS_Panel.Size = new System.Drawing.Size(746, 296);
+            this.beam_BS_Panel.Size = new System.Drawing.Size(746, 295);
             this.beam_BS_Panel.TabIndex = 32;
             this.beam_BS_Panel.WrapContents = false;
             // 
@@ -5318,15 +5335,15 @@ namespace KnowEst
             // 
             this.tableLayoutPanel112.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel112.ColumnCount = 9;
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 159F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 380F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 253F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 253F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 253F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 253F));
+            this.tableLayoutPanel112.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 217F));
             this.tableLayoutPanel112.Controls.Add(this.label280, 8, 0);
             this.tableLayoutPanel112.Controls.Add(this.label279, 7, 0);
             this.tableLayoutPanel112.Controls.Add(this.label278, 6, 0);
@@ -5347,7 +5364,7 @@ namespace KnowEst
             // label280
             // 
             this.label280.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label280.Location = new System.Drawing.Point(1410, 1);
+            this.label280.Location = new System.Drawing.Point(1780, 1);
             this.label280.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label280.Name = "label280";
             this.label280.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -5358,12 +5375,10 @@ namespace KnowEst
             // 
             // label279
             // 
-            this.label279.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label279.Location = new System.Drawing.Point(1209, 1);
-            this.label279.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label279.Location = new System.Drawing.Point(1528, 1);
             this.label279.Name = "label279";
             this.label279.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label279.Size = new System.Drawing.Size(196, 31);
+            this.label279.Size = new System.Drawing.Size(100, 22);
             this.label279.TabIndex = 47;
             this.label279.Text = "Stirrups";
             this.label279.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5371,7 +5386,7 @@ namespace KnowEst
             // label278
             // 
             this.label278.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label278.Location = new System.Drawing.Point(1008, 1);
+            this.label278.Location = new System.Drawing.Point(1272, 1);
             this.label278.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label278.Name = "label278";
             this.label278.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -5383,7 +5398,7 @@ namespace KnowEst
             // label277
             // 
             this.label277.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label277.Location = new System.Drawing.Point(807, 1);
+            this.label277.Location = new System.Drawing.Point(1018, 1);
             this.label277.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label277.Name = "label277";
             this.label277.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -5395,7 +5410,7 @@ namespace KnowEst
             // label316
             // 
             this.label316.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label316.Location = new System.Drawing.Point(606, 1);
+            this.label316.Location = new System.Drawing.Point(764, 1);
             this.label316.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label316.Name = "label316";
             this.label316.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -5407,7 +5422,7 @@ namespace KnowEst
             // label317
             // 
             this.label317.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label317.Location = new System.Drawing.Point(305, 1);
+            this.label317.Location = new System.Drawing.Point(383, 1);
             this.label317.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label317.Name = "label317";
             this.label317.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -5420,7 +5435,7 @@ namespace KnowEst
             // label318
             // 
             this.label318.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label318.Location = new System.Drawing.Point(204, 1);
+            this.label318.Location = new System.Drawing.Point(256, 1);
             this.label318.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label318.Name = "label318";
             this.label318.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -5432,7 +5447,7 @@ namespace KnowEst
             // label319
             // 
             this.label319.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label319.Location = new System.Drawing.Point(103, 1);
+            this.label319.Location = new System.Drawing.Point(129, 1);
             this.label319.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label319.Name = "label319";
             this.label319.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -5518,10 +5533,10 @@ namespace KnowEst
             this.pictureBox16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel47.SetColumnSpan(this.pictureBox16, 2);
             this.pictureBox16.Image = global::KnowEst.Properties.Resources.BEAM_DETAILS;
-            this.pictureBox16.Location = new System.Drawing.Point(37, 2);
+            this.pictureBox16.Location = new System.Drawing.Point(37, 6);
             this.pictureBox16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox16.Name = "pictureBox16";
-            this.pictureBox16.Size = new System.Drawing.Size(374, 73);
+            this.pictureBox16.Size = new System.Drawing.Size(374, 64);
             this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox16.TabIndex = 39;
             this.pictureBox16.TabStop = false;
@@ -5598,7 +5613,7 @@ namespace KnowEst
             this.beam_SHT_cbx.Location = new System.Drawing.Point(227, 130);
             this.beam_SHT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.beam_SHT_cbx.Name = "beam_SHT_cbx";
-            this.beam_SHT_cbx.Size = new System.Drawing.Size(219, 28);
+            this.beam_SHT_cbx.Size = new System.Drawing.Size(218, 28);
             this.beam_SHT_cbx.TabIndex = 38;
             // 
             // beam_MBHT_cbx
@@ -5622,7 +5637,7 @@ namespace KnowEst
             this.label138.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label138.Name = "label138";
             this.label138.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label138.Size = new System.Drawing.Size(220, 34);
+            this.label138.Size = new System.Drawing.Size(219, 34);
             this.label138.TabIndex = 38;
             this.label138.Text = "Splice Type:";
             this.label138.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -5717,7 +5732,7 @@ namespace KnowEst
             this.label136.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label136.Name = "label136";
             this.label136.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label136.Size = new System.Drawing.Size(220, 34);
+            this.label136.Size = new System.Drawing.Size(219, 34);
             this.label136.TabIndex = 34;
             this.label136.Text = "Stirrup Hook Type:";
             this.label136.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -5736,6 +5751,7 @@ namespace KnowEst
             this.beam_ST_cbx.Name = "beam_ST_cbx";
             this.beam_ST_cbx.Size = new System.Drawing.Size(218, 28);
             this.beam_ST_cbx.TabIndex = 41;
+            this.beam_ST_cbx.MouseHover += new System.EventHandler(this.beam_ST_cbx_MouseHover);
             // 
             // tableLayoutPanel57
             // 
@@ -5759,7 +5775,7 @@ namespace KnowEst
             this.beam_DeleteBtn.Location = new System.Drawing.Point(134, 2);
             this.beam_DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.beam_DeleteBtn.Name = "beam_DeleteBtn";
-            this.beam_DeleteBtn.Size = new System.Drawing.Size(86, 43);
+            this.beam_DeleteBtn.Size = new System.Drawing.Size(86, 42);
             this.beam_DeleteBtn.TabIndex = 31;
             this.beam_DeleteBtn.Text = "Delete";
             this.beam_DeleteBtn.UseVisualStyleBackColor = true;
@@ -5803,7 +5819,7 @@ namespace KnowEst
             this.tableLayoutPanel104.RowCount = 2;
             this.tableLayoutPanel104.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel104.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.tableLayoutPanel104.Size = new System.Drawing.Size(753, 286);
+            this.tableLayoutPanel104.Size = new System.Drawing.Size(753, 285);
             this.tableLayoutPanel104.TabIndex = 41;
             // 
             // tableLayoutPanel105
@@ -5856,7 +5872,7 @@ namespace KnowEst
             this.beam_BR_Panel.Location = new System.Drawing.Point(3, 44);
             this.beam_BR_Panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.beam_BR_Panel.Name = "beam_BR_Panel";
-            this.beam_BR_Panel.Size = new System.Drawing.Size(746, 240);
+            this.beam_BR_Panel.Size = new System.Drawing.Size(746, 239);
             this.beam_BR_Panel.TabIndex = 32;
             this.beam_BR_Panel.WrapContents = false;
             // 
@@ -6055,7 +6071,7 @@ namespace KnowEst
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.74074F));
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.25926F));
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel27.Size = new System.Drawing.Size(742, 487);
+            this.tableLayoutPanel27.Size = new System.Drawing.Size(742, 488);
             this.tableLayoutPanel27.TabIndex = 0;
             // 
             // tableLayoutPanel54
@@ -6065,7 +6081,7 @@ namespace KnowEst
             this.tableLayoutPanel54.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel54.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel54.Controls.Add(this.tableLayoutPanel55, 0, 0);
-            this.tableLayoutPanel54.Location = new System.Drawing.Point(3, 297);
+            this.tableLayoutPanel54.Location = new System.Drawing.Point(3, 298);
             this.tableLayoutPanel54.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel54.Name = "tableLayoutPanel54";
             this.tableLayoutPanel54.RowCount = 5;
@@ -6120,7 +6136,7 @@ namespace KnowEst
             this.tableLayoutPanel55.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel55.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel55.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel55.Size = new System.Drawing.Size(730, 188);
+            this.tableLayoutPanel55.Size = new System.Drawing.Size(729, 188);
             this.tableLayoutPanel55.TabIndex = 37;
             // 
             // slab_SOG_SB_R_L_bx
@@ -6132,6 +6148,7 @@ namespace KnowEst
             this.slab_SOG_SB_R_L_bx.Size = new System.Drawing.Size(138, 26);
             this.slab_SOG_SB_R_L_bx.TabIndex = 53;
             this.slab_SOG_SB_R_L_bx.Text = "0";
+            this.slab_SOG_SB_R_L_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_R_L_bx_MouseHover);
             // 
             // slab_SOG_SB_L_L_bx
             // 
@@ -6142,6 +6159,7 @@ namespace KnowEst
             this.slab_SOG_SB_L_L_bx.Size = new System.Drawing.Size(138, 26);
             this.slab_SOG_SB_L_L_bx.TabIndex = 52;
             this.slab_SOG_SB_L_L_bx.Text = "0";
+            this.slab_SOG_SB_L_L_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_L_L_bx_MouseHover);
             // 
             // slab_SOG_SB_B_L_bx
             // 
@@ -6152,6 +6170,7 @@ namespace KnowEst
             this.slab_SOG_SB_B_L_bx.Size = new System.Drawing.Size(138, 26);
             this.slab_SOG_SB_B_L_bx.TabIndex = 51;
             this.slab_SOG_SB_B_L_bx.Text = "0";
+            this.slab_SOG_SB_B_L_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_B_L_bx_MouseHover);
             // 
             // slab_SOG_SB_T_L_bx
             // 
@@ -6162,6 +6181,7 @@ namespace KnowEst
             this.slab_SOG_SB_T_L_bx.Size = new System.Drawing.Size(138, 26);
             this.slab_SOG_SB_T_L_bx.TabIndex = 50;
             this.slab_SOG_SB_T_L_bx.Text = "0";
+            this.slab_SOG_SB_T_L_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_T_L_bx_MouseHover);
             // 
             // slab_SOG_SB_T_CL_bx
             // 
@@ -6169,9 +6189,10 @@ namespace KnowEst
             this.slab_SOG_SB_T_CL_bx.Location = new System.Drawing.Point(584, 35);
             this.slab_SOG_SB_T_CL_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.slab_SOG_SB_T_CL_bx.Name = "slab_SOG_SB_T_CL_bx";
-            this.slab_SOG_SB_T_CL_bx.Size = new System.Drawing.Size(142, 26);
+            this.slab_SOG_SB_T_CL_bx.Size = new System.Drawing.Size(141, 26);
             this.slab_SOG_SB_T_CL_bx.TabIndex = 49;
             this.slab_SOG_SB_T_CL_bx.Text = "0";
+            this.slab_SOG_SB_T_CL_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_T_CL_bx_MouseHover);
             // 
             // slab_SOG_SB_B_CL_bx
             // 
@@ -6179,9 +6200,10 @@ namespace KnowEst
             this.slab_SOG_SB_B_CL_bx.Location = new System.Drawing.Point(584, 66);
             this.slab_SOG_SB_B_CL_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.slab_SOG_SB_B_CL_bx.Name = "slab_SOG_SB_B_CL_bx";
-            this.slab_SOG_SB_B_CL_bx.Size = new System.Drawing.Size(142, 26);
+            this.slab_SOG_SB_B_CL_bx.Size = new System.Drawing.Size(141, 26);
             this.slab_SOG_SB_B_CL_bx.TabIndex = 47;
             this.slab_SOG_SB_B_CL_bx.Text = "0";
+            this.slab_SOG_SB_B_CL_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_B_CL_bx_MouseHover);
             // 
             // slab_SOG_SB_L_CL_bx
             // 
@@ -6189,9 +6211,10 @@ namespace KnowEst
             this.slab_SOG_SB_L_CL_bx.Location = new System.Drawing.Point(584, 97);
             this.slab_SOG_SB_L_CL_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.slab_SOG_SB_L_CL_bx.Name = "slab_SOG_SB_L_CL_bx";
-            this.slab_SOG_SB_L_CL_bx.Size = new System.Drawing.Size(142, 26);
+            this.slab_SOG_SB_L_CL_bx.Size = new System.Drawing.Size(141, 26);
             this.slab_SOG_SB_L_CL_bx.TabIndex = 46;
             this.slab_SOG_SB_L_CL_bx.Text = "0";
+            this.slab_SOG_SB_L_CL_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_L_CL_bx_MouseHover);
             // 
             // slab_SOG_SB_R_CL_bx
             // 
@@ -6199,9 +6222,10 @@ namespace KnowEst
             this.slab_SOG_SB_R_CL_bx.Location = new System.Drawing.Point(584, 128);
             this.slab_SOG_SB_R_CL_bx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.slab_SOG_SB_R_CL_bx.Name = "slab_SOG_SB_R_CL_bx";
-            this.slab_SOG_SB_R_CL_bx.Size = new System.Drawing.Size(142, 26);
+            this.slab_SOG_SB_R_CL_bx.Size = new System.Drawing.Size(141, 26);
             this.slab_SOG_SB_R_CL_bx.TabIndex = 45;
             this.slab_SOG_SB_R_CL_bx.Text = "0";
+            this.slab_SOG_SB_R_CL_bx.MouseHover += new System.EventHandler(this.slab_SOG_SB_R_CL_bx_MouseHover);
             // 
             // label340
             // 
@@ -6357,7 +6381,7 @@ namespace KnowEst
             this.label119.Margin = new System.Windows.Forms.Padding(0);
             this.label119.Name = "label119";
             this.label119.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label119.Size = new System.Drawing.Size(725, 31);
+            this.label119.Size = new System.Drawing.Size(724, 31);
             this.label119.TabIndex = 10;
             this.label119.Text = "Slab Border:";
             this.label119.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -6365,8 +6389,8 @@ namespace KnowEst
             // pictureBox22
             // 
             this.pictureBox22.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox22.Image = global::KnowEst.Properties.Resources.SLAB;
-            this.pictureBox22.Location = new System.Drawing.Point(406, 21);
+            this.pictureBox22.Image = global::KnowEst.Properties.Resources.NEW_SLAB_ON_GRADE;
+            this.pictureBox22.Location = new System.Drawing.Point(406, 22);
             this.pictureBox22.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox22.Name = "pictureBox22";
             this.pictureBox22.Size = new System.Drawing.Size(300, 252);
@@ -6399,7 +6423,7 @@ namespace KnowEst
             this.tableLayoutPanel110.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel110.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel110.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel110.Size = new System.Drawing.Size(365, 291);
+            this.tableLayoutPanel110.Size = new System.Drawing.Size(365, 292);
             this.tableLayoutPanel110.TabIndex = 23;
             // 
             // tableLayoutPanel52
@@ -6450,6 +6474,7 @@ namespace KnowEst
             this.slab_SOG_T_ST_cbx.Name = "slab_SOG_T_ST_cbx";
             this.slab_SOG_T_ST_cbx.Size = new System.Drawing.Size(113, 28);
             this.slab_SOG_T_ST_cbx.TabIndex = 28;
+            this.slab_SOG_T_ST_cbx.MouseHover += new System.EventHandler(this.slab_SOG_T_ST_cbx_MouseHover);
             // 
             // slab_SOG_T_S_bx
             // 
@@ -6496,6 +6521,7 @@ namespace KnowEst
             this.slab_SOG_L_ST_cbx.Name = "slab_SOG_L_ST_cbx";
             this.slab_SOG_L_ST_cbx.Size = new System.Drawing.Size(112, 28);
             this.slab_SOG_L_ST_cbx.TabIndex = 24;
+            this.slab_SOG_L_ST_cbx.MouseHover += new System.EventHandler(this.slab_SOG_L_ST_cbx_MouseHover);
             // 
             // slab_SOG_L_D_bx
             // 
@@ -6679,7 +6705,7 @@ namespace KnowEst
             // pictureBox15
             // 
             this.pictureBox15.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox15.Image = global::KnowEst.Properties.Resources.SLAB;
+            this.pictureBox15.Image = global::KnowEst.Properties.Resources.NEW_SLAB_ON_GRADE;
             this.pictureBox15.Location = new System.Drawing.Point(406, 144);
             this.pictureBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox15.Name = "pictureBox15";
@@ -6827,6 +6853,7 @@ namespace KnowEst
             this.slab_SS_T_B_cbx.Name = "slab_SS_T_B_cbx";
             this.slab_SS_T_B_cbx.Size = new System.Drawing.Size(113, 28);
             this.slab_SS_T_B_cbx.TabIndex = 30;
+            this.slab_SS_T_B_cbx.MouseHover += new System.EventHandler(this.slab_SS_T_B_cbx_MouseHover);
             // 
             // slab_SS_L_B_cbx
             // 
@@ -6842,6 +6869,7 @@ namespace KnowEst
             this.slab_SS_L_B_cbx.Name = "slab_SS_L_B_cbx";
             this.slab_SS_L_B_cbx.Size = new System.Drawing.Size(112, 28);
             this.slab_SS_L_B_cbx.TabIndex = 29;
+            this.slab_SS_L_B_cbx.MouseHover += new System.EventHandler(this.slab_SS_L_B_cbx_MouseHover);
             // 
             // label338
             // 
@@ -6903,6 +6931,7 @@ namespace KnowEst
             this.slab_SS_L_T_cbx.Name = "slab_SS_L_T_cbx";
             this.slab_SS_L_T_cbx.Size = new System.Drawing.Size(112, 28);
             this.slab_SS_L_T_cbx.TabIndex = 24;
+            this.slab_SS_L_T_cbx.MouseHover += new System.EventHandler(this.slab_SS_L_T_cbx_MouseHover);
             // 
             // slab_SS_T_T_cbx
             // 
@@ -6918,6 +6947,7 @@ namespace KnowEst
             this.slab_SS_T_T_cbx.Name = "slab_SS_T_T_cbx";
             this.slab_SS_T_T_cbx.Size = new System.Drawing.Size(113, 28);
             this.slab_SS_T_T_cbx.TabIndex = 28;
+            this.slab_SS_T_T_cbx.MouseHover += new System.EventHandler(this.slab_SS_T_T_cbx_MouseHover);
             // 
             // slab_SS_SM_cbx
             // 
@@ -7038,6 +7068,7 @@ namespace KnowEst
             this.slab_SS_SB_R_L_bx.Size = new System.Drawing.Size(140, 26);
             this.slab_SS_SB_R_L_bx.TabIndex = 53;
             this.slab_SS_SB_R_L_bx.Text = "0";
+            this.slab_SS_SB_R_L_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_R_L_bx_MouseHover);
             // 
             // slab_SS_SB_L_L_bx
             // 
@@ -7048,6 +7079,7 @@ namespace KnowEst
             this.slab_SS_SB_L_L_bx.Size = new System.Drawing.Size(140, 26);
             this.slab_SS_SB_L_L_bx.TabIndex = 52;
             this.slab_SS_SB_L_L_bx.Text = "0";
+            this.slab_SS_SB_L_L_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_L_L_bx_MouseHover);
             // 
             // slab_SS_SB_B_L_bx
             // 
@@ -7058,6 +7090,7 @@ namespace KnowEst
             this.slab_SS_SB_B_L_bx.Size = new System.Drawing.Size(140, 26);
             this.slab_SS_SB_B_L_bx.TabIndex = 51;
             this.slab_SS_SB_B_L_bx.Text = "0";
+            this.slab_SS_SB_B_L_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_B_L_bx_MouseHover);
             // 
             // slab_SS_SB_T_L_bx
             // 
@@ -7068,6 +7101,7 @@ namespace KnowEst
             this.slab_SS_SB_T_L_bx.Size = new System.Drawing.Size(140, 26);
             this.slab_SS_SB_T_L_bx.TabIndex = 50;
             this.slab_SS_SB_T_L_bx.Text = "0";
+            this.slab_SS_SB_T_L_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_T_L_bx_MouseHover);
             // 
             // slab_SS_SB_T_CL_bx
             // 
@@ -7078,6 +7112,7 @@ namespace KnowEst
             this.slab_SS_SB_T_CL_bx.Size = new System.Drawing.Size(140, 26);
             this.slab_SS_SB_T_CL_bx.TabIndex = 49;
             this.slab_SS_SB_T_CL_bx.Text = "0";
+            this.slab_SS_SB_T_CL_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_T_CL_bx_MouseHover);
             // 
             // slab_SS_SB_B_CL_bx
             // 
@@ -7088,6 +7123,7 @@ namespace KnowEst
             this.slab_SS_SB_B_CL_bx.Size = new System.Drawing.Size(140, 26);
             this.slab_SS_SB_B_CL_bx.TabIndex = 47;
             this.slab_SS_SB_B_CL_bx.Text = "0";
+            this.slab_SS_SB_B_CL_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_B_CL_bx_MouseHover);
             // 
             // slab_SS_SB_L_CL_bx
             // 
@@ -7098,6 +7134,7 @@ namespace KnowEst
             this.slab_SS_SB_L_CL_bx.Size = new System.Drawing.Size(140, 26);
             this.slab_SS_SB_L_CL_bx.TabIndex = 46;
             this.slab_SS_SB_L_CL_bx.Text = "0";
+            this.slab_SS_SB_L_CL_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_L_CL_bx_MouseHover);
             // 
             // slab_SS_SB_R_CL_bx
             // 
@@ -7108,6 +7145,7 @@ namespace KnowEst
             this.slab_SS_SB_R_CL_bx.Size = new System.Drawing.Size(140, 26);
             this.slab_SS_SB_R_CL_bx.TabIndex = 45;
             this.slab_SS_SB_R_CL_bx.Text = "0";
+            this.slab_SS_SB_R_CL_bx.MouseHover += new System.EventHandler(this.slab_SS_SB_R_CL_bx_MouseHover);
             // 
             // label105
             // 
@@ -7281,7 +7319,7 @@ namespace KnowEst
             this.tableLayoutPanel138.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.36255F));
             this.tableLayoutPanel138.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.63745F));
             this.tableLayoutPanel138.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel138.Size = new System.Drawing.Size(736, 422);
+            this.tableLayoutPanel138.Size = new System.Drawing.Size(736, 420);
             this.tableLayoutPanel138.TabIndex = 43;
             // 
             // tableLayoutPanel139
@@ -7308,7 +7346,7 @@ namespace KnowEst
             this.slab_SS_SS_AddBtn.Location = new System.Drawing.Point(652, 2);
             this.slab_SS_SS_AddBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.slab_SS_SS_AddBtn.Name = "slab_SS_SS_AddBtn";
-            this.slab_SS_SS_AddBtn.Size = new System.Drawing.Size(33, 30);
+            this.slab_SS_SS_AddBtn.Size = new System.Drawing.Size(33, 29);
             this.slab_SS_SS_AddBtn.TabIndex = 34;
             this.slab_SS_SS_AddBtn.Text = "+";
             this.slab_SS_SS_AddBtn.UseVisualStyleBackColor = true;
@@ -7332,7 +7370,7 @@ namespace KnowEst
             this.slab_SS_SS_DelBtn.Location = new System.Drawing.Point(692, 2);
             this.slab_SS_SS_DelBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.slab_SS_SS_DelBtn.Name = "slab_SS_SS_DelBtn";
-            this.slab_SS_SS_DelBtn.Size = new System.Drawing.Size(35, 30);
+            this.slab_SS_SS_DelBtn.Size = new System.Drawing.Size(35, 29);
             this.slab_SS_SS_DelBtn.TabIndex = 28;
             this.slab_SS_SS_DelBtn.Text = "-";
             this.slab_SS_SS_DelBtn.UseVisualStyleBackColor = true;
@@ -7348,7 +7386,7 @@ namespace KnowEst
             this.slab_SS_SS_Panel.Location = new System.Drawing.Point(3, 41);
             this.slab_SS_SS_Panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.slab_SS_SS_Panel.Name = "slab_SS_SS_Panel";
-            this.slab_SS_SS_Panel.Size = new System.Drawing.Size(729, 379);
+            this.slab_SS_SS_Panel.Size = new System.Drawing.Size(729, 377);
             this.slab_SS_SS_Panel.TabIndex = 32;
             this.slab_SS_SS_Panel.WrapContents = false;
             // 
@@ -7356,23 +7394,23 @@ namespace KnowEst
             // 
             this.tableLayoutPanel140.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel140.ColumnCount = 17;
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 141F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 253F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel140.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 195F));
             this.tableLayoutPanel140.Controls.Add(this.label404, 14, 2);
             this.tableLayoutPanel140.Controls.Add(this.label403, 13, 2);
             this.tableLayoutPanel140.Controls.Add(this.label402, 12, 2);
@@ -7411,7 +7449,7 @@ namespace KnowEst
             // label404
             // 
             this.label404.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label404.Location = new System.Drawing.Point(1617, 67);
+            this.label404.Location = new System.Drawing.Point(2034, 67);
             this.label404.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label404.Name = "label404";
             this.label404.Size = new System.Drawing.Size(96, 31);
@@ -7422,7 +7460,7 @@ namespace KnowEst
             // label403
             // 
             this.label403.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label403.Location = new System.Drawing.Point(1515, 67);
+            this.label403.Location = new System.Drawing.Point(1906, 67);
             this.label403.Margin = new System.Windows.Forms.Padding(0);
             this.label403.Name = "label403";
             this.label403.Size = new System.Drawing.Size(96, 31);
@@ -7433,7 +7471,7 @@ namespace KnowEst
             // label402
             // 
             this.label402.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label402.Location = new System.Drawing.Point(1415, 67);
+            this.label402.Location = new System.Drawing.Point(1780, 67);
             this.label402.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label402.Name = "label402";
             this.label402.Size = new System.Drawing.Size(96, 31);
@@ -7444,7 +7482,7 @@ namespace KnowEst
             // label401
             // 
             this.label401.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label401.Location = new System.Drawing.Point(1313, 67);
+            this.label401.Location = new System.Drawing.Point(1652, 67);
             this.label401.Margin = new System.Windows.Forms.Padding(0);
             this.label401.Name = "label401";
             this.label401.Size = new System.Drawing.Size(96, 31);
@@ -7455,7 +7493,7 @@ namespace KnowEst
             // label400
             // 
             this.label400.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label400.Location = new System.Drawing.Point(1213, 67);
+            this.label400.Location = new System.Drawing.Point(1526, 67);
             this.label400.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label400.Name = "label400";
             this.label400.Size = new System.Drawing.Size(96, 31);
@@ -7466,7 +7504,7 @@ namespace KnowEst
             // label399
             // 
             this.label399.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label399.Location = new System.Drawing.Point(1111, 67);
+            this.label399.Location = new System.Drawing.Point(1398, 67);
             this.label399.Margin = new System.Windows.Forms.Padding(0);
             this.label399.Name = "label399";
             this.label399.Size = new System.Drawing.Size(96, 31);
@@ -7479,7 +7517,7 @@ namespace KnowEst
             this.label398.BackColor = System.Drawing.SystemColors.Control;
             this.tableLayoutPanel140.SetColumnSpan(this.label398, 2);
             this.label398.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label398.Location = new System.Drawing.Point(1515, 34);
+            this.label398.Location = new System.Drawing.Point(1906, 34);
             this.label398.Margin = new System.Windows.Forms.Padding(0);
             this.label398.Name = "label398";
             this.label398.Size = new System.Drawing.Size(201, 31);
@@ -7492,7 +7530,7 @@ namespace KnowEst
             this.label397.BackColor = System.Drawing.SystemColors.Control;
             this.tableLayoutPanel140.SetColumnSpan(this.label397, 2);
             this.label397.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label397.Location = new System.Drawing.Point(1313, 34);
+            this.label397.Location = new System.Drawing.Point(1652, 34);
             this.label397.Margin = new System.Windows.Forms.Padding(0);
             this.label397.Name = "label397";
             this.label397.Size = new System.Drawing.Size(201, 31);
@@ -7505,7 +7543,7 @@ namespace KnowEst
             this.label396.BackColor = System.Drawing.SystemColors.Control;
             this.tableLayoutPanel140.SetColumnSpan(this.label396, 2);
             this.label396.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label396.Location = new System.Drawing.Point(1111, 34);
+            this.label396.Location = new System.Drawing.Point(1398, 34);
             this.label396.Margin = new System.Windows.Forms.Padding(0);
             this.label396.Name = "label396";
             this.label396.Size = new System.Drawing.Size(201, 31);
@@ -7517,7 +7555,7 @@ namespace KnowEst
             // 
             this.label395.BackColor = System.Drawing.SystemColors.Control;
             this.label395.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label395.Location = new System.Drawing.Point(1010, 34);
+            this.label395.Location = new System.Drawing.Point(1271, 34);
             this.label395.Margin = new System.Windows.Forms.Padding(0);
             this.label395.Name = "label395";
             this.tableLayoutPanel140.SetRowSpan(this.label395, 2);
@@ -7531,7 +7569,7 @@ namespace KnowEst
             this.label394.BackColor = System.Drawing.SystemColors.Control;
             this.tableLayoutPanel140.SetColumnSpan(this.label394, 7);
             this.label394.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label394.Location = new System.Drawing.Point(1010, 1);
+            this.label394.Location = new System.Drawing.Point(1271, 1);
             this.label394.Margin = new System.Windows.Forms.Padding(0);
             this.label394.Name = "label394";
             this.label394.Size = new System.Drawing.Size(706, 31);
@@ -7543,7 +7581,7 @@ namespace KnowEst
             // 
             this.label393.BackColor = System.Drawing.SystemColors.Control;
             this.label393.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label393.Location = new System.Drawing.Point(1717, 1);
+            this.label393.Location = new System.Drawing.Point(2160, 1);
             this.label393.Margin = new System.Windows.Forms.Padding(0);
             this.label393.Name = "label393";
             this.tableLayoutPanel140.SetRowSpan(this.label393, 3);
@@ -7557,7 +7595,7 @@ namespace KnowEst
             this.label392.BackColor = System.Drawing.SystemColors.Control;
             this.tableLayoutPanel140.SetColumnSpan(this.label392, 2);
             this.label392.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label392.Location = new System.Drawing.Point(808, 34);
+            this.label392.Location = new System.Drawing.Point(1017, 34);
             this.label392.Margin = new System.Windows.Forms.Padding(0);
             this.label392.Name = "label392";
             this.label392.Size = new System.Drawing.Size(201, 31);
@@ -7570,7 +7608,7 @@ namespace KnowEst
             this.label391.BackColor = System.Drawing.SystemColors.Control;
             this.tableLayoutPanel140.SetColumnSpan(this.label391, 2);
             this.label391.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label391.Location = new System.Drawing.Point(606, 34);
+            this.label391.Location = new System.Drawing.Point(763, 34);
             this.label391.Margin = new System.Windows.Forms.Padding(0);
             this.label391.Name = "label391";
             this.label391.Size = new System.Drawing.Size(201, 31);
@@ -7583,7 +7621,7 @@ namespace KnowEst
             this.label390.BackColor = System.Drawing.SystemColors.Control;
             this.tableLayoutPanel140.SetColumnSpan(this.label390, 2);
             this.label390.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label390.Location = new System.Drawing.Point(404, 34);
+            this.label390.Location = new System.Drawing.Point(509, 34);
             this.label390.Margin = new System.Windows.Forms.Padding(0);
             this.label390.Name = "label390";
             this.label390.Size = new System.Drawing.Size(201, 31);
@@ -7596,7 +7634,7 @@ namespace KnowEst
             this.label389.BackColor = System.Drawing.SystemColors.Control;
             this.tableLayoutPanel140.SetColumnSpan(this.label389, 7);
             this.label389.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label389.Location = new System.Drawing.Point(303, 1);
+            this.label389.Location = new System.Drawing.Point(382, 1);
             this.label389.Margin = new System.Windows.Forms.Padding(0);
             this.label389.Name = "label389";
             this.label389.Size = new System.Drawing.Size(706, 31);
@@ -7608,7 +7646,7 @@ namespace KnowEst
             // 
             this.label387.BackColor = System.Drawing.SystemColors.Control;
             this.label387.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label387.Location = new System.Drawing.Point(102, 1);
+            this.label387.Location = new System.Drawing.Point(128, 1);
             this.label387.Margin = new System.Windows.Forms.Padding(0);
             this.label387.Name = "label387";
             this.tableLayoutPanel140.SetRowSpan(this.label387, 3);
@@ -7634,7 +7672,7 @@ namespace KnowEst
             // 
             this.label386.BackColor = System.Drawing.SystemColors.Control;
             this.label386.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label386.Location = new System.Drawing.Point(303, 34);
+            this.label386.Location = new System.Drawing.Point(382, 34);
             this.label386.Margin = new System.Windows.Forms.Padding(0);
             this.label386.Name = "label386";
             this.tableLayoutPanel140.SetRowSpan(this.label386, 2);
@@ -7646,7 +7684,7 @@ namespace KnowEst
             // label385
             // 
             this.label385.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label385.Location = new System.Drawing.Point(404, 67);
+            this.label385.Location = new System.Drawing.Point(509, 67);
             this.label385.Margin = new System.Windows.Forms.Padding(0);
             this.label385.Name = "label385";
             this.label385.Size = new System.Drawing.Size(100, 31);
@@ -7657,7 +7695,7 @@ namespace KnowEst
             // label384
             // 
             this.label384.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label384.Location = new System.Drawing.Point(505, 67);
+            this.label384.Location = new System.Drawing.Point(636, 67);
             this.label384.Margin = new System.Windows.Forms.Padding(0);
             this.label384.Name = "label384";
             this.label384.Size = new System.Drawing.Size(100, 31);
@@ -7668,7 +7706,7 @@ namespace KnowEst
             // label383
             // 
             this.label383.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label383.Location = new System.Drawing.Point(606, 67);
+            this.label383.Location = new System.Drawing.Point(763, 67);
             this.label383.Margin = new System.Windows.Forms.Padding(0);
             this.label383.Name = "label383";
             this.label383.Size = new System.Drawing.Size(100, 31);
@@ -7679,7 +7717,7 @@ namespace KnowEst
             // label382
             // 
             this.label382.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label382.Location = new System.Drawing.Point(707, 67);
+            this.label382.Location = new System.Drawing.Point(890, 67);
             this.label382.Margin = new System.Windows.Forms.Padding(0);
             this.label382.Name = "label382";
             this.label382.Size = new System.Drawing.Size(100, 31);
@@ -7690,7 +7728,7 @@ namespace KnowEst
             // label381
             // 
             this.label381.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label381.Location = new System.Drawing.Point(808, 67);
+            this.label381.Location = new System.Drawing.Point(1017, 67);
             this.label381.Margin = new System.Windows.Forms.Padding(0);
             this.label381.Name = "label381";
             this.label381.Size = new System.Drawing.Size(100, 31);
@@ -7701,7 +7739,7 @@ namespace KnowEst
             // label380
             // 
             this.label380.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label380.Location = new System.Drawing.Point(909, 67);
+            this.label380.Location = new System.Drawing.Point(1144, 67);
             this.label380.Margin = new System.Windows.Forms.Padding(0);
             this.label380.Name = "label380";
             this.label380.Size = new System.Drawing.Size(96, 31);
@@ -8156,7 +8194,7 @@ namespace KnowEst
             this.label59.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.label59.Size = new System.Drawing.Size(138, 31);
             this.label59.TabIndex = 10;
-            this.label59.Text = "Chair Bars:";
+            this.label59.Text = "Main Bars:";
             this.label59.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label60
@@ -8343,7 +8381,7 @@ namespace KnowEst
             this.label55.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.label55.Size = new System.Drawing.Size(138, 31);
             this.label55.TabIndex = 10;
-            this.label55.Text = "Main Bars:";
+            this.label55.Text = "Chair Bars:";
             this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label61
@@ -8535,9 +8573,16 @@ namespace KnowEst
             this.stairs_US_WS_MB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stairs_US_WS_MB_cbx.FormattingEnabled = true;
             this.stairs_US_WS_MB_cbx.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
+            "10",
+            "12",
+            "16",
+            "20",
+            "25",
+            "28",
+            "32",
+            "36",
+            "40",
+            "50"});
             this.stairs_US_WS_MB_cbx.Location = new System.Drawing.Point(184, 64);
             this.stairs_US_WS_MB_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stairs_US_WS_MB_cbx.Name = "stairs_US_WS_MB_cbx";
@@ -8563,7 +8608,7 @@ namespace KnowEst
             this.label178.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.label178.Size = new System.Drawing.Size(138, 31);
             this.label178.TabIndex = 10;
-            this.label178.Text = "Chair Bars:";
+            this.label178.Text = "Main Bars:";
             this.label178.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label179
@@ -8643,9 +8688,16 @@ namespace KnowEst
             this.stairs_US_S_MB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stairs_US_S_MB_cbx.FormattingEnabled = true;
             this.stairs_US_S_MB_cbx.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
+            "10",
+            "12",
+            "16",
+            "20",
+            "25",
+            "28",
+            "32",
+            "36",
+            "40",
+            "50"});
             this.stairs_US_S_MB_cbx.Location = new System.Drawing.Point(184, 33);
             this.stairs_US_S_MB_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stairs_US_S_MB_cbx.Name = "stairs_US_S_MB_cbx";
@@ -8661,7 +8713,7 @@ namespace KnowEst
             this.label216.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.label216.Size = new System.Drawing.Size(138, 31);
             this.label216.TabIndex = 10;
-            this.label216.Text = "Main Bars:";
+            this.label216.Text = "Chair Bars:";
             this.label216.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label217
@@ -8705,9 +8757,16 @@ namespace KnowEst
             this.stairs_US_S_NB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stairs_US_S_NB_cbx.FormattingEnabled = true;
             this.stairs_US_S_NB_cbx.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
+            "10",
+            "12",
+            "16",
+            "20",
+            "25",
+            "28",
+            "32",
+            "36",
+            "40",
+            "50"});
             this.stairs_US_S_NB_cbx.Location = new System.Drawing.Point(184, 33);
             this.stairs_US_S_NB_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stairs_US_S_NB_cbx.Name = "stairs_US_S_NB_cbx";
@@ -9048,9 +9107,16 @@ namespace KnowEst
             this.stairs_US_WS_DB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stairs_US_WS_DB_cbx.FormattingEnabled = true;
             this.stairs_US_WS_DB_cbx.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
+            "10",
+            "12",
+            "16",
+            "20",
+            "25",
+            "28",
+            "32",
+            "36",
+            "40",
+            "50"});
             this.stairs_US_WS_DB_cbx.Location = new System.Drawing.Point(184, 64);
             this.stairs_US_WS_DB_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stairs_US_WS_DB_cbx.Name = "stairs_US_WS_DB_cbx";
@@ -9133,9 +9199,16 @@ namespace KnowEst
             this.stairs_US_L_MB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stairs_US_L_MB_cbx.FormattingEnabled = true;
             this.stairs_US_L_MB_cbx.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
+            "10",
+            "12",
+            "16",
+            "20",
+            "25",
+            "28",
+            "32",
+            "36",
+            "40",
+            "50"});
             this.stairs_US_L_MB_cbx.Location = new System.Drawing.Point(184, 33);
             this.stairs_US_L_MB_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stairs_US_L_MB_cbx.Name = "stairs_US_L_MB_cbx";
@@ -9311,9 +9384,16 @@ namespace KnowEst
             this.stairs_LS_WS_MB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stairs_LS_WS_MB_cbx.FormattingEnabled = true;
             this.stairs_LS_WS_MB_cbx.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
+            "10",
+            "12",
+            "16",
+            "20",
+            "25",
+            "28",
+            "32",
+            "36",
+            "40",
+            "50"});
             this.stairs_LS_WS_MB_cbx.Location = new System.Drawing.Point(145, 64);
             this.stairs_LS_WS_MB_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stairs_LS_WS_MB_cbx.Name = "stairs_LS_WS_MB_cbx";
@@ -9339,7 +9419,7 @@ namespace KnowEst
             this.label207.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.label207.Size = new System.Drawing.Size(138, 31);
             this.label207.TabIndex = 10;
-            this.label207.Text = "Chair Bars:";
+            this.label207.Text = "Main Bars:";
             this.label207.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label218
@@ -9420,9 +9500,16 @@ namespace KnowEst
             this.stairs_LS_S_MB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stairs_LS_S_MB_cbx.FormattingEnabled = true;
             this.stairs_LS_S_MB_cbx.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
+            "10",
+            "12",
+            "16",
+            "20",
+            "25",
+            "28",
+            "32",
+            "36",
+            "40",
+            "50"});
             this.stairs_LS_S_MB_cbx.Location = new System.Drawing.Point(145, 33);
             this.stairs_LS_S_MB_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stairs_LS_S_MB_cbx.Name = "stairs_LS_S_MB_cbx";
@@ -9438,7 +9525,7 @@ namespace KnowEst
             this.label188.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.label188.Size = new System.Drawing.Size(138, 31);
             this.label188.TabIndex = 10;
-            this.label188.Text = "Main Bars:";
+            this.label188.Text = "Chair Bars:";
             this.label188.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label189
@@ -9483,9 +9570,16 @@ namespace KnowEst
             this.stairs_LS_S_NB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stairs_LS_S_NB_cbx.FormattingEnabled = true;
             this.stairs_LS_S_NB_cbx.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
+            "10",
+            "12",
+            "16",
+            "20",
+            "25",
+            "28",
+            "32",
+            "36",
+            "40",
+            "50"});
             this.stairs_LS_S_NB_cbx.Location = new System.Drawing.Point(145, 33);
             this.stairs_LS_S_NB_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stairs_LS_S_NB_cbx.Name = "stairs_LS_S_NB_cbx";
@@ -9778,9 +9872,16 @@ namespace KnowEst
             this.stairs_LS_WS_DB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stairs_LS_WS_DB_cbx.FormattingEnabled = true;
             this.stairs_LS_WS_DB_cbx.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
+            "10",
+            "12",
+            "16",
+            "20",
+            "25",
+            "28",
+            "32",
+            "36",
+            "40",
+            "50"});
             this.stairs_LS_WS_DB_cbx.Location = new System.Drawing.Point(184, 64);
             this.stairs_LS_WS_DB_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stairs_LS_WS_DB_cbx.Name = "stairs_LS_WS_DB_cbx";
@@ -9864,9 +9965,16 @@ namespace KnowEst
             this.stairs_LS_L_MB_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stairs_LS_L_MB_cbx.FormattingEnabled = true;
             this.stairs_LS_L_MB_cbx.Items.AddRange(new object[] {
-            "90",
-            "135",
-            "180"});
+            "10",
+            "12",
+            "16",
+            "20",
+            "25",
+            "28",
+            "32",
+            "36",
+            "40",
+            "50"});
             this.stairs_LS_L_MB_cbx.Location = new System.Drawing.Point(145, 33);
             this.stairs_LS_L_MB_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stairs_LS_L_MB_cbx.Name = "stairs_LS_L_MB_cbx";
@@ -10175,6 +10283,7 @@ namespace KnowEst
             this.roof_RP_W_D_SP_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_W_D_SP_bx.TabIndex = 30;
             this.roof_RP_W_D_SP_bx.Text = "0.6";
+            this.roof_RP_W_D_SP_bx.MouseHover += new System.EventHandler(this.roof_RP_W_D_SP_bx_MouseHover);
             // 
             // roof_RP_W_D_SR_bx
             // 
@@ -10185,6 +10294,7 @@ namespace KnowEst
             this.roof_RP_W_D_SR_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_W_D_SR_bx.TabIndex = 29;
             this.roof_RP_W_D_SR_bx.Text = "0.8";
+            this.roof_RP_W_D_SR_bx.MouseHover += new System.EventHandler(this.roof_RP_W_D_SR_bx_MouseHover);
             // 
             // roof_RP_W_D_LR_bx
             // 
@@ -10195,6 +10305,7 @@ namespace KnowEst
             this.roof_RP_W_D_LR_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_W_D_LR_bx.TabIndex = 20;
             this.roof_RP_W_D_LR_bx.Text = "0";
+            this.roof_RP_W_D_LR_bx.MouseHover += new System.EventHandler(this.roof_RP_W_D_LR_bx_MouseHover);
             // 
             // roof_RP_W_D_LP_bx
             // 
@@ -10205,6 +10316,7 @@ namespace KnowEst
             this.roof_RP_W_D_LP_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_W_D_LP_bx.TabIndex = 15;
             this.roof_RP_W_D_LP_bx.Text = "0";
+            this.roof_RP_W_D_LP_bx.MouseHover += new System.EventHandler(this.roof_RP_W_D_LP_bx_MouseHover);
             // 
             // label131
             // 
@@ -10274,7 +10386,7 @@ namespace KnowEst
             this.tabPage16.Location = new System.Drawing.Point(4, 29);
             this.tabPage16.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage16.Name = "tabPage16";
-            this.tabPage16.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage16.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.tabPage16.Size = new System.Drawing.Size(394, 403);
             this.tabPage16.TabIndex = 1;
             this.tabPage16.Text = "Steel - T";
@@ -10301,7 +10413,7 @@ namespace KnowEst
             this.tableLayoutPanel96.Controls.Add(this.label275, 0, 4);
             this.tableLayoutPanel96.Controls.Add(this.roof_RP_ST_D_CLTSR_cbx, 1, 6);
             this.tableLayoutPanel96.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel96.Location = new System.Drawing.Point(3, 4);
+            this.tableLayoutPanel96.Location = new System.Drawing.Point(3, 5);
             this.tableLayoutPanel96.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel96.Name = "tableLayoutPanel96";
             this.tableLayoutPanel96.RowCount = 8;
@@ -10312,8 +10424,8 @@ namespace KnowEst
             this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel96.Size = new System.Drawing.Size(388, 395);
+            this.tableLayoutPanel96.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel96.Size = new System.Drawing.Size(388, 393);
             this.tableLayoutPanel96.TabIndex = 26;
             // 
             // label265
@@ -10380,6 +10492,7 @@ namespace KnowEst
             this.roof_RP_ST_D_SP_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_ST_D_SP_bx.TabIndex = 21;
             this.roof_RP_ST_D_SP_bx.Text = "0.6";
+            this.roof_RP_ST_D_SP_bx.MouseHover += new System.EventHandler(this.roof_RP_ST_D_SP_bx_MouseHover);
             // 
             // roof_RP_ST_D_LRSW_bx
             // 
@@ -10390,6 +10503,7 @@ namespace KnowEst
             this.roof_RP_ST_D_LRSW_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_ST_D_LRSW_bx.TabIndex = 20;
             this.roof_RP_ST_D_LRSW_bx.Text = "0";
+            this.roof_RP_ST_D_LRSW_bx.MouseHover += new System.EventHandler(this.roof_RP_ST_D_LRSW_bx_MouseHover);
             // 
             // roof_RP_ST_D_SR_bx
             // 
@@ -10400,6 +10514,7 @@ namespace KnowEst
             this.roof_RP_ST_D_SR_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_ST_D_SR_bx.TabIndex = 19;
             this.roof_RP_ST_D_SR_bx.Text = "1.0";
+            this.roof_RP_ST_D_SR_bx.MouseHover += new System.EventHandler(this.roof_RP_ST_D_SR_bx_MouseHover);
             // 
             // roof_RP_ST_D_LP_bx
             // 
@@ -10410,6 +10525,7 @@ namespace KnowEst
             this.roof_RP_ST_D_LP_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_ST_D_LP_bx.TabIndex = 16;
             this.roof_RP_ST_D_LP_bx.Text = "0";
+            this.roof_RP_ST_D_LP_bx.MouseHover += new System.EventHandler(this.roof_RP_ST_D_LP_bx_MouseHover);
             // 
             // roof_RP_ST_D_LR_bx
             // 
@@ -10420,6 +10536,7 @@ namespace KnowEst
             this.roof_RP_ST_D_LR_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_ST_D_LR_bx.TabIndex = 15;
             this.roof_RP_ST_D_LR_bx.Text = "0";
+            this.roof_RP_ST_D_LR_bx.MouseHover += new System.EventHandler(this.roof_RP_ST_D_LR_bx_MouseHover);
             // 
             // label269
             // 
@@ -10571,7 +10688,7 @@ namespace KnowEst
             this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel95.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel95.Size = new System.Drawing.Size(388, 399);
             this.tableLayoutPanel95.TabIndex = 25;
             // 
@@ -10629,6 +10746,7 @@ namespace KnowEst
             this.roof_RP_SCP_D_SP_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_SCP_D_SP_bx.TabIndex = 21;
             this.roof_RP_SCP_D_SP_bx.Text = "0.6";
+            this.roof_RP_SCP_D_SP_bx.MouseHover += new System.EventHandler(this.roof_RP_SCP_D_SP_bx_MouseHover);
             // 
             // roof_RP_SCP_D_LRSW_bx
             // 
@@ -10639,6 +10757,7 @@ namespace KnowEst
             this.roof_RP_SCP_D_LRSW_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_SCP_D_LRSW_bx.TabIndex = 20;
             this.roof_RP_SCP_D_LRSW_bx.Text = "0";
+            this.roof_RP_SCP_D_LRSW_bx.MouseHover += new System.EventHandler(this.roof_RP_SCP_D_LRSW_bx_MouseHover);
             // 
             // roof_RP_SCP_D_SR_bx
             // 
@@ -10649,6 +10768,7 @@ namespace KnowEst
             this.roof_RP_SCP_D_SR_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_SCP_D_SR_bx.TabIndex = 19;
             this.roof_RP_SCP_D_SR_bx.Text = "1.0";
+            this.roof_RP_SCP_D_SR_bx.MouseHover += new System.EventHandler(this.roof_RP_SCP_D_SR_bx_MouseHover);
             // 
             // roof_RP_SCP_D_LP_bx
             // 
@@ -10659,6 +10779,7 @@ namespace KnowEst
             this.roof_RP_SCP_D_LP_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_SCP_D_LP_bx.TabIndex = 16;
             this.roof_RP_SCP_D_LP_bx.Text = "0";
+            this.roof_RP_SCP_D_LP_bx.MouseHover += new System.EventHandler(this.roof_RP_SCP_D_LP_bx_MouseHover);
             // 
             // roof_RP_SCP_D_LR_bx
             // 
@@ -10669,6 +10790,7 @@ namespace KnowEst
             this.roof_RP_SCP_D_LR_bx.Size = new System.Drawing.Size(135, 26);
             this.roof_RP_SCP_D_LR_bx.TabIndex = 15;
             this.roof_RP_SCP_D_LR_bx.Text = "0";
+            this.roof_RP_SCP_D_LR_bx.MouseHover += new System.EventHandler(this.roof_RP_SCP_D_LR_bx_MouseHover);
             // 
             // label249
             // 
@@ -10800,6 +10922,7 @@ namespace KnowEst
             this.roof_RP_W_rb.Text = "Wood";
             this.roof_RP_W_rb.UseVisualStyleBackColor = true;
             this.roof_RP_W_rb.CheckedChanged += new System.EventHandler(this.roof_RP_W_rb_CheckedChanged);
+            this.roof_RP_W_rb.MouseHover += new System.EventHandler(this.roof_RP_W_rb_MouseHover);
             // 
             // roof_RP_ST_rb
             // 
@@ -10813,6 +10936,7 @@ namespace KnowEst
             this.roof_RP_ST_rb.Text = "Steel - Tubular";
             this.roof_RP_ST_rb.UseVisualStyleBackColor = true;
             this.roof_RP_ST_rb.CheckedChanged += new System.EventHandler(this.roof_RP_W_rb_CheckedChanged);
+            this.roof_RP_ST_rb.MouseHover += new System.EventHandler(this.roof_RP_ST_rb_MouseHover);
             // 
             // roof_RP_SCP_rb
             // 
@@ -10826,6 +10950,7 @@ namespace KnowEst
             this.roof_RP_SCP_rb.Text = "Steel - Cee Purlins";
             this.roof_RP_SCP_rb.UseVisualStyleBackColor = true;
             this.roof_RP_SCP_rb.CheckedChanged += new System.EventHandler(this.roof_RP_W_rb_CheckedChanged);
+            this.roof_RP_SCP_rb.MouseHover += new System.EventHandler(this.roof_RP_SCP_rb_MouseHover);
             // 
             // pictureBox11
             // 
@@ -10902,6 +11027,7 @@ namespace KnowEst
             this.roof_GI_D_HRS_AddBtn.Text = "Add";
             this.roof_GI_D_HRS_AddBtn.UseVisualStyleBackColor = true;
             this.roof_GI_D_HRS_AddBtn.Click += new System.EventHandler(this.roof_GI_D_HRS_AddBtn_Click);
+            this.roof_GI_D_HRS_AddBtn.MouseHover += new System.EventHandler(this.roof_GI_D_HRS_AddBtn_MouseHover);
             // 
             // roof_GI_D_HRS_Panel
             // 
@@ -11057,6 +11183,7 @@ namespace KnowEst
             this.roof_GI_M_SP_cbx.Name = "roof_GI_M_SP_cbx";
             this.roof_GI_M_SP_cbx.Size = new System.Drawing.Size(175, 28);
             this.roof_GI_M_SP_cbx.TabIndex = 24;
+            this.roof_GI_M_SP_cbx.MouseHover += new System.EventHandler(this.roof_GI_M_SP_cbx_MouseHover);
             // 
             // label273
             // 
@@ -11117,6 +11244,7 @@ namespace KnowEst
             this.roof_GI_D_EC_cbx.Name = "roof_GI_D_EC_cbx";
             this.roof_GI_D_EC_cbx.Size = new System.Drawing.Size(139, 28);
             this.roof_GI_D_EC_cbx.TabIndex = 22;
+            this.roof_GI_D_EC_cbx.MouseHover += new System.EventHandler(this.roof_GI_D_EC_cbx_MouseHover);
             // 
             // roof_GI_D_LP_bx
             // 
@@ -11127,6 +11255,7 @@ namespace KnowEst
             this.roof_GI_D_LP_bx.Size = new System.Drawing.Size(140, 26);
             this.roof_GI_D_LP_bx.TabIndex = 20;
             this.roof_GI_D_LP_bx.Text = "0";
+            this.roof_GI_D_LP_bx.MouseHover += new System.EventHandler(this.roof_GI_D_LP_bx_MouseHover);
             // 
             // label282
             // 
@@ -11287,6 +11416,7 @@ namespace KnowEst
             this.roof_RA_D_HR_TL_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_HR_TL_bx.TabIndex = 53;
             this.roof_RA_D_HR_TL_bx.Text = "0";
+            this.roof_RA_D_HR_TL_bx.MouseHover += new System.EventHandler(this.roof_RA_D_HR_TL_bx_MouseHover);
             // 
             // roof_RA_D_HR_EL_bx
             // 
@@ -11297,6 +11427,7 @@ namespace KnowEst
             this.roof_RA_D_HR_EL_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_HR_EL_bx.TabIndex = 52;
             this.roof_RA_D_HR_EL_bx.Text = "2.20";
+            this.roof_RA_D_HR_EL_bx.MouseHover += new System.EventHandler(this.roof_RA_D_HR_EL_bx_MouseHover);
             // 
             // roof_RA_D_HR_TW_bx
             // 
@@ -11307,6 +11438,7 @@ namespace KnowEst
             this.roof_RA_D_HR_TW_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_HR_TW_bx.TabIndex = 51;
             this.roof_RA_D_HR_TW_bx.Text = "0";
+            this.roof_RA_D_HR_TW_bx.MouseHover += new System.EventHandler(this.roof_RA_D_HR_TW_bx_MouseHover);
             // 
             // label306
             // 
@@ -11366,6 +11498,7 @@ namespace KnowEst
             this.roof_RA_D_VR_TL_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_VR_TL_bx.TabIndex = 46;
             this.roof_RA_D_VR_TL_bx.Text = "0";
+            this.roof_RA_D_VR_TL_bx.MouseHover += new System.EventHandler(this.roof_RA_D_VR_TL_bx_MouseHover);
             // 
             // roof_RA_D_VR_EL_bx
             // 
@@ -11376,6 +11509,7 @@ namespace KnowEst
             this.roof_RA_D_VR_EL_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_VR_EL_bx.TabIndex = 45;
             this.roof_RA_D_VR_EL_bx.Text = "2.30";
+            this.roof_RA_D_VR_EL_bx.MouseHover += new System.EventHandler(this.roof_RA_D_VR_EL_bx_MouseHover);
             // 
             // roof_RA_D_VR_TW_bx
             // 
@@ -11386,6 +11520,7 @@ namespace KnowEst
             this.roof_RA_D_VR_TW_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_VR_TW_bx.TabIndex = 44;
             this.roof_RA_D_VR_TW_bx.Text = "0";
+            this.roof_RA_D_VR_TW_bx.MouseHover += new System.EventHandler(this.roof_RA_D_VR_TW_bx_MouseHover);
             // 
             // label302
             // 
@@ -11445,6 +11580,7 @@ namespace KnowEst
             this.roof_RA_D_RR_TW_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_RR_TW_bx.TabIndex = 39;
             this.roof_RA_D_RR_TW_bx.Text = "0";
+            this.roof_RA_D_RR_TW_bx.MouseHover += new System.EventHandler(this.roof_RA_D_RR_TW_bx_MouseHover);
             // 
             // roof_RA_D_RR_TL_bx
             // 
@@ -11455,6 +11591,7 @@ namespace KnowEst
             this.roof_RA_D_RR_TL_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_RR_TL_bx.TabIndex = 38;
             this.roof_RA_D_RR_TL_bx.Text = "0";
+            this.roof_RA_D_RR_TL_bx.MouseHover += new System.EventHandler(this.roof_RA_D_RR_TL_bx_MouseHover);
             // 
             // roof_RA_D_RR_EL_bx
             // 
@@ -11465,6 +11602,7 @@ namespace KnowEst
             this.roof_RA_D_RR_EL_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_RR_EL_bx.TabIndex = 37;
             this.roof_RA_D_RR_EL_bx.Text = "2.20";
+            this.roof_RA_D_RR_EL_bx.MouseHover += new System.EventHandler(this.roof_RA_D_RR_EL_bx_MouseHover);
             // 
             // label294
             // 
@@ -11524,6 +11662,7 @@ namespace KnowEst
             this.roof_RA_D_F_TL_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_F_TL_bx.TabIndex = 32;
             this.roof_RA_D_F_TL_bx.Text = "0";
+            this.roof_RA_D_F_TL_bx.MouseHover += new System.EventHandler(this.roof_RA_D_F_TL_bx_MouseHover);
             // 
             // roof_RA_D_F_EL_bx
             // 
@@ -11534,6 +11673,7 @@ namespace KnowEst
             this.roof_RA_D_F_EL_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_F_EL_bx.TabIndex = 31;
             this.roof_RA_D_F_EL_bx.Text = "2.30";
+            this.roof_RA_D_F_EL_bx.MouseHover += new System.EventHandler(this.roof_RA_D_F_EL_bx_MouseHover);
             // 
             // roof_RA_D_F_TW_bx
             // 
@@ -11544,6 +11684,7 @@ namespace KnowEst
             this.roof_RA_D_F_TW_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_F_TW_bx.TabIndex = 30;
             this.roof_RA_D_F_TW_bx.Text = "0";
+            this.roof_RA_D_F_TW_bx.MouseHover += new System.EventHandler(this.roof_RA_D_F_TW_bx_MouseHover);
             // 
             // label290
             // 
@@ -11603,6 +11744,7 @@ namespace KnowEst
             this.roof_RA_D_G_TL_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_G_TL_bx.TabIndex = 20;
             this.roof_RA_D_G_TL_bx.Text = "0";
+            this.roof_RA_D_G_TL_bx.MouseHover += new System.EventHandler(this.roof_RA_D_G_TL_bx_MouseHover);
             // 
             // roof_RA_D_G_TW_bx
             // 
@@ -11613,6 +11755,7 @@ namespace KnowEst
             this.roof_RA_D_G_TW_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_G_TW_bx.TabIndex = 16;
             this.roof_RA_D_G_TW_bx.Text = "0";
+            this.roof_RA_D_G_TW_bx.MouseHover += new System.EventHandler(this.roof_RA_D_G_TW_bx_MouseHover);
             // 
             // roof_RA_D_G_EL_bx
             // 
@@ -11623,6 +11766,7 @@ namespace KnowEst
             this.roof_RA_D_G_EL_bx.Size = new System.Drawing.Size(176, 26);
             this.roof_RA_D_G_EL_bx.TabIndex = 15;
             this.roof_RA_D_G_EL_bx.Text = "2.35";
+            this.roof_RA_D_G_EL_bx.MouseHover += new System.EventHandler(this.roof_RA_D_G_EL_bx_MouseHover);
             // 
             // label296
             // 
@@ -12041,7 +12185,7 @@ namespace KnowEst
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(640, 317);
+            this.MinimumSize = new System.Drawing.Size(640, 312);
             this.Name = "AddStructForm";
             this.Text = "Add Structural Member";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddStructForm_FormClosing);
@@ -13071,5 +13215,6 @@ namespace KnowEst
         private System.Windows.Forms.Button slab_DeleteBtn;
         private System.Windows.Forms.Button stairs_DeleteBtn;
         private System.Windows.Forms.Button roof_DeleteBtn;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

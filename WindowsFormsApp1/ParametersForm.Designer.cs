@@ -30,10 +30,10 @@ namespace KnowEst
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             this.paramTabControl = new System.Windows.Forms.TabControl();
             this.earthworksTabPage = new System.Windows.Forms.TabPage();
             this.earthworksPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -335,20 +335,19 @@ namespace KnowEst
             this.rein_ML_WF_9_chk = new System.Windows.Forms.CheckBox();
             this.rein_ML_WF_75_chk = new System.Windows.Forms.CheckBox();
             this.rein_ML_WF_6_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_FT_15_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_FT_135_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_FT_12_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_FT_105_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_FT_9_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_FT_75_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_FT_6_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_CF_15_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_CF_135_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_CF_12_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_CF_105_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_CF_9_chk = new System.Windows.Forms.CheckBox();
-            this.rein_ML_CF_75_chk = new System.Windows.Forms.CheckBox();
             this.label145 = new System.Windows.Forms.Label();
+            this.label141 = new System.Windows.Forms.Label();
+            this.label142 = new System.Windows.Forms.Label();
+            this.label143 = new System.Windows.Forms.Label();
+            this.label144 = new System.Windows.Forms.Label();
+            this.label139 = new System.Windows.Forms.Label();
+            this.rein_ML_CF_6_chk = new System.Windows.Forms.CheckBox();
+            this.rein_ML_CF_75_chk = new System.Windows.Forms.CheckBox();
+            this.rein_ML_CF_9_chk = new System.Windows.Forms.CheckBox();
+            this.rein_ML_CF_105_chk = new System.Windows.Forms.CheckBox();
+            this.rein_ML_CF_12_chk = new System.Windows.Forms.CheckBox();
+            this.rein_ML_CF_135_chk = new System.Windows.Forms.CheckBox();
+            this.rein_ML_CF_15_chk = new System.Windows.Forms.CheckBox();
             this.label132 = new System.Windows.Forms.Label();
             this.label133 = new System.Windows.Forms.Label();
             this.label134 = new System.Windows.Forms.Label();
@@ -356,13 +355,6 @@ namespace KnowEst
             this.label136 = new System.Windows.Forms.Label();
             this.label137 = new System.Windows.Forms.Label();
             this.label138 = new System.Windows.Forms.Label();
-            this.label139 = new System.Windows.Forms.Label();
-            this.label140 = new System.Windows.Forms.Label();
-            this.label141 = new System.Windows.Forms.Label();
-            this.label142 = new System.Windows.Forms.Label();
-            this.label143 = new System.Windows.Forms.Label();
-            this.label144 = new System.Windows.Forms.Label();
-            this.rein_ML_CF_6_chk = new System.Windows.Forms.CheckBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
             this.paint_PA_Panel = new System.Windows.Forms.FlowLayoutPanel();
@@ -628,6 +620,7 @@ namespace KnowEst
             this.earth_ElevBtn.Text = "Manage Elevations";
             this.earth_ElevBtn.UseVisualStyleBackColor = false;
             this.earth_ElevBtn.Click += new System.EventHandler(this.earth_ElevBtn_Click);
+            this.earth_ElevBtn.MouseHover += new System.EventHandler(this.earth_ElevBtn_MouseHover);
             // 
             // tableLayoutPanel1
             // 
@@ -675,6 +668,7 @@ namespace KnowEst
             this.earth_CF_TY_cbx.Size = new System.Drawing.Size(178, 28);
             this.earth_CF_TY_cbx.TabIndex = 25;
             this.earth_CF_TY_cbx.SelectedIndexChanged += new System.EventHandler(this.earth_CF_TY_cbx_SelectedIndexChanged);
+            this.earth_CF_TY_cbx.MouseHover += new System.EventHandler(this.earth_CF_TY_cbx_MouseHover);
             // 
             // earth_CF_CF_bx
             // 
@@ -684,6 +678,7 @@ namespace KnowEst
             this.earth_CF_CF_bx.Name = "earth_CF_CF_bx";
             this.earth_CF_CF_bx.Size = new System.Drawing.Size(180, 26);
             this.earth_CF_CF_bx.TabIndex = 17;
+            this.earth_CF_CF_bx.MouseHover += new System.EventHandler(this.earth_CF_CF_bx_MouseHover);
             // 
             // earth_CF_TH_bx
             // 
@@ -693,6 +688,7 @@ namespace KnowEst
             this.earth_CF_TH_bx.Name = "earth_CF_TH_bx";
             this.earth_CF_TH_bx.Size = new System.Drawing.Size(180, 26);
             this.earth_CF_TH_bx.TabIndex = 15;
+            this.earth_CF_TH_bx.MouseHover += new System.EventHandler(this.earth_CF_TH_bx_MouseHover);
             // 
             // label2
             // 
@@ -776,6 +772,7 @@ namespace KnowEst
             this.earth_CF_FA_bx.Name = "earth_CF_FA_bx";
             this.earth_CF_FA_bx.Size = new System.Drawing.Size(180, 26);
             this.earth_CF_FA_bx.TabIndex = 14;
+            this.earth_CF_FA_bx.MouseHover += new System.EventHandler(this.earth_CF_FA_bx_MouseHover);
             // 
             // tableLayoutPanel6
             // 
@@ -823,6 +820,7 @@ namespace KnowEst
             this.earth_WF_TY_cbx.Size = new System.Drawing.Size(178, 28);
             this.earth_WF_TY_cbx.TabIndex = 26;
             this.earth_WF_TY_cbx.SelectedIndexChanged += new System.EventHandler(this.earth_WF_TY_cbx_SelectedIndexChanged);
+            this.earth_WF_TY_cbx.MouseHover += new System.EventHandler(this.earth_WF_TY_cbx_MouseHover);
             // 
             // earth_WF_CF_bx
             // 
@@ -832,6 +830,7 @@ namespace KnowEst
             this.earth_WF_CF_bx.Name = "earth_WF_CF_bx";
             this.earth_WF_CF_bx.Size = new System.Drawing.Size(180, 26);
             this.earth_WF_CF_bx.TabIndex = 17;
+            this.earth_WF_CF_bx.MouseHover += new System.EventHandler(this.earth_WF_CF_bx_MouseHover);
             // 
             // earth_WF_TH_bx
             // 
@@ -841,6 +840,7 @@ namespace KnowEst
             this.earth_WF_TH_bx.Name = "earth_WF_TH_bx";
             this.earth_WF_TH_bx.Size = new System.Drawing.Size(180, 26);
             this.earth_WF_TH_bx.TabIndex = 15;
+            this.earth_WF_TH_bx.MouseHover += new System.EventHandler(this.earth_WF_TH_bx_MouseHover);
             // 
             // label26
             // 
@@ -924,6 +924,7 @@ namespace KnowEst
             this.earth_WF_FA_bx.Name = "earth_WF_FA_bx";
             this.earth_WF_FA_bx.Size = new System.Drawing.Size(180, 26);
             this.earth_WF_FA_bx.TabIndex = 14;
+            this.earth_WF_FA_bx.MouseHover += new System.EventHandler(this.earth_WF_FA_bx_MouseHover);
             // 
             // tableLayoutPanel8
             // 
@@ -974,6 +975,7 @@ namespace KnowEst
             this.earth_SG_TY_cbx.Size = new System.Drawing.Size(178, 28);
             this.earth_SG_TY_cbx.TabIndex = 26;
             this.earth_SG_TY_cbx.SelectedIndexChanged += new System.EventHandler(this.earth_SG_TY_cbx_SelectedIndexChanged);
+            this.earth_SG_TY_cbx.MouseHover += new System.EventHandler(this.earth_SG_TY_cbx_MouseHover);
             // 
             // earth_SG_TH_bx
             // 
@@ -983,6 +985,7 @@ namespace KnowEst
             this.earth_SG_TH_bx.Name = "earth_SG_TH_bx";
             this.earth_SG_TH_bx.Size = new System.Drawing.Size(180, 26);
             this.earth_SG_TH_bx.TabIndex = 16;
+            this.earth_SG_TH_bx.MouseHover += new System.EventHandler(this.earth_SG_TH_bx_MouseHover);
             // 
             // label39
             // 
@@ -1072,6 +1075,7 @@ namespace KnowEst
             this.earth_SG_CF_bx.Name = "earth_SG_CF_bx";
             this.earth_SG_CF_bx.Size = new System.Drawing.Size(180, 26);
             this.earth_SG_CF_bx.TabIndex = 19;
+            this.earth_SG_CF_bx.MouseHover += new System.EventHandler(this.earth_SG_CF_bx_MouseHover);
             // 
             // label43
             // 
@@ -1136,6 +1140,7 @@ namespace KnowEst
             this.earth_ResetBtn.Text = "Reset";
             this.earth_ResetBtn.UseVisualStyleBackColor = true;
             this.earth_ResetBtn.Click += new System.EventHandler(this.earth_ResetBtn_Click);
+            this.earth_ResetBtn.MouseHover += new System.EventHandler(this.earth_ResetBtn_MouseHover);
             // 
             // tableLayoutPanel5
             // 
@@ -1183,6 +1188,7 @@ namespace KnowEst
             this.earth_WTB_TY_cbx.Size = new System.Drawing.Size(178, 28);
             this.earth_WTB_TY_cbx.TabIndex = 26;
             this.earth_WTB_TY_cbx.SelectedIndexChanged += new System.EventHandler(this.earth_WTB_TY_cbx_SelectedIndexChanged);
+            this.earth_WTB_TY_cbx.MouseHover += new System.EventHandler(this.earth_WTB_TY_cbx_MouseHover);
             // 
             // earth_WTB_CF_bx
             // 
@@ -1192,6 +1198,7 @@ namespace KnowEst
             this.earth_WTB_CF_bx.Name = "earth_WTB_CF_bx";
             this.earth_WTB_CF_bx.Size = new System.Drawing.Size(180, 26);
             this.earth_WTB_CF_bx.TabIndex = 17;
+            this.earth_WTB_CF_bx.MouseHover += new System.EventHandler(this.earth_WTB_CF_bx_MouseHover);
             // 
             // earth_WTB_TH_bx
             // 
@@ -1201,6 +1208,7 @@ namespace KnowEst
             this.earth_WTB_TH_bx.Name = "earth_WTB_TH_bx";
             this.earth_WTB_TH_bx.Size = new System.Drawing.Size(180, 26);
             this.earth_WTB_TH_bx.TabIndex = 15;
+            this.earth_WTB_TH_bx.MouseHover += new System.EventHandler(this.earth_WTB_TH_bx_MouseHover);
             // 
             // label18
             // 
@@ -1284,6 +1292,7 @@ namespace KnowEst
             this.earth_WTB_FA_bx.Name = "earth_WTB_FA_bx";
             this.earth_WTB_FA_bx.Size = new System.Drawing.Size(180, 26);
             this.earth_WTB_FA_bx.TabIndex = 14;
+            this.earth_WTB_FA_bx.MouseHover += new System.EventHandler(this.earth_WTB_FA_bx_MouseHover);
             // 
             // formworksTabPage
             // 
@@ -2103,6 +2112,7 @@ namespace KnowEst
             this.form_F_T_cbx.Size = new System.Drawing.Size(219, 28);
             this.form_F_T_cbx.TabIndex = 24;
             this.form_F_T_cbx.SelectedIndexChanged += new System.EventHandler(this.form_F_T_cbx_SelectedIndexChanged);
+            this.form_F_T_cbx.MouseHover += new System.EventHandler(this.form_F_T_cbx_MouseHover);
             // 
             // form_F_N_bx
             // 
@@ -2112,6 +2122,7 @@ namespace KnowEst
             this.form_F_N_bx.Name = "form_F_N_bx";
             this.form_F_N_bx.Size = new System.Drawing.Size(219, 26);
             this.form_F_N_bx.TabIndex = 16;
+            this.form_F_N_bx.MouseHover += new System.EventHandler(this.form_F_N_bx_MouseHover);
             // 
             // form_F_NU_bx
             // 
@@ -2121,6 +2132,7 @@ namespace KnowEst
             this.form_F_NU_bx.Name = "form_F_NU_bx";
             this.form_F_NU_bx.Size = new System.Drawing.Size(219, 26);
             this.form_F_NU_bx.TabIndex = 15;
+            this.form_F_NU_bx.MouseHover += new System.EventHandler(this.form_F_NU_bx_MouseHover);
             // 
             // label93
             // 
@@ -2333,6 +2345,7 @@ namespace KnowEst
             this.label14.TabIndex = 11;
             this.label14.Text = "Concrete Grade:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label14.MouseHover += new System.EventHandler(this.label14_MouseHover);
             // 
             // label15
             // 
@@ -2402,6 +2415,7 @@ namespace KnowEst
             this.conc_CM_F_CG_cbx.Name = "conc_CM_F_CG_cbx";
             this.conc_CM_F_CG_cbx.Size = new System.Drawing.Size(152, 28);
             this.conc_CM_F_CG_cbx.TabIndex = 22;
+            this.conc_CM_F_CG_cbx.MouseHover += new System.EventHandler(this.conc_CM_F_CG_cbx_MouseHover);
             // 
             // conc_CM_F_GT_cbx
             // 
@@ -2418,6 +2432,7 @@ namespace KnowEst
             this.conc_CM_F_GT_cbx.Name = "conc_CM_F_GT_cbx";
             this.conc_CM_F_GT_cbx.Size = new System.Drawing.Size(152, 28);
             this.conc_CM_F_GT_cbx.TabIndex = 23;
+            this.conc_CM_F_GT_cbx.MouseHover += new System.EventHandler(this.conc_CM_F_GT_cbx_MouseHover);
             // 
             // conc_CM_F_RM_cbx
             // 
@@ -2496,6 +2511,7 @@ namespace KnowEst
             this.label17.TabIndex = 11;
             this.label17.Text = "Concrete Grade:";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label17.MouseHover += new System.EventHandler(this.label17_MouseHover);
             // 
             // label32
             // 
@@ -2565,6 +2581,7 @@ namespace KnowEst
             this.conc_CM_C_CG_cbx.Name = "conc_CM_C_CG_cbx";
             this.conc_CM_C_CG_cbx.Size = new System.Drawing.Size(152, 28);
             this.conc_CM_C_CG_cbx.TabIndex = 22;
+            this.conc_CM_C_CG_cbx.MouseHover += new System.EventHandler(this.conc_CM_C_CG_cbx_MouseHover);
             // 
             // conc_CM_C_GT_cbx
             // 
@@ -2581,6 +2598,7 @@ namespace KnowEst
             this.conc_CM_C_GT_cbx.Name = "conc_CM_C_GT_cbx";
             this.conc_CM_C_GT_cbx.Size = new System.Drawing.Size(152, 28);
             this.conc_CM_C_GT_cbx.TabIndex = 23;
+            this.conc_CM_C_GT_cbx.MouseHover += new System.EventHandler(this.conc_CM_C_GT_cbx_MouseHover);
             // 
             // conc_CM_C_RM_cbx
             // 
@@ -2658,6 +2676,7 @@ namespace KnowEst
             this.label34.TabIndex = 11;
             this.label34.Text = "Concrete Grade:";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label34.MouseHover += new System.EventHandler(this.label34_MouseHover);
             // 
             // label35
             // 
@@ -2727,6 +2746,7 @@ namespace KnowEst
             this.conc_CM_B_CG_cbx.Name = "conc_CM_B_CG_cbx";
             this.conc_CM_B_CG_cbx.Size = new System.Drawing.Size(152, 28);
             this.conc_CM_B_CG_cbx.TabIndex = 22;
+            this.conc_CM_B_CG_cbx.MouseHover += new System.EventHandler(this.conc_CM_B_CG_cbx_MouseHover);
             // 
             // conc_CM_B_GT_cbx
             // 
@@ -2743,6 +2763,7 @@ namespace KnowEst
             this.conc_CM_B_GT_cbx.Name = "conc_CM_B_GT_cbx";
             this.conc_CM_B_GT_cbx.Size = new System.Drawing.Size(152, 28);
             this.conc_CM_B_GT_cbx.TabIndex = 23;
+            this.conc_CM_B_GT_cbx.MouseHover += new System.EventHandler(this.conc_CM_B_GT_cbx_MouseHover);
             // 
             // conc_CM_B_RM_cbx
             // 
@@ -2785,6 +2806,7 @@ namespace KnowEst
             this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel58);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(357, 430);
             this.flowLayoutPanel1.TabIndex = 4;
@@ -2859,6 +2881,7 @@ namespace KnowEst
             this.label53.TabIndex = 11;
             this.label53.Text = "Concrete Grade:";
             this.label53.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label53.MouseHover += new System.EventHandler(this.label53_MouseHover);
             // 
             // conc_CM_S_SOG_CG_cbx
             // 
@@ -2874,6 +2897,7 @@ namespace KnowEst
             this.conc_CM_S_SOG_CG_cbx.Name = "conc_CM_S_SOG_CG_cbx";
             this.conc_CM_S_SOG_CG_cbx.Size = new System.Drawing.Size(152, 28);
             this.conc_CM_S_SOG_CG_cbx.TabIndex = 22;
+            this.conc_CM_S_SOG_CG_cbx.MouseHover += new System.EventHandler(this.conc_CM_S_SOG_CG_cbx_MouseHover);
             // 
             // conc_CM_S_SOG_RM_rb
             // 
@@ -2929,6 +2953,7 @@ namespace KnowEst
             this.conc_CM_S_SOG_GT_cbx.Name = "conc_CM_S_SOG_GT_cbx";
             this.conc_CM_S_SOG_GT_cbx.Size = new System.Drawing.Size(152, 28);
             this.conc_CM_S_SOG_GT_cbx.TabIndex = 23;
+            this.conc_CM_S_SOG_GT_cbx.MouseHover += new System.EventHandler(this.conc_CM_S_SOG_GT_cbx_MouseHover);
             // 
             // conc_CM_S_SOG_RM_cbx
             // 
@@ -3024,6 +3049,7 @@ namespace KnowEst
             this.label150.TabIndex = 11;
             this.label150.Text = "Concrete Grade:";
             this.label150.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label150.MouseHover += new System.EventHandler(this.label150_MouseHover);
             // 
             // conc_CM_S_SS_CG_cbx
             // 
@@ -3039,6 +3065,7 @@ namespace KnowEst
             this.conc_CM_S_SS_CG_cbx.Name = "conc_CM_S_SS_CG_cbx";
             this.conc_CM_S_SS_CG_cbx.Size = new System.Drawing.Size(152, 28);
             this.conc_CM_S_SS_CG_cbx.TabIndex = 22;
+            this.conc_CM_S_SS_CG_cbx.MouseHover += new System.EventHandler(this.conc_CM_S_SS_CG_cbx_MouseHover);
             // 
             // conc_CM_S_SS_RM_rb
             // 
@@ -3094,6 +3121,7 @@ namespace KnowEst
             this.conc_CM_S_SS_GT_cbx.Name = "conc_CM_S_SS_GT_cbx";
             this.conc_CM_S_SS_GT_cbx.Size = new System.Drawing.Size(152, 28);
             this.conc_CM_S_SS_GT_cbx.TabIndex = 23;
+            this.conc_CM_S_SS_GT_cbx.MouseHover += new System.EventHandler(this.conc_CM_S_SS_GT_cbx_MouseHover);
             // 
             // conc_CM_S_SS_RM_cbx
             // 
@@ -3391,6 +3419,7 @@ namespace KnowEst
             this.label58.TabIndex = 11;
             this.label58.Text = "Concrete Grade:";
             this.label58.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label58.MouseHover += new System.EventHandler(this.label58_MouseHover);
             // 
             // label59
             // 
@@ -3460,6 +3489,7 @@ namespace KnowEst
             this.conc_CM_ST_CG_cbx.Name = "conc_CM_ST_CG_cbx";
             this.conc_CM_ST_CG_cbx.Size = new System.Drawing.Size(152, 28);
             this.conc_CM_ST_CG_cbx.TabIndex = 22;
+            this.conc_CM_ST_CG_cbx.MouseHover += new System.EventHandler(this.conc_CM_ST_CG_cbx_MouseHover);
             // 
             // conc_CM_ST_GT_cbx
             // 
@@ -3476,6 +3506,7 @@ namespace KnowEst
             this.conc_CM_ST_GT_cbx.Name = "conc_CM_ST_GT_cbx";
             this.conc_CM_ST_GT_cbx.Size = new System.Drawing.Size(152, 28);
             this.conc_CM_ST_GT_cbx.TabIndex = 23;
+            this.conc_CM_ST_GT_cbx.MouseHover += new System.EventHandler(this.conc_CM_ST_GT_cbx_MouseHover);
             // 
             // conc_CM_ST_RM_cbx
             // 
@@ -3996,14 +4027,14 @@ namespace KnowEst
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_W_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_W_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_W_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle33;
             this.rein_W_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_W_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_W_dg.Location = new System.Drawing.Point(397, 50);
@@ -4064,27 +4095,27 @@ namespace KnowEst
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_BEH_MB_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_MB_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle34.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_MB_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle34;
             this.rein_BEH_MB_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_BEH_MB_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_BEH_MB_dg.Location = new System.Drawing.Point(6, 6);
             this.rein_BEH_MB_dg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_BEH_MB_dg.Name = "rein_BEH_MB_dg";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_MB_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_MB_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle35;
             this.rein_BEH_MB_dg.RowHeadersVisible = false;
             this.rein_BEH_MB_dg.RowHeadersWidth = 62;
             this.rein_BEH_MB_dg.RowTemplate.Height = 28;
@@ -4111,14 +4142,14 @@ namespace KnowEst
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_BEH_ST_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_ST_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle36.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_ST_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle36;
             this.rein_BEH_ST_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_BEH_ST_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_BEH_ST_dg.Location = new System.Drawing.Point(6, 6);
@@ -4279,7 +4310,7 @@ namespace KnowEst
             this.rein_RG_CLT_cbx.Location = new System.Drawing.Point(138, 42);
             this.rein_RG_CLT_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_RG_CLT_cbx.Name = "rein_RG_CLT_cbx";
-            this.rein_RG_CLT_cbx.Size = new System.Drawing.Size(125, 28);
+            this.rein_RG_CLT_cbx.Size = new System.Drawing.Size(123, 28);
             this.rein_RG_CLT_cbx.TabIndex = 25;
             // 
             // label113
@@ -4305,7 +4336,7 @@ namespace KnowEst
             this.rein_RG_BS_cbx.Location = new System.Drawing.Point(138, 82);
             this.rein_RG_BS_cbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_RG_BS_cbx.Name = "rein_RG_BS_cbx";
-            this.rein_RG_BS_cbx.Size = new System.Drawing.Size(125, 28);
+            this.rein_RG_BS_cbx.Size = new System.Drawing.Size(123, 28);
             this.rein_RG_BS_cbx.TabIndex = 27;
             // 
             // tableLayoutPanel54
@@ -4601,41 +4632,33 @@ namespace KnowEst
             this.tableLayoutPanel57.Controls.Add(this.rein_ML_WF_9_chk, 3, 3);
             this.tableLayoutPanel57.Controls.Add(this.rein_ML_WF_75_chk, 2, 3);
             this.tableLayoutPanel57.Controls.Add(this.rein_ML_WF_6_chk, 1, 3);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_FT_15_chk, 7, 2);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_FT_135_chk, 6, 2);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_FT_12_chk, 5, 2);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_FT_105_chk, 4, 2);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_FT_9_chk, 3, 2);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_FT_75_chk, 2, 2);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_FT_6_chk, 1, 2);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_15_chk, 7, 1);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_135_chk, 6, 1);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_12_chk, 5, 1);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_105_chk, 4, 1);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_9_chk, 3, 1);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_75_chk, 2, 1);
             this.tableLayoutPanel57.Controls.Add(this.label145, 0, 7);
-            this.tableLayoutPanel57.Controls.Add(this.label132, 1, 0);
-            this.tableLayoutPanel57.Controls.Add(this.label133, 2, 0);
-            this.tableLayoutPanel57.Controls.Add(this.label134, 3, 0);
-            this.tableLayoutPanel57.Controls.Add(this.label135, 4, 0);
-            this.tableLayoutPanel57.Controls.Add(this.label136, 5, 0);
-            this.tableLayoutPanel57.Controls.Add(this.label137, 6, 0);
-            this.tableLayoutPanel57.Controls.Add(this.label138, 7, 0);
-            this.tableLayoutPanel57.Controls.Add(this.label139, 0, 1);
-            this.tableLayoutPanel57.Controls.Add(this.label140, 0, 2);
             this.tableLayoutPanel57.Controls.Add(this.label141, 0, 3);
             this.tableLayoutPanel57.Controls.Add(this.label142, 0, 4);
             this.tableLayoutPanel57.Controls.Add(this.label143, 0, 5);
             this.tableLayoutPanel57.Controls.Add(this.label144, 0, 6);
-            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_6_chk, 1, 1);
+            this.tableLayoutPanel57.Controls.Add(this.label139, 0, 2);
+            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_6_chk, 1, 2);
+            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_75_chk, 2, 2);
+            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_9_chk, 3, 2);
+            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_105_chk, 4, 2);
+            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_12_chk, 5, 2);
+            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_135_chk, 6, 2);
+            this.tableLayoutPanel57.Controls.Add(this.rein_ML_CF_15_chk, 7, 2);
+            this.tableLayoutPanel57.Controls.Add(this.label132, 1, 1);
+            this.tableLayoutPanel57.Controls.Add(this.label133, 2, 1);
+            this.tableLayoutPanel57.Controls.Add(this.label134, 3, 1);
+            this.tableLayoutPanel57.Controls.Add(this.label135, 4, 1);
+            this.tableLayoutPanel57.Controls.Add(this.label136, 5, 1);
+            this.tableLayoutPanel57.Controls.Add(this.label137, 6, 1);
+            this.tableLayoutPanel57.Controls.Add(this.label138, 7, 1);
             this.tableLayoutPanel57.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel57.Location = new System.Drawing.Point(627, 296);
             this.tableLayoutPanel57.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel57.Name = "tableLayoutPanel57";
             this.tableLayoutPanel57.RowCount = 8;
-            this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.357143F));
+            this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.21428F));
             this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
@@ -4995,136 +5018,6 @@ namespace KnowEst
             this.rein_ML_WF_6_chk.TabIndex = 73;
             this.rein_ML_WF_6_chk.UseVisualStyleBackColor = true;
             // 
-            // rein_ML_FT_15_chk
-            // 
-            this.rein_ML_FT_15_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_FT_15_chk.Location = new System.Drawing.Point(453, 50);
-            this.rein_ML_FT_15_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_FT_15_chk.Name = "rein_ML_FT_15_chk";
-            this.rein_ML_FT_15_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_FT_15_chk.TabIndex = 72;
-            this.rein_ML_FT_15_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_FT_135_chk
-            // 
-            this.rein_ML_FT_135_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_FT_135_chk.Location = new System.Drawing.Point(403, 50);
-            this.rein_ML_FT_135_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_FT_135_chk.Name = "rein_ML_FT_135_chk";
-            this.rein_ML_FT_135_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_FT_135_chk.TabIndex = 71;
-            this.rein_ML_FT_135_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_FT_12_chk
-            // 
-            this.rein_ML_FT_12_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_FT_12_chk.Location = new System.Drawing.Point(353, 50);
-            this.rein_ML_FT_12_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_FT_12_chk.Name = "rein_ML_FT_12_chk";
-            this.rein_ML_FT_12_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_FT_12_chk.TabIndex = 70;
-            this.rein_ML_FT_12_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_FT_105_chk
-            // 
-            this.rein_ML_FT_105_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_FT_105_chk.Location = new System.Drawing.Point(303, 50);
-            this.rein_ML_FT_105_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_FT_105_chk.Name = "rein_ML_FT_105_chk";
-            this.rein_ML_FT_105_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_FT_105_chk.TabIndex = 69;
-            this.rein_ML_FT_105_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_FT_9_chk
-            // 
-            this.rein_ML_FT_9_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_FT_9_chk.Location = new System.Drawing.Point(253, 50);
-            this.rein_ML_FT_9_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_FT_9_chk.Name = "rein_ML_FT_9_chk";
-            this.rein_ML_FT_9_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_FT_9_chk.TabIndex = 68;
-            this.rein_ML_FT_9_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_FT_75_chk
-            // 
-            this.rein_ML_FT_75_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_FT_75_chk.Location = new System.Drawing.Point(203, 50);
-            this.rein_ML_FT_75_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_FT_75_chk.Name = "rein_ML_FT_75_chk";
-            this.rein_ML_FT_75_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_FT_75_chk.TabIndex = 67;
-            this.rein_ML_FT_75_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_FT_6_chk
-            // 
-            this.rein_ML_FT_6_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_FT_6_chk.Location = new System.Drawing.Point(153, 50);
-            this.rein_ML_FT_6_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_FT_6_chk.Name = "rein_ML_FT_6_chk";
-            this.rein_ML_FT_6_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_FT_6_chk.TabIndex = 66;
-            this.rein_ML_FT_6_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_CF_15_chk
-            // 
-            this.rein_ML_CF_15_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_15_chk.Location = new System.Drawing.Point(453, 26);
-            this.rein_ML_CF_15_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_CF_15_chk.Name = "rein_ML_CF_15_chk";
-            this.rein_ML_CF_15_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_CF_15_chk.TabIndex = 65;
-            this.rein_ML_CF_15_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_CF_135_chk
-            // 
-            this.rein_ML_CF_135_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_135_chk.Location = new System.Drawing.Point(403, 26);
-            this.rein_ML_CF_135_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_CF_135_chk.Name = "rein_ML_CF_135_chk";
-            this.rein_ML_CF_135_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_CF_135_chk.TabIndex = 64;
-            this.rein_ML_CF_135_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_CF_12_chk
-            // 
-            this.rein_ML_CF_12_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_12_chk.Location = new System.Drawing.Point(353, 26);
-            this.rein_ML_CF_12_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_CF_12_chk.Name = "rein_ML_CF_12_chk";
-            this.rein_ML_CF_12_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_CF_12_chk.TabIndex = 63;
-            this.rein_ML_CF_12_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_CF_105_chk
-            // 
-            this.rein_ML_CF_105_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_105_chk.Location = new System.Drawing.Point(303, 26);
-            this.rein_ML_CF_105_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_CF_105_chk.Name = "rein_ML_CF_105_chk";
-            this.rein_ML_CF_105_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_CF_105_chk.TabIndex = 62;
-            this.rein_ML_CF_105_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_CF_9_chk
-            // 
-            this.rein_ML_CF_9_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_9_chk.Location = new System.Drawing.Point(253, 26);
-            this.rein_ML_CF_9_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_CF_9_chk.Name = "rein_ML_CF_9_chk";
-            this.rein_ML_CF_9_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_CF_9_chk.TabIndex = 61;
-            this.rein_ML_CF_9_chk.UseVisualStyleBackColor = true;
-            // 
-            // rein_ML_CF_75_chk
-            // 
-            this.rein_ML_CF_75_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_75_chk.Location = new System.Drawing.Point(203, 26);
-            this.rein_ML_CF_75_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rein_ML_CF_75_chk.Name = "rein_ML_CF_75_chk";
-            this.rein_ML_CF_75_chk.Size = new System.Drawing.Size(43, 18);
-            this.rein_ML_CF_75_chk.TabIndex = 60;
-            this.rein_ML_CF_75_chk.UseVisualStyleBackColor = true;
-            // 
             // label145
             // 
             this.label145.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -5136,114 +5029,6 @@ namespace KnowEst
             this.label145.TabIndex = 57;
             this.label145.Text = "Suspended Slab:";
             this.label145.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label132
-            // 
-            this.label132.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label132.Location = new System.Drawing.Point(151, 0);
-            this.label132.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label132.Name = "label132";
-            this.label132.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label132.Size = new System.Drawing.Size(45, 24);
-            this.label132.TabIndex = 44;
-            this.label132.Text = "6.0";
-            this.label132.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label133
-            // 
-            this.label133.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label133.Location = new System.Drawing.Point(201, 0);
-            this.label133.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label133.Name = "label133";
-            this.label133.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label133.Size = new System.Drawing.Size(45, 24);
-            this.label133.TabIndex = 45;
-            this.label133.Text = "7.5";
-            this.label133.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label134
-            // 
-            this.label134.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label134.Location = new System.Drawing.Point(251, 0);
-            this.label134.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label134.Name = "label134";
-            this.label134.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label134.Size = new System.Drawing.Size(45, 24);
-            this.label134.TabIndex = 46;
-            this.label134.Text = "9.0";
-            this.label134.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label135
-            // 
-            this.label135.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label135.Location = new System.Drawing.Point(301, 0);
-            this.label135.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label135.Name = "label135";
-            this.label135.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label135.Size = new System.Drawing.Size(45, 24);
-            this.label135.TabIndex = 47;
-            this.label135.Text = "10.5";
-            this.label135.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label136
-            // 
-            this.label136.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label136.Location = new System.Drawing.Point(351, 0);
-            this.label136.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label136.Name = "label136";
-            this.label136.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label136.Size = new System.Drawing.Size(45, 24);
-            this.label136.TabIndex = 48;
-            this.label136.Text = "12.0";
-            this.label136.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label137
-            // 
-            this.label137.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label137.Location = new System.Drawing.Point(401, 0);
-            this.label137.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label137.Name = "label137";
-            this.label137.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label137.Size = new System.Drawing.Size(45, 24);
-            this.label137.TabIndex = 49;
-            this.label137.Text = "13.5";
-            this.label137.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label138
-            // 
-            this.label138.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label138.Location = new System.Drawing.Point(451, 0);
-            this.label138.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label138.Name = "label138";
-            this.label138.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label138.Size = new System.Drawing.Size(45, 24);
-            this.label138.TabIndex = 50;
-            this.label138.Text = "15.0";
-            this.label138.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label139
-            // 
-            this.label139.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label139.Location = new System.Drawing.Point(1, 24);
-            this.label139.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label139.Name = "label139";
-            this.label139.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label139.Size = new System.Drawing.Size(145, 24);
-            this.label139.TabIndex = 51;
-            this.label139.Text = "Column Footing:";
-            this.label139.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label140
-            // 
-            this.label140.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label140.Location = new System.Drawing.Point(1, 48);
-            this.label140.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
-            this.label140.Name = "label140";
-            this.label140.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label140.Size = new System.Drawing.Size(145, 24);
-            this.label140.TabIndex = 52;
-            this.label140.Text = "Footing Tie Beam:";
-            this.label140.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label141
             // 
@@ -5293,15 +5078,164 @@ namespace KnowEst
             this.label144.Text = "Slab on Grade:";
             this.label144.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label139
+            // 
+            this.label139.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label139.Location = new System.Drawing.Point(1, 48);
+            this.label139.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label139.Name = "label139";
+            this.label139.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label139.Size = new System.Drawing.Size(145, 24);
+            this.label139.TabIndex = 51;
+            this.label139.Text = "Column Footing:";
+            this.label139.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // rein_ML_CF_6_chk
             // 
             this.rein_ML_CF_6_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rein_ML_CF_6_chk.Location = new System.Drawing.Point(153, 26);
+            this.rein_ML_CF_6_chk.Location = new System.Drawing.Point(153, 50);
             this.rein_ML_CF_6_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_ML_CF_6_chk.Name = "rein_ML_CF_6_chk";
             this.rein_ML_CF_6_chk.Size = new System.Drawing.Size(43, 18);
             this.rein_ML_CF_6_chk.TabIndex = 58;
             this.rein_ML_CF_6_chk.UseVisualStyleBackColor = true;
+            // 
+            // rein_ML_CF_75_chk
+            // 
+            this.rein_ML_CF_75_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rein_ML_CF_75_chk.Location = new System.Drawing.Point(203, 50);
+            this.rein_ML_CF_75_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_ML_CF_75_chk.Name = "rein_ML_CF_75_chk";
+            this.rein_ML_CF_75_chk.Size = new System.Drawing.Size(43, 18);
+            this.rein_ML_CF_75_chk.TabIndex = 60;
+            this.rein_ML_CF_75_chk.UseVisualStyleBackColor = true;
+            // 
+            // rein_ML_CF_9_chk
+            // 
+            this.rein_ML_CF_9_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rein_ML_CF_9_chk.Location = new System.Drawing.Point(253, 50);
+            this.rein_ML_CF_9_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_ML_CF_9_chk.Name = "rein_ML_CF_9_chk";
+            this.rein_ML_CF_9_chk.Size = new System.Drawing.Size(43, 18);
+            this.rein_ML_CF_9_chk.TabIndex = 61;
+            this.rein_ML_CF_9_chk.UseVisualStyleBackColor = true;
+            // 
+            // rein_ML_CF_105_chk
+            // 
+            this.rein_ML_CF_105_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rein_ML_CF_105_chk.Location = new System.Drawing.Point(303, 50);
+            this.rein_ML_CF_105_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_ML_CF_105_chk.Name = "rein_ML_CF_105_chk";
+            this.rein_ML_CF_105_chk.Size = new System.Drawing.Size(43, 18);
+            this.rein_ML_CF_105_chk.TabIndex = 62;
+            this.rein_ML_CF_105_chk.UseVisualStyleBackColor = true;
+            // 
+            // rein_ML_CF_12_chk
+            // 
+            this.rein_ML_CF_12_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rein_ML_CF_12_chk.Location = new System.Drawing.Point(353, 50);
+            this.rein_ML_CF_12_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_ML_CF_12_chk.Name = "rein_ML_CF_12_chk";
+            this.rein_ML_CF_12_chk.Size = new System.Drawing.Size(43, 18);
+            this.rein_ML_CF_12_chk.TabIndex = 63;
+            this.rein_ML_CF_12_chk.UseVisualStyleBackColor = true;
+            // 
+            // rein_ML_CF_135_chk
+            // 
+            this.rein_ML_CF_135_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rein_ML_CF_135_chk.Location = new System.Drawing.Point(403, 50);
+            this.rein_ML_CF_135_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_ML_CF_135_chk.Name = "rein_ML_CF_135_chk";
+            this.rein_ML_CF_135_chk.Size = new System.Drawing.Size(43, 18);
+            this.rein_ML_CF_135_chk.TabIndex = 64;
+            this.rein_ML_CF_135_chk.UseVisualStyleBackColor = true;
+            // 
+            // rein_ML_CF_15_chk
+            // 
+            this.rein_ML_CF_15_chk.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rein_ML_CF_15_chk.Location = new System.Drawing.Point(453, 50);
+            this.rein_ML_CF_15_chk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rein_ML_CF_15_chk.Name = "rein_ML_CF_15_chk";
+            this.rein_ML_CF_15_chk.Size = new System.Drawing.Size(43, 18);
+            this.rein_ML_CF_15_chk.TabIndex = 65;
+            this.rein_ML_CF_15_chk.UseVisualStyleBackColor = true;
+            // 
+            // label132
+            // 
+            this.label132.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label132.Location = new System.Drawing.Point(151, 9);
+            this.label132.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label132.Name = "label132";
+            this.label132.Size = new System.Drawing.Size(45, 39);
+            this.label132.TabIndex = 44;
+            this.label132.Text = "6.0";
+            this.label132.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label133
+            // 
+            this.label133.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label133.Location = new System.Drawing.Point(201, 9);
+            this.label133.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label133.Name = "label133";
+            this.label133.Size = new System.Drawing.Size(45, 39);
+            this.label133.TabIndex = 45;
+            this.label133.Text = "7.5";
+            this.label133.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label134
+            // 
+            this.label134.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label134.Location = new System.Drawing.Point(251, 9);
+            this.label134.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label134.Name = "label134";
+            this.label134.Size = new System.Drawing.Size(45, 39);
+            this.label134.TabIndex = 46;
+            this.label134.Text = "9.0";
+            this.label134.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label135
+            // 
+            this.label135.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label135.Location = new System.Drawing.Point(301, 9);
+            this.label135.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label135.Name = "label135";
+            this.label135.Size = new System.Drawing.Size(45, 39);
+            this.label135.TabIndex = 47;
+            this.label135.Text = "10.5";
+            this.label135.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label136
+            // 
+            this.label136.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label136.Location = new System.Drawing.Point(351, 9);
+            this.label136.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label136.Name = "label136";
+            this.label136.Size = new System.Drawing.Size(45, 39);
+            this.label136.TabIndex = 48;
+            this.label136.Text = "12.0";
+            this.label136.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label137
+            // 
+            this.label137.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label137.Location = new System.Drawing.Point(401, 9);
+            this.label137.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label137.Name = "label137";
+            this.label137.Size = new System.Drawing.Size(45, 39);
+            this.label137.TabIndex = 49;
+            this.label137.Text = "13.5";
+            this.label137.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label138
+            // 
+            this.label138.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label138.Location = new System.Drawing.Point(451, 9);
+            this.label138.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
+            this.label138.Name = "label138";
+            this.label138.Size = new System.Drawing.Size(45, 39);
+            this.label138.TabIndex = 50;
+            this.label138.Text = "15.0";
+            this.label138.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabPage5
             // 
@@ -5453,6 +5387,7 @@ namespace KnowEst
             this.paint_SCL_bx.Name = "paint_SCL_bx";
             this.paint_SCL_bx.Size = new System.Drawing.Size(118, 26);
             this.paint_SCL_bx.TabIndex = 14;
+            this.paint_SCL_bx.MouseHover += new System.EventHandler(this.paint_SCL_bx_MouseHover);
             // 
             // tabPage6
             // 
@@ -5606,6 +5541,7 @@ namespace KnowEst
             this.tiles_FS_bx.Name = "tiles_FS_bx";
             this.tiles_FS_bx.Size = new System.Drawing.Size(118, 26);
             this.tiles_FS_bx.TabIndex = 14;
+            this.tiles_FS_bx.MouseHover += new System.EventHandler(this.tiles_FS_bx_MouseHover);
             // 
             // label83
             // 
@@ -5698,6 +5634,7 @@ namespace KnowEst
             this.mason_CHB_IW_cbx.Name = "mason_CHB_IW_cbx";
             this.mason_CHB_IW_cbx.Size = new System.Drawing.Size(180, 28);
             this.mason_CHB_IW_cbx.TabIndex = 35;
+            this.mason_CHB_IW_cbx.MouseHover += new System.EventHandler(this.mason_CHB_IW_cbx_MouseHover);
             // 
             // label86
             // 
@@ -5751,6 +5688,7 @@ namespace KnowEst
             this.mason_CHB_IW_AddBtn.Text = "Add";
             this.mason_CHB_IW_AddBtn.UseVisualStyleBackColor = true;
             this.mason_CHB_IW_AddBtn.Click += new System.EventHandler(this.mason_CHB_IW_AddBtn_Click);
+            this.mason_CHB_IW_AddBtn.MouseHover += new System.EventHandler(this.mason_CHB_IW_AddBtn_MouseHover);
             // 
             // tableLayoutPanel40
             // 
@@ -5804,6 +5742,7 @@ namespace KnowEst
             this.mason_RTW_LTW_cbx.Name = "mason_RTW_LTW_cbx";
             this.mason_RTW_LTW_cbx.Size = new System.Drawing.Size(152, 28);
             this.mason_RTW_LTW_cbx.TabIndex = 44;
+            this.mason_RTW_LTW_cbx.MouseHover += new System.EventHandler(this.mason_RTW_LTW_cbx_MouseHover);
             // 
             // label102
             // 
@@ -5920,6 +5859,7 @@ namespace KnowEst
             this.mason_RTW_VS_cbx.Name = "mason_RTW_VS_cbx";
             this.mason_RTW_VS_cbx.Size = new System.Drawing.Size(152, 28);
             this.mason_RTW_VS_cbx.TabIndex = 25;
+            this.mason_RTW_VS_cbx.MouseHover += new System.EventHandler(this.mason_RTW_VS_cbx_MouseHover);
             // 
             // label99
             // 
@@ -5946,6 +5886,7 @@ namespace KnowEst
             this.mason_RTW_HSL_cbx.Name = "mason_RTW_HSL_cbx";
             this.mason_RTW_HSL_cbx.Size = new System.Drawing.Size(152, 28);
             this.mason_RTW_HSL_cbx.TabIndex = 27;
+            this.mason_RTW_HSL_cbx.MouseHover += new System.EventHandler(this.mason_RTW_HSL_cbx_MouseHover);
             // 
             // mason_RTW_BD_cbx
             // 
@@ -5956,6 +5897,7 @@ namespace KnowEst
             this.mason_RTW_BD_cbx.Name = "mason_RTW_BD_cbx";
             this.mason_RTW_BD_cbx.Size = new System.Drawing.Size(152, 28);
             this.mason_RTW_BD_cbx.TabIndex = 35;
+            this.mason_RTW_BD_cbx.MouseHover += new System.EventHandler(this.mason_RTW_BD_cbx_MouseHover);
             // 
             // mason_RTW_RG_cbx
             // 
@@ -5987,6 +5929,7 @@ namespace KnowEst
             this.mason_RTW_RL_cbx.Name = "mason_RTW_RL_cbx";
             this.mason_RTW_RL_cbx.Size = new System.Drawing.Size(152, 28);
             this.mason_RTW_RL_cbx.TabIndex = 32;
+            this.mason_RTW_RL_cbx.MouseHover += new System.EventHandler(this.mason_RTW_RL_cbx_MouseHover);
             // 
             // label98
             // 
@@ -6060,6 +6003,7 @@ namespace KnowEst
             this.mason_CHB_EW_cbx.Name = "mason_CHB_EW_cbx";
             this.mason_CHB_EW_cbx.Size = new System.Drawing.Size(180, 28);
             this.mason_CHB_EW_cbx.TabIndex = 35;
+            this.mason_CHB_EW_cbx.MouseHover += new System.EventHandler(this.mason_CHB_EW_cbx_MouseHover);
             // 
             // label92
             // 
@@ -6113,6 +6057,7 @@ namespace KnowEst
             this.mason_CHB_EW_AddBtn.Text = "Add";
             this.mason_CHB_EW_AddBtn.UseVisualStyleBackColor = true;
             this.mason_CHB_EW_AddBtn.Click += new System.EventHandler(this.mason_CHB_EW_AddBtn_Click);
+            this.mason_CHB_EW_AddBtn.MouseHover += new System.EventHandler(this.mason_CHB_EW_AddBtn_MouseHover);
             // 
             // tabPage8
             // 
@@ -6133,7 +6078,7 @@ namespace KnowEst
             this.tableLayoutPanel53.Controls.Add(this.stairs_Panel, 0, 1);
             this.tableLayoutPanel53.Controls.Add(this.tableLayoutPanel55, 1, 2);
             this.tableLayoutPanel53.Controls.Add(this.tableLayoutPanel59, 0, 0);
-            this.tableLayoutPanel53.Location = new System.Drawing.Point(5, 6);
+            this.tableLayoutPanel53.Location = new System.Drawing.Point(4, 6);
             this.tableLayoutPanel53.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel53.Name = "tableLayoutPanel53";
             this.tableLayoutPanel53.RowCount = 3;
@@ -6508,6 +6453,7 @@ namespace KnowEst
             this.labor_RD_cbx.Name = "labor_RD_cbx";
             this.labor_RD_cbx.Size = new System.Drawing.Size(163, 28);
             this.labor_RD_cbx.TabIndex = 24;
+            this.labor_RD_cbx.MouseHover += new System.EventHandler(this.labor_RD_cbx_MouseHover);
             // 
             // tabPage10
             // 
@@ -6560,7 +6506,7 @@ namespace KnowEst
             this.label49.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.label49.Name = "label49";
             this.label49.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label49.Size = new System.Drawing.Size(373, 58);
+            this.label49.Size = new System.Drawing.Size(372, 58);
             this.label49.TabIndex = 32;
             this.label49.Text = "Add Custom Items";
             this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -6694,7 +6640,7 @@ namespace KnowEst
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(640, 317);
+            this.MinimumSize = new System.Drawing.Size(640, 315);
             this.Name = "ParametersForm";
             this.Text = "Parameters";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ParametersForm_FormClosing);
@@ -7155,7 +7101,6 @@ namespace KnowEst
         private System.Windows.Forms.Label label137;
         private System.Windows.Forms.Label label138;
         private System.Windows.Forms.Label label139;
-        private System.Windows.Forms.Label label140;
         private System.Windows.Forms.Label label141;
         private System.Windows.Forms.Label label142;
         private System.Windows.Forms.Label label143;
@@ -7196,13 +7141,6 @@ namespace KnowEst
         private System.Windows.Forms.CheckBox rein_ML_WF_9_chk;
         private System.Windows.Forms.CheckBox rein_ML_WF_75_chk;
         private System.Windows.Forms.CheckBox rein_ML_WF_6_chk;
-        private System.Windows.Forms.CheckBox rein_ML_FT_15_chk;
-        private System.Windows.Forms.CheckBox rein_ML_FT_135_chk;
-        private System.Windows.Forms.CheckBox rein_ML_FT_12_chk;
-        private System.Windows.Forms.CheckBox rein_ML_FT_105_chk;
-        private System.Windows.Forms.CheckBox rein_ML_FT_9_chk;
-        private System.Windows.Forms.CheckBox rein_ML_FT_75_chk;
-        private System.Windows.Forms.CheckBox rein_ML_FT_6_chk;
         private System.Windows.Forms.CheckBox rein_ML_CF_15_chk;
         private System.Windows.Forms.CheckBox rein_ML_CF_135_chk;
         private System.Windows.Forms.CheckBox rein_ML_CF_12_chk;
