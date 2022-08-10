@@ -613,15 +613,11 @@ namespace KnowEst
             else if (e.TabPageIndex == 2)
             {
                 AdjustPriceView();
-
-                //Console.WriteLine(structuralMembers.concreteWorkSolutionsC[0][0][0]);
             }
             //View or BOQ Tab button is clicked
             else if (e.TabPageIndex == 3 || e.TabPageIndex == 4)
             {
                 initializeView();
-                
-                //Console.WriteLine(structuralMembers.concreteWorkSolutionsC[0][0][0]);
             }
         }
 
@@ -9121,13 +9117,13 @@ namespace KnowEst
                     headerCount = temp - i;
                     for (int k = 1; k < headerCount; k++)
                     {
-                        if (k == 0)
+                        if (k == 1)
                         {
                             parameters.rein_LSL_TB_dt.Columns.Add("Bar Sizes");
                         }
                         else
                         {
-                            parameters.rein_LSL_TB_dt.Columns.Add("LS" + k + " ƒ'c (MPa):");
+                            parameters.rein_LSL_TB_dt.Columns.Add("LS" + (k - 1) + " ƒ'c (MPa)");
                         }
                     }
                 }
@@ -9177,13 +9173,13 @@ namespace KnowEst
                     headerCount = temp - i;
                     for (int k = 1; k < headerCount; k++)
                     {
-                        if (k == 0)
+                        if (k == 1)
                         {
                             parameters.rein_LSL_CB_dt.Columns.Add("Bar Sizes");
                         }
                         else
                         {
-                            parameters.rein_LSL_CB_dt.Columns.Add("LS" + k + " ƒ'c (MPa):");
+                            parameters.rein_LSL_CB_dt.Columns.Add("LS" + (k - 1) + " ƒ'c (MPa)");
                         }
                     }
                 }

@@ -30,10 +30,10 @@ namespace KnowEst
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.paramTabControl = new System.Windows.Forms.TabControl();
             this.earthworksTabPage = new System.Windows.Forms.TabPage();
             this.earthworksPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -4027,14 +4027,14 @@ namespace KnowEst
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_W_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_W_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_W_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.rein_W_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_W_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_W_dg.Location = new System.Drawing.Point(397, 50);
@@ -4095,27 +4095,27 @@ namespace KnowEst
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_BEH_MB_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle34.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_MB_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_MB_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.rein_BEH_MB_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_BEH_MB_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_BEH_MB_dg.Location = new System.Drawing.Point(6, 6);
             this.rein_BEH_MB_dg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rein_BEH_MB_dg.Name = "rein_BEH_MB_dg";
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_MB_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_MB_dg.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.rein_BEH_MB_dg.RowHeadersVisible = false;
             this.rein_BEH_MB_dg.RowHeadersWidth = 62;
             this.rein_BEH_MB_dg.RowTemplate.Height = 28;
@@ -4142,14 +4142,14 @@ namespace KnowEst
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rein_BEH_ST_dg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle36.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rein_BEH_ST_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rein_BEH_ST_dg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.rein_BEH_ST_dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rein_BEH_ST_dg.GridColor = System.Drawing.SystemColors.Control;
             this.rein_BEH_ST_dg.Location = new System.Drawing.Point(6, 6);
@@ -4545,6 +4545,7 @@ namespace KnowEst
             this.rein_RG_ST_cbx.Name = "rein_RG_ST_cbx";
             this.rein_RG_ST_cbx.Size = new System.Drawing.Size(119, 28);
             this.rein_RG_ST_cbx.TabIndex = 35;
+            this.rein_RG_ST_cbx.SelectedIndexChanged += new System.EventHandler(this.rein_RG_ST_cbx_SelectedIndexChanged);
             // 
             // rein_RG_B_cbx
             // 
@@ -4573,6 +4574,7 @@ namespace KnowEst
             this.rein_RG_W_cbx.Name = "rein_RG_W_cbx";
             this.rein_RG_W_cbx.Size = new System.Drawing.Size(119, 28);
             this.rein_RG_W_cbx.TabIndex = 32;
+            this.rein_RG_W_cbx.SelectedIndexChanged += new System.EventHandler(this.rein_RG_W_cbx_SelectedIndexChanged);
             // 
             // label124
             // 
@@ -5904,7 +5906,7 @@ namespace KnowEst
             this.mason_RTW_RG_cbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mason_RTW_RG_cbx.FormattingEnabled = true;
             this.mason_RTW_RG_cbx.Items.AddRange(new object[] {
-            "GRADE 30",
+            "GRADE 33",
             "GRADE 40",
             "GRADE 60"});
             this.mason_RTW_RG_cbx.Location = new System.Drawing.Point(216, 122);

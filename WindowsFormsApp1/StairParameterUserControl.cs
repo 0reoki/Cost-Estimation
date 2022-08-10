@@ -71,6 +71,19 @@ namespace KnowEst
             }
         }
 
+        public void setStraightCB(int value)
+        {
+            straightStair_RG_cbx.SelectedIndex = value;
+        }
+        public void setUCB(int value)
+        {
+            UStair_RG_cbx.SelectedIndex = value;
+        }
+        public void setLCB(int value)
+        {
+            LStair_RG_cbx.SelectedIndex = value;
+        }
+
         public string[] getValues()
         {
             if (type.Equals("Straight Stairs"))
@@ -206,6 +219,191 @@ namespace KnowEst
         private void LStair_WSF1_MB1_ML_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        //Straight Stairs ML
+        private void straightStairs_MB1_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", straightStairs_MB1_ML_cbx);
+        }
+
+        private void straightStairs_MB2_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", straightStairs_MB2_ML_cbx);
+        }
+
+        private void straightStairs_MB3_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", straightStairs_MB3_ML_cbx);
+        }
+
+        private void straightStairs_DB_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", straightStairs_DB_ML_cbx);
+        }
+
+        private void straightStairs_S_MB_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", straightStairs_S_MB_ML_cbx);
+        }
+
+        private void straightStairs_S_NB_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", straightStairs_S_NB_ML_cbx);
+        }
+
+        //U-Stairs
+        private void UStairs_WSF1_MB1_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", UStairs_WSF1_MB1_ML_cbx);
+        }
+
+        private void UStairs_WSF1_MB2_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", UStairs_WSF1_MB2_ML_cbx);
+        }
+
+        private void UStairs_WSF1_MB3_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", UStairs_WSF1_MB3_ML_cbx);
+        }
+
+        private void UStairs_WSF2_MB1_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", UStairs_WSF2_MB1_ML_cbx);
+        }
+
+        private void UStairs_WSF2_MB2_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", UStairs_WSF2_MB2_ML_cbx);
+        }
+
+        private void UStairs_WSF2_MB3_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", UStairs_WSF2_MB3_ML_cbx);
+        }
+
+        private void UStairs_DB_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", UStairs_DB_ML_cbx);
+        }
+
+        private void UStairs_LR_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", UStairs_LR_ML_cbx);
+        }
+
+        private void UStairs_S_MB_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", UStairs_S_MB_ML_cbx);
+        }
+
+        private void UStairs_S_NB_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", UStairs_S_NB_ML_cbx);
+        }
+
+        //L-Stairs
+        private void LStair_WSF1_MB1_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", LStair_WSF1_MB1_ML_cbx);
+        }
+
+        private void LStair_WSF1_MB2_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", LStair_WSF1_MB2_ML_cbx);
+        }
+
+        private void LStair_WSF1_MB3_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", LStair_WSF1_MB3_ML_cbx);
+        }
+
+        private void LStair_WSF2_MB1_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", LStair_WSF2_MB1_ML_cbx);
+        }
+
+        private void LStair_WSF2_MB2_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", LStair_WSF2_MB2_ML_cbx);
+        }
+
+        private void LStair_WSF2_MB3_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", LStair_WSF2_MB3_ML_cbx);
+        }
+
+        private void LStair_DB_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", LStair_DB_ML_cbx);
+        }
+
+        private void LStair_LR_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", LStair_LR_ML_cbx);
+        }
+
+        private void LStair_S_MB_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", LStair_S_MB_ML_cbx);
+        }
+
+        private void LStair_S_NB_ML_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired manufactured length for the steel reinforcement. " +
+                "\nDefault value shown has the lowest average wastage selected by the system as " +
+                "the optimal choice", LStair_S_NB_ML_cbx);
         }
     }
 }

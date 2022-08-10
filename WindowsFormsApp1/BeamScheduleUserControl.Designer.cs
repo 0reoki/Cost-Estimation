@@ -104,7 +104,7 @@
             this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
+            this.tableLayoutPanel109.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel109.Controls.Add(this.label21, 3, 1);
             this.tableLayoutPanel109.Controls.Add(this.webBars_qty_bx, 14, 3);
             this.tableLayoutPanel109.Controls.Add(this.webBars_dia_bx, 14, 1);

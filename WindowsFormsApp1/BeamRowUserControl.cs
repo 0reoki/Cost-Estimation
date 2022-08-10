@@ -52,7 +52,12 @@ namespace KnowEst
             beamName_cbx.Items.Insert(index, newName);
             beamName_cbx.SelectedIndex = selectedIndex;
         }
-        
+
+        public void deleteScheduleName(string name)
+        {
+            beamName_cbx.Items.Remove(name);
+        }
+
         public string beamName
         {
             get
@@ -121,6 +126,11 @@ namespace KnowEst
         private void clearlength_bx_MouseHover(object sender, EventArgs e)
         {
             toolTip1.Show("The length between the two inside surfaces of the span supports; the distance that is unsupported.", clearlength_bx);
+        }
+
+        private void support_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the number of end support(s) that this beam is connected with.", support_cbx);
         }
     }
 }

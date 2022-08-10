@@ -477,7 +477,7 @@ namespace KnowEst
                         {
                             if (dlg2.selectedString.Equals("Add Column"))
                             {
-                                rein_LSL_TB_dt.Columns.Add("Lapped Splice " + rein_LSL_TB_dt.Columns.Count);
+                                rein_LSL_TB_dt.Columns.Add("LS" + rein_LSL_TB_dt.Columns.Count + " ƒ'c (MPa)");
                                 rein_LSL_TB_dg.DataSource = rein_LSL_TB_dt;
                                 rein_LSL_TB_dg.Columns[rein_LSL_TB_dt.Columns.Count - 1].Width = 90;
                                 LSLBarsUserControl content = new LSLBarsUserControl(this);
@@ -563,7 +563,7 @@ namespace KnowEst
                         {
                             if (dlg2.selectedString.Equals("Add Column"))
                             {
-                                rein_LSL_CB_dt.Columns.Add("Lapped Splice " + rein_LSL_CB_dt.Columns.Count);
+                                rein_LSL_CB_dt.Columns.Add("LS" + rein_LSL_CB_dt.Columns.Count + " ƒ'c (MPa)");
                                 rein_LSL_CB_dg.DataSource = rein_LSL_CB_dt;
                                 rein_LSL_CB_dg.Columns[rein_LSL_CB_dt.Columns.Count - 1].Width = 90;
                                 LSLBarsUserControl content = new LSLBarsUserControl(this);
@@ -1434,7 +1434,7 @@ namespace KnowEst
             for (int i = 0; i < parameters.rein_LSL_TB_fc_list.Count; i++)
             {
                 LSLBarsUserControl content = new LSLBarsUserControl(this);
-                content.lslUC_Label = "LS" + (i - 1) + " ƒ'c (MPa):";
+                content.lslUC_Label = "LS" + (i + 1) + " ƒ'c (MPa):";
                 content.lslUC_Value = parameters.rein_LSL_TB_fc_list[i];
                 content.barType = "Tension Bars";
                 LslUC.Add(content);
@@ -1446,7 +1446,7 @@ namespace KnowEst
             for (int i = 0; i < parameters.rein_LSL_CB_fc_list.Count; i++)
             {
                 LSLBarsUserControl content = new LSLBarsUserControl(this);
-                content.lslUC_Label = "LS" + (i - 1) + " ƒ'c (MPa):";
+                content.lslUC_Label = "LS" + (i + 1) + " ƒ'c (MPa):";
                 content.lslUC_Value = parameters.rein_LSL_CB_fc_list[i];
                 content.barType = "Compression Bars";
                 LslUC.Add(content);
@@ -2577,6 +2577,71 @@ namespace KnowEst
         private void mason_RTW_LTW_cbx_MouseHover(object sender, EventArgs e)
         {
             toolTip1.Show("Length of tie wire in centimeter", mason_RTW_LTW_cbx);
+        }
+
+        private void rein_RG_ST_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rein_RG_ST_cbx.Text.Equals("Grade 33"))
+            {
+                foreach(List<StairParameterUserControl> floor in parameters.stair)
+                {
+                    foreach(StairParameterUserControl stair in floor)
+                    {
+                        if (stair.type.Equals("Straight Stairs"))
+                            stair.setStraightCB(0);
+                        else if (stair.type.Equals("U-Stairs"))
+                            stair.setUCB(0);
+                        else
+                            stair.setLCB(0);
+                    }
+                }
+            }
+            else if (rein_RG_ST_cbx.Text.Equals("Grade 40"))
+            {
+                foreach (List<StairParameterUserControl> floor in parameters.stair)
+                {
+                    foreach (StairParameterUserControl stair in floor)
+                    {
+                        if (stair.type.Equals("Straight Stairs"))
+                            stair.setStraightCB(1);
+                        else if (stair.type.Equals("U-Stairs"))
+                            stair.setUCB(1);
+                        else
+                            stair.setLCB(1);
+                    }
+                }
+            }
+            else
+            {
+                foreach (List<StairParameterUserControl> floor in parameters.stair)
+                {
+                    foreach (StairParameterUserControl stair in floor)
+                    {
+                        if (stair.type.Equals("Straight Stairs"))
+                            stair.setStraightCB(2);
+                        else if (stair.type.Equals("U-Stairs"))
+                            stair.setUCB(2);
+                        else
+                            stair.setLCB(2);
+                    }
+                }
+            }
+        }
+
+        private void rein_RG_W_cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rein_RG_W_cbx.Text.Equals("Grade 33"))
+            {
+                mason_RTW_RG_cbx.SelectedIndex = 0;
+            }
+            else if (rein_RG_W_cbx.Text.Equals("Grade 40"))
+            {
+                mason_RTW_RG_cbx.SelectedIndex = 1;
+            }
+            else
+            {
+                mason_RTW_RG_cbx.SelectedIndex = 2;
+            }
         }
     }
 }

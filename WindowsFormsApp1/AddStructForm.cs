@@ -3376,6 +3376,15 @@ namespace KnowEst
             beam_BR_Panel.Controls.Add(content);
         }
 
+        private void beam_BR_DeleteBtn_Click(object sender, EventArgs e)
+        {
+            if (br_UC.Count > 0)
+            {
+                beam_BR_Panel.Controls.RemoveAt(br_UC.Count);
+                br_UC.RemoveAt(br_UC.Count - 1);
+            }
+        }
+
         private void beam_BS_AddBtn_Click(object sender, EventArgs e)
         {
             string name = "";
@@ -4091,6 +4100,114 @@ namespace KnowEst
             toolTip1.Show("total width in meters", roof_RA_D_HR_TW_bx);
         }
         //Roofings Hover -- END
+
+        //Footing
+        private void footW_T_D_BT_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Base Top, the upper base of the trapezoidal wall footing.", footW_T_D_BT_bx);
+        }
+
+        private void footW_T_D_BU_bx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Base Under, the lower base of the trapezoidal wall footing.", footW_T_D_BU_bx);
+        }
+
+        //Column
+        private void col_G_D_CB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the footing that is connected with this column.", col_G_D_CB_cbx);
+        }
+
+        private void col_G_D_SC_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the Slab on Grade connected with this column.", col_G_D_SC_cbx);
+        }
+
+        private void col_G_LT_LTC_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select the desired configuration of reinforcement lateral ties for this column.", col_G_LT_LTC_cbx);
+        }
+
+        //Stairs - Straight
+        private void stairs_SS_WS_MB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select rebar diameter for Waist slab \n" +
+                "(for both first and second flights) in millimeters.", stairs_SS_WS_MB_cbx);
+        }
+
+        private void stairs_SS_WS_DB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select rebar diameter for temp bars or \n" +
+                "distribution(for both first and second flights) bars in millimeters.", stairs_SS_WS_DB_cbx);
+        }
+
+        private void stairs_SS_S_MB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select rebar diameter for Waist slab in millimeters.", stairs_SS_S_MB_cbx);
+        }
+
+        private void stairs_SS_S_NB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select rebar diameter for Waist slab in millimeters.", stairs_SS_S_NB_cbx);
+        }
+
+        //Stairs - U-Stairs
+        private void stairs_US_WS_MB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select rebar diameter for Waist slab \n" +
+                "(for both first and second flights) in millimeters.", stairs_US_WS_MB_cbx);
+        }
+
+        private void stairs_US_WS_DB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select rebar diameter for temp bars or \n" +
+                "distribution(for both first and second flights) bars in millimeters.", stairs_US_WS_DB_cbx);
+        }
+
+        private void stairs_US_L_MB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select rebar diameter for Waist slab in millimeters.", stairs_US_L_MB_cbx);
+        }
+
+        private void stairs_US_S_MB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select rebar diameter for Waist slab in millimeters.", stairs_US_S_MB_cbx);
+        }
+
+        private void stairs_US_S_NB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select rebar diameter for Waist slab in millimeters.", stairs_US_S_NB_cbx);
+        }
+
+        //Stairs - L-Stairs
+        private void stairs_LS_WS_MB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select rebar diameter for Waist slab \n" +
+                "(for both first and second flights) in millimeters.", stairs_LS_WS_MB_cbx);
+        }
+
+        private void stairs_LS_WS_DB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select rebar diameter for temp bars or \n" +
+                "distribution(for both first and second flights) bars in millimeters.", stairs_LS_WS_DB_cbx);
+
+        }
+
+        private void stairs_LS_L_MB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select rebar diameter for Waist slab in millimeters.", stairs_LS_L_MB_cbx);
+        }
+
+        private void stairs_LS_S_MB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select rebar diameter for Waist slab in millimeters.", stairs_LS_S_MB_cbx);
+        }
+
+        private void stairs_LS_S_NB_cbx_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Select rebar diameter for Waist slab in millimeters.", stairs_LS_S_NB_cbx);
+        }
+
 
         private void roof_GI_D_HRS_AddBtn_Click(object sender, EventArgs e)
         {

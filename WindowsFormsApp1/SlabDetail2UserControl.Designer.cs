@@ -72,7 +72,7 @@
             this.label347.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.label347.Size = new System.Drawing.Size(177, 31);
             this.label347.TabIndex = 28;
-            this.label347.Text = "Bent Gradient:";
+            this.label347.Text = "Bent-Up/Total:";
             this.label347.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // SD2UC_BG_bx
