@@ -1085,6 +1085,19 @@ namespace KnowEst
 
         private void mason_RTW_RG_cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (mason_RTW_RG_cbx.Text.Equals("GRADE 33"))
+            {
+                rein_RG_W_cbx.SelectedIndex = 0;
+            }
+            else if (mason_RTW_RG_cbx.Text.Equals("GRADE 40"))
+            {
+                rein_RG_W_cbx.SelectedIndex = 1;
+            }
+            else
+            {
+                rein_RG_W_cbx.SelectedIndex = 2;
+            }
+
             //rebar changed
             mason_RTW_BD_cbx.Items.Clear();
             if (mason_RTW_RG_cbx.SelectedIndex == 2)
